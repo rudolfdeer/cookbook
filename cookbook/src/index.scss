@@ -1,13 +1,74 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import  './assets/fonts/fonts.css';
+@import './styles/colors.scss';
+@import './styles/header.scss';
+@import './styles/home-page.scss';
+
+* {
+  font-family: 'Nunito', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: black;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0 auto;
 }
+
+#root {
+  width: 100%;
+  max-width: 1680px;
+  margin: 0 auto;
+  padding: 0 32px;
+  position: relative;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+.wrapper {
+  width: 1224px;
+  margin: 0 auto;
+}
+
+.logo-small {
+  width: 112px;
+  height: 33px;
+  background: url('./assets/images/logo-small.png') center no-repeat;
+}
+
+.logo-big {
+    width: 137px;
+    height: 40px; 
+    background: url('./assets/images/logo-big.png') center no-repeat;
+  }
+
+.btn {
+  border: 2px solid $primary-yellow;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 20px;
+
+  &.light {
+    a {
+      color: $primary-yellow;
+      font-size: 20px; 
+    }
+      background: none;
+    }
+
+  &.dark {
+    a {
+      color: $main; 
+      font-size: 20px;
+    }
+      background: $primary-yellow;
+    }
+  }

@@ -2,8 +2,8 @@ import * as React from 'react';
 import {
   Link,
 } from 'react-router-dom';
-import Footer from '../footer/Footer';
-import Header from '../header/Header';
+import Footer from '../shared/footer/Footer';
+import Header from '../shared/header/Header';
 
 import './home-page.scss';
 
@@ -41,6 +41,7 @@ export default function HomePage(): JSX.Element {
           </section>
         </main>
       </div>
+      <Footer />
     </>
   );
 }

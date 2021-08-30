@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Header from '../header/Header';
+import Header from '../shared/header/Header';
 
 export default function CookbooksPage(): JSX.Element {
   return (

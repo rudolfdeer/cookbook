@@ -1,4 +1,4 @@
-@import  '../../public/fonts/fonts.css';
+
 @import './colors.scss';
 
 * {
@@ -18,7 +18,6 @@ body {
   width: 100%;
   max-width: 1680px;
   margin: 0 auto;
-  padding: 0 32px;
   position: relative;
 }
 
@@ -32,21 +31,10 @@ a {
 }
 
 .wrapper {
-  width: 1220px;
+  max-width: 1220px;
+  padding: 0 20px;
   margin: 0 auto;
 }
-
-.logo-small {
-  width: 112px;
-  height: 33px;
-  background: url('../../public/images/logo-small.png') center no-repeat;
-}
-
-.logo-big {
-    width: 137px;
-    height: 40px; 
-    background: url('../../public/images/logo-big.png') center no-repeat;
-  }
 
 .btn {
   border: 2px solid $primary-yellow;

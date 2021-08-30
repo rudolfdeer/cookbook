@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-import './header.scss';
-
 import {
   Link,
 } from 'react-router-dom';
+
+import './header.scss';
 
 export default function Header(): JSX.Element {
   return (

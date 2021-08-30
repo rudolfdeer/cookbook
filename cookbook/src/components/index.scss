@@ -1,7 +1,5 @@
-@import  './assets/fonts/fonts.css';
-@import './styles/colors.scss';
-@import './styles/header.scss';
-@import './styles/home-page.scss';
+@import  '../../public/fonts/fonts.css';
+@import './colors.scss';
 
 * {
   font-family: 'Nunito', sans-serif;
@@ -34,20 +32,20 @@ a {
 }
 
 .wrapper {
-  width: 1224px;
+  width: 1220px;
   margin: 0 auto;
 }
 
 .logo-small {
   width: 112px;
   height: 33px;
-  background: url('./assets/images/logo-small.png') center no-repeat;
+  background: url('../../public/images/logo-small.png') center no-repeat;
 }
 
 .logo-big {
     width: 137px;
     height: 40px; 
-    background: url('./assets/images/logo-big.png') center no-repeat;
+    background: url('../../public/images/logo-big.png') center no-repeat;
   }
 
 .btn {
@@ -72,5 +70,5 @@ a {
       color: $main; 
       font-size: 20px;
     }
-    }
   }
+}

@@ -2,12 +2,13 @@
 @import './colors.scss';
 
 * {
+  box-sizing: border-box;
+
   font-family: 'Nunito', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
   color: black;
-  box-sizing: border-box;
 }
 
 body {
@@ -15,10 +16,12 @@ body {
 }
 
 #root {
+  position: relative;
+
+  margin: 0 auto;
+
   width: 100%;
   max-width: 1680px;
-  margin: 0 auto;
-  position: relative;
 }
 
 img {
@@ -31,9 +34,9 @@ a {
 }
 
 .wrapper {
-  max-width: 1220px;
-  padding: 0 20px;
   margin: 0 auto;
+  padding: 0 20px;
+  max-width: 1220px;
 }
 
 .btn {

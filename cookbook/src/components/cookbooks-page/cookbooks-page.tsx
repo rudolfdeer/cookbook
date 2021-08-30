@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Footer from '../shared/footer/Footer';
 import Header from '../shared/header/Header';
 
 export default function CookbooksPage(): JSX.Element {
@@ -10,6 +11,7 @@ export default function CookbooksPage(): JSX.Element {
           <h1>Cookbooks search</h1>
         </main>
       </div>
+      <Footer/>
     </>
   );
 }

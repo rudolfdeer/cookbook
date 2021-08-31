@@ -1,4 +1,3 @@
-
 @import './colors.scss';
 
 * {
@@ -61,5 +60,10 @@ a {
       color: $main; 
       font-size: 20px;
     }
+  }
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
   }
 }

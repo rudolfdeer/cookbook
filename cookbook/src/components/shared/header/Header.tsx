@@ -21,7 +21,7 @@ export default function Header(): JSX.Element {
         <input type="text" className="header-search-input" />
       </div>
       <button className="header-btn-create btn light"><Link to="/create_cookbook">Create CookBook</Link></button>
-      <a href="#!" className="header-link-login"><Link to="/login">Sign in</Link></a>
+      <div className="header-link-login"><Link to="/login">Sign in</Link></div>
     </header>
   );
 }

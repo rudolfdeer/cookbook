@@ -15,7 +15,7 @@ export default function Footer(): JSX.Element {
             <ul className="footer-nav-list">
               <li className="footer-nav-list-item"><Link to="/recepies">Recepies</Link></li>
               <li className="footer-nav-list-item"><Link to="/cookbooks">Cookbooks</Link></li>
-              <li className="footer-nav-list-item"><Link to="/cookbooks">About us</Link></li>
+              <li className="footer-nav-list-item"><Link to="/">About us</Link></li>
             </ul>
           </nav>
           <div className="email">

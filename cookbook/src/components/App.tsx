@@ -4,22 +4,22 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import CookbooksPage from './cookbooks-page/cookbooks-page';
-import HomePage from './home-page/home-page';
-import RecepiesPage from './recepies-page/recepies-page';
+import CookbooksPage from './pages/cookbooks-page/cookbooks-page';
+import RecepiesConnect from '../containers/recepies-connect';
+import RecepiesPage from './pages/recepies-page/recepies-page';
+import routes from '../constants/routes';
 
 function App(): JSX.Element {
   return (
     <>
       <Router>
         <Switch>
-          <Route exact path="/">
-            <HomePage />
+          <Route exact path={routes.home} component={RecepiesConnect}>
           </Route>
-          <Route exact path="/cookbooks">
+          <Route exact path={routes.cookbooks}>
             <CookbooksPage />
           </Route>
-          <Route exact path="/recepies">
+          <Route exact path={routes.recepies}>
             <RecepiesPage />
           </Route>
         </Switch>

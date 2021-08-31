@@ -30,5 +30,6 @@ module.exports = {
       'linebreak-style': 0,
       "react/jsx-filename-extension": [ "off", {"extensions": [".js", ".jsx", ".tsx", ".ts"]} ],
       "import/extensions": 0,
+      "class-methods-use-this": ["off", { "exceptMethods": [] }],
     },
   };

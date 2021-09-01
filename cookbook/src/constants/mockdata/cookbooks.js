@@ -1,7 +1,7 @@
 const cookbooks = [
   {
     image: 'images/cookbook-itsallaboutpancakes.jpg',
-    name: 'Its all about pancakes',
+    name: 'All about pancakes',
     author: 'John Doe',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Bibendum tempus viverra augue ac elit. Interdum libero at tristique fames faucibus. Massa a, consectetur et viverra vulputate urna enim felis metus. Consequat morbi cras elit mauris phasellus at fames eget. Nunc, at vitae integer morbi nibh dignissim non tempus pellentesque. Erat platea augue sed amet, tempor, sed sollicitudin. Viverra tincidunt eu nulla pulvinar eget dolor. Dui, lacus sed ut id egestas elit, mi. Pretium elementum commodo amet cursus massa dictum. Ac, pharetra nisi, morbi maecenas facilisi.',
     likes: 65,
@@ -42,8 +42,8 @@ const cookbooks = [
     tags: ['Vegetarian'],
   },
   {
-    image: 'images/cookbook-itsallaboutpancakes.jpg',
-    name: 'Its all about pancakes',
+    image: 'images/cookbook-fastbreakfast.jpeg',
+    name: 'Fast breakfast',
     author: 'John Doe',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Bibendum tempus viverra augue ac elit. Interdum libero at tristique fames faucibus. Massa a, consectetur et viverra vulputate urna enim felis metus. Consequat morbi cras elit mauris phasellus at fames eget. Nunc, at vitae integer morbi nibh dignissim non tempus pellentesque. Erat platea augue sed amet, tempor, sed sollicitudin. Viverra tincidunt eu nulla pulvinar eget dolor. Dui, lacus sed ut id egestas elit, mi. Pretium elementum commodo amet cursus massa dictum. Ac, pharetra nisi, morbi maecenas facilisi.',
     likes: 65,
@@ -63,8 +63,8 @@ const cookbooks = [
     tags: ['Without eggs', 'Without milk'],
   },
   {
-    image: 'images/cookbook-itsallaboutpancakes.jpg',
-    name: 'Its all about pancakes',
+    image: 'images/cookbook-salad.jpeg',
+    name: 'Salads',
     author: 'John Doe',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Bibendum tempus viverra augue ac elit. Interdum libero at tristique fames faucibus. Massa a, consectetur et viverra vulputate urna enim felis metus. Consequat morbi cras elit mauris phasellus at fames eget. Nunc, at vitae integer morbi nibh dignissim non tempus pellentesque. Erat platea augue sed amet, tempor, sed sollicitudin. Viverra tincidunt eu nulla pulvinar eget dolor. Dui, lacus sed ut id egestas elit, mi. Pretium elementum commodo amet cursus massa dictum. Ac, pharetra nisi, morbi maecenas facilisi.',
     likes: 65,

@@ -45,7 +45,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
               </div>
               <nav>
                 <ul className="intro-nav-list">
-                  <li className="intro-nav-list-item">Vegeterian</li>
+                  <li className="intro-nav-list-item">Vegetarian</li>
                   <li className="intro-nav-list-item">Mexican</li>
                   <li className="intro-nav-list-item">Greece Kithcen</li>
                   <li className="intro-nav-list-item">Italy Pizza</li>

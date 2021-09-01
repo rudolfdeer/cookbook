@@ -2,28 +2,39 @@ import * as React from 'react';
 import {
   Link,
 } from 'react-router-dom';
-import { Recipe } from '../../../constants/types';
+import { Cookbook, Recipe } from '../../../constants/types';
 import Footer from '../../shared/footer/Footer';
 import Header from '../../shared/header/Header';
+import CookbookCard from './cookbook-card';
 
 import './home-page.scss';
-import RecipeRatedCard from './recipe-rated-card';
+import RecipeCardRated from './recipe-card-rated';
+import RecipeCardTrending from './recipe-card-trending';
 
 type HomePageProps = {
   recipes?: Recipe[];
   getRecipes?: Function;
+  cookbooks?: Cookbook[];
+  getCookbooks?: Function;
 };
 
 export default function HomePage(props: HomePageProps): JSX.Element {
-  const { recipes, getRecipes } = props;
+  const { recipes, getRecipes, cookbooks, getCookbooks } = props;
 
-  React.useEffect(() => getRecipes(), []);
+  React.useEffect(() => {
+    getRecipes();
+    getCookbooks();
+  }, []);
 
   return (
     <>
       <div className="wrapper">
         <Header />
+        </div>
         <main className="main">
+        <div className="wrapper">
+          <img src = "../../../public/images/pear-bg.png" className = "pear-bg top"/>
+          <img src = "../../../public/images/pear-light-bg.png" className = "pear-bg bottom"/>
           <div className="intro-container">
             <section className="intro">
               <h1 className="intro-title">Find Recipies and Сreate Your Favourite Сookbooks</h1>
@@ -49,26 +60,34 @@ export default function HomePage(props: HomePageProps): JSX.Element {
             <h2 className="section-title">20 Highest-Rated Recipes</h2>
             <div className="section-cards recipes-rated">
             {/* eslint-disable-next-line max-len */}
-            {recipes?.map((el) => <RecipeRatedCard name = {el.name} author = {el.author} views = {el.views} likes = {el.likes} comments = {el.comments.length} image = {el.image} key={el.id} />).slice(0, 4)}
+            {recipes?.map((el) => <RecipeCardRated name = {el.name} author = {el.author} views = {el.views} likes = {el.likes} comments = {el.comments.length} image = {el.image} key={el.id} />).slice(0, 4)}
             </div>
             <button className="section-btn btn light"><Link to="/recipes">Show more</Link></button>
           </section>
           <section className="section popular">
             <div className="section-pre-title">Our Choice</div>
             <h2 className="section-title">Most Popular CookBooks</h2>
-            <div className="section-cards cookbooks-popular"></div>
+            <div className="section-cards cookbooks-popular">
+              {/* eslint-disable-next-line max-len */}
+            {cookbooks?.map((el) => <CookbookCard name = {el.name} image = {el.image} key={el.id} />).slice(0, 4)}
+            </div>
             <button className="section-btn btn light"><Link to="/cookbooks">Show more</Link></button>
           </section>
+          </div>
           <section className="section trending">
+          <div className="wrapper">
             <div className="section-pre-title">Top 10</div>
-            <h2 className="section-title">Trending recipes</h2>
+            <h2 className="section-title">Trending Recipes</h2>
             <div className="section-slider">
-             <div className="section-cards recipes-trending"></div>
+             <div className="section-cards recipes-trending">
+               {/* eslint-disable-next-line max-len */}
+             {recipes?.map((el) => <RecipeCardTrending name = {el.name} author = {el.author} views = {el.views} image = {el.image} key={el.id} />).slice(0, 3)}
+             </div>
             </div>
             <button className="section-btn btn"><Link to="/recipes">Show all recipes</Link></button>
+            </div>
           </section>
         </main>
-      </div>
       <Footer />
     </>
   );

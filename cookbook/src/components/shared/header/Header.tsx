@@ -9,6 +9,7 @@ import './header.scss';
 export default function Header(): JSX.Element {
   return (
     <header className="header">
+
       <Link to="/"><div className="logo-small" /></Link>
       <nav>
         <ul className="header-nav-list">
@@ -22,6 +23,7 @@ export default function Header(): JSX.Element {
       </div>
       <button className="header-btn-create btn light"><Link to="/create_cookbook">Create CookBook</Link></button>
       <div className="header-link-login"><Link to="/login">Sign in</Link></div>
+
     </header>
   );
 }

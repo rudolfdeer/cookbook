@@ -35,6 +35,7 @@ export type Cookbook = {
   description: string,
   likes: number,
   comments: number,
+  image: string,
   recipes: Recipe['id'][],
   tags: string[],
 };

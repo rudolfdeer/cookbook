@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
-
-import recipesOperations from './recipes-operations';
+import cookbooksReducer from './cookbooks-reducer';
+import recipesReducer from './recipes-reducer';
 
 const rootReducer = combineReducers({
-  recipesOperations,
+  recipes: recipesReducer,
+  cookbooks: cookbooksReducer,
 });
 
 export default rootReducer;

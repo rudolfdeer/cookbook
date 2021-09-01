@@ -44,13 +44,19 @@
 
   color: $white;
 
+  a {
+    list-style: none;
+    color: $white;
+  }
+
   &:last-child {
     margin-right: 0;
   }
 
-  a {
-    list-style: none;
-    color: $white;
+  &:hover {
+    a {
+      color: $primary-yellow;
+    }
   }
 }
 

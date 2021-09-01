@@ -1,12 +1,31 @@
-import recipesApi from '../../api/recipes-api';
+import Api from '../../utils/api';
+import ACTION_TYPES from '../../constants/action-types';
 
-const getRecipes = () => {
-  const resData = recipesApi.getRecipesList();
+export const getRecipes = () => {
+  const resData = Api.getRecipesList();
 
   return {
-    type: 'recipes/get',
+    type: ACTION_TYPES.RECIPE_GET_ALL,
     payload: resData,
   };
 };
 
-export default getRecipes;
+// export const deleteRecipe = (id: number) => ({
+//   type: 'recipes/delete',
+//   payload: id,
+// });
+
+// export const updateRecipe = (id: number, data) => ({
+//   type: 'recipes/update',
+//   payload: {
+//     id,
+//     data,
+//   },
+// });
+
+// export const createRecipe = (data) => ({
+//   type: 'recipes/create',
+//   payload: {
+//     data,
+//   },
+// });

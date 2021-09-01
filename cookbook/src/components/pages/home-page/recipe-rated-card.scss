@@ -1,0 +1,106 @@
+@import '../../index.scss';
+
+.recipe-rated-card {
+  margin-right: 16px;
+  margin-bottom: 16px;
+  padding: 24px;
+
+  max-width: 288px;
+  min-height: 414px;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.24);
+
+   .container {
+
+      &.bottom {
+        .icon {
+          path {
+            fill: $primary-yellow;
+          }
+        }
+      }
+
+      &.middle {
+        .recipe-rated-card-title {
+          color: $primary-yellow;
+        }
+      }
+    }
+  }
+}
+
+.container {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+
+  &.top {
+    margin-bottom: 16px;
+  }
+
+  &.middle {
+    margin-bottom: 32px;
+  }
+
+  &.bottom {
+    justify-content: flex-start;
+  }
+}
+
+.icon {
+  margin-right: 8px;
+
+  width: 15px;
+  height: 15px;
+
+  &.more {
+    width: 20px;
+    height: 4px;
+
+    &:hover {
+
+      >circle {
+        fill: $primary-yellow;
+      }
+    }
+  }
+
+}
+
+.info {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+
+  line-height: 19px;
+
+  &.likes {
+    margin-right: 24px;
+  }
+}
+
+.recipe-rated-card-image {
+  margin-bottom: 16px;
+}
+    
+.recipe-rated-card-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+}
+

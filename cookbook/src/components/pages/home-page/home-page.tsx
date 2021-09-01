@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
   Link,
 } from 'react-router-dom';
-import { Recipe } from '../../../redux/reducers/recipes-operations';
+import { Recipe } from '../../../constants/types';
 import Footer from '../../shared/footer/Footer';
 import Header from '../../shared/header/Header';
 
@@ -10,14 +10,14 @@ import './home-page.scss';
 import RecipeRatedCard from './recipe-rated-card';
 
 type HomePageProps = {
-  recepies?: Recipe[];
-  getRecepies?: Function;
+  recipes?: Recipe[];
+  getRecipes?: Function;
 };
 
 export default function HomePage(props: HomePageProps): JSX.Element {
-  const { recepies, getRecepies } = props;
+  const { recipes, getRecipes } = props;
 
-  React.useEffect(() => getRecepies(), []);
+  React.useEffect(() => getRecipes(), []);
 
   return (
     <>
@@ -48,9 +48,10 @@ export default function HomePage(props: HomePageProps): JSX.Element {
             <div className="section-pre-title">Users Choice</div>
             <h2 className="section-title">20 Highest-Rated Recipes</h2>
             <div className="section-cards recipes-rated">
-            {recepies?.map((el) => <RecipeRatedCard comments={el.comments} key={el.id} />)}
+            {/* eslint-disable-next-line max-len */}
+            {recipes?.map((el) => <RecipeRatedCard name = {el.name} author = {el.author} views = {el.views} likes = {el.likes} comments = {el.comments.length} image = {el.image} key={el.id} />).slice(0, 4)}
             </div>
-            <button className="section-btn btn light"><Link to="/recepies">Show more</Link></button>
+            <button className="section-btn btn light"><Link to="/recipes">Show more</Link></button>
           </section>
           <section className="section popular">
             <div className="section-pre-title">Our Choice</div>
@@ -60,11 +61,11 @@ export default function HomePage(props: HomePageProps): JSX.Element {
           </section>
           <section className="section trending">
             <div className="section-pre-title">Top 10</div>
-            <h2 className="section-title">Trending Recepies</h2>
+            <h2 className="section-title">Trending recipes</h2>
             <div className="section-slider">
-             <div className="section-cards recepies-trending"></div>
+             <div className="section-cards recipes-trending"></div>
             </div>
-            <button className="section-btn btn"><Link to="/recepies">Show all recepies</Link></button>
+            <button className="section-btn btn"><Link to="/recipes">Show all recipes</Link></button>
           </section>
         </main>
       </div>

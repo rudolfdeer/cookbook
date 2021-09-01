@@ -1,21 +1,21 @@
 import { connect } from 'react-redux';
 import HomePage from '../components/pages/home-page/home-page';
-import getRecepies from '../redux/actions/recepies-actions';
+import getRecipes from '../redux/actions/recipes-actions';
 
 function mapStateToProps(state: any) {
-  const { recepies } = state.recipesOperations;
+  const { recipes } = state.recipesOperations;
   return {
-    recepies,
+    recipes,
   };
 }
 
 const mapDispatchToProps = (dispatch: any) => ({
-  getRecepies: () => dispatch(getRecepies()),
+  getRecipes: () => dispatch(getRecipes()),
 });
 
-const RecepiesConnect = connect(
+const recipesConnect = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(HomePage);
 
-export default RecepiesConnect;
+export default recipesConnect;

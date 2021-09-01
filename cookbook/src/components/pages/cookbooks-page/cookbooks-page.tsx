@@ -14,7 +14,7 @@ export default function CookbooksPage(): JSX.Element {
           <nav className="page-nav">
             <ul className="page-nav-list">
               <li className="page-nav-list-item selected">Cookbooks</li>
-              <li className="page-nav-list-item">Recepies</li>
+              <li className="page-nav-list-item">Recipes</li>
             </ul>
           </nav>
           <div className="cards-container"></div>

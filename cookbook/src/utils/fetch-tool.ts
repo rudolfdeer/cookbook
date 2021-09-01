@@ -1,8 +1,8 @@
-import recepies from '../constants/mockdata/recepies';
+import recipes from '../constants/mockdata/recipes';
 
 class FetchQuery {
   get() {
-    return recepies;
+    return recipes;
   }
 }
 

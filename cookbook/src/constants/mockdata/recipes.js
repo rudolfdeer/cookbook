@@ -1,4 +1,4 @@
-const recepies = [
+const recipes = [
   {
     id: 1,
     name: 'Fresh meat',
@@ -34,8 +34,8 @@ const recepies = [
   },
   {
     id: 2,
-    name: 'Pancakes with honey',
-    image: 'images/pancakeswithhoney.jpg',
+    name: 'Pancakes new',
+    image: 'images/pancakesnew.jpg',
     author: 'John Doe',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel sit adipiscing dignissim feugiat consectetur. Dolor urna vitae vitae etiam sed commodo. Cursus semper diam commodo laoreet purus orci sed. Nulla varius interdum euismod vestibulum tempus scelerisque felis mauris. Sed neque laoreet habitant pharetra luctus.',
     directions: ['Take', 'Prepare', 'Cook'],
@@ -68,7 +68,7 @@ const recepies = [
   {
     id: 3,
     name: 'Pancakes',
-    image: 'images/pankakes.jpg',
+    image: 'images/pancakes.jpg',
     author: 'John Galt',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel sit adipiscing dignissim feugiat consectetur. Dolor urna vitae vitae etiam sed commodo. Cursus semper diam commodo laoreet purus orci sed. Nulla varius interdum euismod vestibulum tempus scelerisque felis mauris. Sed neque laoreet habitant pharetra luctus.',
     directions: ['Take', 'Prepare', 'Cook'],
@@ -165,4 +165,4 @@ const recepies = [
   }
 ];
 
-export default recepies;
+export default recipes;

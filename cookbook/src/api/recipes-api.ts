@@ -1,10 +1,10 @@
 import FetchQuery from '../utils/fetch-tool';
 
-class RecepiesApi {
-  getRecepiesList() {
+class RecipesApi {
+  getRecipesList() {
     const response = FetchQuery.get();
     return response;
   }
 }
 
-export default new RecepiesApi();
+export default new RecipesApi();

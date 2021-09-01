@@ -23,7 +23,7 @@ module.exports = {
     filename: 'bundle.js',
     assetModuleFilename: './public/[name][ext]',
   },
-  devtool: 'inline-source-map',
+  devtool: 'eval-cheap-module-source-map',
   resolve: {
     extensions: ['.ts', '.js', '.tsx'],
   },
@@ -34,7 +34,7 @@ module.exports = {
         exclude: /node_modules/,
         use: ['ts-loader'],
       },
-      // { enforce: "pre", test: /\.tsx?$/, loader: 'source-map-loader' },
+      { enforce: 'pre', test: /\.tsx?$/, loader: 'source-map-loader' },
       {
         test: /\.(scss|css)$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],

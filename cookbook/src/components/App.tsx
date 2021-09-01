@@ -5,8 +5,8 @@ import {
   Route,
 } from 'react-router-dom';
 import CookbooksPage from './pages/cookbooks-page/cookbooks-page';
-import RecepiesConnect from '../containers/recepies-connect';
-import RecepiesPage from './pages/recepies-page/recepies-page';
+import recipesConnect from '../containers/recipes-connect';
+import RecipesPage from './pages/recipes-page/recipes-page';
 import routes from '../constants/routes';
 
 function App(): JSX.Element {
@@ -14,13 +14,13 @@ function App(): JSX.Element {
     <>
       <Router>
         <Switch>
-          <Route exact path={routes.home} component={RecepiesConnect}>
+          <Route exact path={routes.home} component={recipesConnect}>
           </Route>
           <Route exact path={routes.cookbooks}>
             <CookbooksPage />
           </Route>
-          <Route exact path={routes.recepies}>
-            <RecepiesPage />
+          <Route exact path={routes.recipes}>
+            <RecipesPage />
           </Route>
         </Switch>
       </Router>

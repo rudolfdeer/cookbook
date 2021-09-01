@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
-    "start": "webpack serve --mode development --open chrome",
+    "start": "webpack serve --mode development",
     "watch": "webpack --watch",
     "lint": "eslint src"
   },

@@ -11,4 +11,3 @@ const store = createStore(rootReducer, composeWithDevTools(
 ));
 
 export default store;
-

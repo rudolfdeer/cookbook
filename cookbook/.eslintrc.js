@@ -31,5 +31,6 @@ module.exports = {
       "react/jsx-filename-extension": [ "off", {"extensions": [".js", ".jsx", ".tsx", ".ts"]} ],
       "import/extensions": 0,
       "class-methods-use-this": ["off", { "exceptMethods": [] }],
+      "@typescript-eslint/no-var-requires": 0,
     },
   };

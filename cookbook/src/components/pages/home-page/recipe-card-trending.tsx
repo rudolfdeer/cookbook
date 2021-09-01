@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-import './recipe-card.scss';
+import './recipe-cards.scss';
 
 type RecipeCardTrendingProps = {
   name: string;
   author: string;
   views: number;
   image: string;
-}
+};
 
 export default function RecipeCardTrending(props: RecipeCardTrendingProps): JSX.Element {
   const { views, image, name, author } = props;

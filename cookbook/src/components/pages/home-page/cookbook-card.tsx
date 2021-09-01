@@ -5,7 +5,7 @@ import './cookbook-card.scss';
 type CookbookCardProps = {
   name: string;
   image: string;
-}
+};
 
 export default function CookbookCard(props: CookbookCardProps): JSX.Element {
   const { image, name } = props;

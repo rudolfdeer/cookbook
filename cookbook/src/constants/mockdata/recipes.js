@@ -14,7 +14,7 @@ const recipes = [
       {
         ingredient: 'garlic',
         amount: '5g',
-      }
+      },
     ],
     views: 252,
     likes: 57,
@@ -28,9 +28,8 @@ const recipes = [
         author: 'Patricia Holman',
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:37:48 GMT+0300 (Moscow Standard Time)',
-      }
-    ]
-
+      },
+    ],
   },
   {
     id: 2,
@@ -61,9 +60,8 @@ const recipes = [
         author: 'Hovard Rork',
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:47:48 GMT+0300 (Moscow Standard Time)',
-      }
-    ]
-
+      },
+    ],
   },
   {
     id: 3,
@@ -80,7 +78,7 @@ const recipes = [
       {
         ingredient: 'sugar',
         amount: '10g',
-      }
+      },
     ],
     views: 200,
     likes: 51,
@@ -94,9 +92,8 @@ const recipes = [
         author: 'Patricia Holman',
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:17:48 GMT+0300 (Moscow Standard Time)',
-      }
-    ]
-
+      },
+    ],
   },
   {
     id: 4,
@@ -113,7 +110,7 @@ const recipes = [
       {
         ingredient: 'potato',
         amount: '300g',
-      }
+      },
     ],
     views: 212,
     likes: 25,
@@ -127,9 +124,8 @@ const recipes = [
         author: 'Patricia Holman',
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:37:48 GMT+0300 (Moscow Standard Time)',
-      }
-    ]
-
+      },
+    ],
   },
   {
     id: 5,
@@ -146,7 +142,7 @@ const recipes = [
       {
         ingredient: 'banana',
         amount: '2',
-      }
+      },
     ],
     views: 117,
     likes: 15,
@@ -160,9 +156,9 @@ const recipes = [
         author: 'Patricia Holman',
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:37:48 GMT+0300 (Moscow Standard Time)',
-      }
-    ]
-  }
+      },
+    ],
+  },
 ];
 
 export default recipes;

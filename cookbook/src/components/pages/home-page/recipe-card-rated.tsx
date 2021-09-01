@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import './recipe-card.scss';
+import './recipe-cards.scss';
 
 type RecipeCardRatedProps = {
   name: string;
@@ -9,7 +9,7 @@ type RecipeCardRatedProps = {
   likes: number;
   image: string;
   comments: number
-}
+};
 
 export default function RecipeCardRated(props: RecipeCardRatedProps): JSX.Element {
   const { views, image, name, author, likes, comments } = props;

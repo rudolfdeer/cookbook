@@ -37,10 +37,10 @@ export default function HomePage(props: HomePageProps): JSX.Element {
           <img src = "../../../public/images/pear-light-bg.png" className = "pear-bg bottom"/>
           <div className="intro-container">
             <section className="intro">
-              <h1 className="intro-title">Find Recipies and Сreate Your Favourite Сookbooks</h1>
+              <h1 className="intro-title">Find Recipes and Сreate Your Favourite Сookbooks</h1>
               <div className="intro-search">
                 <div className="intro-search-icon" />
-                <input type="text" className="intro-search-input" placeholder="Find Best Recipies..." />
+                <input type="text" className="intro-search-input" placeholder="Find Best Recipes..." />
                 <button className="intro-search-btn btn dark">Search</button>
               </div>
               <nav>

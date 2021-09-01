@@ -13,7 +13,7 @@ module.exports = {
     open: true,
     compress: true,
     hot: true,
-    port: 8080,
+    port: 3000,
   },
   entry: {
     main: path.resolve(__dirname, './src/index.tsx'),

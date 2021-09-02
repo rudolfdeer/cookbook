@@ -26,6 +26,7 @@ export default function FilterPanelCookbooks(): JSX.Element {
           <div className="checkbox-container">
             <input type="checkbox" className = "checkbox" id="vegetarian" name="vegetarian" value="Vegetarian"/>
             <label htmlFor="vegetarian">Vegetarian</label>
+
           </div>
 
           <div className="checkbox-container">
@@ -35,7 +36,7 @@ export default function FilterPanelCookbooks(): JSX.Element {
 
           <div className="checkbox-container">
             <input type="checkbox" className = "checkbox" id="noeggs" name="noeggs" value="Without eggs"/>
-            <label htmlFor="nomilk">Without eggs</label>
+            <label htmlFor="noeggs">Without eggs</label>
           </div>
           </div>
       </div>
@@ -45,7 +46,7 @@ export default function FilterPanelCookbooks(): JSX.Element {
         <div className="checkbox-container">
           <input type="checkbox" className = "checkbox"id="hide" name="hide" value="hide"/>
           <label htmlFor="hide">Hide my CookBooks</label>
-        </div>  
+        </div>
         </div>
     </div>
   );

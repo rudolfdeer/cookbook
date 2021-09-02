@@ -22,7 +22,7 @@ export default function FilterPanelRecipes(): JSX.Element {
         <div className="section-title">Cooking time</div>
 
           <div className="range-container">
-            <input type="range" className = "range" id="time" name="time" min="<0>" max="240"/>
+            <input type="range" className = "range" id="time" name="time" min="0" max="240" step="1"/>
             <div className="values-container">
               <div className="min">1 min</div>
               <div className="max">4 hours</div>

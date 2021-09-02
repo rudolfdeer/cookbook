@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Link,
 } from 'react-router-dom';
@@ -21,7 +21,7 @@ type HomePageProps = {
 export default function HomePage(props: HomePageProps): JSX.Element {
   const { recipes, getRecipes, cookbooks, getCookbooks } = props;
 
-  React.useEffect(() => {
+  useEffect(() => {
     getRecipes();
     getCookbooks();
   }, []);

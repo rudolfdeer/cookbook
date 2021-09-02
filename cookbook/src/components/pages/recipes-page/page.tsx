@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Cookbook, Recipe } from '../../../constants/types';
 import Footer from '../../shared/footer/Footer';
@@ -7,7 +7,7 @@ import RecipeCard from './card';
 import CookbookCard from './card';
 import FilterPanelRecipes from './filter-panel';
 
-import './page.scss';
+import '../../shared/search-page.scss';
 
 type RecipesPageProps = {
   recipes?: Recipe[];
@@ -17,13 +17,13 @@ type RecipesPageProps = {
 export default function RecipesPage(props: RecipesPageProps): JSX.Element {
   const { recipes, getRecipes } = props;
 
-  React.useEffect(() => getRecipes(), []);
+  useEffect(() => getRecipes(), []);
 
   return (
     <>
       <div className="wrapper">
         <Header />
-        <main className="recipes-page">
+        <main className="search-page">
           <aside className="aside">
           <div className="filter">
             <FilterPanelRecipes/>
@@ -36,7 +36,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
                 <li className="page-nav-list-item selected">Recipes</li>
             </ul>
             </nav>
-          <div className="cards">
+          <div className="recipes-cards">
           {/* eslint-disable-next-line max-len */}
           {recipes?.map((el) => <RecipeCard name = {el.name} author = {el.author} views = {el.views} likes = {el.likes} comments = {el.comments.length} image = {el.image} description = {el.description} key={el.id} />)}
           </div>

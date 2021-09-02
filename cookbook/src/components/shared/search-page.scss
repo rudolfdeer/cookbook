@@ -1,6 +1,6 @@
-@import '../../index.scss';
+@import '../index.scss';
 
-.recipes-page {
+.search-page {
   padding-top: 104px;
   display: flex;
   flex-wrap: nowrap;
@@ -52,10 +52,15 @@
       }
     }
 
-    .cards {
+    .recipes-cards {
       display: flex;
       flex-wrap: nowrap;
       flex-direction: column;
+    }
+
+    .cookbooks-cards {
+      display: flex;
+      flex-wrap: wrap;
     }
   }
 }

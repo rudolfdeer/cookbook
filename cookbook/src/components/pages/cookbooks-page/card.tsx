@@ -1,21 +1,22 @@
 import * as React from 'react';
 
-import './recipe-cards.scss';
+import './card.scss';
 
-type RecipeCardRatedProps = {
+type CookbookCardProps = {
   name: string;
   author: string;
+  description: string;
   views: number;
   likes: number;
   image: string;
   comments: number
 };
 
-export default function RecipeCardRated(props: RecipeCardRatedProps): JSX.Element {
-  const { views, image, name, author, likes, comments } = props;
+export default function CookbookCard(props: CookbookCardProps): JSX.Element {
+  const { views, image, description, name, author, likes, comments } = props;
 
   return (
-    <div className="recipe-card rated">
+    <div className="cookbook-page-card">
 
       <div className="container top">
         <div className="info">
@@ -29,11 +30,15 @@ export default function RecipeCardRated(props: RecipeCardRatedProps): JSX.Elemen
         </svg>
       </div>
 
-      <div className="recipe-card-image" style ={{ background: `url(../../../public/${image}) center no-repeat` }}></div>
+      <div className="card-image" style ={{ background: `url(../../../public/${image}) center no-repeat` }}></div>
 
       <div className="container middle">
-        <div className="recipe-card-title">{name}</div>
-        <div className="recipe-card-author">{author}</div>
+        <div className="card-title">{name}</div>
+        <div className="card-author">{author}</div>
+      </div>
+
+      <div className="container description">
+        <p className="card-description">{description}</p>
       </div>
 
       <div className="container bottom">
@@ -52,5 +57,5 @@ export default function RecipeCardRated(props: RecipeCardRatedProps): JSX.Elemen
       </div>
 
     </div>
-  )
+  );
 }

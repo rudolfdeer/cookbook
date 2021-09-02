@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import CookbooksPage from '../components/pages/cookbooks-page/cookbooks-page';
+import CookbooksPage from '../components/pages/cookbooks-page/page';
 import { getCookbooks } from '../redux/actions/cookbooks-actions';
 
 function mapStateToProps(state: any) {

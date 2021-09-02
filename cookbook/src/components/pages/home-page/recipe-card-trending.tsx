@@ -27,7 +27,7 @@ export default function RecipeCardTrending(props: RecipeCardTrendingProps): JSX.
         </svg>
       </div>
 
-      <img className="recipe-card-image" src={`../../../public/${image}`}/>
+      <div className="recipe-card-image trending" style ={{ background: `url(../../../public/${image}) center no-repeat` }}></div>
 
       <div className="container middle">
         <div className="recipe-card-title">{name}</div>

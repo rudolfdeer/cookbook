@@ -1,0 +1,133 @@
+@import '../../index.scss';
+
+.recipes-page-card {
+  margin-bottom: 24px;
+  padding: 24px;
+
+  width: 100%;
+  min-height: 212px;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.08);
+  border-radius: 50px 10px 10px 10px;
+
+  position: relative;
+
+  .card-image {
+    margin-right: 24px;
+    width: 288px;
+    height: 212px;
+    border-radius: 50px 10px;
+    background-size: 100% !important;
+    flex-basis: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .card-info {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 288px;
+  }
+
+  .container {
+
+    .card-description {
+        margin: 0;
+      }
+
+    &.bottom {
+      justify-content: space-between;
+      
+      .container-statistics {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+
+
+      }
+    }  
+
+    &.description {
+      margin-bottom: 32px;
+      min-height: 57px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      
+    }
+  }
+
+    .icon {
+      margin-right: 8px;
+
+      width: 15px;
+      height: 15px;
+
+      &.more {
+        width: 20px;
+        height: 4px;
+
+        &:hover {
+
+          >circle {
+            fill: $primary-yellow;
+          }
+        }
+      }
+    }
+
+    .info {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+
+      line-height: 19px;
+      margin-right: 24px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    
+        
+    .card-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 24px;
+    }
+
+  &:nth-child(3n) {
+    margin-right: 0;
+  }
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.24);
+
+   .container {
+
+      &.bottom {
+        .icon {
+          path {
+            fill: $primary-yellow;
+          }
+        }
+      }
+
+      &.middle {
+        .recipe-card-title {
+          color: $primary-yellow;
+        }
+      }
+    }
+  }
+}

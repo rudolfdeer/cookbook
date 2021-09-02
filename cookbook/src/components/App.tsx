@@ -4,10 +4,10 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import RecipesPage from './pages/recipes-page/recipes-page';
 import routes from '../constants/routes';
 import HomePageConnect from '../containers/home-page-connect';
-import CookbooksPageConnect from '../containers/cookbooks-connect';
+import CookbooksPageConnect from '../containers/cookbook-page-connect';
+import RecipesPageConnect from '../containers/recipe-page-connect';
 
 function App(): JSX.Element {
   return (
@@ -18,8 +18,7 @@ function App(): JSX.Element {
           </Route>
           <Route exact path={routes.cookbooks} component={CookbooksPageConnect}>
           </Route>
-          <Route exact path={routes.recipes}>
-            <RecipesPage />
+          <Route exact path={routes.recipes} component={RecipesPageConnect}>
           </Route>
         </Switch>
       </Router>

@@ -32,9 +32,11 @@ export type Ingredient = {
 export type Cookbook = {
   id: number,
   name: string,
+  author: string,
   description: string,
   likes: number,
-  comments: number,
+  views: number,
+  comments: Comment[],
   image: string,
   recipes: Recipe['id'][],
   tags: string[],

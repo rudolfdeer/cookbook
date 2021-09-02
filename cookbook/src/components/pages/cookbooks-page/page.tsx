@@ -4,6 +4,7 @@ import { Cookbook } from '../../../constants/types';
 import Footer from '../../shared/footer/Footer';
 import Header from '../../shared/header/Header';
 import CookbookCard from './card';
+import FilterPanelCookbooks from './filter-panel';
 
 import './page.scss';
 
@@ -23,7 +24,9 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
         <Header />
         <main className="cookbooks-page">
           <aside className="aside">
-          <div className="filter"></div>
+          <div className="filter">
+            <FilterPanelCookbooks/>
+          </div>
           </aside>
           <div className="content">
             <nav className="page-nav">

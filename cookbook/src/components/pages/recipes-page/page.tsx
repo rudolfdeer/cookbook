@@ -5,6 +5,7 @@ import Footer from '../../shared/footer/Footer';
 import Header from '../../shared/header/Header';
 import RecipeCard from './card';
 import CookbookCard from './card';
+import FilterPanelRecipes from './filter-panel';
 
 import './page.scss';
 
@@ -24,7 +25,9 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
         <Header />
         <main className="recipes-page">
           <aside className="aside">
-          <div className="filter"></div>
+          <div className="filter">
+            <FilterPanelRecipes/>
+          </div>
           </aside>
           <div className="content">
             <nav className="page-nav">

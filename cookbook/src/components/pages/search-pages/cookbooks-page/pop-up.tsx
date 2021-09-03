@@ -1,7 +1,7 @@
 import React from 'react';
 import { Cookbook } from '../../../../constants/types';
 
-import '../../../shared/pop-up.scss';
+import '../pop-up.scss';
 
 type PopUpCookbookDetailedProps = {
   openDetailedInfo: Function;

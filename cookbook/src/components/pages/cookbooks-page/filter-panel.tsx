@@ -1,17 +1,15 @@
 import React from 'react';
 
-import '../../shared/filter-panel.scss';
-
 export default function FilterPanelCookbooks(): JSX.Element {
   return (
-    <div className="filter-panel">
-      <div className="container top">
-      <div className="title">Filter</div>
+    <div className="filter-panel cookbooks">
+      <div className="filter-container top">
+      <div className="filter-title">Filter</div>
        <button className="btn-clear-all">clear all</button>
       </div>
 
       <div className="filter-section sort">
-        <label className = "section-title" htmlFor="sort">Sort by</label>
+        <label className = "filter-section-title" htmlFor="sort">Sort by</label>
           <select name="sort" id="sort" className = "select">
             <option value="popularity">Popularity</option>
             <option value="rating">Rating</option>
@@ -19,7 +17,7 @@ export default function FilterPanelCookbooks(): JSX.Element {
       </div>
 
       <div className="filter-section type">
-        <div className="section-title">Cookbook type</div>
+        <div className="filter-section-title">Cookbook type</div>
         <div className="checkboxes">
           <div className="checkbox-container">
             <input type="checkbox" className = "checkbox" id="vegetarian" name="vegetarian" value="Vegetarian"/>

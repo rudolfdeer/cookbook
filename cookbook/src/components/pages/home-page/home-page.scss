@@ -1,5 +1,85 @@
 @import '../../index.scss';
 
+@mixin section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  .section-pre-title {
+    font-size: 16px;
+    color: $primary-yellow;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .section-btn {
+    @include button-light;
+
+      width: 170px;
+      height: 60px;
+  }
+
+  .cards {
+    width: 100%;
+    margin-bottom: 56px;
+
+  display: flex;
+
+  flex-wrap: wrap;
+  }
+}
+
+@mixin section-yellow {
+  @include section;
+
+  margin-bottom: 24px;
+  padding-top: 104px;
+  min-height: 986px;
+  border-radius: 50px 10px;
+  background-color: $primary-yellow;
+
+  .section-pre-title {
+    color: $white;
+  }
+
+  .section-btn {
+    background: $white;
+    width: 230px;
+    border: none;
+  }
+
+  .wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.section-title {
+  @include title-big;
+}
+
+.section.rated {
+ @include section;
+
+  margin-bottom: 128px;
+}
+
+.section.popular {
+  @include section;
+
+  margin-bottom: 104px;
+}
+
+.section.trending {
+  @include section-yellow;
+}
+
 .pear-bg {
   width: 607px;
   height: 858px;
@@ -85,6 +165,8 @@
   }
 
   .intro-search-btn {
+    @include button-dark;
+
     position: absolute;
     right: 8px;
     width: 146px;
@@ -93,7 +175,6 @@
     text-transform: uppercase;
     
     &:hover {
-      cursor: pointer;
       transform: scale(1.03);
     }
   }
@@ -121,118 +202,4 @@
       color: blue;
     }
   }
-}
-
-.section {
-  width: 100%;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-
-  &.rated {
-    margin-bottom: 128px;
-  }
-
-  &.popular {
-    margin-bottom: 104px;
-  }
-
-  &.trending {
-    margin-bottom: 24px;
-    padding-top: 104px;
-    min-height: 986px;
-    border-radius: 50px 10px;
-    background-color: $primary-yellow;
-
-    .section-pre-title {
-      color: $white;
-    }
-
-    .section-btn {
-      background: $white;
-      width: 230px;
-      border-radius: 10px;
-      border: none;
-
-      a {
-        color: $primary-yellow;
-        font-size: 20px;
-      }
-    }
-
-    .wrapper {
-      width: 100%;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-    }
-  }
-}
-
-.section-pre-title {
-  font-size: 16px;
-  color: $primary-yellow;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 24px;
-}
-
-.section-title {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: bold;
-  font-size: 40px;
-  margin-bottom: 48px;
-}
-
-.section-btn {
-  width: 170px;
-  height: 60px;
-
-  a {
-    font-weight: bold;
-  }
-
-  
-}
-
-.section-cards {
-  margin-bottom: 56px;
-
-  display: flex;
-  flex-wrap: wrap;
-
-  &.cookbooks-popular {
-    display: grid;
-    grid-gap: 24px;
-    grid-template-columns: 288px 288px 288px 288px;
-    grid-template-rows: 258px 258px;
-    grid-template-areas: 
-      "big big horiz horiz"
-      "big big small-first small-second";
-
-      .cookbook-card {
-        
-        &:first-child {
-          grid-area: big;
-        }
-
-        &:nth-child(2) {
-          grid-area: horiz;
-        }
-
-        &:nth-child(3) {
-          grid-area: small-first;
-        }
-        
-        &:last-child {
-          grid-area: small-second;
-        }
-      }
-  }
-
-
 }

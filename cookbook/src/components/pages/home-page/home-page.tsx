@@ -6,7 +6,6 @@ import { Cookbook, Recipe } from '../../../constants/types';
 import Footer from '../../shared/footer/Footer';
 import Header from '../../shared/header/Header';
 import CookbookCard from './cookbook-card';
-
 import './home-page.scss';
 import RecipeCardRated from './recipe-card-rated';
 import RecipeCardTrending from './recipe-card-trending';
@@ -31,7 +30,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
       <div className="wrapper">
         <Header />
         </div>
-        <main className="main">
+        <main className="home-page">
         <div className="wrapper">
           <img src = "../../../public/images/pear-bg.png" className = "pear-bg top"/>
           <img src = "../../../public/images/pear-light-bg.png" className = "pear-bg bottom"/>
@@ -58,7 +57,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
           <section className="section rated">
             <div className="section-pre-title">Users Choice</div>
             <h2 className="section-title">20 Highest-Rated Recipes</h2>
-            <div className="section-cards recipes-rated">
+            <div className="section-cards recipes-rated cards rated">
             {/* eslint-disable-next-line max-len */}
             {recipes?.map((el) => <RecipeCardRated name = {el.name} author = {el.author} views = {el.views} likes = {el.likes} comments = {el.comments.length} image = {el.image} key={el.id} />).slice(0, 4)}
             </div>
@@ -67,7 +66,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
           <section className="section popular">
             <div className="section-pre-title">Our Choice</div>
             <h2 className="section-title">Most Popular CookBooks</h2>
-            <div className="section-cards cookbooks-popular">
+            <div className="section-cards cookbooks-popular cards popular">
               {/* eslint-disable-next-line max-len */}
             {cookbooks?.map((el) => <CookbookCard name = {el.name} image = {el.image} key={el.id} />).slice(0, 4)}
             </div>
@@ -79,7 +78,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
             <div className="section-pre-title">Top 10</div>
             <h2 className="section-title">Trending Recipes</h2>
             <div className="section-slider">
-             <div className="section-cards recipes-trending">
+             <div className="section-cards recipes-trending cards trending">
                {/* eslint-disable-next-line max-len */}
              {recipes?.map((el) => <RecipeCardTrending name = {el.name} author = {el.author} views = {el.views} image = {el.image} key={el.id} />).slice(0, 3)}
              </div>

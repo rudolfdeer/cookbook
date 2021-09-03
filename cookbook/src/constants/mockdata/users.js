@@ -1,24 +1,24 @@
 const users = [
   {
-    userId: 1,
+    id: 1,
     username: 'Jonh Doe',
     email: 'testmail@test.com',
     isLoggedIn: false,
   },
   {
-    userId: 2,
+    id: 2,
     username: 'Jonh Galt',
     email: 'testmail@test.com',
     isLoggedIn: false,
   },
   {
-    userId: 3,
+    id: 3,
     username: 'Patricia Holman',
     email: 'testmail@test.com',
     isLoggedIn: false,
   },
   {
-    userId: 4,
+    id: 4,
     username: 'Winston Smith',
     email: 'testmail@test.com',
     isLoggedIn: false,

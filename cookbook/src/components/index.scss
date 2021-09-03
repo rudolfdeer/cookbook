@@ -1,4 +1,6 @@
 @import './colors.scss';
+@import './common.scss';
+
 
 * {
   box-sizing: border-box;
@@ -36,34 +38,4 @@ a {
   margin: 0 auto;
   padding: 0 10px;
   max-width: 1244px;
-}
-
-.btn {
-  border: 2px solid $primary-yellow;
-  border-radius: 10px;
-  font-weight: 700;
-  font-size: 20px;
-
-  &.light {
-    background: none;
-    
-    a {
-      color: $primary-yellow;
-      font-size: 20px; 
-    }
-  }
-
-  &.dark {
-    background: $primary-yellow;
-
-    a {
-      color: $main; 
-      font-size: 20px;
-    }
-  }
-
-  &:hover {
-    cursor: pointer;
-    transform: scale(1.05);
-  }
 }

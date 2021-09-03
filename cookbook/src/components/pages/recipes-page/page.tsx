@@ -36,7 +36,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
                 <li className="page-nav-list-item selected">Recipes</li>
             </ul>
             </nav>
-          <div className="recipes-cards">
+          <div className="cards recipes">
           {/* eslint-disable-next-line max-len */}
           {recipes?.map((el) => <RecipeCard name = {el.name} author = {el.author} views = {el.views} likes = {el.likes} comments = {el.comments.length} image = {el.image} description = {el.description} key={el.id} />)}
           </div>

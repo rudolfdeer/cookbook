@@ -52,16 +52,122 @@
       }
     }
 
-    .recipes-cards {
+    .cards {
       display: flex;
-      flex-wrap: nowrap;
+      &.recipes {
+flex-wrap: nowrap;
       flex-direction: column;
+      }
+
+      &.cookbooks {
+flex-wrap: wrap;
+      }
     }
 
-    .cookbooks-cards {
-      display: flex;
-      flex-wrap: wrap;
+
+  }
+}
+
+.filter-panel.cookbooks {
+  @include filter-panel();
+
+  .checkboxes {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .checkbox-container {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin-bottom: 8px;
+  
+      .checkbox {
+        display: none;
+        cursor: pointer;
+  
+        &:checked {
+          +label {
+  
+            &::before {
+              border: 1px solid $primary-yellow;
+              background: $primary-yellow;
+            }
+  
+            &::after {
+              content: '';
+              width: 18px;
+              height: 18px;
+              display: block;
+              position: absolute;
+              top: 0px;
+              left: 0px;
+              background: url('../../public/images/checkbox.png') center no-repeat;
+            }
+          }
+        }
+      }
+  
+    label {
+      position: relative;
+      cursor: pointer;
+  
+      &::before {
+        content:'';
+        -webkit-appearance: none;
+        background-color: transparent;
+        width: 16px;
+        height: 16px;
+        border: 1px solid #DADADA;;
+        border-radius: 2px;
+        display: inline-block;
+        position: relative;
+        vertical-align: middle;
+        cursor: pointer;
+        margin-right: 8px;
+      }
     }
   }
 }
 
+.filter-panel.recipes {
+  @include filter-panel();
+
+  .range-container {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    width: 100%;
+    
+    .values-container {
+      display: flex;
+      flex-wrap: nowrap;
+      width: 100%;
+      justify-content: space-between;
+    }
+    
+    .range {
+      margin-bottom: 5px;
+      -webkit-appearance: none;
+    
+      &::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 2px;
+        background: $primary-yellow;
+        cursor: pointer;
+      }
+    
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        border: 1px solid $primary-yellow;
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
+        margin-top: -6px;
+        cursor: pointer;
+        background: $primary-yellow;
+      }
+    }
+  }
+}

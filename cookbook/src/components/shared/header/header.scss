@@ -64,17 +64,10 @@
 }
 
 .header-btn-create {
+  @include button-light;
+
   width: 225px;
   height: 54px;
-
-  a {
-    font-weight: bold;
-  }
-
-  &:hover {
-    cursor: pointer;
-    transform: scale(1.05);
-  }
 }
 
 .header-link-login {

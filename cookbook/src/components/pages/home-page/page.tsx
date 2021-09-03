@@ -3,12 +3,13 @@ import {
   Link,
 } from 'react-router-dom';
 import { Cookbook, Recipe } from '../../../constants/types';
-import Footer from '../../shared/footer/Footer';
-import Header from '../../shared/header/Header';
-import CookbookCard from './cookbook-card';
-import './home-page.scss';
-import RecipeCardRated from './recipe-card-rated';
-import RecipeCardTrending from './recipe-card-trending';
+import Footer from '../../shared/footer/footer';
+import Header from '../../shared/header/header';
+import CardPopular from './card-popular';
+import CardRated from './card-rated';
+import CardTrending from './card-trending';
+
+import './page.scss';
 
 type HomePageProps = {
   recipes?: Recipe[];
@@ -59,7 +60,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
             <h2 className="section-title">20 Highest-Rated Recipes</h2>
             <div className="section-cards recipes-rated cards rated">
             {/* eslint-disable-next-line max-len */}
-            {recipes?.map((el) => <RecipeCardRated name = {el.name} author = {el.author} views = {el.views} likes = {el.likes} comments = {el.comments.length} image = {el.image} key={el.id} />).slice(0, 4)}
+            {recipes?.map((el) => <CardRated name = {el.name} author = {el.author} views = {el.views} likes = {el.likes} comments = {el.comments.length} image = {el.image} key={el.id} />).slice(0, 4)}
             </div>
             <button className="section-btn btn light"><Link to="/recipes">Show more</Link></button>
           </section>
@@ -68,7 +69,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
             <h2 className="section-title">Most Popular CookBooks</h2>
             <div className="section-cards cookbooks-popular cards popular">
               {/* eslint-disable-next-line max-len */}
-            {cookbooks?.map((el) => <CookbookCard name = {el.name} image = {el.image} key={el.id} />).slice(0, 4)}
+            {cookbooks?.map((el) => <CardPopular name = {el.name} image = {el.image} key={el.id} />).slice(0, 4)}
             </div>
             <button className="section-btn btn light"><Link to="/cookbooks">Show more</Link></button>
           </section>
@@ -80,7 +81,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
             <div className="section-slider">
              <div className="section-cards recipes-trending cards trending">
                {/* eslint-disable-next-line max-len */}
-             {recipes?.map((el) => <RecipeCardTrending name = {el.name} author = {el.author} views = {el.views} image = {el.image} key={el.id} />).slice(0, 3)}
+             {recipes?.map((el) => <CardTrending name = {el.name} author = {el.author} views = {el.views} image = {el.image} key={el.id} />).slice(0, 3)}
              </div>
             </div>
             <button className="section-btn btn"><Link to="/recipes">Show all recipes</Link></button>

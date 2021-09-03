@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import HomePage from '../components/pages/home-page/home-page';
+import HomePage from '../components/pages/home-page/page';
 import { getRecipes } from '../redux/actions/recipes-actions';
 
 function mapStateToProps(state: any) {

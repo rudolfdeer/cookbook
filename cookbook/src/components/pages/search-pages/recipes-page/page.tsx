@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Cookbook, Recipe } from '../../../constants/types';
-import Footer from '../../shared/footer/Footer';
-import Header from '../../shared/header/Header';
+import { Recipe } from '../../../../constants/types';
+import Footer from '../../../shared/footer/footer';
+import Header from '../../../shared/header/header';
 import RecipeCard from './card';
-import CookbookCard from './card';
 import FilterPanelRecipes from './filter-panel';
 
-import '../../shared/search-page.scss';
+import '../page.scss';
 
 type RecipesPageProps = {
   recipes?: Recipe[];

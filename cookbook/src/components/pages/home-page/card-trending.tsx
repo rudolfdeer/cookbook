@@ -1,8 +1,5 @@
 import React from 'react';
 
-//import './recipe-cards.scss';
-import '../cookbooks-page/card-test.scss';
-
 type RecipeCardTrendingProps = {
   name: string;
   author: string;
@@ -10,7 +7,7 @@ type RecipeCardTrendingProps = {
   image: string;
 };
 
-export default function RecipeCardTrending(props: RecipeCardTrendingProps): JSX.Element {
+export default function CardTrending(props: RecipeCardTrendingProps): JSX.Element {
   const { views, image, name, author } = props;
 
   return (

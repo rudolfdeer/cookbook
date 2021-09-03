@@ -2,6 +2,30 @@
 
 .footer {
   background-color: $main;
+
+  .nav-list {
+    @include nav-list;
+
+    .nav-list-item {
+      margin-right: 72px;
+      color: $white;
+
+      a {
+        color: $white;
+      }
+
+      &:hover {
+        a {
+          color: $primary-yellow;
+        }
+      }
+    }
+  }
+
+  a {
+    color: $white; 
+   }
+
 }
 
 .footer-content {
@@ -9,9 +33,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-
   min-height: 97px;
-
   font-size: 16px;
   background: $main;
 }
@@ -19,49 +41,10 @@
 .logo-black {
   width: 112px;
   height: 33px;
-
   background: url('../../../public/images/logo-black.png') center no-repeat;
 }
 
-.footer-nav {
-  display: block;
-}
-
-.footer-nav-list {
-  margin: 0;
-  padding: 0;
-
-  display: flex;
-  justify-content: space-between;
-  
-  width: 100%;
-  
-  list-style: none;
-}
-
-.footer-nav-list-item {
-  margin-right: 72px;
-
-  color: $white;
-
-  a {
-    list-style: none;
-    color: $white;
-  }
-
-  &:last-child {
-    margin-right: 0;
-  }
-
-  &:hover {
-    a {
-      color: $primary-yellow;
-    }
-  }
-}
-
 .email {
-
   a {
     color: $primary-yellow;
   }
@@ -74,11 +57,5 @@
   .study {
     color: #DADADA;
     margin-right: 18px;
-  }
-
-  .itechart {
-    a {
-     color: $white; 
-    }
   }
 }

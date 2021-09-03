@@ -5,29 +5,18 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-
   min-height: 88px;
   width: 100%;
-
-  font-family: 'Nunito', sans-serif;
   font-size: 16px;
-}
 
-.header-nav-list {
-  padding: 0;
-  display: flex;
-  justify-content: space-between;
+  .nav-list {
+    @include nav-list;
 
-  .header-nav-list-item {
-    list-style: none;
-    
-    &:first-child {
-      margin-right: 72px;
-    }
+    justify-content: space-between;
 
-    &:hover {
-      a {
-        color: $primary-yellow;
+    .nav-list-item {
+      &:first-child {
+        margin-right: 72px;
       }
     }
   }
@@ -76,12 +65,10 @@
       color: $primary-yellow;
     }
   }
-
 }
 
 .logo-small {
   width: 112px;
   height: 33px;
-
   background: url('../../../public/images/logo-small.png') center no-repeat;
 }

@@ -1,7 +1,5 @@
 import React from 'react';
 
-import '../cookbooks-page/card-test.scss';
-
 type RecipeCardRatedProps = {
   name: string;
   author: string;
@@ -11,7 +9,7 @@ type RecipeCardRatedProps = {
   comments: number
 };
 
-export default function RecipeCardRated(props: RecipeCardRatedProps): JSX.Element {
+export default function CardRated(props: RecipeCardRatedProps): JSX.Element {
   const { views, image, name, author, likes, comments } = props;
 
   return (
@@ -24,7 +22,7 @@ export default function RecipeCardRated(props: RecipeCardRatedProps): JSX.Elemen
           </svg>
           {views} views
         </div>
-        <svg className = "statistics-item dots" width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg className = "statistics-item-icon dots" width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="2" cy="2" r="2" fill="#dadada"/><circle cx="10" cy="2" r="2" fill="#dadada"/><circle cx="18" cy="2" r="2" fill="#dadada"/>
         </svg>
       </div>

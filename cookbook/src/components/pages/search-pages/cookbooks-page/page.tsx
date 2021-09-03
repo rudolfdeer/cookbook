@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Cookbook } from '../../../constants/types';
-import Footer from '../../shared/footer/Footer';
-import Header from '../../shared/header/Header';
+import { Cookbook } from '../../../../constants/types';
+import Footer from '../../../shared/footer/footer';
+import Header from '../../../shared/header/header';
 import CookbookCard from './card';
 import FilterPanelCookbooks from './filter-panel';
+import PopUpCookbookDetailed from './pop-up';
 
-import '../../shared/search-page.scss';
-import DetailedInfo from './detailed-info';
+import '../page.scss';
 
 type CookbooksPageProps = {
   cookbooks?: Cookbook[];
@@ -59,7 +59,7 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
                                     openDetailedInfo = {setVisible} />)}
           </div>
          </div>
-         {isVisible ? <DetailedInfo openDetailedInfo = {setVisible} cardInfo = {findCard()}/> : null}
+         {isVisible ? <PopUpCookbookDetailed openDetailedInfo = {setVisible} cardInfo = {findCard()}/> : null}
         </main>
       </div>
       <Footer/>

@@ -72,26 +72,23 @@
     flex-wrap: nowrap;
     align-items: center;
 
-    .statistics-item-icon {
-      margin-right: 8px;
-
-      width: 15px;
-      height: 15px;
-
-      &.dots {  
-        width: 20px;
-        height: 4px;
-
-        &:hover {
-          >circle {
-            fill: $primary-yellow;
-          }
-        }
-      }
-    }
-
     &:last-child {
       margin-right: 0;
+    }
+  }
+
+  .statistics-item-icon {
+    margin-right: 8px;
+
+    width: 15px;
+    height: 15px;
+
+    &.dots {  
+      &:hover {
+        >circle {
+          fill: $primary-yellow;
+        }
+      }
     }
   }
 }
@@ -260,5 +257,79 @@
     font-size: 14px;
     border: 1px solid #DADADA;
     border-radius: 4px;
+  }
+}
+
+@mixin nav-list {
+  display: flex;
+  flex-wrap: nowrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  .nav-list-item {
+    &:hover {
+      a {
+        color: $primary-yellow;
+      }
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+@mixin overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: fixed !important;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: visible;
+  opacity: 1;
+  visibility: visible;
+  z-index: 999;
+  position: relative;
+
+  .btn-close {
+    position: relative;
+    top: -80px;
+    z-index: 998;
+    width: 48px;
+    height: 48px;
+    //background: url('../../public/images/X.png') center no-repeat;
+  
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+    }
+  }
+
+  .content {
+    background: $white;
+    padding: 72px 56px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    .pop-up {
+      width: 100%;
+
+      .pop-up-title {
+        @include title-big();
+      }
+
+      .pop-up-section-title {
+      @include title-small();
+      }
+    }
   }
 }

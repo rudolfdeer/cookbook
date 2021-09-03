@@ -11,11 +11,11 @@ export default function Footer(): JSX.Element {
       <div className="wrapper">
         <div className="footer-content">
           <Link to="/"><div className="logo-black" /></Link>
-          <nav className="footer-nav">
-            <ul className="footer-nav-list">
-              <li className="footer-nav-list-item"><Link to="/recipes">Recipes</Link></li>
-              <li className="footer-nav-list-item"><Link to="/cookbooks">Cookbooks</Link></li>
-              <li className="footer-nav-list-item"><Link to="/">About us</Link></li>
+          <nav className="nav">
+            <ul className="nav-list">
+              <li className="nav-list-item"><Link to="/recipes">Recipes</Link></li>
+              <li className="nav-list-item"><Link to="/cookbooks">Cookbooks</Link></li>
+              <li className="nav-list-item"><Link to="/">About us</Link></li>
             </ul>
           </nav>
           <div className="email">

@@ -12,9 +12,9 @@ export default function Header(): JSX.Element {
 
       <Link to="/"><div className="logo-small" /></Link>
       <nav>
-        <ul className="header-nav-list">
-          <li className="header-nav-list-item"><Link to="/recipes">Recipes</Link></li>
-          <li className="header-nav-list-item"><Link to="/cookbooks">Cookbooks</Link></li>
+        <ul className="nav-list">
+          <li className="nav-list-item"><Link to="/recipes">Recipes</Link></li>
+          <li className="nav-list-item"><Link to="/cookbooks">Cookbooks</Link></li>
         </ul>
       </nav>
       <div className="header-search">

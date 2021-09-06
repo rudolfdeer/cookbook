@@ -16,7 +16,7 @@ export default function PopUpRecipeCard(props: PopUpRecipeCardProps): JSX.Elemen
 
   return (
     <div className="card">
-      <div className="card-image" style ={{ background: `url(../../../public/${image}) center no-repeat` }}></div>
+      <div className="card-image" style ={{ background: `url(../../../assets/${image}) center no-repeat` }}></div>
       <div className="card-container">
         <div className="card-info-container top">
         <div className="card-title">{name}</div>

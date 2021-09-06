@@ -106,7 +106,7 @@
     content: '';
     max-width: 1600px;
     height: 814px;
-    background: url('../../public/images/main-background.jpg') center no-repeat;
+    background: url('../../assets/images/main-background.jpg') center no-repeat;
     position: absolute; 
     z-index: -1;
     left: 0; 
@@ -148,7 +148,7 @@
     left: 24px;
     width: 23px;
     height: 23px;
-    background: url('../../public/images/search-icon-big.png') center no-repeat;
+    background: url('../../assets/images/search-icon-big.png') center no-repeat;
   }
 
   .intro-search-input {

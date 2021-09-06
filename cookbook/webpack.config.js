@@ -9,7 +9,7 @@ module.exports = {
   mode: 'development',
   devServer: {
     historyApiFallback: true,
-    contentBase: path.join(__dirname, './src/public'),
+    contentBase: path.join(__dirname, './src/assets'),
     open: true,
     compress: true,
     hot: true,
@@ -21,7 +21,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'bundle.js',
-    assetModuleFilename: './public/[name][ext]',
+    assetModuleFilename: './assets/[name][ext]',
   },
   devtool: 'eval-cheap-module-source-map',
   resolve: {
@@ -59,7 +59,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new CopyPlugin({
       patterns: [
-        { from: './src/public/images/', to: './public/images/' },
+        { from: './src/assets/images/', to: './assets/images/' },
       ],
     }),
     new MiniCssExtractPlugin({ filename: '[name].css' }),

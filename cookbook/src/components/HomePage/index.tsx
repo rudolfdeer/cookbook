@@ -33,8 +33,8 @@ export default function HomePage(props: HomePageProps): JSX.Element {
         </div>
         <main className="home-page">
         <div className="wrapper">
-          <img src = "../../../public/images/pear-bg.png" className = "pear-bg top"/>
-          <img src = "../../../public/images/pear-light-bg.png" className = "pear-bg bottom"/>
+          <img src = "../../../assets/images/pear-bg.png" className = "pear-bg top"/>
+          <img src = "../../../assets/images/pear-light-bg.png" className = "pear-bg bottom"/>
           <div className="intro-container">
             <section className="intro">
               <h1 className="intro-title">Find Recipes and Сreate Your Favourite Сookbooks</h1>

@@ -35,7 +35,7 @@ export default function PopUpRecipeDetailed(props: PopUpRecipeDetailedProps): JS
 
           <div className="recipe-container">
 
-            <div className="pop-up-image" style ={{ background: `url(../../../../public/${image}) center no-repeat` }}></div>
+            <div className="pop-up-image" style ={{ background: `url(../../../../assets/${image}) center no-repeat` }}></div>
 
             <div className="pop-up-sections">
 

@@ -27,7 +27,7 @@ export default function CardTrending(props: RecipeCardTrendingProps): JSX.Elemen
         </svg>
       </div>
 
-      <div className="card-image" style ={{ background: `url(../../../public/${image}) center no-repeat` }}></div>
+      <div className="card-image" style ={{ background: `url(../../../assets/${image}) center no-repeat` }}></div>
 
       <div className="card-info-container bottom">
         <div className="card-title">{name}</div>

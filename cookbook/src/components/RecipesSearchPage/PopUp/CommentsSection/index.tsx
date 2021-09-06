@@ -27,7 +27,7 @@ export default function CommentsSection(props: CommentsSectionProps): JSX.Elemen
     <div className="comments-container">
     {comments?.map((el) => (
         <div className="comment-container">
-          <div className="photo" style ={{ background: `url(../../public/${el.photo}) center no-repeat` }}></div>
+          <div className="photo" style ={{ background: `url(../../assets/${el.photo}) center no-repeat` }}></div>
           <div className="text-container">
             <div className="top">
               <div className="username">{el.author}</div>

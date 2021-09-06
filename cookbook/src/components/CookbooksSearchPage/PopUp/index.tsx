@@ -36,7 +36,7 @@ export default function PopUpCookbookDetailed(props: PopUpCookbookDetailedProps)
           <div className="pop-up-author">{author}</div>
 
           <div className="pop-up-section description">
-            <div className="pop-up-image" style ={{ background: `url(../../../../public/${image}) center no-repeat` }}></div>
+            <div className="pop-up-image" style ={{ background: `url(../../../../assets/${image}) center no-repeat` }}></div>
             <div className="description">
               <div className="pop-up-section-title">Description</div>
               <p>{description}</p>

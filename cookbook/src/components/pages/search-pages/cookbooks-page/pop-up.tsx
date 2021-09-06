@@ -1,16 +1,19 @@
 import React from 'react';
-import { Cookbook } from '../../../../constants/types';
+import { Cookbook, Recipe } from '../../../../constants/types';
+import CommentsSection from '../comments-section';
 
 import '../pop-up.scss';
+import PopUpRecipeCard from './pop-up-card';
 
 type PopUpCookbookDetailedProps = {
   openDetailedInfo: Function;
   cardInfo: Cookbook;
+  recipes: Recipe[];
 };
 
 export default function PopUpCookbookDetailed(props: PopUpCookbookDetailedProps): JSX.Element {
-  const { openDetailedInfo, cardInfo } = props;
-  const { id, views, image, description, name, author, likes, comments, recipes } = cardInfo;
+  const { openDetailedInfo, cardInfo, recipes } = props;
+  const { image, description, name, author, likes, comments } = cardInfo;
 
   function closePopUp(e: React.MouseEvent) {
     const target = e.target as HTMLElement;
@@ -56,9 +59,21 @@ export default function PopUpCookbookDetailed(props: PopUpCookbookDetailedProps)
           </div>
           <div className="pop-up-section recipes">
             <div className="pop-up-section-title">Recipes</div>
+            <div className="pop-up-section-cards">
+              {recipes?.map((el) => <PopUpRecipeCard
+                                      name = {el.name}
+                                      author = {el.author}
+                                      views = {el.views}
+                                      description = {el.description}
+                                      likes = {el.likes}
+                                      image = {el.image}
+                                      comments = {el.comments.length}
+                                      key = {el.id}/>)}
+            </div>
           </div>
           <div className="pop-up-section comments">
           <div className="pop-up-section-title">{`Comments (${comments.length})`}</div>
+                <CommentsSection comments = {comments} />
           </div>
 
         </div>

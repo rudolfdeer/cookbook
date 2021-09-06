@@ -38,6 +38,6 @@ export type Cookbook = {
   views: number,
   comments: Comment[],
   image: string,
-  recipes: Recipe['id'][],
+  recipesIds: Recipe['id'][],
   tags: string[],
 };

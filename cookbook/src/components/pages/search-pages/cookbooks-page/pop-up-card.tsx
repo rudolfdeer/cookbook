@@ -1,7 +1,6 @@
 import React from 'react';
 
-type RecipeCardProps = {
-  id: number
+type PopUpRecipeCardProps = {
   name: string;
   author: string;
   description: string;
@@ -9,18 +8,13 @@ type RecipeCardProps = {
   likes: number;
   image: string;
   comments: number;
-  selectCard: Function;
-  openDetailedInfo: Function;
 };
 
-export default function RecipeCard(props: RecipeCardProps): JSX.Element {
-  const { id, views, image, description, name, author, likes, comments, openDetailedInfo, selectCard } = props;
+export default function PopUpRecipeCard(props: PopUpRecipeCardProps): JSX.Element {
+  const { views, image, description, name, author, likes, comments } = props;
 
   return (
-    <div className="card" onClick = {() => {
-      selectCard(id);
-      openDetailedInfo(true);
-    }}>
+    <div className="card">
       <div className="card-image" style ={{ background: `url(../../../public/${image}) center no-repeat` }}></div>
       <div className="card-container">
         <div className="card-info-container top">
@@ -51,9 +45,7 @@ export default function RecipeCard(props: RecipeCardProps): JSX.Element {
             {comments} comments
           </div>
         </div>
-        <svg className = "statistics-item-icon dots" width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="2" cy="2" r="2" fill="#dadada"/><circle cx="10" cy="2" r="2" fill="#dadada"/><circle cx="18" cy="2" r="2" fill="#dadada"/>
-        </svg>
+        <button className="btn-save">Save</button>
       </div>
       </div>
     </div>

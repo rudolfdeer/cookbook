@@ -65,7 +65,7 @@ const cookbooks = [
         date: 'Tue Aug 31 2021 10:37:48 GMT+0300 (Moscow Standard Time)',
       }
     ],
-    recipesIds: [1, 4, 5],
+    recipesIds: [1, 2],
     tags: ['Without eggs', 'Without milk'],
   },
   {
@@ -88,7 +88,7 @@ const cookbooks = [
         date: 'Tue Aug 31 2021 10:37:48 GMT+0300 (Moscow Standard Time)',
       },
     ],
-    recipesIds: [1, 4, 5],
+    recipesIds: [1, 3, 4, 5],
     tags: ['Without eggs', 'Without milk'],
   },
 ];

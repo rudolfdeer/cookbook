@@ -5,6 +5,7 @@ import Footer from '../../../shared/footer/footer';
 import Header from '../../../shared/header/header';
 import RecipeCard from './card';
 import FilterPanelRecipes from './filter-panel';
+import PopUpRecipeDetailed from './pop-up';
 
 import '../page.scss';
 
@@ -15,8 +16,15 @@ type RecipesPageProps = {
 
 export default function RecipesPage(props: RecipesPageProps): JSX.Element {
   const { recipes, getRecipes } = props;
+  const [isVisible, setVisible] = useState(false);
+  const [chosenCardId, setChosenCardId] = useState(0);
 
   useEffect(() => getRecipes(), []);
+
+  function findCard(): Recipe {
+    const card = recipes.find((el) => el.id === chosenCardId);
+    return card;
+  }
 
   return (
     <>
@@ -36,10 +44,25 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
             </ul>
             </nav>
           <div className="cards recipes">
-          {/* eslint-disable-next-line max-len */}
-          {recipes?.map((el) => <RecipeCard name = {el.name} author = {el.author} views = {el.views} likes = {el.likes} comments = {el.comments.length} image = {el.image} description = {el.description} key={el.id} />)}
+          {recipes?.map((el) => <RecipeCard
+                                  id = {el.id}
+                                  name = {el.name}
+                                  author = {el.author}
+                                  views = {el.views}
+                                  likes = {el.likes}
+                                  comments = {el.comments.length}
+                                  image = {el.image}
+                                  description = {el.description}
+                                  selectCard = {setChosenCardId}
+                                  openDetailedInfo = {setVisible}
+                                  key={el.id} />)}
           </div>
          </div>
+         {isVisible
+           ? <PopUpRecipeDetailed
+              openDetailedInfo = {setVisible}
+              cardInfo = {findCard()}/>
+           : null}
         </main>
       </div>
       <Footer/>

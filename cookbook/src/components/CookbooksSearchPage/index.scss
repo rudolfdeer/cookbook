@@ -1,0 +1,59 @@
+@import '../../styles/index.scss';
+
+.search-page {
+  padding-top: 104px;
+  display: flex;
+  flex-wrap: nowrap;
+
+  .aside {
+    height: 100vh;
+    margin-right: 40px;
+  }
+
+  .filter {
+    width: 272px;
+    height: 372px;
+  }
+
+  .content {
+    width: 100%;
+
+    .page-nav {
+      margin-bottom: 34px;
+
+      .page-nav-list {
+        @include nav-list;
+        
+        .page-nav-list-item {
+          @include title-small;
+
+          a {
+            @include title-small;
+          }
+
+          &:first-child {
+            margin-right: 32px;
+          }
+
+          &.selected {
+            border-bottom:  5px solid $primary-yellow;
+          }
+        }
+      }
+    }
+
+    .cards {
+      display: flex;
+
+      &.recipes {
+        flex-wrap: nowrap;
+        flex-direction: column;
+      }
+
+      &.cookbooks {
+        flex-wrap: wrap;
+      }
+    }
+  }
+}
+

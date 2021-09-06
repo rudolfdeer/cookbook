@@ -1,0 +1,339 @@
+@mixin title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+
+@mixin title-small {
+  @include title();
+
+  font-size: 20px;
+  line-height: 24px;
+}
+
+@mixin title-medium {
+  @include title();
+
+  font-size: 16px;
+  line-height: 20px;
+}
+
+@mixin title-big {
+  @include title();
+
+  font-size: 40px;
+  margin-bottom: 48px;
+}
+
+@mixin button {
+  border: 2px solid $primary-yellow;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 20px;
+
+  a {
+    font-weight: bold;
+  }
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+  }
+}
+
+@mixin button-light {
+  @include button;
+
+   background: none;
+   color: $primary-yellow;
+    
+    a {
+      color: $primary-yellow;
+      font-size: 20px; 
+    }
+}
+
+@mixin button-dark {
+  @include button;
+
+  background: $primary-yellow;
+
+    a {
+      color: $main; 
+      font-size: 20px;
+    }
+}
+
+@mixin statistics-data {
+
+  .statistics-item {
+    margin-right: 24px;
+    line-height: 19px;
+
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .statistics-item-icon {
+    margin-right: 8px;
+
+    width: 15px;
+    height: 15px;
+
+    &.dots {  
+      &:hover {
+        >circle {
+          fill: $primary-yellow;
+        }
+      }
+    }
+  }
+}
+
+@mixin card {
+  @include statistics-data;
+
+    margin-bottom: 24px;
+    padding: 24px;
+
+    display: flex;
+
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    
+    .card-image {
+      border-radius: 50px 10px;
+      //background-size: 100% !important; 
+    }
+
+    .card-info-container {
+      margin-bottom: 16px;
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-title {
+      @include title-small;
+    }
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.24);
+
+      .card-title {
+        color: $primary-yellow;
+      }
+
+      .card-info-container {
+        .statistics-item-icon {
+          path {
+            fill: $primary-yellow;
+          }
+        }
+      }
+    }
+}
+
+@mixin card-vertical {
+  @include card;
+
+    width: 288px;
+
+    margin-right: 24px;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .card-image {
+      width: 240px;
+      height: 240px;
+    }
+
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
+}
+
+@mixin card-horizontal {
+  @include card;
+
+  height: 212px;
+
+  flex-wrap: nowrap;
+  position: relative;
+  border-radius: 50px 10px 10px 10px;
+
+  .card-image {
+    margin-right: 24px;
+    width: 288px;
+    height: 212px;
+    background-size: 100% !important;
+    flex-basis: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .card-container {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 288px;
+  }
+
+  .statistics {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+  .card-info-container {
+    &.bottom {
+      margin-bottom: 0;
+    }
+  }
+
+}
+
+@mixin filter-panel {
+  padding: 32px 24px;
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  background: $white;
+
+  .filter-container.top {
+    margin-bottom: 32px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+
+  .filter-title {
+    @include title-small;
+    margin-bottom: 0;
+  }
+
+  .btn-clear-all {
+    padding: 0;
+    width: 50px;
+    height: 19px;
+    color: $primary-yellow;
+    font-size: 14px;
+    border: none;
+    background: none;
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+
+  .filter-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 24px;
+
+    .filter-section-title {
+      @include title-medium;
+
+      margin-bottom: 16px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .select {
+    width: 100%;
+    padding: 11px 16px;
+    font-size: 14px;
+    border: 1px solid #DADADA;
+    border-radius: 4px;
+  }
+}
+
+@mixin nav-list {
+  display: flex;
+  flex-wrap: nowrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  .nav-list-item {
+    &:hover {
+      a {
+        color: $primary-yellow;
+      }
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+@mixin overlay {
+  display: flex;
+  //justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: fixed !important;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: visible;
+  opacity: 1;
+  visibility: visible;
+  z-index: 999;
+  position: relative;
+  overflow-y: scroll;
+
+  .btn-close {
+    position: relative;
+    top: -80px;
+    z-index: 998;
+    width: 48px;
+    height: 48px;
+    //background: url('../public/images/close.png') center no-repeat;
+  
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+    }
+  }
+
+  .content {
+
+    background: $white;
+    padding: 72px 56px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    .pop-up {
+      width: 100%;
+      position: relative;
+
+      .pop-up-title {
+        @include title-big();
+      }
+
+      .pop-up-section-title {
+      @include title-small();
+      }
+    }
+  }
+}

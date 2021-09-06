@@ -1,0 +1,58 @@
+@import '../../../styles/index.scss';
+
+.home-page .cards.popular .card {
+  @include card;
+
+  position: relative;
+  padding: 0;
+    
+  border-radius: 50px 10px;
+  background-size: 100% !important;
+
+  .statistics-item-icon.dots {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+  }
+
+  &:first-child {
+    grid-area: big;
+  }
+
+  &:nth-child(2) {
+    grid-area: horiz;
+  }
+
+  &:nth-child(3) {
+    grid-area: small-first;
+  }
+        
+  &:last-child {
+    grid-area: small-second;
+  }
+
+  .card-name {
+    padding: 8px 24px;
+  
+    height: 38px;
+
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+
+    font-size: 18px;
+    background: $white;
+    border-radius: 10px;
+    border: none;
+
+    &:hover {
+      cursor: pointer;
+      background: $primary-yellow;
+    }
+  } 
+}

@@ -1,0 +1,34 @@
+@import '../../../styles/index.scss';
+
+.home-page .cards.rated .card {
+  @include card-vertical;
+
+  z-index: 3;
+
+  .card-info-container {
+    &.top {
+      margin-bottom: 16px;
+    }
+
+    &.middle {
+      margin-bottom: 32px;
+    }
+
+    &.bottom {
+      margin-bottom: 0;
+      justify-content: flex-start;
+    }
+  }
+
+  .card-image {
+    margin-bottom: 16px;
+  }
+
+  &:nth-child(3) {
+    margin-right: 24px;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}

@@ -20,6 +20,7 @@ export type User = {
 
 export type Comment = {
   author: string,
+  photo: string,
   comment: string,
   date: string,
 };

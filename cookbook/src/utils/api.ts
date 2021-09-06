@@ -10,6 +10,11 @@ class Api {
     const response = FetchQuery.get('cookbooks');
     return response;
   }
+
+  getUser(id: number) {
+    const response = FetchQuery.getUserById(id);
+    return response;
+  }
 }
 
 export default new Api();

@@ -11,12 +11,13 @@ class FetchQuery {
       case 'cookbooks':
         return cookbooks;
 
-      case 'users':
-        return users;
-
       default:
         return [];
     }
+  }
+
+  getUserById(userId: number) {
+    return users.find((el) => el.id === userId);
   }
 }
 

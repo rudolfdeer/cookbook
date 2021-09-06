@@ -9,12 +9,12 @@ const cookbooks = [
     views: 159,
     comments: [
       {
-        author: 'Jonh Galt',
+        userId: 1,
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:35:45 GMT+0300 (Moscow Standard Time)',
       },
       {
-        author: 'Patricia Holman',
+        userId: 1,
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:37:48 GMT+0300 (Moscow Standard Time)',
       },
@@ -32,12 +32,12 @@ const cookbooks = [
     views: 198,
     comments: [
       {
-        author: 'Jonh Galt',
+        userId: 1,
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:35:45 GMT+0300 (Moscow Standard Time)',
       },
       {
-        author: 'Patricia Holman',
+        userId: 1,
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:37:48 GMT+0300 (Moscow Standard Time)',
       },
@@ -55,12 +55,12 @@ const cookbooks = [
     views: 359,
     comments: [
       {
-        author: 'Jonh Galt',
+        userId: 1,
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:35:45 GMT+0300 (Moscow Standard Time)',
       },
       {
-        author: 'Patricia Holman',
+        userId: 1,
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:37:48 GMT+0300 (Moscow Standard Time)',
       }
@@ -78,12 +78,12 @@ const cookbooks = [
     views: 19,
     comments: [
       {
-        author: 'Jonh Galt',
+        userId: 1,
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:35:45 GMT+0300 (Moscow Standard Time)',
       },
       {
-        author: 'Patricia Holman',
+        userId: 1,
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:37:48 GMT+0300 (Moscow Standard Time)',
       },

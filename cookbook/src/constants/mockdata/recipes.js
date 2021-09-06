@@ -20,12 +20,12 @@ const recipes = [
     likes: 57,
     comments: [
       {
-        author: 'Jonh Galt',
+        userId: 1,
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:35:45 GMT+0300 (Moscow Standard Time)',
       },
       {
-        author: 'Patricia Holman',
+        userId: 2,
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:37:48 GMT+0300 (Moscow Standard Time)',
       },
@@ -52,12 +52,12 @@ const recipes = [
     likes: 17,
     comments: [
       {
-        author: 'Mikkey Mouse',
+        userId: 3,
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:45:44 GMT+0300 (Moscow Standard Time)',
       },
       {
-        author: 'Hovard Rork',
+        userId: 4,
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:47:48 GMT+0300 (Moscow Standard Time)',
       },
@@ -84,12 +84,12 @@ const recipes = [
     likes: 51,
     comments: [
       {
-        author: 'Winston Smith',
+        userId: 1,
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:31:45 GMT+0300 (Moscow Standard Time)',
       },
       {
-        author: 'Patricia Holman',
+        userId: 1,
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:17:48 GMT+0300 (Moscow Standard Time)',
       },
@@ -116,12 +116,12 @@ const recipes = [
     likes: 25,
     comments: [
       {
-        author: 'Jonh Galt',
+        userId: 1,
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:35:45 GMT+0300 (Moscow Standard Time)',
       },
       {
-        author: 'Patricia Holman',
+        userId: 1,
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:37:48 GMT+0300 (Moscow Standard Time)',
       },
@@ -148,12 +148,12 @@ const recipes = [
     likes: 15,
     comments: [
       {
-        author: 'Jonh Galt',
+        userId: 1,
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:35:45 GMT+0300 (Moscow Standard Time)',
       },
       {
-        author: 'Patricia Holman',
+        userId: 1,
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:37:48 GMT+0300 (Moscow Standard Time)',
       },

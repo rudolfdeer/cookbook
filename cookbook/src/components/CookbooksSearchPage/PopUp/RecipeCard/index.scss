@@ -1,0 +1,11 @@
+@import '../../../../styles/index.scss';
+
+.pop-up-section.recipes .pop-up-section-cards .card {
+  @include card-horizontal;
+
+  .btn-save {
+    @include button-light;
+
+    width: 109px;
+  }
+}

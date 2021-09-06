@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import CookbooksPage from '../components/pages/search-pages/cookbooks-page/page';
-import RecipesPage from '../components/pages/search-pages/recipes-page/page';
+import CookbooksPage from '../components/CookbooksSearchPage';
+import RecipesPage from '../components/RecipesSearchPage';
 import { getCookbooks } from '../redux/actions/cookbooks-actions';
 import { getRecipes } from '../redux/actions/recipes-actions';
 

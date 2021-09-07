@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-import HomePage from '../components/HomePage';
-import { getCookbooks } from '../redux/actions/cookbooks-actions';
-import { getRecipes } from '../redux/actions/recipes-actions';
+import HomePage from '../../components/HomePage';
+import { getCookbooks } from '../actions/cookbooks-actions';
+import { getRecipes } from '../actions/recipes-actions';
 
 function mapStateToProps(state: any) {
   const { recipes } = state.recipes;

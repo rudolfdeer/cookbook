@@ -34,7 +34,6 @@ module.exports = {
         exclude: /node_modules/,
         use: ['ts-loader'],
       },
-      { enforce: 'pre', test: /\.tsx?$/, loader: 'source-map-loader' },
       {
         test: /\.(scss|css)$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],

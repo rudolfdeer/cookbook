@@ -13,7 +13,13 @@ export default function recipesReducer(state = initialState, action: AnyAction):
     case ACTION_TYPES.RECIPE_GET_ALL:
       return {
         ...state,
-        recipes: action.payload,
+        recipes: [...action.payload],
+      };
+
+    case ACTION_TYPES.RECIPE_SORT:
+      return {
+        ...state,
+        recipes: [...action.payload],
       };
 
     // case ACTION_TYPES.RECIPE_DELETE: {

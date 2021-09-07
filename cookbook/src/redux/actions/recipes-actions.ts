@@ -10,6 +10,29 @@ export const getRecipes = () => {
   };
 };
 
+export const sortRecipes = (order: string) => {
+  const currentData = Api.getRecipesList();
+  let resData;
+
+  switch (order) {
+    case 'likes': {
+      resData = currentData.sort((a, b) => b.likes - a.likes);
+      break;
+    }
+    case 'views': {
+      resData = currentData.sort((a, b) => b.views - a.views);
+      break;
+    }
+    default:
+      resData = currentData;
+  }
+
+  return {
+    type: ACTION_TYPES.RECIPE_SORT,
+    payload: resData,
+  };
+};
+
 // export const deleteRecipe = (id: number) => ({
 //   type: 'recipes/delete',
 //   payload: id,

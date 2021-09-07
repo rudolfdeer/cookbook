@@ -12,10 +12,11 @@ import './index.scss';
 type RecipesPageProps = {
   recipes?: Recipe[];
   getRecipes?: Function;
+  sortRecipes: Function;
 };
 
 export default function RecipesPage(props: RecipesPageProps): JSX.Element {
-  const { recipes, getRecipes } = props;
+  const { recipes, getRecipes, sortRecipes } = props;
   const [isVisible, setVisible] = useState(false);
   const [chosenCardId, setChosenCardId] = useState(0);
 
@@ -33,7 +34,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
         <main className="search-page">
           <aside className="search-page__aside">
           <div className="aside__container">
-            <FilterPanelRecipes/>
+            <FilterPanelRecipes sortRecipes = {sortRecipes}/>
           </div>
           </aside>
           <div className="search-page__content">

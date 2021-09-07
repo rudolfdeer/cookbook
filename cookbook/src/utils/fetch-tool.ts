@@ -1,6 +1,7 @@
 import recipes from '../constants/mockdata/recipes';
 import cookbooks from '../constants/mockdata/cookbooks';
 import users from '../constants/mockdata/users';
+import { Cookbook, Recipe } from '../constants/types';
 
 class FetchQuery {
   get(url: string) {

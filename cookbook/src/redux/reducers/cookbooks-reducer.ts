@@ -13,7 +13,19 @@ export default function cookbooksReducer(state = initialState, action: AnyAction
     case ACTION_TYPES.COOKBOOK_GET_ALL:
       return {
         ...state,
-        cookbooks: action.payload,
+        cookbooks: [...action.payload],
+      };
+
+    case ACTION_TYPES.COOKBOOK_SORT:
+      return {
+        ...state,
+        cookbooks: [...action.payload],
+      };
+
+    case ACTION_TYPES.COOKBOOK_FILTER:
+      return {
+        ...state,
+        cookbooks: [...action.payload],
       };
 
     // case ACTION_TYPES.COOKBOOK_DELETE: {

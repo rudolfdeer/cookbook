@@ -8,17 +8,21 @@ import FilterPanelCookbooks from './FilterPanel';
 import PopUpCookbookDetailed from './PopUp';
 
 import './index.scss';
-//import recipes from '../../../../constants/mockdata/recipes';
 
 type CookbooksPageProps = {
   cookbooks?: Cookbook[];
   getCookbooks?: Function;
   recipes?: Recipe[];
   getRecipes?: Function;
+  sortCookbooks: Function;
+  filterCookbooks: Function;
 };
 
 export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
-  const { cookbooks, getCookbooks, recipes, getRecipes } = props;
+  const {
+    cookbooks, getCookbooks, recipes, getRecipes, sortCookbooks, filterCookbooks,
+  } = props;
+
   const [isVisible, setVisible] = useState(false);
   const [chosenCardId, setChosenCardId] = useState(0);
 
@@ -51,7 +55,7 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
         <main className="search-page">
           <aside className="search-page__aside">
           <div className="aside__container">
-            <FilterPanelCookbooks/>
+            <FilterPanelCookbooks sortCookbooks = {sortCookbooks} filterCookbooks = {filterCookbooks}/>
           </div>
           </aside>
           <div className="search-page__content">

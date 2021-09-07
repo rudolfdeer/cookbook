@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './index.scss';
 
-export default function FilterPanelRecipes(): JSX.Element {
+type FilterPanelRecipeProps = {
+  sortRecipes: Function;
+};
+
+export default function FilterPanelRecipes(props: FilterPanelRecipeProps): JSX.Element {
+  const { sortRecipes } = props;
+  const [sortOrder, setSortOrder] = useState('');
+
+  function sort(e: React.ChangeEvent) {
+    const target = e.target as HTMLSelectElement;
+    setSortOrder(target.value);
+    sortRecipes(target.value);
+  }
+
   return (
     <div className="filter-panel recipes">
       <div className="filter-panel__container top">
@@ -10,9 +23,9 @@ export default function FilterPanelRecipes(): JSX.Element {
       </div>
       <div className="filter-panel__section sort">
         <label className = "section__title" htmlFor="sort">Sort by</label>
-          <select name="sort" id="sort" className = "select">
-            <option value="popularity">Popularity</option>
-            <option value="rating">Rating</option>
+          <select name="sort" id="sort" className = "select" value = {sortOrder} onChange = {(e) => sort(e)}>
+            <option value="views">Popularity</option>
+            <option value="likes">Rating</option>
           </select>
       </div>
       <div className="filter-panel__section type">

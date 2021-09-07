@@ -1,3 +1,4 @@
+import { Cookbook } from '../constants/types';
 import FetchQuery from './fetch-tool';
 
 class Api {

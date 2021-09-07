@@ -49,19 +49,19 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
       <div className="wrapper">
         <Header />
         <main className="search-page">
-          <aside className="aside">
-          <div className="filter">
+          <aside className="search-page__aside">
+          <div className="aside__container">
             <FilterPanelCookbooks/>
           </div>
           </aside>
-          <div className="content">
-            <nav className="page-nav">
-              <ul className="page-nav-list">
-                <li className="page-nav-list-item selected">Cookbooks</li>
-                <li className="page-nav-list-item"><Link to="/recipes">Recipes</Link></li>
+          <div className="search-page__content">
+            <nav className="search-page__nav">
+              <ul className="nav__list">
+                <li className="list__item_selected">Cookbooks</li>
+                <li className="list__item"><Link to="/recipes">Recipes</Link></li>
             </ul>
             </nav>
-          <div className="cards cookbooks">
+          <div className="search-page__cards cookbooks">
           {cookbooks?.map((el) => <CookbookCard
                                     id = {el.id}
                                     name = {el.name}

@@ -5,44 +5,42 @@
   display: flex;
   flex-wrap: nowrap;
 
-  .aside {
+  .search-page__aside {
     height: 100vh;
     margin-right: 40px;
   }
 
-  .filter {
+  .aside__container {
     width: 272px;
     height: 372px;
   }
 
-  .content {
+  .search-page__content {
     width: 100%;
 
-    .page-nav {
+    .search-page__nav {
       margin-bottom: 34px;
 
-      .page-nav-list {
+      .nav__list {
         @include nav-list;
         
-        .page-nav-list-item {
+        .list__item {
           @include title-small;
+        }
+
+        .list__item_selected {
+          @include title-small;
+          margin-right: 32px;
+          border-bottom:  5px solid $primary-yellow;
 
           a {
             @include title-small;
-          }
-
-          &:first-child {
-            margin-right: 32px;
-          }
-
-          &.selected {
-            border-bottom:  5px solid $primary-yellow;
           }
         }
       }
     }
 
-    .cards {
+    .search-page__cards {
       display: flex;
 
       &.recipes {
@@ -56,4 +54,3 @@
     }
   }
 }
-

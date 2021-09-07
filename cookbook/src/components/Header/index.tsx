@@ -10,19 +10,19 @@ export default function Header(): JSX.Element {
   return (
     <header className="header">
 
-      <Link to="/"><div className="logo-small" /></Link>
-      <nav>
-        <ul className="nav-list">
-          <li className="nav-list-item"><Link to="/recipes">Recipes</Link></li>
-          <li className="nav-list-item"><Link to="/cookbooks">Cookbooks</Link></li>
+      <Link to="/"><div className="header__logo_small" /></Link>
+      <nav className="header__nav">
+        <ul className="nav__list">
+          <li className="list__item"><Link to="/recipes">Recipes</Link></li>
+          <li className="list__item"><Link to="/cookbooks">Cookbooks</Link></li>
         </ul>
       </nav>
-      <div className="header-search">
-        <div className="header-search-icon" />
-        <input type="text" className="header-search-input" />
+      <div className="header__search">
+        <div className="search__icon" />
+        <input type="text" className="search__input" />
       </div>
-      <button className="header-btn-create btn light"><Link to="/create_cookbook">Create CookBook</Link></button>
-      <div className="header-link-login"><Link to="/login">Sign in</Link></div>
+      <button className="header__btn"><Link to="/create_cookbook">Create CookBook</Link></button>
+      <div className="header__login-info"><Link to="/login">Sign in</Link></div>
 
     </header>
   );

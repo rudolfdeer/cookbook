@@ -65,7 +65,7 @@
 
 @mixin statistics-data {
 
-  .statistics-item {
+  .card__statistics-item {
     margin-right: 24px;
     line-height: 19px;
 
@@ -78,7 +78,7 @@
     }
   }
 
-  .statistics-item-icon {
+  .statistics-item__icon {
     margin-right: 8px;
 
     width: 15px;
@@ -105,12 +105,12 @@
     box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.08);
     border-radius: 10px;
     
-    .card-image {
+    .card__image {
       border-radius: 50px 10px;
       //background-size: 100% !important; 
     }
 
-    .card-info-container {
+    .card__info-container {
       margin-bottom: 16px;
       display: flex;
       flex-wrap: nowrap;
@@ -118,7 +118,7 @@
       justify-content: space-between;
     }
 
-    .card-title {
+    .card__title {
       @include title-small;
     }
 
@@ -126,12 +126,12 @@
       cursor: pointer;
       box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.24);
 
-      .card-title {
+      .card__title {
         color: $primary-yellow;
       }
 
-      .card-info-container {
-        .statistics-item-icon {
+      .card__info-container {
+        .statistics-item__icon {
           path {
             fill: $primary-yellow;
           }
@@ -150,7 +150,7 @@
     justify-content: space-between;
     flex-wrap: wrap;
 
-    .card-image {
+    .card__image {
       width: 240px;
       height: 240px;
     }
@@ -169,7 +169,7 @@
   position: relative;
   border-radius: 50px 10px 10px 10px;
 
-  .card-image {
+  .card__image {
     margin-right: 24px;
     width: 288px;
     height: 212px;
@@ -180,7 +180,7 @@
     top: 0;
   }
 
-  .card-container {
+  .card__content {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
@@ -194,7 +194,7 @@
     flex-wrap: nowrap;
   }
 
-  .card-info-container {
+  .card__info-container {
     &.bottom {
       margin-bottom: 0;
     }
@@ -208,19 +208,19 @@
   border-radius: 10px;
   background: $white;
 
-  .filter-container.top {
+  .filter-panel__container.top {
     margin-bottom: 32px;
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
   }
 
-  .filter-title {
+  .filter-panel__title {
     @include title-small;
     margin-bottom: 0;
   }
 
-  .btn-clear-all {
+  .filter-panel__btn {
     padding: 0;
     width: 50px;
     height: 19px;
@@ -235,13 +235,13 @@
     }
   }
 
-  .filter-section {
+  .filter-panel__section {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin-bottom: 24px;
 
-    .filter-section-title {
+    .section__title {
       @include title-medium;
 
       margin-bottom: 16px;
@@ -299,7 +299,7 @@
   position: relative;
   overflow-y: scroll;
 
-  .btn-close {
+  .overlay__btn {
     position: relative;
     top: -80px;
     z-index: 998;
@@ -313,7 +313,7 @@
     }
   }
 
-  .content {
+  .overlay__content {
 
     background: $white;
     padding: 72px 56px;
@@ -327,11 +327,11 @@
       width: 100%;
       position: relative;
 
-      .pop-up-title {
+      .pop-up__title {
         @include title-big();
       }
 
-      .pop-up-section-title {
+      .section__title {
       @include title-small();
       }
     }

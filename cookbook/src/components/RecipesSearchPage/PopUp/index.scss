@@ -3,25 +3,18 @@
 .overlay {
   @include overlay;
 
-  .content {
+  .overlay__content {
     max-width: 1016px;
   }
 
-  .btn-clone {
-    @include button-dark;
-
-    width: 277px;
-    height: 54px;
-  }
-
-  .btn-add {
+  .pop-up__btn {
     @include button-light;
 
     width: 40px;
     height: 40px;
   }
 
-  .pop-up-author {
+  .pop-up__author {
     font-weight: 600;
     font-size: 18px;
     line-height: 22px;
@@ -29,7 +22,7 @@
     margin-bottom: 40px;
   }
 
-  .pop-up-image {
+  .main-image {
     display: flex;
     width: 440px;
     overflow: hidden;
@@ -37,8 +30,8 @@
     background-size: 100% !important;
   }
 
-  .pop-up-section {
-    .pop-up-section-title {
+  .pop-up__section {
+    .section__title {
       margin-bottom: 40px;
     }
 
@@ -48,7 +41,7 @@
       justify-content: space-between;
       margin-bottom: 16px;
 
-      .pop-up-title {
+      .pop-up__title {
         max-width: 544px;
         margin-bottom: 0;
       }
@@ -80,22 +73,6 @@
       margin-bottom: 72px;
     }
 
-    &.recipes {
-      margin-bottom: 104px;
-
-      // .pop-up-section-cards {
-
-      //   .card {
-      //     @include card-horizontal;
-
-      //     .btn-save {
-      //       @include button-light;
-
-      //       width: 109px;
-      //     }
-      //   }
-      // }
-    }
 
     &.directions {
       flex-basis: 50%;
@@ -126,30 +103,4 @@
       }
     }
   }
-
-  .recipe-container {
-    display: flex;
-
-    .pop-up-image {
-      background-size: 100% !important;
-     
-      position: absolute;
-      top: -72px;
-      left: -56px;
-    }
-
-    .pop-up-sections {
-      display: flex;
-      flex-direction: column;
-      padding-left: 445px;
-
-      .pop-up-section.top {
-        .pop-up-section-title {
-          margin-right: 8px;
-        }
-      }
-    }
-  }
-
-  
 }

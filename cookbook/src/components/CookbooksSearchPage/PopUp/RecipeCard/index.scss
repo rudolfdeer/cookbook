@@ -1,9 +1,9 @@
 @import '../../../../styles/index.scss';
 
-.pop-up-section.recipes .pop-up-section-cards .card {
+.pop-up__section.recipes .section__cards .card {
   @include card-horizontal;
 
-  .btn-save {
+  .card__btn-save {
     @include button-light;
 
     width: 109px;

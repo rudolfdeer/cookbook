@@ -35,30 +35,30 @@ export default function HomePage(props: HomePageProps): JSX.Element {
         <div className="wrapper">
           <img src = "../../../assets/images/pear-bg.png" className = "pear-bg top"/>
           <img src = "../../../assets/images/pear-light-bg.png" className = "pear-bg bottom"/>
-          <div className="intro-container">
-            <section className="intro">
-              <h1 className="intro-title">Find Recipes and Сreate Your Favourite Сookbooks</h1>
-              <div className="intro-search">
-                <div className="intro-search-icon" />
-                <input type="text" className="intro-search-input" placeholder="Find Best Recipes..." />
-                <button className="intro-search-btn btn dark">Search</button>
+          <div className="home-page__intro">
+            <section className="intro__content">
+              <h1 className="intro__title">Find Recipes and Сreate Your Favourite Сookbooks</h1>
+              <div className="intro__search">
+                <div className="search__icon" />
+                <input type="text" className="search__input" placeholder="Find Best Recipes..." />
+                <button className="search__btn">Search</button>
               </div>
-              <nav>
-                <ul className="intro-nav-list">
-                  <li className="intro-nav-list-item">Vegetarian</li>
-                  <li className="intro-nav-list-item">Mexican</li>
-                  <li className="intro-nav-list-item">Greece Kithcen</li>
-                  <li className="intro-nav-list-item">Italy Pizza</li>
-                  <li className="intro-nav-list-item">Philippines</li>
-                  <li className="intro-nav-list-item">Japan Sushi</li>
+              <nav className="intro__nav">
+                <ul className="nav__list">
+                  <li className="list__item">Vegetarian</li>
+                  <li className="list__item">Mexican</li>
+                  <li className="list__item">Greece Kithcen</li>
+                  <li className="list__item">Italy Pizza</li>
+                  <li className="list__item">Philippines</li>
+                  <li className="list__item">Japan Sushi</li>
                 </ul>
               </nav>
             </section>
           </div>
-          <section className="section rated">
-            <div className="section-pre-title">Users Choice</div>
-            <h2 className="section-title">20 Highest-Rated Recipes</h2>
-            <div className="section-cards recipes-rated cards rated">
+          <section className="home-page__section rated">
+            <div className="section__pre-title">Users Choice</div>
+            <h2 className="section__title">20 Highest-Rated Recipes</h2>
+            <div className="section__cards rated">
             {recipes?.map((el) => <CardRated
                                     name = {el.name}
                                     author = {el.author}
@@ -68,26 +68,26 @@ export default function HomePage(props: HomePageProps): JSX.Element {
                                     image = {el.image}
                                     key={el.id} />).slice(0, 4)}
             </div>
-            <button className="section-btn btn light"><Link to="/recipes">Show more</Link></button>
+            <button className="section__btn"><Link to="/recipes">Show more</Link></button>
           </section>
-          <section className="section popular">
-            <div className="section-pre-title">Our Choice</div>
-            <h2 className="section-title">Most Popular CookBooks</h2>
-            <div className="section-cards cookbooks-popular cards popular">
+          <section className="home-page__section popular">
+            <div className="section__pre-title">Our Choice</div>
+            <h2 className="section__title">Most Popular CookBooks</h2>
+            <div className="section__cards popular">
             {cookbooks?.map((el) => <CardPopular
                                       name = {el.name}
                                       image = {el.image}
                                       key={el.id} />).slice(0, 4)}
             </div>
-            <button className="section-btn btn light"><Link to="/cookbooks">Show more</Link></button>
+            <button className="section__btn"><Link to="/cookbooks">Show more</Link></button>
           </section>
           </div>
-          <section className="section trending">
+          <section className="home-page__section trending">
           <div className="wrapper">
-            <div className="section-pre-title">Top 10</div>
-            <h2 className="section-title">Trending Recipes</h2>
-            <div className="section-slider">
-             <div className="section-cards recipes-trending cards trending">
+            <div className="section__pre-title">Top 10</div>
+            <h2 className="section__title">Trending Recipes</h2>
+            <div className="section__slider">
+             <div className="section__cards trending">
              {recipes?.map((el) => <CardTrending
                                     name = {el.name}
                                     author = {el.author}
@@ -96,7 +96,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
                                     key={el.id} />).slice(0, 3)}
              </div>
             </div>
-            <button className="section-btn btn"><Link to="/recipes">Show all recipes</Link></button>
+            <button className="section__btn"><Link to="/recipes">Show all recipes</Link></button>
             </div>
           </section>
         </main>

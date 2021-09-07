@@ -20,20 +20,20 @@ export default function CommentsSection(props: CommentsSectionProps): JSX.Elemen
 
   return (
     <>
-    <div className="comment-input-container">
-      <input type="text" className="input" placeholder = "Express yourself..." />
-      <button className="btn-send"></button>
+    <div className="comment-new">
+      <input type="text" className="comment-new__input" placeholder = "Express yourself..." />
+      <button className="comment-new__btn"></button>
     </div>
-    <div className="comments-container">
+    <div className="comments">
     {comments?.map((el) => (
-        <div className="comment-container">
-          <div className="photo" style ={{ background: `url(../../assets/${el.photo}) center no-repeat` }}></div>
-          <div className="text-container">
-            <div className="top">
-              <div className="username">{el.author}</div>
-              <div className="time">{getDate(el.date)}</div>
+        <div className="comments__item">
+          <div className="comment__photo" style ={{ background: `url(../../assets/${el.photo}) center no-repeat` }}></div>
+          <div className="comment__text-info">
+            <div className="text-info__container_top">
+              <div className="comment__username">{el.author}</div>
+              <div className="comment__time">{getDate(el.date)}</div>
             </div>
-            <div className="comment">{el.comment}</div>
+            <div className="comment__text">{el.comment}</div>
           </div>
         </div>
       ))}

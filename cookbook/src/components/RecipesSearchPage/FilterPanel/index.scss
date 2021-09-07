@@ -3,20 +3,20 @@
 .filter-panel.recipes {
   @include filter-panel();
 
-  .range-container {
+  .section__range {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
     width: 100%;
     
-    .values-container {
+    .range__values {
       display: flex;
       flex-wrap: nowrap;
       width: 100%;
       justify-content: space-between;
     }
     
-    .range {
+    .range__input {
       margin-bottom: 5px;
       -webkit-appearance: none;
     

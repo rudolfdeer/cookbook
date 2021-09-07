@@ -4,40 +4,40 @@ import './index.scss';
 export default function FilterPanelCookbooks(): JSX.Element {
   return (
     <div className="filter-panel cookbooks">
-      <div className="filter-container top">
-      <div className="filter-title">Filter</div>
-       <button className="btn-clear-all">clear all</button>
+      <div className="filter-panel__container top">
+      <div className="filter-panel__title">Filter</div>
+       <button className="filter-panel__btn">clear all</button>
       </div>
 
-      <div className="filter-section sort">
-        <label className = "filter-section-title" htmlFor="sort">Sort by</label>
-          <select name="sort" id="sort" className = "select">
+      <div className="filter-panel__section sort">
+        <label className = "section__title" htmlFor="sort">Sort by</label>
+          <select className = "select" name="sort" id="sort">
             <option value="popularity">Popularity</option>
             <option value="rating">Rating</option>
           </select>
       </div>
 
-      <div className="filter-section type">
-        <div className="filter-section-title">Cookbook type</div>
-        <div className="checkboxes">
-          <div className="checkbox-container">
-            <input type="checkbox" className = "checkbox" id="vegetarian" name="vegetarian" value="Vegetarian"/>
+      <div className="filter-panel__section type">
+        <div className="section__title">Cookbook type</div>
+        <div className="section__checkboxes">
+          <div className="checkbox">
+            <input type="checkbox" className = "checkbox__input" id="vegetarian" name="vegetarian" value="Vegetarian"/>
             <label htmlFor="vegetarian">Vegetarian</label>
           </div>
-          <div className="checkbox-container">
-            <input type="checkbox" className = "checkbox" id="nomilk" name="nomilk" value="Without milk"/>
+          <div className="checkbox">
+            <input type="checkbox" className = "checkbox__input" id="nomilk" name="nomilk" value="Without milk"/>
             <label htmlFor="nomilk">Without milk</label>
           </div>
-          <div className="checkbox-container">
-            <input type="checkbox" className = "checkbox" id="noeggs" name="noeggs" value="Without eggs"/>
+          <div className="checkbox">
+            <input type="checkbox" className = "checkbox__input" id="noeggs" name="noeggs" value="Without eggs"/>
             <label htmlFor="noeggs">Without eggs</label>
           </div>
           </div>
       </div>
 
-      <div className="filter-section hide">
-        <div className="checkbox-container">
-          <input type="checkbox" className = "checkbox"id="hide" name="hide" value="hide"/>
+      <div className="filter-panel__section hide">
+        <div className="checkbox">
+          <input type="checkbox" className = "checkbox__input"id="hide" name="hide" value="hide"/>
           <label htmlFor="hide">Hide my CookBooks</label>
         </div>
       </div>

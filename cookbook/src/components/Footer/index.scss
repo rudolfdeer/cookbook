@@ -3,10 +3,13 @@
 .footer {
   background-color: $main;
 
-  .nav-list {
+
+
+  .footer__nav {
+    .nav__list {
     @include nav-list;
 
-    .nav-list-item {
+    .list__item {
       margin-right: 72px;
       color: $white;
 
@@ -21,6 +24,9 @@
       }
     }
   }
+  }
+
+  
 
   a {
     color: $white; 
@@ -28,7 +34,7 @@
 
 }
 
-.footer-content {
+.footer__container {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -38,23 +44,23 @@
   background: $main;
 }
 
-.logo-black {
+.footer__logo_black {
   width: 112px;
   height: 33px;
   background: url('../../assets/images/logo-black.png') center no-repeat;
 }
 
-.email {
+.footer__email {
   a {
     color: $primary-yellow;
   }
 }
 
-.study-container {
+.footer__study {
   display: flex;
   flex-wrap: nowrap;
 
-  .study {
+  .study__project {
     color: $white-dirty;
     margin-right: 18px;
   }

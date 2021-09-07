@@ -1,6 +1,6 @@
 @import '../../../styles/index.scss';
 
-.home-page .cards.popular .card {
+.home-page .section__cards.popular .card {
   @include card;
 
   position: relative;
@@ -9,7 +9,7 @@
   border-radius: 50px 10px;
   background-size: 100% !important;
 
-  .statistics-item-icon.dots {
+  .statistics-item__icon.dots {
     position: absolute;
     top: 24px;
     right: 24px;
@@ -31,7 +31,7 @@
     grid-area: small-second;
   }
 
-  .card-name {
+  .card__name {
     padding: 8px 24px;
   
     height: 38px;

@@ -3,19 +3,19 @@
 .filter-panel.cookbooks {
   @include filter-panel;
 
-  .checkboxes {
+  .section__checkboxes {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .checkbox-container {
+  .checkbox {
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
     margin-bottom: 8px;
   
-      .checkbox {
+      .checkbox__input {
         display: none;
         cursor: pointer;
   

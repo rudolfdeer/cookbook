@@ -1,12 +1,12 @@
 @import '../../../styles/index.scss';
 
-.search-page .cards.cookbooks .card {
+.search-page .search-page__cards.cookbooks .card {
   @include card-vertical;
   
   width: 288px;
   min-height: 487px;
 
-  .card-info-container {
+  .card__info-container {
     &.bottom {
       justify-content: flex-start;
     }

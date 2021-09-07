@@ -3,25 +3,18 @@
 .overlay {
   @include overlay;
 
-  .content {
+  .overlay__content {
     max-width: 1016px;
   }
 
-  .btn-clone {
+  .pop-up__btn-clone {
     @include button-dark;
 
     width: 277px;
     height: 54px;
   }
 
-  .btn-add {
-    @include button-light;
-
-    width: 40px;
-    height: 40px;
-  }
-
-  .pop-up-author {
+  .pop-up__author {
     font-weight: 600;
     font-size: 18px;
     line-height: 22px;
@@ -29,7 +22,7 @@
     margin-bottom: 40px;
   }
 
-  .pop-up-image {
+  .main-image {
     display: flex;
     width: 440px;
     overflow: hidden;
@@ -37,8 +30,8 @@
     background-size: 100% !important;
   }
 
-  .pop-up-section {
-    .pop-up-section-title {
+  .pop-up__section {
+    .section__title {
       margin-bottom: 40px;
     }
 
@@ -48,7 +41,7 @@
       justify-content: space-between;
       margin-bottom: 16px;
 
-      .pop-up-title {
+      .pop-up__title {
         max-width: 544px;
         margin-bottom: 0;
       }
@@ -82,55 +75,13 @@
 
     &.recipes {
       margin-bottom: 104px;
-
-      // .pop-up-section-cards {
-
-      //   .card {
-      //     @include card-horizontal;
-
-      //     .btn-save {
-      //       @include button-light;
-
-      //       width: 109px;
-      //     }
-      //   }
-      // }
-    }
-
-    &.directions {
-      flex-basis: 50%;
-      
-      .directions-list {
-        list-style: none;
-        padding: 0;
-        line-height: 22px;
-
-        span {
-          font-weight: bold;
-        }
-      }
-    }
-
-    &.ingredients {
-      flex-basis: 50%;
-
-      .ingredients-list {
-        padding: 0;
-        line-height: 22px;
-
-        li {
-          &::marker {
-            color: $primary-yellow;
-          }
-        }
-      }
     }
   }
 
   .recipe-container {
     display: flex;
 
-    .pop-up-image {
+    .main-image {
       background-size: 100% !important;
      
       position: absolute;
@@ -143,8 +94,8 @@
       flex-direction: column;
       padding-left: 445px;
 
-      .pop-up-section.top {
-        .pop-up-section-title {
+      .pop-up__section.top {
+        .section__title {
           margin-right: 8px;
         }
       }

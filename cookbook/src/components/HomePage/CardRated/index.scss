@@ -1,11 +1,11 @@
 @import '../../../styles/index.scss';
 
-.home-page .cards.rated .card {
+.home-page .section__cards.rated .card {
   @include card-vertical;
 
   z-index: 3;
 
-  .card-info-container {
+  .card__info-container {
     &.top {
       margin-bottom: 16px;
     }
@@ -20,7 +20,7 @@
     }
   }
 
-  .card-image {
+  .card__image {
     margin-bottom: 16px;
   }
 

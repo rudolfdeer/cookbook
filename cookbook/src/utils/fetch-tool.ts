@@ -1,20 +1,15 @@
 import recipes from '../constants/mockdata/recipes';
 import cookbooks from '../constants/mockdata/cookbooks';
 import users from '../constants/mockdata/users';
-import { Cookbook, Recipe } from '../constants/types';
+import { Cookbook, Recipe } from '../constants/interfaces';
 
 class FetchQuery {
-  get(url: string) {
-    switch (url) {
-      case 'recipes':
-        return recipes;
+  getRecipesList(): Recipe[] {
+    return recipes;
+  }
 
-      case 'cookbooks':
-        return cookbooks;
-
-      default:
-        return [];
-    }
+  getCookbooksList(): Cookbook[] {
+    return cookbooks;
   }
 
   getUserById(userId: number) {

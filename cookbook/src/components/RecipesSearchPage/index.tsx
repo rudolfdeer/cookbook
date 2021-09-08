@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Recipe } from '../../constants/types';
+import { Recipe } from '../../constants/interfaces';
 import Footer from '../Footer';
 import Header from '../Header';
 import RecipeCard from './Card';
@@ -13,10 +13,11 @@ type RecipesPageProps = {
   recipes?: Recipe[];
   getRecipes?: Function;
   sortRecipes: Function;
+  filterRecipes: Function;
 };
 
 export default function RecipesPage(props: RecipesPageProps): JSX.Element {
-  const { recipes, getRecipes, sortRecipes } = props;
+  const { recipes, getRecipes, sortRecipes, filterRecipes } = props;
   const [isVisible, setVisible] = useState(false);
   const [chosenCardId, setChosenCardId] = useState(0);
 
@@ -34,7 +35,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
         <main className="search-page">
           <aside className="search-page__aside">
           <div className="aside__container">
-            <FilterPanelRecipes sortRecipes = {sortRecipes}/>
+            <FilterPanelRecipes sortRecipes = {sortRecipes} filterRecipes = {filterRecipes}/>
           </div>
           </aside>
           <div className="search-page__content">

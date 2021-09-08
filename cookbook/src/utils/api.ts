@@ -1,14 +1,14 @@
-import { Cookbook } from '../constants/types';
+import { Cookbook, Recipe } from '../constants/interfaces';
 import FetchQuery from './fetch-tool';
 
 class Api {
   getRecipesList() {
-    const response = FetchQuery.get('recipes');
+    const response = FetchQuery.getRecipesList();
     return response;
   }
 
   getCookbooksList() {
-    const response = FetchQuery.get('cookbooks');
+    const response = FetchQuery.getCookbooksList();
     return response;
   }
 

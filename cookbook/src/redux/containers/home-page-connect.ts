@@ -12,10 +12,10 @@ function mapStateToProps(state: any) {
   };
 }
 
-const mapDispatchToProps = (dispatch: any) => ({
-  getRecipes: () => dispatch(getRecipes()),
-  getCookbooks: () => dispatch(getCookbooks()),
-});
+const mapDispatchToProps = {
+  getRecipes,
+  getCookbooks,
+};
 
 const HomePageConnect = connect(
   mapStateToProps,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Comment } from '../../../../constants/types';
+import { Comment } from '../../../../constants/interfaces';
 
 import './index.scss';
 
@@ -23,10 +23,10 @@ export default function CommentsSection(props: CommentsSectionProps): JSX.Elemen
     <div className="comments">
     {comments?.map((el) => (
         <div className="comments__item">
-          <div className="comment__photo" style ={{ background: `url(../../assets/${el.photo}) center no-repeat` }}></div>
+          <div className="comment__photo"></div>
           <div className="comment__text-info">
             <div className="text-info__container_top">
-              <div className="comment__username">{el.author}</div>
+              <div className="comment__username">{el.userId}</div>
               <div className="comment__time">{getDate(el.date)}</div>
             </div>
             <div className="comment__text">{el.comment}</div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Recipe } from '../../../constants/types';
+import { Recipe } from '../../../constants/interfaces';
 import CommentsSection from '../../CookbooksSearchPage/PopUp/CommentsSection';
 
 import './index.scss';

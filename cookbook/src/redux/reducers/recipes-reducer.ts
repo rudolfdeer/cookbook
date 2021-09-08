@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux';
-import { Recipe } from '../../constants/types';
+import { Recipe } from '../../constants/interfaces';
 import ACTION_TYPES from '../../constants/action-types';
 
 const initialState = {
@@ -17,6 +17,12 @@ export default function recipesReducer(state = initialState, action: AnyAction):
       };
 
     case ACTION_TYPES.RECIPE_SORT:
+      return {
+        ...state,
+        recipes: [...action.payload],
+      };
+
+    case ACTION_TYPES.RECIPE_FILTER:
       return {
         ...state,
         recipes: [...action.payload],

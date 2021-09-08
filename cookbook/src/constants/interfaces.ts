@@ -1,4 +1,4 @@
-export type Recipe = {
+export interface Recipe {
   id: number,
   name: string,
   image: string,
@@ -6,31 +6,32 @@ export type Recipe = {
   description: string,
   directions: string[],
   ingredients: Ingredient[],
+  cookingTime: number,
   views: number,
   likes: number,
   comments: Comment[],
 };
 
-export type User = {
+export interface User {
   id: number,
   username: string,
   email: string,
   avatar: string,
+  isLoggedIn: boolean,
 };
 
-export type Comment = {
-  author: string,
-  photo: string,
+export interface Comment {
+  userId: number,
   comment: string,
   date: string,
 };
 
-export type Ingredient = {
+export interface Ingredient {
   ingredient: string,
   amount: string,
 };
 
-export type Cookbook = {
+export interface Cookbook {
   id: number,
   name: string,
   author: string,

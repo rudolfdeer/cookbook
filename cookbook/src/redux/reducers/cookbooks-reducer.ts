@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux';
-import { Cookbook } from '../../constants/types';
+import { Cookbook } from '../../constants/interfaces';
 import ACTION_TYPES from '../../constants/action-types';
 
 const initialState = {

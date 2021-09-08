@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
   Link,
 } from 'react-router-dom';
-import { Cookbook, Recipe } from '../../constants/types';
+import { Cookbook, Recipe } from '../../constants/interfaces';
 import Footer from '../Footer';
 import Header from '../Header';
 import CardPopular from './CardPopular';

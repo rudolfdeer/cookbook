@@ -1,4 +1,6 @@
-const recipes = [
+import { Recipe } from '../interfaces';
+
+const recipes: Recipe[] = [
   {
     id: 1,
     name: 'Fresh meat',
@@ -16,6 +18,7 @@ const recipes = [
         amount: '5g',
       },
     ],
+    cookingTime: 60,
     views: 252,
     likes: 57,
     comments: [
@@ -46,8 +49,9 @@ const recipes = [
       {
         ingredient: 'water',
         amount: '250ml',
-      }
+      },
     ],
+    cookingTime: 35,
     views: 123,
     likes: 17,
     comments: [
@@ -80,6 +84,7 @@ const recipes = [
         amount: '10g',
       },
     ],
+    cookingTime: 25,
     views: 200,
     likes: 51,
     comments: [
@@ -112,6 +117,7 @@ const recipes = [
         amount: '300g',
       },
     ],
+    cookingTime: 15,
     views: 212,
     likes: 25,
     comments: [
@@ -144,6 +150,7 @@ const recipes = [
         amount: '2',
       },
     ],
+    cookingTime: 10,
     views: 117,
     likes: 15,
     comments: [

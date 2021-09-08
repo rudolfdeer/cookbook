@@ -49,7 +49,6 @@ export const filterRecipes = (cookingTime: number): ReduxAction => {
   };
 };
 
-
 // export const deleteRecipe = (id: number) => ({
 //   type: 'recipes/delete',
 //   payload: id,

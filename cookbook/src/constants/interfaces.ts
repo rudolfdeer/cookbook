@@ -21,7 +21,8 @@ export interface User {
 };
 
 export interface Comment {
-  userId: number,
+  user: string,
+  photo: string,
   comment: string,
   date: string,
 };

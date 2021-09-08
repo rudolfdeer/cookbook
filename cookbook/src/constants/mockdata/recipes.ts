@@ -23,12 +23,14 @@ const recipes: Recipe[] = [
     likes: 57,
     comments: [
       {
-        userId: 1,
+        user: 'John Galt',
+        photo: 'images/user1.png',
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:35:45 GMT+0300 (Moscow Standard Time)',
       },
       {
-        userId: 2,
+        user: 'Patricia Holman',
+        photo: 'images/user1.png',
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:37:48 GMT+0300 (Moscow Standard Time)',
       },
@@ -56,14 +58,16 @@ const recipes: Recipe[] = [
     likes: 17,
     comments: [
       {
-        userId: 3,
+        user: 'John Galt',
+        photo: 'images/user1.png',
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
-        date: 'Tue Aug 31 2021 10:45:44 GMT+0300 (Moscow Standard Time)',
+        date: 'Tue Aug 31 2021 10:35:45 GMT+0300 (Moscow Standard Time)',
       },
       {
-        userId: 4,
+        user: 'Patricia Holman',
+        photo: 'images/user1.png',
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
-        date: 'Tue Aug 31 2021 10:47:48 GMT+0300 (Moscow Standard Time)',
+        date: 'Tue Aug 31 2021 10:37:48 GMT+0300 (Moscow Standard Time)',
       },
     ],
   },
@@ -89,14 +93,16 @@ const recipes: Recipe[] = [
     likes: 51,
     comments: [
       {
-        userId: 1,
+        user: 'John Galt',
+        photo: 'images/user1.png',
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
-        date: 'Tue Aug 31 2021 10:31:45 GMT+0300 (Moscow Standard Time)',
+        date: 'Tue Aug 31 2021 10:35:45 GMT+0300 (Moscow Standard Time)',
       },
       {
-        userId: 1,
+        user: 'Patricia Holman',
+        photo: 'images/user1.png',
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
-        date: 'Tue Aug 31 2021 10:17:48 GMT+0300 (Moscow Standard Time)',
+        date: 'Tue Aug 31 2021 10:37:48 GMT+0300 (Moscow Standard Time)',
       },
     ],
   },
@@ -122,12 +128,26 @@ const recipes: Recipe[] = [
     likes: 25,
     comments: [
       {
-        userId: 1,
+        user: 'John Galt',
+        photo: 'images/user1.png',
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:35:45 GMT+0300 (Moscow Standard Time)',
       },
       {
-        userId: 1,
+        user: 'Patricia Holman',
+        photo: 'images/user1.png',
+        comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
+        date: 'Tue Aug 31 2021 10:37:48 GMT+0300 (Moscow Standard Time)',
+      },
+      {
+        user: 'John Galt',
+        photo: 'images/user1.png',
+        comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
+        date: 'Tue Aug 31 2021 10:35:45 GMT+0300 (Moscow Standard Time)',
+      },
+      {
+        user: 'Patricia Holman',
+        photo: 'images/user1.png',
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:37:48 GMT+0300 (Moscow Standard Time)',
       },
@@ -155,14 +175,22 @@ const recipes: Recipe[] = [
     likes: 15,
     comments: [
       {
-        userId: 1,
+        user: 'John Galt',
+        photo: 'images/user1.png',
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:35:45 GMT+0300 (Moscow Standard Time)',
       },
       {
-        userId: 1,
+        user: 'Patricia Holman',
+        photo: 'images/user1.png',
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:37:48 GMT+0300 (Moscow Standard Time)',
+      },
+      {
+        user: 'John Galt',
+        photo: 'images/user1.png',
+        comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
+        date: 'Tue Aug 31 2021 10:35:45 GMT+0300 (Moscow Standard Time)',
       },
     ],
   },

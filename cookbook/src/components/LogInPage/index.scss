@@ -1,0 +1,24 @@
+@import '../../styles/index.scss';
+
+.log-in-page {
+  padding: 32px;
+
+  .wrapper {
+    height: 100vh;
+    
+    display: flex;
+    align-items: center;
+
+    &::after {
+    content: '';
+    width: 1000px;
+    height: 960px;
+    background: url('../../assets/images/login-bg.jpg') center no-repeat;
+    position: absolute; 
+    z-index: -1;
+    right: 32px; 
+    top: 32px; 
+    border-radius: 50px 10px;
+    }
+  }
+}

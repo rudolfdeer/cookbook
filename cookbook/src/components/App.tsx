@@ -8,6 +8,8 @@ import routes from '../constants/routes';
 import HomePageConnect from '../redux/containers/home-page-connect';
 import CookbooksPageConnect from '../redux/containers/cookbook-page-connect';
 import RecipesPageConnect from '../redux/containers/recipe-page-connect';
+import LogInPage from './LogInPage';
+import SignUpPage from './SignUpPage';
 
 function App(): JSX.Element {
   return (
@@ -19,6 +21,10 @@ function App(): JSX.Element {
           <Route exact path={routes.cookbooks} component={CookbooksPageConnect}>
           </Route>
           <Route exact path={routes.recipes} component={RecipesPageConnect}>
+          </Route>
+          <Route exact path={routes.login} component={LogInPage}>
+          </Route>
+          <Route exact path={routes.signup} component={SignUpPage}>
           </Route>
         </Switch>
       </Router>

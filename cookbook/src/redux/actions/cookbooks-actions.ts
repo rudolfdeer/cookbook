@@ -52,6 +52,11 @@ export const sortCookbooks = (order: string): ReduxAction => {
       resData = currentData.sort((a, b) => b.views - a.views);
       break;
     }
+    case 'default': {
+      resData = currentData.sort((a, b) => a.id - b.id);
+      break;
+    }
+
     default:
       resData = currentData;
   }

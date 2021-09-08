@@ -37,11 +37,18 @@ export default function FilterPanelCookbooks(props: FilterPanelCookbooksProps): 
     }
   }
 
+  function clearAllFilters() {
+    setFilters([]);
+    setSortOrder('default');
+    const checkboxes = document.querySelectorAll('.checkbox__input');
+    checkboxes.forEach((el: HTMLInputElement) => el.checked = false);
+  }
+
   return (
     <div className="filter-panel cookbooks">
       <div className="filter-panel__container top">
       <div className="filter-panel__title">Filter</div>
-       <button className="filter-panel__btn">clear all</button>
+       <button className="filter-panel__btn" onClick = {() => clearAllFilters()}>clear all</button>
       </div>
 
       <div className="filter-panel__section sort">

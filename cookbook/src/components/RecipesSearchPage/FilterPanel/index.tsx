@@ -15,10 +15,13 @@ export default function FilterPanelRecipes(props: FilterPanelRecipeProps): JSX.E
     filterRecipes(maxCookingTime);
   }, [maxCookingTime]);
 
+  useEffect(() => {
+    sortRecipes(sortOrder);
+  }, [sortOrder]);
+
   function sort(e: React.ChangeEvent) {
     const target = e.target as HTMLSelectElement;
     setSortOrder(target.value);
-    sortRecipes(target.value);
   }
 
   function filter(e: React.ChangeEvent) {
@@ -26,11 +29,16 @@ export default function FilterPanelRecipes(props: FilterPanelRecipeProps): JSX.E
     setMaxCookingTime(+target.value);
   }
 
+  function clearAllFilters() {
+    setMaxCookingTime(240);
+    setSortOrder('default');
+  }
+
   return (
     <div className="filter-panel recipes">
       <div className="filter-panel__container top">
       <div className="filter-panel__title">Filter</div>
-       <button className="filter-panel__btn">clear all</button>
+       <button className="filter-panel__btn" onClick = {() => clearAllFilters()}>clear all</button>
       </div>
       <div className="filter-panel__section sort">
         <label className = "section__title" htmlFor="sort">Sort by</label>
@@ -43,7 +51,7 @@ export default function FilterPanelRecipes(props: FilterPanelRecipeProps): JSX.E
       <div className="filter-panel__section type">
         <div className="section__title">Cooking time</div>
           <div className="section__range">
-            <input type="range" className = "range__input" id="time" name="time" min="0" max="60" step="5" onChange = {(e) => filter(e)}/>
+            <input type="range" className = "range__input" id="time" name="time" min="0" max="60" step="5" value = {maxCookingTime} onChange = {(e) => filter(e)}/>
             <div className="range__values">
               <div>1 min</div>
               <div>1 hour</div>

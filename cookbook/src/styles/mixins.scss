@@ -314,7 +314,8 @@
   }
 
   .overlay__content {
-
+    max-width: 1016px;
+    width: 100%;
     background: $white;
     padding: 72px 56px;
     display: flex;

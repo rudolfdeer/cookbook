@@ -26,7 +26,8 @@ export default function PopUpRecipeDetailed(props: PopUpRecipeDetailedProps): JS
       <div className="overlay__content">
         <div className="pop-up">
           <div className="pop-up__recipe">
-            <div className="main-image" style ={{ background: `url(../../../../assets/${image}) center no-repeat` }}></div>
+            {/* <div className="main-image" style ={{ background: `url(../../../../assets/${image}) center no-repeat` }}></div> */}
+            <div className="main-image"><img src={`../../../../assets/${image}`} alt="" className="img" /></div>
             <div className="pop-up-sections">
               <div className="pop-up__section top">
                 <div className="pop-up__title">{name}</div>

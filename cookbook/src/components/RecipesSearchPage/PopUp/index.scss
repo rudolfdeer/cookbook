@@ -2,9 +2,13 @@
 
 .overlay {
   @include overlay;
+  
+  .pop-up__recipe {
+    margin-bottom: 72px;
 
-  .overlay__content {
-    max-width: 1016px;
+    .pop-up__section.statistics {
+      margin-bottom: 0;
+    }
   }
 
   .pop-up__btn {
@@ -25,9 +29,8 @@
   .main-image {
     display: flex;
     width: 440px;
+    height: auto;
     overflow: hidden;
-    border-radius: 10px 50px;
-    background-size: 100% !important;
   }
 
   .pop-up__section {

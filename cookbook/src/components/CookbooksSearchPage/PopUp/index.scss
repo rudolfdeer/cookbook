@@ -3,10 +3,6 @@
 .overlay {
   @include overlay;
 
-  .overlay__content {
-    max-width: 1016px;
-  }
-
   .pop-up__btn-clone {
     @include button-dark;
 

@@ -12,10 +12,13 @@ export default function SignUpForm(): JSX.Element {
       <form className="form">
         <label htmlFor="email" className = "form__label">Email</label>
         <input type="text" id="email" name="email" className = "form__input"/>
+        <span className = "form__error email"></span>
         <label htmlFor="password" className = "form__label password">Password<span>Forgot password?</span></label>
         <input type="text" id="password" name="password" className = "form__input"/>
+        <span className = "form__error email"></span>
         <label htmlFor="confirm" className = "form__label">Confirm password</label>
         <input type="text" id="confirm" name="confirm" className = "form__input"/>
+        <span className = "form__error email"></span>
         <input type="submit" value = "Sign Up" className = "form__input submit"/>
       </form>
     </div>

@@ -419,17 +419,28 @@
     }
 
     .form__input {
+      padding: 0 16px;
       height: 54px;
       width: 100%;
       border: 1px solid $white-dirty;
       border-radius: 8px;
-      margin-bottom: 32px;
+      margin-bottom: 10px;
+      
 
       &.submit {
          @include button-dark();
 
          margin-bottom: 0;
       }
+    }
+
+    .form__error {
+      display: block;
+      width: 100%;
+      height: 10px;
+      margin-bottom: 22px;
+      color: $red;
+      font-size: 10px;
     }
   }
 }

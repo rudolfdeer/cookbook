@@ -1,0 +1,33 @@
+@import '../../styles/index.scss';
+
+.profile-cookbooks-page {
+  @include profile-page;
+
+  .profile-page__nav {
+    display: flex;
+    justify-content: space-between;
+    
+    .nav__btn {
+      @include button-dark;
+
+      height: 62px;
+      width: 251px;
+    }
+  }
+
+  .profile-cookbooks-page__cards {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+
+    .card {
+      &:nth-child(3n) {
+        margin-right: 24px;
+      }
+
+      &:nth-child(4n) {
+        margin-right: 0;
+      }
+    }
+  }
+}

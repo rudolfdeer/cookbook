@@ -54,7 +54,11 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
     <>
       <div className="wrapper">
         <Header />
+      </div>
+      
         <main className="search-page">
+
+<div className="wrapper">
           <aside className="search-page__aside">
           <div className="aside__container">
             <FilterPanelCookbooks sortCookbooks = {sortCookbooks} filterCookbooks = {filterCookbooks}/>
@@ -88,8 +92,15 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
               cardInfo = {findCard()}
               recipes = {findRecipes()}/>
            : null}
+
+          </div> 
         </main>
-      </div>
+
+
+
+      
+
+        
       <Footer/>
     </>
   );

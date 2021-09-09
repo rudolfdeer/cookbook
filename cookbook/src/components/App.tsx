@@ -10,6 +10,10 @@ import CookbooksPageConnect from '../redux/containers/CookbooksPageConnect';
 import RecipesPageConnect from '../redux/containers/RecipesPageConnect';
 import LogInPage from './LogInPage';
 import SignUpPage from './SignUpPage';
+import ProfileSettingsPage from './ProfileSettingsPage';
+import ProfileRecipesPage from './ProfileRecipesPage';
+import ProfileRecipesPageConnect from '../redux/containers/ProfileRecipesPageConnect';
+import ProfileCookbooksPageConnect from '../redux/containers/ProfileCookbookPageConnect';
 
 function App(): JSX.Element {
   return (
@@ -25,6 +29,12 @@ function App(): JSX.Element {
           <Route exact path={routes.login} component={LogInPage}>
           </Route>
           <Route exact path={routes.signup} component={SignUpPage}>
+          </Route>
+          <Route exact path={routes.profile} component={ProfileSettingsPage}>
+          </Route>
+          <Route exact path={routes['profile.recipes']} component={ProfileRecipesPageConnect}>
+          </Route>
+          <Route exact path={routes['profile.cookbooks']} component={ProfileCookbooksPageConnect}>
           </Route>
         </Switch>
       </Router>

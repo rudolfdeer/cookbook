@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import CookbooksPage from '../../components/CookbooksSearchPage';
+import CookbooksPage from '../../components/SearchCookbooksPage';
 import { getCookbooks, sortCookbooks, filterCookbooks } from '../actions/cookbooks-actions';
 import { getRecipes } from '../actions/recipes-actions';
 

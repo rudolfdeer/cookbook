@@ -3,21 +3,26 @@
   font-weight: 600;
 }
 
-@mixin title-small {
+@mixin title-20 {
   @include title();
 
   font-size: 20px;
   line-height: 24px;
 }
 
-@mixin title-medium {
+@mixin title-16 {
   @include title();
 
   font-size: 16px;
   line-height: 20px;
 }
 
-@mixin title-big {
+@mixin text-18 {
+  font-size: 18px;
+  line-height: 22px;
+}
+
+@mixin title-40 {
   @include title();
 
   font-size: 40px;
@@ -119,7 +124,7 @@
     }
 
     .card__title {
-      @include title-small;
+      @include title-20;
     }
 
     &:hover {
@@ -216,7 +221,7 @@
   }
 
   .filter-panel__title {
-    @include title-small;
+    @include title-20;
     margin-bottom: 0;
   }
 
@@ -242,7 +247,7 @@
     margin-bottom: 24px;
 
     .section__title {
-      @include title-medium;
+      @include title-16;
 
       margin-bottom: 16px;
     }
@@ -268,7 +273,7 @@
   padding: 0;
   margin: 0;
 
-  .nav-list-item {
+  .list__item {
     &:hover {
       a {
         color: $primary-yellow;
@@ -278,6 +283,26 @@
     &:last-child {
       margin-right: 0;
     }
+  }
+}
+
+@mixin page-nav-list {
+  @include nav-list;
+
+  li {
+    @include title-20;
+
+    margin-right: 32px;
+  }
+    
+  .list__item {
+    a {
+      @include title-20;
+    }
+  }
+
+  .list__item_selected {
+    border-bottom:  5px solid $primary-yellow;
   }
 }
 
@@ -329,11 +354,11 @@
       position: relative;
 
       .pop-up__title {
-        @include title-big();
+        @include title-40();
       }
 
       .section__title {
-      @include title-small();
+      @include title-20();
       }
     }
   }
@@ -359,14 +384,14 @@
   }
 
   .form__title {
-    @include title-big();
+    @include title-40();
 
     margin: 0;
     margin-bottom: 8px;
   }
 
   .form__title_small {
-    @include title-medium();
+    @include title-16();
 
     margin: 0;
     margin-bottom: 40px;
@@ -409,3 +434,50 @@
   }
 }
 
+@mixin profile-page {
+  padding: 104px 0;
+  background-color: $grey-light;
+
+  .user {
+    margin-bottom: 18px;
+    display: flex;
+    width: 100%;
+
+    .user__photo {
+      margin-right: 40px;
+      width: 160px;
+      height: 160px;
+      border-radius: 102px;
+    }
+
+    .user__container {
+      max-width: 504px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .user__name {
+        @include title-40;
+        } 
+
+      .user__bio {
+        @include text-18;
+      }
+    }
+  }
+
+  .profile-page__nav {
+    margin-bottom: 40px;
+    height: 62px;
+
+    display: flex;
+    align-items: flex-end;
+
+    .nav__list {
+      @include page-nav-list;
+
+      
+    }
+  }
+}

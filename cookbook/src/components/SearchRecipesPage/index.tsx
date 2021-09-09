@@ -32,7 +32,9 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
     <>
       <div className="wrapper">
         <Header />
+        </div>
         <main className="search-page">
+        <div className="wrapper">
           <aside className="search-page__aside">
           <div className="aside__container">
             <FilterPanelRecipes sortRecipes = {sortRecipes} filterRecipes = {filterRecipes}/>
@@ -65,8 +67,9 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
               openDetailedInfo = {setVisible}
               cardInfo = {findCard()}/>
            : null}
+           </div>
         </main>
-      </div>
+      
       <Footer/>
     </>
   );

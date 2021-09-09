@@ -2,9 +2,13 @@
 
 .search-page {
   padding-top: 104px;
-  display: flex;
-  flex-wrap: nowrap;
+  background-color: $grey-light;
 
+  .wrapper {
+    display: flex;
+    flex-wrap: nowrap; 
+  }
+  
   .search-page__aside {
     height: 100vh;
     margin-right: 40px;
@@ -25,16 +29,16 @@
         @include nav-list;
         
         .list__item {
-          @include title-small;
+          @include title-20;
         }
 
         .list__item_selected {
-          @include title-small;
+          @include title-20;
           margin-right: 32px;
           border-bottom:  5px solid $primary-yellow;
 
           a {
-            @include title-small;
+            @include title-20;
           }
         }
       }

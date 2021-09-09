@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import RecipesPage from '../../components/RecipesSearchPage';
+import RecipesPage from '../../components/SearchRecipesPage';
 import { filterRecipes, getRecipes, sortRecipes } from '../actions/recipes-actions';
 
 function mapStateToProps(state: any) {

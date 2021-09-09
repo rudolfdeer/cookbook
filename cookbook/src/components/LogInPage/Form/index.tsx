@@ -14,7 +14,7 @@ export default function LogInForm(): JSX.Element {
         <input type="text" id="email" name="email" className = "form__input"/>
         <label htmlFor="password" className = "form__label password">Password<span>Forgot password?</span></label>
         <input type="text" id="password" name="password" className = "form__input"/>
-        <input type="submit" value = "Sign In" className = "form__input submit"/>
+        <Link to={routes.profile}><input type="submit" value = "Sign In" className = "form__input submit"/></Link>
       </form>
     </div>
   );

@@ -1,0 +1,26 @@
+@import '../../../styles/index.scss';
+
+.cookbooks .card {
+  @include card-vertical;
+  
+  width: 288px;
+  min-height: 487px;
+
+  .card__info-container {
+    &.bottom {
+      justify-content: flex-start;
+    }
+
+    &.description {
+      align-items: flex-start;
+      margin-bottom: 32px;
+      max-height: 57px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
+  }
+}

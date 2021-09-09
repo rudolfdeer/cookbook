@@ -10,7 +10,7 @@ export interface Recipe {
   views: number,
   likes: number,
   comments: Comment[],
-};
+}
 
 export interface User {
   id: number,
@@ -18,19 +18,19 @@ export interface User {
   email: string,
   avatar: string,
   isLoggedIn: boolean,
-};
+}
 
 export interface Comment {
   user: string,
   photo: string,
   comment: string,
   date: string,
-};
+}
 
 export interface Ingredient {
   ingredient: string,
   amount: string,
-};
+}
 
 export interface Cookbook {
   id: number,
@@ -43,4 +43,4 @@ export interface Cookbook {
   image: string,
   recipesIds: Recipe['id'][],
   tags: string[],
-};
+}

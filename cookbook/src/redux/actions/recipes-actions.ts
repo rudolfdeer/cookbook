@@ -1,13 +1,8 @@
 import Api from '../../utils/api';
 import ACTION_TYPES from '../../constants/action-types';
-import { Cookbook, Recipe, User } from '../../constants/interfaces';
+import { ReduxAction } from '../../constants/types';
 
-type ReduxAction = {
-  type: string,
-  payload: Cookbook[] | Recipe[] | User[],
-};
-
-export const getRecipes = () => {
+export const getRecipes = (): ReduxAction => {
   const resData = Api.getRecipesList();
 
   return {
@@ -16,7 +11,7 @@ export const getRecipes = () => {
   };
 };
 
-export const sortRecipes = (order: string) => {
+export const sortRecipes = (order: string): ReduxAction => {
   const currentData = Api.getRecipesList();
   let resData;
 

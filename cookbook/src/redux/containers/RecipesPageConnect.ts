@@ -15,12 +15,6 @@ const mapDispatchToProps = {
   filterRecipes,
 };
 
-// const mapDispatchToProps = (dispatch: any) => ({
-//   getRecipes: () => dispatch(getRecipes()),
-//   sortRecipes: (order: string) => dispatch(sortRecipes(order)),
-//   filterRecipes: (cookingTime: number) => dispatch(filterRecipes(cookingTime)),
-// });
-
 const RecipesPageConnect = connect(
   mapStateToProps,
   mapDispatchToProps,

@@ -5,9 +5,9 @@ import {
   Route,
 } from 'react-router-dom';
 import routes from '../constants/routes';
-import HomePageConnect from '../redux/containers/home-page-connect';
-import CookbooksPageConnect from '../redux/containers/cookbook-page-connect';
-import RecipesPageConnect from '../redux/containers/recipe-page-connect';
+import HomePageConnect from '../redux/containers/HomePageConnect';
+import CookbooksPageConnect from '../redux/containers/CookbooksPageConnect';
+import RecipesPageConnect from '../redux/containers/RecipesPageConnect';
 import LogInPage from './LogInPage';
 import SignUpPage from './SignUpPage';
 

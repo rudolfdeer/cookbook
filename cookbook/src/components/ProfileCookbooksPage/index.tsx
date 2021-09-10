@@ -10,18 +10,19 @@ import './index.scss';
 
 type ProfileCookbooksPageProps = {
   cookbooks?: Cookbook[];
-  getCookbooks?: Function;
+  getUsersCookbooks?: Function;
   username: string;
   bio: string;
   avatar: string;
+  id: number;
 };
 
 export default function ProfileCookbooksPage(props: ProfileCookbooksPageProps): JSX.Element {
   const {
-    cookbooks, getCookbooks, username, bio, avatar,
+    cookbooks, username, bio, avatar, id, getUsersCookbooks,
   } = props;
 
-  useEffect(() => getCookbooks(), []);
+  useEffect(() => getUsersCookbooks(id), []);
 
   return (
     <>

@@ -64,7 +64,7 @@ export default function PopUpCookbookDetailed(props: PopUpCookbookDetailedProps)
             <div className="section__cards">
               {recipes?.map((el) => <PopUpRecipeCard
                                       name = {el.name}
-                                      author = {el.author}
+                                      author = {el.userName}
                                       views = {el.views}
                                       description = {el.description}
                                       likes = {el.likes}

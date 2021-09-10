@@ -17,11 +17,12 @@ type CookbooksPageProps = {
   sortCookbooks: Function;
   filterCookbooks: Function;
   username?: string;
+  userId: number;
 };
 
 export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
   const {
-    cookbooks, getCookbooks, recipes, getRecipes, sortCookbooks, filterCookbooks, username,
+    cookbooks, getCookbooks, recipes, getRecipes, sortCookbooks, filterCookbooks, username, userId,
   } = props;
 
   const [isVisible, setVisible] = useState(false);
@@ -58,7 +59,7 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
         <div className="wrapper">
           <aside className="search-page__aside">
           <div className="aside__container">
-            <FilterPanelCookbooks sortCookbooks = {sortCookbooks} filterCookbooks = {filterCookbooks}/>
+            <FilterPanelCookbooks sortCookbooks = {sortCookbooks} filterCookbooks = {filterCookbooks} userId = {userId}/>
           </div>
           </aside>
           <div className="search-page__content">

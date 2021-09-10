@@ -12,7 +12,7 @@ type PopUpRecipeDetailedProps = {
 export default function PopUpRecipeDetailed(props: PopUpRecipeDetailedProps): JSX.Element {
   const { openDetailedInfo, cardInfo } = props;
   const {
-    image, description, name, author, likes, comments, directions, ingredients,
+    image, description, name, userName, likes, comments, directions, ingredients,
   } = cardInfo;
 
   function closePopUp(e: React.MouseEvent) {
@@ -35,7 +35,7 @@ export default function PopUpRecipeDetailed(props: PopUpRecipeDetailedProps): JS
                 <div className="pop-up__title">{name}</div>
                 <button className="pop-up__btn">+</button>
               </div>
-              <div className="pop-up__author">{author}</div>
+              <div className="pop-up__author">{userName}</div>
               <div className="pop-up__section description">
                 <div className="description">
                   <div className="section__title">Description</div>

@@ -10,7 +10,8 @@ import './index.scss';
 
 type ProfileRecipesPageProps = {
   recipes?: Recipe[];
-  getRecipes?: Function;
+  getUsersRecipes?: Function;
+  id: number;
   username: string;
   bio: string;
   avatar: string;
@@ -18,10 +19,10 @@ type ProfileRecipesPageProps = {
 
 export default function ProfileRecipesPage(props: ProfileRecipesPageProps): JSX.Element {
   const {
-    recipes, getRecipes, username, bio, avatar,
+    recipes, username, bio, avatar, id, getUsersRecipes,
   } = props;
 
-  useEffect(() => getRecipes(), []);
+  useEffect(() => getUsersRecipes(id), []);
 
   return (
     <>
@@ -50,7 +51,7 @@ export default function ProfileRecipesPage(props: ProfileRecipesPageProps): JSX.
             {recipes?.map((el) => <ProfileRecipeCard
                                   id = {el.id}
                                   name = {el.name}
-                                  author = {el.author}
+                                  author = {el.userName}
                                   views = {el.views}
                                   likes = {el.likes}
                                   comments = {el.comments.length}

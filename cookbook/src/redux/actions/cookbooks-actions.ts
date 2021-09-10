@@ -11,11 +11,10 @@ export const getCookbooks = (): AnyAction => {
   };
 };
 
-export const filterCookbooks = (tags: string[]): AnyAction => {
+export const filterCookbooks = (tags: string[], userId: number): AnyAction => {
   const currentData = Api.getCookbooksList();
   const appliedTags = tags.sort();
   let resData;
-
   if (appliedTags.length === 0) {
     resData = Api.getCookbooksList();
   } else if (appliedTags.length === 1) {
@@ -61,3 +60,14 @@ export const sortCookbooks = (order: string): AnyAction => {
     payload: resData,
   };
 };
+
+export const getUsersCookbooks = (userId: number): AnyAction => {
+  const allCookbooks = Api.getCookbooksList();
+
+  const resData = allCookbooks.filter((cookbook) => cookbook.userId === userId);
+
+  return {
+    type: ACTION_TYPES.USER_GET_COOKBOOKS,
+    payload: resData,
+  };
+}

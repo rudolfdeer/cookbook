@@ -28,6 +28,12 @@ export default function recipesReducer(state = initialState, action: AnyAction):
         recipes: [...action.payload],
       };
 
+    case ACTION_TYPES.USER_GET_RECIPES:
+      return {
+        ...state,
+        recipes: [...action.payload],
+      }
+      
       // case ACTION_TYPES.RECIPE_DELETE: {
       //   const newList = state.recipes.filter((recipe) => recipe.id !== action.payload.id);
       //   return {

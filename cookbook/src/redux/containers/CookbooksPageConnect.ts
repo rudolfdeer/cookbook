@@ -7,17 +7,21 @@ const mapStateToProps = (state: any) => {
   const { cookbooks } = state.cookbooks;
   const { recipes } = state.recipes;
   let username;
+  let userId;
 
   if (state.user.user) {
     username = state.user.user.username;
+    userId = state.user.user.id;
   } else {
     username = '';
+    userId = null;
   }
 
   return {
     cookbooks,
     recipes,
     username,
+    userId,
   };
 };
 

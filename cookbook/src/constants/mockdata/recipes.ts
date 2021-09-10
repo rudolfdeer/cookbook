@@ -5,7 +5,8 @@ const recipes: Recipe[] = [
     id: 1,
     name: 'Fresh meat',
     image: 'images/freshmeat.jpg',
-    author: 'John Doe',
+    userId: 1,
+    userName: 'John Doe',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel sit adipiscing dignissim feugiat consectetur. Dolor urna vitae vitae etiam sed commodo. Cursus semper diam commodo laoreet purus orci sed. Nulla varius interdum euismod vestibulum tempus scelerisque felis mauris. Sed neque laoreet habitant pharetra luctus.',
     directions: ['Take', 'Prepare', 'Cook'],
     ingredients: [
@@ -40,7 +41,8 @@ const recipes: Recipe[] = [
     id: 2,
     name: 'Pancakes new',
     image: 'images/pancakesnew.jpg',
-    author: 'John Doe',
+    userId: 1,
+    userName: 'John Doe',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel sit adipiscing dignissim feugiat consectetur. Dolor urna vitae vitae etiam sed commodo. Cursus semper diam commodo laoreet purus orci sed. Nulla varius interdum euismod vestibulum tempus scelerisque felis mauris. Sed neque laoreet habitant pharetra luctus.',
     directions: ['Take', 'Prepare', 'Cook'],
     ingredients: [
@@ -75,7 +77,8 @@ const recipes: Recipe[] = [
     id: 3,
     name: 'Pancakes',
     image: 'images/pancakes.jpg',
-    author: 'John Galt',
+    userId: 2,
+    userName: 'John Galt',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel sit adipiscing dignissim feugiat consectetur. Dolor urna vitae vitae etiam sed commodo. Cursus semper diam commodo laoreet purus orci sed. Nulla varius interdum euismod vestibulum tempus scelerisque felis mauris. Sed neque laoreet habitant pharetra luctus.',
     directions: ['Take', 'Prepare', 'Cook'],
     ingredients: [
@@ -110,7 +113,8 @@ const recipes: Recipe[] = [
     id: 4,
     name: 'Fresh meat with potato and cheeze ',
     image: 'images/freshmeatwithpotatoandcheeze.jpg',
-    author: 'John Doe',
+    userId: 1,
+    userName: 'John Doe',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel sit adipiscing dignissim feugiat consectetur. Dolor urna vitae vitae etiam sed commodo. Cursus semper diam commodo laoreet purus orci sed. Nulla varius interdum euismod vestibulum tempus scelerisque felis mauris. Sed neque laoreet habitant pharetra luctus.',
     directions: ['Take', 'Prepare', 'Cook'],
     ingredients: [
@@ -157,7 +161,8 @@ const recipes: Recipe[] = [
     id: 5,
     name: 'Fresh fruits',
     image: 'images/freshfruits.jpg',
-    author: 'Winston Smith',
+    userId: 4,
+    userName: 'Winston Smith',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel sit adipiscing dignissim feugiat consectetur. Dolor urna vitae vitae etiam sed commodo. Cursus semper diam commodo laoreet purus orci sed. Nulla varius interdum euismod vestibulum tempus scelerisque felis mauris. Sed neque laoreet habitant pharetra luctus.',
     directions: ['Take', 'Prepare', 'Cook'],
     ingredients: [

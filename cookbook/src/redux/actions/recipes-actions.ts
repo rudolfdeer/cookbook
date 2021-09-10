@@ -48,6 +48,15 @@ export const filterRecipes = (cookingTime: number): AnyAction => {
   };
 };
 
+export const getUsersRecipes = (userId: number): AnyAction => {
+  const allRecipes = Api.getRecipesList();
+  const resData = allRecipes.filter((recipe) => recipe.userId === userId);
+
+  return {
+    type: ACTION_TYPES.USER_GET_RECIPES,
+    payload: resData,
+  };
+};
 // export const deleteRecipe = (id: number) => ({
 //   type: 'recipes/delete',
 //   payload: id,

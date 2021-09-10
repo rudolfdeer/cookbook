@@ -28,6 +28,11 @@ export default function cookbooksReducer(state = initialState, action: AnyAction
         cookbooks: [...action.payload],
       };
 
+    case ACTION_TYPES.USER_GET_COOKBOOKS:
+      return {
+        ...state,
+        cookbooks: [...action.payload],
+      }
       // case ACTION_TYPES.COOKBOOK_DELETE: {
       //   const newList = state.cookbooks.filter((cookbook) => cookbook.id !== action.payload.id);
       //   return {

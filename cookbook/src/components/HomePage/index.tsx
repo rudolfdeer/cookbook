@@ -64,7 +64,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
             <div className="section__cards rated">
             {recipes?.map((el) => <CardRated
                                     name = {el.name}
-                                    author = {el.author}
+                                    author = {el.userName}
                                     views = {el.views}
                                     likes = {el.likes}
                                     comments = {el.comments.length}
@@ -93,7 +93,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
              <div className="section__cards trending">
              {recipes?.map((el) => <CardTrending
                                     name = {el.name}
-                                    author = {el.author}
+                                    author = {el.userName}
                                     views = {el.views}
                                     image = {el.image}
                                     key={el.id} />).slice(0, 3)}

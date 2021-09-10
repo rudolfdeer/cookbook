@@ -54,7 +54,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
           {recipes?.map((el) => <RecipeCard
                                   id = {el.id}
                                   name = {el.name}
-                                  author = {el.author}
+                                  author = {el.userName}
                                   views = {el.views}
                                   likes = {el.likes}
                                   comments = {el.comments.length}

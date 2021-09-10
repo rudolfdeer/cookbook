@@ -4,15 +4,16 @@ import './index.scss';
 type FilterPanelCookbooksProps = {
   sortCookbooks: Function;
   filterCookbooks: Function;
+  userId: number;
 };
 
 export default function FilterPanelCookbooks(props: FilterPanelCookbooksProps): JSX.Element {
-  const { sortCookbooks, filterCookbooks } = props;
+  const { sortCookbooks, filterCookbooks, userId } = props;
   const [sortOrder, setSortOrder] = useState('');
   const [filters, setFilters] = useState([]);
 
   useEffect(() => {
-    filterCookbooks(filters);
+    filterCookbooks(filters, userId);
   }, [filters]);
 
   useEffect(() => {
@@ -27,7 +28,6 @@ export default function FilterPanelCookbooks(props: FilterPanelCookbooksProps): 
   function filter(e: React.MouseEvent) {
     const target = e.target as HTMLInputElement;
     const { value } = target;
-
     if (filters.indexOf(value) > -1) {
       const newTagsArr = filters.filter((el) => el !== value);
       setFilters(newTagsArr);
@@ -80,7 +80,9 @@ export default function FilterPanelCookbooks(props: FilterPanelCookbooksProps): 
 
       <div className="filter-panel__section hide">
         <div className="checkbox">
-          <input type="checkbox" className = "checkbox__input"id="hide" name="hide" value="hide"/>
+          {userId
+            ? <input type="checkbox" className = "checkbox__input" id="hide" name="hide" value="hide" onClick = {(e) => filter(e)}/>
+            : <input type="checkbox" className = "checkbox__input" id="hide" name="hide" value="hide" disabled/>}
           <label htmlFor="hide">Hide my CookBooks</label>
         </div>
       </div>

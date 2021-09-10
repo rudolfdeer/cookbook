@@ -3,7 +3,7 @@ import cookbooks from '../constants/mockdata/cookbooks';
 import users from '../constants/mockdata/users';
 import { Cookbook, Recipe } from '../constants/interfaces';
 
-type loginInfo = {
+type LoginInfo = {
   email: string;
   password: string;
 };
@@ -17,7 +17,7 @@ class FetchQuery {
     return cookbooks;
   }
 
-  getUser(loginInfo: loginInfo) {
+  getUser(loginInfo: LoginInfo) {
     return users.find((el) => el.email === loginInfo.email && el.password === loginInfo.password);
   }
 }

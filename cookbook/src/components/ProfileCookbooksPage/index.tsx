@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Cookbook } from '../../constants/interfaces';
 import routes from '../../constants/routes';
@@ -17,7 +17,9 @@ type ProfileCookbooksPageProps = {
 };
 
 export default function ProfileCookbooksPage(props: ProfileCookbooksPageProps): JSX.Element {
-  const { cookbooks, getCookbooks, username, bio, avatar } = props;
+  const {
+    cookbooks, getCookbooks, username, bio, avatar,
+  } = props;
 
   useEffect(() => getCookbooks(), []);
 
@@ -61,5 +63,5 @@ export default function ProfileCookbooksPage(props: ProfileCookbooksPageProps): 
         </main>
         <Footer/>
     </>
-  )
+  );
 }

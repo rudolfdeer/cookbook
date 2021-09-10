@@ -14,7 +14,9 @@ type ProfileCookbookCardProps = {
 };
 
 export default function ProfileCookbookCard(props: ProfileCookbookCardProps): JSX.Element {
-  const { id, views, image, description, name, author, likes, comments } = props;
+  const {
+    views, image, description, name, author, likes, comments,
+  } = props;
 
   return (
     <div className="card">

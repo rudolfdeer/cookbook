@@ -6,7 +6,7 @@ import LogInForm from './Form';
 import './index.scss';
 
 type LogInPageProps = {
-  isLoggedIn: Boolean;
+  isLoggedIn: boolean;
   logIn: Function;
 };
 
@@ -22,13 +22,12 @@ export default function LogInPage(props: LogInPageProps): JSX.Element {
 
   if (redirectTo) {
     return <Redirect to = {routes.profile}/>;
-  } else {
-    return (
+  }
+  return (
       <main className="log-in-page">
         <div className="wrapper">
           <LogInForm logIn = {logIn} />
         </div>
       </main>
-    );
-  }
+  );
 }

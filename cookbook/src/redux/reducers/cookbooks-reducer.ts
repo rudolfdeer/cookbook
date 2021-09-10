@@ -28,29 +28,29 @@ export default function cookbooksReducer(state = initialState, action: AnyAction
         cookbooks: [...action.payload],
       };
 
-    // case ACTION_TYPES.COOKBOOK_DELETE: {
-    //   const newList = state.cookbooks.filter((cookbook) => cookbook.id !== action.payload.id);
-    //   return {
-    //     ...state,
-    //     cookbooks: newList,
-    //   };
-    // }
+      // case ACTION_TYPES.COOKBOOK_DELETE: {
+      //   const newList = state.cookbooks.filter((cookbook) => cookbook.id !== action.payload.id);
+      //   return {
+      //     ...state,
+      //     cookbooks: newList,
+      //   };
+      // }
 
-    // case ACTION_TYPES.COOKBOOK_UPDATE: {
-    //   const newList = state.cookbooks.map((cookbook) => {
-    //     if (cookbook.id === action.payload.id) {
-    //       return {
-    //         ...cookbook,
-    //         ...action.payload.data,
-    //       };
-    //     }
-    //     return cookbook;
-    //   });
-    //   return {
-    //     ...state,
-    //     cookbooks: newList,
-    //   };
-    // }
+      // case ACTION_TYPES.COOKBOOK_UPDATE: {
+      //   const newList = state.cookbooks.map((cookbook) => {
+      //     if (cookbook.id === action.payload.id) {
+      //       return {
+      //         ...cookbook,
+      //         ...action.payload.data,
+      //       };
+      //     }
+      //     return cookbook;
+      //   });
+      //   return {
+      //     ...state,
+      //     cookbooks: newList,
+      //   };
+      // }
 
     default:
       return state;

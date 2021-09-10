@@ -16,7 +16,9 @@ type CookbookCardProps = {
 };
 
 export default function CookbookCard(props: CookbookCardProps): JSX.Element {
-  const { id, views, image, description, name, author, likes, comments, openDetailedInfo, selectCard } = props;
+  const {
+    id, views, image, description, name, author, likes, comments, openDetailedInfo, selectCard,
+  } = props;
 
   return (
     <div className="card" onClick = {() => {

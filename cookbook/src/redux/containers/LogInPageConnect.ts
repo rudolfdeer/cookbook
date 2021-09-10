@@ -17,7 +17,6 @@ function mapStateToProps(state: any) {
   };
 }
 
-
 const mapDispatchToProps = {
   logIn,
 };

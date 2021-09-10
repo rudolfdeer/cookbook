@@ -3,35 +3,30 @@
 .footer {
   background-color: $main;
 
-
-
   .footer__nav {
     .nav__list {
-    @include nav-list;
+      @include nav-list;
 
-    .list__item {
-      margin-right: 72px;
-      color: $white;
-
-      a {
+      .list__item {
+        margin-right: 72px;
         color: $white;
-      }
 
-      &:hover {
         a {
-          color: $primary-yellow;
+          color: $white;
+        }
+
+        &:hover {
+          a {
+            color: $primary-yellow;
+          }
         }
       }
     }
   }
-  }
-
-  
 
   a {
     color: $white; 
-   }
-
+  }
 }
 
 .footer__container {

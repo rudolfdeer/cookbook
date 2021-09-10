@@ -1,7 +1,6 @@
-import { Cookbook, Recipe } from '../constants/interfaces';
 import FetchQuery from './fetch-tool';
 
-type loginInfo = {
+type LoginInfo = {
   email: string;
   password: string;
 };
@@ -16,7 +15,7 @@ class Api {
     return response;
   }
 
-  getUser(loginInfo: loginInfo) {
+  getUser(loginInfo: LoginInfo) {
     const response = FetchQuery.getUser(loginInfo);
     if (!response) {
       return null;

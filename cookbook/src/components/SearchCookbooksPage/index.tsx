@@ -49,8 +49,6 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
     return recipesSelected;
   }
 
-
-
   return (
     <>
       <div className="wrapper">
@@ -92,14 +90,9 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
               recipes = {findRecipes()}/>
            : null}
 
-          </div> 
+          </div>
         </main>
 
-
-
-      
-
-        
       <Footer/>
     </>
   );

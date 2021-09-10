@@ -5,7 +5,7 @@ import './index.scss';
 
 type CommentsSectionProps = {
   comments: Comment[];
-}
+};
 
 export default function CommentsSection(props: CommentsSectionProps): JSX.Element {
   const { comments } = props;

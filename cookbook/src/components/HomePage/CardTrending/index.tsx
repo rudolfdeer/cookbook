@@ -10,7 +10,9 @@ type RecipeCardTrendingProps = {
 };
 
 export default function CardTrending(props: RecipeCardTrendingProps): JSX.Element {
-  const { views, image, name, author } = props;
+  const {
+    views, image, name, author,
+  } = props;
 
   return (
     <div className="card">
@@ -34,5 +36,5 @@ export default function CardTrending(props: RecipeCardTrendingProps): JSX.Elemen
         <div className="card__author">{author}</div>
       </div>
     </div>
-  )
+  );
 }

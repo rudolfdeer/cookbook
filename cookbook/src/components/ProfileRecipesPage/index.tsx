@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Recipe } from '../../constants/interfaces';
 import routes from '../../constants/routes';
@@ -17,7 +17,9 @@ type ProfileRecipesPageProps = {
 };
 
 export default function ProfileRecipesPage(props: ProfileRecipesPageProps): JSX.Element {
-  const { recipes, getRecipes, username, bio, avatar } = props;
+  const {
+    recipes, getRecipes, username, bio, avatar,
+  } = props;
 
   useEffect(() => getRecipes(), []);
 
@@ -61,5 +63,5 @@ export default function ProfileRecipesPage(props: ProfileRecipesPageProps): JSX.
         </main>
         <Footer/>
     </>
-  )
+  );
 }

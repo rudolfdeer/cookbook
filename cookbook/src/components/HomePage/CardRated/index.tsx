@@ -12,7 +12,9 @@ type RecipeCardRatedProps = {
 };
 
 export default function CardRated(props: RecipeCardRatedProps): JSX.Element {
-  const { views, image, name, author, likes, comments } = props;
+  const {
+    views, image, name, author, likes, comments,
+  } = props;
 
   return (
     <div className="card">
@@ -52,5 +54,5 @@ export default function CardRated(props: RecipeCardRatedProps): JSX.Element {
       </div>
 
     </div>
-  )
+  );
 }

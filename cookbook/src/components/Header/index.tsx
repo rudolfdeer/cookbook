@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import {
   Link,
 } from 'react-router-dom';
@@ -9,13 +8,12 @@ import './index.scss';
 
 type HeaderProps = {
   username?: string;
-}
+};
 
 export default function Header(props: HeaderProps): JSX.Element {
   const { username } = props;
   return (
     <header className="header">
-
       <Link to="/"><div className="header__logo_small" /></Link>
       <nav className="header__nav">
         <ul className="nav__list">

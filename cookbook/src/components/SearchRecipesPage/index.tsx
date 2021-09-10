@@ -18,7 +18,9 @@ type RecipesPageProps = {
 };
 
 export default function RecipesPage(props: RecipesPageProps): JSX.Element {
-  const { recipes, getRecipes, sortRecipes, filterRecipes, username } = props;
+  const {
+    recipes, getRecipes, sortRecipes, filterRecipes, username,
+  } = props;
   const [isVisible, setVisible] = useState(false);
   const [chosenCardId, setChosenCardId] = useState(0);
 
@@ -70,7 +72,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
            : null}
            </div>
         </main>
-      
+
       <Footer/>
     </>
   );

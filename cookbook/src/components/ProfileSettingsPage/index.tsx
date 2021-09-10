@@ -12,7 +12,9 @@ type ProfileSettingsPageProps = {
 };
 
 export default function ProfileSettingsPage(props: ProfileSettingsPageProps): JSX.Element {
-  const { username, email, password, bio } = props.user;
+  const {
+    username, email, password, bio,
+  } = props.user;
   return (
     <>
       <div className="wrapper">
@@ -58,5 +60,5 @@ export default function ProfileSettingsPage(props: ProfileSettingsPageProps): JS
         </main>
         <Footer/>
     </>
-  )
+  );
 }

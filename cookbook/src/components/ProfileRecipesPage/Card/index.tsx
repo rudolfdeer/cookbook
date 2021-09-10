@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './index.scss';
 
 type ProfileRecipeCardProps = {
@@ -13,7 +13,9 @@ type ProfileRecipeCardProps = {
 };
 
 export default function ProfileRecipeCard(props: ProfileRecipeCardProps): JSX.Element {
-  const { id, views, image, description, name, author, likes, comments } = props;
+  const {
+    views, image, description, name, author, likes, comments,
+  } = props;
 
   return (
     <div className="card">

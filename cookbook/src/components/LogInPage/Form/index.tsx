@@ -5,7 +5,6 @@ import routes from '../../../constants/routes';
 import './index.scss';
 import { EMAILREGEX } from '../../../constants/regex';
 import ERROR_MESSAGES from '../../../constants/error-messages';
-import { logIn } from '../../../redux/actions/user-actions';
 
 type FormValues = {
   email: string;
@@ -21,7 +20,7 @@ const validEmail = (value: string) => (!value.match(EMAILREGEX) ? ERROR_MESSAGES
 const composeValidators = (...validators: Function[]) => (value: string) => validators.reduce((error, validator) => error || validator(value), undefined);
 
 export default function LogInForm(props: LogInFormProps): JSX.Element {
-  const {logIn} = props;
+  const { logIn } = props;
   const formData = {};
 
   const onSubmit = (values: FormValues) => logIn(values);
@@ -35,7 +34,7 @@ export default function LogInForm(props: LogInFormProps): JSX.Element {
       <Form
         onSubmit = {onSubmit}
         initialValues={formData}
-        render = {({ handleSubmit, form, submitting, pristine, values }) => (
+        render = {({ handleSubmit }) => (
           <form className="form" onSubmit={handleSubmit}>
             <Field name = "email" validate = {composeValidators(required, validEmail)}>
               {({ input, meta }) => (

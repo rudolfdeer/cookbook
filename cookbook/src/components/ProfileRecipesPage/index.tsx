@@ -11,26 +11,29 @@ import './index.scss';
 type ProfileRecipesPageProps = {
   recipes?: Recipe[];
   getRecipes?: Function;
+  username: string;
+  bio: string;
+  avatar: string;
 };
 
 export default function ProfileRecipesPage(props: ProfileRecipesPageProps): JSX.Element {
-  const { recipes, getRecipes } = props;
+  const { recipes, getRecipes, username, bio, avatar } = props;
 
   useEffect(() => getRecipes(), []);
 
   return (
     <>
       <div className="wrapper">
-        <Header />
+        <Header username = {username}/>
         </div>
         <main className="profile-recipes-page">
           <div className="wrapper">
             <section className="user">
-              <div className="user__photo">
+              <div className="user__photo" style ={{ background: `url(../../../assets/${avatar}) center no-repeat` }}>
               </div>
               <div className="user__container">
-                <div className="user__name">John Galt</div>
-                <div className="user__bio">I don’t know about you but I love pizza. Especially when that pizza comes with Papa John’s very own garlic pizza sticks. </div>
+                <div className="user__name">{username}</div>
+                <div className="user__bio">{bio}</div>
               </div>
             </section>
             <nav className="profile-page__nav">

@@ -4,8 +4,7 @@
   @include profile-page;
 
   .user {
-
-    .user__photo {
+    .user__photo_settings {
       opacity: 0.5;
       background: url('../../assets/images/photo-mask.png') center no-repeat;
       background-color: #181818;
@@ -17,6 +16,7 @@
       }
     }
   }
+
   .personal-info {
     padding: 72px 56px;
     background-color: $white;

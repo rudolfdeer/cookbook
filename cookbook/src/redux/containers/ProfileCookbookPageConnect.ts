@@ -4,9 +4,13 @@ import { getCookbooks } from '../actions/cookbooks-actions';
 
 const mapStateToProps = (state: any) => {
   const { cookbooks } = state.cookbooks;
+  const { username, bio, avatar } = state.user.user;
 
   return {
     cookbooks,
+    username,
+    bio,
+    avatar,
   };
 };
 

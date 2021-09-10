@@ -64,6 +64,17 @@
 }
 
 .header__login-info {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+
+  .login__icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 4px;
+    background: url('../../assets/images/Person.png') center no-repeat;
+  }
+
   &:hover {
     a {
       color: $primary-yellow;

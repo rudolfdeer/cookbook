@@ -3,10 +3,16 @@ import * as React from 'react';
 import {
   Link,
 } from 'react-router-dom';
+import routes from '../../constants/routes';
 
 import './index.scss';
 
-export default function Header(): JSX.Element {
+type HeaderProps = {
+  username?: string;
+}
+
+export default function Header(props: HeaderProps): JSX.Element {
+  const { username } = props;
   return (
     <header className="header">
 
@@ -22,8 +28,7 @@ export default function Header(): JSX.Element {
         <input type="text" className="search__input" />
       </div>
       <button className="header__btn"><Link to="/create_cookbook">Create CookBook</Link></button>
-      <div className="header__login-info"><Link to="/login">Sign in</Link></div>
-
+      {username ? <div className="header__login-info"><div className = "login__icon"></div><Link to={routes.profile}>{username}</Link></div> : <div className="header__login-info"><Link to="/login">Sign in</Link></div>}
     </header>
   );
 }

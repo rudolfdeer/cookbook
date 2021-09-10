@@ -3,6 +3,11 @@ import cookbooks from '../constants/mockdata/cookbooks';
 import users from '../constants/mockdata/users';
 import { Cookbook, Recipe } from '../constants/interfaces';
 
+type loginInfo = {
+  email: string;
+  password: string;
+};
+
 class FetchQuery {
   getRecipesList(): Recipe[] {
     return recipes;
@@ -12,8 +17,8 @@ class FetchQuery {
     return cookbooks;
   }
 
-  getUserById(userId: number) {
-    return users.find((el) => el.id === userId);
+  getUser(loginInfo: loginInfo) {
+    return users.find((el) => el.email === loginInfo.email && el.password === loginInfo.password);
   }
 }
 

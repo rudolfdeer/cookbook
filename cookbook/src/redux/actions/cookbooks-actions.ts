@@ -1,8 +1,8 @@
+import { AnyAction } from 'redux';
 import Api from '../../utils/api';
 import ACTION_TYPES from '../../constants/action-types';
-import { ReduxAction } from '../../constants/types';
 
-export const getCookbooks = (): ReduxAction => {
+export const getCookbooks = (): AnyAction => {
   const resData = Api.getCookbooksList();
 
   return {
@@ -11,7 +11,7 @@ export const getCookbooks = (): ReduxAction => {
   };
 };
 
-export const filterCookbooks = (tags: string[]): ReduxAction => {
+export const filterCookbooks = (tags: string[]): AnyAction => {
   const currentData = Api.getCookbooksList();
   const appliedTags = tags.sort();
   let resData;
@@ -33,7 +33,7 @@ export const filterCookbooks = (tags: string[]): ReduxAction => {
   };
 };
 
-export const sortCookbooks = (order: string): ReduxAction => {
+export const sortCookbooks = (order: string): AnyAction => {
   const currentData = Api.getCookbooksList();
 
   let resData;

@@ -14,10 +14,11 @@ type RecipesPageProps = {
   getRecipes?: Function;
   sortRecipes: Function;
   filterRecipes: Function;
+  username?: string;
 };
 
 export default function RecipesPage(props: RecipesPageProps): JSX.Element {
-  const { recipes, getRecipes, sortRecipes, filterRecipes } = props;
+  const { recipes, getRecipes, sortRecipes, filterRecipes, username } = props;
   const [isVisible, setVisible] = useState(false);
   const [chosenCardId, setChosenCardId] = useState(0);
 
@@ -31,7 +32,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
   return (
     <>
       <div className="wrapper">
-        <Header />
+        <Header username={username}/>
         </div>
         <main className="search-page">
         <div className="wrapper">

@@ -1,13 +1,21 @@
+import { AnyAction } from 'redux';
 import Api from '../../utils/api';
 import ACTION_TYPES from '../../constants/action-types';
 
-export const getUser = (id: number) => {
+type loginInfo = {
+  email: string;
+  password: string;
+}
+
+export const logIn = (loginInfo: loginInfo): AnyAction => {
+  const user = Api.getUser(loginInfo);
+  user.isLoggedIn = true;
 
   return {
-    type: ACTION_TYPES.USER_GET,
-    payload: id,
-  };
-};
+    type: ACTION_TYPES.USER_LOG_IN,
+    payload: user,
+  }
+}
 
 // export const deleteRecipe = (id: number) => ({
 //   type: 'recipes/delete',

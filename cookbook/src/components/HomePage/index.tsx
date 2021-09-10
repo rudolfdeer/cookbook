@@ -16,10 +16,11 @@ type HomePageProps = {
   getRecipes?: Function;
   cookbooks?: Cookbook[];
   getCookbooks?: Function;
+  username?: string;
 };
 
 export default function HomePage(props: HomePageProps): JSX.Element {
-  const { recipes, getRecipes, cookbooks, getCookbooks } = props;
+  const { recipes, getRecipes, cookbooks, getCookbooks, username } = props;
 
   useEffect(() => {
     getRecipes();
@@ -29,7 +30,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
   return (
     <>
       <div className="wrapper">
-        <Header />
+        <Header username = {username}/>
         </div>
         <main className="home-page">
         <div className="wrapper">

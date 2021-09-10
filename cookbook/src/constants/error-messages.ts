@@ -4,7 +4,6 @@ const ERROR_MESSAGES = {
   password: {
     longLength: '30 characters max',
     shortLength: 'Must have at least 8 characters',
-    noSymbols: 'Must contain at least one special character (@, $, !, &, etc)',
   },
   confirmPassword: 'Please make sure your passwords matches',
 };

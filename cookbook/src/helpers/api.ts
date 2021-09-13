@@ -1,5 +1,5 @@
 import { Cookbook, Recipe, User } from '../interfaces';
-import FetchQuery from './fetch-tool';
+import FetchQuery from './fetchTool';
 
 type LoginInfo = {
   email: string;

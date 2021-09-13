@@ -1,6 +1,8 @@
 import { AnyAction } from 'redux';
 import Api from '../../helpers/api';
 import ACTION_TYPES from '../../constants/actionTypes';
+import { Recipe } from '../../interfaces';
+import recipes from '../../constants/mockdata/recipes';
 
 export const getRecipes = (): AnyAction => {
   const resData = Api.getRecipesList();
@@ -39,7 +41,9 @@ export const sortRecipes = (order: string): AnyAction => {
 
 export const filterRecipes = (cookingTime: number): AnyAction => {
   const currentData = Api.getRecipesList();
-  const resData = currentData.filter((recipe) => recipe.cookingTime <= cookingTime);
+  const resData = currentData.filter(
+    (recipe: Recipe) => recipe.cookingTime <= cookingTime
+  );
 
   return {
     type: ACTION_TYPES.RECIPE_FILTER,
@@ -49,29 +53,16 @@ export const filterRecipes = (cookingTime: number): AnyAction => {
 
 export const getUsersRecipes = (userId: number): AnyAction => {
   const allRecipes = Api.getRecipesList();
-  const resData = allRecipes.filter((recipe) => recipe.userId === userId);
+  const createdRecipes = allRecipes.filter(
+    (recipe: Recipe) => recipe.userId === userId
+  );
+  const user = Api.getUser(userId);
+  const savedRecipes = user.savedRecipes;
+
+  const resData = [...createdRecipes, ...savedRecipes];
 
   return {
     type: ACTION_TYPES.USER_GET_RECIPES,
     payload: resData,
   };
 };
-// export const deleteRecipe = (id: number) => ({
-//   type: 'recipes/delete',
-//   payload: id,
-// });
-
-// export const updateRecipe = (id: number, data) => ({
-//   type: 'recipes/update',
-//   payload: {
-//     id,
-//     data,
-//   },
-// });
-
-// export const createRecipe = (data) => ({
-//   type: 'recipes/create',
-//   payload: {
-//     data,
-//   },
-// });

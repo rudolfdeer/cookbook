@@ -4,7 +4,7 @@ module.exports = {
       es2021: true,
     },
     extends: ['airbnb-typescript/base', 'eslint:recommended',
-    'plugin:@typescript-eslint/recommended', "plugin:react/recommended"],
+    'plugin:@typescript-eslint/recommended', "plugin:react/recommended", "pligin:prettier/recommended"],
     parser: "@typescript-eslint/parser",
     parserOptions: {
       project: './tsconfig.json',

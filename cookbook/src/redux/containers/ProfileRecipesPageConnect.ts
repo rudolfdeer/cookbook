@@ -4,7 +4,7 @@ import { getUsersRecipes } from '../actions/recipes';
 
 function mapStateToProps(state: any) {
   const { recipes, user } = state;
-  const { username, bio, avatar, id } = user;
+  const { username, bio, avatar, id, savedRecipes } = user;
 
   return {
     recipes,
@@ -12,6 +12,7 @@ function mapStateToProps(state: any) {
     bio,
     avatar,
     id,
+    savedRecipes,
   };
 }
 
@@ -21,7 +22,7 @@ const mapDispatchToProps = {
 
 const ProfileRecipesPageConnect = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(ProfileRecipesPage);
 
 export default ProfileRecipesPageConnect;

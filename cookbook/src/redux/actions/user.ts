@@ -1,6 +1,7 @@
 import { AnyAction } from 'redux';
 import Api from '../../helpers/api';
 import ACTION_TYPES from '../../constants/actionTypes';
+import { Recipe } from '../../interfaces';
 
 type LoginInfo = {
   email: string;
@@ -8,7 +9,7 @@ type LoginInfo = {
 };
 
 export const logIn = (loginInfo: LoginInfo): AnyAction => {
-  const user = Api.getUser(loginInfo);
+  const user = Api.logIn(loginInfo);
   user.isLoggedIn = true;
 
   return {
@@ -17,22 +18,17 @@ export const logIn = (loginInfo: LoginInfo): AnyAction => {
   };
 };
 
-// export const deleteRecipe = (id: number) => ({
-//   type: 'recipes/delete',
-//   payload: id,
-// });
+export const saveToUsersRecipes = (
+  recipe: Recipe,
+  userId: number
+): AnyAction => {
+  const user = Api.getUser(userId);
+  const { savedRecipes } = user;
+  const newSavedRecipes = savedRecipes.concat(recipe);
+  user.savedRecipes = newSavedRecipes;
 
-// export const updateRecipe = (id: number, data) => ({
-//   type: 'recipes/update',
-//   payload: {
-//     id,
-//     data,
-//   },
-// });
-
-// export const createRecipe = (data) => ({
-//   type: 'recipes/create',
-//   payload: {
-//     data,
-//   },
-// });
+  return {
+    type: ACTION_TYPES.USER_SAVE_RECIPE,
+    payload: user,
+  };
+};

@@ -17,8 +17,14 @@ class FetchQuery {
     return cookbooks;
   }
 
-  getUser(loginInfo: LoginInfo): User {
-    return users.find((el) => el.email === loginInfo.email && el.password === loginInfo.password);
+  logIn(loginInfo: LoginInfo): User {
+    return users.find(
+      (el) => el.email === loginInfo.email && el.password === loginInfo.password
+    );
+  }
+
+  getUser(userId: number): User {
+    return users.find((user) => user.id === userId);
   }
 }
 

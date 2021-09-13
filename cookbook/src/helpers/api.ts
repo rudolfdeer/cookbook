@@ -17,11 +17,16 @@ class Api {
     return response;
   }
 
-  getUser(loginInfo: LoginInfo): User {
-    const response = FetchQuery.getUser(loginInfo);
+  logIn(loginInfo: LoginInfo): User {
+    const response = FetchQuery.logIn(loginInfo);
     if (!response) {
       return null;
     }
+    return response;
+  }
+
+  getUser(userId: number): User {
+    const response = FetchQuery.getUser(userId);
     return response;
   }
 }

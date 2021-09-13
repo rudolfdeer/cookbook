@@ -15,11 +15,19 @@ type RecipesPageProps = {
   sortRecipes: Function;
   filterRecipes: Function;
   username?: string;
+  userId?: number;
+  saveToUsersRecipes: Function;
 };
 
 export default function RecipesPage(props: RecipesPageProps): JSX.Element {
   const {
-    recipes, getRecipes, sortRecipes, filterRecipes, username,
+    recipes,
+    getRecipes,
+    sortRecipes,
+    filterRecipes,
+    username,
+    userId,
+    saveToUsersRecipes,
   } = props;
   const [isVisible, setVisible] = useState(false);
   const [chosenCardId, setChosenCardId] = useState(0);
@@ -34,46 +42,57 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
   return (
     <>
       <div className="wrapper">
-        <Header username={username}/>
-        </div>
-        <main className="search-page">
+        <Header username={username} />
+      </div>
+      <main className="search-page">
         <div className="wrapper">
           <aside className="search-page__aside">
-          <div className="aside__container">
-            <FilterPanelRecipes sortRecipes = {sortRecipes} filterRecipes = {filterRecipes}/>
-          </div>
+            <div className="aside__container">
+              <FilterPanelRecipes
+                sortRecipes={sortRecipes}
+                filterRecipes={filterRecipes}
+              />
+            </div>
           </aside>
           <div className="search-page__content">
             <nav className="search-page__nav">
               <ul className="nav__list">
-                <li className="list__item"><Link to="/cookbooks">Cookbooks</Link></li>
+                <li className="list__item">
+                  <Link to="/cookbooks">Cookbooks</Link>
+                </li>
                 <li className="list__item_selected">Recipes</li>
-            </ul>
+              </ul>
             </nav>
-          <div className="search-page__cards recipes">
-          {Object.values(recipes).map((el) => <RecipeCard
-                                  id = {el.id}
-                                  name = {el.name}
-                                  author = {el.userName}
-                                  views = {el.views}
-                                  likes = {el.likes}
-                                  comments = {el.comments.length}
-                                  image = {el.image}
-                                  description = {el.description}
-                                  selectCard = {setChosenCardId}
-                                  openDetailedInfo = {setVisible}
-                                  key={el.id} />)}
+            <div className="search-page__cards recipes">
+              {Object.values(recipes).map((el) => (
+                <RecipeCard
+                  id={el.id}
+                  name={el.name}
+                  author={el.userName}
+                  views={el.views}
+                  likes={el.likes}
+                  comments={el.comments.length}
+                  image={el.image}
+                  description={el.description}
+                  selectCard={setChosenCardId}
+                  openDetailedInfo={setVisible}
+                  key={el.id}
+                />
+              ))}
+            </div>
           </div>
-         </div>
-         {isVisible
-           ? <PopUpRecipeDetailed
-              openDetailedInfo = {setVisible}
-              cardInfo = {findCard()}/>
-           : null}
-           </div>
-        </main>
+          {isVisible ? (
+            <PopUpRecipeDetailed
+              openDetailedInfo={setVisible}
+              recipe={findCard()}
+              userId={userId}
+              saveToUsersRecipes={saveToUsersRecipes}
+            />
+          ) : null}
+        </div>
+      </main>
 
-      <Footer/>
+      <Footer />
     </>
   );
 }

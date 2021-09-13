@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Recipe } from '../../constants/interfaces';
+import { Recipe } from '../../interfaces';
 import routes from '../../constants/routes';
 import Footer from '../Footer';
 import Header from '../Header';
 import ProfileRecipeCard from './Card';
 
 import './index.scss';
+import ROUTES from '../../constants/routes';
 
 type ProfileRecipesPageProps = {
   recipes?: Recipe[];
@@ -41,14 +42,14 @@ export default function ProfileRecipesPage(props: ProfileRecipesPageProps): JSX.
             </section>
             <nav className="profile-page__nav">
               <ul className="nav__list">
-                <li className="list__item"><Link to={routes['profile.cookbooks']}>My Cookbooks</Link></li>
+                <li className="list__item"><Link to={ROUTES.PROFILE_COOKBOOKS}>My Cookbooks</Link></li>
                 <li className="list__item_selected">My Recipes</li>
-                <li className="list__item"><Link to={routes.profile}>My Settings</Link></li>
+                <li className="list__item"><Link to={ROUTES.PROFILE}>My Settings</Link></li>
               </ul>
               <button className="nav__btn">Create New Recipe</button>
             </nav>
             <section className="profile-recipes-page__cards recipes">
-            {recipes?.map((el) => <ProfileRecipeCard
+            {Object.values(recipes).map((el) => <ProfileRecipeCard
                                   id = {el.id}
                                   name = {el.name}
                                   author = {el.userName}

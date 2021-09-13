@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Cookbook } from '../../constants/interfaces';
-import routes from '../../constants/routes';
+import { Cookbook } from '../../interfaces';
+import ROUTES from '../../constants/routes';
 import Footer from '../Footer';
 import Header from '../Header';
 import ProfileCookbookCard from './Card';
@@ -42,8 +42,8 @@ export default function ProfileCookbooksPage(props: ProfileCookbooksPageProps): 
             <nav className="profile-page__nav">
               <ul className="nav__list">
                 <li className="list__item_selected">My Cookbooks</li>
-                <li className="list__item"><Link to={routes['profile.recipes']}>My Recipes</Link></li>
-                <li className="list__item"><Link to={routes.profile}>My Settings</Link></li>
+                <li className="list__item"><Link to={ROUTES.PROFILE_RECIPES}>My Recipes</Link></li>
+                <li className="list__item"><Link to={ROUTES.PROFILE}>My Settings</Link></li>
               </ul>
               <button className="nav__btn">Create New Recipe</button>
             </nav>

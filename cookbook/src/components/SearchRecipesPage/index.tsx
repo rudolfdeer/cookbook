@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Recipe } from '../../constants/interfaces';
+import { Recipe } from '../../interfaces';
 import Footer from '../Footer';
 import Header from '../Header';
 import RecipeCard from './Card';
@@ -51,7 +51,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
             </ul>
             </nav>
           <div className="search-page__cards recipes">
-          {recipes?.map((el) => <RecipeCard
+          {Object.values(recipes).map((el) => <RecipeCard
                                   id = {el.id}
                                   name = {el.name}
                                   author = {el.userName}

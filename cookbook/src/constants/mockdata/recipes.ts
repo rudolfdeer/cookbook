@@ -1,4 +1,4 @@
-import { Recipe } from '../interfaces';
+import { Recipe } from '../../interfaces';
 
 const recipes: Recipe[] = [
   {

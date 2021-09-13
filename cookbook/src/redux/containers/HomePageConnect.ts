@@ -1,18 +1,11 @@
 import { connect } from 'react-redux';
 import HomePage from '../../components/HomePage';
-import { getCookbooks } from '../actions/cookbooks-actions';
-import { getRecipes } from '../actions/recipes-actions';
+import { getCookbooks } from '../actions/cookbooks';
+import { getRecipes } from '../actions/recipes';
 
 function mapStateToProps(state: any) {
-  const { recipes } = state.recipes;
-  const { cookbooks } = state.cookbooks;
-  let username;
-
-  if (state.user.user) {
-    username = state.user.user.username;
-  } else {
-    username = '';
-  }
+  const { recipes, cookbooks, user } = state;
+  const username = user ? user.username : '';
 
   return {
     recipes,

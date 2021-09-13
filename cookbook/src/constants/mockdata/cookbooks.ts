@@ -1,4 +1,4 @@
-import { Cookbook } from '../interfaces';
+import { Cookbook } from '../../interfaces';
 
 const cookbooks: Cookbook[] = [
   {

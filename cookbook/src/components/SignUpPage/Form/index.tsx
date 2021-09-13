@@ -1,9 +1,9 @@
 import React from 'react';
 import { Form, Field } from 'react-final-form';
 import { Link } from 'react-router-dom';
-import ERROR_MESSAGES from '../../../constants/error-messages';
+import ERROR_MESSAGES from '../../../constants/errorMessages';
 import { EMAILREGEX } from '../../../constants/regex';
-import routes from '../../../constants/routes';
+import ROUTES from '../../../constants/routes';
 import './index.scss';
 
 type FormValues = {
@@ -23,7 +23,7 @@ export default function SignUpForm(): JSX.Element {
     <div className="sign-up-page__form">
       <Link to="/"><div className="form__logo"></div></Link>
       <h1 className="form__title">Join Our Community</h1>
-      <h2 className="form__title_small">Already have an account? <Link to={routes.login}>Sign in</Link></h2>
+      <h2 className="form__title_small">Already have an account? <Link to={ROUTES.LOG_IN}>Sign in</Link></h2>
 
       <Form
         onSubmit = {onSubmit}
@@ -32,31 +32,31 @@ export default function SignUpForm(): JSX.Element {
           const errors = {} as FormValues;
 
           if (!values.email) {
-            errors.email = ERROR_MESSAGES.required;
+            errors.email = ERROR_MESSAGES.REQUIRED;
           }
 
           if (values.email) {
             if (!values.email.match(EMAILREGEX)) {
-              errors.email = ERROR_MESSAGES.email;
+              errors.email = ERROR_MESSAGES.EMAIL;
             }
           }
 
           if (!values.password) {
-            errors.password = ERROR_MESSAGES.required;
+            errors.password = ERROR_MESSAGES.REQUIRED;
           }
           if (!values.confirm) {
-            errors.confirm = ERROR_MESSAGES.required;
+            errors.confirm = ERROR_MESSAGES.REQUIRED;
           } else if (values.confirm !== values.password) {
-            errors.confirm = ERROR_MESSAGES.confirmPassword;
+            errors.confirm = ERROR_MESSAGES.CONFIRM;
           }
 
           if (values.password) {
             if (values.password.length < 7) {
-              errors.password = ERROR_MESSAGES.password.shortLength;
+              errors.password = ERROR_MESSAGES.SHORT_LENGTH;
             }
 
             if (values.password.length > 30) {
-              errors.password = ERROR_MESSAGES.password.longLength;
+              errors.password = ERROR_MESSAGES.LONG_LENGTH;
             }
           }
           return errors;

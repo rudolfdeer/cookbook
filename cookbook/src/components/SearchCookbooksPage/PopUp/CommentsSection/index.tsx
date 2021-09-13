@@ -1,5 +1,5 @@
 import React from 'react';
-import { Comment } from '../../../../constants/interfaces';
+import { Comment } from '../../../../interfaces';
 
 import './index.scss';
 

@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
-import Api from '../../utils/api';
-import ACTION_TYPES from '../../constants/action-types';
+import Api from '../../helpers/api';
+import ACTION_TYPES from '../../constants/actionTypes';
 
 type LoginInfo = {
   email: string;

@@ -1,21 +1,12 @@
 import { connect } from 'react-redux';
 import CookbooksPage from '../../components/SearchCookbooksPage';
-import { getCookbooks, sortCookbooks, filterCookbooks } from '../actions/cookbooks-actions';
-import { getRecipes } from '../actions/recipes-actions';
+import { getCookbooks, sortCookbooks, filterCookbooks } from '../actions/cookbooks';
+import { getRecipes } from '../actions/recipes';
 
 const mapStateToProps = (state: any) => {
-  const { cookbooks } = state.cookbooks;
-  const { recipes } = state.recipes;
-  let username;
-  let userId;
-
-  if (state.user.user) {
-    username = state.user.user.username;
-    userId = state.user.user.id;
-  } else {
-    username = '';
-    userId = null;
-  }
+  const { user, cookbooks, recipes } = state;
+  const username = user ? user.username : '';
+  const userId = user ? user.id : null;
 
   return {
     cookbooks,

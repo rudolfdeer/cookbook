@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import ProfileRecipesPage from '../../components/ProfileRecipesPage';
-import { getUsersRecipes } from '../actions/recipes-actions';
+import { getUsersRecipes } from '../actions/recipes';
 
 function mapStateToProps(state: any) {
-  const { recipes } = state.recipes;
-  const { username, bio, avatar, id } = state.user.user;
+  const { recipes, user } = state;
+  const { username, bio, avatar, id } = user;
 
   return {
     recipes,

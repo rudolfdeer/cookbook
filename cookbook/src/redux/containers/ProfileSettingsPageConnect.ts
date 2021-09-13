@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import ProfileSettingsPage from '../../components/ProfileSettingsPage';
 
 function mapStateToProps(state: any) {
-  const { user } = state.user;
+  const { user } = state;
   return {
     user,
   };

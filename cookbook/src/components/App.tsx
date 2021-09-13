@@ -4,7 +4,7 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import routes from '../constants/routes';
+import ROUTES from '../constants/routes';
 import HomePageConnect from '../redux/containers/HomePageConnect';
 import CookbooksPageConnect from '../redux/containers/CookbooksPageConnect';
 import RecipesPageConnect from '../redux/containers/RecipesPageConnect';
@@ -19,21 +19,21 @@ function App(): JSX.Element {
     <>
       <Router>
         <Switch>
-          <Route exact path={routes.home} component={HomePageConnect}>
+          <Route exact path={ROUTES.HOME} component={HomePageConnect}>
           </Route>
-          <Route exact path={routes.cookbooks} component={CookbooksPageConnect}>
+          <Route exact path={ROUTES.COOKBOOKS} component={CookbooksPageConnect}>
           </Route>
-          <Route exact path={routes.recipes} component={RecipesPageConnect}>
+          <Route exact path={ROUTES.RECIPES} component={RecipesPageConnect}>
           </Route>
-          <Route exact path={routes.login} component={LogInPageConnect}>
+          <Route exact path={ROUTES.LOG_IN} component={LogInPageConnect}>
           </Route>
-          <Route exact path={routes.signup} component={SignUpPage}>
+          <Route exact path={ROUTES.SIGN_UP} component={SignUpPage}>
           </Route>
-          <Route exact path={routes.profile} component={ProfileSettingsPageConnect}>
+          <Route exact path={ROUTES.PROFILE} component={ProfileSettingsPageConnect}>
           </Route>
-          <Route exact path={routes['profile.recipes']} component={ProfileRecipesPageConnect}>
+          <Route exact path={ROUTES.PROFILE_RECIPES} component={ProfileRecipesPageConnect}>
           </Route>
-          <Route exact path={routes['profile.cookbooks']} component={ProfileCookbooksPageConnect}>
+          <Route exact path={ROUTES.PROFILE_COOKBOOKS} component={ProfileCookbooksPageConnect}>
           </Route>
         </Switch>
       </Router>

@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
-import Api from '../../utils/api';
-import ACTION_TYPES from '../../constants/action-types';
+import Api from '../../helpers/api';
+import ACTION_TYPES from '../../constants/actionTypes';
 
 export const getCookbooks = (): AnyAction => {
   const resData = Api.getCookbooksList();
@@ -11,15 +11,19 @@ export const getCookbooks = (): AnyAction => {
   };
 };
 
-export const filterCookbooks = (tags: string[], userId: number): AnyAction => {
+export const filterCookbooks = (tags: string[]): AnyAction => {
   const currentData = Api.getCookbooksList();
   const appliedTags = tags.sort();
   let resData;
   if (appliedTags.length === 0) {
     resData = Api.getCookbooksList();
-  } else if (appliedTags.length === 1) {
-    resData = currentData.filter((cookbook) => cookbook.tags.indexOf(appliedTags[0]) > -1);
-  } else {
+  }
+  if (appliedTags.length === 1) {
+    resData = currentData.filter(
+      (cookbook) => cookbook.tags.indexOf(appliedTags[0]) > -1,
+    );
+  }
+  if (appliedTags.length > 1) {
     resData = currentData.filter((cookbook) => {
       const cookbookTags = cookbook.tags.sort();
       return cookbookTags.every((value, index) => value === appliedTags[index]);
@@ -70,4 +74,4 @@ export const getUsersCookbooks = (userId: number): AnyAction => {
     type: ACTION_TYPES.USER_GET_COOKBOOKS,
     payload: resData,
   };
-}
+};

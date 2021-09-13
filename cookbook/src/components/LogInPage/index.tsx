@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import routes from '../../constants/routes';
+import ROUTES from '../../constants/routes';
 import LogInForm from './Form';
 
 import './index.scss';
@@ -21,13 +21,13 @@ export default function LogInPage(props: LogInPageProps): JSX.Element {
   }, [isLoggedIn]);
 
   if (redirectTo) {
-    return <Redirect to = {routes.profile}/>;
+    return <Redirect to={ROUTES.PROFILE} />;
   }
   return (
-      <main className="log-in-page">
-        <div className="wrapper">
-          <LogInForm logIn = {logIn} />
-        </div>
-      </main>
+    <main className="log-in-page">
+      <div className="wrapper">
+        <LogInForm logIn={logIn} />
+      </div>
+    </main>
   );
 }

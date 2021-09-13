@@ -1,21 +1,23 @@
+import { Cookbook, Recipe, User } from '../interfaces';
 import FetchQuery from './fetch-tool';
 
 type LoginInfo = {
   email: string;
   password: string;
 };
+
 class Api {
-  getRecipesList() {
+  getRecipesList(): Recipe[] {
     const response = FetchQuery.getRecipesList();
     return response;
   }
 
-  getCookbooksList() {
+  getCookbooksList(): Cookbook[] {
     const response = FetchQuery.getCookbooksList();
     return response;
   }
 
-  getUser(loginInfo: LoginInfo) {
+  getUser(loginInfo: LoginInfo): User {
     const response = FetchQuery.getUser(loginInfo);
     if (!response) {
       return null;

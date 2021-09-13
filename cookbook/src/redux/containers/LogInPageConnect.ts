@@ -1,16 +1,10 @@
 import { connect } from 'react-redux';
 import LogInPage from '../../components/LogInPage';
-import { logIn } from '../actions/user-actions';
+import { logIn } from '../actions/user';
 
 function mapStateToProps(state: any) {
-  const { user } = state.user;
-  let isLoggedIn;
-
-  if (user) {
-    isLoggedIn = true;
-  } else {
-    isLoggedIn = false;
-  }
+  const { user } = state;
+  const isLoggedIn = user ? true : false;
 
   return {
     isLoggedIn,

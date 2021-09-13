@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import ProfileCookbooksPage from '../../components/ProfileCookbooksPage';
-import { getUsersCookbooks } from '../actions/cookbooks-actions';
+import { getUsersCookbooks } from '../actions/cookbooks';
 
 const mapStateToProps = (state: any) => {
-  const { cookbooks } = state.cookbooks;
-  const { username, bio, avatar, id } = state.user.user;
+  const { cookbooks, user } = state;
+  const { username, bio, avatar, id } = user;
 
   return {
     cookbooks,

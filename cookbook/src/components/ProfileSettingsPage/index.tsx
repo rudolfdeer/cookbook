@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { User } from '../../constants/interfaces';
-import routes from '../../constants/routes';
+import { User } from '../../interfaces';
+import ROUTES from '../../constants/routes';
 import Footer from '../Footer';
 import Header from '../Header';
 
@@ -33,8 +33,8 @@ export default function ProfileSettingsPage(props: ProfileSettingsPageProps): JS
             </section>
             <nav className="profile-page__nav">
               <ul className="nav__list">
-                <li className="list__item"><Link to={routes['profile.cookbooks']}>My Cookbooks</Link></li>
-                <li className="list__item"><Link to={routes['profile.recipes']}>My Recipes</Link></li>
+                <li className="list__item"><Link to={ROUTES.PROFILE_COOKBOOKS}>My Cookbooks</Link></li>
+                <li className="list__item"><Link to={ROUTES.PROFILE_RECIPES}>My Recipes</Link></li>
                 <li className="list__item_selected">My Settings</li>
               </ul>
             </nav>

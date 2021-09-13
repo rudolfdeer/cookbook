@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Field } from 'react-final-form';
-import routes from '../../../constants/routes';
 import './index.scss';
 import { EMAILREGEX } from '../../../constants/regex';
-import ERROR_MESSAGES from '../../../constants/error-messages';
+import ERROR_MESSAGES from '../../../constants/errorMessages';
+import ROUTES from '../../../constants/routes';
 
 type FormValues = {
   email: string;
@@ -15,8 +15,8 @@ type LogInFormProps = {
   logIn: Function;
 };
 
-const required = (value: string) => (value ? undefined : ERROR_MESSAGES.required);
-const validEmail = (value: string) => (!value.match(EMAILREGEX) ? ERROR_MESSAGES.email : undefined);
+const required = (value: string) => (value ? undefined : ERROR_MESSAGES.REQUIRED);
+const validEmail = (value: string) => (!value.match(EMAILREGEX) ? ERROR_MESSAGES.EMAIL : undefined);
 const composeValidators = (...validators: Function[]) => (value: string) => validators.reduce((error, validator) => error || validator(value), undefined);
 
 export default function LogInForm(props: LogInFormProps): JSX.Element {
@@ -29,7 +29,7 @@ export default function LogInForm(props: LogInFormProps): JSX.Element {
     <div className="log-in-page__form">
       <Link to="/"><div className="form__logo"></div></Link>
       <h1 className="form__title">Welcome back</h1>
-      <h2 className="form__title_small">New here? <Link to={routes.signup}>Create an account</Link></h2>
+      <h2 className="form__title_small">New here? <Link to={ROUTES.SIGN_UP}>Create an account</Link></h2>
 
       <Form
         onSubmit = {onSubmit}

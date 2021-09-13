@@ -1,10 +1,8 @@
 import { AnyAction } from 'redux';
-import { User } from '../../constants/interfaces';
-import ACTION_TYPES from '../../constants/action-types';
+import { User } from '../../interfaces';
+import ACTION_TYPES from '../../constants/actionTypes';
 
-const initialState = {
-  user: null as User,
-};
+const initialState = null as User;
 
 type UserReducer = typeof initialState;
 
@@ -13,7 +11,7 @@ export default function userReducer(state = initialState, action: AnyAction): Us
     case ACTION_TYPES.USER_LOG_IN:
       return {
         ...state,
-        user: action.payload,
+        ...action.payload,
       };
 
     default:

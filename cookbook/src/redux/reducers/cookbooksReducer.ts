@@ -11,9 +11,8 @@ export default function cookbooksReducer(
   action: AnyAction
 ): CookbooksReducer {
   switch (action.type) {
-    case ACTION_TYPES.COOKBOOK_GET_ALL: {
+    case ACTION_TYPES.COOKBOOK_GET_ALL:
       return [...action.payload];
-    }
 
     case ACTION_TYPES.COOKBOOK_SORT:
       return [...action.payload];

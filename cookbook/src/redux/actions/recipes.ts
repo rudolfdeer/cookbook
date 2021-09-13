@@ -2,7 +2,6 @@ import { AnyAction } from 'redux';
 import Api from '../../helpers/api';
 import ACTION_TYPES from '../../constants/actionTypes';
 import { Recipe } from '../../interfaces';
-import recipes from '../../constants/mockdata/recipes';
 
 export const getRecipes = (): AnyAction => {
   const resData = Api.getRecipesList();

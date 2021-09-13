@@ -124,7 +124,7 @@ export default function PopUpRecipeDetailed(
           </div>
           <div className="pop-up__section comments">
             <div className="section__title">{`Comments (${comments.length})`}</div>
-            <CommentsSection comments={comments} />
+            <CommentsSection comments={comments} userId={userId} />
           </div>
         </div>
       </div>

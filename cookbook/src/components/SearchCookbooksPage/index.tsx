@@ -22,7 +22,14 @@ type CookbooksPageProps = {
 
 export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
   const {
-    cookbooks, getCookbooks, recipes, getRecipes, sortCookbooks, filterCookbooks, username, userId,
+    cookbooks,
+    getCookbooks,
+    recipes,
+    getRecipes,
+    sortCookbooks,
+    filterCookbooks,
+    username,
+    userId,
   } = props;
 
   const [isVisible, setVisible] = useState(false);
@@ -53,48 +60,58 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
   return (
     <>
       <div className="wrapper">
-        <Header username = {username}/>
+        <Header username={username} />
       </div>
       <main className="search-page">
         <div className="wrapper">
           <aside className="search-page__aside">
-          <div className="aside__container">
-            <FilterPanelCookbooks sortCookbooks = {sortCookbooks} filterCookbooks = {filterCookbooks} userId = {userId}/>
-          </div>
+            <div className="aside__container">
+              <FilterPanelCookbooks
+                sortCookbooks={sortCookbooks}
+                filterCookbooks={filterCookbooks}
+                userId={userId}
+              />
+            </div>
           </aside>
           <div className="search-page__content">
             <nav className="search-page__nav">
               <ul className="nav__list">
                 <li className="list__item_selected">Cookbooks</li>
-                <li className="list__item"><Link to="/recipes">Recipes</Link></li>
-            </ul>
+                <li className="list__item">
+                  <Link to="/recipes">Recipes</Link>
+                </li>
+              </ul>
             </nav>
-          <div className="search-page__cards cookbooks">
-          {cookbooks?.map((el) => <CookbookCard
-                                    id = {el.id}
-                                    name = {el.name}
-                                    author = {el.author}
-                                    views = {el.views}
-                                    likes = {el.likes}
-                                    comments = {el.comments.length}
-                                    image = {el.image}
-                                    description = {el.description}
-                                    key={el.id}
-                                    selectCard = {setChosenCardId}
-                                    openDetailedInfo = {setVisible} />)}
+            <div className="search-page__cards cookbooks">
+              {cookbooks?.map((el) => (
+                <CookbookCard
+                  id={el.id}
+                  name={el.name}
+                  author={el.author}
+                  views={el.views}
+                  likes={el.likes}
+                  comments={el.comments.length}
+                  image={el.image}
+                  description={el.description}
+                  key={el.id}
+                  selectCard={setChosenCardId}
+                  openDetailedInfo={setVisible}
+                />
+              ))}
+            </div>
           </div>
-         </div>
-         {isVisible
-           ? <PopUpCookbookDetailed
-              openDetailedInfo = {setVisible}
-              cardInfo = {findCard()}
-              recipes = {findRecipes()}/>
-           : null}
+          {isVisible ? (
+            <PopUpCookbookDetailed
+              openDetailedInfo={setVisible}
+              cardInfo={findCard()}
+              recipes={findRecipes()}
+              userId={userId}
+            />
+          ) : null}
+        </div>
+      </main>
 
-          </div>
-        </main>
-
-      <Footer/>
+      <Footer />
     </>
   );
 }

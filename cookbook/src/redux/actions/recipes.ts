@@ -50,18 +50,24 @@ export const filterRecipes = (cookingTime: number): AnyAction => {
   };
 };
 
-export const getUsersRecipes = (userId: number): AnyAction => {
+export const getUsersCreatedRecipes = (userId: number): AnyAction => {
   const allRecipes = Api.getRecipesList();
   const createdRecipes = allRecipes.filter(
     (recipe: Recipe) => recipe.userId === userId
   );
-  const user = Api.getUser(userId);
-  const savedRecipes = user.savedRecipes;
-
-  const resData = [...createdRecipes, ...savedRecipes];
 
   return {
     type: ACTION_TYPES.USER_GET_RECIPES,
-    payload: resData,
+    payload: createdRecipes,
+  };
+};
+
+export const getUsersSavedRecipes = (userId: number): AnyAction => {
+  const user = Api.getUser(userId);
+  const savedRecipes = user.savedRecipes;
+
+  return {
+    type: ACTION_TYPES.USER_GET_RECIPES,
+    payload: savedRecipes,
   };
 };

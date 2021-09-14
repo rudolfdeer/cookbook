@@ -1,0 +1,25 @@
+@import '../../styles/index.scss';
+
+.profile-saved-page__cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .saved-section__title {
+    @include title-16;
+
+    margin-bottom: 16px;
+  }
+
+  .saved-section__cards {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}

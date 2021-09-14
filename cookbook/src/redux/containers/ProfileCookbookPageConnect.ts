@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ProfileCookbooksPage from '../../components/ProfileCookbooksPage';
-import { getUsersCookbooks } from '../actions/cookbooks';
+import { getUsersCreatedCookbooks } from '../actions/cookbooks';
 
 const mapStateToProps = (state: any) => {
   const { cookbooks, user } = state;
@@ -16,12 +16,12 @@ const mapStateToProps = (state: any) => {
 };
 
 const mapDispatchToProps = {
-  getUsersCookbooks,
+  getUsersCreatedCookbooks,
 };
 
 const ProfileCookbooksPageConnect = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(ProfileCookbooksPage);
 
 export default ProfileCookbooksPageConnect;

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Recipe } from '../../interfaces';
 import routes from '../../constants/routes';
@@ -11,7 +11,7 @@ import ROUTES from '../../constants/routes';
 
 type ProfileRecipesPageProps = {
   recipes?: Recipe[];
-  getUsersRecipes?: Function;
+  getUsersCreatedRecipes?: Function;
   id: number;
   username: string;
   bio: string;
@@ -22,9 +22,10 @@ type ProfileRecipesPageProps = {
 export default function ProfileRecipesPage(
   props: ProfileRecipesPageProps
 ): JSX.Element {
-  const { recipes, username, bio, avatar, id, getUsersRecipes } = props;
+  const { recipes, username, bio, avatar, id, getUsersCreatedRecipes } = props;
+  const [isVisible, setVisible] = useState(false);
 
-  useEffect(() => getUsersRecipes(id), []);
+  useEffect(() => getUsersCreatedRecipes(id), []);
 
   return (
     <>
@@ -47,6 +48,9 @@ export default function ProfileRecipesPage(
           </section>
           <nav className="profile-page__nav">
             <ul className="nav__list">
+              <li className="list__item">
+                <Link to={ROUTES.PROFILE_SAVED}>Saved</Link>
+              </li>
               <li className="list__item">
                 <Link to={ROUTES.PROFILE_COOKBOOKS}>My Cookbooks</Link>
               </li>

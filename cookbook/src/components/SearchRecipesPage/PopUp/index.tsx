@@ -16,6 +16,7 @@ export default function PopUpRecipeDetailed(
 ): JSX.Element {
   const { openDetailedInfo, recipe, saveToUsersRecipes, userId } = props;
   const {
+    id,
     image,
     description,
     name,
@@ -28,16 +29,13 @@ export default function PopUpRecipeDetailed(
 
   const closePopUp = (e: React.MouseEvent) => {
     const target = e.target as HTMLElement;
-    if (
-      target.classList.contains('overlay') ||
-      target.classList.contains('overlay__btn')
-    ) {
+    if (target.classList.contains('overlay')) {
       openDetailedInfo(false);
     }
   };
 
   const saveRecipe = () => {
-    saveToUsersRecipes(recipe, userId);
+    saveToUsersRecipes(id, userId);
   };
 
   return (
@@ -53,7 +51,13 @@ export default function PopUpRecipeDetailed(
               <div className="pop-up__section top">
                 <div className="pop-up__title">{name}</div>
                 {userId ? (
-                  <button className="pop-up__btn" onClick={() => saveRecipe()}>
+                  <button
+                    className="pop-up__btn"
+                    onClick={(e) => {
+                      saveRecipe();
+                      openDetailedInfo(false);
+                    }}
+                  >
                     +
                   </button>
                 ) : null}

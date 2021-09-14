@@ -34,10 +34,10 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
 
   useEffect(() => getRecipes(), []);
 
-  function findCard(): Recipe {
+  const findCard = (): Recipe => {
     const card = recipes.find((el) => el.id === chosenCardId);
     return card;
-  }
+  };
 
   return (
     <>
@@ -64,7 +64,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
               </ul>
             </nav>
             <div className="search-page__cards recipes">
-              {Object.values(recipes).map((el) => (
+              {recipes.map((el) => (
                 <RecipeCard
                   id={el.id}
                   name={el.name}
@@ -77,6 +77,8 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
                   selectCard={setChosenCardId}
                   openDetailedInfo={setVisible}
                   key={el.id}
+                  userId={userId}
+                  saveToUsersRecipes={saveToUsersRecipes}
                 />
               ))}
             </div>

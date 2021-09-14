@@ -16,6 +16,8 @@ type CookbooksPageProps = {
   getRecipes?: Function;
   sortCookbooks: Function;
   filterCookbooks: Function;
+  saveToUsersCookbooks: Function;
+  saveToUsersRecipes: Function;
   username?: string;
   userId: number;
 };
@@ -30,6 +32,8 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
     filterCookbooks,
     username,
     userId,
+    saveToUsersCookbooks,
+    saveToUsersRecipes,
   } = props;
 
   const [isVisible, setVisible] = useState(false);
@@ -106,6 +110,8 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
               cardInfo={findCard()}
               recipes={findRecipes()}
               userId={userId}
+              saveToUsersCookbooks={saveToUsersCookbooks}
+              saveToUsersRecipes={saveToUsersRecipes}
             />
           ) : null}
         </div>

@@ -19,16 +19,30 @@ export const logIn = (loginInfo: LoginInfo): AnyAction => {
 };
 
 export const saveToUsersRecipes = (
-  recipe: Recipe,
+  recipeId: number,
   userId: number
 ): AnyAction => {
   const user = Api.getUser(userId);
   const { savedRecipes } = user;
+  const recipe = Api.getRecipesList().find((el) => el.id === recipeId);
   const newSavedRecipes = savedRecipes.concat(recipe);
   user.savedRecipes = newSavedRecipes;
 
   return {
-    type: ACTION_TYPES.USER_SAVE_RECIPE,
+    type: ACTION_TYPES.USER_SAVE,
+    payload: user,
+  };
+};
+
+export const saveToUsersCookbooks = (cookbookId: number, userId: number) => {
+  const user = Api.getUser(userId);
+  const { savedCookbooks } = user;
+  const cookbook = Api.getCookbooksList().find((el) => el.id === cookbookId);
+  const newSavedCookbooks = savedCookbooks.concat(cookbook);
+  user.savedCookbooks = newSavedCookbooks;
+
+  return {
+    type: ACTION_TYPES.USER_SAVE,
     payload: user,
   };
 };

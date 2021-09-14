@@ -1,7 +1,12 @@
 import { connect } from 'react-redux';
 import CookbooksPage from '../../components/SearchCookbooksPage';
-import { getCookbooks, sortCookbooks, filterCookbooks } from '../actions/cookbooks';
+import {
+  getCookbooks,
+  sortCookbooks,
+  filterCookbooks,
+} from '../actions/cookbooks';
 import { getRecipes } from '../actions/recipes';
+import { saveToUsersCookbooks, saveToUsersRecipes } from '../actions/user';
 
 const mapStateToProps = (state: any) => {
   const { user, cookbooks, recipes } = state;
@@ -21,11 +26,13 @@ const mapDispatchToProps = {
   getRecipes,
   sortCookbooks,
   filterCookbooks,
+  saveToUsersCookbooks,
+  saveToUsersRecipes,
 };
 
 const CookbooksPageConnect = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(CookbooksPage);
 
 export default CookbooksPageConnect;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Cookbook, Recipe } from '../../../interfaces';
+import { saveToUsersCookbooks } from '../../../redux/actions/user';
 import CommentsSection from './CommentsSection';
 
 import './index.scss';
@@ -10,13 +11,22 @@ type PopUpCookbookDetailedProps = {
   cardInfo: Cookbook;
   recipes: Recipe[];
   userId: number;
+  saveToUsersCookbooks: Function;
+  saveToUsersRecipes: Function;
 };
 
 export default function PopUpCookbookDetailed(
   props: PopUpCookbookDetailedProps
 ): JSX.Element {
-  const { openDetailedInfo, cardInfo, recipes, userId } = props;
-  const { image, description, name, author, likes, comments } = cardInfo;
+  const {
+    openDetailedInfo,
+    cardInfo,
+    recipes,
+    userId,
+    saveToUsersRecipes,
+    saveToUsersCookbooks,
+  } = props;
+  const { id, image, description, name, author, likes, comments } = cardInfo;
 
   function closePopUp(e: React.MouseEvent) {
     const target = e.target as HTMLElement;
@@ -36,7 +46,13 @@ export default function PopUpCookbookDetailed(
           <div className="pop-up__section top">
             <div className="pop-up__title">{name}</div>
             {userId ? (
-              <button className="pop-up__btn-clone">
+              <button
+                className="pop-up__btn-clone"
+                onClick={() => {
+                  saveToUsersCookbooks(id, userId);
+                  openDetailedInfo(false);
+                }}
+              >
                 Clone to my CookBook
               </button>
             ) : null}
@@ -104,6 +120,9 @@ export default function PopUpCookbookDetailed(
                   image={el.image}
                   comments={el.comments.length}
                   key={el.id}
+                  id={el.id}
+                  userId={userId}
+                  saveToUsersRecipes={saveToUsersRecipes}
                 />
               ))}
             </div>

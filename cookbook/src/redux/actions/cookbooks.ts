@@ -20,7 +20,7 @@ export const filterCookbooks = (tags: string[]): AnyAction => {
   }
   if (appliedTags.length === 1) {
     resData = currentData.filter(
-      (cookbook) => cookbook.tags.indexOf(appliedTags[0]) > -1,
+      (cookbook) => cookbook.tags.indexOf(appliedTags[0]) > -1
     );
   }
   if (appliedTags.length > 1) {
@@ -67,8 +67,12 @@ export const sortCookbooks = (order: string): AnyAction => {
 
 export const getUsersCookbooks = (userId: number): AnyAction => {
   const allCookbooks = Api.getCookbooksList();
-
-  const resData = allCookbooks.filter((cookbook) => cookbook.userId === userId);
+  const createdCookbooks = allCookbooks.filter(
+    (cookbook) => cookbook.userId === userId
+  );
+  const user = Api.getUser(userId);
+  const savedCookbooks = user.savedCookbooks;
+  const resData = [...createdCookbooks, ...savedCookbooks];
 
   return {
     type: ACTION_TYPES.USER_GET_COOKBOOKS,

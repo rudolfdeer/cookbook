@@ -17,7 +17,7 @@ export default function userReducer(
         ...action.payload,
       };
 
-    case ACTION_TYPES.USER_SAVE_RECIPE:
+    case ACTION_TYPES.USER_SAVE:
       return {
         ...state,
         ...action.payload,

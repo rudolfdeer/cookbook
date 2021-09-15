@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { User } from '../../interfaces';
 import ROUTES from '../../constants/routes';
 import Footer from '../Footer';
@@ -14,7 +15,12 @@ type ProfileSettingsPageProps = {
 export default function ProfileSettingsPage(
   props: ProfileSettingsPageProps
 ): JSX.Element {
+  if (!props.user) {
+    return <Redirect to={ROUTES.NOT_FOUND} />;
+  }
+
   const { username, email, password, bio } = props.user;
+
   return (
     <>
       <div className="wrapper">

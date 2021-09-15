@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Recipe } from '../../interfaces';
-import routes from '../../constants/routes';
+import { Recipe, User } from '../../interfaces';
+import { Redirect } from 'react-router-dom';
 import Footer from '../Footer';
 import Header from '../Header';
 import ProfileRecipeCard from './Card';
@@ -12,18 +12,18 @@ import ROUTES from '../../constants/routes';
 type ProfileRecipesPageProps = {
   recipes?: Recipe[];
   getUsersCreatedRecipes?: Function;
-  id: number;
-  username: string;
-  bio: string;
-  avatar: string;
-  savedRecipes: Recipe[];
+  user: User;
 };
 
 export default function ProfileRecipesPage(
   props: ProfileRecipesPageProps
 ): JSX.Element {
-  const { recipes, username, bio, avatar, id, getUsersCreatedRecipes } = props;
-  const [isVisible, setVisible] = useState(false);
+  if (!props.user) {
+    return <Redirect to={ROUTES.NOT_FOUND} />;
+  }
+
+  const { recipes, user, getUsersCreatedRecipes } = props;
+  const { username, bio, avatar, id } = user;
 
   useEffect(() => getUsersCreatedRecipes(id), []);
 
@@ -56,7 +56,7 @@ export default function ProfileRecipesPage(
               </li>
               <li className="list__item_selected">My Recipes</li>
               <li className="list__item">
-                <Link to={ROUTES.PROFILE}>My Settings</Link>
+                <Link to={ROUTES.PROFILE_SETTINGS}>My Settings</Link>
               </li>
             </ul>
             <button className="nav__btn">Create New Recipe</button>

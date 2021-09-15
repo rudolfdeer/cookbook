@@ -4,15 +4,11 @@ import { getUsersCreatedRecipes } from '../actions/recipes';
 
 function mapStateToProps(state: any) {
   const { recipes, user } = state;
-  const { username, bio, avatar, id, savedRecipes } = user;
+  //const { username, bio, avatar, id, savedRecipes } = user;
 
   return {
     recipes,
-    username,
-    bio,
-    avatar,
-    id,
-    savedRecipes,
+    user,
   };
 }
 

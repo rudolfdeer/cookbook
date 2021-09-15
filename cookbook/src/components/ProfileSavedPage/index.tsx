@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Cookbook, Recipe } from '../../interfaces';
+import { Cookbook, Recipe, User } from '../../interfaces';
+import { Redirect } from 'react-router-dom';
 import ROUTES from '../../constants/routes';
 import Footer from '../Footer';
 import Header from '../Header';
-//import ProfileCookbookCard from './Card';
 
 import './index.scss';
 import ProfileSavedCookbookCard from './CookbookCard';
@@ -15,25 +15,25 @@ type ProfileSavedPageProps = {
   getUsersSavedCookbooks?: Function;
   recipes: Recipe[];
   getUsersSavedRecipes: Function;
-  username: string;
-  bio: string;
-  avatar: string;
-  id: number;
+  user: User;
 };
 
 export default function ProfileSavedPage(
   props: ProfileSavedPageProps
 ): JSX.Element {
+  if (!props.user) {
+    return <Redirect to={ROUTES.NOT_FOUND} />;
+  }
+
   const {
     cookbooks,
     recipes,
-    username,
-    bio,
-    avatar,
-    id,
+    user,
     getUsersSavedCookbooks,
     getUsersSavedRecipes,
   } = props;
+
+  const { username, bio, avatar, id } = user;
 
   useEffect(() => {
     getUsersSavedRecipes(id);
@@ -69,7 +69,7 @@ export default function ProfileSavedPage(
                 <Link to={ROUTES.PROFILE_RECIPES}>My Recipes</Link>
               </li>
               <li className="list__item">
-                <Link to={ROUTES.PROFILE}>My Settings</Link>
+                <Link to={ROUTES.PROFILE_SETTINGS}>My Settings</Link>
               </li>
             </ul>
           </nav>

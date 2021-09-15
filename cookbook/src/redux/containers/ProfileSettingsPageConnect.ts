@@ -8,13 +8,9 @@ function mapStateToProps(state: any) {
   };
 }
 
-// const mapDispatchToProps = {
-//   getRecipes,
-// };
-
 const ProfileSettingsPageConnect = connect(
   mapStateToProps,
-  null,
+  null
 )(ProfileSettingsPage);
 
 export default ProfileSettingsPageConnect;

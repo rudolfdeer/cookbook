@@ -10,6 +10,7 @@ import ProfileCookbooksPageConnect from '../redux/containers/ProfileCookbookPage
 import LogInPageConnect from '../redux/containers/LogInPageConnect';
 import ProfileSettingsPageConnect from '../redux/containers/ProfileSettingsPageConnect';
 import ProfileSavedPageConnect from '../redux/containers/ProfileSavedPageConnect';
+import NotFoundPage from './NotFoundPage';
 
 function App(): JSX.Element {
   return (
@@ -35,7 +36,7 @@ function App(): JSX.Element {
           <Route exact path={ROUTES.SIGN_UP} component={SignUpPage}></Route>
           <Route
             exact
-            path={ROUTES.PROFILE}
+            path={ROUTES.PROFILE_SETTINGS}
             component={ProfileSettingsPageConnect}
           ></Route>
           <Route
@@ -53,6 +54,7 @@ function App(): JSX.Element {
             path={ROUTES.PROFILE_SAVED}
             component={ProfileSavedPageConnect}
           ></Route>
+          <Route exact path={ROUTES.NOT_FOUND} component={NotFoundPage}></Route>
         </Switch>
       </Router>
     </>

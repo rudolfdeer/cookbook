@@ -4,14 +4,11 @@ import { getUsersCreatedCookbooks } from '../actions/cookbooks';
 
 const mapStateToProps = (state: any) => {
   const { cookbooks, user } = state;
-  const { username, bio, avatar, id } = user;
+  //const { username, bio, avatar, id } = user;
 
   return {
     cookbooks,
-    username,
-    bio,
-    avatar,
-    id,
+    user,
   };
 };
 

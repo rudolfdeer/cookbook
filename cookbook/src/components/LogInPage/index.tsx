@@ -21,7 +21,7 @@ export default function LogInPage(props: LogInPageProps): JSX.Element {
   }, [isLoggedIn]);
 
   if (isRedirected) {
-    return <Redirect to={ROUTES.PROFILE} />;
+    return <Redirect to={ROUTES.PROFILE_SETTINGS} />;
   }
   return (
     <main className="log-in-page">

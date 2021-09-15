@@ -1,0 +1,43 @@
+@import '../../styles/index.scss';
+
+.not-found-page {
+  position: relative;
+
+  .pear-bg {
+    width: 607px;
+    height: 858px;
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+  }
+}
+
+.page__content {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  .page__title {
+    @include title-40;
+    font-size: 70px;
+    //color: $primary-yellow;
+  }
+
+  .page__title_small {
+    @include title-40;
+  }
+
+  .text {
+    @include text-18;
+
+    a {
+      @include text-18;
+      color: $primary-yellow;
+      text-decoration: underline;
+    }
+  }
+}

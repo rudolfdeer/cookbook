@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Cookbook } from '../../interfaces';
+import { Cookbook, User } from '../../interfaces';
 import ROUTES from '../../constants/routes';
+import { Redirect } from 'react-router-dom';
 import Footer from '../Footer';
 import Header from '../Header';
 import ProfileCookbookCard from './Card';
@@ -11,17 +12,19 @@ import './index.scss';
 type ProfileCookbooksPageProps = {
   cookbooks?: Cookbook[];
   getUsersCreatedCookbooks?: Function;
-  username: string;
-  bio: string;
-  avatar: string;
-  id: number;
+  user: User;
 };
 
 export default function ProfileCookbooksPage(
   props: ProfileCookbooksPageProps
 ): JSX.Element {
-  const { cookbooks, username, bio, avatar, id, getUsersCreatedCookbooks } =
-    props;
+  if (!props.user) {
+    return <Redirect to={ROUTES.NOT_FOUND} />;
+  }
+
+  const { cookbooks, user, getUsersCreatedCookbooks } = props;
+
+  const { username, bio, avatar, id } = user;
 
   useEffect(() => getUsersCreatedCookbooks(id), []);
 
@@ -54,7 +57,7 @@ export default function ProfileCookbooksPage(
                 <Link to={ROUTES.PROFILE_RECIPES}>My Recipes</Link>
               </li>
               <li className="list__item">
-                <Link to={ROUTES.PROFILE}>My Settings</Link>
+                <Link to={ROUTES.PROFILE_SETTINGS}>My Settings</Link>
               </li>
             </ul>
             <button className="nav__btn">Create New Cookbook</button>

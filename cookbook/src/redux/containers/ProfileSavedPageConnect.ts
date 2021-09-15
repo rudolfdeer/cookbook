@@ -5,17 +5,12 @@ import ProfileSavedPage from '../../components/ProfileSavedPage';
 
 function mapStateToProps(state: any) {
   const { recipes, user, cookbooks } = state;
-  const { username, bio, avatar, id, savedRecipes, savedCookbooks } = user;
+  //const { username, bio, avatar, id, savedRecipes, savedCookbooks } = user;
 
   return {
     recipes,
     cookbooks,
-    username,
-    bio,
-    avatar,
-    id,
-    savedRecipes,
-    savedCookbooks,
+    user,
   };
 }
 

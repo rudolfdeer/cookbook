@@ -11,7 +11,7 @@ import ProfileSavedCookbookCard from './CookbookCard';
 import ProfileSavedRecipeCard from './RecipeCard';
 
 type ProfileSavedPageProps = {
-  cookbooks?: Cookbook[];
+  cookbooks: Cookbook[];
   getUsersSavedCookbooks?: Function;
   recipes: Recipe[];
   getUsersSavedRecipes: Function;
@@ -74,9 +74,9 @@ export default function ProfileSavedPage(
             </ul>
           </nav>
           <section className="profile-saved-page__cards">
-            <div className="saved-section__title">Cookbooks</div>
+            <div className="saved-section__title">{`Cookbooks (${cookbooks.length})`}</div>
             <div className="saved-section__cards">
-              {cookbooks?.map((el) => (
+              {cookbooks.map((el) => (
                 <ProfileSavedCookbookCard
                   id={el.id}
                   name={el.name}
@@ -92,9 +92,9 @@ export default function ProfileSavedPage(
             </div>
           </section>
           <section className="profile-saved-page__cards">
-            <div className="saved-section__title">Recipes</div>
+            <div className="saved-section__title">{`Recipes (${recipes.length})`}</div>
             <div className="saved-section__cards">
-              {recipes?.map((el) => (
+              {recipes.map((el) => (
                 <ProfileSavedRecipeCard
                   id={el.id}
                   name={el.name}

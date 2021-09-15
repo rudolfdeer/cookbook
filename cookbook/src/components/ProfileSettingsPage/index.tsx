@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import { User } from '../../interfaces';
@@ -18,8 +18,37 @@ export default function ProfileSettingsPage(
   if (!props.user) {
     return <Redirect to={ROUTES.NOT_FOUND} />;
   }
-
   const { username, email, password, bio } = props.user;
+  const [isBioDisabled, setBioDisabled] = useState(true);
+
+  const [newBio, setNewBio] = useState(bio);
+  const [newName, setNewName] = useState(username);
+  const [newEmail, setNewEmail] = useState(email);
+  const [newPassword, setNewPassword] = useState(password);
+
+  const btnEdit = (
+    <button
+      className="form__input_submit"
+      onClick={(e) => {
+        e.preventDefault();
+        setBioDisabled(false);
+      }}
+    >
+      Edit
+    </button>
+  );
+
+  const btnSave = (
+    <input
+      type="submit"
+      className="form__input_submit"
+      value="Save"
+      onClick={(e) => {
+        e.preventDefault();
+        setBioDisabled(true);
+      }}
+    />
+  );
 
   return (
     <>
@@ -32,9 +61,22 @@ export default function ProfileSettingsPage(
             <div className="user__photo_settings">
               <input type="file" className="photo__input" />
             </div>
+
             <div className="user__container">
-              <div className="user__name">{username}</div>
-              <div className="user__bio">{bio}</div>
+              <div className="user__name">{newName}</div>
+              <form action="" className="user__form">
+                <textarea
+                  name="bio"
+                  value={newBio}
+                  className="user__bio"
+                  disabled={isBioDisabled}
+                  onChange={(e) => {
+                    const target = e.target as HTMLTextAreaElement;
+                    setNewBio(target.value);
+                  }}
+                />
+                {isBioDisabled ? btnEdit : btnSave}
+              </form>
             </div>
           </section>
           <nav className="profile-page__nav">
@@ -60,9 +102,13 @@ export default function ProfileSettingsPage(
               <input
                 type="text"
                 name="name"
-                value={username}
+                value={newName}
                 className="form__input"
                 disabled
+                onChange={(e) => {
+                  const target = e.target as HTMLInputElement;
+                  setNewName(target.value);
+                }}
               />
               <input
                 type="submit"
@@ -77,7 +123,7 @@ export default function ProfileSettingsPage(
               <input
                 type="text"
                 name="email"
-                value={email}
+                value={newEmail}
                 className="form__input"
                 disabled
               />
@@ -94,7 +140,7 @@ export default function ProfileSettingsPage(
               <input
                 type="password"
                 name="password"
-                value={password}
+                value={newPassword}
                 className="form__input"
                 disabled
               />

@@ -8,6 +8,7 @@ import ProfileRecipeCard from './Card';
 
 import './index.scss';
 import ROUTES from '../../constants/routes';
+import PopUpCreateRecipe from './PopUp';
 
 type ProfileRecipesPageProps = {
   recipes?: Recipe[];
@@ -24,8 +25,15 @@ export default function ProfileRecipesPage(
 
   const { recipes, user, getUsersCreatedRecipes } = props;
   const { username, bio, avatar, id } = user;
+  const [isVisible, setVisible] = useState(false);
+  const [chosenCardId, setChosenCardId] = useState(0);
 
   useEffect(() => getUsersCreatedRecipes(id), []);
+
+  const findCard = (): Recipe => {
+    const card = recipes.find((el) => el.id === chosenCardId);
+    return card;
+  };
 
   return (
     <>
@@ -59,7 +67,9 @@ export default function ProfileRecipesPage(
                 <Link to={ROUTES.PROFILE_SETTINGS}>My Settings</Link>
               </li>
             </ul>
-            <button className="nav__btn">Create New Recipe</button>
+            <button className="nav__btn" onClick={() => setVisible(true)}>
+              Create New Recipe
+            </button>
           </nav>
           <section className="profile-recipes-page__cards recipes">
             {recipes.map((el) => (
@@ -76,6 +86,9 @@ export default function ProfileRecipesPage(
               />
             ))}
           </section>
+          {isVisible ? (
+            <PopUpCreateRecipe userId={id} setVisible={setVisible} />
+          ) : null}
         </div>
       </main>
       <Footer />

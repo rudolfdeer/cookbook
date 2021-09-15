@@ -368,6 +368,14 @@
       .section__title {
         @include title-20();
       }
+
+      .section__input {
+        padding: 10px 16px;
+        width: 100%;
+        border: 1px solid $white-dirty;
+        border-radius: 10px;
+        height: 40px;
+      }
     }
   }
 }

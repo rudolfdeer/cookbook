@@ -116,3 +116,10 @@
     }
   }
 }
+.btn__logout {
+  @include button-light;
+  @include text-18;
+
+  height: 32px;
+  width: 120px;
+}

@@ -32,8 +32,7 @@ class FetchQuery {
   }
 
   updateUsers(newUser: User) {
-    users[users.length] = newUser;
-    console.log(users);
+    users.push(newUser);
   }
 }
 

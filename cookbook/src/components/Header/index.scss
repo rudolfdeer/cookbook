@@ -11,19 +11,17 @@
 
   .header__nav {
     .nav__list {
-    @include nav-list;
+      @include nav-list;
 
-    justify-content: space-between;
+      justify-content: space-between;
 
-    .list__item {
-      &:first-child {
-        margin-right: 72px;
+      .list__item {
+        &:first-child {
+          margin-right: 72px;
+        }
       }
     }
   }
-  }
-
-  
 }
 
 .header__search {
@@ -34,7 +32,7 @@
 
   width: 284px;
   height: 40px;
-  
+
   .search__icon {
     position: absolute;
 
@@ -42,7 +40,8 @@
     width: 23px;
     height: 23px;
 
-    background: url('../../assets/images/search-icon-small.png') center no-repeat;
+    background: url('../../assets/images/search-icon-small.png') center
+      no-repeat;
   }
 
   .search__input {

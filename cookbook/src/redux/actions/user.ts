@@ -18,6 +18,15 @@ export const logIn = (loginInfo: LoginInfo): AnyAction => {
   };
 };
 
+export const logOut = (userId: number): AnyAction => {
+  const user = Api.getUser(userId);
+  user.isLoggedIn = false;
+
+  return {
+    type: ACTION_TYPES.USER_LOG_OUT,
+  };
+};
+
 export const saveToUsersRecipes = (
   recipeId: number,
   userId: number

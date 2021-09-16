@@ -14,13 +14,14 @@ type ProfileSettingsPageProps = {
   changeUserName: Function;
   changeUserEmail: Function;
   changeUserPassword: Function;
+  logOut: Function;
 };
 
 export default function ProfileSettingsPage(
   props: ProfileSettingsPageProps
 ): JSX.Element {
   if (!props.user) {
-    return <Redirect to={ROUTES.NOT_FOUND} />;
+    return <Redirect to={ROUTES.HOME} />;
   }
   const {
     user,
@@ -28,6 +29,7 @@ export default function ProfileSettingsPage(
     changeUserName,
     changeUserEmail,
     changeUserPassword,
+    logOut,
   } = props;
   const { id, username, email, password, bio } = user;
   const [isBioDisabled, setBioDisabled] = useState(true);
@@ -38,6 +40,7 @@ export default function ProfileSettingsPage(
   const [newName, setNewName] = useState(username);
   const [newEmail, setNewEmail] = useState(email);
   const [newPassword, setNewPassword] = useState(password);
+  const [isRedirect, setIsRedirect] = useState(false);
 
   return (
     <>
@@ -221,6 +224,15 @@ export default function ProfileSettingsPage(
                 />
               )}
             </form>
+            <button
+              className="btn__logout"
+              onClick={() => {
+                setIsRedirect(true);
+                logOut(id);
+              }}
+            >
+              Log out
+            </button>
           </section>
         </div>
       </main>

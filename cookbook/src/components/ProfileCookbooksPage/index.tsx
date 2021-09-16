@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Cookbook, User } from '../../interfaces';
 import ROUTES from '../../constants/routes';
@@ -8,6 +8,7 @@ import Header from '../Header';
 import ProfileCookbookCard from './Card';
 
 import './index.scss';
+import PopUpCreateCookbook from './PopUp';
 
 type ProfileCookbooksPageProps = {
   cookbooks?: Cookbook[];
@@ -23,8 +24,8 @@ export default function ProfileCookbooksPage(
   }
 
   const { cookbooks, user, getUsersCreatedCookbooks } = props;
-
   const { username, bio, avatar, id } = user;
+  const [isVisible, setVisible] = useState(false);
 
   useEffect(() => getUsersCreatedCookbooks(id), []);
 
@@ -60,7 +61,9 @@ export default function ProfileCookbooksPage(
                 <Link to={ROUTES.PROFILE_SETTINGS}>My Settings</Link>
               </li>
             </ul>
-            <button className="nav__btn">Create New Cookbook</button>
+            <button className="nav__btn" onClick={() => setVisible(true)}>
+              Create New Cookbook
+            </button>
           </nav>
           <section className="profile-cookbooks-page__cards cookbooks">
             {cookbooks?.map((el) => (
@@ -77,6 +80,9 @@ export default function ProfileCookbooksPage(
               />
             ))}
           </section>
+          {isVisible ? (
+            <PopUpCreateCookbook userId={id} setVisible={setVisible} />
+          ) : null}
         </div>
       </main>
       <Footer />

@@ -46,3 +46,43 @@ export const saveToUsersCookbooks = (cookbookId: number, userId: number) => {
     payload: user,
   };
 };
+
+export const changeUserBio = (userId: number, newBio: string) => {
+  const user = Api.getUser(userId);
+  user.bio = newBio;
+
+  return {
+    type: ACTION_TYPES.USER_SAVE,
+    payload: user,
+  };
+};
+
+export const changeUserName = (userId: number, newName: string) => {
+  const user = Api.getUser(userId);
+  user.username = newName;
+
+  return {
+    type: ACTION_TYPES.USER_SAVE,
+    payload: user,
+  };
+};
+
+export const changeUserEmail = (userId: number, newEmail: string) => {
+  const user = Api.getUser(userId);
+  user.email = newEmail;
+
+  return {
+    type: ACTION_TYPES.USER_SAVE,
+    payload: user,
+  };
+};
+
+export const changeUserPassword = (userId: number, newPassword: string) => {
+  const user = Api.getUser(userId);
+  user.password = newPassword;
+
+  return {
+    type: ACTION_TYPES.USER_SAVE,
+    payload: user,
+  };
+};

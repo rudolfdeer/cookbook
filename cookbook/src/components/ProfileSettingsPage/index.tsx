@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import { User } from '../../interfaces';
@@ -10,6 +10,10 @@ import './index.scss';
 
 type ProfileSettingsPageProps = {
   user: User;
+  changeUserBio: Function;
+  changeUserName: Function;
+  changeUserEmail: Function;
+  changeUserPassword: Function;
 };
 
 export default function ProfileSettingsPage(
@@ -18,37 +22,22 @@ export default function ProfileSettingsPage(
   if (!props.user) {
     return <Redirect to={ROUTES.NOT_FOUND} />;
   }
-  const { username, email, password, bio } = props.user;
+  const {
+    user,
+    changeUserBio,
+    changeUserName,
+    changeUserEmail,
+    changeUserPassword,
+  } = props;
+  const { id, username, email, password, bio } = user;
   const [isBioDisabled, setBioDisabled] = useState(true);
-
+  const [isNameDisabled, setNameDisabled] = useState(true);
+  const [isEmailDisabled, setEmailDisabled] = useState(true);
+  const [isPasswordDisabled, setPasswordDisabled] = useState(true);
   const [newBio, setNewBio] = useState(bio);
   const [newName, setNewName] = useState(username);
   const [newEmail, setNewEmail] = useState(email);
   const [newPassword, setNewPassword] = useState(password);
-
-  const btnEdit = (
-    <button
-      className="form__input_submit"
-      onClick={(e) => {
-        e.preventDefault();
-        setBioDisabled(false);
-      }}
-    >
-      Edit
-    </button>
-  );
-
-  const btnSave = (
-    <input
-      type="submit"
-      className="form__input_submit"
-      value="Save"
-      onClick={(e) => {
-        e.preventDefault();
-        setBioDisabled(true);
-      }}
-    />
-  );
 
   return (
     <>
@@ -75,7 +64,28 @@ export default function ProfileSettingsPage(
                     setNewBio(target.value);
                   }}
                 />
-                {isBioDisabled ? btnEdit : btnSave}
+                {isBioDisabled ? (
+                  <button
+                    className="form__input_submit"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setBioDisabled(false);
+                    }}
+                  >
+                    Edit
+                  </button>
+                ) : (
+                  <input
+                    type="submit"
+                    className="form__input_submit"
+                    value="Save"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setBioDisabled(true);
+                      changeUserBio(id, newBio);
+                    }}
+                  />
+                )}
               </form>
             </div>
           </section>
@@ -104,34 +114,74 @@ export default function ProfileSettingsPage(
                 name="name"
                 value={newName}
                 className="form__input"
-                disabled
+                disabled={isNameDisabled}
                 onChange={(e) => {
                   const target = e.target as HTMLInputElement;
                   setNewName(target.value);
                 }}
               />
-              <input
-                type="submit"
-                className="form__input_submit"
-                value="Edit"
-              />
+
+              {isNameDisabled ? (
+                <input
+                  type="submit"
+                  className="form__input_submit"
+                  value="Edit"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setNameDisabled(false);
+                  }}
+                />
+              ) : (
+                <input
+                  type="submit"
+                  className="form__input_submit"
+                  value="Save"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setNameDisabled(true);
+                    changeUserName(id, newName);
+                  }}
+                />
+              )}
             </form>
             <form action="" className="personal-info__form">
               <label htmlFor="email" className="form__label">
                 Email
               </label>
+
               <input
                 type="text"
                 name="email"
                 value={newEmail}
                 className="form__input"
-                disabled
+                disabled={isEmailDisabled}
+                onChange={(e) => {
+                  const target = e.target as HTMLInputElement;
+                  setNewEmail(target.value);
+                }}
               />
-              <input
-                type="submit"
-                className="form__input_submit"
-                value="Edit"
-              />
+              {isEmailDisabled ? (
+                <input
+                  type="submit"
+                  className="form__input_submit"
+                  value="Edit"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setEmailDisabled(false);
+                  }}
+                />
+              ) : (
+                <input
+                  type="submit"
+                  className="form__input_submit"
+                  value="Save"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setEmailDisabled(true);
+                    changeUserEmail(id, newEmail);
+                  }}
+                />
+              )}
             </form>
             <form action="" className="personal-info__form">
               <label htmlFor="password" className="form__label">
@@ -142,13 +192,34 @@ export default function ProfileSettingsPage(
                 name="password"
                 value={newPassword}
                 className="form__input"
-                disabled
+                disabled={isPasswordDisabled}
+                onChange={(e) => {
+                  const target = e.target as HTMLInputElement;
+                  setNewPassword(target.value);
+                }}
               />
-              <input
-                type="submit"
-                className="form__input_submit"
-                value="Change my password"
-              />
+              {isPasswordDisabled ? (
+                <input
+                  type="submit"
+                  className="form__input_submit"
+                  value="Change my password"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setPasswordDisabled(false);
+                  }}
+                />
+              ) : (
+                <input
+                  type="submit"
+                  className="form__input_submit"
+                  value="Save new password"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setPasswordDisabled(true);
+                    changeUserPassword(id, newPassword);
+                  }}
+                />
+              )}
             </form>
           </section>
         </div>

@@ -28,11 +28,11 @@
     .user__container {
       width: 100%;
       max-width: 580px;
-      justify-content: flex-start;
     }
 
     .form__input_submit {
       @include text-18;
+      height: 22px;
 
       background: none;
       border: none;
@@ -95,6 +95,7 @@
         margin-right: 16px;
 
         border: none;
+        background: $grey-light;
 
         &:disabled {
           background: none;

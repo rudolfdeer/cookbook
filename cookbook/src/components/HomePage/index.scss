@@ -64,7 +64,7 @@
 }
 
 .home-page__section.rated {
- @include section;
+  @include section;
 
   margin-bottom: 128px;
 }
@@ -103,9 +103,9 @@
   margin-bottom: 104px;
 
   .intro__content {
-  width: 100%;
-  height: 100%;
-  padding-top: 243px;
+    width: 100%;
+    height: 100%;
+    padding-top: 243px;
   }
 
   .intro__title {
@@ -132,7 +132,8 @@
       left: 24px;
       width: 23px;
       height: 23px;
-      background: url('../../assets/images/search-icon-big.png') center no-repeat;
+      background: url('../../assets/images/search-icon-big.png') center
+        no-repeat;
     }
 
     .search__input {
@@ -155,7 +156,7 @@
       height: 54px;
 
       text-transform: uppercase;
-      
+
       &:hover {
         transform: scale(1.03);
       }
@@ -164,14 +165,14 @@
 
   .intro__nav {
     .nav__list {
-    display: flex;
-    padding: 0;
-      
+      display: flex;
+      padding: 0;
+
       .list__item {
         font-size: 18px;
         color: $white;
-        list-style: none; 
-        
+        list-style: none;
+
         &:not(:last-child) {
           margin-right: 56px;
         }
@@ -188,31 +189,28 @@
     }
   }
 
-
   &::before {
     content: '';
     max-width: 1600px;
     height: 814px;
     background: url('../../assets/images/main-background.jpg') center no-repeat;
-    position: absolute; 
+    position: absolute;
     z-index: -1;
-    left: 0; 
-    right: 0; 
-    margin-left: auto; 
-    margin-right: auto; 
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
     padding-left: 32px;
     padding-right: 32px;
   }
 }
 
-
 .home-page .section__cards.popular {
   display: grid;
   grid-gap: 24px;
-  grid-template-columns: 288px 288px 288px 288px;
+  //grid-template-columns: 288px 288px 288px 288px;
   grid-template-rows: 258px 258px;
-  grid-template-areas: 
-      "big big horiz horiz"
-      "big big small-first small-second";
+  grid-template-areas:
+    'big big horiz horiz'
+    'big big small-first small-second';
 }
-

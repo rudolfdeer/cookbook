@@ -2,6 +2,10 @@
 
 .not-found-page {
   position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   .pear-bg {
     width: 607px;
@@ -10,11 +14,15 @@
     z-index: -1;
     left: 50%;
   }
+
+  h1,
+  h2,
+  p {
+    margin: 0;
+  }
 }
 
 .page__content {
-  width: 100vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;

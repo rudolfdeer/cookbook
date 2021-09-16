@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import ProfileSettingsPage from '../../components/ProfileSettingsPage';
+import { State } from '../../interfaces';
 import {
   changeUserBio,
   changeUserName,
@@ -8,7 +9,7 @@ import {
   logOut,
 } from '../actions/user';
 
-function mapStateToProps(state: any) {
+function mapStateToProps(state: State) {
   const { user } = state;
   return {
     user,
@@ -24,7 +25,7 @@ const mapDispatchToProps = {
 
 const ProfileSettingsPageConnect = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(ProfileSettingsPage);
 
 export default ProfileSettingsPageConnect;

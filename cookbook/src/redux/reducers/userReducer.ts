@@ -4,8 +4,6 @@ import ACTION_TYPES from '../../constants/actionTypes';
 
 const initialState: null | User = null;
 
-type UserReducer = typeof initialState;
-
 export default function userReducer(state = initialState, action: AnyAction) {
   switch (action.type) {
     case ACTION_TYPES.USER_UPDATE:

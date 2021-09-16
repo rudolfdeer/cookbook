@@ -41,7 +41,7 @@ export const sortRecipes = (order: string): AnyAction => {
 export const filterRecipes = (cookingTime: number): AnyAction => {
   const currentData = Api.getRecipesList();
   const resData = currentData.filter(
-    (recipe: Recipe) => recipe.cookingTime <= cookingTime
+    (recipe: Recipe) => recipe.cookingTime <= cookingTime,
   );
 
   return {
@@ -53,7 +53,7 @@ export const filterRecipes = (cookingTime: number): AnyAction => {
 export const getUsersCreatedRecipes = (userId: number): AnyAction => {
   const allRecipes = Api.getRecipesList();
   const createdRecipes = allRecipes.filter(
-    (recipe: Recipe) => recipe.userId === userId
+    (recipe: Recipe) => recipe.userId === userId,
   );
 
   return {
@@ -64,7 +64,7 @@ export const getUsersCreatedRecipes = (userId: number): AnyAction => {
 
 export const getUsersSavedRecipes = (userId: number): AnyAction => {
   const user = Api.getUser(userId);
-  const savedRecipes = user.savedRecipes;
+  const { savedRecipes } = user;
 
   return {
     type: ACTION_TYPES.USER_GET_RECIPES,

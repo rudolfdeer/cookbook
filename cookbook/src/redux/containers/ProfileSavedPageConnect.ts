@@ -2,10 +2,10 @@ import { connect } from 'react-redux';
 import { getUsersSavedRecipes } from '../actions/recipes';
 import { getUsersSavedCookbooks } from '../actions/cookbooks';
 import ProfileSavedPage from '../../components/ProfileSavedPage';
+import { State } from '../../interfaces';
 
-function mapStateToProps(state: any) {
+function mapStateToProps(state: State) {
   const { recipes, user, cookbooks } = state;
-  //const { username, bio, avatar, id, savedRecipes, savedCookbooks } = user;
 
   return {
     recipes,
@@ -21,7 +21,7 @@ const mapDispatchToProps = {
 
 const ProfileSavedPageConnect = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(ProfileSavedPage);
 
 export default ProfileSavedPageConnect;

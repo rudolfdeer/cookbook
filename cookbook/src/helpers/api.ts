@@ -36,7 +36,7 @@ class Api {
   }
 
   updateUsers(newUser: User) {
-    const response = FetchQuery.updateUsers(newUser);
+    FetchQuery.updateUsers(newUser);
   }
 }
 

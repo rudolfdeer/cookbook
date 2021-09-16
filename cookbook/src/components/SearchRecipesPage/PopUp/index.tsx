@@ -12,9 +12,11 @@ type PopUpRecipeDetailedProps = {
 };
 
 export default function PopUpRecipeDetailed(
-  props: PopUpRecipeDetailedProps
+  props: PopUpRecipeDetailedProps,
 ): JSX.Element {
-  const { openDetailedInfo, recipe, saveToUsersRecipes, userId } = props;
+  const {
+    openDetailedInfo, recipe, saveToUsersRecipes, userId,
+  } = props;
   const {
     id,
     image,
@@ -53,7 +55,7 @@ export default function PopUpRecipeDetailed(
                 {userId ? (
                   <button
                     className="pop-up__btn"
-                    onClick={(e) => {
+                    onClick={() => {
                       saveRecipe();
                       openDetailedInfo(false);
                     }}

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Cookbook, Recipe } from '../../../interfaces';
-import { saveToUsersCookbooks } from '../../../redux/actions/user';
 import CommentsSection from './CommentsSection';
 
 import './index.scss';
@@ -16,7 +15,7 @@ type PopUpCookbookDetailedProps = {
 };
 
 export default function PopUpCookbookDetailed(
-  props: PopUpCookbookDetailedProps
+  props: PopUpCookbookDetailedProps,
 ): JSX.Element {
   const {
     openDetailedInfo,
@@ -26,13 +25,15 @@ export default function PopUpCookbookDetailed(
     saveToUsersRecipes,
     saveToUsersCookbooks,
   } = props;
-  const { id, image, description, name, author, likes, comments } = cardInfo;
+  const {
+    id, image, description, name, author, likes, comments,
+  } = cardInfo;
 
   function closePopUp(e: React.MouseEvent) {
     const target = e.target as HTMLElement;
     if (
-      target.classList.contains('overlay') ||
-      target.classList.contains('overlay__btn')
+      target.classList.contains('overlay')
+      || target.classList.contains('overlay__btn')
     ) {
       openDetailedInfo(false);
     }

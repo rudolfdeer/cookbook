@@ -4,7 +4,6 @@ import ROUTES from '../constants/routes';
 import HomePageConnect from '../redux/containers/HomePageConnect';
 import CookbooksPageConnect from '../redux/containers/CookbooksPageConnect';
 import RecipesPageConnect from '../redux/containers/RecipesPageConnect';
-import SignUpPage from './SignUpPage';
 import ProfileRecipesPageConnect from '../redux/containers/ProfileRecipesPageConnect';
 import ProfileCookbooksPageConnect from '../redux/containers/ProfileCookbookPageConnect';
 import LogInPageConnect from '../redux/containers/LogInPageConnect';

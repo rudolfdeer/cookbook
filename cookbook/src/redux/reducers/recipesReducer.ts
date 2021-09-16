@@ -8,7 +8,7 @@ type RecipesReducer = typeof initialState;
 
 export default function recipesReducer(
   state = initialState,
-  action: AnyAction
+  action: AnyAction,
 ): RecipesReducer {
   switch (action.type) {
     case ACTION_TYPES.RECIPE_GET_ALL:

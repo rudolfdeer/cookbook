@@ -8,9 +8,9 @@ type PopUpCreateRecipeProps = {
 };
 
 export default function PopUpCreateRecipe(
-  props: PopUpCreateRecipeProps
+  props: PopUpCreateRecipeProps,
 ): JSX.Element {
-  const { userId, setVisible } = props;
+  const { setVisible } = props;
 
   return (
     <div className="overlay">

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Cookbook, User } from '../../interfaces';
 import ROUTES from '../../constants/routes';
-import { Redirect } from 'react-router-dom';
+
 import Footer from '../Footer';
 import Header from '../Header';
 import ProfileCookbookCard from './Card';
@@ -17,14 +17,16 @@ type ProfileCookbooksPageProps = {
 };
 
 export default function ProfileCookbooksPage(
-  props: ProfileCookbooksPageProps
+  props: ProfileCookbooksPageProps,
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.NOT_FOUND} />;
   }
 
   const { cookbooks, user, getUsersCreatedCookbooks } = props;
-  const { username, bio, avatar, id } = user;
+  const {
+    username, bio, avatar, id,
+  } = user;
   const [isVisible, setVisible] = useState(false);
 
   useEffect(() => getUsersCreatedCookbooks(id), []);

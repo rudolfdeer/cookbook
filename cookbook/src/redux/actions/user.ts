@@ -29,7 +29,7 @@ export const logOut = (userId: number): AnyAction => {
 
 export const saveToUsersRecipes = (
   recipeId: number,
-  userId: number
+  userId: number,
 ): AnyAction => {
   const user = Api.getUser(userId);
   const { savedRecipes } = user;
@@ -43,7 +43,10 @@ export const saveToUsersRecipes = (
   };
 };
 
-export const saveToUsersCookbooks = (cookbookId: number, userId: number) => {
+export const saveToUsersCookbooks = (
+  cookbookId: number,
+  userId: number,
+): AnyAction => {
   const user = Api.getUser(userId);
   const { savedCookbooks } = user;
   const cookbook = Api.getCookbooksList().find((el) => el.id === cookbookId);
@@ -56,9 +59,8 @@ export const saveToUsersCookbooks = (cookbookId: number, userId: number) => {
   };
 };
 
-export const changeUserBio = (userId: number, newBio: string) => {
+export const changeUserBio = (userId: number, newBio: string): AnyAction => {
   const user = Api.getUser(userId);
-  console.log(userId, user);
   user.bio = newBio;
 
   return {
@@ -67,7 +69,7 @@ export const changeUserBio = (userId: number, newBio: string) => {
   };
 };
 
-export const changeUserName = (userId: number, newName: string) => {
+export const changeUserName = (userId: number, newName: string): AnyAction => {
   const user = Api.getUser(userId);
   user.username = newName;
 
@@ -77,7 +79,10 @@ export const changeUserName = (userId: number, newName: string) => {
   };
 };
 
-export const changeUserEmail = (userId: number, newEmail: string) => {
+export const changeUserEmail = (
+  userId: number,
+  newEmail: string,
+): AnyAction => {
   const user = Api.getUser(userId);
   user.email = newEmail;
 
@@ -87,7 +92,10 @@ export const changeUserEmail = (userId: number, newEmail: string) => {
   };
 };
 
-export const changeUserPassword = (userId: number, newPassword: string) => {
+export const changeUserPassword = (
+  userId: number,
+  newPassword: string,
+): AnyAction => {
   const user = Api.getUser(userId);
   user.password = newPassword;
 
@@ -97,7 +105,7 @@ export const changeUserPassword = (userId: number, newPassword: string) => {
   };
 };
 
-export const createUser = (email: string, password: string) => {
+export const createUser = (email: string, password: string): AnyAction => {
   const allUsers = Api.getAllUsers();
   const newId = allUsers[allUsers.length - 1].id + 1;
 
@@ -105,8 +113,8 @@ export const createUser = (email: string, password: string) => {
     id: newId,
     username: 'User User',
     avatar: 'images/user1.png',
-    email: email,
-    password: password,
+    email,
+    password,
     bio: 'Your bio here',
     isLoggedIn: true,
     savedRecipes: [] as Recipe[],

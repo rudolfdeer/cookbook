@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Cookbook, Recipe, User } from '../../interfaces';
-import { Redirect } from 'react-router-dom';
+
 import ROUTES from '../../constants/routes';
 import Footer from '../Footer';
 import Header from '../Header';
@@ -19,7 +19,7 @@ type ProfileSavedPageProps = {
 };
 
 export default function ProfileSavedPage(
-  props: ProfileSavedPageProps
+  props: ProfileSavedPageProps,
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.NOT_FOUND} />;
@@ -33,7 +33,9 @@ export default function ProfileSavedPage(
     getUsersSavedRecipes,
   } = props;
 
-  const { username, bio, avatar, id } = user;
+  const {
+    username, bio, avatar, id,
+  } = user;
 
   useEffect(() => {
     getUsersSavedRecipes(id);

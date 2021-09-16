@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
 import RecipesPage from '../../components/SearchRecipesPage';
+import { State } from '../../interfaces';
 import { filterRecipes, getRecipes, sortRecipes } from '../actions/recipes';
 import { saveToUsersRecipes } from '../actions/user';
 
-function mapStateToProps(state: any) {
+function mapStateToProps(state: State) {
   const { user, recipes } = state;
   const username = user ? user.username : '';
   const userId = user ? user.id : null;
@@ -24,7 +25,7 @@ const mapDispatchToProps = {
 
 const RecipesPageConnect = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(RecipesPage);
 
 export default RecipesPageConnect;

@@ -13,9 +13,11 @@ type ProfileRecipeCardProps = {
 };
 
 export default function ProfileRecipeCard(
-  props: ProfileRecipeCardProps
+  props: ProfileRecipeCardProps,
 ): JSX.Element {
-  const { views, image, description, name, author, likes, comments } = props;
+  const {
+    views, image, description, name, author, likes, comments,
+  } = props;
 
   return (
     <div className="card">

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Redirect } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, Redirect } from 'react-router-dom';
+
 import { User } from '../../interfaces';
 import ROUTES from '../../constants/routes';
 import Footer from '../Footer';
@@ -18,7 +18,7 @@ type ProfileSettingsPageProps = {
 };
 
 export default function ProfileSettingsPage(
-  props: ProfileSettingsPageProps
+  props: ProfileSettingsPageProps,
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.HOME} />;
@@ -31,7 +31,9 @@ export default function ProfileSettingsPage(
     changeUserPassword,
     logOut,
   } = props;
-  const { id, username, email, password, bio } = user;
+  const {
+    id, username, email, password, bio,
+  } = user;
   const [isBioDisabled, setBioDisabled] = useState(true);
   const [isNameDisabled, setNameDisabled] = useState(true);
   const [isEmailDisabled, setEmailDisabled] = useState(true);

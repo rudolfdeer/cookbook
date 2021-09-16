@@ -4,9 +4,7 @@ import { Link } from 'react-router-dom';
 import ERROR_MESSAGES from '../../../constants/errorMessages';
 import { EMAILREGEX } from '../../../constants/regex';
 import ROUTES from '../../../constants/routes';
-import { createUser } from '../../../redux/actions/user';
 import './index.scss';
-import Redirect from 'react-router-dom';
 
 type FormValues = {
   email: string;

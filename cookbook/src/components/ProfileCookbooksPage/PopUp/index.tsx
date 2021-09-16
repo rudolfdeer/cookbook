@@ -6,9 +6,9 @@ type PopUpCreateCookbookProps = {
 };
 
 export default function PopUpCreateCookbook(
-  props: PopUpCreateCookbookProps
+  props: PopUpCreateCookbookProps,
 ): JSX.Element {
-  const { userId, setVisible } = props;
+  const { setVisible } = props;
   return (
     <div className="overlay">
       <div className="overlay__btn"></div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Recipe, User } from '../../interfaces';
-import { Redirect } from 'react-router-dom';
+
 import Footer from '../Footer';
 import Header from '../Header';
 import ProfileRecipeCard from './Card';
@@ -17,23 +17,19 @@ type ProfileRecipesPageProps = {
 };
 
 export default function ProfileRecipesPage(
-  props: ProfileRecipesPageProps
+  props: ProfileRecipesPageProps,
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.NOT_FOUND} />;
   }
 
   const { recipes, user, getUsersCreatedRecipes } = props;
-  const { username, bio, avatar, id } = user;
+  const {
+    username, bio, avatar, id,
+  } = user;
   const [isVisible, setVisible] = useState(false);
-  const [chosenCardId, setChosenCardId] = useState(0);
 
   useEffect(() => getUsersCreatedRecipes(id), []);
-
-  const findCard = (): Recipe => {
-    const card = recipes.find((el) => el.id === chosenCardId);
-    return card;
-  };
 
   return (
     <>

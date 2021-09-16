@@ -50,3 +50,9 @@ export interface Cookbook {
   recipesIds: Recipe['id'][];
   tags: string[];
 }
+
+export interface State {
+  recipes: Recipe[];
+  cookbooks: Cookbook[];
+  user: User | null;
+}

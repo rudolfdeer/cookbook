@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux';
-import { Cookbook, Recipe, User } from '../../interfaces';
+import { Cookbook } from '../../interfaces';
 import ACTION_TYPES from '../../constants/actionTypes';
 
 const initialState = [] as Cookbook[];
@@ -8,7 +8,7 @@ type CookbooksReducer = typeof initialState;
 
 export default function cookbooksReducer(
   state = initialState,
-  action: AnyAction
+  action: AnyAction,
 ): CookbooksReducer {
   switch (action.type) {
     case ACTION_TYPES.COOKBOOK_GET_ALL:

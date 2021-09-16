@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux';
 import Api from '../../helpers/api';
 import ACTION_TYPES from '../../constants/actionTypes';
-import { Recipe } from '../../interfaces';
+import { Cookbook, Recipe } from '../../interfaces';
 
 type LoginInfo = {
   email: string;
@@ -13,7 +13,7 @@ export const logIn = (loginInfo: LoginInfo): AnyAction => {
   user.isLoggedIn = true;
 
   return {
-    type: ACTION_TYPES.USER_LOG_IN,
+    type: ACTION_TYPES.USER_UPDATE,
     payload: user,
   };
 };
@@ -29,7 +29,7 @@ export const saveToUsersRecipes = (
   user.savedRecipes = newSavedRecipes;
 
   return {
-    type: ACTION_TYPES.USER_SAVE,
+    type: ACTION_TYPES.USER_UPDATE,
     payload: user,
   };
 };
@@ -42,17 +42,18 @@ export const saveToUsersCookbooks = (cookbookId: number, userId: number) => {
   user.savedCookbooks = newSavedCookbooks;
 
   return {
-    type: ACTION_TYPES.USER_SAVE,
+    type: ACTION_TYPES.USER_UPDATE,
     payload: user,
   };
 };
 
 export const changeUserBio = (userId: number, newBio: string) => {
   const user = Api.getUser(userId);
+  console.log(userId, user);
   user.bio = newBio;
 
   return {
-    type: ACTION_TYPES.USER_SAVE,
+    type: ACTION_TYPES.USER_UPDATE,
     payload: user,
   };
 };
@@ -62,7 +63,7 @@ export const changeUserName = (userId: number, newName: string) => {
   user.username = newName;
 
   return {
-    type: ACTION_TYPES.USER_SAVE,
+    type: ACTION_TYPES.USER_UPDATE,
     payload: user,
   };
 };
@@ -72,7 +73,7 @@ export const changeUserEmail = (userId: number, newEmail: string) => {
   user.email = newEmail;
 
   return {
-    type: ACTION_TYPES.USER_SAVE,
+    type: ACTION_TYPES.USER_UPDATE,
     payload: user,
   };
 };
@@ -82,7 +83,31 @@ export const changeUserPassword = (userId: number, newPassword: string) => {
   user.password = newPassword;
 
   return {
-    type: ACTION_TYPES.USER_SAVE,
+    type: ACTION_TYPES.USER_UPDATE,
     payload: user,
+  };
+};
+
+export const createUser = (email: string, password: string) => {
+  const allUsers = Api.getAllUsers();
+  const newId = allUsers[allUsers.length - 1].id + 1;
+
+  const newUser = {
+    id: newId,
+    username: 'User User',
+    avatar: 'images/user1.png',
+    email: email,
+    password: password,
+    bio: 'Your bio here',
+    isLoggedIn: true,
+    savedRecipes: [] as Recipe[],
+    savedCookbooks: [] as Cookbook[],
+  };
+
+  Api.updateUsers(newUser);
+
+  return {
+    type: ACTION_TYPES.USER_UPDATE,
+    payload: newUser,
   };
 };

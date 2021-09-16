@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import ROUTES from '../../constants/routes';
 import SignUpForm from './Form';
 
 import './index.scss';
 
-export default function SignUpPage(): JSX.Element {
+type SignUpPageProps = {
+  createUser: Function;
+};
+
+export default function SignUpPage(props: SignUpPageProps): JSX.Element {
+  const { createUser } = props;
+  const [isRedirected, setIsRedirected] = useState(false);
+
+  if (isRedirected) {
+    return <Redirect to={ROUTES.PROFILE_SETTINGS} />;
+  }
   return (
     <main className="sign-up-page">
       <div className="wrapper">
-        <SignUpForm />
+        <SignUpForm createUser={createUser} setIsRedirected={setIsRedirected} />
       </div>
     </main>
   );

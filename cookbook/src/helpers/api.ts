@@ -29,6 +29,15 @@ class Api {
     const response = FetchQuery.getUser(userId);
     return response;
   }
+
+  getAllUsers(): User[] {
+    const response = FetchQuery.getAllUsers();
+    return response;
+  }
+
+  updateUsers(newUser: User) {
+    const response = FetchQuery.updateUsers(newUser);
+  }
 }
 
 export default new Api();

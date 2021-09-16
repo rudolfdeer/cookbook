@@ -26,6 +26,15 @@ class FetchQuery {
   getUser(userId: number): User {
     return users.find((user) => user.id === userId);
   }
+
+  getAllUsers(): User[] {
+    return users;
+  }
+
+  updateUsers(newUser: User) {
+    users[users.length] = newUser;
+    console.log(users);
+  }
 }
 
 export default new FetchQuery();

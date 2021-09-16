@@ -11,6 +11,7 @@ import LogInPageConnect from '../redux/containers/LogInPageConnect';
 import ProfileSettingsPageConnect from '../redux/containers/ProfileSettingsPageConnect';
 import ProfileSavedPageConnect from '../redux/containers/ProfileSavedPageConnect';
 import NotFoundPage from './NotFoundPage';
+import SignUpPageConnect from '../redux/containers/SignUpPageConnect';
 
 function App(): JSX.Element {
   return (
@@ -33,7 +34,11 @@ function App(): JSX.Element {
             path={ROUTES.LOG_IN}
             component={LogInPageConnect}
           ></Route>
-          <Route exact path={ROUTES.SIGN_UP} component={SignUpPage}></Route>
+          <Route
+            exact
+            path={ROUTES.SIGN_UP}
+            component={SignUpPageConnect}
+          ></Route>
           <Route
             exact
             path={ROUTES.PROFILE_SETTINGS}

@@ -11,13 +11,7 @@ export default function userReducer(
   action: AnyAction
 ): UserReducer {
   switch (action.type) {
-    case ACTION_TYPES.USER_LOG_IN:
-      return {
-        ...state,
-        ...action.payload,
-      };
-
-    case ACTION_TYPES.USER_SAVE:
+    case ACTION_TYPES.USER_UPDATE:
       return {
         ...state,
         ...action.payload,

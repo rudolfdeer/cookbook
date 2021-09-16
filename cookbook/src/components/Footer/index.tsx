@@ -1,7 +1,6 @@
 import * as React from 'react';
-import {
-  Link,
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import ROUTES from '../../constants/routes';
 
 import './index.scss';
 
@@ -10,12 +9,20 @@ export default function Footer(): JSX.Element {
     <footer className="footer">
       <div className="wrapper">
         <div className="footer__container">
-          <Link to="/"><div className="footer__logo_black" /></Link>
+          <Link to={ROUTES.HOME}>
+            <div className="footer__logo_black" />
+          </Link>
           <nav className="footer__nav">
             <ul className="nav__list">
-              <li className="list__item"><Link to="/recipes">Recipes</Link></li>
-              <li className="list__item"><Link to="/cookbooks">Cookbooks</Link></li>
-              <li className="list__item"><Link to="/">About us</Link></li>
+              <li className="list__item">
+                <Link to={ROUTES.RECIPES}>Recipes</Link>
+              </li>
+              <li className="list__item">
+                <Link to={ROUTES.COOKBOOKS}>Cookbooks</Link>
+              </li>
+              <li className="list__item">
+                <Link to="/">About us</Link>
+              </li>
             </ul>
           </nav>
           <div className="footer__email">

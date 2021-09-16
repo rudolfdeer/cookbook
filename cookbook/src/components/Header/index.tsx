@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import ROUTES from '../../constants/routes';
 
 import './index.scss';
@@ -29,9 +29,15 @@ export default function Header(props: HeaderProps): JSX.Element {
         <div className="search__icon" />
         <input type="text" className="search__input" />
       </div>
-      <button className="header__btn">
-        <Link to="/create_cookbook">Create CookBook</Link>
-      </button>
+      {username ? (
+        <button className="header__btn">
+          <Link to={ROUTES.PROFILE_COOKBOOKS}>Create CookBook</Link>
+        </button>
+      ) : (
+        <button className="header__btn">
+          <Link to={ROUTES.LOG_IN}>Create CookBook</Link>
+        </button>
+      )}
       {username ? (
         <div className="header__login-info">
           <div className="login__icon"></div>

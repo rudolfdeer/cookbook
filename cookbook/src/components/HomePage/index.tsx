@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import ROUTES from '../../constants/routes';
 import { Cookbook, Recipe } from '../../interfaces';
 import Footer from '../Footer';
 import Header from '../Header';
@@ -85,7 +86,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
                 .slice(0, 4)}
             </div>
             <button className="section__btn">
-              <Link to="/recipes">Show more</Link>
+              <Link to={ROUTES.RECIPES}>Show more</Link>
             </button>
           </section>
           <section className="home-page__section popular">
@@ -99,7 +100,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
                 .slice(0, 4)}
             </div>
             <button className="section__btn">
-              <Link to="/cookbooks">Show more</Link>
+              <Link to={ROUTES.COOKBOOKS}>Show more</Link>
             </button>
           </section>
         </div>
@@ -123,7 +124,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
               </div>
             </div>
             <button className="section__btn">
-              <Link to="/recipes">Show all recipes</Link>
+              <Link to={ROUTES.RECIPES}>Show all recipes</Link>
             </button>
           </div>
         </section>

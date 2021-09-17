@@ -1,6 +1,6 @@
 import React from 'react';
 import { Ingredient, Recipe } from '../../../interfaces';
-import CommentsSection from '../../SearchCookbooksPage/PopUp/CommentsSection';
+import CommentsSection from '../PopUp/CommentsSection';
 
 import './index.scss';
 
@@ -9,13 +9,18 @@ type PopUpRecipeDetailedProps = {
   recipe: Recipe;
   userId?: number;
   saveToUsersRecipes: Function;
+  createComment: Function;
 };
 
 export default function PopUpRecipeDetailed(
-  props: PopUpRecipeDetailedProps,
+  props: PopUpRecipeDetailedProps
 ): JSX.Element {
   const {
-    openDetailedInfo, recipe, saveToUsersRecipes, userId,
+    openDetailedInfo,
+    recipe,
+    saveToUsersRecipes,
+    userId,
+    createComment,
   } = props;
   const {
     id,
@@ -130,7 +135,12 @@ export default function PopUpRecipeDetailed(
           </div>
           <div className="pop-up__section comments">
             <div className="section__title">{`Comments (${comments.length})`}</div>
-            <CommentsSection comments={comments} userId={userId} />
+            <CommentsSection
+              comments={comments}
+              userId={userId}
+              recipeId={id}
+              createComment={createComment}
+            />
           </div>
         </div>
       </div>

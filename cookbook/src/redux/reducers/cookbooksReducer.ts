@@ -8,19 +8,10 @@ type CookbooksReducer = typeof initialState;
 
 export default function cookbooksReducer(
   state = initialState,
-  action: AnyAction,
+  action: AnyAction
 ): CookbooksReducer {
   switch (action.type) {
-    case ACTION_TYPES.COOKBOOK_GET_ALL:
-      return [...action.payload];
-
-    case ACTION_TYPES.COOKBOOK_SORT:
-      return [...action.payload];
-
-    case ACTION_TYPES.COOKBOOK_FILTER:
-      return [...action.payload];
-
-    case ACTION_TYPES.USER_GET_COOKBOOKS:
+    case ACTION_TYPES.COOKBOOKS_GET:
       return [...action.payload];
 
     default:

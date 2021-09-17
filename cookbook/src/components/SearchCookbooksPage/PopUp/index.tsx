@@ -12,10 +12,11 @@ type PopUpCookbookDetailedProps = {
   userId: number;
   saveToUsersCookbooks: Function;
   saveToUsersRecipes: Function;
+  createComment: Function;
 };
 
 export default function PopUpCookbookDetailed(
-  props: PopUpCookbookDetailedProps,
+  props: PopUpCookbookDetailedProps
 ): JSX.Element {
   const {
     openDetailedInfo,
@@ -24,16 +25,15 @@ export default function PopUpCookbookDetailed(
     userId,
     saveToUsersRecipes,
     saveToUsersCookbooks,
+    createComment,
   } = props;
-  const {
-    id, image, description, name, author, likes, comments,
-  } = cardInfo;
+  const { id, image, description, name, author, likes, comments } = cardInfo;
 
   function closePopUp(e: React.MouseEvent) {
     const target = e.target as HTMLElement;
     if (
-      target.classList.contains('overlay')
-      || target.classList.contains('overlay__btn')
+      target.classList.contains('overlay') ||
+      target.classList.contains('overlay__btn')
     ) {
       openDetailedInfo(false);
     }
@@ -130,7 +130,12 @@ export default function PopUpCookbookDetailed(
           </div>
           <div className="pop-up__section comments">
             <div className="section__title">{`Comments (${comments.length})`}</div>
-            <CommentsSection comments={comments} userId={userId} />
+            <CommentsSection
+              comments={comments}
+              userId={userId}
+              cookbookId={id}
+              createComment={createComment}
+            />
           </div>
         </div>
       </div>

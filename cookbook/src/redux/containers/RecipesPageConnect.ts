@@ -1,7 +1,12 @@
 import { connect } from 'react-redux';
 import RecipesPage from '../../components/SearchRecipesPage';
 import { State } from '../../interfaces';
-import { filterRecipes, getRecipes, sortRecipes } from '../actions/recipes';
+import {
+  filterRecipes,
+  getRecipes,
+  sortRecipes,
+  createComment,
+} from '../actions/recipes';
 import { saveToUsersRecipes } from '../actions/user';
 
 function mapStateToProps(state: State) {
@@ -21,11 +26,12 @@ const mapDispatchToProps = {
   sortRecipes,
   filterRecipes,
   saveToUsersRecipes,
+  createComment,
 };
 
 const RecipesPageConnect = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(RecipesPage);
 
 export default RecipesPageConnect;

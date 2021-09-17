@@ -6,7 +6,7 @@ export const getCookbooks = (): AnyAction => {
   const resData = Api.getCookbooksList();
 
   return {
-    type: ACTION_TYPES.COOKBOOK_GET_ALL,
+    type: ACTION_TYPES.COOKBOOKS_GET,
     payload: resData,
   };
 };
@@ -20,7 +20,7 @@ export const filterCookbooks = (tags: string[]): AnyAction => {
   }
   if (appliedTags.length === 1) {
     resData = currentData.filter(
-      (cookbook) => cookbook.tags.indexOf(appliedTags[0]) > -1,
+      (cookbook) => cookbook.tags.indexOf(appliedTags[0]) > -1
     );
   }
   if (appliedTags.length > 1) {
@@ -31,7 +31,7 @@ export const filterCookbooks = (tags: string[]): AnyAction => {
   }
 
   return {
-    type: ACTION_TYPES.COOKBOOK_FILTER,
+    type: ACTION_TYPES.COOKBOOKS_GET,
     payload: resData,
   };
 };
@@ -60,7 +60,7 @@ export const sortCookbooks = (order: string): AnyAction => {
   }
 
   return {
-    type: ACTION_TYPES.COOKBOOK_SORT,
+    type: ACTION_TYPES.COOKBOOKS_GET,
     payload: resData,
   };
 };
@@ -68,11 +68,11 @@ export const sortCookbooks = (order: string): AnyAction => {
 export const getUsersCreatedCookbooks = (userId: number): AnyAction => {
   const allCookbooks = Api.getCookbooksList();
   const createdCookbooks = allCookbooks.filter(
-    (cookbook) => cookbook.userId === userId,
+    (cookbook) => cookbook.userId === userId
   );
 
   return {
-    type: ACTION_TYPES.USER_GET_COOKBOOKS,
+    type: ACTION_TYPES.COOKBOOKS_GET,
     payload: createdCookbooks,
   };
 };
@@ -82,7 +82,36 @@ export const getUsersSavedCookbooks = (userId: number): AnyAction => {
   const { savedCookbooks } = user;
 
   return {
-    type: ACTION_TYPES.USER_GET_COOKBOOKS,
+    type: ACTION_TYPES.COOKBOOKS_GET,
     payload: savedCookbooks,
+  };
+};
+
+export const createComment = (
+  cookbookId: number,
+  userId: number,
+  commentText: string
+): AnyAction => {
+  const cookbooks = Api.getCookbooksList();
+  const user = Api.getUser(userId);
+  const { username, avatar } = user;
+
+  const newComment = {
+    user: username,
+    photo: avatar,
+    comment: commentText,
+    date: new Date().toString(),
+  };
+
+  const cookbooksModified = cookbooks.map((el) => {
+    if (el.id === cookbookId) {
+      el.comments.push(newComment);
+    }
+    return el;
+  });
+
+  return {
+    type: ACTION_TYPES.COOKBOOKS_GET,
+    payload: cookbooksModified,
   };
 };

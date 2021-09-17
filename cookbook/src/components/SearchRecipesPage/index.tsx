@@ -17,6 +17,7 @@ type RecipesPageProps = {
   username?: string;
   userId?: number;
   saveToUsersRecipes: Function;
+  createComment: Function;
 };
 
 export default function RecipesPage(props: RecipesPageProps): JSX.Element {
@@ -28,6 +29,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
     username,
     userId,
     saveToUsersRecipes,
+    createComment,
   } = props;
   const [isVisible, setVisible] = useState(false);
   const [chosenCardId, setChosenCardId] = useState(0);
@@ -89,6 +91,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
               recipe={findCard()}
               userId={userId}
               saveToUsersRecipes={saveToUsersRecipes}
+              createComment = {createComment}
             />
           ) : null}
         </div>

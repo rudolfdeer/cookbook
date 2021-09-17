@@ -37,7 +37,6 @@
     flex-direction: row;
     flex-wrap: wrap;
 
-
     .comment__photo {
       width: 68px;
       height: 68px;
@@ -48,6 +47,7 @@
     }
 
     .comment__text-info {
+      width: 100%;
       max-width: 716px;
 
       .text-info__container_top {

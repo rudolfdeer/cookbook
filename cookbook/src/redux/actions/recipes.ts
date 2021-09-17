@@ -6,7 +6,7 @@ import { Recipe } from '../../interfaces';
 export const getRecipes = (): AnyAction => {
   const resData = Api.getRecipesList();
   return {
-    type: ACTION_TYPES.RECIPE_GET_ALL,
+    type: ACTION_TYPES.RECIPES_GET,
     payload: resData,
   };
 };
@@ -33,7 +33,7 @@ export const sortRecipes = (order: string): AnyAction => {
   }
 
   return {
-    type: ACTION_TYPES.RECIPE_SORT,
+    type: ACTION_TYPES.RECIPES_GET,
     payload: resData,
   };
 };
@@ -41,11 +41,11 @@ export const sortRecipes = (order: string): AnyAction => {
 export const filterRecipes = (cookingTime: number): AnyAction => {
   const currentData = Api.getRecipesList();
   const resData = currentData.filter(
-    (recipe: Recipe) => recipe.cookingTime <= cookingTime,
+    (recipe: Recipe) => recipe.cookingTime <= cookingTime
   );
 
   return {
-    type: ACTION_TYPES.RECIPE_FILTER,
+    type: ACTION_TYPES.RECIPES_GET,
     payload: resData,
   };
 };
@@ -53,11 +53,11 @@ export const filterRecipes = (cookingTime: number): AnyAction => {
 export const getUsersCreatedRecipes = (userId: number): AnyAction => {
   const allRecipes = Api.getRecipesList();
   const createdRecipes = allRecipes.filter(
-    (recipe: Recipe) => recipe.userId === userId,
+    (recipe: Recipe) => recipe.userId === userId
   );
 
   return {
-    type: ACTION_TYPES.USER_GET_RECIPES,
+    type: ACTION_TYPES.RECIPES_GET,
     payload: createdRecipes,
   };
 };
@@ -67,7 +67,36 @@ export const getUsersSavedRecipes = (userId: number): AnyAction => {
   const { savedRecipes } = user;
 
   return {
-    type: ACTION_TYPES.USER_GET_RECIPES,
+    type: ACTION_TYPES.RECIPES_GET,
     payload: savedRecipes,
+  };
+};
+
+export const createComment = (
+  recipeId: number,
+  userId: number,
+  commentText: string
+): AnyAction => {
+  const recipes = Api.getRecipesList();
+  const user = Api.getUser(userId);
+  const { username, avatar } = user;
+
+  const newComment = {
+    user: username,
+    photo: avatar,
+    comment: commentText,
+    date: new Date().toString(),
+  };
+
+  const recipesModified = recipes.map((el) => {
+    if (el.id === recipeId) {
+      el.comments.push(newComment);
+    }
+    return el;
+  });
+
+  return {
+    type: ACTION_TYPES.RECIPES_GET,
+    payload: recipesModified,
   };
 };

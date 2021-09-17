@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Comment } from '../../../../interfaces';
 
 import './index.scss';
@@ -6,14 +6,18 @@ import './index.scss';
 type CommentsSectionProps = {
   comments: Comment[];
   userId: number;
+  recipeId: number;
+  createComment: Function;
 };
 
 export default function CommentsSection(
-  props: CommentsSectionProps,
+  props: CommentsSectionProps
 ): JSX.Element {
-  const { comments, userId } = props;
+  const { comments, userId, recipeId, createComment } = props;
+  const [newComment, setNewComment] = useState('');
 
   function getDate(dateString: string) {
+    console.log(dateString);
     return dateString.split(' ').slice(0, 4).join(' ');
   }
 
@@ -23,8 +27,18 @@ export default function CommentsSection(
         type="text"
         className="comment-new__input"
         placeholder="Express yourself..."
+        value={newComment}
+        onChange={(e) => {
+          const target = e.target as HTMLInputElement;
+          setNewComment(target.value);
+        }}
       />
-      <button className="comment-new__btn"></button>
+      <button
+        className="comment-new__btn"
+        onClick={() => {
+          createComment(recipeId, userId, newComment);
+        }}
+      ></button>
     </div>
   );
 

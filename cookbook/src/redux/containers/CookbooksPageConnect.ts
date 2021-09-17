@@ -5,6 +5,7 @@ import {
   getCookbooks,
   sortCookbooks,
   filterCookbooks,
+  createComment,
 } from '../actions/cookbooks';
 import { getRecipes } from '../actions/recipes';
 import { saveToUsersCookbooks, saveToUsersRecipes } from '../actions/user';
@@ -29,11 +30,12 @@ const mapDispatchToProps = {
   filterCookbooks,
   saveToUsersCookbooks,
   saveToUsersRecipes,
+  createComment,
 };
 
 const CookbooksPageConnect = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(CookbooksPage);
 
 export default CookbooksPageConnect;

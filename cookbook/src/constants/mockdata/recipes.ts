@@ -7,18 +7,10 @@ const recipes: Recipe[] = [
     image: 'images/freshmeat.jpg',
     userId: 1,
     userName: 'John Doe',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel sit adipiscing dignissim feugiat consectetur. Dolor urna vitae vitae etiam sed commodo. Cursus semper diam commodo laoreet purus orci sed. Nulla varius interdum euismod vestibulum tempus scelerisque felis mauris. Sed neque laoreet habitant pharetra luctus.',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel sit adipiscing dignissim feugiat consectetur. Dolor urna vitae vitae etiam sed commodo. Cursus semper diam commodo laoreet purus orci sed. Nulla varius interdum euismod vestibulum tempus scelerisque felis mauris. Sed neque laoreet habitant pharetra luctus.',
     directions: ['Take', 'Prepare', 'Cook'],
-    ingredients: [
-      {
-        ingredient: 'meat',
-        amount: '500g',
-      },
-      {
-        ingredient: 'garlic',
-        amount: '5g',
-      },
-    ],
+    ingredients: ['meat, 500g', 'garlic, 5g'],
     cookingTime: 60,
     views: 252,
     likes: 57,
@@ -26,13 +18,15 @@ const recipes: Recipe[] = [
       {
         user: 'John Galt',
         photo: 'images/user1.png',
-        comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
+        comment:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:35:45 GMT+0300 (Moscow Standard Time)',
       },
       {
         user: 'Patricia Holman',
         photo: 'images/user1.png',
-        comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
+        comment:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:37:48 GMT+0300 (Moscow Standard Time)',
       },
     ],
@@ -43,18 +37,10 @@ const recipes: Recipe[] = [
     image: 'images/pancakesnew.jpg',
     userId: 1,
     userName: 'John Doe',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel sit adipiscing dignissim feugiat consectetur. Dolor urna vitae vitae etiam sed commodo. Cursus semper diam commodo laoreet purus orci sed. Nulla varius interdum euismod vestibulum tempus scelerisque felis mauris. Sed neque laoreet habitant pharetra luctus.',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel sit adipiscing dignissim feugiat consectetur. Dolor urna vitae vitae etiam sed commodo. Cursus semper diam commodo laoreet purus orci sed. Nulla varius interdum euismod vestibulum tempus scelerisque felis mauris. Sed neque laoreet habitant pharetra luctus.',
     directions: ['Take', 'Prepare', 'Cook'],
-    ingredients: [
-      {
-        ingredient: 'flour',
-        amount: '200g',
-      },
-      {
-        ingredient: 'water',
-        amount: '250ml',
-      },
-    ],
+    ingredients: ['meat, 500g', 'garlic, 5g'],
     cookingTime: 35,
     views: 123,
     likes: 17,
@@ -62,13 +48,15 @@ const recipes: Recipe[] = [
       {
         user: 'John Galt',
         photo: 'images/user1.png',
-        comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
+        comment:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:35:45 GMT+0300 (Moscow Standard Time)',
       },
       {
         user: 'Patricia Holman',
         photo: 'images/user1.png',
-        comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
+        comment:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:37:48 GMT+0300 (Moscow Standard Time)',
       },
     ],
@@ -79,18 +67,10 @@ const recipes: Recipe[] = [
     image: 'images/pancakes.jpg',
     userId: 2,
     userName: 'John Galt',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel sit adipiscing dignissim feugiat consectetur. Dolor urna vitae vitae etiam sed commodo. Cursus semper diam commodo laoreet purus orci sed. Nulla varius interdum euismod vestibulum tempus scelerisque felis mauris. Sed neque laoreet habitant pharetra luctus.',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel sit adipiscing dignissim feugiat consectetur. Dolor urna vitae vitae etiam sed commodo. Cursus semper diam commodo laoreet purus orci sed. Nulla varius interdum euismod vestibulum tempus scelerisque felis mauris. Sed neque laoreet habitant pharetra luctus.',
     directions: ['Take', 'Prepare', 'Cook'],
-    ingredients: [
-      {
-        ingredient: 'flour',
-        amount: '250g',
-      },
-      {
-        ingredient: 'sugar',
-        amount: '10g',
-      },
-    ],
+    ingredients: ['meat, 500g', 'garlic, 5g'],
     cookingTime: 25,
     views: 200,
     likes: 51,
@@ -98,13 +78,15 @@ const recipes: Recipe[] = [
       {
         user: 'John Galt',
         photo: 'images/user1.png',
-        comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
+        comment:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:35:45 GMT+0300 (Moscow Standard Time)',
       },
       {
         user: 'Patricia Holman',
         photo: 'images/user1.png',
-        comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
+        comment:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:37:48 GMT+0300 (Moscow Standard Time)',
       },
     ],
@@ -115,18 +97,10 @@ const recipes: Recipe[] = [
     image: 'images/freshmeatwithpotatoandcheeze.jpg',
     userId: 1,
     userName: 'John Doe',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel sit adipiscing dignissim feugiat consectetur. Dolor urna vitae vitae etiam sed commodo. Cursus semper diam commodo laoreet purus orci sed. Nulla varius interdum euismod vestibulum tempus scelerisque felis mauris. Sed neque laoreet habitant pharetra luctus.',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel sit adipiscing dignissim feugiat consectetur. Dolor urna vitae vitae etiam sed commodo. Cursus semper diam commodo laoreet purus orci sed. Nulla varius interdum euismod vestibulum tempus scelerisque felis mauris. Sed neque laoreet habitant pharetra luctus.',
     directions: ['Take', 'Prepare', 'Cook'],
-    ingredients: [
-      {
-        ingredient: 'meat',
-        amount: '500g',
-      },
-      {
-        ingredient: 'potato',
-        amount: '300g',
-      },
-    ],
+    ingredients: ['meat, 500g', 'garlic, 5g'],
     cookingTime: 15,
     views: 212,
     likes: 25,
@@ -134,25 +108,29 @@ const recipes: Recipe[] = [
       {
         user: 'John Galt',
         photo: 'images/user1.png',
-        comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
+        comment:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:35:45 GMT+0300 (Moscow Standard Time)',
       },
       {
         user: 'Patricia Holman',
         photo: 'images/user1.png',
-        comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
+        comment:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:37:48 GMT+0300 (Moscow Standard Time)',
       },
       {
         user: 'John Galt',
         photo: 'images/user1.png',
-        comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
+        comment:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:35:45 GMT+0300 (Moscow Standard Time)',
       },
       {
         user: 'Patricia Holman',
         photo: 'images/user1.png',
-        comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
+        comment:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:37:48 GMT+0300 (Moscow Standard Time)',
       },
     ],
@@ -163,18 +141,10 @@ const recipes: Recipe[] = [
     image: 'images/freshfruits.jpg',
     userId: 4,
     userName: 'Winston Smith',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel sit adipiscing dignissim feugiat consectetur. Dolor urna vitae vitae etiam sed commodo. Cursus semper diam commodo laoreet purus orci sed. Nulla varius interdum euismod vestibulum tempus scelerisque felis mauris. Sed neque laoreet habitant pharetra luctus.',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel sit adipiscing dignissim feugiat consectetur. Dolor urna vitae vitae etiam sed commodo. Cursus semper diam commodo laoreet purus orci sed. Nulla varius interdum euismod vestibulum tempus scelerisque felis mauris. Sed neque laoreet habitant pharetra luctus.',
     directions: ['Take', 'Prepare', 'Cook'],
-    ingredients: [
-      {
-        ingredient: 'apple',
-        amount: '3',
-      },
-      {
-        ingredient: 'banana',
-        amount: '2',
-      },
-    ],
+    ingredients: ['meat, 500g', 'garlic, 5g'],
     cookingTime: 10,
     views: 117,
     likes: 15,
@@ -182,19 +152,22 @@ const recipes: Recipe[] = [
       {
         user: 'John Galt',
         photo: 'images/user1.png',
-        comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
+        comment:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:35:45 GMT+0300 (Moscow Standard Time)',
       },
       {
         user: 'Patricia Holman',
         photo: 'images/user1.png',
-        comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
+        comment:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:37:48 GMT+0300 (Moscow Standard Time)',
       },
       {
         user: 'John Galt',
         photo: 'images/user1.png',
-        comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
+        comment:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra blandit donec pellentesque ut non mauris lobortis. Iaculis leo, purus scelerisque id lacus et malesuada ipsum, quis. Eget fusce venenatis eu ut leo est erat.',
         date: 'Tue Aug 31 2021 10:35:45 GMT+0300 (Moscow Standard Time)',
       },
     ],

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Ingredient, Recipe } from '../../../interfaces';
+import { Recipe } from '../../../interfaces';
 import CommentsSection from '../PopUp/CommentsSection';
 
 import './index.scss';
@@ -91,8 +91,8 @@ export default function PopUpRecipeDetailed(
                 <div className="pop-up__section ingredients">
                   <div className="section__title">Ingredients</div>
                   <ul className="ingredients-list">
-                    {ingredients.map((el: Ingredient) => (
-                      <li>{`${el.ingredient}, ${el.amount}`}</li>
+                    {ingredients.map((el: string) => (
+                      <li>{el}</li>
                     ))}
                   </ul>
                 </div>

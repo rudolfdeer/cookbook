@@ -6,7 +6,7 @@ export interface Recipe {
   userName: string;
   description: string;
   directions: string[];
-  ingredients: Ingredient[];
+  ingredients: string[];
   cookingTime: number;
   views: number;
   likes: number;
@@ -32,10 +32,10 @@ export interface Comment {
   date: string;
 }
 
-export interface Ingredient {
-  ingredient: string;
-  amount: string;
-}
+// export interface Ingredient {
+//   ingredient: string;
+//   amount: string;
+// }
 
 export interface Cookbook {
   id: number;

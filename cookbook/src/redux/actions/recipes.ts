@@ -100,3 +100,48 @@ export const createComment = (
     payload: recipesModified,
   };
 };
+
+type NewRecipeValues = {
+  title: string;
+  image?: string;
+  description: string;
+  ingredients: string;
+  directions: string;
+};
+
+export const createRecipe = (
+  data: NewRecipeValues,
+  userId: number
+): AnyAction => {
+  const recipes = Api.getRecipesList();
+  const lastRecipeId = recipes[recipes.length - 1].id;
+  const newRecipeId = lastRecipeId + 1;
+
+  const user = Api.getUser(userId);
+  const userName = user.username;
+
+  const directionsArr = data.directions.split(',');
+  const ingredientArr = data.ingredients.split(',');
+
+  const newRecipe: Recipe = {
+    id: newRecipeId,
+    name: data.title,
+    image: data.image,
+    userName,
+    userId,
+    description: data.description,
+    directions: directionsArr,
+    ingredients: ingredientArr,
+    cookingTime: 60,
+    views: 0,
+    likes: 0,
+    comments: [],
+  };
+
+  recipes.push(newRecipe);
+
+  return {
+    type: ACTION_TYPES.RECIPES_GET,
+    payload: recipes,
+  };
+};

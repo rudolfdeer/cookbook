@@ -14,19 +14,18 @@ type ProfileRecipesPageProps = {
   recipes?: Recipe[];
   getUsersCreatedRecipes?: Function;
   user: User;
+  createRecipe: Function;
 };
 
 export default function ProfileRecipesPage(
-  props: ProfileRecipesPageProps,
+  props: ProfileRecipesPageProps
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.NOT_FOUND} />;
   }
 
-  const { recipes, user, getUsersCreatedRecipes } = props;
-  const {
-    username, bio, avatar, id,
-  } = user;
+  const { recipes, user, getUsersCreatedRecipes, createRecipe } = props;
+  const { username, bio, avatar, id } = user;
   const [isVisible, setVisible] = useState(false);
 
   useEffect(() => getUsersCreatedRecipes(id), []);
@@ -83,7 +82,11 @@ export default function ProfileRecipesPage(
             ))}
           </section>
           {isVisible ? (
-            <PopUpCreateRecipe userId={id} setVisible={setVisible} />
+            <PopUpCreateRecipe
+              userId={id}
+              setVisible={setVisible}
+              createRecipe={createRecipe}
+            />
           ) : null}
         </div>
       </main>

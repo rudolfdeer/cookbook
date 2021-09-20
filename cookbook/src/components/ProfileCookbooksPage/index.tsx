@@ -17,17 +17,16 @@ type ProfileCookbooksPageProps = {
 };
 
 export default function ProfileCookbooksPage(
-  props: ProfileCookbooksPageProps,
+  props: ProfileCookbooksPageProps
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.NOT_FOUND} />;
   }
 
   const { cookbooks, user, getUsersCreatedCookbooks } = props;
-  const {
-    username, bio, avatar, id,
-  } = user;
+  const { username, bio, avatar, id } = user;
   const [isVisible, setVisible] = useState(false);
+  const photoSrc = avatar || '../../assets/images/photo-mask.png';
 
   useEffect(() => getUsersCreatedCookbooks(id), []);
 
@@ -39,12 +38,13 @@ export default function ProfileCookbooksPage(
       <main className="profile-cookbooks-page">
         <div className="wrapper">
           <section className="user">
-            <div
-              className="user__photo"
-              style={{
-                background: `url(../../../assets/${avatar}) center no-repeat`,
-              }}
-            ></div>
+            <div className="user__photo">
+              <img
+                src={photoSrc}
+                alt="User photo default"
+                className="photo__image"
+              />
+            </div>
             <div className="user__container">
               <div className="user__name">{username}</div>
               <div className="user__bio">{bio}</div>

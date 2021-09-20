@@ -6,6 +6,7 @@ import {
   changeUserName,
   changeUserEmail,
   changeUserPassword,
+  updateUserPhoto,
   logOut,
 } from '../actions/user';
 
@@ -20,12 +21,13 @@ const mapDispatchToProps = {
   changeUserName,
   changeUserEmail,
   changeUserPassword,
+  updateUserPhoto,
   logOut,
 };
 
 const ProfileSettingsPageConnect = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(ProfileSettingsPage);
 
 export default ProfileSettingsPageConnect;

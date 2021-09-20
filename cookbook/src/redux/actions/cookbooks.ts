@@ -93,12 +93,9 @@ export const createComment = (
   commentText: string
 ): AnyAction => {
   const cookbooks = Api.getCookbooksList();
-  const user = Api.getUser(userId);
-  const { username, avatar } = user;
 
   const newComment = {
-    user: username,
-    photo: avatar,
+    userId,
     comment: commentText,
     date: new Date().toString(),
   };

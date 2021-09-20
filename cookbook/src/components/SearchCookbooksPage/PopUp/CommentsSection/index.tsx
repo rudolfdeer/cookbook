@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import api from '../../../../helpers/api';
 import { Comment } from '../../../../interfaces';
 
 import './index.scss';
@@ -19,6 +20,16 @@ export default function CommentsSection(
   function getDate(dateString: string) {
     return dateString.split(' ').slice(0, 4).join(' ');
   }
+
+  const getUserName = (id: number) => {
+    const user = api.getUser(id);
+    return user.username;
+  };
+
+  const getUserPhoto = (id: number) => {
+    const user = api.getUser(id);
+    return user.avatar;
+  };
 
   const newCommentSection = (
     <div className="comment-new">
@@ -51,12 +62,14 @@ export default function CommentsSection(
             <div
               className="comment__photo"
               style={{
-                background: `url(../../../../assets/${el.photo}) center no-repeat`,
+                background: `url(${getUserPhoto(el.userId)}) center no-repeat`,
               }}
             ></div>
             <div className="comment__text-info">
               <div className="text-info__container_top">
-                <div className="comment__username">{el.user}</div>
+                <div className="comment__username">
+                  {getUserName(el.userId)}
+                </div>
                 <div className="comment__time">{getDate(el.date)}</div>
               </div>
               <div className="comment__text">{el.comment}</div>

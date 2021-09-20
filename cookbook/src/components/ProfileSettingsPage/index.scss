@@ -3,65 +3,96 @@
 .profile-settings-page {
   @include profile-page;
 
-  .user {
+  .user__photo_settings {
+    margin-right: 40px;
+    width: 160px;
+    height: 160px;
+    overflow: hidden;
+  }
+
+  .photo__label {
+    position: relative;
+    display: flex;
+    margin-right: 40px;
     width: 100%;
+    height: 100%;
+    border-radius: 102px;
+    background-color: #181818;
+    background: url('../../assets/images/photo-mask.png') center no-repeat;
+    z-index: 221;
 
-    .user__photo_settings {
-      opacity: 0.5;
-      background: url('../../assets/images/photo-mask.png') center no-repeat;
-      background-color: #181818;
-
-      .photo__input {
-        display: none;
-        opacity: 0;
-        appearance: none;
-      }
-    }
-
-    .user__form {
-      display: flex;
-      justify-content: space-between;
+    .photo__image_opacity {
+      display: block;
+      margin: auto;
       width: 100%;
       height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      border-radius: 102px;
+      opacity: 0.5;
     }
 
-    .user__container {
+    .photo__input {
+      opacity: 0;
+      appearance: none;
+      display: block;
+      height: 100%;
       width: 100%;
-      max-width: 580px;
-    }
-
-    .form__input_submit {
-      @include text-18;
-      height: 22px;
-
-      background: none;
-      border: none;
-      color: $primary-yellow;
+      position: absolute;
+      z-index: 222;
+      border-radius: 102px;
 
       &:hover {
         cursor: pointer;
-        text-decoration: underline;
       }
     }
+  }
 
-    .user__bio {
-      width: 100%;
-      margin-right: 40px;
-      border: none;
-      resize: none;
-      display: flex;
+  .user__form {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+  }
 
-      &:disabled {
-        background: none;
-      }
+  .user__container.editable {
+    width: 100%;
+    max-width: 580px;
+  }
+
+  .form__input_submit {
+    @include text-18;
+    height: 22px;
+
+    background: none;
+    border: none;
+    color: $primary-yellow;
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
     }
+  }
 
-    input {
-      border: none;
+  .user__bio_editable {
+    @include text-18;
 
-      &:disabled {
-        background: none;
-      }
+    width: 100%;
+    margin-right: 40px;
+    border: none;
+    resize: none;
+    display: flex;
+
+    &:disabled {
+      background: none;
+    }
+  }
+
+  input {
+    border: none;
+
+    &:disabled {
+      background: none;
     }
   }
 
@@ -115,11 +146,23 @@
       text-decoration: underline;
     }
   }
-}
-.btn__logout {
-  @include button-light;
-  @include text-18;
 
-  height: 32px;
-  width: 120px;
+  .section__btns {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    .btn__logout {
+      @include button-dark;
+      @include text-18;
+
+      height: 32px;
+      width: 120px;
+    }
+
+    .btn__delete {
+      @include button-dark;
+      height: 32px;
+    }
+  }
 }

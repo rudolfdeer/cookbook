@@ -7,6 +7,7 @@ import Footer from '../Footer';
 import Header from '../Header';
 
 import './index.scss';
+import { useStore } from 'react-redux';
 
 type ProfileSettingsPageProps = {
   user: User;
@@ -14,11 +15,12 @@ type ProfileSettingsPageProps = {
   changeUserName: Function;
   changeUserEmail: Function;
   changeUserPassword: Function;
+  updateUserPhoto: Function;
   logOut: Function;
 };
 
 export default function ProfileSettingsPage(
-  props: ProfileSettingsPageProps,
+  props: ProfileSettingsPageProps
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.HOME} />;
@@ -29,11 +31,10 @@ export default function ProfileSettingsPage(
     changeUserName,
     changeUserEmail,
     changeUserPassword,
+    updateUserPhoto,
     logOut,
   } = props;
-  const {
-    id, username, email, password, bio,
-  } = user;
+  const { id, username, email, password, bio, avatar } = user;
   const [isBioDisabled, setBioDisabled] = useState(true);
   const [isNameDisabled, setNameDisabled] = useState(true);
   const [isEmailDisabled, setEmailDisabled] = useState(true);
@@ -42,7 +43,9 @@ export default function ProfileSettingsPage(
   const [newName, setNewName] = useState(username);
   const [newEmail, setNewEmail] = useState(email);
   const [newPassword, setNewPassword] = useState(password);
-  const [isRedirect, setIsRedirect] = useState(false);
+  const [photoSrc, setPhotoSrc] = useState(
+    avatar || './assets/images/photo-mask.png'
+  );
 
   return (
     <>
@@ -53,16 +56,36 @@ export default function ProfileSettingsPage(
         <div className="wrapper">
           <section className="user">
             <div className="user__photo_settings">
-              <input type="file" className="photo__input" />
+              <label htmlFor="avatar" className="photo__label">
+                <input
+                  type="file"
+                  className="photo__input"
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    const reader = new FileReader();
+                    reader.onload = () => {
+                      const result = String(reader.result);
+                      setPhotoSrc(result);
+                      updateUserPhoto(id, result);
+                    };
+                    reader.readAsDataURL(file);
+                  }}
+                />
+                <img
+                  src={photoSrc}
+                  alt="User photo default"
+                  className="photo__image_opacity"
+                />
+              </label>
             </div>
 
-            <div className="user__container">
+            <div className="user__container editable">
               <div className="user__name">{newName}</div>
               <form action="" className="user__form">
                 <textarea
                   name="bio"
                   value={newBio}
-                  className="user__bio"
+                  className="user__bio_editable"
                   disabled={isBioDisabled}
                   onChange={(e) => {
                     const target = e.target as HTMLTextAreaElement;
@@ -226,15 +249,17 @@ export default function ProfileSettingsPage(
                 />
               )}
             </form>
-            <button
-              className="btn__logout"
-              onClick={() => {
-                setIsRedirect(true);
-                logOut(id);
-              }}
-            >
-              Log out
-            </button>
+            <div className="section__btns">
+              <button
+                className="btn__logout"
+                onClick={() => {
+                  logOut(id);
+                }}
+              >
+                Log out
+              </button>
+              <button className="btn__delete">Delete my account</button>
+            </div>
           </section>
         </div>
       </main>

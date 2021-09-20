@@ -26,8 +26,7 @@ export interface User {
 }
 
 export interface Comment {
-  user: string;
-  photo: string;
+  userId: number;
   comment: string;
   date: string;
 }

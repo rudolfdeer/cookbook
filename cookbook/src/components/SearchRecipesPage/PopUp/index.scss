@@ -2,9 +2,13 @@
 
 .overlay {
   @include overlay;
-  
+
   .pop-up__recipe {
     margin-bottom: 72px;
+
+    .pop-up-sections {
+      width: 100%;
+    }
 
     .pop-up__section.statistics {
       margin-bottom: 0;
@@ -59,7 +63,7 @@
 
       .description {
         max-width: 424px;
-        }
+      }
     }
 
     &.information {
@@ -76,10 +80,9 @@
       margin-bottom: 72px;
     }
 
-
     &.directions {
       flex-basis: 50%;
-      
+
       .directions-list {
         list-style: none;
         padding: 0;

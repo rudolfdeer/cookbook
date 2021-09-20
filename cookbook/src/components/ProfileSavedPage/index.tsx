@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Cookbook, Recipe, User } from '../../interfaces';
 
@@ -19,7 +19,7 @@ type ProfileSavedPageProps = {
 };
 
 export default function ProfileSavedPage(
-  props: ProfileSavedPageProps,
+  props: ProfileSavedPageProps
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.NOT_FOUND} />;
@@ -33,9 +33,8 @@ export default function ProfileSavedPage(
     getUsersSavedRecipes,
   } = props;
 
-  const {
-    username, bio, avatar, id,
-  } = user;
+  const { username, bio, avatar, id } = user;
+  const photoSrc = avatar || '../../assets/images/photo-mask.png';
 
   useEffect(() => {
     getUsersSavedRecipes(id);
@@ -50,12 +49,13 @@ export default function ProfileSavedPage(
       <main className="profile-cookbooks-page">
         <div className="wrapper">
           <section className="user">
-            <div
-              className="user__photo"
-              style={{
-                background: `url(../../../assets/${avatar}) center no-repeat`,
-              }}
-            ></div>
+            <div className="user__photo">
+              <img
+                src={photoSrc}
+                alt="User photo default"
+                className="photo__image"
+              />
+            </div>
             <div className="user__container">
               <div className="user__name">{username}</div>
               <div className="user__bio">{bio}</div>

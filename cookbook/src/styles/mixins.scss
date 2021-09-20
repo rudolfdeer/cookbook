@@ -475,13 +475,15 @@
       height: 160px;
       border-radius: 102px;
       background-size: 100% !important;
-    }
 
-    .user__photo_settings {
-      margin-right: 40px;
-      width: 160px;
-      height: 160px;
-      border-radius: 102px;
+      .photo__image {
+        display: block;
+        margin: auto;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 102px;
+      }
     }
 
     .user__container {
@@ -512,53 +514,3 @@
     }
   }
 }
-
-// @mixin pop-up-create {
-//   .btn {
-//     @include button-dark;
-//     width: 130px;
-//     height: 62px;
-//   }
-
-//   .btn_light {
-//     @include button-light;
-//     width: 130px;
-//     height: 62px;
-//     margin-right: 40px;
-//   }
-
-//   .btns {
-//     display: flex;
-//     width: 100%;
-//     justify-content: flex-end;
-//   }
-
-//   .pop-up__section {
-//     margin-bottom: 24px;
-
-//     .section__title {
-//       display: block;
-//       margin-bottom: 14px;
-
-//       span {
-//         font-size: 25px;
-//         color: $primary-yellow;
-//       }
-//     }
-
-//     &.btn {
-//       width: 271px;
-//       display: flex;
-//       align-items: center;
-//       justify-content: center;
-//     }
-
-//     .section__input.big {
-//       height: 104px;
-//     }
-
-//     .section__input_file {
-//       display: none;
-//     }
-//   }
-// }

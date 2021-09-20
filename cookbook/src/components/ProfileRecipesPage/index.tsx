@@ -29,6 +29,7 @@ export default function ProfileRecipesPage(
   const [isVisible, setVisible] = useState(false);
 
   useEffect(() => getUsersCreatedRecipes(id), []);
+  const photoSrc = avatar || '../../assets/images/photo-mask.png';
 
   return (
     <>
@@ -38,12 +39,13 @@ export default function ProfileRecipesPage(
       <main className="profile-recipes-page">
         <div className="wrapper">
           <section className="user">
-            <div
-              className="user__photo"
-              style={{
-                background: `url(../../../assets/${avatar}) center no-repeat`,
-              }}
-            ></div>
+            <div className="user__photo">
+              <img
+                src={photoSrc}
+                alt="User photo default"
+                className="photo__image"
+              />
+            </div>
             <div className="user__container">
               <div className="user__name">{username}</div>
               <div className="user__bio">{bio}</div>

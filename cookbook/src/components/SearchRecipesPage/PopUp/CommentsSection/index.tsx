@@ -6,29 +6,20 @@ import './index.scss';
 
 type CommentsSectionProps = {
   comments: Comment[];
-  userId: number;
+  loggedInUserId: number;
   recipeId: number;
   createComment: Function;
 };
 
 export default function CommentsSection(
-  props: CommentsSectionProps
+  props: CommentsSectionProps,
 ): JSX.Element {
-  const { comments, userId, recipeId, createComment } = props;
+  const {
+    comments, loggedInUserId, recipeId, createComment,
+  } = props;
   const [newComment, setNewComment] = useState('');
 
-  const getDate = (dateString: string) =>
-    dateString.split(' ').slice(0, 4).join(' ');
-
-  const getUserName = (id: number) => {
-    const user = api.getUser(id);
-    return user.username;
-  };
-
-  const getUserPhoto = (id: number) => {
-    const user = api.getUser(id);
-    return user.avatar;
-  };
+  const getDate = (dateString: string) => dateString.split(' ').slice(0, 4).join(' ');
 
   const newCommentSection = (
     <div className="comment-new">
@@ -45,7 +36,7 @@ export default function CommentsSection(
       <button
         className="comment-new__btn"
         onClick={() => {
-          createComment(recipeId, userId, newComment);
+          createComment(recipeId, loggedInUserId, newComment);
         }}
       ></button>
     </div>
@@ -53,20 +44,22 @@ export default function CommentsSection(
 
   return (
     <>
-      {userId ? newCommentSection : null}
+      {loggedInUserId ? newCommentSection : null}
       <div className="comments">
         {comments?.map((el) => (
           <div className="comments__item" key={Math.random()}>
             <div
               className="comment__photo"
               style={{
-                background: `url(${getUserPhoto(el.userId)}) center no-repeat`,
+                background: `url(${api.getUserPhoto(
+                  el.userId,
+                )}) center no-repeat`,
               }}
             ></div>
             <div className="comment__text-info">
               <div className="text-info__container_top">
                 <div className="comment__username">
-                  {getUserName(el.userId)}
+                  {api.getUserName(el.userId)}
                 </div>
                 <div className="comment__time">{getDate(el.date)}</div>
               </div>

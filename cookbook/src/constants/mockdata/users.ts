@@ -3,7 +3,7 @@ import { User } from '../../interfaces';
 const users: User[] = [
   {
     id: 1,
-    username: 'Jonh Doe',
+    name: 'Jonh Doe',
     avatar: 'images/user1.png',
     email: 'johndoe@test.com',
     password: 'user1',
@@ -14,7 +14,7 @@ const users: User[] = [
   },
   {
     id: 2,
-    username: 'John Galt',
+    name: 'John Galt',
     avatar: 'images/user1.png',
     email: 'johngalt@test.com',
     password: 'user2',
@@ -25,7 +25,7 @@ const users: User[] = [
   },
   {
     id: 3,
-    username: 'Patricia Holman',
+    name: 'Patricia Holman',
     avatar: 'images/user1.png',
     email: 'pholman@test.com',
     password: 'user3',
@@ -36,7 +36,7 @@ const users: User[] = [
   },
   {
     id: 4,
-    username: 'Winston Smith',
+    name: 'Winston Smith',
     avatar: 'images/user1.png',
     email: 'smith@test.com',
     password: 'user4',

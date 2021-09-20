@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import ROUTES from '../../constants/routes';
+import { ActionCreatorFunction } from '../../interfaces';
 import LogInForm from './Form';
 
 import './index.scss';
 
 type LogInPageProps = {
   isLoggedIn: boolean;
-  logIn: Function;
+  logIn: ActionCreatorFunction;
 };
 
 export default function LogInPage(props: LogInPageProps): JSX.Element {

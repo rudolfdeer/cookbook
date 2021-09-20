@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { Recipe, User } from '../../interfaces';
+import { ActionCreatorFunction, Recipe, User } from '../../interfaces';
 
 import Footer from '../Footer';
 import Header from '../Header';
@@ -11,21 +11,25 @@ import ROUTES from '../../constants/routes';
 import PopUpCreateRecipe from './PopUp';
 
 type ProfileRecipesPageProps = {
-  recipes?: Recipe[];
-  getUsersCreatedRecipes?: Function;
+  recipes: Recipe[];
+  getUsersCreatedRecipes: Function;
   user: User;
-  createRecipe: Function;
+  createRecipe: ActionCreatorFunction;
 };
 
 export default function ProfileRecipesPage(
-  props: ProfileRecipesPageProps
+  props: ProfileRecipesPageProps,
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.NOT_FOUND} />;
   }
 
-  const { recipes, user, getUsersCreatedRecipes, createRecipe } = props;
-  const { username, bio, avatar, id } = user;
+  const {
+    recipes, user, getUsersCreatedRecipes, createRecipe,
+  } = props;
+  const {
+    name, bio, avatar, id,
+  } = user;
   const [isVisible, setVisible] = useState(false);
 
   useEffect(() => getUsersCreatedRecipes(id), []);
@@ -34,7 +38,7 @@ export default function ProfileRecipesPage(
   return (
     <>
       <div className="wrapper">
-        <Header username={username} />
+        <Header loggedInUserId={id} />
       </div>
       <main className="profile-recipes-page">
         <div className="wrapper">
@@ -47,7 +51,7 @@ export default function ProfileRecipesPage(
               />
             </div>
             <div className="user__container">
-              <div className="user__name">{username}</div>
+              <div className="user__name">{name}</div>
               <div className="user__bio">{bio}</div>
             </div>
           </section>
@@ -72,8 +76,8 @@ export default function ProfileRecipesPage(
             {recipes.map((el) => (
               <ProfileRecipeCard
                 id={el.id}
-                name={el.name}
-                author={el.userName}
+                title={el.title}
+                authorId={el.userId}
                 views={el.views}
                 likes={el.likes}
                 comments={el.comments.length}

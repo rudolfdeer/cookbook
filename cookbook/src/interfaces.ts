@@ -1,9 +1,10 @@
+import { AnyAction } from 'redux';
+
 export interface Recipe {
   id: number;
-  name: string;
+  title: string;
   image: string;
   userId: number;
-  userName: string;
   description: string;
   directions: string[];
   ingredients: string[];
@@ -15,7 +16,7 @@ export interface Recipe {
 
 export interface User {
   id: number;
-  username: string;
+  name: string;
   email: string;
   password: string;
   avatar: string;
@@ -38,8 +39,7 @@ export interface Comment {
 
 export interface Cookbook {
   id: number;
-  name: string;
-  author: string;
+  title: string;
   userId: number;
   description: string;
   likes: number;
@@ -54,4 +54,8 @@ export interface State {
   recipes: Recipe[];
   cookbooks: Cookbook[];
   user: User | null;
+}
+
+export interface ActionCreatorFunction {
+  (): AnyAction;
 }

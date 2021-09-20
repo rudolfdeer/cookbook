@@ -6,12 +6,12 @@ import { getRecipes } from '../actions/recipes';
 
 function mapStateToProps(state: State) {
   const { recipes, cookbooks, user } = state;
-  const username = user ? user.username : '';
+  const loggedInUserId = user ? user.id : null;
 
   return {
     recipes,
     cookbooks,
-    username,
+    loggedInUserId,
   };
 }
 

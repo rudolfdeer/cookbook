@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 type PopUpCreateCookbookProps = {
-  userId?: number;
-  setVisible: Function;
+  userId: number;
+  setVisible: Dispatch<SetStateAction<boolean>>;
 };
 
 export default function PopUpCreateCookbook(
-  props: PopUpCreateCookbookProps,
+  props: PopUpCreateCookbookProps
 ): JSX.Element {
   const { setVisible } = props;
+
   return (
     <div className="overlay">
       <div className="overlay__btn"></div>

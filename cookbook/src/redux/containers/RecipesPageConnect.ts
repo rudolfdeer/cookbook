@@ -11,13 +11,11 @@ import { saveToUsersRecipes } from '../actions/user';
 
 function mapStateToProps(state: State) {
   const { user, recipes } = state;
-  const username = user ? user.username : '';
-  const userId = user ? user.id : null;
+  const loggedInUserId = user ? user.id : null;
 
   return {
     recipes,
-    username,
-    userId,
+    loggedInUserId,
   };
 }
 
@@ -31,7 +29,7 @@ const mapDispatchToProps = {
 
 const RecipesPageConnect = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(RecipesPage);
 
 export default RecipesPageConnect;

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import ROUTES from '../../constants/routes';
+import { ActionCreatorFunction } from '../../interfaces';
 import SignUpForm from './Form';
 
 import './index.scss';
 
 type SignUpPageProps = {
-  createUser: Function;
+  createUser: ActionCreatorFunction;
 };
 
 export default function SignUpPage(props: SignUpPageProps): JSX.Element {

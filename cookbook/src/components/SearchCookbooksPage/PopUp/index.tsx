@@ -1,43 +1,46 @@
-import React from 'react';
-import { Cookbook, Recipe } from '../../../interfaces';
+import React, { Dispatch, SetStateAction } from 'react';
+import api from '../../../helpers/api';
+import { ActionCreatorFunction, Cookbook } from '../../../interfaces';
 import CommentsSection from './CommentsSection';
 
 import './index.scss';
 import PopUpRecipeCard from './RecipeCard';
 
 type PopUpCookbookDetailedProps = {
-  openDetailedInfo: Function;
-  cardInfo: Cookbook;
-  recipes: Recipe[];
-  userId: number;
+  setVisible: Dispatch<SetStateAction<boolean>>;
+  cookbook: Cookbook;
+  loggedInUserId: number;
   saveToUsersCookbooks: Function;
-  saveToUsersRecipes: Function;
-  createComment: Function;
+  saveToUsersRecipes: ActionCreatorFunction;
+  createComment: ActionCreatorFunction;
 };
 
 export default function PopUpCookbookDetailed(
-  props: PopUpCookbookDetailedProps
+  props: PopUpCookbookDetailedProps,
 ): JSX.Element {
   const {
-    openDetailedInfo,
-    cardInfo,
-    recipes,
-    userId,
+    setVisible,
+    cookbook,
+    loggedInUserId,
     saveToUsersRecipes,
     saveToUsersCookbooks,
     createComment,
   } = props;
-  const { id, image, description, name, author, likes, comments } = cardInfo;
+  const {
+    id, image, description, title, userId, likes, comments, recipesIds,
+  } = cookbook;
 
   function closePopUp(e: React.MouseEvent) {
     const target = e.target as HTMLElement;
     if (
-      target.classList.contains('overlay') ||
-      target.classList.contains('overlay__btn')
+      target.classList.contains('overlay')
+      || target.classList.contains('overlay__btn')
     ) {
-      openDetailedInfo(false);
+      setVisible(false);
     }
   }
+
+  const recipes = api.getRecipesInCookbook(recipesIds);
 
   return (
     <div className="overlay" onClick={(e) => closePopUp(e)}>
@@ -45,13 +48,13 @@ export default function PopUpCookbookDetailed(
       <div className="overlay__content">
         <div className="pop-up">
           <div className="pop-up__section top">
-            <div className="pop-up__title">{name}</div>
-            {userId ? (
+            <div className="pop-up__title">{title}</div>
+            {loggedInUserId ? (
               <button
                 className="pop-up__btn-clone"
                 onClick={() => {
-                  saveToUsersCookbooks(id, userId);
-                  openDetailedInfo(false);
+                  saveToUsersCookbooks(id, loggedInUserId);
+                  setVisible(false);
                 }}
               >
                 Clone to my CookBook
@@ -59,7 +62,7 @@ export default function PopUpCookbookDetailed(
             ) : null}
           </div>
 
-          <div className="pop-up__author">{author}</div>
+          <div className="pop-up__author">{api.getUserName(userId)}</div>
 
           <div className="pop-up__section description">
             <div
@@ -113,8 +116,8 @@ export default function PopUpCookbookDetailed(
             <div className="section__cards">
               {recipes?.map((el) => (
                 <PopUpRecipeCard
-                  name={el.name}
-                  author={el.userName}
+                  title={el.title}
+                  authorId={el.userId}
                   views={el.views}
                   description={el.description}
                   likes={el.likes}
@@ -122,7 +125,7 @@ export default function PopUpCookbookDetailed(
                   comments={el.comments.length}
                   key={el.id}
                   id={el.id}
-                  userId={userId}
+                  loggedInUserId={loggedInUserId}
                   saveToUsersRecipes={saveToUsersRecipes}
                 />
               ))}
@@ -132,7 +135,7 @@ export default function PopUpCookbookDetailed(
             <div className="section__title">{`Comments (${comments.length})`}</div>
             <CommentsSection
               comments={comments}
-              userId={userId}
+              loggedInUserId={loggedInUserId}
               cookbookId={id}
               createComment={createComment}
             />

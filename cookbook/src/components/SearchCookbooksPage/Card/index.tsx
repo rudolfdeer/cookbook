@@ -1,11 +1,12 @@
 import React from 'react';
+import api from '../../../helpers/api';
 
 import './index.scss';
 
 type CookbookCardProps = {
   id: number;
-  name: string;
-  author: string;
+  title: string;
+  authorId: number;
   description: string;
   views: number;
   likes: number;
@@ -21,8 +22,8 @@ export default function CookbookCard(props: CookbookCardProps): JSX.Element {
     views,
     image,
     description,
-    name,
-    author,
+    title,
+    authorId,
     likes,
     comments,
     openDetailedInfo,
@@ -80,9 +81,9 @@ export default function CookbookCard(props: CookbookCardProps): JSX.Element {
             openDetailedInfo(true);
           }}
         >
-          {name}
+          {title}
         </div>
-        <div className="card__author">{author}</div>
+        <div className="card__author">{api.getUserName(authorId)}</div>
       </div>
 
       <div className="card__info-container description">

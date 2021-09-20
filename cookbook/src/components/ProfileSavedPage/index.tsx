@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Cookbook, Recipe, User } from '../../interfaces';
 
@@ -12,7 +12,7 @@ import ProfileSavedRecipeCard from './RecipeCard';
 
 type ProfileSavedPageProps = {
   cookbooks: Cookbook[];
-  getUsersSavedCookbooks?: Function;
+  getUsersSavedCookbooks: Function;
   recipes: Recipe[];
   getUsersSavedRecipes: Function;
   user: User;
@@ -33,7 +33,7 @@ export default function ProfileSavedPage(
     getUsersSavedRecipes,
   } = props;
 
-  const { username, bio, avatar, id } = user;
+  const { name, bio, avatar, id } = user;
   const photoSrc = avatar || '../../assets/images/photo-mask.png';
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function ProfileSavedPage(
   return (
     <>
       <div className="wrapper">
-        <Header username={username} />
+        <Header loggedInUserId={id} />
       </div>
       <main className="profile-cookbooks-page">
         <div className="wrapper">
@@ -57,7 +57,7 @@ export default function ProfileSavedPage(
               />
             </div>
             <div className="user__container">
-              <div className="user__name">{username}</div>
+              <div className="user__name">{name}</div>
               <div className="user__bio">{bio}</div>
             </div>
           </section>
@@ -81,8 +81,8 @@ export default function ProfileSavedPage(
               {cookbooks.map((el) => (
                 <ProfileSavedCookbookCard
                   id={el.id}
-                  name={el.name}
-                  author={el.author}
+                  title={el.title}
+                  authorId={el.userId}
                   views={el.views}
                   likes={el.likes}
                   comments={el.comments.length}
@@ -99,8 +99,8 @@ export default function ProfileSavedPage(
               {recipes.map((el) => (
                 <ProfileSavedRecipeCard
                   id={el.id}
-                  name={el.name}
-                  author={el.userName}
+                  title={el.title}
+                  authorId={el.userId}
                   views={el.views}
                   likes={el.likes}
                   comments={el.comments.length}

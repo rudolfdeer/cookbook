@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ROUTES from '../../constants/routes';
-import { Cookbook, Recipe } from '../../interfaces';
+import { ActionCreatorFunction, Cookbook, Recipe } from '../../interfaces';
 import Footer from '../Footer';
 import Header from '../Header';
 import CardPopular from './CardPopular';
@@ -11,16 +11,16 @@ import CardTrending from './CardTrending';
 import './index.scss';
 
 type HomePageProps = {
-  recipes?: Recipe[];
-  getRecipes?: Function;
-  cookbooks?: Cookbook[];
-  getCookbooks?: Function;
-  username?: string;
+  recipes: Recipe[];
+  getRecipes: ActionCreatorFunction;
+  cookbooks: Cookbook[];
+  getCookbooks: ActionCreatorFunction;
+  loggedInUserId: number;
 };
 
 export default function HomePage(props: HomePageProps): JSX.Element {
   const {
-    recipes, getRecipes, cookbooks, getCookbooks, username,
+    recipes, getRecipes, cookbooks, getCookbooks, loggedInUserId,
   } = props;
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
   return (
     <>
       <div className="wrapper">
-        <Header username={username} />
+        <Header loggedInUserId={loggedInUserId} />
       </div>
       <main className="home-page">
         <div className="wrapper">
@@ -76,8 +76,8 @@ export default function HomePage(props: HomePageProps): JSX.Element {
               {recipes
                 ?.map((el) => (
                   <CardRated
-                    name={el.name}
-                    author={el.userName}
+                    title={el.title}
+                    authorId={el.userId}
                     views={el.views}
                     likes={el.likes}
                     comments={el.comments.length}
@@ -97,7 +97,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
             <div className="section__cards popular">
               {cookbooks
                 ?.map((el) => (
-                  <CardPopular name={el.name} image={el.image} key={el.id} />
+                  <CardPopular title={el.title} image={el.image} key={el.id} />
                 ))
                 .slice(0, 4)}
             </div>
@@ -115,8 +115,8 @@ export default function HomePage(props: HomePageProps): JSX.Element {
                 {recipes
                   ?.map((el) => (
                     <CardTrending
-                      name={el.name}
-                      author={el.userName}
+                      title={el.title}
+                      authorId={el.userId}
                       views={el.views}
                       image={el.image}
                       key={el.id}

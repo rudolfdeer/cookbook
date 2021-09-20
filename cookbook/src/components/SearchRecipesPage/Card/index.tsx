@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
+import api from '../../../helpers/api';
 import './index.scss';
 
 type RecipeCardProps = {
   id: number;
-  name: string;
-  author: string;
+  title: string;
+  authorId: number;
   description: string;
   views: number;
   likes: number;
   image: string;
   comments: number;
-  selectCard: Function;
-  openDetailedInfo: Function;
-  userId: number;
+  selectCard: Dispatch<SetStateAction<number>>;
+  setVisible: Dispatch<SetStateAction<boolean>>;
+  loggedInUserId: number;
   saveToUsersRecipes: Function;
 };
 
@@ -22,20 +23,20 @@ export default function RecipeCard(props: RecipeCardProps): JSX.Element {
     views,
     image,
     description,
-    name,
-    author,
+    title,
+    authorId,
     likes,
     comments,
-    openDetailedInfo,
+    setVisible,
     selectCard,
-    userId,
+    loggedInUserId,
     saveToUsersRecipes,
   } = props;
 
   const [isBtnVisible, setBtnVisible] = useState(false);
 
   const saveRecipe = () => {
-    saveToUsersRecipes(id, userId);
+    saveToUsersRecipes(id, loggedInUserId);
     setBtnVisible(false);
   };
 
@@ -59,12 +60,12 @@ export default function RecipeCard(props: RecipeCardProps): JSX.Element {
             className="card__title"
             onClick={() => {
               selectCard(id);
-              openDetailedInfo(true);
+              setVisible(true);
             }}
           >
-            {name}
+            {title}
           </div>
-          <div className="card__author">{author}</div>
+          <div className="card__author">{api.getUserName(authorId)}</div>
         </div>
         <div className="card__info-container description">
           <p className="card__description">{description}</p>
@@ -137,7 +138,7 @@ export default function RecipeCard(props: RecipeCardProps): JSX.Element {
             <circle cx="10" cy="2" r="2" fill="#dadada" />
             <circle cx="18" cy="2" r="2" fill="#dadada" />
           </svg>
-          {userId && isBtnVisible ? btnClone : null}
+          {loggedInUserId && isBtnVisible ? btnClone : null}
         </div>
       </div>
     </div>

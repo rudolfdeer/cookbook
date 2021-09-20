@@ -41,7 +41,7 @@ export const sortRecipes = (order: string): AnyAction => {
 export const filterRecipes = (cookingTime: number): AnyAction => {
   const currentData = Api.getRecipesList();
   const resData = currentData.filter(
-    (recipe: Recipe) => recipe.cookingTime <= cookingTime
+    (recipe: Recipe) => recipe.cookingTime <= cookingTime,
   );
 
   return {
@@ -53,7 +53,7 @@ export const filterRecipes = (cookingTime: number): AnyAction => {
 export const getUsersCreatedRecipes = (userId: number): AnyAction => {
   const allRecipes = Api.getRecipesList();
   const createdRecipes = allRecipes.filter(
-    (recipe: Recipe) => recipe.userId === userId
+    (recipe: Recipe) => recipe.userId === userId,
   );
 
   return {
@@ -75,7 +75,7 @@ export const getUsersSavedRecipes = (userId: number): AnyAction => {
 export const createComment = (
   recipeId: number,
   userId: number,
-  commentText: string
+  commentText: string,
 ): AnyAction => {
   const recipes = Api.getRecipesList();
 
@@ -108,23 +108,19 @@ type NewRecipeValues = {
 
 export const createRecipe = (
   data: NewRecipeValues,
-  userId: number
+  userId: number,
 ): AnyAction => {
   const recipes = Api.getRecipesList();
   const lastRecipeId = recipes[recipes.length - 1].id;
   const newRecipeId = lastRecipeId + 1;
-
-  const user = Api.getUser(userId);
-  const userName = user.username;
 
   const directionsArr = data.directions.split(',');
   const ingredientArr = data.ingredients.split(',');
 
   const newRecipe: Recipe = {
     id: newRecipeId,
-    name: data.title,
+    title: data.title,
     image: data.image,
-    userName,
     userId,
     description: data.description,
     directions: directionsArr,

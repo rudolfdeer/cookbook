@@ -38,6 +38,42 @@ class Api {
   updateUsers(newUser: User) {
     FetchQuery.updateUsers(newUser);
   }
+
+  getUserName(userId: number): string {
+    const response = FetchQuery.getUser(userId);
+    const { name } = response;
+    return name;
+  }
+
+  getUserPhoto(userId: number): string {
+    const response = FetchQuery.getUser(userId);
+    const { avatar } = response;
+    return avatar;
+  }
+
+  getRecipe(recipeId: number): Recipe {
+    const response = FetchQuery.getRecipesList().find(
+      (el) => el.id === recipeId,
+    );
+    return response;
+  }
+
+  getCookbook(cookbookId: number): Cookbook {
+    const response = FetchQuery.getCookbooksList().find(
+      (el) => el.id === cookbookId,
+    );
+    return response;
+  }
+
+  getRecipesInCookbook(recipesIds: number[]): Recipe[] {
+    const recipes = this.getRecipesList();
+    const result = [] as Recipe[];
+    recipesIds.forEach((id) => {
+      const recipe = recipes.find((el) => el.id === id);
+      result.push(recipe);
+    });
+    return result;
+  }
 }
 
 export default new Api();

@@ -6,30 +6,22 @@ import './index.scss';
 
 type CommentsSectionProps = {
   comments: Comment[];
-  userId: number;
+  loggedInUserId: number;
   cookbookId: number;
   createComment: Function;
 };
 
 export default function CommentsSection(
-  props: CommentsSectionProps
+  props: CommentsSectionProps,
 ): JSX.Element {
-  const { comments, userId, cookbookId, createComment } = props;
+  const {
+    comments, loggedInUserId, cookbookId, createComment,
+  } = props;
   const [newComment, setNewComment] = useState('');
 
   function getDate(dateString: string) {
     return dateString.split(' ').slice(0, 4).join(' ');
   }
-
-  const getUserName = (id: number) => {
-    const user = api.getUser(id);
-    return user.username;
-  };
-
-  const getUserPhoto = (id: number) => {
-    const user = api.getUser(id);
-    return user.avatar;
-  };
 
   const newCommentSection = (
     <div className="comment-new">
@@ -46,7 +38,7 @@ export default function CommentsSection(
       <button
         className="comment-new__btn"
         onClick={() => {
-          createComment(cookbookId, userId, newComment);
+          createComment(cookbookId, loggedInUserId, newComment);
         }}
       ></button>
     </div>
@@ -54,7 +46,7 @@ export default function CommentsSection(
 
   return (
     <>
-      {userId ? newCommentSection : null}
+      {loggedInUserId ? newCommentSection : null}
 
       <div className="comments">
         {comments?.map((el) => (
@@ -62,13 +54,15 @@ export default function CommentsSection(
             <div
               className="comment__photo"
               style={{
-                background: `url(${getUserPhoto(el.userId)}) center no-repeat`,
+                background: `url(${api.getUserPhoto(
+                  el.userId,
+                )}) center no-repeat`,
               }}
             ></div>
             <div className="comment__text-info">
               <div className="text-info__container_top">
                 <div className="comment__username">
-                  {getUserName(el.userId)}
+                  {api.getUserName(el.userId)}
                 </div>
                 <div className="comment__time">{getDate(el.date)}</div>
               </div>

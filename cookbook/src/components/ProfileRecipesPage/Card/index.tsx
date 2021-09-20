@@ -1,10 +1,11 @@
 import React from 'react';
+import api from '../../../helpers/api';
 import './index.scss';
 
 type ProfileRecipeCardProps = {
   id: number;
-  name: string;
-  author: string;
+  title: string;
+  authorId: number;
   description: string;
   views: number;
   likes: number;
@@ -16,7 +17,7 @@ export default function ProfileRecipeCard(
   props: ProfileRecipeCardProps,
 ): JSX.Element {
   const {
-    views, image, description, name, author, likes, comments,
+    views, image, description, title, authorId, likes, comments,
   } = props;
 
   return (
@@ -27,8 +28,8 @@ export default function ProfileRecipeCard(
       ></div>
       <div className="card__content">
         <div className="card__info-container top">
-          <div className="card__title">{name}</div>
-          <div className="card__author">{author}</div>
+          <div className="card__title">{title}</div>
+          <div className="card__author">{api.getUserName(authorId)}</div>
         </div>
         <div className="card__info-container description">
           <p className="card__description">{description}</p>

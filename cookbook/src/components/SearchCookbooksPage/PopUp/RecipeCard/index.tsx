@@ -1,16 +1,17 @@
 import React from 'react';
+import api from '../../../../helpers/api';
 import './index.scss';
 
 type PopUpRecipeCardProps = {
-  name: string;
-  author: string;
+  title: string;
+  authorId: number;
   description: string;
   views: number;
   likes: number;
   image: string;
   comments: number;
   id: number;
-  userId: number;
+  loggedInUserId: number;
   saveToUsersRecipes: Function;
 };
 
@@ -21,12 +22,12 @@ export default function PopUpRecipeCard(
     views,
     image,
     description,
-    name,
-    author,
+    title,
+    authorId,
     likes,
     comments,
     id,
-    userId,
+    loggedInUserId,
     saveToUsersRecipes,
   } = props;
 
@@ -38,8 +39,8 @@ export default function PopUpRecipeCard(
       ></div>
       <div className="card__content">
         <div className="card__info-container top">
-          <div className="card__title">{name}</div>
-          <div className="card__author">{author}</div>
+          <div className="card__title">{title}</div>
+          <div className="card__author">{api.getUserName(authorId)}</div>
         </div>
         <div className="card__info-container description">
           <p className="card__description">{description}</p>
@@ -97,11 +98,11 @@ export default function PopUpRecipeCard(
               {comments} comments
             </div>
           </div>
-          {userId ? (
+          {loggedInUserId ? (
             <button
               className="card__btn-save"
               onClick={() => {
-                saveToUsersRecipes(id, userId);
+                saveToUsersRecipes(id, loggedInUserId);
               }}
             >
               Save

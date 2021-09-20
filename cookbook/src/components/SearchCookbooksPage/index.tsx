@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Cookbook, Recipe } from '../../interfaces';
+import { ActionCreatorFunction, Cookbook, Recipe } from '../../interfaces';
 import Footer from '../Footer';
 import Header from '../Header';
 import CookbookCard from './Card';
@@ -8,31 +8,29 @@ import FilterPanelCookbooks from './FilterPanel';
 import PopUpCookbookDetailed from './PopUp';
 
 import './index.scss';
+import api from '../../helpers/api';
 
 type CookbooksPageProps = {
-  cookbooks?: Cookbook[];
-  getCookbooks?: Function;
-  recipes?: Recipe[];
-  getRecipes?: Function;
-  sortCookbooks: Function;
-  filterCookbooks: Function;
-  saveToUsersCookbooks: Function;
-  saveToUsersRecipes: Function;
-  username?: string;
-  userId: number;
-  createComment: Function;
+  cookbooks: Cookbook[];
+  getCookbooks: Function;
+  recipes: Recipe[];
+  getRecipes: Function;
+  sortCookbooks: ActionCreatorFunction;
+  filterCookbooks: ActionCreatorFunction;
+  saveToUsersCookbooks: ActionCreatorFunction;
+  saveToUsersRecipes: ActionCreatorFunction;
+  loggedInUserId: number;
+  createComment: ActionCreatorFunction;
 };
 
 export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
   const {
     cookbooks,
     getCookbooks,
-    recipes,
     getRecipes,
     sortCookbooks,
     filterCookbooks,
-    username,
-    userId,
+    loggedInUserId,
     saveToUsersCookbooks,
     saveToUsersRecipes,
     createComment,
@@ -46,27 +44,10 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
     getCookbooks();
   }, []);
 
-  function findCard(): Cookbook {
-    const card = cookbooks.find((el) => el.id === chosenCardId);
-    return card;
-  }
-
-  function findRecipes(): Recipe[] {
-    const index = chosenCardId - 1;
-    const ids = cookbooks[index].recipesIds;
-
-    const recipesSelected = [] as Recipe[];
-    ids.forEach((id) => {
-      const recipe = recipes.find((el) => el.id === id);
-      recipesSelected.push(recipe);
-    });
-    return recipesSelected;
-  }
-
   return (
     <>
       <div className="wrapper">
-        <Header username={username} />
+        <Header loggedInUserId={loggedInUserId} />
       </div>
       <main className="search-page">
         <div className="wrapper">
@@ -75,7 +56,7 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
               <FilterPanelCookbooks
                 sortCookbooks={sortCookbooks}
                 filterCookbooks={filterCookbooks}
-                userId={userId}
+                loggedInUserId={loggedInUserId}
               />
             </div>
           </aside>
@@ -92,8 +73,8 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
               {cookbooks?.map((el) => (
                 <CookbookCard
                   id={el.id}
-                  name={el.name}
-                  author={el.author}
+                  title={el.title}
+                  authorId={el.userId}
                   views={el.views}
                   likes={el.likes}
                   comments={el.comments.length}
@@ -108,10 +89,9 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
           </div>
           {isVisible ? (
             <PopUpCookbookDetailed
-              openDetailedInfo={setVisible}
-              cardInfo={findCard()}
-              recipes={findRecipes()}
-              userId={userId}
+              setVisible={setVisible}
+              cookbook={api.getCookbook(chosenCardId)}
+              loggedInUserId={loggedInUserId}
               saveToUsersCookbooks={saveToUsersCookbooks}
               saveToUsersRecipes={saveToUsersRecipes}
               createComment={createComment}

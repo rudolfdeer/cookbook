@@ -11,20 +11,22 @@ import './index.scss';
 import PopUpCreateCookbook from './PopUp';
 
 type ProfileCookbooksPageProps = {
-  cookbooks?: Cookbook[];
-  getUsersCreatedCookbooks?: Function;
+  cookbooks: Cookbook[];
+  getUsersCreatedCookbooks: Function;
   user: User;
 };
 
 export default function ProfileCookbooksPage(
-  props: ProfileCookbooksPageProps
+  props: ProfileCookbooksPageProps,
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.NOT_FOUND} />;
   }
 
   const { cookbooks, user, getUsersCreatedCookbooks } = props;
-  const { username, bio, avatar, id } = user;
+  const {
+    name, bio, avatar, id,
+  } = user;
   const [isVisible, setVisible] = useState(false);
   const photoSrc = avatar || '../../assets/images/photo-mask.png';
 
@@ -33,7 +35,7 @@ export default function ProfileCookbooksPage(
   return (
     <>
       <div className="wrapper">
-        <Header username={username} />
+        <Header loggedInUserId={id} />
       </div>
       <main className="profile-cookbooks-page">
         <div className="wrapper">
@@ -46,7 +48,7 @@ export default function ProfileCookbooksPage(
               />
             </div>
             <div className="user__container">
-              <div className="user__name">{username}</div>
+              <div className="user__name">{name}</div>
               <div className="user__bio">{bio}</div>
             </div>
           </section>
@@ -71,8 +73,8 @@ export default function ProfileCookbooksPage(
             {cookbooks?.map((el) => (
               <ProfileCookbookCard
                 id={el.id}
-                name={el.name}
-                author={el.author}
+                title={el.title}
+                authorId={el.userId}
                 views={el.views}
                 likes={el.likes}
                 comments={el.comments.length}

@@ -1,33 +1,34 @@
-import React from 'react';
-import { Recipe } from '../../../interfaces';
+import React, { Dispatch, SetStateAction } from 'react';
+import api from '../../../helpers/api';
+import { ActionCreatorFunction, Recipe } from '../../../interfaces';
 import CommentsSection from '../PopUp/CommentsSection';
 
 import './index.scss';
 
 type PopUpRecipeDetailedProps = {
-  openDetailedInfo: Function;
+  setVisible: Dispatch<SetStateAction<boolean>>;
   recipe: Recipe;
-  userId?: number;
+  loggedInUserId: number;
   saveToUsersRecipes: Function;
-  createComment: Function;
+  createComment: ActionCreatorFunction;
 };
 
 export default function PopUpRecipeDetailed(
-  props: PopUpRecipeDetailedProps
+  props: PopUpRecipeDetailedProps,
 ): JSX.Element {
   const {
-    openDetailedInfo,
+    setVisible,
     recipe,
     saveToUsersRecipes,
-    userId,
+    loggedInUserId,
     createComment,
   } = props;
   const {
     id,
     image,
     description,
-    name,
-    userName,
+    title,
+    userId,
     likes,
     comments,
     directions,
@@ -37,12 +38,12 @@ export default function PopUpRecipeDetailed(
   const closePopUp = (e: React.MouseEvent) => {
     const target = e.target as HTMLElement;
     if (target.classList.contains('overlay')) {
-      openDetailedInfo(false);
+      setVisible(false);
     }
   };
 
   const saveRecipe = () => {
-    saveToUsersRecipes(id, userId);
+    saveToUsersRecipes(id, loggedInUserId);
   };
 
   return (
@@ -56,20 +57,20 @@ export default function PopUpRecipeDetailed(
             </div>
             <div className="pop-up-sections">
               <div className="pop-up__section top">
-                <div className="pop-up__title">{name}</div>
-                {userId ? (
+                <div className="pop-up__title">{title}</div>
+                {loggedInUserId ? (
                   <button
                     className="pop-up__btn"
                     onClick={() => {
                       saveRecipe();
-                      openDetailedInfo(false);
+                      setVisible(false);
                     }}
                   >
                     +
                   </button>
                 ) : null}
               </div>
-              <div className="pop-up__author">{userName}</div>
+              <div className="pop-up__author">{api.getUserName(userId)}</div>
               <div className="pop-up__section description">
                 <div className="description">
                   <div className="section__title">Description</div>
@@ -81,7 +82,7 @@ export default function PopUpRecipeDetailed(
                   <div className="section__title">Directions</div>
                   <ul className="directions-list">
                     {directions.map((el: string) => (
-                      <li>
+                      <li key={Math.random()}>
                         <span>{`Step ${directions.indexOf(el) + 1}`}</span>:{' '}
                         {el}
                       </li>
@@ -92,7 +93,7 @@ export default function PopUpRecipeDetailed(
                   <div className="section__title">Ingredients</div>
                   <ul className="ingredients-list">
                     {ingredients.map((el: string) => (
-                      <li>{el}</li>
+                      <li key={Math.random()}>{el}</li>
                     ))}
                   </ul>
                 </div>
@@ -137,7 +138,7 @@ export default function PopUpRecipeDetailed(
             <div className="section__title">{`Comments (${comments.length})`}</div>
             <CommentsSection
               comments={comments}
-              userId={userId}
+              loggedInUserId={loggedInUserId}
               recipeId={id}
               createComment={createComment}
             />

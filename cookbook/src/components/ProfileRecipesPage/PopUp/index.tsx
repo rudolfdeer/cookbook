@@ -1,13 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { Form, Field } from 'react-final-form';
-import { Redirect } from 'react-router-dom';
-import ROUTES from '../../../constants/routes';
+import {
+  HandleThunkActionCreator,
+  InferThunkActionCreatorType,
+} from 'react-redux';
+import { ActionCreatorsMapObject } from 'redux';
+import { ThunkAction } from 'redux-thunk';
+import { Recipe } from '../../../interfaces';
 
 import './index.scss';
 
 type PopUpCreateRecipeProps = {
   userId?: number;
-  setVisible: Function;
+  setVisible: Dispatch<SetStateAction<boolean>>;
   createRecipe: Function;
 };
 

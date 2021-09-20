@@ -1,15 +1,17 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import ROUTES from '../../constants/routes';
+import api from '../../helpers/api';
 
 import './index.scss';
 
 type HeaderProps = {
-  username?: string;
+  loggedInUserId: number;
 };
 
 export default function Header(props: HeaderProps): JSX.Element {
-  const { username } = props;
+  const { loggedInUserId } = props;
+
   return (
     <header className="header">
       <Link to="/">
@@ -29,7 +31,7 @@ export default function Header(props: HeaderProps): JSX.Element {
         <div className="search__icon" />
         <input type="text" className="search__input" />
       </div>
-      {username ? (
+      {loggedInUserId ? (
         <button className="header__btn">
           <Link to={ROUTES.PROFILE_COOKBOOKS}>Create CookBook</Link>
         </button>
@@ -38,10 +40,12 @@ export default function Header(props: HeaderProps): JSX.Element {
           <Link to={ROUTES.LOG_IN}>Create CookBook</Link>
         </button>
       )}
-      {username ? (
+      {loggedInUserId ? (
         <div className="header__login-info">
           <div className="login__icon"></div>
-          <Link to={ROUTES.PROFILE_SETTINGS}>{username}</Link>
+          <Link to={ROUTES.PROFILE_SETTINGS}>
+            {api.getUserName(loggedInUserId)}
+          </Link>
         </div>
       ) : (
         <div className="header__login-info">

@@ -4,8 +4,7 @@ const cookbooks: Cookbook[] = [
   {
     id: 1,
     image: 'images/cookbook-itsallaboutpancakes.jpg',
-    name: 'All about pancakes',
-    author: 'John Doe',
+    title: 'All about pancakes',
     userId: 1,
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Bibendum tempus viverra augue ac elit. Interdum libero at tristique fames faucibus. Massa a, consectetur et viverra vulputate urna enim felis metus. Consequat morbi cras elit mauris phasellus at fames eget. Nunc, at vitae integer morbi nibh dignissim non tempus pellentesque. Erat platea augue sed amet, tempor, sed sollicitudin. Viverra tincidunt eu nulla pulvinar eget dolor. Dui, lacus sed ut id egestas elit, mi. Pretium elementum commodo amet cursus massa dictum. Ac, pharetra nisi, morbi maecenas facilisi.',
@@ -55,8 +54,7 @@ const cookbooks: Cookbook[] = [
   {
     id: 2,
     image: 'images/cookbook-icecreamdream.jpg',
-    name: 'Icecream dream',
-    author: 'John Doe',
+    title: 'Icecream dream',
     userId: 1,
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Bibendum tempus viverra augue ac elit. Interdum libero at tristique fames faucibus. Massa a, consectetur et viverra vulputate urna enim felis metus. Consequat morbi cras elit mauris phasellus at fames eget. Nunc, at vitae integer morbi nibh dignissim non tempus pellentesque. Erat platea augue sed amet, tempor, sed sollicitudin. Viverra tincidunt eu nulla pulvinar eget dolor. Dui, lacus sed ut id egestas elit, mi. Pretium elementum commodo amet cursus massa dictum. Ac, pharetra nisi, morbi maecenas facilisi.',
@@ -82,8 +80,7 @@ const cookbooks: Cookbook[] = [
   {
     id: 3,
     image: 'images/cookbook-fastbreakfast.jpeg',
-    name: 'Fast breakfast',
-    author: 'John Galt',
+    title: 'Fast breakfast',
     userId: 2,
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Bibendum tempus viverra augue ac elit. Interdum libero at tristique fames faucibus. Massa a, consectetur et viverra vulputate urna enim felis metus. Consequat morbi cras elit mauris phasellus at fames eget. Nunc, at vitae integer morbi nibh dignissim non tempus pellentesque. Erat platea augue sed amet, tempor, sed sollicitudin. Viverra tincidunt eu nulla pulvinar eget dolor. Dui, lacus sed ut id egestas elit, mi. Pretium elementum commodo amet cursus massa dictum. Ac, pharetra nisi, morbi maecenas facilisi.',
@@ -109,8 +106,7 @@ const cookbooks: Cookbook[] = [
   {
     id: 4,
     image: 'images/cookbook-salad.jpeg',
-    name: 'Salads',
-    author: 'Patricia Holman',
+    title: 'Salads',
     userId: 3,
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Bibendum tempus viverra augue ac elit. Interdum libero at tristique fames faucibus. Massa a, consectetur et viverra vulputate urna enim felis metus. Consequat morbi cras elit mauris phasellus at fames eget. Nunc, at vitae integer morbi nibh dignissim non tempus pellentesque. Erat platea augue sed amet, tempor, sed sollicitudin. Viverra tincidunt eu nulla pulvinar eget dolor. Dui, lacus sed ut id egestas elit, mi. Pretium elementum commodo amet cursus massa dictum. Ac, pharetra nisi, morbi maecenas facilisi.',
@@ -130,8 +126,7 @@ const cookbooks: Cookbook[] = [
   {
     id: 5,
     image: 'images/canapes.jpg',
-    name: 'The best cookbook',
-    author: 'Winston Smith',
+    title: 'The best cookbook',
     userId: 4,
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Bibendum tempus viverra augue ac elit. Interdum libero at tristique fames faucibus. Massa a, consectetur et viverra vulputate urna enim felis metus. Consequat morbi cras elit mauris phasellus at fames eget. Nunc, at vitae integer morbi nibh dignissim non tempus pellentesque. Erat platea augue sed amet, tempor, sed sollicitudin. Viverra tincidunt eu nulla pulvinar eget dolor. Dui, lacus sed ut id egestas elit, mi. Pretium elementum commodo amet cursus massa dictum. Ac, pharetra nisi, morbi maecenas facilisi.',

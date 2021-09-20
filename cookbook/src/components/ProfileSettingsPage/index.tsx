@@ -7,7 +7,6 @@ import Footer from '../Footer';
 import Header from '../Header';
 
 import './index.scss';
-import { useStore } from 'react-redux';
 
 type ProfileSettingsPageProps = {
   user: User;
@@ -20,7 +19,7 @@ type ProfileSettingsPageProps = {
 };
 
 export default function ProfileSettingsPage(
-  props: ProfileSettingsPageProps
+  props: ProfileSettingsPageProps,
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.HOME} />;
@@ -34,23 +33,25 @@ export default function ProfileSettingsPage(
     updateUserPhoto,
     logOut,
   } = props;
-  const { id, username, email, password, bio, avatar } = user;
+  const {
+    id, name, email, password, bio, avatar,
+  } = user;
   const [isBioDisabled, setBioDisabled] = useState(true);
   const [isNameDisabled, setNameDisabled] = useState(true);
   const [isEmailDisabled, setEmailDisabled] = useState(true);
   const [isPasswordDisabled, setPasswordDisabled] = useState(true);
   const [newBio, setNewBio] = useState(bio);
-  const [newName, setNewName] = useState(username);
+  const [newName, setNewName] = useState(name);
   const [newEmail, setNewEmail] = useState(email);
   const [newPassword, setNewPassword] = useState(password);
   const [photoSrc, setPhotoSrc] = useState(
-    avatar || './assets/images/photo-mask.png'
+    avatar || './assets/images/photo-mask.png',
   );
 
   return (
     <>
       <div className="wrapper">
-        <Header username={username} />
+        <Header loggedInUserId={id} />
       </div>
       <main className="profile-settings-page">
         <div className="wrapper">

@@ -143,7 +143,6 @@ export const createCookbook = (
     likes: 0,
     comments: [],
   };
-  console.log(newCookbook);
   cookbooks.push(newCookbook);
 
   return {

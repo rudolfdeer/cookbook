@@ -14,7 +14,7 @@ type PopUpRecipeDetailedProps = {
 };
 
 export default function PopUpRecipeDetailed(
-  props: PopUpRecipeDetailedProps,
+  props: PopUpRecipeDetailedProps
 ): JSX.Element {
   const {
     setVisible,
@@ -53,7 +53,7 @@ export default function PopUpRecipeDetailed(
         <div className="pop-up">
           <div className="pop-up__recipe">
             <div className="main-image">
-              <img src={`../../../../assets/${image}`} alt="" className="img" />
+              <img src={`${image}`} alt="" className="img" />
             </div>
             <div className="pop-up-sections">
               <div className="pop-up__section top">

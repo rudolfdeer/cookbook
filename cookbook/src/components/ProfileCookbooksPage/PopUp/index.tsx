@@ -32,7 +32,6 @@ export default function PopUpCreateCookbook(
   const [photoSrc, setPhotoSrc] = useState('');
 
   const onSubmit = (values: FormValues) => {
-    console.log('values', values);
     createCookbook(values, loggedInUserId, photoSrc);
     setVisible(false);
   };
@@ -49,7 +48,7 @@ export default function PopUpCreateCookbook(
           <Form
             onSubmit={onSubmit}
             initialValues={{ ...formData }}
-            render={({ handleSubmit, submitting, pristine }) => (
+            render={({ handleSubmit }) => (
               <form action="" className="pop-up__form" onSubmit={handleSubmit}>
                 <div className="pop-up__section">
                   <label htmlFor="title" className="section__title">

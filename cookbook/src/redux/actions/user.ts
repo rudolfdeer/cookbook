@@ -2,6 +2,8 @@ import { AnyAction } from 'redux';
 import Api from '../../helpers/api';
 import ACTION_TYPES from '../../constants/actionTypes';
 import { Cookbook, Recipe } from '../../interfaces';
+import { deleteUsersRecipes } from './recipes';
+import { deleteUsersCookbooks } from './cookbooks';
 
 type LoginInfo = {
   email: string;
@@ -29,7 +31,7 @@ export const logOut = (userId: number): AnyAction => {
 
 export const saveToUsersRecipes = (
   recipeId: number,
-  userId: number,
+  userId: number
 ): AnyAction => {
   const user = Api.getUser(userId);
   const { savedRecipes } = user;
@@ -45,7 +47,7 @@ export const saveToUsersRecipes = (
 
 export const saveToUsersCookbooks = (
   cookbookId: number,
-  userId: number,
+  userId: number
 ): AnyAction => {
   const user = Api.getUser(userId);
   const { savedCookbooks } = user;
@@ -81,7 +83,7 @@ export const changeUserName = (userId: number, newName: string): AnyAction => {
 
 export const changeUserEmail = (
   userId: number,
-  newEmail: string,
+  newEmail: string
 ): AnyAction => {
   const user = Api.getUser(userId);
   user.email = newEmail;
@@ -94,7 +96,7 @@ export const changeUserEmail = (
 
 export const changeUserPassword = (
   userId: number,
-  newPassword: string,
+  newPassword: string
 ): AnyAction => {
   const user = Api.getUser(userId);
   user.password = newPassword;
@@ -129,12 +131,28 @@ export const createUser = (email: string, password: string): AnyAction => {
   };
 };
 
-export const updateUserPhoto = (userId: number, photoSrc: string) => {
+export const updateUserPhoto = (
+  userId: number,
+  photoSrc: string
+): AnyAction => {
   const user = Api.getUser(userId);
   user.avatar = photoSrc;
 
   return {
     type: ACTION_TYPES.USER_UPDATE,
     payload: user,
+  };
+};
+
+export const deleteUser = (userId: number): AnyAction => {
+  Api.deleteUsersRecipes(userId);
+  Api.deleteUsersCookbooks(userId);
+
+  const users = Api.getAllUsers();
+  const userIndex = users.findIndex((el) => el.id === userId);
+  users.splice(userIndex, 1);
+
+  return {
+    type: ACTION_TYPES.USER_DELETE,
   };
 };

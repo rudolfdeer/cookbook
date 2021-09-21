@@ -1,12 +1,5 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import { Form, Field } from 'react-final-form';
-import {
-  HandleThunkActionCreator,
-  InferThunkActionCreatorType,
-} from 'react-redux';
-import { ActionCreatorsMapObject } from 'redux';
-import { ThunkAction } from 'redux-thunk';
-import { Recipe } from '../../../interfaces';
 
 import './index.scss';
 
@@ -26,7 +19,6 @@ type FormValues = {
 
 const formData = {
   title: '',
-  image: '',
   description: [''],
   ingredients: [''],
   directions: [''],
@@ -38,9 +30,10 @@ export default function PopUpCreateRecipe(
   props: PopUpCreateRecipeProps
 ): JSX.Element {
   const { setVisible, createRecipe, userId } = props;
+  const [photoSrc, setPhotoSrc] = useState('');
 
   const onSubmit = (values: FormValues) => {
-    createRecipe(values, userId);
+    createRecipe(values, userId, photoSrc);
     setVisible(false);
   };
 
@@ -69,9 +62,30 @@ export default function PopUpCreateRecipe(
                   />
                 </div>
 
-                <div className="pop-up__section btn">
-                  Upload Recipe Image
-                  <input type="file" className="section__input_file" />
+                <div className="pop-up__section image">
+                  <label className="section__btn">
+                    Upload Recipe Image
+                    <input
+                      name="image"
+                      type="file"
+                      className="section__input_file"
+                      onChange={(e: React.ChangeEvent) => {
+                        const target = e.target as HTMLInputElement;
+                        const file = target.files[0];
+                        const reader = new FileReader();
+                        reader.onload = () => {
+                          const result = String(reader.result);
+                          setPhotoSrc(result);
+                        };
+                        reader.readAsDataURL(file);
+                      }}
+                    />
+                  </label>
+                  <img
+                    src={photoSrc}
+                    alt="Image preview"
+                    className="section__preview"
+                  />
                 </div>
 
                 <div className="pop-up__section">

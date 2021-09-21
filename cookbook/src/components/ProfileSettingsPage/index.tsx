@@ -16,10 +16,11 @@ type ProfileSettingsPageProps = {
   changeUserPassword: Function;
   updateUserPhoto: Function;
   logOut: Function;
+  deleteUser: Function;
 };
 
 export default function ProfileSettingsPage(
-  props: ProfileSettingsPageProps,
+  props: ProfileSettingsPageProps
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.HOME} />;
@@ -32,10 +33,9 @@ export default function ProfileSettingsPage(
     changeUserPassword,
     updateUserPhoto,
     logOut,
+    deleteUser,
   } = props;
-  const {
-    id, name, email, password, bio, avatar,
-  } = user;
+  const { id, name, email, password, bio, avatar } = user;
   const [isBioDisabled, setBioDisabled] = useState(true);
   const [isNameDisabled, setNameDisabled] = useState(true);
   const [isEmailDisabled, setEmailDisabled] = useState(true);
@@ -45,7 +45,7 @@ export default function ProfileSettingsPage(
   const [newEmail, setNewEmail] = useState(email);
   const [newPassword, setNewPassword] = useState(password);
   const [photoSrc, setPhotoSrc] = useState(
-    avatar || './assets/images/photo-mask.png',
+    avatar || './assets/images/photo-mask.png'
   );
 
   return (
@@ -259,7 +259,14 @@ export default function ProfileSettingsPage(
               >
                 Log out
               </button>
-              <button className="btn__delete">Delete my account</button>
+              <button
+                className="btn__delete"
+                onClick={() => {
+                  deleteUser(id);
+                }}
+              >
+                Delete my account
+              </button>
             </div>
           </section>
         </div>

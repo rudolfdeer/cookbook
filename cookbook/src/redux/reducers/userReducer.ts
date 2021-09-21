@@ -8,7 +8,7 @@ type UserReducer = typeof initialState;
 
 export default function userReducer(
   state = initialState,
-  action: AnyAction,
+  action: AnyAction
 ): UserReducer {
   switch (action.type) {
     case ACTION_TYPES.USER_UPDATE:
@@ -18,6 +18,9 @@ export default function userReducer(
       };
 
     case ACTION_TYPES.USER_LOG_OUT:
+      return null;
+
+    case ACTION_TYPES.USER_DELETE:
       return null;
 
     default:

@@ -14,17 +14,15 @@ type ProfileRecipeCardProps = {
 };
 
 export default function ProfileRecipeCard(
-  props: ProfileRecipeCardProps,
+  props: ProfileRecipeCardProps
 ): JSX.Element {
-  const {
-    views, image, description, title, authorId, likes, comments,
-  } = props;
+  const { views, image, description, title, authorId, likes, comments } = props;
 
   return (
     <div className="card">
       <div
         className="card__image"
-        style={{ background: `url(../../../assets/${image}) center no-repeat` }}
+        style={{ background: `url(${image}) center no-repeat` }}
       ></div>
       <div className="card__content">
         <div className="card__info-container top">

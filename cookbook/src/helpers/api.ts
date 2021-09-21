@@ -41,6 +41,7 @@ class Api {
 
   getUserName(userId: number): string {
     const response = FetchQuery.getUser(userId);
+    if (!response) return '';
     const { name } = response;
     return name;
   }
@@ -53,14 +54,14 @@ class Api {
 
   getRecipe(recipeId: number): Recipe {
     const response = FetchQuery.getRecipesList().find(
-      (el) => el.id === recipeId,
+      (el) => el.id === recipeId
     );
     return response;
   }
 
   getCookbook(cookbookId: number): Cookbook {
     const response = FetchQuery.getCookbooksList().find(
-      (el) => el.id === cookbookId,
+      (el) => el.id === cookbookId
     );
     return response;
   }
@@ -73,6 +74,26 @@ class Api {
       result.push(recipe);
     });
     return result;
+  }
+
+  deleteUsersRecipes(userId: number) {
+    const recipes = this.getRecipesList();
+
+    let index = recipes.findIndex((el) => el.userId === userId);
+    while (index > -1) {
+      recipes.splice(index, 1);
+      index = recipes.findIndex((el) => el.userId === userId);
+    }
+  }
+
+  deleteUsersCookbooks(userId: number) {
+    const cookbooks = this.getCookbooksList();
+
+    let index = cookbooks.findIndex((el) => el.userId === userId);
+    while (index > -1) {
+      cookbooks.splice(index, 1);
+      index = cookbooks.findIndex((el) => el.userId === userId);
+    }
   }
 }
 

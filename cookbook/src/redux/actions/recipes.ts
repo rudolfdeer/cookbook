@@ -41,7 +41,7 @@ export const sortRecipes = (order: string): AnyAction => {
 export const filterRecipes = (cookingTime: number): AnyAction => {
   const currentData = Api.getRecipesList();
   const resData = currentData.filter(
-    (recipe: Recipe) => recipe.cookingTime <= cookingTime,
+    (recipe: Recipe) => recipe.cookingTime <= cookingTime
   );
 
   return {
@@ -53,7 +53,7 @@ export const filterRecipes = (cookingTime: number): AnyAction => {
 export const getUsersCreatedRecipes = (userId: number): AnyAction => {
   const allRecipes = Api.getRecipesList();
   const createdRecipes = allRecipes.filter(
-    (recipe: Recipe) => recipe.userId === userId,
+    (recipe: Recipe) => recipe.userId === userId
   );
 
   return {
@@ -75,7 +75,7 @@ export const getUsersSavedRecipes = (userId: number): AnyAction => {
 export const createComment = (
   recipeId: number,
   userId: number,
-  commentText: string,
+  commentText: string
 ): AnyAction => {
   const recipes = Api.getRecipesList();
 
@@ -100,7 +100,6 @@ export const createComment = (
 
 type NewRecipeValues = {
   title: string;
-  image?: string;
   description: string;
   ingredients: string;
   directions: string;
@@ -109,6 +108,7 @@ type NewRecipeValues = {
 export const createRecipe = (
   data: NewRecipeValues,
   userId: number,
+  imageSrc: string
 ): AnyAction => {
   const recipes = Api.getRecipesList();
   const lastRecipeId = recipes[recipes.length - 1].id;
@@ -120,7 +120,7 @@ export const createRecipe = (
   const newRecipe: Recipe = {
     id: newRecipeId,
     title: data.title,
-    image: data.image,
+    image: imageSrc,
     userId,
     description: data.description,
     directions: directionsArr,
@@ -136,5 +136,15 @@ export const createRecipe = (
   return {
     type: ACTION_TYPES.RECIPES_GET,
     payload: recipes,
+  };
+};
+
+export const deleteUsersRecipes = (userId: number): AnyAction => {
+  console.log(1);
+  const recipes = Api.getRecipesList();
+  const filteredRecipes = recipes.filter((el) => el.userId !== userId);
+  return {
+    type: ACTION_TYPES.RECIPES_GET,
+    payload: filteredRecipes,
   };
 };

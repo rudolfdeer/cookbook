@@ -13,7 +13,7 @@ export default function CardPopular(props: CookbookCardProps): JSX.Element {
   return (
     <div
       className="card"
-      style={{ background: `url(../../../assets/${image}) center no-repeat` }}
+      style={{ background: `url(${image}) center no-repeat` }}
     >
       <svg
         className="statistics-item__icon dots"

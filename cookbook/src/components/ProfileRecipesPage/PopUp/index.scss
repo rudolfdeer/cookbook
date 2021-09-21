@@ -33,19 +33,41 @@
       }
     }
 
-    &.btn {
-      width: 271px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
     .section__input.big {
       height: 104px;
     }
 
+    .section__btn {
+      @include button-dark;
+      margin-right: 40px;
+      width: 130px;
+      height: 62px;
+      width: 271px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
     .section__input_file {
-      display: none;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .section__preview {
+      display: block;
+      height: 62px;
+      width: auto;
+    }
+
+    &.image {
+      display: flex;
     }
   }
 }

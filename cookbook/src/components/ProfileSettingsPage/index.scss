@@ -150,19 +150,27 @@
   .section__btns {
     display: flex;
     width: 100%;
-    justify-content: space-between;
 
     .btn__logout {
       @include button-dark;
-      @include text-18;
+
+      margin-right: 40px;
 
       height: 32px;
       width: 120px;
     }
 
     .btn__delete {
-      @include button-dark;
+      @include text-18;
       height: 32px;
+      border: none;
+      background: none;
+      color: red;
+
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
     }
   }
 }

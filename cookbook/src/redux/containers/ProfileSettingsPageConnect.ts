@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 import ProfileSettingsPage from '../../components/ProfileSettingsPage';
 import { State } from '../../interfaces';
+import { deleteUsersCookbooks } from '../actions/cookbooks';
+import { deleteUsersRecipes } from '../actions/recipes';
 import {
   changeUserBio,
   changeUserName,
@@ -8,6 +10,7 @@ import {
   changeUserPassword,
   updateUserPhoto,
   logOut,
+  deleteUser,
 } from '../actions/user';
 
 function mapStateToProps(state: State) {
@@ -23,11 +26,12 @@ const mapDispatchToProps = {
   changeUserPassword,
   updateUserPhoto,
   logOut,
+  deleteUser,
 };
 
 const ProfileSettingsPageConnect = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(ProfileSettingsPage);
 
 export default ProfileSettingsPageConnect;

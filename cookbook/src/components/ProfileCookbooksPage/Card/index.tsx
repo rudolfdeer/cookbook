@@ -15,11 +15,9 @@ type ProfileCookbookCardProps = {
 };
 
 export default function ProfileCookbookCard(
-  props: ProfileCookbookCardProps,
+  props: ProfileCookbookCardProps
 ): JSX.Element {
-  const {
-    views, image, description, title, authorId, likes, comments,
-  } = props;
+  const { views, image, description, title, authorId, likes, comments } = props;
 
   return (
     <div className="card">
@@ -59,7 +57,7 @@ export default function ProfileCookbookCard(
         <div
           className="card__image"
           style={{
-            background: `url(../../../assets/${image}) center no-repeat`,
+            background: `url(${image}) center no-repeat`,
           }}
         ></div>
       </div>

@@ -2,8 +2,6 @@ import { AnyAction } from 'redux';
 import Api from '../../helpers/api';
 import ACTION_TYPES from '../../constants/actionTypes';
 import { Cookbook, Recipe } from '../../interfaces';
-import { deleteUsersRecipes } from './recipes';
-import { deleteUsersCookbooks } from './cookbooks';
 
 type LoginInfo = {
   email: string;

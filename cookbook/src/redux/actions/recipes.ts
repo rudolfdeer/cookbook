@@ -138,13 +138,3 @@ export const createRecipe = (
     payload: recipes,
   };
 };
-
-export const deleteUsersRecipes = (userId: number): AnyAction => {
-  console.log(1);
-  const recipes = Api.getRecipesList();
-  const filteredRecipes = recipes.filter((el) => el.userId !== userId);
-  return {
-    type: ACTION_TYPES.RECIPES_GET,
-    payload: filteredRecipes,
-  };
-};

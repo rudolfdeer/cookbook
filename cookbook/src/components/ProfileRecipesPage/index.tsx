@@ -89,7 +89,7 @@ export default function ProfileRecipesPage(
           </section>
           {isVisible ? (
             <PopUpCreateRecipe
-              userId={id}
+              loggedInUserId={id}
               setVisible={setVisible}
               createRecipe={createRecipe}
             />

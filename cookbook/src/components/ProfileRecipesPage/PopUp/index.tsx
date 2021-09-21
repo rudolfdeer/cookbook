@@ -4,7 +4,7 @@ import { Form, Field } from 'react-final-form';
 import './index.scss';
 
 type PopUpCreateRecipeProps = {
-  userId?: number;
+  loggedInUserId: number;
   setVisible: Dispatch<SetStateAction<boolean>>;
   createRecipe: Function;
 };
@@ -29,11 +29,11 @@ const required = (value: string | string[]) => (value ? undefined : 'Required');
 export default function PopUpCreateRecipe(
   props: PopUpCreateRecipeProps
 ): JSX.Element {
-  const { setVisible, createRecipe, userId } = props;
+  const { setVisible, createRecipe, loggedInUserId } = props;
   const [photoSrc, setPhotoSrc] = useState('');
 
   const onSubmit = (values: FormValues) => {
-    createRecipe(values, userId, photoSrc);
+    createRecipe(values, loggedInUserId, photoSrc);
     setVisible(false);
   };
 

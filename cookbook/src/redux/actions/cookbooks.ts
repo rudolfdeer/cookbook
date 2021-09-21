@@ -1,6 +1,7 @@
 import { AnyAction } from 'redux';
 import Api from '../../helpers/api';
 import ACTION_TYPES from '../../constants/actionTypes';
+import { Cookbook } from '../../interfaces';
 
 export const getCookbooks = (): AnyAction => {
   const resData = Api.getCookbooksList();
@@ -113,12 +114,40 @@ export const createComment = (
   };
 };
 
-export const deleteUsersCookbooks = (userId: number): AnyAction => {
-  console.log(2);
+type NewCookbookValues = {
+  title: string;
+  description: string;
+  recipesIds: number[];
+};
+
+export const createCookbook = (
+  data: NewCookbookValues,
+  userId: number,
+  imageSrc: string
+): AnyAction => {
   const cookbooks = Api.getCookbooksList();
-  const filteredCookbooks = cookbooks.filter((el) => el.userId !== userId);
+  const lastCookbookId = cookbooks[cookbooks.length - 1].id;
+  const newCookbookId = lastCookbookId + 1;
+
+  const recipesIdsNumbers = data.recipesIds.map((el) => Number(el));
+
+  const newCookbook: Cookbook = {
+    id: newCookbookId,
+    title: data.title,
+    image: imageSrc,
+    userId,
+    description: data.description,
+    recipesIds: recipesIdsNumbers,
+    tags: [],
+    views: 0,
+    likes: 0,
+    comments: [],
+  };
+  console.log(newCookbook);
+  cookbooks.push(newCookbook);
+
   return {
     type: ACTION_TYPES.COOKBOOKS_GET,
-    payload: filteredCookbooks,
+    payload: cookbooks,
   };
 };

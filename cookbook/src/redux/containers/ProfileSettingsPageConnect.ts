@@ -1,8 +1,6 @@
 import { connect } from 'react-redux';
 import ProfileSettingsPage from '../../components/ProfileSettingsPage';
 import { State } from '../../interfaces';
-import { deleteUsersCookbooks } from '../actions/cookbooks';
-import { deleteUsersRecipes } from '../actions/recipes';
 import {
   changeUserBio,
   changeUserName,

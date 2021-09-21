@@ -95,6 +95,12 @@ class Api {
       index = cookbooks.findIndex((el) => el.userId === userId);
     }
   }
+
+  getUsersRecipes(userId: number) {
+    const recipes = this.getRecipesList();
+    const filteredRecipes = recipes.filter((el) => el.userId === userId);
+    return filteredRecipes;
+  }
 }
 
 export default new Api();

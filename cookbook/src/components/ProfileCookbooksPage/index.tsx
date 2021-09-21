@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { Cookbook, User } from '../../interfaces';
+import { ActionCreatorFunction, Cookbook, User } from '../../interfaces';
 import ROUTES from '../../constants/routes';
 
 import Footer from '../Footer';
@@ -14,19 +14,18 @@ type ProfileCookbooksPageProps = {
   cookbooks: Cookbook[];
   getUsersCreatedCookbooks: Function;
   user: User;
+  createCookbook: ActionCreatorFunction;
 };
 
 export default function ProfileCookbooksPage(
-  props: ProfileCookbooksPageProps,
+  props: ProfileCookbooksPageProps
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.NOT_FOUND} />;
   }
 
-  const { cookbooks, user, getUsersCreatedCookbooks } = props;
-  const {
-    name, bio, avatar, id,
-  } = user;
+  const { cookbooks, user, getUsersCreatedCookbooks, createCookbook } = props;
+  const { name, bio, avatar, id } = user;
   const [isVisible, setVisible] = useState(false);
   const photoSrc = avatar || '../../assets/images/photo-mask.png';
 
@@ -85,7 +84,11 @@ export default function ProfileCookbooksPage(
             ))}
           </section>
           {isVisible ? (
-            <PopUpCreateCookbook userId={id} setVisible={setVisible} />
+            <PopUpCreateCookbook
+              loggedInUserId={id}
+              setVisible={setVisible}
+              createCookbook={createCookbook}
+            />
           ) : null}
         </div>
       </main>

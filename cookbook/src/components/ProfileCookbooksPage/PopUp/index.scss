@@ -1,3 +1,5 @@
+@import '../../../styles/index.scss';
+
 .pop-up.create {
   .btn {
     @include button-dark;
@@ -42,8 +44,11 @@
       height: 104px;
     }
 
-    .section__input_file {
-      display: none;
+    .section__input_select {
+      padding: 10px 16px;
+      width: 100%;
+      border: 1px solid #dadada;
+      border-radius: 10px;
     }
   }
 }

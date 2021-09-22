@@ -8,7 +8,8 @@ import ProfileRecipeCard from './Card';
 
 import './index.scss';
 import ROUTES from '../../constants/routes';
-import PopUpCreateRecipe from './PopUp';
+import PopUpCreateRecipe from './PopUpCreate';
+import PopUpModifyRecipe from './PopUpModify';
 
 type ProfileRecipesPageProps = {
   recipes: Recipe[];
@@ -18,19 +19,16 @@ type ProfileRecipesPageProps = {
 };
 
 export default function ProfileRecipesPage(
-  props: ProfileRecipesPageProps,
+  props: ProfileRecipesPageProps
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.NOT_FOUND} />;
   }
 
-  const {
-    recipes, user, getUsersCreatedRecipes, createRecipe,
-  } = props;
-  const {
-    name, bio, avatar, id,
-  } = user;
-  const [isVisible, setVisible] = useState(false);
+  const { recipes, user, getUsersCreatedRecipes, createRecipe } = props;
+  const { name, bio, avatar, id } = user;
+  const [isCreatePopUpVisible, setCreatePopUpVisible] = useState(false);
+  const [isModifyPopUpVisible, setModifyPopUpVisible] = useState(false);
 
   useEffect(() => getUsersCreatedRecipes(id), []);
   const photoSrc = avatar || '../../assets/images/photo-mask.png';
@@ -68,7 +66,10 @@ export default function ProfileRecipesPage(
                 <Link to={ROUTES.PROFILE_SETTINGS}>My Settings</Link>
               </li>
             </ul>
-            <button className="nav__btn" onClick={() => setVisible(true)}>
+            <button
+              className="nav__btn"
+              onClick={() => setCreatePopUpVisible(true)}
+            >
               Create New Recipe
             </button>
           </nav>
@@ -87,12 +88,15 @@ export default function ProfileRecipesPage(
               />
             ))}
           </section>
-          {isVisible ? (
+          {isCreatePopUpVisible ? (
             <PopUpCreateRecipe
               loggedInUserId={id}
-              setVisible={setVisible}
+              setCreatePopUpVisible={setCreatePopUpVisible}
               createRecipe={createRecipe}
             />
+          ) : null}
+          {isModifyPopUpVisible ? (
+            <PopUpModifyRecipe setModifyPopUpVisible={setModifyPopUpVisible} />
           ) : null}
         </div>
       </main>

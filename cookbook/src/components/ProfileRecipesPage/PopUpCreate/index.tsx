@@ -5,7 +5,7 @@ import './index.scss';
 
 type PopUpCreateRecipeProps = {
   loggedInUserId: number;
-  setVisible: Dispatch<SetStateAction<boolean>>;
+  setCreatePopUpVisible: Dispatch<SetStateAction<boolean>>;
   createRecipe: Function;
 };
 
@@ -29,7 +29,7 @@ const required = (value: string | string[]) => (value ? undefined : 'Required');
 export default function PopUpCreateRecipe(
   props: PopUpCreateRecipeProps
 ): JSX.Element {
-  const { setVisible, createRecipe, loggedInUserId } = props;
+  const { setCreatePopUpVisible, createRecipe, loggedInUserId } = props;
   const [photoSrc, setPhotoSrc] = useState('');
 
   const onSubmit = (values: FormValues) => {
@@ -131,7 +131,7 @@ export default function PopUpCreateRecipe(
                 <div className="btns">
                   <button
                     className="btn_light"
-                    onClick={() => setVisible(false)}
+                    onClick={() => setCreatePopUpVisible(false)}
                   >
                     Cancel
                   </button>

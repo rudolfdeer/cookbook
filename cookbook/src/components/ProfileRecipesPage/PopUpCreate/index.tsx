@@ -30,11 +30,12 @@ export default function PopUpCreateRecipe(
   props: PopUpCreateRecipeProps
 ): JSX.Element {
   const { setCreatePopUpVisible, createRecipe, loggedInUserId } = props;
+
   const [photoSrc, setPhotoSrc] = useState('');
 
   const onSubmit = (values: FormValues) => {
     createRecipe(values, loggedInUserId, photoSrc);
-    setVisible(false);
+    setCreatePopUpVisible(false);
   };
 
   return (

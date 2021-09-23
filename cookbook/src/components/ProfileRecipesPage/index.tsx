@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { ActionCreatorFunction, Recipe, User } from '../../interfaces';
+import PopUpCreateRecipeConnect from '../../redux/containers/PopUpCreateRecipeConnect';
 
 import Footer from '../Footer';
 import Header from '../Header';
@@ -10,6 +11,7 @@ import './index.scss';
 import ROUTES from '../../constants/routes';
 import PopUpCreateRecipe from './PopUpCreate';
 import PopUpModifyRecipe from './PopUpModify';
+import api from '../../helpers/api';
 
 type ProfileRecipesPageProps = {
   recipes: Recipe[];
@@ -29,6 +31,7 @@ export default function ProfileRecipesPage(
   const { name, bio, avatar, id } = user;
   const [isCreatePopUpVisible, setCreatePopUpVisible] = useState(false);
   const [isModifyPopUpVisible, setModifyPopUpVisible] = useState(false);
+  const [selectedRecipeId, setSelectedRecipeId] = useState(0);
 
   useEffect(() => getUsersCreatedRecipes(id), []);
   const photoSrc = avatar || '../../assets/images/photo-mask.png';
@@ -85,6 +88,8 @@ export default function ProfileRecipesPage(
                 image={el.image}
                 description={el.description}
                 key={el.id}
+                setModifyPopUpVisible={setModifyPopUpVisible}
+                setSelectedRecipeId={setSelectedRecipeId}
               />
             ))}
           </section>
@@ -95,8 +100,12 @@ export default function ProfileRecipesPage(
               createRecipe={createRecipe}
             />
           ) : null}
+
           {isModifyPopUpVisible ? (
-            <PopUpModifyRecipe setModifyPopUpVisible={setModifyPopUpVisible} />
+            <PopUpModifyRecipe
+              setModifyPopUpVisible={setModifyPopUpVisible}
+              selectedRecipe={api.getRecipe(selectedRecipeId)}
+            />
           ) : null}
         </div>
       </main>

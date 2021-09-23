@@ -132,9 +132,10 @@ export const createRecipe = (
   };
 
   recipes.push(newRecipe);
+  const usersRecipes = Api.getUsersRecipes(userId);
 
   return {
     type: ACTION_TYPES.RECIPES_GET,
-    payload: recipes,
+    payload: usersRecipes,
   };
 };

@@ -20,7 +20,7 @@ class Api {
   logIn(loginInfo: LoginInfo): User {
     const response = FetchQuery.logIn(loginInfo);
     if (!response) {
-      return null;
+      throw new Error('Incorrect email or password');
     }
     return response;
   }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import api from '../../../helpers/api';
 import './index.scss';
 
@@ -11,12 +11,42 @@ type ProfileRecipeCardProps = {
   likes: number;
   image: string;
   comments: number;
+  setModifyPopUpVisible: Function;
+  setSelectedRecipeId: Function;
 };
 
 export default function ProfileRecipeCard(
   props: ProfileRecipeCardProps
 ): JSX.Element {
-  const { views, image, description, title, authorId, likes, comments } = props;
+  const {
+    id,
+    views,
+    image,
+    description,
+    title,
+    authorId,
+    likes,
+    comments,
+    setModifyPopUpVisible,
+    setSelectedRecipeId,
+  } = props;
+
+  const [isBtnModifyVisible, setBtnModifyVisible] = useState(false);
+
+  const btnModify = (
+    <div className="statistics-item__menu">
+      <button
+        className="menu__btn_modify"
+        onClick={() => {
+          setSelectedRecipeId(id);
+          setModifyPopUpVisible(true);
+          setBtnModifyVisible(false);
+        }}
+      >
+        Modify recipe
+      </button>
+    </div>
+  );
 
   return (
     <div className="card">
@@ -92,11 +122,17 @@ export default function ProfileRecipeCard(
             viewBox="0 0 20 4"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            onClick={() => {
+              isBtnModifyVisible
+                ? setBtnModifyVisible(false)
+                : setBtnModifyVisible(true);
+            }}
           >
             <circle cx="2" cy="2" r="2" fill="#dadada" />
             <circle cx="10" cy="2" r="2" fill="#dadada" />
             <circle cx="18" cy="2" r="2" fill="#dadada" />
           </svg>
+          {isBtnModifyVisible ? btnModify : null}
         </div>
       </div>
     </div>

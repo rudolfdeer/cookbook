@@ -9,7 +9,7 @@ const recipes: Recipe[] = [
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel sit adipiscing dignissim feugiat consectetur. Dolor urna vitae vitae etiam sed commodo. Cursus semper diam commodo laoreet purus orci sed. Nulla varius interdum euismod vestibulum tempus scelerisque felis mauris. Sed neque laoreet habitant pharetra luctus.',
     directions: ['Take', 'Prepare', 'Cook'],
-    ingredients: ['meat, 500g', 'garlic, 5g'],
+    ingredients: ['meat - 500g', 'garlic - 5g'],
     cookingTime: 60,
     views: 252,
     likes: 57,
@@ -36,7 +36,7 @@ const recipes: Recipe[] = [
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel sit adipiscing dignissim feugiat consectetur. Dolor urna vitae vitae etiam sed commodo. Cursus semper diam commodo laoreet purus orci sed. Nulla varius interdum euismod vestibulum tempus scelerisque felis mauris. Sed neque laoreet habitant pharetra luctus.',
     directions: ['Take', 'Prepare', 'Cook'],
-    ingredients: ['meat, 500g', 'garlic, 5g'],
+    ingredients: ['meat - 500g', 'garlic - 5g'],
     cookingTime: 35,
     views: 123,
     likes: 17,
@@ -63,7 +63,7 @@ const recipes: Recipe[] = [
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel sit adipiscing dignissim feugiat consectetur. Dolor urna vitae vitae etiam sed commodo. Cursus semper diam commodo laoreet purus orci sed. Nulla varius interdum euismod vestibulum tempus scelerisque felis mauris. Sed neque laoreet habitant pharetra luctus.',
     directions: ['Take', 'Prepare', 'Cook'],
-    ingredients: ['meat, 500g', 'garlic, 5g'],
+    ingredients: ['meat - 500g', 'garlic - 5g'],
     cookingTime: 25,
     views: 200,
     likes: 51,
@@ -90,7 +90,7 @@ const recipes: Recipe[] = [
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel sit adipiscing dignissim feugiat consectetur. Dolor urna vitae vitae etiam sed commodo. Cursus semper diam commodo laoreet purus orci sed. Nulla varius interdum euismod vestibulum tempus scelerisque felis mauris. Sed neque laoreet habitant pharetra luctus.',
     directions: ['Take', 'Prepare', 'Cook'],
-    ingredients: ['meat, 500g', 'garlic, 5g'],
+    ingredients: ['meat - 500g', 'garlic - 5g'],
     cookingTime: 15,
     views: 212,
     likes: 25,
@@ -129,7 +129,7 @@ const recipes: Recipe[] = [
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel sit adipiscing dignissim feugiat consectetur. Dolor urna vitae vitae etiam sed commodo. Cursus semper diam commodo laoreet purus orci sed. Nulla varius interdum euismod vestibulum tempus scelerisque felis mauris. Sed neque laoreet habitant pharetra luctus.',
     directions: ['Take', 'Prepare', 'Cook'],
-    ingredients: ['meat, 500g', 'garlic, 5g'],
+    ingredients: ['meat - 500g', 'garlic - 5g'],
     cookingTime: 10,
     views: 117,
     likes: 15,

@@ -3,7 +3,6 @@ import { Link, Redirect } from 'react-router-dom';
 import { ActionCreatorFunction, Recipe, User } from '../../interfaces';
 
 import Footer from '../Footer';
-import Header from '../Header';
 import ProfileRecipeCard from './Card';
 
 import './index.scss';
@@ -11,6 +10,7 @@ import ROUTES from '../../constants/routes';
 import PopUpCreateRecipe from './PopUpCreate';
 import PopUpModifyRecipe from './PopUpModify';
 import api from '../../helpers/api';
+import HeaderConnect from '../../redux/containers/HeaderConnect';
 
 type ProfileRecipesPageProps = {
   recipes: Recipe[];
@@ -40,7 +40,7 @@ export default function ProfileRecipesPage(
   return (
     <>
       <div className="wrapper">
-        <Header loggedInUserId={id} />
+        <HeaderConnect />
       </div>
       <main className="profile-recipes-page">
         <div className="wrapper">

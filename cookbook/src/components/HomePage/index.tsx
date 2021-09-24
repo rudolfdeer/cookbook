@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ROUTES from '../../constants/routes';
 import { ActionCreatorFunction, Cookbook, Recipe } from '../../interfaces';
+import HeaderConnect from '../../redux/containers/HeaderConnect';
 import Footer from '../Footer';
-import Header from '../Header';
 import CardPopular from './CardPopular';
 import CardRated from './CardRated';
 import CardTrending from './CardTrending';
@@ -15,12 +15,10 @@ type HomePageProps = {
   getAllRecipes: ActionCreatorFunction;
   cookbooks: Cookbook[];
   getAllCookbooks: ActionCreatorFunction;
-  loggedInUserId: number;
 };
 
 export default function HomePage(props: HomePageProps): JSX.Element {
-  const { recipes, getAllRecipes, cookbooks, getAllCookbooks, loggedInUserId } =
-    props;
+  const { recipes, getAllRecipes, cookbooks, getAllCookbooks } = props;
 
   useEffect(() => {
     getAllRecipes();
@@ -30,7 +28,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
   return (
     <>
       <div className="wrapper">
-        <Header loggedInUserId={loggedInUserId} />
+        <HeaderConnect />
       </div>
       <main className="home-page">
         <div className="wrapper">

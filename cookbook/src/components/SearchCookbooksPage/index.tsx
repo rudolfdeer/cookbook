@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ActionCreatorFunction, Cookbook, Recipe } from '../../interfaces';
 import Footer from '../Footer';
-import Header from '../Header';
 import CookbookCard from './Card';
 import FilterPanelCookbooks from './FilterPanel';
 import PopUpCookbookDetailed from './PopUp';
 
 import './index.scss';
 import api from '../../helpers/api';
+import HeaderConnect from '../../redux/containers/HeaderConnect';
 
 type CookbooksPageProps = {
   cookbooks: Cookbook[];
@@ -47,7 +47,7 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
   return (
     <>
       <div className="wrapper">
-        <Header loggedInUserId={loggedInUserId} />
+        <HeaderConnect />
       </div>
       <main className="search-page">
         <div className="wrapper">

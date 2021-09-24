@@ -4,9 +4,9 @@ import { Link, Redirect } from 'react-router-dom';
 import { User } from '../../interfaces';
 import ROUTES from '../../constants/routes';
 import Footer from '../Footer';
-import Header from '../Header';
 
 import './index.scss';
+import HeaderConnect from '../../redux/containers/HeaderConnect';
 
 type ProfileSettingsPageProps = {
   user: User;
@@ -51,7 +51,7 @@ export default function ProfileSettingsPage(
   return (
     <>
       <div className="wrapper">
-        <Header loggedInUserId={id} />
+        <HeaderConnect />
       </div>
       <main className="profile-settings-page">
         <div className="wrapper">

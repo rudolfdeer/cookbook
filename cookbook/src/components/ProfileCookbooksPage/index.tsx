@@ -4,11 +4,11 @@ import { ActionCreatorFunction, Cookbook, User } from '../../interfaces';
 import ROUTES from '../../constants/routes';
 
 import Footer from '../Footer';
-import Header from '../Header';
 import ProfileCookbookCard from './Card';
 
 import './index.scss';
 import PopUpCreateCookbook from './PopUp';
+import HeaderConnect from '../../redux/containers/HeaderConnect';
 
 type ProfileCookbooksPageProps = {
   cookbooks: Cookbook[];
@@ -34,7 +34,7 @@ export default function ProfileCookbooksPage(
   return (
     <>
       <div className="wrapper">
-        <Header loggedInUserId={id} />
+        <HeaderConnect />
       </div>
       <main className="profile-cookbooks-page">
         <div className="wrapper">

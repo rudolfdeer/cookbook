@@ -4,11 +4,11 @@ import { Cookbook, Recipe, User } from '../../interfaces';
 
 import ROUTES from '../../constants/routes';
 import Footer from '../Footer';
-import Header from '../Header';
 
 import './index.scss';
 import ProfileSavedCookbookCard from './CookbookCard';
 import ProfileSavedRecipeCard from './RecipeCard';
+import HeaderConnect from '../../redux/containers/HeaderConnect';
 
 type ProfileSavedPageProps = {
   cookbooks: Cookbook[];
@@ -44,7 +44,7 @@ export default function ProfileSavedPage(
   return (
     <>
       <div className="wrapper">
-        <Header loggedInUserId={id} />
+        <HeaderConnect />
       </div>
       <main className="profile-cookbooks-page">
         <div className="wrapper">

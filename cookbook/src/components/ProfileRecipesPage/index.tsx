@@ -17,6 +17,7 @@ type ProfileRecipesPageProps = {
   getUsersCreatedRecipes: Function;
   user: User;
   createRecipe: ActionCreatorFunction;
+  modifyRecipe: ActionCreatorFunction;
 };
 
 export default function ProfileRecipesPage(
@@ -26,7 +27,8 @@ export default function ProfileRecipesPage(
     return <Redirect to={ROUTES.NOT_FOUND} />;
   }
 
-  const { recipes, user, getUsersCreatedRecipes, createRecipe } = props;
+  const { recipes, user, getUsersCreatedRecipes, createRecipe, modifyRecipe } =
+    props;
   const { name, bio, avatar, id } = user;
   const [isCreatePopUpVisible, setCreatePopUpVisible] = useState(false);
   const [isModifyPopUpVisible, setModifyPopUpVisible] = useState(false);
@@ -102,8 +104,10 @@ export default function ProfileRecipesPage(
 
           {isModifyPopUpVisible ? (
             <PopUpModifyRecipe
+              loggedInUserId={id}
               setModifyPopUpVisible={setModifyPopUpVisible}
               selectedRecipe={api.getRecipe(selectedRecipeId)}
+              modifyRecipe={modifyRecipe}
             />
           ) : null}
         </div>

@@ -121,6 +121,21 @@ export default function recipesReducer(
       return [...usersRecipes];
     }
 
+    case ACTION_TYPES.RECIPES_MODIFY: {
+      const { data, recipeId, imageSrc, userId } = action.payload;
+      const recipe = api.getRecipe(recipeId);
+
+      recipe.title = data.newTitle;
+      recipe.description = data.newDescription;
+      recipe.image = imageSrc;
+      recipe.directions = data.newDirections;
+      recipe.ingredients = data.newIngredients;
+
+      const usersRecipes = api.getUsersRecipes(userId);
+
+      return [...usersRecipes];
+    }
+
     default:
       return state;
   }

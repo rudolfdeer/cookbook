@@ -6,12 +6,19 @@ import './index.scss';
 type PopUpModifyRecipeProps = {
   setModifyPopUpVisible: Dispatch<SetStateAction<boolean>>;
   selectedRecipe: Recipe;
+  modifyRecipe: Function;
+  loggedInUserId: number;
 };
 
 export default function PopUpModifyRecipe(
   props: PopUpModifyRecipeProps
 ): JSX.Element {
-  const { setModifyPopUpVisible, selectedRecipe } = props;
+  const {
+    setModifyPopUpVisible,
+    selectedRecipe,
+    modifyRecipe,
+    loggedInUserId,
+  } = props;
   const {
     id,
     title,
@@ -29,9 +36,9 @@ export default function PopUpModifyRecipe(
   const [isDescriptionDisabled, setDescriptionDisabled] = useState(true);
   const [newDescription, setNewDescription] = useState(description);
   const [isDirectionsDisabled, setDirectionsDisabled] = useState(true);
-  const [newDirections, setNewDirections] = useState(directions.join(', '));
+  const [newDirections, setNewDirections] = useState(directions);
   const [isIngredientsDisabled, setIngredientsDisabled] = useState(true);
-  const [newIngredients, setNewIngredients] = useState(ingredients.join(', '));
+  const [newIngredients, setNewIngredients] = useState(ingredients);
 
   const closePopUp = (e: React.MouseEvent) => {
     const target = e.target as HTMLElement;
@@ -154,9 +161,11 @@ export default function PopUpModifyRecipe(
                   </div>
                   <textarea
                     className="section__textarea"
-                    value={newDirections}
+                    value={newDirections.join(',')}
                     disabled={isDirectionsDisabled}
-                    onChange={(e) => setNewDirections(e.target.value)}
+                    onChange={(e) =>
+                      setNewDirections(e.target.value.split(','))
+                    }
                   />
                 </div>
                 <div className="pop-up__section ingredients">
@@ -186,14 +195,30 @@ export default function PopUpModifyRecipe(
                   </div>
                   <textarea
                     className="section__textarea"
-                    value={newIngredients}
+                    value={newIngredients.join(',')}
                     disabled={isIngredientsDisabled}
-                    onChange={(e) => setNewIngredients(e.target.value)}
+                    onChange={(e) =>
+                      setNewIngredients(e.target.value.split(','))
+                    }
                   />
                 </div>
               </div>
               <div className="btns">
-                <button className="btn_light">Save</button>
+                <button
+                  className="btn_light"
+                  onClick={() => {
+                    const data = {
+                      newTitle,
+                      newDescription,
+                      newDirections,
+                      newIngredients,
+                    };
+                    setModifyPopUpVisible(false);
+                    modifyRecipe(data, id, imageSrc, loggedInUserId);
+                  }}
+                >
+                  Save
+                </button>
                 <button
                   className="btn"
                   onClick={() => setModifyPopUpVisible(false)}

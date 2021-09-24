@@ -1,7 +1,11 @@
 import { connect } from 'react-redux';
 import ProfileRecipesPage from '../../components/ProfileRecipesPage';
 import { State } from '../../interfaces';
-import { getUsersCreatedRecipes, createRecipe } from '../actions/recipes';
+import {
+  getUsersCreatedRecipes,
+  createRecipe,
+  modifyRecipe,
+} from '../actions/recipes';
 
 function mapStateToProps(state: State) {
   const { recipes, user } = state;
@@ -15,11 +19,12 @@ function mapStateToProps(state: State) {
 const mapDispatchToProps = {
   getUsersCreatedRecipes,
   createRecipe,
+  modifyRecipe,
 };
 
 const ProfileRecipesPageConnect = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(ProfileRecipesPage);
 
 export default ProfileRecipesPageConnect;

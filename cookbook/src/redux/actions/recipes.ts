@@ -38,7 +38,7 @@ export const createComment = (
   },
 });
 
-type NewRecipeValues = {
+type RecipeValues = {
   title: string;
   description: string;
   ingredients: string;
@@ -46,7 +46,7 @@ type NewRecipeValues = {
 };
 
 export const createRecipe = (
-  data: NewRecipeValues,
+  data: RecipeValues,
   userId: number,
   imageSrc: string
 ): AnyAction => ({
@@ -55,5 +55,20 @@ export const createRecipe = (
     data,
     userId,
     imageSrc,
+  },
+});
+
+export const modifyRecipe = (
+  data: RecipeValues,
+  recipeId: number,
+  imageSrc: string,
+  userId: number
+): AnyAction => ({
+  type: ACTION_TYPES.RECIPES_MODIFY,
+  payload: {
+    data,
+    recipeId,
+    imageSrc,
+    userId,
   },
 });

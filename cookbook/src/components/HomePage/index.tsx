@@ -12,20 +12,19 @@ import './index.scss';
 
 type HomePageProps = {
   recipes: Recipe[];
-  getRecipes: ActionCreatorFunction;
+  getAllRecipes: ActionCreatorFunction;
   cookbooks: Cookbook[];
-  getCookbooks: ActionCreatorFunction;
+  getAllCookbooks: ActionCreatorFunction;
   loggedInUserId: number;
 };
 
 export default function HomePage(props: HomePageProps): JSX.Element {
-  const {
-    recipes, getRecipes, cookbooks, getCookbooks, loggedInUserId,
-  } = props;
+  const { recipes, getAllRecipes, cookbooks, getAllCookbooks, loggedInUserId } =
+    props;
 
   useEffect(() => {
-    getRecipes();
-    getCookbooks();
+    getAllRecipes();
+    getAllCookbooks();
   }, []);
 
   return (

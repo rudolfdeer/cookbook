@@ -12,9 +12,9 @@ import api from '../../helpers/api';
 
 type CookbooksPageProps = {
   cookbooks: Cookbook[];
-  getCookbooks: Function;
+  getAllCookbooks: Function;
   recipes: Recipe[];
-  getRecipes: Function;
+  getAllRecipes: Function;
   sortCookbooks: ActionCreatorFunction;
   filterCookbooks: ActionCreatorFunction;
   saveToUsersCookbooks: ActionCreatorFunction;
@@ -26,8 +26,8 @@ type CookbooksPageProps = {
 export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
   const {
     cookbooks,
-    getCookbooks,
-    getRecipes,
+    getAllCookbooks,
+    getAllRecipes,
     sortCookbooks,
     filterCookbooks,
     loggedInUserId,
@@ -40,8 +40,8 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
   const [chosenCardId, setChosenCardId] = useState(0);
 
   useEffect(() => {
-    getRecipes();
-    getCookbooks();
+    getAllRecipes();
+    getAllCookbooks();
   }, []);
 
   return (

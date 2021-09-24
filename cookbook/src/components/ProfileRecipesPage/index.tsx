@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { ActionCreatorFunction, Recipe, User } from '../../interfaces';
-import PopUpCreateRecipeConnect from '../../redux/containers/PopUpCreateRecipeConnect';
 
 import Footer from '../Footer';
 import Header from '../Header';

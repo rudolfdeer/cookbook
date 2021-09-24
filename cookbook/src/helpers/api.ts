@@ -101,6 +101,12 @@ class Api {
     const filteredRecipes = recipes.filter((el) => el.userId === userId);
     return filteredRecipes;
   }
+
+  getUsersCookbooks(userId: number) {
+    const cookbooks = this.getCookbooksList();
+    const filteredCookbooks = cookbooks.filter((el) => el.userId === userId);
+    return filteredCookbooks;
+  }
 }
 
 export default new Api();

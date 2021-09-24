@@ -12,7 +12,7 @@ import api from '../../helpers/api';
 
 type RecipesPageProps = {
   recipes: Recipe[];
-  getRecipes: Function;
+  getAllRecipes: Function;
   sortRecipes: ActionCreatorFunction;
   filterRecipes: ActionCreatorFunction;
   loggedInUserId: number;
@@ -23,7 +23,7 @@ type RecipesPageProps = {
 export default function RecipesPage(props: RecipesPageProps): JSX.Element {
   const {
     recipes,
-    getRecipes,
+    getAllRecipes,
     sortRecipes,
     filterRecipes,
     loggedInUserId,
@@ -33,7 +33,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
   const [isVisible, setVisible] = useState(false);
   const [selectedCardId, setSelectedCardId] = useState(0);
 
-  useEffect(() => getRecipes(), []);
+  useEffect(() => getAllRecipes(), []);
 
   return (
     <>

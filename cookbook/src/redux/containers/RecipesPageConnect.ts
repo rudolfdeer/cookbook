@@ -3,7 +3,7 @@ import RecipesPage from '../../components/SearchRecipesPage';
 import { State } from '../../interfaces';
 import {
   filterRecipes,
-  getRecipes,
+  getAllRecipes,
   sortRecipes,
   createComment,
 } from '../actions/recipes';
@@ -20,7 +20,7 @@ function mapStateToProps(state: State) {
 }
 
 const mapDispatchToProps = {
-  getRecipes,
+  getAllRecipes,
   sortRecipes,
   filterRecipes,
   saveToUsersRecipes,
@@ -29,7 +29,7 @@ const mapDispatchToProps = {
 
 const RecipesPageConnect = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(RecipesPage);
 
 export default RecipesPageConnect;

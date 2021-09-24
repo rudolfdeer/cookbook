@@ -1,102 +1,42 @@
 import { AnyAction } from 'redux';
-import Api from '../../helpers/api';
 import ACTION_TYPES from '../../constants/actionTypes';
-import { Recipe } from '../../interfaces';
 
-export const getRecipes = (): AnyAction => {
-  const resData = Api.getRecipesList();
-  return {
-    type: ACTION_TYPES.RECIPES_GET,
-    payload: resData,
-  };
-};
+export const getAllRecipes = (): AnyAction => ({
+  type: ACTION_TYPES.RECIPES_GET_ALL,
+});
 
-export const sortRecipes = (order: string): AnyAction => {
-  const currentData = Api.getRecipesList();
-  let resData;
+export const sortRecipes = (order: string): AnyAction => ({
+  type: ACTION_TYPES.RECIPES_SORT,
+  payload: order,
+});
 
-  switch (order) {
-    case 'likes': {
-      resData = currentData.sort((a, b) => b.likes - a.likes);
-      break;
-    }
-    case 'views': {
-      resData = currentData.sort((a, b) => b.views - a.views);
-      break;
-    }
-    case 'default': {
-      resData = currentData.sort((a, b) => a.id - b.id);
-      break;
-    }
-    default:
-      resData = currentData;
-  }
+export const filterRecipes = (cookingTime: number): AnyAction => ({
+  type: ACTION_TYPES.RECIPES_FILTER,
+  payload: cookingTime,
+});
 
-  return {
-    type: ACTION_TYPES.RECIPES_GET,
-    payload: resData,
-  };
-};
+export const getUsersCreatedRecipes = (userId: number): AnyAction => ({
+  type: ACTION_TYPES.RECIPES_GET_USERS_CREATED,
+  payload: userId,
+});
 
-export const filterRecipes = (cookingTime: number): AnyAction => {
-  const currentData = Api.getRecipesList();
-  const resData = currentData.filter(
-    (recipe: Recipe) => recipe.cookingTime <= cookingTime
-  );
-
-  return {
-    type: ACTION_TYPES.RECIPES_GET,
-    payload: resData,
-  };
-};
-
-export const getUsersCreatedRecipes = (userId: number): AnyAction => {
-  const allRecipes = Api.getRecipesList();
-  const createdRecipes = allRecipes.filter(
-    (recipe: Recipe) => recipe.userId === userId
-  );
-
-  return {
-    type: ACTION_TYPES.RECIPES_GET,
-    payload: createdRecipes,
-  };
-};
-
-export const getUsersSavedRecipes = (userId: number): AnyAction => {
-  const user = Api.getUser(userId);
-  const { savedRecipes } = user;
-
-  return {
-    type: ACTION_TYPES.RECIPES_GET,
-    payload: savedRecipes,
-  };
-};
+export const getUsersSavedRecipes = (userId: number): AnyAction => ({
+  type: ACTION_TYPES.RECIPES_GET_USERS_SAVED,
+  payload: userId,
+});
 
 export const createComment = (
   recipeId: number,
   userId: number,
   commentText: string
-): AnyAction => {
-  const recipes = Api.getRecipesList();
-
-  const newComment = {
+): AnyAction => ({
+  type: ACTION_TYPES.RECIPES_CREATE_COMMENT,
+  payload: {
+    recipeId,
     userId,
-    comment: commentText,
-    date: new Date().toString(),
-  };
-
-  const recipesModified = recipes.map((el) => {
-    if (el.id === recipeId) {
-      el.comments.push(newComment);
-    }
-    return el;
-  });
-
-  return {
-    type: ACTION_TYPES.RECIPES_GET,
-    payload: recipesModified,
-  };
-};
+    commentText,
+  },
+});
 
 type NewRecipeValues = {
   title: string;
@@ -109,33 +49,11 @@ export const createRecipe = (
   data: NewRecipeValues,
   userId: number,
   imageSrc: string
-): AnyAction => {
-  const recipes = Api.getRecipesList();
-  const lastRecipeId = recipes[recipes.length - 1].id;
-  const newRecipeId = lastRecipeId + 1;
-
-  const directionsArr = data.directions.split(',');
-  const ingredientArr = data.ingredients.split(',');
-
-  const newRecipe: Recipe = {
-    id: newRecipeId,
-    title: data.title,
-    image: imageSrc,
+): AnyAction => ({
+  type: ACTION_TYPES.RECIPES_CREATE,
+  payload: {
+    data,
     userId,
-    description: data.description,
-    directions: directionsArr,
-    ingredients: ingredientArr,
-    cookingTime: 60,
-    views: 0,
-    likes: 0,
-    comments: [],
-  };
-
-  recipes.push(newRecipe);
-  const usersRecipes = Api.getUsersRecipes(userId);
-
-  return {
-    type: ACTION_TYPES.RECIPES_GET,
-    payload: usersRecipes,
-  };
-};
+    imageSrc,
+  },
+});

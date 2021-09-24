@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import HomePage from '../../components/HomePage';
 import { State } from '../../interfaces';
-import { getCookbooks } from '../actions/cookbooks';
-import { getRecipes } from '../actions/recipes';
+import { getAllCookbooks } from '../actions/cookbooks';
+import { getAllRecipes } from '../actions/recipes';
 
 function mapStateToProps(state: State) {
   const { recipes, cookbooks, user } = state;
@@ -16,8 +16,8 @@ function mapStateToProps(state: State) {
 }
 
 const mapDispatchToProps = {
-  getRecipes,
-  getCookbooks,
+  getAllRecipes,
+  getAllCookbooks,
 };
 
 const HomePageConnect = connect(mapStateToProps, mapDispatchToProps)(HomePage);

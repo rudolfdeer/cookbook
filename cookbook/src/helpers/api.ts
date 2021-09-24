@@ -54,14 +54,14 @@ class Api {
 
   getRecipe(recipeId: number): Recipe {
     const response = FetchQuery.getRecipesList().find(
-      (el) => el.id === recipeId
+      (el) => el.id === recipeId,
     );
     return response;
   }
 
   getCookbook(cookbookId: number): Cookbook {
     const response = FetchQuery.getCookbooksList().find(
-      (el) => el.id === cookbookId
+      (el) => el.id === cookbookId,
     );
     return response;
   }

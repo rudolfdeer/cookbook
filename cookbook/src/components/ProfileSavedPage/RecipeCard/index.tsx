@@ -15,9 +15,11 @@ type ProfileSavedRecipeCardProps = {
 };
 
 export default function ProfileSavedRecipeCard(
-  props: ProfileSavedRecipeCardProps
+  props: ProfileSavedRecipeCardProps,
 ): JSX.Element {
-  const { views, image, description, title, authorId, likes, comments } = props;
+  const {
+    views, image, description, title, authorId, likes, comments,
+  } = props;
 
   return (
     <div className="card">

@@ -19,7 +19,7 @@ class FetchQuery {
 
   logIn(loginInfo: LoginInfo): User {
     return users.find(
-      (el) => el.email === loginInfo.email && el.password === loginInfo.password
+      (el) => el.email === loginInfo.email && el.password === loginInfo.password,
     );
   }
 

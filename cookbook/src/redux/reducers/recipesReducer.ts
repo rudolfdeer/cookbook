@@ -9,7 +9,7 @@ type RecipesReducer = typeof initialState;
 
 export default function recipesReducer(
   state = initialState,
-  action: AnyAction
+  action: AnyAction,
 ): RecipesReducer {
   switch (action.type) {
     case ACTION_TYPES.RECIPES_GET_ALL: {
@@ -47,7 +47,7 @@ export default function recipesReducer(
       const cookingTime = action.payload;
       const currentData = api.getRecipesList();
       const resData = currentData.filter(
-        (recipe: Recipe) => recipe.cookingTime <= cookingTime
+        (recipe: Recipe) => recipe.cookingTime <= cookingTime,
       );
 
       return [...resData];
@@ -57,7 +57,7 @@ export default function recipesReducer(
       const userId = action.payload;
       const allRecipes = api.getRecipesList();
       const createdRecipes = allRecipes.filter(
-        (recipe: Recipe) => recipe.userId === userId
+        (recipe: Recipe) => recipe.userId === userId,
       );
 
       return [...createdRecipes];
@@ -122,7 +122,9 @@ export default function recipesReducer(
     }
 
     case ACTION_TYPES.RECIPES_MODIFY: {
-      const { data, recipeId, imageSrc, userId } = action.payload;
+      const {
+        data, recipeId, imageSrc, userId,
+      } = action.payload;
       const recipe = api.getRecipe(recipeId);
 
       recipe.title = data.newTitle;

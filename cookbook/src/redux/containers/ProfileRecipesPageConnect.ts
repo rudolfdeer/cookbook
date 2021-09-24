@@ -24,7 +24,7 @@ const mapDispatchToProps = {
 
 const ProfileRecipesPageConnect = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(ProfileRecipesPage);
 
 export default ProfileRecipesPageConnect;

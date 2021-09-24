@@ -29,7 +29,7 @@ const mapDispatchToProps = {
 
 const RecipesPageConnect = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(RecipesPage);
 
 export default RecipesPageConnect;

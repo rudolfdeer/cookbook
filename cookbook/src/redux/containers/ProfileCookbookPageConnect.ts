@@ -19,7 +19,7 @@ const mapDispatchToProps = {
 
 const ProfileCookbooksPageConnect = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(ProfileCookbooksPage);
 
 export default ProfileCookbooksPageConnect;

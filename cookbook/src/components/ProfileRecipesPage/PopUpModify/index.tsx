@@ -11,7 +11,7 @@ type PopUpModifyRecipeProps = {
 };
 
 export default function PopUpModifyRecipe(
-  props: PopUpModifyRecipeProps
+  props: PopUpModifyRecipeProps,
 ): JSX.Element {
   const {
     setModifyPopUpVisible,
@@ -163,8 +163,7 @@ export default function PopUpModifyRecipe(
                     className="section__textarea"
                     value={newDirections.join(',')}
                     disabled={isDirectionsDisabled}
-                    onChange={(e) =>
-                      setNewDirections(e.target.value.split(','))
+                    onChange={(e) => setNewDirections(e.target.value.split(','))
                     }
                   />
                 </div>
@@ -197,8 +196,7 @@ export default function PopUpModifyRecipe(
                     className="section__textarea"
                     value={newIngredients.join(',')}
                     disabled={isIngredientsDisabled}
-                    onChange={(e) =>
-                      setNewIngredients(e.target.value.split(','))
+                    onChange={(e) => setNewIngredients(e.target.value.split(','))
                     }
                   />
                 </div>

@@ -12,9 +12,11 @@ type CommentsSectionProps = {
 };
 
 export default function CommentsSection(
-  props: CommentsSectionProps
+  props: CommentsSectionProps,
 ): JSX.Element {
-  const { comments, loggedInUserId, cookbookId, createComment } = props;
+  const {
+    comments, loggedInUserId, cookbookId, createComment,
+  } = props;
   const [newComment, setNewComment] = useState('');
 
   function getDate(dateString: string) {
@@ -54,7 +56,7 @@ export default function CommentsSection(
               className="comment__photo"
               style={{
                 background: `url(${api.getUserPhoto(
-                  el.userId
+                  el.userId,
                 )}) center no-repeat`,
               }}
             ></div>

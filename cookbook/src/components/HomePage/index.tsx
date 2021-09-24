@@ -18,7 +18,9 @@ type HomePageProps = {
 };
 
 export default function HomePage(props: HomePageProps): JSX.Element {
-  const { recipes, getAllRecipes, cookbooks, getAllCookbooks } = props;
+  const {
+    recipes, getAllRecipes, cookbooks, getAllCookbooks,
+  } = props;
 
   useEffect(() => {
     getAllRecipes();

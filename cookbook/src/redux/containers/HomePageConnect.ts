@@ -5,7 +5,7 @@ import { getAllCookbooks } from '../actions/cookbooks';
 import { getAllRecipes } from '../actions/recipes';
 
 function mapStateToProps(state: State) {
-  const { recipes, cookbooks, user } = state;
+  const { recipes, cookbooks } = state;
 
   return {
     recipes,

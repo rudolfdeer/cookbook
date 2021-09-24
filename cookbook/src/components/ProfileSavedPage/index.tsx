@@ -19,7 +19,7 @@ type ProfileSavedPageProps = {
 };
 
 export default function ProfileSavedPage(
-  props: ProfileSavedPageProps
+  props: ProfileSavedPageProps,
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.NOT_FOUND} />;
@@ -33,7 +33,9 @@ export default function ProfileSavedPage(
     getUsersSavedRecipes,
   } = props;
 
-  const { name, bio, avatar, id } = user;
+  const {
+    name, bio, avatar, id,
+  } = user;
   const photoSrc = avatar || '../../assets/images/photo-mask.png';
 
   useEffect(() => {

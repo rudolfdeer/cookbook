@@ -1,4 +1,6 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import React, {
+  Dispatch, SetStateAction, useEffect, useState,
+} from 'react';
 import { Form, Field } from 'react-final-form';
 import api from '../../../helpers/api';
 
@@ -26,7 +28,7 @@ const formData = {
 const required = (value: string | string[]) => (value ? undefined : 'Required');
 
 export default function PopUpCreateCookbook(
-  props: PopUpCreateCookbookProps
+  props: PopUpCreateCookbookProps,
 ): JSX.Element {
   const { loggedInUserId, setVisible, createCookbook } = props;
   const [photoSrc, setPhotoSrc] = useState('');

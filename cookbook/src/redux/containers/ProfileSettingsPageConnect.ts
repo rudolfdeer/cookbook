@@ -29,7 +29,7 @@ const mapDispatchToProps = {
 
 const ProfileSettingsPageConnect = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(ProfileSettingsPage);
 
 export default ProfileSettingsPageConnect;

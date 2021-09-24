@@ -21,15 +21,18 @@ type ProfileRecipesPageProps = {
 };
 
 export default function ProfileRecipesPage(
-  props: ProfileRecipesPageProps
+  props: ProfileRecipesPageProps,
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.NOT_FOUND} />;
   }
 
-  const { recipes, user, getUsersCreatedRecipes, createRecipe, modifyRecipe } =
-    props;
-  const { name, bio, avatar, id } = user;
+  const {
+    recipes, user, getUsersCreatedRecipes, createRecipe, modifyRecipe,
+  } = props;
+  const {
+    name, bio, avatar, id,
+  } = user;
   const [isCreatePopUpVisible, setCreatePopUpVisible] = useState(false);
   const [isModifyPopUpVisible, setModifyPopUpVisible] = useState(false);
   const [selectedRecipeId, setSelectedRecipeId] = useState(0);

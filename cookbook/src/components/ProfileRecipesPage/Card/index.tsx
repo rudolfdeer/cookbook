@@ -56,7 +56,15 @@ export default function ProfileRecipeCard(
       ></div>
       <div className="card__content">
         <div className="card__info-container top">
-          <div className="card__title">{title}</div>
+          <div
+            className="card__title"
+            onClick={() => {
+              setSelectedRecipeId(id);
+              setModifyPopUpVisible(true);
+            }}
+          >
+            {title}
+          </div>
           <div className="card__author">{api.getUserName(authorId)}</div>
         </div>
         <div className="card__info-container description">

@@ -28,7 +28,7 @@ export const getUsersSavedCookbooks = (userId: number): AnyAction => ({
 export const createComment = (
   cookbookId: number,
   userId: number,
-  commentText: string
+  commentText: string,
 ): AnyAction => ({
   type: ACTION_TYPES.COOKBOOKS_CREATE_COMMENT,
   payload: {
@@ -47,7 +47,7 @@ type NewCookbookValues = {
 export const createCookbook = (
   data: NewCookbookValues,
   userId: number,
-  imageSrc: string
+  imageSrc: string,
 ): AnyAction => ({
   type: ACTION_TYPES.COOKBOOKS_CREATE,
   payload: {

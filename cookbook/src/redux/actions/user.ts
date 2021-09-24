@@ -18,7 +18,7 @@ export const logOut = (userId: number): AnyAction => ({
 
 export const saveToUsersRecipes = (
   recipeId: number,
-  userId: number
+  userId: number,
 ): AnyAction => ({
   type: ACTION_TYPES.USER_SAVE_RECIPE,
   payload: {
@@ -29,7 +29,7 @@ export const saveToUsersRecipes = (
 
 export const saveToUsersCookbooks = (
   cookbookId: number,
-  userId: number
+  userId: number,
 ): AnyAction => ({
   type: ACTION_TYPES.USER_SAVE_COOKBOOK,
   payload: {
@@ -56,7 +56,7 @@ export const changeUserName = (userId: number, newName: string): AnyAction => ({
 
 export const changeUserEmail = (
   userId: number,
-  newEmail: string
+  newEmail: string,
 ): AnyAction => ({
   type: ACTION_TYPES.USER_CHANGE_EMAIL,
   payload: {
@@ -67,7 +67,7 @@ export const changeUserEmail = (
 
 export const changeUserPassword = (
   userId: number,
-  newPassword: string
+  newPassword: string,
 ): AnyAction => ({
   type: ACTION_TYPES.USER_CHANGE_PASSWORD,
   payload: {
@@ -86,7 +86,7 @@ export const createUser = (email: string, password: string): AnyAction => ({
 
 export const updateUserPhoto = (
   userId: number,
-  newAvatar: string
+  newAvatar: string,
 ): AnyAction => ({
   type: ACTION_TYPES.USER_CHANGE_PHOTO,
   payload: {

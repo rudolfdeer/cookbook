@@ -1,6 +1,4 @@
-import React, {
-  Dispatch, SetStateAction, useEffect, useState,
-} from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Form, Field } from 'react-final-form';
 import api from '../../../helpers/api';
 
@@ -8,7 +6,7 @@ import './index.scss';
 
 type PopUpCreateCookbookProps = {
   loggedInUserId: number;
-  setVisible: Dispatch<SetStateAction<boolean>>;
+  setCreatePopUpVisible: Dispatch<SetStateAction<boolean>>;
   createCookbook: Function;
 };
 
@@ -28,14 +26,14 @@ const formData = {
 const required = (value: string | string[]) => (value ? undefined : 'Required');
 
 export default function PopUpCreateCookbook(
-  props: PopUpCreateCookbookProps,
+  props: PopUpCreateCookbookProps
 ): JSX.Element {
-  const { loggedInUserId, setVisible, createCookbook } = props;
+  const { loggedInUserId, setCreatePopUpVisible, createCookbook } = props;
   const [photoSrc, setPhotoSrc] = useState('');
 
   const onSubmit = (values: FormValues) => {
     createCookbook(values, loggedInUserId, photoSrc);
-    setVisible(false);
+    setCreatePopUpVisible(false);
   };
 
   const usersRecipes = api.getUsersRecipes(loggedInUserId);
@@ -128,7 +126,7 @@ export default function PopUpCreateCookbook(
                 <div className="btns">
                   <button
                     className="btn_light"
-                    onClick={() => setVisible(false)}
+                    onClick={() => setCreatePopUpVisible(false)}
                   >
                     Cancel
                   </button>

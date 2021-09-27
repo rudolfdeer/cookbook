@@ -7,8 +7,10 @@ import Footer from '../Footer';
 import ProfileCookbookCard from './Card';
 
 import './index.scss';
-import PopUpCreateCookbook from './PopUp';
+import PopUpCreateCookbook from './PopUpCreate';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
+import PopUpModifyCookbook from './PopUpModify';
+import api from '../../helpers/api';
 
 type ProfileCookbooksPageProps = {
   cookbooks: Cookbook[];
@@ -18,20 +20,18 @@ type ProfileCookbooksPageProps = {
 };
 
 export default function ProfileCookbooksPage(
-  props: ProfileCookbooksPageProps,
+  props: ProfileCookbooksPageProps
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.NOT_FOUND} />;
   }
 
-  const {
-    cookbooks, user, getUsersCreatedCookbooks, createCookbook,
-  } = props;
-  const {
-    name, bio, avatar, id,
-  } = user;
-  const [isVisible, setVisible] = useState(false);
+  const { cookbooks, user, getUsersCreatedCookbooks, createCookbook } = props;
+  const { name, bio, avatar, id } = user;
+  const [isCreatePopUpVisible, setCreatePopUpVisible] = useState(false);
+  const [isModifyPopUpVisible, setModifyPopUpVisible] = useState(false);
   const photoSrc = avatar || '../../assets/images/photo-mask.png';
+  const [selectedCookbookId, setSelectedCookbookId] = useState(0);
 
   useEffect(() => getUsersCreatedCookbooks(id), []);
 
@@ -68,7 +68,10 @@ export default function ProfileCookbooksPage(
                 <Link to={ROUTES.PROFILE_SETTINGS}>My Settings</Link>
               </li>
             </ul>
-            <button className="nav__btn" onClick={() => setVisible(true)}>
+            <button
+              className="nav__btn"
+              onClick={() => setCreatePopUpVisible(true)}
+            >
               Create New Cookbook
             </button>
           </nav>
@@ -84,14 +87,23 @@ export default function ProfileCookbooksPage(
                 image={el.image}
                 description={el.description}
                 key={el.id}
+                setSelectedCookbookId={setSelectedCookbookId}
+                setModifyPopUpVisible={setModifyPopUpVisible}
               />
             ))}
           </section>
-          {isVisible ? (
+          {isCreatePopUpVisible ? (
             <PopUpCreateCookbook
               loggedInUserId={id}
-              setVisible={setVisible}
+              setCreatePopUpVisible={setCreatePopUpVisible}
               createCookbook={createCookbook}
+            />
+          ) : null}
+          {isModifyPopUpVisible ? (
+            <PopUpModifyCookbook
+              loggedInUserId={id}
+              selectedCookbook={api.getCookbook(selectedCookbookId)}
+              setModifyPopUpVisible={setModifyPopUpVisible}
             />
           ) : null}
         </div>

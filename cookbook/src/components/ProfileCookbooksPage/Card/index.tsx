@@ -12,13 +12,24 @@ type ProfileCookbookCardProps = {
   likes: number;
   image: string;
   comments: number;
+  setSelectedCookbookId: Function;
+  setModifyPopUpVisible: Function;
 };
 
 export default function ProfileCookbookCard(
-  props: ProfileCookbookCardProps,
+  props: ProfileCookbookCardProps
 ): JSX.Element {
   const {
-    views, image, description, title, authorId, likes, comments,
+    id,
+    views,
+    image,
+    description,
+    title,
+    authorId,
+    likes,
+    comments,
+    setSelectedCookbookId,
+    setModifyPopUpVisible,
   } = props;
 
   return (
@@ -65,7 +76,15 @@ export default function ProfileCookbookCard(
       </div>
 
       <div className="card__info-container middle">
-        <div className="card__title">{title}</div>
+        <div
+          className="card__title"
+          onClick={() => {
+            setSelectedCookbookId(id);
+            setModifyPopUpVisible(true);
+          }}
+        >
+          {title}
+        </div>
         <div className="card__author">{api.getUserName(authorId)}</div>
       </div>
 

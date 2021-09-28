@@ -1,14 +1,15 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import ROUTES from '../../constants/routes';
-import { ActionCreatorFunction, Cookbook, Recipe } from '../../interfaces';
-import HeaderConnect from '../../redux/containers/HeaderConnect';
-import Footer from '../Footer';
-import CardPopular from './CardPopular';
-import CardRated from './CardRated';
-import CardTrending from './CardTrending';
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { INTRO_NAV_LIST } from "../../constants/ressources/homePage";
+import ROUTES from "../../constants/routes";
+import { ActionCreatorFunction, Cookbook, Recipe } from "../../interfaces";
+import HeaderConnect from "../../redux/containers/HeaderConnect";
+import Footer from "../Footer";
+import CardPopular from "./CardPopular";
+import CardRated from "./CardRated";
+import CardTrending from "./CardTrending";
 
-import './index.scss';
+import "./index.scss";
 
 type HomePageProps = {
   recipes: Recipe[];
@@ -18,9 +19,7 @@ type HomePageProps = {
 };
 
 export default function HomePage(props: HomePageProps): JSX.Element {
-  const {
-    recipes, getAllRecipes, cookbooks, getAllCookbooks,
-  } = props;
+  const { recipes, getAllRecipes, cookbooks, getAllCookbooks } = props;
 
   useEffect(() => {
     getAllRecipes();
@@ -32,43 +31,47 @@ export default function HomePage(props: HomePageProps): JSX.Element {
       <div className="wrapper">
         <HeaderConnect />
       </div>
-      <main className="home-page">
+      <main className="page--home">
         <div className="wrapper">
           <img
             src="../../../assets/images/pear-bg.png"
-            className="pear-bg top"
+            className="page--home__bg--top"
           />
           <img
             src="../../../assets/images/pear-light-bg.png"
-            className="pear-bg bottom"
+            className="page--home__bg--bottom"
           />
-          <div className="home-page__intro">
-            <section className="intro__content">
-              <h1 className="intro__title">
+          <div className="page--home__intro">
+            <section className="page--home__intro__content">
+              <h1 className="page--home__intro__title">
                 Find Recipes and Сreate Your Favourite Сookbooks
               </h1>
-              <div className="intro__search">
-                <div className="search__icon" />
+              <div className="page--home__intro__search">
+                <div className="page--home__intro__search__icon" />
                 <input
                   type="text"
-                  className="search__input"
+                  className="page--home__intro__search__input"
                   placeholder="Find Best Recipes..."
                 />
-                <button className="search__btn">Search</button>
+                <button className="page--home__intro__search__btn">
+                  Search
+                </button>
               </div>
-              <nav className="intro__nav">
-                <ul className="nav__list">
-                  <li className="list__item">Vegetarian</li>
-                  <li className="list__item">Mexican</li>
-                  <li className="list__item">Greece Kithcen</li>
-                  <li className="list__item">Italy Pizza</li>
-                  <li className="list__item">Philippines</li>
-                  <li className="list__item">Japan Sushi</li>
+              <nav className="page--home__intro__nav">
+                <ul className="page--home__intro__nav__list">
+                  {INTRO_NAV_LIST.map((el) => (
+                    <li
+                      className="page--home__intro__nav__list__item"
+                      key={INTRO_NAV_LIST.indexOf(el)}
+                    >
+                      {el}
+                    </li>
+                  ))}
                 </ul>
               </nav>
             </section>
           </div>
-          <section className="home-page__section rated">
+          <section className="page--home__section--rated">
             <div className="section__pre-title">Users Choice</div>
             <h2 className="section__title">20 Highest-Rated Recipes</h2>
             <div className="section__cards rated">
@@ -90,7 +93,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
               <Link to={ROUTES.RECIPES}>Show more</Link>
             </button>
           </section>
-          <section className="home-page__section popular">
+          <section className="page--home__section--popular">
             <div className="section__pre-title">Our Choice</div>
             <h2 className="section__title">Most Popular CookBooks</h2>
             <div className="section__cards popular">
@@ -105,7 +108,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
             </button>
           </section>
         </div>
-        <section className="home-page__section trending">
+        <section className="page--home__section--trending">
           <div className="wrapper">
             <div className="section__pre-title">Top 10</div>
             <h2 className="section__title">Trending Recipes</h2>

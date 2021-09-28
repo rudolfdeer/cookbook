@@ -1,13 +1,13 @@
 @import '../../styles/index.scss';
 
-.not-found-page {
+.page--not-found {
   position: relative;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  .pear-bg {
+  &__bg {
     width: 607px;
     height: 858px;
     position: absolute;
@@ -15,31 +15,24 @@
     left: 50%;
   }
 
-  h1,
-  h2,
-  p {
-    margin: 0;
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
   }
-}
 
-.page__content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-
-  .page__title {
+  &__title {
     @include title-40;
     font-size: 70px;
-    //color: $primary-yellow;
+
+    &--small {
+     @include title-40; 
+    }
   }
 
-  .page__title_small {
-    @include title-40;
-  }
-
-  .text {
+  &__text {
     @include text-18;
 
     a {

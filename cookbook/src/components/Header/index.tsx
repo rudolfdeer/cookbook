@@ -14,11 +14,11 @@ export default function Header(props: HeaderProps): JSX.Element {
   return (
     <header className="header">
       <Link to="/">
-        <div className="header__logo_small" />
+        <div className="header__logo" />
       </Link>
       <nav className="header__nav">
-        <ul className="nav__list">
-          <li className="list__item">
+        <ul className="header__nav__list">
+          <li className="header__nav__list__item">
             <Link to="/recipes">Recipes</Link>
           </li>
           <li className="list__item">
@@ -27,8 +27,8 @@ export default function Header(props: HeaderProps): JSX.Element {
         </ul>
       </nav>
       <div className="header__search">
-        <div className="search__icon" />
-        <input type="text" className="search__input" />
+        <div className="header__search__icon" />
+        <input type="text" className="header__search__input" />
       </div>
       {loggedInUserName ? (
         <button className="header__btn">
@@ -40,12 +40,12 @@ export default function Header(props: HeaderProps): JSX.Element {
         </button>
       )}
       {loggedInUserName ? (
-        <div className="header__login-info">
-          <div className="login__icon"></div>
+        <div className="header__login">
+          <div className="header__login__icon"></div>
           <Link to={ROUTES.PROFILE_SETTINGS}>{loggedInUserName}</Link>
         </div>
       ) : (
-        <div className="header__login-info">
+        <div className="header__login">
           <Link to="/login">Sign in</Link>
         </div>
       )}

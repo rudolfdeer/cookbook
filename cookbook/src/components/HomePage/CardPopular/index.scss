@@ -1,11 +1,10 @@
-@import '../../../styles/index.scss';
+@import "../../../styles/index.scss";
 
-.home-page .section__cards.popular .card {
+.card--popular {
   @include card;
 
   position: relative;
   padding: 0;
-    
   border-radius: 50px 10px;
   background-size: 100% !important;
 
@@ -26,25 +25,21 @@
   &:nth-child(3) {
     grid-area: small-first;
   }
-        
+
   &:last-child {
     grid-area: small-second;
   }
 
-  .card__name {
+  &__name {
     padding: 8px 24px;
-  
     height: 38px;
-
     position: absolute;
     bottom: 24px;
     left: 24px;
-
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
-
     font-size: 18px;
     background: $white;
     border-radius: 10px;
@@ -54,5 +49,5 @@
       cursor: pointer;
       background: $primary-yellow;
     }
-  } 
+  }
 }

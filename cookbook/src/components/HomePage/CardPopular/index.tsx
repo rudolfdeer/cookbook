@@ -12,7 +12,7 @@ export default function CardPopular(props: CookbookCardProps): JSX.Element {
 
   return (
     <div
-      className="card"
+      className="card--popular"
       style={{ background: `url(${image}) center no-repeat` }}
     >
       <svg
@@ -28,7 +28,7 @@ export default function CardPopular(props: CookbookCardProps): JSX.Element {
         <circle cx="18" cy="2" r="2" fill="#dadada" />
       </svg>
 
-      <div className="card__name">{title}</div>
+      <div className="card--popular__name">{title}</div>
     </div>
   );
 }

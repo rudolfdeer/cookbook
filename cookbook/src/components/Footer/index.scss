@@ -3,11 +3,15 @@
 .footer {
   background-color: $main;
 
-  .footer__nav {
-    .nav__list {
+  a {
+    color: $white; 
+  }
+
+  &__nav {
+    &__list {
       @include nav-list;
 
-      .list__item {
+      &__item {
         margin-right: 72px;
         color: $white;
 
@@ -23,40 +27,43 @@
       }
     }
   }
+  
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 97px;
+    font-size: 16px;
+    background: $main;
+  }
 
-  a {
-    color: $white; 
+  &__logo {
+    width: 112px;
+    height: 33px;
+    background: url('../../assets/images/logo-black.png') center no-repeat;
+  }
+
+  &__email {
+    a {
+      color: $primary-yellow;
+    }
+  }
+
+  &__study {
+    display: flex;
+    flex-wrap: nowrap;
+
+    &__project {
+      color: $white-dirty;
+      margin-right: 18px;
+    }
   }
 }
 
-.footer__container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 97px;
-  font-size: 16px;
-  background: $main;
-}
 
-.footer__logo_black {
-  width: 112px;
-  height: 33px;
-  background: url('../../assets/images/logo-black.png') center no-repeat;
-}
 
-.footer__email {
-  a {
-    color: $primary-yellow;
-  }
-}
 
-.footer__study {
-  display: flex;
-  flex-wrap: nowrap;
 
-  .study__project {
-    color: $white-dirty;
-    margin-right: 18px;
-  }
-}
+
+

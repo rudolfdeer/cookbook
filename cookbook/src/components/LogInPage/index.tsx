@@ -25,7 +25,7 @@ export default function LogInPage(props: LogInPageProps): JSX.Element {
     return <Redirect to={ROUTES.PROFILE_SETTINGS} />;
   }
   return (
-    <main className="log-in-page">
+    <main className="login-page">
       <div className="wrapper">
         <LogInForm logIn={logIn} />
       </div>

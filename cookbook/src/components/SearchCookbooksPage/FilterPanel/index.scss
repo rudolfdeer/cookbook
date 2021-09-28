@@ -14,44 +14,44 @@
     flex-wrap: nowrap;
     align-items: center;
     margin-bottom: 8px;
-  
-      .checkbox__input {
-        display: none;
-        cursor: pointer;
-  
-        &:checked {
-          +label {
-  
-            &::before {
-              border: 1px solid $primary-yellow;
-              background: $primary-yellow;
-            }
-  
-            &::after {
-              content: '';
-              width: 18px;
-              height: 18px;
-              display: block;
-              position: absolute;
-              top: 0px;
-              left: 0px;
-              background: url('../../../assets/images/checkbox.png') center no-repeat;
-            }
+
+    .checkbox__input {
+      display: none;
+      cursor: pointer;
+
+      &:checked {
+        + label {
+          &::before {
+            border: 1px solid $primary-yellow;
+            background: $primary-yellow;
+          }
+
+          &::after {
+            content: '';
+            width: 18px;
+            height: 18px;
+            display: block;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            background: url('../../../assets/images/checkbox.png') center
+              no-repeat;
           }
         }
       }
-  
+    }
+
     label {
       position: relative;
       cursor: pointer;
-  
+
       &::before {
-        content:'';
+        content: '';
         -webkit-appearance: none;
         background-color: transparent;
         width: 16px;
         height: 16px;
-        border: 1px solid #DADADA;;
+        border: 1px solid #dadada;
         border-radius: 2px;
         display: inline-block;
         position: relative;

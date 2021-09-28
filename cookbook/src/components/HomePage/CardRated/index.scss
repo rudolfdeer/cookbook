@@ -1,6 +1,6 @@
-@import "../../../styles/index.scss";
+@import '../../../styles/index.scss';
 
-.page--home .section__cards.rated .card {
+.page--home__section--rated__cards .card {
   @include card-vertical;
 
   z-index: 3;

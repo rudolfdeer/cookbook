@@ -3,13 +3,23 @@ import { Cookbook, Recipe, User } from '../../interfaces';
 import ACTION_TYPES from '../../constants/actionTypes';
 import api from '../../helpers/api';
 
-const initialState: null | User = null;
+const initialState: null | User = {
+  id: 1,
+  name: 'Jonh Doe',
+  avatar: 'images/user1.png',
+  email: 'johndoe@test.com',
+  password: 'user1',
+  bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+  isLoggedIn: false,
+  savedRecipes: [],
+  savedCookbooks: [],
+};
 
 type UserReducer = typeof initialState;
 
 export default function userReducer(
   state = initialState,
-  action: AnyAction,
+  action: AnyAction
 ): UserReducer {
   switch (action.type) {
     case ACTION_TYPES.USER_UPDATE:

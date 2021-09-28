@@ -1,26 +1,28 @@
-@import "../../../styles/index.scss";
+@import '../../../styles/index.scss';
 
-.page--home .section__cards.trending .card {
-  @include card-vertical;
+.page--home__section--trending {
+  &__card {
+    @include card-vertical;
 
-  width: 390px;
-  min-height: 460px;
-  background: $white;
+    width: 390px;
+    min-height: 460px;
+    background: $white;
 
-  z-index: 3;
+    z-index: 3;
 
-  .card__image {
-    margin-bottom: 16px;
-    width: 344px;
-    height: 344px;
-    background-size: 100% !important;
-  }
+    .card__image {
+      margin-bottom: 16px;
+      width: 344px;
+      height: 344px;
+      background-size: 100% !important;
+    }
 
-  .card__info-container.bottom {
-    margin-bottom: 0;
-  }
+    .card__info-container.bottom {
+      margin-bottom: 0;
+    }
 
-  &:last-child {
-    margin-right: 0;
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }

@@ -1,6 +1,9 @@
 @import '../../../styles/index.scss';
 
 .pop-up.create {
+  width: 100%;
+  position: relative;
+
   .btn {
     @include button-dark;
     width: 130px;

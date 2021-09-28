@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { INTRO_NAV_LIST } from "../../constants/ressources/homePage";
-import ROUTES from "../../constants/routes";
-import { ActionCreatorFunction, Cookbook, Recipe } from "../../interfaces";
-import HeaderConnect from "../../redux/containers/HeaderConnect";
-import Footer from "../Footer";
-import CardPopular from "./CardPopular";
-import CardRated from "./CardRated";
-import CardTrending from "./CardTrending";
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { INTRO_NAV_LIST } from '../../constants/ressources/homePage';
+import ROUTES from '../../constants/routes';
+import { ActionCreatorFunction, Cookbook, Recipe } from '../../interfaces';
+import HeaderConnect from '../../redux/containers/HeaderConnect';
+import Footer from '../Footer';
+import CardPopular from './CardPopular';
+import CardRated from './CardRated';
+import CardTrending from './CardTrending';
 
-import "./index.scss";
+import './index.scss';
 
 type HomePageProps = {
   recipes: Recipe[];
@@ -72,9 +72,13 @@ export default function HomePage(props: HomePageProps): JSX.Element {
             </section>
           </div>
           <section className="page--home__section--rated">
-            <div className="section__pre-title">Users Choice</div>
-            <h2 className="section__title">20 Highest-Rated Recipes</h2>
-            <div className="section__cards rated">
+            <div className="page--home__section--rated__pre-title">
+              Users Choice
+            </div>
+            <h2 className="page--home__section--rated__title">
+              20 Highest-Rated Recipes
+            </h2>
+            <div className="page--home__section--rated__cards">
               {recipes
                 ?.map((el) => (
                   <CardRated
@@ -89,31 +93,39 @@ export default function HomePage(props: HomePageProps): JSX.Element {
                 ))
                 .slice(0, 4)}
             </div>
-            <button className="section__btn">
+            <button className="page--home__section--rated__btn">
               <Link to={ROUTES.RECIPES}>Show more</Link>
             </button>
           </section>
           <section className="page--home__section--popular">
-            <div className="section__pre-title">Our Choice</div>
-            <h2 className="section__title">Most Popular CookBooks</h2>
-            <div className="section__cards popular">
+            <div className="page--home__section--popular__pre-title">
+              Our Choice
+            </div>
+            <h2 className="page--home__section--popular__title">
+              Most Popular CookBooks
+            </h2>
+            <div className="page--home__section--popular__cards">
               {cookbooks
                 ?.map((el) => (
                   <CardPopular title={el.title} image={el.image} key={el.id} />
                 ))
                 .slice(0, 4)}
             </div>
-            <button className="section__btn">
+            <button className="page--home__section--popular__btn">
               <Link to={ROUTES.COOKBOOKS}>Show more</Link>
             </button>
           </section>
         </div>
         <section className="page--home__section--trending">
-          <div className="wrapper">
-            <div className="section__pre-title">Top 10</div>
-            <h2 className="section__title">Trending Recipes</h2>
-            <div className="section__slider">
-              <div className="section__cards trending">
+          <div className="page--home__section--trending__wrapper">
+            <div className="page--home__section--trending__pre-title">
+              Top 10
+            </div>
+            <h2 className="page--home__section--trending__title">
+              Trending Recipes
+            </h2>
+            <div className="page--home__section--trending__slider">
+              <div className="page--home__section--trending__cards trending">
                 {recipes
                   ?.map((el) => (
                     <CardTrending
@@ -127,7 +139,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
                   .slice(0, 3)}
               </div>
             </div>
-            <button className="section__btn">
+            <button className="page--home__section--trending__btn">
               <Link to={ROUTES.RECIPES}>Show all recipes</Link>
             </button>
           </div>

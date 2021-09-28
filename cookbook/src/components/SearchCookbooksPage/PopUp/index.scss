@@ -1,103 +1,114 @@
 @import '../../../styles/index.scss';
 
 .overlay {
-  @include overlay;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: fixed !important;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: visible;
+  opacity: 1;
+  visibility: visible;
+  z-index: 999;
+  position: relative;
+  overflow-y: scroll;
 
-  .pop-up__btn-clone {
-    @include button-dark;
+  &__btn {
+    position: relative;
+    top: -80px;
+    z-index: 998;
+    width: 48px;
+    height: 48px;
+    background: url('../../../assets/images/close.png') center no-repeat;
 
-    width: 277px;
-    height: 54px;
-  }
-
-  .pop-up__author {
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 22px;
-    color: $primary-yellow;
-    margin-bottom: 40px;
-  }
-
-  .main-image {
-    display: flex;
-    width: 440px;
-    overflow: hidden;
-    border-radius: 10px 50px;
-    background-size: 100% !important;
-  }
-
-  .pop-up__section {
-    .section__title {
-      margin-bottom: 40px;
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
     }
+  }
 
-    &.top {
-      display: flex;
-      flex-wrap: nowrap;
-      justify-content: space-between;
-      margin-bottom: 16px;
+  &__content {
+    max-width: 1016px;
+    width: 100%;
+    background: $white;
+    padding: 72px 56px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 
-      .pop-up__title {
+    .pop-up--cookbook {
+      &__title {
+        @include title-40();
+
         max-width: 544px;
         margin-bottom: 0;
       }
-    }
 
-    &.description {
-      display: flex;
-      flex-wrap: nowrap;
-      justify-content: space-between;
-      width: 100%;
-      margin-bottom: 32px;
+      &__btn {
+        @include button-dark;
+        width: 277px;
+        height: 54px;
+      }
 
-      .description {
-        max-width: 424px;
+      &__author {
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 22px;
+        color: $primary-yellow;
+        margin-bottom: 40px;
+      }
+
+      &__image {
+        display: flex;
+        width: 440px;
+        overflow: hidden;
+        border-radius: 10px 50px;
+        background-size: 100% !important;
+      }
+
+      &__section {
+        &__title {
+          @include title-20();
+          margin-bottom: 40px;
         }
-    }
 
-    &.information {
-      margin-bottom: 32px;
-      display: flex;
-      flex-direction: row;
-    }
+        &--top {
+          display: flex;
+          flex-wrap: nowrap;
+          justify-content: space-between;
+          margin-bottom: 16px;
+        }
 
-    &.statistics {
-      @include statistics-data;
+        &--description {
+          display: flex;
+          flex-wrap: nowrap;
+          justify-content: space-between;
+          width: 100%;
+          margin-bottom: 32px;
 
-      display: flex;
-      flex-wrap: nowrap;
-      margin-bottom: 72px;
-    }
+          &__text {
+            max-width: 424px;
+          }
+        }
 
-    &.recipes {
-      margin-bottom: 104px;
-    }
-  }
+        &--statistics {
+          @include statistics-data;
 
-  .pop-up__recipe {
-    display: flex;
+          display: flex;
+          flex-wrap: nowrap;
+          margin-bottom: 72px;
+        }
 
-    .main-image {
-      background-size: 100% !important;
-     
-      position: absolute;
-      top: -72px;
-      left: -56px;
-    }
-
-    .pop-up-sections {
-      display: flex;
-      flex-direction: column;
-      padding-left: 445px;
-
-      .pop-up__section.top {
-        .section__title {
-          margin-right: 8px;
+        &--recipes {
+          margin-bottom: 104px;
         }
       }
     }
   }
-
-  
 }
-

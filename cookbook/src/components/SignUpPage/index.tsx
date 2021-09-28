@@ -19,7 +19,7 @@ export default function SignUpPage(props: SignUpPageProps): JSX.Element {
   }
   return (
     <main className="sign-up-page">
-      <div className="wrapper">
+      <div className="sign-up-page__wrapper">
         <SignUpForm createUser={createUser} setIsRedirected={setIsRedirected} />
       </div>
     </main>

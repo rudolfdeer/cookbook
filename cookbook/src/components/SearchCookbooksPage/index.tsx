@@ -50,9 +50,9 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
         <HeaderConnect />
       </div>
       <main className="search-page">
-        <div className="wrapper">
+        <div className="search-page__wrapper">
           <aside className="search-page__aside">
-            <div className="aside__container">
+            <div className="search-page__aside__container">
               <FilterPanelCookbooks
                 sortCookbooks={sortCookbooks}
                 filterCookbooks={filterCookbooks}
@@ -62,14 +62,14 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
           </aside>
           <div className="search-page__content">
             <nav className="search-page__nav">
-              <ul className="nav__list">
-                <li className="list__item_selected">Cookbooks</li>
+              <ul className="search-page__nav__list">
+                <li className="list__item--selected">Cookbooks</li>
                 <li className="list__item">
                   <Link to="/recipes">Recipes</Link>
                 </li>
               </ul>
             </nav>
-            <div className="search-page__cards cookbooks">
+            <div className="search-page__cards--cookbooks">
               {cookbooks?.map((el) => (
                 <CookbookCard
                   id={el.id}

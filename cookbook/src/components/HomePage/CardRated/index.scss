@@ -1,34 +1,36 @@
 @import '../../../styles/index.scss';
 
-.page--home__section--rated__cards .card {
-  @include card-vertical;
+.page--home__section--rated__cards {
+  .card {
+    @include card-vertical;
 
-  z-index: 3;
+    z-index: 3;
 
-  .card__info-container {
-    &.top {
+    .card__info-container {
+      &.top {
+        margin-bottom: 16px;
+      }
+
+      &.middle {
+        margin-bottom: 32px;
+      }
+
+      &.bottom {
+        margin-bottom: 0;
+        justify-content: flex-start;
+      }
+    }
+
+    .card__image {
       margin-bottom: 16px;
     }
 
-    &.middle {
-      margin-bottom: 32px;
+    &:nth-child(3) {
+      margin-right: 24px;
     }
 
-    &.bottom {
-      margin-bottom: 0;
-      justify-content: flex-start;
+    &:last-child {
+      margin-right: 0;
     }
-  }
-
-  .card__image {
-    margin-bottom: 16px;
-  }
-
-  &:nth-child(3) {
-    margin-right: 24px;
-  }
-
-  &:last-child {
-    margin-right: 0;
   }
 }

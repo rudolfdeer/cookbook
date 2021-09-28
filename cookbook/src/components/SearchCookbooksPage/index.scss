@@ -4,57 +4,37 @@
   padding-top: 104px;
   background-color: $grey-light;
 
-  .wrapper {
+  &__wrapper {
     display: flex;
-    flex-wrap: nowrap; 
+    flex-wrap: nowrap;
   }
-  
-  .search-page__aside {
+
+  &__aside {
     height: 100vh;
     margin-right: 40px;
   }
 
-  .aside__container {
+  &__container {
     width: 272px;
     height: 372px;
   }
 
-  .search-page__content {
+  &__content {
     width: 100%;
+  }
 
-    .search-page__nav {
-      margin-bottom: 34px;
+  &__nav {
+    margin-bottom: 34px;
 
-      .nav__list {
-        @include nav-list;
-        
-        .list__item {
-          @include title-20;
-        }
-
-        .list__item_selected {
-          @include title-20;
-          margin-right: 32px;
-          border-bottom:  5px solid $primary-yellow;
-
-          a {
-            @include title-20;
-          }
-        }
-      }
+    &__list {
+      @include nav-list;
     }
+  }
 
-    .search-page__cards {
+  &__cards {
+    &--cookbooks {
       display: flex;
-
-      &.recipes {
-        flex-wrap: nowrap;
-        flex-direction: column;
-      }
-
-      &.cookbooks {
-        flex-wrap: wrap;
-      }
+      flex-wrap: wrap;
     }
   }
 }

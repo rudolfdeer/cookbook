@@ -1,11 +1,13 @@
 @import '../../../../styles/index.scss';
 
-.pop-up__section.recipes .section__cards .card {
-  @include card-horizontal;
+.pop-up--cookbook__section--recipes__cards {
+  .card {
+    @include card-horizontal;
 
-  .card__btn-save {
-    @include button-light;
+    &__btn {
+      @include button-light;
 
-    width: 109px;
+      width: 109px;
+    }
   }
 }

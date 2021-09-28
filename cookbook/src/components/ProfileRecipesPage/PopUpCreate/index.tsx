@@ -42,20 +42,23 @@ export default function PopUpCreateRecipe(
     <div className="overlay">
       <div className="overlay__btn"></div>
       <div className="overlay__content">
-        <div className="pop-up create">
-          <div className="pop-up__title">Create New Recipe</div>
+        <div className="pop-up--create">
+          <div className="pop-up--create__title">Create New Recipe</div>
           <Form
             onSubmit={onSubmit}
             initialValues={{ ...formData }}
             render={({ handleSubmit, submitting, pristine }) => (
-              <form action="" className="pop-up__form" onSubmit={handleSubmit}>
-                <div className="pop-up__section">
-                  <label htmlFor="title" className="section__title">
+              <form action="" onSubmit={handleSubmit}>
+                <div className="pop-up--create__section">
+                  <label
+                    htmlFor="title"
+                    className="pop-up--create__section__title"
+                  >
                     Recipe Title<span>*</span>
                   </label>
                   <Field
                     type="text"
-                    className="section__input"
+                    className="pop-up--create__section__input"
                     name="title"
                     placeholder="Title"
                     component="input"
@@ -63,13 +66,13 @@ export default function PopUpCreateRecipe(
                   />
                 </div>
 
-                <div className="pop-up__section image">
-                  <label className="section__btn">
+                <div className="pop-up--create__section--image">
+                  <label className="pop-up--create__section__btn">
                     Upload Recipe Image
                     <input
                       name="image"
                       type="file"
-                      className="section__input_file"
+                      className="pop-up--create__section__input--file"
                       onChange={(e: React.ChangeEvent) => {
                         const target = e.target as HTMLInputElement;
                         const file = target.files[0];
@@ -85,30 +88,36 @@ export default function PopUpCreateRecipe(
                   <img
                     src={photoSrc}
                     alt="Image preview"
-                    className="section__preview"
+                    className="pop-up--create__section__preview"
                   />
                 </div>
 
-                <div className="pop-up__section">
-                  <label htmlFor="description" className="section__title">
+                <div className="pop-up--create__section">
+                  <label
+                    htmlFor="description"
+                    className="pop-up--create__section__title"
+                  >
                     Description
                   </label>
                   <Field
                     type="text"
-                    className="section__input big"
+                    className="pop-up--create__section__input--big"
                     name="description"
                     placeholder="Description"
                     component="input"
                   />
                 </div>
 
-                <div className="pop-up__section">
-                  <label htmlFor="ingredients" className="section__title">
+                <div className="pop-up--create__section">
+                  <label
+                    htmlFor="ingredients"
+                    className="pop-up--create__section__title"
+                  >
                     Ingredients
                   </label>
                   <Field
                     type="text"
-                    className="section__input"
+                    className="pop-up--create__section__input"
                     name="ingredients"
                     placeholder="Ingredient"
                     component="input"
@@ -116,29 +125,32 @@ export default function PopUpCreateRecipe(
                   <div className="ingredients"></div>
                 </div>
 
-                <div className="pop-up__section">
-                  <label htmlFor="directions" className="section__title">
+                <div className="pop-up--create__section">
+                  <label
+                    htmlFor="directions"
+                    className="pop-up--create__section__title"
+                  >
                     Directions
                   </label>
                   <Field
                     type="text"
-                    className="section__input big"
+                    className="pop-up--create__section__input--big"
                     name="directions"
                     placeholder="Directions"
                     component="input"
                   />
                 </div>
 
-                <div className="btns">
+                <div className="pop-up--create__btns">
                   <button
-                    className="btn_light"
+                    className="pop-up--create__btns__btn--light"
                     onClick={() => setCreatePopUpVisible(false)}
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    className="btn"
+                    className="pop-up--create__btns__btn"
                     disabled={submitting || pristine}
                   >
                     Confirm

@@ -16,7 +16,7 @@ export default function CardTrending(
   const { views, image, title, authorId } = props;
 
   return (
-    <div className="page--home__section--trending__card">
+    <div className="card">
       <div className="card__info-container top">
         <div className="card__statistics-item">
           <svg

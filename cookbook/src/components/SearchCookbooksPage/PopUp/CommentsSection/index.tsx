@@ -12,11 +12,9 @@ type CommentsSectionProps = {
 };
 
 export default function CommentsSection(
-  props: CommentsSectionProps,
+  props: CommentsSectionProps
 ): JSX.Element {
-  const {
-    comments, loggedInUserId, cookbookId, createComment,
-  } = props;
+  const { comments, loggedInUserId, cookbookId, createComment } = props;
   const [newComment, setNewComment] = useState('');
 
   function getDate(dateString: string) {
@@ -24,10 +22,10 @@ export default function CommentsSection(
   }
 
   const newCommentSection = (
-    <div className="comment-new">
+    <div className="comment--new">
       <input
         type="text"
-        className="comment-new__input"
+        className="comment--new__input"
         placeholder="Express yourself..."
         value={newComment}
         onChange={(e) => {
@@ -36,7 +34,7 @@ export default function CommentsSection(
         }}
       />
       <button
-        className="comment-new__btn"
+        className="comment--new__btn"
         onClick={() => {
           createComment(cookbookId, loggedInUserId, newComment);
           setNewComment('');
@@ -51,18 +49,18 @@ export default function CommentsSection(
 
       <div className="comments">
         {comments?.map((el) => (
-          <div className="comments__item" key={Math.random()}>
+          <div className="comment" key={Math.random()}>
             <div
               className="comment__photo"
               style={{
                 background: `url(${api.getUserPhoto(
-                  el.userId,
+                  el.userId
                 )}) center no-repeat`,
               }}
             ></div>
-            <div className="comment__text-info">
-              <div className="text-info__container_top">
-                <div className="comment__username">
+            <div className="comment__container">
+              <div className="comment__container--top">
+                <div className="comment__user">
                   {api.getUserName(el.userId)}
                 </div>
                 <div className="comment__time">{getDate(el.date)}</div>

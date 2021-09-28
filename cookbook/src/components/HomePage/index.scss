@@ -8,7 +8,7 @@
   align-items: center;
 }
 
-@mixin home-page-bg {
+@mixin bg {
   width: 607px;
   height: 858px;
   position: absolute;
@@ -241,25 +241,16 @@
 
   &__bg {
     &--top {
-      @include home-page-bg();
+      @include bg();
       left: 0;
       top: 1616px;
     }
 
     &--bottom {
-      @include home-page-bg();
+      @include bg();
       right: 0;
       bottom: 198px;
       z-index: 2;
     }
   }
 }
-
-// .page--home .section__cards.popular {
-//   display: grid;
-//   grid-gap: 24px;
-//   grid-template-rows: 258px 258px;
-//   grid-template-areas:
-//     'big big horiz horiz'
-//     'big big small-first small-second';
-// }

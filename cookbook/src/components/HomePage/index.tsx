@@ -125,7 +125,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
               Trending Recipes
             </h2>
             <div className="page--home__section--trending__slider">
-              <div className="page--home__section--trending__cards trending">
+              <div className="page--home__section--trending__cards">
                 {recipes
                   ?.map((el) => (
                     <CardTrending

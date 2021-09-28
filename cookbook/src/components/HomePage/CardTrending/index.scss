@@ -1,7 +1,7 @@
 @import '../../../styles/index.scss';
 
-.page--home__section--trending {
-  &__card {
+.page--home__section--trending__cards {
+  .card {
     @include card-vertical;
 
     width: 390px;

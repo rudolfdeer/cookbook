@@ -16,7 +16,7 @@ type PopUpCookbookDetailedProps = {
 };
 
 export default function PopUpCookbookDetailed(
-  props: PopUpCookbookDetailedProps,
+  props: PopUpCookbookDetailedProps
 ): JSX.Element {
   const {
     setVisible,
@@ -26,15 +26,14 @@ export default function PopUpCookbookDetailed(
     saveToUsersCookbooks,
     createComment,
   } = props;
-  const {
-    id, image, description, title, userId, likes, comments, recipesIds,
-  } = cookbook;
+  const { id, image, description, title, userId, likes, comments, recipesIds } =
+    cookbook;
 
   function closePopUp(e: React.MouseEvent) {
     const target = e.target as HTMLElement;
     if (
-      target.classList.contains('overlay')
-      || target.classList.contains('overlay__btn')
+      target.classList.contains('overlay') ||
+      target.classList.contains('overlay__btn')
     ) {
       setVisible(false);
     }
@@ -46,12 +45,12 @@ export default function PopUpCookbookDetailed(
     <div className="overlay" onClick={(e) => closePopUp(e)}>
       <div className="overlay__btn"></div>
       <div className="overlay__content">
-        <div className="pop-up">
-          <div className="pop-up__section top">
-            <div className="pop-up__title">{title}</div>
+        <div className="pop-up--cookbook">
+          <div className="pop-up--cookbook__section--top">
+            <div className="pop-up--cookbook__title">{title}</div>
             {loggedInUserId ? (
               <button
-                className="pop-up__btn-clone"
+                className="pop-up--cookbook__btn"
                 onClick={() => {
                   saveToUsersCookbooks(id, loggedInUserId);
                   setVisible(false);
@@ -62,22 +61,26 @@ export default function PopUpCookbookDetailed(
             ) : null}
           </div>
 
-          <div className="pop-up__author">{api.getUserName(userId)}</div>
+          <div className="pop-up--cookbook__author">
+            {api.getUserName(userId)}
+          </div>
 
-          <div className="pop-up__section description">
+          <div className="pop-up--cookbook__section--description">
             <div
-              className="main-image"
+              className="pop-up--cookbook__image"
               style={{
                 background: `url(../../../../assets/${image}) center no-repeat`,
               }}
             ></div>
-            <div className="description">
-              <div className="section__title">Description</div>
+            <div className="pop-up--cookbook__section--description__text">
+              <div className="pop-up--cookbook__section__title">
+                Description
+              </div>
               <p>{description}</p>
             </div>
           </div>
 
-          <div className="pop-up__section statistics">
+          <div className="pop-up--cookbook__section--statistics">
             <div className="card__statistics-item likes">
               <svg
                 className="statistics-item__icon"
@@ -111,9 +114,9 @@ export default function PopUpCookbookDetailed(
               {comments.length} comments
             </div>
           </div>
-          <div className="pop-up__section recipes">
-            <div className="section__title">Recipes</div>
-            <div className="section__cards">
+          <div className="pop-up--cookbook__section--recipes">
+            <div className="pop-up--cookbook__section__title">Recipes</div>
+            <div className="pop-up--cookbook__section--recipes__cards">
               {recipes?.map((el) => (
                 <PopUpRecipeCard
                   title={el.title}
@@ -131,8 +134,8 @@ export default function PopUpCookbookDetailed(
               ))}
             </div>
           </div>
-          <div className="pop-up__section comments">
-            <div className="section__title">{`Comments (${comments.length})`}</div>
+          <div className="pop-up--cookbook__section--comments">
+            <div className="pop-up--cookbook__section__title">{`Comments (${comments.length})`}</div>
             <CommentsSection
               comments={comments}
               loggedInUserId={loggedInUserId}

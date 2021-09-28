@@ -16,7 +16,7 @@ type PopUpRecipeCardProps = {
 };
 
 export default function PopUpRecipeCard(
-  props: PopUpRecipeCardProps,
+  props: PopUpRecipeCardProps
 ): JSX.Element {
   const {
     views,
@@ -100,7 +100,7 @@ export default function PopUpRecipeCard(
           </div>
           {loggedInUserId ? (
             <button
-              className="card__btn-save"
+              className="card__btn"
               onClick={() => {
                 saveToUsersRecipes(id, loggedInUserId);
               }}

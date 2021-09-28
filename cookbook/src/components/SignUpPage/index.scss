@@ -3,23 +3,23 @@
 .sign-up-page {
   padding: 32px;
 
-  .wrapper {
+  &__wrapper {
     height: 100vh;
-    
+
     display: flex;
     align-items: center;
     justify-content: flex-end;
 
     &::after {
-    content: '';
-    width: 1000px;
-    height: 960px;
-    background: url('../../assets/images/signup-bg.jpg') center no-repeat;
-    position: absolute; 
-    z-index: -1;
-    left: 32px; 
-    top: 32px; 
-    border-radius: 50px 10px;
+      content: '';
+      width: 1000px;
+      height: 960px;
+      background: url('../../assets/images/signup-bg.jpg') center no-repeat;
+      position: absolute;
+      z-index: -1;
+      left: 32px;
+      top: 32px;
+      border-radius: 50px 10px;
     }
   }
 }

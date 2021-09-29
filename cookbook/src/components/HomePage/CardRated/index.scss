@@ -6,7 +6,7 @@
 
     z-index: 3;
 
-    .card__info-container {
+    &__info-container {
       &.top {
         margin-bottom: 16px;
       }
@@ -21,7 +21,7 @@
       }
     }
 
-    .card__image {
+    &__image {
       margin-bottom: 16px;
     }
 

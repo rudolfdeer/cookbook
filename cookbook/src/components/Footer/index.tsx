@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { EMAIL, ITECHART, ITECHART_SITE, PROJECT } from '../../constants/ressources/footer';
+import {
+  EMAIL,
+  ITECHART,
+  ITECHART_SITE,
+  PROJECT,
+} from '../../constants/resources/footer';
 import ROUTES from '../../constants/routes';
 
 import './index.scss';

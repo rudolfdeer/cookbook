@@ -40,7 +40,6 @@ export default function PopUpCreateRecipe(
 
   return (
     <div className="overlay">
-      <div className="overlay__btn"></div>
       <div className="overlay__content">
         <div className="pop-up--create">
           <div className="pop-up--create__title">Create New Recipe</div>

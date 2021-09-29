@@ -32,29 +32,30 @@ export default function PopUpModifyCookbook(
 
   return (
     <div className="overlay" onClick={(e) => closePopUp(e)}>
-      <div className="overlay__btn"></div>
       <div className="overlay__content">
-        <div className="pop-up">
-          <div className="pop-up__section top">
-            <div className="pop-up__title">{title}</div>
+        <div className="pop-up--modify--column">
+          <div className="pop-up--modify__section--top">
+            <div className="pop-up--modify__title">{title}</div>
           </div>
 
-          <div className="pop-up__author">{api.getUserName(userId)}</div>
+          <div className="pop-up--modify__author">
+            {api.getUserName(userId)}
+          </div>
 
-          <div className="pop-up__section description">
+          <div className="pop-up--modify__section--description">
             <div
-              className="main-image"
+              className="pop-up--modify__image--cookbook"
               style={{
                 background: `url(${image}) center no-repeat`,
               }}
             ></div>
-            <div className="description">
-              <div className="section__title">Description</div>
+            <div className="pop-up--modify__section--description__container">
+              <div className="pop-up--modify__section__title">Description</div>
               <p>{description}</p>
             </div>
           </div>
 
-          <div className="pop-up__section statistics">
+          <div className="pop-up--modify__section--statistics">
             <div className="card__statistics-item likes">
               <svg
                 className="statistics-item__icon"
@@ -88,9 +89,9 @@ export default function PopUpModifyCookbook(
               {comments.length} comments
             </div>
           </div>
-          <div className="pop-up__section recipes">
-            <div className="section__title">Recipes</div>
-            <div className="section__cards">
+          <div className="pop-up--modify__section--recipes">
+            <div className="pop-up--modify__section__title">Recipes</div>
+            <div className="pop-up--modify__section--recipes__cards">
               {recipes?.map((el) => (
                 <PopUpRecipeCard
                   title={el.title}
@@ -106,6 +107,15 @@ export default function PopUpModifyCookbook(
                 />
               ))}
             </div>
+          </div>
+          <div className="pop-up--modify__btns">
+            <button className="pop-up--modify__btns__btn--light">Save</button>
+            <button
+              className="pop-up--modify__btns__btn"
+              onClick={() => setModifyPopUpVisible(false)}
+            >
+              Cancel
+            </button>
           </div>
         </div>
       </div>

@@ -1,36 +1,103 @@
 @import '../../../styles/index.scss';
 
-.pop-up__modify {
+.overlay {
+  &__content {
+    &--row {
+      max-width: 1016px;
+      width: 100%;
+      background: $white;
+      padding: 72px 56px;
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}
+
+.pop-up--modify {
   display: flex;
   position: relative;
-  padding-left: 440px;
+  padding-left: 424px;
+  width: 100%;
 
-  .pop-up__section.top {
-    margin-bottom: 32px;
+  &__sections {
+    width: 100%;
   }
 
-  .section__title.editable {
-    margin-right: 40px;
-    border: none;
-    background: $grey-light;
-    padding: 5px;
-    margin-bottom: 0;
+  &__section {
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
 
-    &:disabled {
+    &--top {
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 32px;
+    }
+
+    &__title {
+      @include title-20;
+
+      &--editable {
+        @include title-20;
+        margin-right: 40px;
+        border: none;
+        background: $grey-light;
+        padding: 5px;
+        margin-bottom: 0;
+
+        &:disabled {
+          background: none;
+        }
+      }
+    }
+
+    &__btn {
+      @include text-18;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      border: none;
       background: none;
+      color: $primary-yellow;
+      padding: 0;
+
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+
+    &__container {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+
+      &__section {
+        flex-direction: column;
+      }
+
+      &:first-child {
+        margin-right: 16px;
+      }
+
+      &:last-child {
+        margin-left: 16px;
+      }
+    }
+
+    &--description {
+      &__container {
+        max-width: 50%;
+        overflow: hidden;
+      }
     }
   }
 
-  .main-image {
-    position: relative;
-    margin-right: 40px;
-    position: absolute;
-    top: -72px;
-    left: -56px;
-    background: url('../../../assets/images/photo-mask-single.png') center
-      no-repeat;
-
-    .photo__input {
+  &__input {
+    &--file {
       opacity: 0;
       appearance: none;
       display: block;
@@ -45,86 +112,52 @@
       }
     }
 
-    .img {
+    &--textarea {
+      width: 100%;
+      margin-right: 40px;
+      border: none;
+      resize: none;
+      display: flex;
+      background: $grey-light;
+      padding: 5px;
+
+      &:disabled {
+        background: none;
+      }
+    }
+  }
+
+  &__image {
+    position: relative;
+    position: absolute;
+    top: -72px;
+    left: -56px;
+    background: url('../../../assets/images/photo-mask-single.png') center
+      no-repeat;
+    width: 440px;
+    height: auto;
+
+    img {
       opacity: 0.5;
     }
   }
 
-  .pop-up-sections {
-    width: 100%;
-
-    .pop-up__section {
-      .btn_edit {
-        @include text-18;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        border: none;
-        background: none;
-        color: $primary-yellow;
-        //width: 10%;
-        padding: 0;
-
-        &:hover {
-          cursor: pointer;
-          text-decoration: underline;
-        }
-      }
-
-      .section__container {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-      }
-
-      .section__textarea {
-        //@include text-18;
-
-        width: 100%;
-        margin-right: 40px;
-        border: none;
-        resize: none;
-        display: flex;
-        background: $grey-light;
-        padding: 5px;
-
-        &:disabled {
-          background: none;
-        }
-      }
-      &.information {
-        .btn_edit {
-          width: auto;
-        }
-      }
-
-      &.directions {
-        margin-right: 16px;
-      }
-
-      &.ingredients {
-        margin-left: 16px;
-      }
-    }
-  }
-
-  .btn {
-    @include button-dark;
-    width: 130px;
-    height: 62px;
-  }
-
-  .btn_light {
-    @include button-light;
-    width: 130px;
-    height: 62px;
-    margin-right: 40px;
-  }
-
-  .btns {
+  &__btns {
     display: flex;
     width: 100%;
     justify-content: flex-end;
+
+    &__btn {
+      @include button-dark;
+      width: 130px;
+      height: 62px;
+
+      &--light {
+        @include button-light;
+        width: 130px;
+        height: 62px;
+        margin-right: 40px;
+      }
+    }
   }
 }

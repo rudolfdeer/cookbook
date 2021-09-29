@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { INTRO_NAV_LIST } from '../../constants/ressources/homePage';
+import { INTRO_NAV_LIST } from '../../constants/resources/homePage';
 import ROUTES from '../../constants/routes';
 import { ActionCreatorFunction, Cookbook, Recipe } from '../../interfaces';
 import HeaderConnect from '../../redux/containers/HeaderConnect';

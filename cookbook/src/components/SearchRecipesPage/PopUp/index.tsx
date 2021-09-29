@@ -48,7 +48,6 @@ export default function PopUpRecipeDetailed(
 
   return (
     <div className="overlay" onClick={(e) => closePopUp(e)}>
-      <div className="overlay__btn"></div>
       <div className="overlay__content">
         <div className="overlay__content__wrapper">
           <div className="pop-up--recipe">

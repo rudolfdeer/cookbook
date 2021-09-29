@@ -20,7 +20,7 @@ type ProfileSettingsPageProps = {
 };
 
 export default function ProfileSettingsPage(
-  props: ProfileSettingsPageProps,
+  props: ProfileSettingsPageProps
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.HOME} />;
@@ -35,9 +35,7 @@ export default function ProfileSettingsPage(
     logOut,
     deleteUser,
   } = props;
-  const {
-    id, name, email, password, bio, avatar,
-  } = user;
+  const { id, name, email, password, bio, avatar } = user;
   const [isBioDisabled, setBioDisabled] = useState(true);
   const [isNameDisabled, setNameDisabled] = useState(true);
   const [isEmailDisabled, setEmailDisabled] = useState(true);
@@ -47,8 +45,20 @@ export default function ProfileSettingsPage(
   const [newEmail, setNewEmail] = useState(email);
   const [newPassword, setNewPassword] = useState(password);
   const [photoSrc, setPhotoSrc] = useState(
-    avatar || './assets/images/photo-mask.png',
+    avatar || './assets/images/photo-mask.png'
   );
+
+  const onPhotoChange = (e: React.ChangeEvent) => {
+    const input = e.target as HTMLInputElement;
+    const file = input.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = String(reader.result);
+      setPhotoSrc(result);
+      updateUserPhoto(id, result);
+    };
+    reader.readAsDataURL(file);
+  };
 
   return (
     <>
@@ -63,16 +73,7 @@ export default function ProfileSettingsPage(
                 <input
                   type="file"
                   className="photo__input"
-                  onChange={(e) => {
-                    const file = e.target.files[0];
-                    const reader = new FileReader();
-                    reader.onload = () => {
-                      const result = String(reader.result);
-                      setPhotoSrc(result);
-                      updateUserPhoto(id, result);
-                    };
-                    reader.readAsDataURL(file);
-                  }}
+                  onChange={(e) => onPhotoChange(e)}
                 />
                 <img
                   src={photoSrc}

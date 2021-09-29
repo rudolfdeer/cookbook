@@ -47,185 +47,185 @@ export default function PopUpModifyRecipe(
     }
   };
 
+  const onImageChange = (e: React.ChangeEvent) => {
+    const target = e.target as HTMLInputElement;
+    const file = target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = String(reader.result);
+      setImageSrc(result);
+    };
+    reader.readAsDataURL(file);
+  };
+
   return (
     <div className="overlay" onClick={(e) => closePopUp(e)}>
-      <div className="overlay__btn"></div>
-      <div className="overlay__content">
-        <div className="pop-up">
-          <div className="pop-up__modify">
-            <div className="main-image">
+      <div className="overlay__content--row">
+        <div className="pop-up--modify">
+          <div className="pop-up--modify__image">
+            <input
+              type="file"
+              className="pop-up--modify__input--file"
+              onChange={(e) => onImageChange(e)}
+            />
+            {<img src={`${imageSrc}`} alt="" className="img" />}
+          </div>
+          <div className="pop-up--modify__sections">
+            <div className="pop-up--modify__section--top">
               <input
-                type="file"
-                className="photo__input"
-                onChange={(e) => {
-                  const file = e.target.files[0];
-                  const reader = new FileReader();
-                  reader.onload = () => {
-                    const result = String(reader.result);
-                    setImageSrc(result);
-                  };
-                  reader.readAsDataURL(file);
-                }}
+                type="text"
+                className="pop-up--modify__section__title--editable"
+                name="title"
+                placeholder={newTitle}
+                value={newTitle}
+                onChange={(e) => setNewTitle(e.target.value)}
+                disabled={isTitleDisabled}
               />
-              {<img src={`${imageSrc}`} alt="" className="img" />}
-            </div>
-            <div className="pop-up-sections">
-              <div className="pop-up__section top">
-                <input
-                  type="text"
-                  className="section__title editable"
-                  name="title"
-                  placeholder={newTitle}
-                  value={newTitle}
-                  onChange={(e) => setNewTitle(e.target.value)}
-                  disabled={isTitleDisabled}
-                />
-                {isTitleDisabled ? (
-                  <button
-                    className="btn_edit"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setTitleDisabled(false);
-                    }}
-                  >
-                    Edit
-                  </button>
-                ) : (
-                  <button
-                    className="btn_edit"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setTitleDisabled(true);
-                    }}
-                  >
-                    Save
-                  </button>
-                )}
-              </div>
-
-              <div className="pop-up__section description">
-                <textarea
-                  name="description"
-                  className="section__textarea"
-                  value={newDescription}
-                  disabled={isDescriptionDisabled}
-                  onChange={(e) => setNewDescription(e.target.value)}
-                />
-                {isDescriptionDisabled ? (
-                  <button
-                    className="btn_edit"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setDescriptionDisabled(false);
-                    }}
-                  >
-                    Edit
-                  </button>
-                ) : (
-                  <button
-                    className="btn_edit"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setDescriptionDisabled(true);
-                    }}
-                  >
-                    Save
-                  </button>
-                )}
-              </div>
-              <div className="pop-up__section information">
-                <div className="pop-up__section directions">
-                  <div className="section__container">
-                    <div className="section__title">Directions</div>
-                    {isDirectionsDisabled ? (
-                      <button
-                        className="btn_edit"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setDirectionsDisabled(false);
-                        }}
-                      >
-                        Edit
-                      </button>
-                    ) : (
-                      <button
-                        className="btn_edit"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setDirectionsDisabled(true);
-                        }}
-                      >
-                        Save
-                      </button>
-                    )}
-                  </div>
-                  <textarea
-                    className="section__textarea"
-                    value={newDirections.join(', ')}
-                    disabled={isDirectionsDisabled}
-                    onChange={(e) =>
-                      setNewDirections(e.target.value.split(','))
-                    }
-                  />
-                </div>
-                <div className="pop-up__section ingredients">
-                  <div className="section__container">
-                    <div className="section__title">Ingredients</div>
-                    {isIngredientsDisabled ? (
-                      <button
-                        className="btn_edit"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setIngredientsDisabled(false);
-                        }}
-                      >
-                        Edit
-                      </button>
-                    ) : (
-                      <button
-                        className="btn_edit"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setIngredientsDisabled(true);
-                        }}
-                      >
-                        Save
-                      </button>
-                    )}
-                  </div>
-                  <textarea
-                    className="section__textarea"
-                    value={newIngredients.join(', ')}
-                    disabled={isIngredientsDisabled}
-                    onChange={(e) =>
-                      setNewIngredients(e.target.value.split(','))
-                    }
-                  />
-                </div>
-              </div>
-              <div className="btns">
+              {isTitleDisabled ? (
                 <button
-                  className="btn_light"
-                  onClick={() => {
-                    const data = {
-                      newTitle,
-                      newDescription,
-                      newDirections,
-                      newIngredients,
-                    };
-                    setModifyPopUpVisible(false);
-                    modifyRecipe(data, id, imageSrc, loggedInUserId);
+                  className="pop-up--modify__section__btn"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setTitleDisabled(false);
+                  }}
+                >
+                  Edit
+                </button>
+              ) : (
+                <button
+                  className="pop-up--modify__section__btn"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setTitleDisabled(true);
                   }}
                 >
                   Save
                 </button>
+              )}
+            </div>
+
+            <div className="pop-up--modify__section description">
+              <textarea
+                name="description"
+                className="pop-up--modify__input--textarea"
+                value={newDescription}
+                disabled={isDescriptionDisabled}
+                onChange={(e) => setNewDescription(e.target.value)}
+              />
+              {isDescriptionDisabled ? (
                 <button
-                  className="btn"
-                  onClick={() => setModifyPopUpVisible(false)}
+                  className="pop-up--modify__section__btn"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setDescriptionDisabled(false);
+                  }}
                 >
-                  Cancel
+                  Edit
                 </button>
+              ) : (
+                <button
+                  className="pop-up--modify__section__btn"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setDescriptionDisabled(true);
+                  }}
+                >
+                  Save
+                </button>
+              )}
+            </div>
+            <div className="pop-up--modify__section">
+              <div className="pop-up--modify__section__container">
+                <div className="pop-up--modify__section--top">
+                  <div className="pop-up--modify__section__title">
+                    Directions
+                  </div>
+                  {isDirectionsDisabled ? (
+                    <button
+                      className="pop-up--modify__section__btn"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setDirectionsDisabled(false);
+                      }}
+                    >
+                      Edit
+                    </button>
+                  ) : (
+                    <button
+                      className="pop-up--modify__section__btn"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setDirectionsDisabled(true);
+                      }}
+                    >
+                      Save
+                    </button>
+                  )}
+                </div>
+                <textarea
+                  className="pop-up--modify__input--textarea"
+                  value={newDirections.join(', ')}
+                  disabled={isDirectionsDisabled}
+                  onChange={(e) => setNewDirections(e.target.value.split(','))}
+                />
               </div>
+              <div className="pop-up--modify__section__container">
+                <div className="pop-up--modify__section--top">
+                  <div className="pop-up--modify__section__title">
+                    Ingredients
+                  </div>
+                  {isIngredientsDisabled ? (
+                    <button
+                      className="pop-up--modify__section__btn"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setIngredientsDisabled(false);
+                      }}
+                    >
+                      Edit
+                    </button>
+                  ) : (
+                    <button
+                      className="pop-up--modify__section__btn"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setIngredientsDisabled(true);
+                      }}
+                    >
+                      Save
+                    </button>
+                  )}
+                </div>
+                <textarea
+                  className="pop-up--modify__input--textarea"
+                  value={newIngredients.join(', ')}
+                  disabled={isIngredientsDisabled}
+                  onChange={(e) => setNewIngredients(e.target.value.split(','))}
+                />
+              </div>
+            </div>
+            <div className="pop-up--modify__btns">
+              <button
+                className="pop-up--modify__btns__btn--light"
+                onClick={() => {
+                  const data = {
+                    newTitle,
+                    newDescription,
+                    newDirections,
+                    newIngredients,
+                  };
+                  setModifyPopUpVisible(false);
+                  modifyRecipe(data, id, imageSrc, loggedInUserId);
+                }}
+              >
+                Save
+              </button>
+              <button
+                className="pop-up--modify__btns__btn"
+                onClick={() => setModifyPopUpVisible(false)}
+              >
+                Cancel
+              </button>
             </div>
           </div>
         </div>

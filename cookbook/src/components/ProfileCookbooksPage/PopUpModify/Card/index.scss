@@ -1,0 +1,13 @@
+@import '../../../../styles/index.scss';
+
+.pop-up--modify__section--recipes__cards {
+  .card {
+    @include card-horizontal;
+
+    &__btn {
+      @include button-light;
+
+      width: 109px;
+    }
+  }
+}

@@ -104,9 +104,8 @@ export default function PopUpModifyRecipe(
               )}
             </div>
 
-            <div className="pop-up--modify__section description">
+            <div className="pop-up--modify__section--description--recipe">
               <textarea
-                name="description"
                 className="pop-up--modify__input--textarea"
                 value={newDescription}
                 disabled={isDescriptionDisabled}

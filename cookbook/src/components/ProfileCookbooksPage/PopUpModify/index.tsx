@@ -1,11 +1,11 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import api from '../../../helpers/api';
-import { Cookbook } from '../../../interfaces';
-import CommentsIcon from '../../svg/Comments';
-import LikesIcon from '../../svg/Likes';
-import PopUpRecipeCard from './Card';
+import React, { Dispatch, SetStateAction } from "react";
+import api from "../../../helpers/api";
+import { Cookbook } from "../../../interfaces";
+import CommentsIcon from "../../svg/Comments";
+import LikesIcon from "../../svg/Likes";
+import PopUpRecipeCard from "./Card";
 
-import './index.scss';
+import "./index.scss";
 
 type PopUpModifyCookbookProps = {
   setModifyPopUpVisible: Dispatch<SetStateAction<boolean>>;
@@ -23,8 +23,8 @@ export default function PopUpModifyCookbook(
   function closePopUp(e: React.MouseEvent) {
     const target = e.target as HTMLElement;
     if (
-      target.classList.contains('overlay') ||
-      target.classList.contains('overlay__btn')
+      target.classList.contains("overlay") ||
+      target.classList.contains("overlay__btn")
     ) {
       setModifyPopUpVisible(false);
     }
@@ -38,13 +38,13 @@ export default function PopUpModifyCookbook(
       <div className="overlay__content">
         <div className="pop-up--modify--column">
           <div className="pop-up--modify__section--top">
-          <input
-                type="text"
-                className="pop-up--modify__section__title--editable"
-                name="title"
-                placeholder={title}
-                disabled
-              />
+            <input
+              type="text"
+              className="pop-up--modify__section__title--editable"
+              name="title"
+              placeholder={title}
+              disabled
+            />
             <button className="pop-up--modify__section__btn">Edit</button>
           </div>
 
@@ -53,17 +53,22 @@ export default function PopUpModifyCookbook(
           </div>
 
           <div className="pop-up--modify__section--description">
-          <div className="pop-up--modify__image--cookbook" style={{
-              background: `url(${image}) center no-repeat`,
-              }}>
-            <input
-              type="file"
-              className="pop-up--modify__input--file"
-            />
-          </div>
+            <div
+              className="pop-up--modify__image--cookbook"
+              style={{
+                background: `url(${image}) center no-repeat`,
+              }}
+            >
+              <input type="file" className="pop-up--modify__input--file" />
+            </div>
             <div className="pop-up--modify__section--description__container">
               <div className="pop-up--modify__section__title">Description</div>
-              <p>{description}</p>
+              <textarea
+                name="description"
+                className="pop-up--modify__input--textarea"
+                value={description}
+                disabled
+              />
               <button className="pop-up--modify__section__btn">Edit</button>
             </div>
           </div>
@@ -98,12 +103,19 @@ export default function PopUpModifyCookbook(
             </div>
           </div>
           <div className="pop-up--modify__section--add">
-          <div className="pop-up--modify__section__title">Add recipes</div>
-          <select className="pop-up--modify__input--select" name="recipes" id="recipes" multiple>{usersRecipes?.map((el) => (
-                      <option key={el.id} value={el.id}>
-                        {el.title}
-                      </option>
-                    ))}</select>    
+            <div className="pop-up--modify__section__title">Add recipes</div>
+            <select
+              className="pop-up--modify__input--select"
+              name="recipes"
+              id="recipes"
+              multiple
+            >
+              {usersRecipes?.map((el) => (
+                <option key={el.id} value={el.id}>
+                  {el.title}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="pop-up--modify__btns">

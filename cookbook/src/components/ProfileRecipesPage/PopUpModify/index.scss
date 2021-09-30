@@ -43,10 +43,11 @@
       &--editable {
         @include title-40;
         display: block;
-        margin-right: 40px;
+        width: 50%;
         border: none;
         background: $grey-light;
         padding: 5px;
+        color: $main;
         margin-bottom: 0;
 
         &:disabled {
@@ -90,10 +91,15 @@
     }
 
     &--description {
-      &__container {
-        max-width: 50%;
-        overflow: hidden;
+      &--recipe {
+        height: 150px;
+        display: flex;
+          flex-wrap: nowrap;
+          
+          width: 100%;
+          margin-bottom: 32px;
       }
+      
     }
   }
 

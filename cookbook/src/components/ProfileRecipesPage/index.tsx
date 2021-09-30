@@ -68,7 +68,7 @@ export default function ProfileRecipesPage(
               <li className="list__item">
                 <Link to={ROUTES.PROFILE_COOKBOOKS}>My Cookbooks</Link>
               </li>
-              <li className="list__item_selected">My Recipes</li>
+              <li className="list__item--selected">My Recipes</li>
               <li className="list__item">
                 <Link to={ROUTES.PROFILE_SETTINGS}>My Settings</Link>
               </li>

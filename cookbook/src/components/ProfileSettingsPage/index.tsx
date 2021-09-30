@@ -132,7 +132,7 @@ export default function ProfileSettingsPage(
               <li className="list__item">
                 <Link to={ROUTES.PROFILE_RECIPES}>My Recipes</Link>
               </li>
-              <li className="list__item_selected">My Settings</li>
+              <li className="list__item--selected">My Settings</li>
             </ul>
           </nav>
           <section className="personal-info">

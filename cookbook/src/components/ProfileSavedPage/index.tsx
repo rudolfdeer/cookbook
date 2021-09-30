@@ -65,7 +65,7 @@ export default function ProfileSavedPage(
           </section>
           <nav className="profile-page__nav">
             <ul className="nav__list">
-              <li className="list__item_selected">Saved</li>
+              <li className="list__item--selected">Saved</li>
               <li className="list__item">
                 <Link to={ROUTES.PROFILE_COOKBOOKS}>My Cookbooks</Link>
               </li>

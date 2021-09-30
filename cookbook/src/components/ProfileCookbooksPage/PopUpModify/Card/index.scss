@@ -5,9 +5,11 @@
     @include card-horizontal;
 
     &__btn {
-      @include button-light;
-
-      width: 109px;
+      &--delete {
+        @include button-dark;
+        font-size: 14px;
+      }
+      
     }
   }
 }

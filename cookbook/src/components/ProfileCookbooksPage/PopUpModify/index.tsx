@@ -31,13 +31,21 @@ export default function PopUpModifyCookbook(
   }
 
   const recipes = api.getRecipesInCookbook(recipesIds);
+  const usersRecipes = api.getUsersRecipes(loggedInUserId);
 
   return (
     <div className="overlay" onClick={(e) => closePopUp(e)}>
       <div className="overlay__content">
         <div className="pop-up--modify--column">
           <div className="pop-up--modify__section--top">
-            <div className="pop-up--modify__title">{title}</div>
+          <input
+                type="text"
+                className="pop-up--modify__section__title--editable"
+                name="title"
+                placeholder={title}
+                disabled
+              />
+            <button className="pop-up--modify__section__btn">Edit</button>
           </div>
 
           <div className="pop-up--modify__author">
@@ -45,15 +53,18 @@ export default function PopUpModifyCookbook(
           </div>
 
           <div className="pop-up--modify__section--description">
-            <div
-              className="pop-up--modify__image--cookbook"
-              style={{
-                background: `url(${image}) center no-repeat`,
-              }}
-            ></div>
+          <div className="pop-up--modify__image--cookbook" style={{
+              background: `url(${image}) center no-repeat`,
+              }}>
+            <input
+              type="file"
+              className="pop-up--modify__input--file"
+            />
+          </div>
             <div className="pop-up--modify__section--description__container">
               <div className="pop-up--modify__section__title">Description</div>
               <p>{description}</p>
+              <button className="pop-up--modify__section__btn">Edit</button>
             </div>
           </div>
 
@@ -86,6 +97,15 @@ export default function PopUpModifyCookbook(
               ))}
             </div>
           </div>
+          <div className="pop-up--modify__section--add">
+          <div className="pop-up--modify__section__title">Add recipes</div>
+          <select className="pop-up--modify__input--select" name="recipes" id="recipes" multiple>{usersRecipes?.map((el) => (
+                      <option key={el.id} value={el.id}>
+                        {el.title}
+                      </option>
+                    ))}</select>    
+          </div>
+
           <div className="pop-up--modify__btns">
             <button className="pop-up--modify__btns__btn--light">Save</button>
             <button

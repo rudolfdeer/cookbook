@@ -69,11 +69,13 @@
 
       &__image {
         &--cookbook {
+          position: relative;
           display: flex;
           width: 440px;
           overflow: hidden;
           border-radius: 10px 50px;
           background-size: 100% !important;
+          opacity: 0.5;
         }
       }
 
@@ -81,6 +83,15 @@
         &__title {
           @include title-20();
           margin-bottom: 40px;
+
+          &--editable {
+            @include title-40();
+            margin-bottom: 40px;
+
+            &:disabled {
+              background: none;
+            }
+          }
         }
 
         &--top {
@@ -127,6 +138,16 @@
             height: 62px;
             margin-right: 40px;
           }
+        }
+      }
+
+      &__input {
+        &--select {
+          margin-bottom: 24px;
+          padding: 10px 16px;
+          width: 100%;
+          border: 1px solid #dadada;
+          border-radius: 10px;
         }
       }
     }

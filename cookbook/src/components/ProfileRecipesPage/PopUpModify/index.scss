@@ -41,7 +41,8 @@
       @include title-20;
 
       &--editable {
-        @include title-20;
+        @include title-40;
+        display: block;
         margin-right: 40px;
         border: none;
         background: $grey-light;

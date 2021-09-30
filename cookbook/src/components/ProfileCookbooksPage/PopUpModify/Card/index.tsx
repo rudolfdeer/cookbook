@@ -60,6 +60,11 @@ export default function PopUpRecipeCard(
               <CommentsIcon />
               {comments} comments
             </div>
+            <button
+              className="card__btn--delete"
+            >
+              Delete from this cookbook
+            </button>
           </div>
         </div>
       </div>

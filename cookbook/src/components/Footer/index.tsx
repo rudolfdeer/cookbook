@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import { COOKBOOKS, RECIPES } from '../../constants/resources/common';
 import {
+  ABOUT_US,
   EMAIL,
   ITECHART,
   ITECHART_SITE,
@@ -21,13 +23,13 @@ export default function Footer(): JSX.Element {
           <nav className="footer__nav">
             <ul className="footer__nav__list">
               <li className="footer__nav__list__item">
-                <Link to={ROUTES.RECIPES}>Recipes</Link>
+                <Link to={ROUTES.RECIPES}>{RECIPES}</Link>
               </li>
               <li className="footer__nav__list__item">
-                <Link to={ROUTES.COOKBOOKS}>Cookbooks</Link>
+                <Link to={ROUTES.COOKBOOKS}>{COOKBOOKS}</Link>
               </li>
               <li className="footer__nav__list__item">
-                <Link to="/">About us</Link>
+                <Link to="/">{ABOUT_US}</Link>
               </li>
             </ul>
           </nav>

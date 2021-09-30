@@ -1,6 +1,19 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { INTRO_NAV_LIST } from '../../constants/resources/homePage';
+import {
+  MAIN_TITLE,
+  POPULAR_SECTION_PRE_TITLE,
+  POPULAR_SECTION_TITLE,
+  RATED_SECTION_PRE_TITLE,
+  RATED_SECTION_TITLE,
+  SEARCH_BTN,
+  SEARCH_INPUT_PLACEHOLDER,
+  SEARCH_NAV_LIST,
+  SHOW_ALL_BTN,
+  SHOW_MORE_BTN,
+  TRENDING_SECTION_PRE_TITLE,
+  TRENDING_SECTION_TITLE,
+} from '../../constants/resources/homePage';
 import ROUTES from '../../constants/routes';
 import { ActionCreatorFunction, Cookbook, Recipe } from '../../interfaces';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
@@ -43,26 +56,24 @@ export default function HomePage(props: HomePageProps): JSX.Element {
           />
           <div className="page--home__intro">
             <section className="page--home__intro__content">
-              <h1 className="page--home__intro__title">
-                Find Recipes and Сreate Your Favourite Сookbooks
-              </h1>
+              <h1 className="page--home__intro__title">{MAIN_TITLE}</h1>
               <div className="page--home__intro__search">
                 <div className="page--home__intro__search__icon" />
                 <input
                   type="text"
                   className="page--home__intro__search__input"
-                  placeholder="Find Best Recipes..."
+                  placeholder={SEARCH_INPUT_PLACEHOLDER}
                 />
                 <button className="page--home__intro__search__btn">
-                  Search
+                  {SEARCH_BTN}
                 </button>
               </div>
               <nav className="page--home__intro__nav">
                 <ul className="page--home__intro__nav__list">
-                  {INTRO_NAV_LIST.map((el) => (
+                  {SEARCH_NAV_LIST.map((el) => (
                     <li
                       className="page--home__intro__nav__list__item"
-                      key={INTRO_NAV_LIST.indexOf(el)}
+                      key={SEARCH_NAV_LIST.indexOf(el)}
                     >
                       {el}
                     </li>
@@ -73,10 +84,10 @@ export default function HomePage(props: HomePageProps): JSX.Element {
           </div>
           <section className="page--home__section--rated">
             <div className="page--home__section--rated__pre-title">
-              Users Choice
+              {RATED_SECTION_PRE_TITLE}
             </div>
             <h2 className="page--home__section--rated__title">
-              20 Highest-Rated Recipes
+              {RATED_SECTION_TITLE}
             </h2>
             <div className="page--home__section--rated__cards">
               {recipes
@@ -94,15 +105,15 @@ export default function HomePage(props: HomePageProps): JSX.Element {
                 .slice(0, 4)}
             </div>
             <button className="page--home__section--rated__btn">
-              <Link to={ROUTES.RECIPES}>Show more</Link>
+              <Link to={ROUTES.RECIPES}>{SHOW_MORE_BTN}</Link>
             </button>
           </section>
           <section className="page--home__section--popular">
             <div className="page--home__section--popular__pre-title">
-              Our Choice
+              {POPULAR_SECTION_PRE_TITLE}
             </div>
             <h2 className="page--home__section--popular__title">
-              Most Popular CookBooks
+              {POPULAR_SECTION_TITLE}
             </h2>
             <div className="page--home__section--popular__cards">
               {cookbooks
@@ -112,17 +123,17 @@ export default function HomePage(props: HomePageProps): JSX.Element {
                 .slice(0, 4)}
             </div>
             <button className="page--home__section--popular__btn">
-              <Link to={ROUTES.COOKBOOKS}>Show more</Link>
+              <Link to={ROUTES.COOKBOOKS}>{SHOW_MORE_BTN}</Link>
             </button>
           </section>
         </div>
         <section className="page--home__section--trending">
           <div className="page--home__section--trending__wrapper">
             <div className="page--home__section--trending__pre-title">
-              Top 10
+              {TRENDING_SECTION_PRE_TITLE}
             </div>
             <h2 className="page--home__section--trending__title">
-              Trending Recipes
+              {TRENDING_SECTION_TITLE}
             </h2>
             <div className="page--home__section--trending__slider">
               <div className="page--home__section--trending__cards">
@@ -140,7 +151,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
               </div>
             </div>
             <button className="page--home__section--trending__btn">
-              <Link to={ROUTES.RECIPES}>Show all recipes</Link>
+              <Link to={ROUTES.RECIPES}>{SHOW_ALL_BTN}</Link>
             </button>
           </div>
         </section>

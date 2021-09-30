@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import { COOKBOOKS, RECIPES } from '../../constants/resources/common';
+import { CREATE_COOKBOOK_BTN, SIGN_IN } from '../../constants/resources/header';
 import ROUTES from '../../constants/routes';
 
 import './index.scss';
@@ -19,10 +21,10 @@ export default function Header(props: HeaderProps): JSX.Element {
       <nav className="header__nav">
         <ul className="header__nav__list">
           <li className="header__nav__list__item">
-            <Link to="/recipes">Recipes</Link>
+            <Link to="/recipes">{RECIPES}</Link>
           </li>
           <li className="list__item">
-            <Link to="/cookbooks">Cookbooks</Link>
+            <Link to="/cookbooks">{COOKBOOKS}</Link>
           </li>
         </ul>
       </nav>
@@ -32,11 +34,11 @@ export default function Header(props: HeaderProps): JSX.Element {
       </div>
       {loggedInUserName ? (
         <button className="header__btn">
-          <Link to={ROUTES.PROFILE_COOKBOOKS}>Create CookBook</Link>
+          <Link to={ROUTES.PROFILE_COOKBOOKS}>{CREATE_COOKBOOK_BTN}</Link>
         </button>
       ) : (
         <button className="header__btn">
-          <Link to={ROUTES.LOG_IN}>Create CookBook</Link>
+          <Link to={ROUTES.LOG_IN}>{CREATE_COOKBOOK_BTN}</Link>
         </button>
       )}
       {loggedInUserName ? (
@@ -46,7 +48,7 @@ export default function Header(props: HeaderProps): JSX.Element {
         </div>
       ) : (
         <div className="header__login">
-          <Link to="/login">Sign in</Link>
+          <Link to="/login">{SIGN_IN}</Link>
         </div>
       )}
     </header>

@@ -1,36 +1,80 @@
-import React, { Dispatch, SetStateAction } from "react";
-import api from "../../../helpers/api";
-import { Cookbook } from "../../../interfaces";
-import CommentsIcon from "../../svg/Comments";
-import LikesIcon from "../../svg/Likes";
-import PopUpRecipeCard from "./Card";
+import React, { Dispatch, SetStateAction, useState } from 'react';
+import api from '../../../helpers/api';
+import { Cookbook } from '../../../interfaces';
+import CommentsIcon from '../../svg/Comments';
+import LikesIcon from '../../svg/Likes';
+import PopUpRecipeCard from './Card';
 
-import "./index.scss";
+import './index.scss';
 
 type PopUpModifyCookbookProps = {
   setModifyPopUpVisible: Dispatch<SetStateAction<boolean>>;
   selectedCookbook: Cookbook;
   loggedInUserId: number;
+  modifyCookbook: Function;
 };
 
 export default function PopUpModifyCookbook(
   props: PopUpModifyCookbookProps
 ): JSX.Element {
-  const { setModifyPopUpVisible, selectedCookbook, loggedInUserId } = props;
+  const {
+    setModifyPopUpVisible,
+    selectedCookbook,
+    loggedInUserId,
+    modifyCookbook,
+  } = props;
   const { id, image, description, title, userId, likes, comments, recipesIds } =
     selectedCookbook;
+
+  const [imageSrc, setImageSrc] = useState(image);
+  const [isTitleDisabled, setTitleDisabled] = useState(true);
+  const [newTitle, setNewTitle] = useState(title);
+  const [isDescriptionDisabled, setDescriptionDisabled] = useState(true);
+  const [newDescription, setNewDescription] = useState(description);
+  const [newRecipesIds, setNewRecipesIds] = useState(recipesIds);
 
   function closePopUp(e: React.MouseEvent) {
     const target = e.target as HTMLElement;
     if (
-      target.classList.contains("overlay") ||
-      target.classList.contains("overlay__btn")
+      target.classList.contains('overlay') ||
+      target.classList.contains('overlay__btn')
     ) {
       setModifyPopUpVisible(false);
     }
   }
 
-  const recipes = api.getRecipesInCookbook(recipesIds);
+  const onImageChange = (e: React.ChangeEvent) => {
+    const target = e.target as HTMLInputElement;
+    const file = target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = String(reader.result);
+      setImageSrc(result);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const addRecipeToCookbook = (recipeId: number) => {
+    if (newRecipesIds.indexOf(recipeId) > -1) {
+      return;
+    }
+    const newIds = newRecipesIds.concat(recipeId);
+    setNewRecipesIds(newIds);
+  };
+
+  const onSubmit = () => {
+    const values = {
+      title: newTitle,
+      description: newDescription,
+      recipesIds: newRecipesIds,
+    };
+
+    console.log(values);
+    modifyCookbook(values, id, imageSrc, loggedInUserId);
+    setModifyPopUpVisible(false);
+  };
+
+  const recipes = api.getRecipesInCookbook(newRecipesIds);
   const usersRecipes = api.getUsersRecipes(loggedInUserId);
 
   return (
@@ -42,10 +86,32 @@ export default function PopUpModifyCookbook(
               type="text"
               className="pop-up--modify__section__title--editable"
               name="title"
-              placeholder={title}
-              disabled
+              placeholder={newTitle}
+              value={newTitle}
+              onChange={(e) => setNewTitle(e.target.value)}
+              disabled={isTitleDisabled}
             />
-            <button className="pop-up--modify__section__btn">Edit</button>
+            {isTitleDisabled ? (
+              <button
+                className="pop-up--modify__section__btn"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setTitleDisabled(false);
+                }}
+              >
+                Edit
+              </button>
+            ) : (
+              <button
+                className="pop-up--modify__section__btn"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setTitleDisabled(true);
+                }}
+              >
+                Save
+              </button>
+            )}
           </div>
 
           <div className="pop-up--modify__author">
@@ -56,20 +122,45 @@ export default function PopUpModifyCookbook(
             <div
               className="pop-up--modify__image--cookbook"
               style={{
-                background: `url(${image}) center no-repeat`,
+                background: `url(${imageSrc}) center no-repeat`,
               }}
             >
-              <input type="file" className="pop-up--modify__input--file" />
+              <input
+                type="file"
+                className="pop-up--modify__input--file"
+                onChange={(e) => onImageChange(e)}
+              />
             </div>
             <div className="pop-up--modify__section--description__container">
               <div className="pop-up--modify__section__title">Description</div>
               <textarea
                 name="description"
                 className="pop-up--modify__input--textarea"
-                value={description}
-                disabled
+                value={newDescription}
+                disabled={isDescriptionDisabled}
+                onChange={(e) => setNewDescription(e.target.value)}
               />
-              <button className="pop-up--modify__section__btn">Edit</button>
+              {isDescriptionDisabled ? (
+                <button
+                  className="pop-up--modify__section__btn"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setDescriptionDisabled(false);
+                  }}
+                >
+                  Edit
+                </button>
+              ) : (
+                <button
+                  className="pop-up--modify__section__btn"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setDescriptionDisabled(true);
+                  }}
+                >
+                  Save
+                </button>
+              )}
             </div>
           </div>
 
@@ -98,6 +189,8 @@ export default function PopUpModifyCookbook(
                   key={el.id}
                   id={el.id}
                   loggedInUserId={loggedInUserId}
+                  setNewRecipesIds={setNewRecipesIds}
+                  recipesIds={newRecipesIds}
                 />
               ))}
             </div>
@@ -108,7 +201,10 @@ export default function PopUpModifyCookbook(
               className="pop-up--modify__input--select"
               name="recipes"
               id="recipes"
-              multiple
+              onChange={(e) => {
+                const select = e.target as HTMLSelectElement;
+                addRecipeToCookbook(Number(select.value));
+              }}
             >
               {usersRecipes?.map((el) => (
                 <option key={el.id} value={el.id}>
@@ -119,7 +215,12 @@ export default function PopUpModifyCookbook(
           </div>
 
           <div className="pop-up--modify__btns">
-            <button className="pop-up--modify__btns__btn--light">Save</button>
+            <button
+              className="pop-up--modify__btns__btn--light"
+              onClick={() => onSubmit()}
+            >
+              Save
+            </button>
             <button
               className="pop-up--modify__btns__btn"
               onClick={() => setModifyPopUpVisible(false)}

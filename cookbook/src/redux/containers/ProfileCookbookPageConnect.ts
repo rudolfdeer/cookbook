@@ -1,7 +1,11 @@
 import { connect } from 'react-redux';
 import ProfileCookbooksPage from '../../components/ProfileCookbooksPage';
 import { State } from '../../interfaces';
-import { getUsersCreatedCookbooks, createCookbook } from '../actions/cookbooks';
+import {
+  getUsersCreatedCookbooks,
+  createCookbook,
+  modifyCookbook,
+} from '../actions/cookbooks';
 
 const mapStateToProps = (state: State) => {
   const { cookbooks, user } = state;
@@ -15,11 +19,12 @@ const mapStateToProps = (state: State) => {
 const mapDispatchToProps = {
   getUsersCreatedCookbooks,
   createCookbook,
+  modifyCookbook,
 };
 
 const ProfileCookbooksPageConnect = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(ProfileCookbooksPage);
 
 export default ProfileCookbooksPageConnect;

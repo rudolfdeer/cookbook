@@ -17,6 +17,7 @@ type ProfileCookbooksPageProps = {
   getUsersCreatedCookbooks: Function;
   user: User;
   createCookbook: ActionCreatorFunction;
+  modifyCookbook: ActionCreatorFunction;
 };
 
 export default function ProfileCookbooksPage(
@@ -26,7 +27,13 @@ export default function ProfileCookbooksPage(
     return <Redirect to={ROUTES.NOT_FOUND} />;
   }
 
-  const { cookbooks, user, getUsersCreatedCookbooks, createCookbook } = props;
+  const {
+    cookbooks,
+    user,
+    getUsersCreatedCookbooks,
+    createCookbook,
+    modifyCookbook,
+  } = props;
   const { name, bio, avatar, id } = user;
   const [isCreatePopUpVisible, setCreatePopUpVisible] = useState(false);
   const [isModifyPopUpVisible, setModifyPopUpVisible] = useState(false);
@@ -104,6 +111,7 @@ export default function ProfileCookbooksPage(
               loggedInUserId={id}
               selectedCookbook={api.getCookbook(selectedCookbookId)}
               setModifyPopUpVisible={setModifyPopUpVisible}
+              modifyCookbook={modifyCookbook}
             />
           ) : null}
         </div>

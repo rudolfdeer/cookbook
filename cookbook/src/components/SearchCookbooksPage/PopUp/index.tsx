@@ -70,7 +70,7 @@ export default function PopUpCookbookDetailed(
             <div
               className="pop-up--cookbook__image"
               style={{
-                background: `url(../../../../assets/${image}) center no-repeat`,
+                background: `url(${image}) center no-repeat`,
               }}
             ></div>
             <div className="pop-up--cookbook__section--description__text">

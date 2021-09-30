@@ -15,6 +15,8 @@ type PopUpRecipeCardProps = {
   comments: number;
   id: number;
   loggedInUserId: number;
+  setNewRecipesIds: Function;
+  recipesIds: number[];
 };
 
 export default function PopUpRecipeCard(
@@ -29,8 +31,14 @@ export default function PopUpRecipeCard(
     likes,
     comments,
     id,
-    loggedInUserId,
+    setNewRecipesIds,
+    recipesIds,
   } = props;
+
+  const deleteRecipeFromCookbook = (recipeId: number) => {
+    const newRecipesIds = recipesIds.filter((el) => el !== recipeId);
+    setNewRecipesIds(newRecipesIds);
+  };
 
   return (
     <div className="card">
@@ -62,6 +70,7 @@ export default function PopUpRecipeCard(
             </div>
             <button
               className="card__btn--delete"
+              onClick={() => deleteRecipeFromCookbook(id)}
             >
               Delete from this cookbook
             </button>

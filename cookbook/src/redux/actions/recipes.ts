@@ -28,7 +28,7 @@ export const getUsersSavedRecipes = (userId: number): AnyAction => ({
 export const createComment = (
   recipeId: number,
   userId: number,
-  commentText: string,
+  commentText: string
 ): AnyAction => ({
   type: ACTION_TYPES.RECIPES_CREATE_COMMENT,
   payload: {
@@ -48,7 +48,7 @@ export type RecipeValues = {
 export const createRecipe = (
   data: RecipeValues,
   userId: number,
-  imageSrc: string,
+  imageSrc: string
 ): AnyAction => ({
   type: ACTION_TYPES.RECIPES_CREATE,
   payload: {
@@ -62,13 +62,21 @@ export const modifyRecipe = (
   data: RecipeValues,
   recipeId: number,
   imageSrc: string,
-  userId: number,
+  userId: number
 ): AnyAction => ({
   type: ACTION_TYPES.RECIPES_MODIFY,
   payload: {
     data,
     recipeId,
     imageSrc,
+    userId,
+  },
+});
+
+export const deleteRecipe = (recipeId: number, userId: number): AnyAction => ({
+  type: ACTION_TYPES.RECIPES_DELETE,
+  payload: {
+    recipeId,
     userId,
   },
 });

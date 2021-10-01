@@ -214,6 +214,16 @@
     &.bottom {
       margin-bottom: 0;
     }
+
+    &.description {
+      max-height: 70px;
+      overflow: hidden;
+    }
+  }
+
+  .card__description {
+    max-height: 70px;
+    overflow: hidden;
   }
 }
 
@@ -515,6 +525,7 @@
 
       .user__bio {
         @include text-18;
+        min-height: 180px;
       }
     }
   }

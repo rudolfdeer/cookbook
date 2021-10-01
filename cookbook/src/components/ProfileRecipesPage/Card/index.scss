@@ -18,7 +18,7 @@
   border-radius: 10px;
   z-index: 22;
 
-  .menu__btn_modify {
+  .menu__btn_delete {
     width: 100%;
     height: 100%;
     background: #ededed;
@@ -29,7 +29,7 @@
 
     &:hover {
       cursor: pointer;
-      color: $primary-yellow;
+      color: $red;
     }
   }
 }

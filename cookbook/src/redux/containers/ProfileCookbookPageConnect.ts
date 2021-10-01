@@ -5,6 +5,7 @@ import {
   getUsersCreatedCookbooks,
   createCookbook,
   modifyCookbook,
+  deleteCookbook,
 } from '../actions/cookbooks';
 
 const mapStateToProps = (state: State) => {
@@ -20,11 +21,12 @@ const mapDispatchToProps = {
   getUsersCreatedCookbooks,
   createCookbook,
   modifyCookbook,
+  deleteCookbook,
 };
 
 const ProfileCookbooksPageConnect = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(ProfileCookbooksPage);
 
 export default ProfileCookbooksPageConnect;

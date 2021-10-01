@@ -5,6 +5,7 @@ import {
   getUsersCreatedRecipes,
   createRecipe,
   modifyRecipe,
+  deleteRecipe,
 } from '../actions/recipes';
 
 function mapStateToProps(state: State) {
@@ -20,11 +21,12 @@ const mapDispatchToProps = {
   getUsersCreatedRecipes,
   createRecipe,
   modifyRecipe,
+  deleteRecipe,
 };
 
 const ProfileRecipesPageConnect = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(ProfileRecipesPage);
 
 export default ProfileRecipesPageConnect;

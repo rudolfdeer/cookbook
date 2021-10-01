@@ -82,6 +82,8 @@
     border: none;
     resize: none;
     display: flex;
+    min-height: 180px;
+    padding: 0;
 
     &:disabled {
       background: none;

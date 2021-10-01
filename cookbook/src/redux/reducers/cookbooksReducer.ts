@@ -9,7 +9,7 @@ type CookbooksReducer = typeof initialState;
 
 export default function cookbooksReducer(
   state = initialState,
-  action: AnyAction,
+  action: AnyAction
 ): CookbooksReducer {
   switch (action.type) {
     case ACTION_TYPES.RECIPES_GET_ALL: {
@@ -27,14 +27,14 @@ export default function cookbooksReducer(
       }
       if (appliedTags.length === 1) {
         resData = currentData.filter(
-          (cookbook) => cookbook.tags.indexOf(appliedTags[0]) > -1,
+          (cookbook) => cookbook.tags.indexOf(appliedTags[0]) > -1
         );
       }
       if (appliedTags.length > 1) {
         resData = currentData.filter((cookbook) => {
           const cookbookTags = cookbook.tags.sort();
           return cookbookTags.every(
-            (value, index) => value === appliedTags[index],
+            (value, index) => value === appliedTags[index]
           );
         });
       }
@@ -73,7 +73,7 @@ export default function cookbooksReducer(
       const userId = action.payload;
       const allCookbooks = api.getCookbooksList();
       const createdCookbooks = allCookbooks.filter(
-        (cookbook) => cookbook.userId === userId,
+        (cookbook) => cookbook.userId === userId
       );
 
       return [...createdCookbooks];
@@ -131,9 +131,7 @@ export default function cookbooksReducer(
       return [...usersCookbooks];
     }
     case ACTION_TYPES.COOKBOOKS_MODIFY: {
-      const {
-        data, cookbookId, imageSrc, userId,
-      } = action.payload;
+      const { data, cookbookId, imageSrc, userId } = action.payload;
       const cookbook = api.getCookbook(cookbookId);
 
       cookbook.title = data.title;
@@ -153,6 +151,17 @@ export default function cookbooksReducer(
       const filteredCokkbooks = cookbooks.filter((el) => el.userId !== userId);
 
       return [...filteredCokkbooks];
+    }
+
+    case ACTION_TYPES.COOKBOOKS_DELETE: {
+      const { cookbookId, userId } = action.payload;
+      const cookbooks = api.getCookbooksList();
+      const cookbookIndex = cookbooks.findIndex((el) => el.id === cookbookId);
+      cookbooks.splice(cookbookIndex, 1);
+
+      const usersCookbooks = api.getUsersCookbooks(userId);
+
+      return [...usersCookbooks];
     }
 
     default:

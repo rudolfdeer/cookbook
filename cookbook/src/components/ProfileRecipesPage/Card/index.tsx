@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
+import { AnyAction } from 'redux';
 import api from '../../../helpers/api';
 import LikesIcon from '../../svg/Likes';
 import ViewsIcon from '../../svg/Views';
@@ -15,10 +16,12 @@ type ProfileRecipeCardProps = {
   comments: number;
   setModifyPopUpVisible: Dispatch<SetStateAction<boolean>>;
   setSelectedRecipeId: Dispatch<SetStateAction<number>>;
+  deleteRecipe: (recipeId: number, userId: number) => AnyAction;
+  loggedInUserId: number;
 };
 
 export default function ProfileRecipeCard(
-  props: ProfileRecipeCardProps,
+  props: ProfileRecipeCardProps
 ): JSX.Element {
   const {
     id,
@@ -31,21 +34,22 @@ export default function ProfileRecipeCard(
     comments,
     setModifyPopUpVisible,
     setSelectedRecipeId,
+    loggedInUserId,
+    deleteRecipe,
   } = props;
 
-  const [isBtnModifyVisible, setBtnModifyVisible] = useState(false);
+  const [isBtnDeleteVisible, setBtnDeleteVisible] = useState(false);
 
-  const btnModify = (
+  const btnDelete = (
     <div className="statistics-item__menu">
       <button
-        className="menu__btn_modify"
+        className="menu__btn_delete"
         onClick={() => {
-          setSelectedRecipeId(id);
-          setModifyPopUpVisible(true);
-          setBtnModifyVisible(false);
+          setBtnDeleteVisible(false);
+          deleteRecipe(id, loggedInUserId);
         }}
       >
-        Modify recipe
+        Delete this recipe
       </button>
     </div>
   );
@@ -107,14 +111,14 @@ export default function ProfileRecipeCard(
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             onClick={() => {
-              setBtnModifyVisible((prevState) => !prevState);
+              setBtnDeleteVisible((prevState) => !prevState);
             }}
           >
             <circle cx="2" cy="2" r="2" fill="#dadada" />
             <circle cx="10" cy="2" r="2" fill="#dadada" />
             <circle cx="18" cy="2" r="2" fill="#dadada" />
           </svg>
-          {isBtnModifyVisible ? btnModify : null}
+          {isBtnDeleteVisible ? btnDelete : null}
         </div>
       </div>
     </div>

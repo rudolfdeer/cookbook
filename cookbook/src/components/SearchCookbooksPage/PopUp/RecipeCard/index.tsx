@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { AnyAction } from 'redux';
 import api from '../../../../helpers/api';
 import CommentsIcon from '../../../svg/Comments';
@@ -17,10 +17,11 @@ type PopUpRecipeCardProps = {
   id: number;
   loggedInUserId: number;
   saveToUsersRecipes: (recipeId: number, userId: number) => AnyAction;
+  setVisible: Dispatch<SetStateAction<boolean>>;
 };
 
 export default function PopUpRecipeCard(
-  props: PopUpRecipeCardProps,
+  props: PopUpRecipeCardProps
 ): JSX.Element {
   const {
     views,
@@ -33,6 +34,7 @@ export default function PopUpRecipeCard(
     id,
     loggedInUserId,
     saveToUsersRecipes,
+    setVisible,
   } = props;
 
   return (
@@ -69,6 +71,7 @@ export default function PopUpRecipeCard(
               className="card__btn"
               onClick={() => {
                 saveToUsersRecipes(id, loggedInUserId);
+                setVisible(false);
               }}
             >
               Save

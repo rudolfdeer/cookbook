@@ -94,6 +94,11 @@
           &__text {
             max-width: 424px;
             margin-left: 16px;
+            min-height: 246px;
+
+            p {
+              margin: 0;
+            }
           }
         }
 

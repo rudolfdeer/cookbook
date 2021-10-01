@@ -29,10 +29,11 @@ type ProfileCookbooksPageProps = {
     imageSrc: string,
     userId: number
   ) => AnyAction;
+  deleteCookbook: (cookbookId: number, userId: number) => AnyAction;
 };
 
 export default function ProfileCookbooksPage(
-  props: ProfileCookbooksPageProps,
+  props: ProfileCookbooksPageProps
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.NOT_FOUND} />;
@@ -44,10 +45,9 @@ export default function ProfileCookbooksPage(
     getUsersCreatedCookbooks,
     createCookbook,
     modifyCookbook,
+    deleteCookbook,
   } = props;
-  const {
-    name, bio, avatar, id,
-  } = user;
+  const { name, bio, avatar, id } = user;
   const [isCreatePopUpVisible, setCreatePopUpVisible] = useState(false);
   const [isModifyPopUpVisible, setModifyPopUpVisible] = useState(false);
   const photoSrc = avatar || '../../assets/images/photo-mask.png';
@@ -109,6 +109,8 @@ export default function ProfileCookbooksPage(
                 key={el.id}
                 setSelectedCookbookId={setSelectedCookbookId}
                 setModifyPopUpVisible={setModifyPopUpVisible}
+                deleteCookbook={deleteCookbook}
+                loggedInUserId={id}
               />
             ))}
           </section>

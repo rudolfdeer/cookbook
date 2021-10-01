@@ -29,21 +29,25 @@ type ProfileRecipesPageProps = {
     imageSrc: string,
     userId: number
   ) => AnyAction;
+  deleteRecipe: (recipeId: number, userId: number) => AnyAction;
 };
 
 export default function ProfileRecipesPage(
-  props: ProfileRecipesPageProps,
+  props: ProfileRecipesPageProps
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.NOT_FOUND} />;
   }
 
   const {
-    recipes, user, getUsersCreatedRecipes, createRecipe, modifyRecipe,
+    recipes,
+    user,
+    getUsersCreatedRecipes,
+    createRecipe,
+    modifyRecipe,
+    deleteRecipe,
   } = props;
-  const {
-    name, bio, avatar, id,
-  } = user;
+  const { name, bio, avatar, id } = user;
   const [isCreatePopUpVisible, setCreatePopUpVisible] = useState(false);
   const [isModifyPopUpVisible, setModifyPopUpVisible] = useState(false);
   const [selectedRecipeId, setSelectedRecipeId] = useState(0);
@@ -105,6 +109,8 @@ export default function ProfileRecipesPage(
                 key={el.id}
                 setModifyPopUpVisible={setModifyPopUpVisible}
                 setSelectedRecipeId={setSelectedRecipeId}
+                deleteRecipe={deleteRecipe}
+                loggedInUserId={id}
               />
             ))}
           </section>

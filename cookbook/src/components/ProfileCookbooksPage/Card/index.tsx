@@ -1,7 +1,7 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
+import { AnyAction } from 'redux';
 import api from '../../../helpers/api';
 import CommentsIcon from '../../svg/Comments';
-import DotsIcon from '../../svg/Dots';
 import LikesIcon from '../../svg/Likes';
 import ViewsIcon from '../../svg/Views';
 
@@ -18,10 +18,12 @@ type ProfileCookbookCardProps = {
   comments: number;
   setSelectedCookbookId: Dispatch<SetStateAction<number>>;
   setModifyPopUpVisible: Dispatch<SetStateAction<boolean>>;
+  loggedInUserId: number;
+  deleteCookbook: (cookbookId: number, userId: number) => AnyAction;
 };
 
 export default function ProfileCookbookCard(
-  props: ProfileCookbookCardProps,
+  props: ProfileCookbookCardProps
 ): JSX.Element {
   const {
     id,
@@ -34,7 +36,25 @@ export default function ProfileCookbookCard(
     comments,
     setSelectedCookbookId,
     setModifyPopUpVisible,
+    deleteCookbook,
+    loggedInUserId,
   } = props;
+
+  const [isBtnDeleteVisible, setBtnDeleteVisible] = useState(false);
+
+  const btnDelete = (
+    <div className="statistics-item__menu">
+      <button
+        className="menu__btn_delete"
+        onClick={() => {
+          setBtnDeleteVisible(false);
+          deleteCookbook(id, loggedInUserId);
+        }}
+      >
+        Delete this cookbook
+      </button>
+    </div>
+  );
 
   return (
     <div className="card">
@@ -43,7 +63,22 @@ export default function ProfileCookbookCard(
           <ViewsIcon />
           {views} views
         </div>
-        <DotsIcon />
+        <svg
+          className="statistics-item__icon dots"
+          width="20"
+          height="4"
+          viewBox="0 0 20 4"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          onClick={() => {
+            setBtnDeleteVisible((prevState) => !prevState);
+          }}
+        >
+          <circle cx="2" cy="2" r="2" fill="#dadada" />
+          <circle cx="10" cy="2" r="2" fill="#dadada" />
+          <circle cx="18" cy="2" r="2" fill="#dadada" />
+        </svg>
+        {isBtnDeleteVisible ? btnDelete : null}
       </div>
       <div className="card__info-container">
         <div

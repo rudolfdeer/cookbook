@@ -17,14 +17,13 @@ type CommentsSectionProps = {
 };
 
 export default function CommentsSection(
-  props: CommentsSectionProps,
+  props: CommentsSectionProps
 ): JSX.Element {
-  const {
-    comments, loggedInUserId, recipeId, createComment,
-  } = props;
+  const { comments, loggedInUserId, recipeId, createComment } = props;
   const [newComment, setNewComment] = useState('');
 
-  const getDate = (dateString: string) => dateString.split(' ').slice(0, 4).join(' ');
+  const getDate = (dateString: string) =>
+    dateString.split(' ').slice(0, 4).join(' ');
 
   const newCommentSection = (
     <div className="comment--new">
@@ -58,7 +57,7 @@ export default function CommentsSection(
               className="comment__photo"
               style={{
                 background: `url(${api.getUserPhoto(
-                  el.userId,
+                  el.userId
                 )}) center no-repeat`,
               }}
             ></div>

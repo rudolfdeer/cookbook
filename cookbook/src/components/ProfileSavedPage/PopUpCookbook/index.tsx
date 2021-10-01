@@ -1,33 +1,22 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import api from '../../../helpers/api';
-import { ActionCreatorFunction, Cookbook } from '../../../interfaces';
+import { Cookbook } from '../../../interfaces';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
-import CommentsSection from './CommentsSection';
 
 import './index.scss';
 import PopUpRecipeCard from './RecipeCard';
 
 type PopUpCookbookDetailedProps = {
-  setVisible: Dispatch<SetStateAction<boolean>>;
+  setCookbookPopUpVisible: Dispatch<SetStateAction<boolean>>;
   cookbook: Cookbook;
   loggedInUserId: number;
-  saveToUsersCookbooks: Function;
-  saveToUsersRecipes: ActionCreatorFunction;
-  createComment: ActionCreatorFunction;
 };
 
-export default function PopUpCookbookDetailed(
+export default function PopUpCookbookSaved(
   props: PopUpCookbookDetailedProps
 ): JSX.Element {
-  const {
-    setVisible,
-    cookbook,
-    loggedInUserId,
-    saveToUsersRecipes,
-    saveToUsersCookbooks,
-    createComment,
-  } = props;
+  const { setCookbookPopUpVisible, cookbook, loggedInUserId } = props;
   const { id, image, description, title, userId, likes, comments, recipesIds } =
     cookbook;
 
@@ -37,7 +26,7 @@ export default function PopUpCookbookDetailed(
       target.classList.contains('overlay') ||
       target.classList.contains('overlay__btn')
     ) {
-      setVisible(false);
+      setCookbookPopUpVisible(false);
     }
   }
 
@@ -49,17 +38,6 @@ export default function PopUpCookbookDetailed(
         <div className="pop-up--cookbook">
           <div className="pop-up--cookbook__section--top">
             <div className="pop-up--cookbook__title">{title}</div>
-            {loggedInUserId && loggedInUserId !== userId ? (
-              <button
-                className="pop-up--cookbook__btn"
-                onClick={() => {
-                  saveToUsersCookbooks(id, loggedInUserId);
-                  setVisible(false);
-                }}
-              >
-                Clone to my CookBook
-              </button>
-            ) : null}
           </div>
 
           <div className="pop-up--cookbook__author">
@@ -97,7 +75,7 @@ export default function PopUpCookbookDetailed(
               {recipes?.map((el) => (
                 <PopUpRecipeCard
                   title={el.title}
-                  userId={el.userId}
+                  authorId={el.userId}
                   views={el.views}
                   description={el.description}
                   likes={el.likes}
@@ -106,19 +84,9 @@ export default function PopUpCookbookDetailed(
                   key={el.id}
                   id={el.id}
                   loggedInUserId={loggedInUserId}
-                  saveToUsersRecipes={saveToUsersRecipes}
                 />
               ))}
             </div>
-          </div>
-          <div className="pop-up--cookbook__section--comments">
-            <div className="pop-up--cookbook__section__title">{`Comments (${comments.length})`}</div>
-            <CommentsSection
-              comments={comments}
-              loggedInUserId={loggedInUserId}
-              cookbookId={id}
-              createComment={createComment}
-            />
           </div>
         </div>
       </div>

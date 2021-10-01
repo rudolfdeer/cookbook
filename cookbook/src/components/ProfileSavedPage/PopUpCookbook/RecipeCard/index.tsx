@@ -7,7 +7,7 @@ import './index.scss';
 
 type PopUpRecipeCardProps = {
   title: string;
-  userId: number;
+  authorId: number;
   description: string;
   views: number;
   likes: number;
@@ -15,7 +15,6 @@ type PopUpRecipeCardProps = {
   comments: number;
   id: number;
   loggedInUserId: number;
-  saveToUsersRecipes: Function;
 };
 
 export default function PopUpRecipeCard(
@@ -26,12 +25,11 @@ export default function PopUpRecipeCard(
     image,
     description,
     title,
-    userId,
+    authorId,
     likes,
     comments,
     id,
     loggedInUserId,
-    saveToUsersRecipes,
   } = props;
 
   return (
@@ -43,7 +41,7 @@ export default function PopUpRecipeCard(
       <div className="card__content">
         <div className="card__info-container top">
           <div className="card__title">{title}</div>
-          <div className="card__author">{api.getUserName(userId)}</div>
+          <div className="card__author">{api.getUserName(authorId)}</div>
         </div>
         <div className="card__info-container description">
           <p className="card__description">{description}</p>
@@ -63,16 +61,6 @@ export default function PopUpRecipeCard(
               {comments} comments
             </div>
           </div>
-          {loggedInUserId && loggedInUserId !== userId ? (
-            <button
-              className="card__btn"
-              onClick={() => {
-                saveToUsersRecipes(id, loggedInUserId);
-              }}
-            >
-              Save
-            </button>
-          ) : null}
         </div>
       </div>
     </div>

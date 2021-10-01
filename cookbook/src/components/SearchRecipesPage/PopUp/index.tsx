@@ -59,7 +59,7 @@ export default function PopUpRecipeDetailed(
             <div className="pop-up--recipe__sections">
               <div className="pop-up--recipe__section--top">
                 <div className="pop-up--recipe__title">{title}</div>
-                {loggedInUserId ? (
+                {loggedInUserId && loggedInUserId !== userId ? (
                   <button
                     className="pop-up--recipe__btn"
                     onClick={() => {

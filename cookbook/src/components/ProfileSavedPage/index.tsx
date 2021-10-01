@@ -11,6 +11,7 @@ import ProfileSavedRecipeCard from './RecipeCard';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 import PopUpRecipeSaved from './PopUpRecipe';
 import api from '../../helpers/api';
+import PopUpCookbookSaved from './PopUpCookbook';
 
 type ProfileSavedPageProps = {
   cookbooks: Cookbook[];
@@ -39,6 +40,8 @@ export default function ProfileSavedPage(
   const photoSrc = avatar || '../../assets/images/photo-mask.png';
   const [isRecipePopUpVisible, setRecipePopUpVisible] = useState(false);
   const [selectedRecipeId, setSelectedRecipeId] = useState(0);
+  const [isCookbookPopUpVisible, setCookbookPopUpVisible] = useState(false);
+  const [selectedCookbookId, setSelectedCookbookId] = useState(0);
 
   useEffect(() => {
     getUsersSavedRecipes(id);
@@ -93,6 +96,8 @@ export default function ProfileSavedPage(
                   image={el.image}
                   description={el.description}
                   key={el.id}
+                  setCookbookPopUpVisible={setCookbookPopUpVisible}
+                  setSelectedCookbookId={setSelectedCookbookId}
                 />
               ))}
             </div>
@@ -122,6 +127,13 @@ export default function ProfileSavedPage(
               loggedInUserId={id}
               setRecipePopUpVisible={setRecipePopUpVisible}
               recipe={api.getRecipe(selectedRecipeId)}
+            />
+          ) : null}
+          {isCookbookPopUpVisible ? (
+            <PopUpCookbookSaved
+              loggedInUserId={id}
+              setCookbookPopUpVisible={setCookbookPopUpVisible}
+              cookbook={api.getCookbook(selectedCookbookId)}
             />
           ) : null}
         </div>

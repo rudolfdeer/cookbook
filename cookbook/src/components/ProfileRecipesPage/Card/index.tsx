@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import api from '../../../helpers/api';
 import LikesIcon from '../../svg/Likes';
 import ViewsIcon from '../../svg/Views';
@@ -13,12 +13,12 @@ type ProfileRecipeCardProps = {
   likes: number;
   image: string;
   comments: number;
-  setModifyPopUpVisible: Function;
-  setSelectedRecipeId: Function;
+  setModifyPopUpVisible: Dispatch<SetStateAction<boolean>>;
+  setSelectedRecipeId: Dispatch<SetStateAction<number>>;
 };
 
 export default function ProfileRecipeCard(
-  props: ProfileRecipeCardProps
+  props: ProfileRecipeCardProps,
 ): JSX.Element {
   const {
     id,
@@ -107,9 +107,7 @@ export default function ProfileRecipeCard(
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             onClick={() => {
-              isBtnModifyVisible
-                ? setBtnModifyVisible(false)
-                : setBtnModifyVisible(true);
+              setBtnModifyVisible((prevState) => !prevState);
             }}
           >
             <circle cx="2" cy="2" r="2" fill="#dadada" />

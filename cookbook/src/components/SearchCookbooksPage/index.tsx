@@ -1,27 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ActionCreatorFunction, Cookbook, Recipe } from '../../interfaces';
+import { AnyAction } from 'redux';
+import { Cookbook, Recipe } from '../../interfaces';
 import Footer from '../Footer';
 import CookbookCard from './Card';
 import FilterPanelCookbooks from './FilterPanel';
 import PopUpCookbookDetailed from './PopUp';
-
 import './index.scss';
 import api from '../../helpers/api';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 
 type CookbooksPageProps = {
   cookbooks: Cookbook[];
-  getAllCookbooks: Function;
+  getAllCookbooks: () => AnyAction;
   recipes: Recipe[];
-  getAllRecipes: Function;
-  sortCookbooks: ActionCreatorFunction;
-  filterCookbooks: ActionCreatorFunction;
-  saveToUsersCookbooks: ActionCreatorFunction;
-  saveToUsersRecipes: ActionCreatorFunction;
+  getAllRecipes: () => AnyAction;
+  sortCookbooks: (order: string) => AnyAction;
+  filterCookbooks: (tags: string[]) => AnyAction;
+  saveToUsersCookbooks: (cookbookId: number, userId: number) => AnyAction;
+  saveToUsersRecipes: (recipeId: number, userId: number) => AnyAction;
   loggedInUserId: number;
-  createComment: ActionCreatorFunction;
-  hideUsersCookbooks: ActionCreatorFunction;
+  createComment: (
+    cookbookId: number,
+    userId: number,
+    commentText: string
+  ) => AnyAction;
 };
 
 export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
@@ -35,7 +38,6 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
     saveToUsersCookbooks,
     saveToUsersRecipes,
     createComment,
-    hideUsersCookbooks,
   } = props;
 
   const [isVisible, setVisible] = useState(false);
@@ -58,7 +60,6 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
               <FilterPanelCookbooks
                 sortCookbooks={sortCookbooks}
                 filterCookbooks={filterCookbooks}
-                hideUsersCookbooks={hideUsersCookbooks}
                 loggedInUserId={loggedInUserId}
               />
             </div>

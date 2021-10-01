@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { ActionCreatorFunction, Recipe, User } from '../../interfaces';
+import { AnyAction } from 'redux';
+import { Recipe, User } from '../../interfaces';
 
 import Footer from '../Footer';
 import ProfileRecipeCard from './Card';
@@ -11,13 +12,23 @@ import PopUpCreateRecipe from './PopUpCreate';
 import PopUpModifyRecipe from './PopUpModify';
 import api from '../../helpers/api';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
+import { RecipeValues } from '../../redux/actions/recipes';
 
 type ProfileRecipesPageProps = {
   recipes: Recipe[];
-  getUsersCreatedRecipes: Function;
+  getUsersCreatedRecipes: (userId: number) => void;
   user: User;
-  createRecipe: ActionCreatorFunction;
-  modifyRecipe: ActionCreatorFunction;
+  createRecipe: (
+    data: RecipeValues,
+    userId: number,
+    imageSrc: string
+  ) => AnyAction;
+  modifyRecipe: (
+    data: RecipeValues,
+    recipeId: number,
+    imageSrc: string,
+    userId: number
+  ) => AnyAction;
 };
 
 export default function ProfileRecipesPage(

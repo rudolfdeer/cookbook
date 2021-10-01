@@ -1,6 +1,8 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
+import { AnyAction } from 'redux';
 import api from '../../../helpers/api';
 import { Cookbook } from '../../../interfaces';
+import { CookbookValues } from '../../../redux/actions/cookbooks';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
 import PopUpRecipeCard from './Card';
@@ -11,11 +13,16 @@ type PopUpModifyCookbookProps = {
   setModifyPopUpVisible: Dispatch<SetStateAction<boolean>>;
   selectedCookbook: Cookbook;
   loggedInUserId: number;
-  modifyCookbook: Function;
+  modifyCookbook: (
+    data: CookbookValues,
+    cookbookId: number,
+    imageSrc: string,
+    userId: number
+  ) => AnyAction;
 };
 
 export default function PopUpModifyCookbook(
-  props: PopUpModifyCookbookProps
+  props: PopUpModifyCookbookProps,
 ): JSX.Element {
   const {
     setModifyPopUpVisible,
@@ -23,8 +30,9 @@ export default function PopUpModifyCookbook(
     loggedInUserId,
     modifyCookbook,
   } = props;
-  const { id, image, description, title, userId, likes, comments, recipesIds } =
-    selectedCookbook;
+  const {
+    id, image, description, title, userId, likes, comments, recipesIds,
+  } = selectedCookbook;
 
   const [imageSrc, setImageSrc] = useState(image);
   const [isTitleDisabled, setTitleDisabled] = useState(true);
@@ -36,8 +44,8 @@ export default function PopUpModifyCookbook(
   function closePopUp(e: React.MouseEvent) {
     const target = e.target as HTMLElement;
     if (
-      target.classList.contains('overlay') ||
-      target.classList.contains('overlay__btn')
+      target.classList.contains('overlay')
+      || target.classList.contains('overlay__btn')
     ) {
       setModifyPopUpVisible(false);
     }
@@ -68,8 +76,6 @@ export default function PopUpModifyCookbook(
       description: newDescription,
       recipesIds: newRecipesIds,
     };
-
-    console.log(values);
     modifyCookbook(values, id, imageSrc, loggedInUserId);
     setModifyPopUpVisible(false);
   };

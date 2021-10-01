@@ -1,5 +1,3 @@
-import { AnyAction } from 'redux';
-
 export interface Recipe {
   id: number;
   title: string;
@@ -31,12 +29,6 @@ export interface Comment {
   comment: string;
   date: string;
 }
-
-// export interface Ingredient {
-//   ingredient: string;
-//   amount: string;
-// }
-
 export interface Cookbook {
   id: number;
   title: string;
@@ -54,8 +46,4 @@ export interface State {
   recipes: Recipe[];
   cookbooks: Cookbook[];
   user: User | null;
-}
-
-export interface ActionCreatorFunction {
-  (): AnyAction;
 }

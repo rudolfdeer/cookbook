@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { Form, Field } from 'react-final-form';
 import { Link } from 'react-router-dom';
+import { AnyAction } from 'redux';
 import ERROR_MESSAGES from '../../../constants/errorMessages';
 import { EMAILREGEX } from '../../../constants/regex';
 import ROUTES from '../../../constants/routes';
@@ -13,8 +14,8 @@ type FormValues = {
 };
 
 type SignUpFormProps = {
-  createUser: Function;
-  setIsRedirected: Function;
+  createUser: (email: string, password: string) => AnyAction;
+  setIsRedirected: Dispatch<SetStateAction<boolean>>;
 };
 
 export default function SignUpForm(props: SignUpFormProps): JSX.Element {

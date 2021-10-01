@@ -1,13 +1,19 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import { Form, Field } from 'react-final-form';
+import { AnyAction } from 'redux';
 import api from '../../../helpers/api';
+import { CookbookValues } from '../../../redux/actions/cookbooks';
 
 import './index.scss';
 
 type PopUpCreateCookbookProps = {
   loggedInUserId: number;
   setCreatePopUpVisible: Dispatch<SetStateAction<boolean>>;
-  createCookbook: Function;
+  createCookbook: (
+    data: CookbookValues,
+    userId: number,
+    imageSrc: string
+  ) => AnyAction;
 };
 
 type FormValues = {
@@ -26,7 +32,7 @@ const formData = {
 const required = (value: string | string[]) => (value ? undefined : 'Required');
 
 export default function PopUpCreateCookbook(
-  props: PopUpCreateCookbookProps
+  props: PopUpCreateCookbookProps,
 ): JSX.Element {
   const { loggedInUserId, setCreatePopUpVisible, createCookbook } = props;
   const [photoSrc, setPhotoSrc] = useState('');

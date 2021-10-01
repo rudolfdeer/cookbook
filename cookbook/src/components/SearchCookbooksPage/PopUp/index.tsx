@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react';
+import { AnyAction } from 'redux';
 import api from '../../../helpers/api';
-import { ActionCreatorFunction, Cookbook } from '../../../interfaces';
+import { Cookbook } from '../../../interfaces';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
 import CommentsSection from './CommentsSection';
@@ -12,13 +13,17 @@ type PopUpCookbookDetailedProps = {
   setVisible: Dispatch<SetStateAction<boolean>>;
   cookbook: Cookbook;
   loggedInUserId: number;
-  saveToUsersCookbooks: Function;
-  saveToUsersRecipes: ActionCreatorFunction;
-  createComment: ActionCreatorFunction;
+  saveToUsersCookbooks: (cookbookId: number, userId: number) => AnyAction;
+  saveToUsersRecipes: (recipeId: number, userId: number) => AnyAction;
+  createComment: (
+    cookbookId: number,
+    userId: number,
+    commentText: string
+  ) => AnyAction;
 };
 
 export default function PopUpCookbookDetailed(
-  props: PopUpCookbookDetailedProps
+  props: PopUpCookbookDetailedProps,
 ): JSX.Element {
   const {
     setVisible,
@@ -28,14 +33,15 @@ export default function PopUpCookbookDetailed(
     saveToUsersCookbooks,
     createComment,
   } = props;
-  const { id, image, description, title, userId, likes, comments, recipesIds } =
-    cookbook;
+  const {
+    id, image, description, title, userId, likes, comments, recipesIds,
+  } = cookbook;
 
   function closePopUp(e: React.MouseEvent) {
     const target = e.target as HTMLElement;
     if (
-      target.classList.contains('overlay') ||
-      target.classList.contains('overlay__btn')
+      target.classList.contains('overlay')
+      || target.classList.contains('overlay__btn')
     ) {
       setVisible(false);
     }

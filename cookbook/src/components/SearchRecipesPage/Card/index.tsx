@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
+import { AnyAction } from 'redux';
 import api from '../../../helpers/api';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
@@ -17,7 +18,7 @@ type RecipeCardProps = {
   selectCard: Dispatch<SetStateAction<number>>;
   setVisible: Dispatch<SetStateAction<boolean>>;
   loggedInUserId: number;
-  saveToUsersRecipes: Function;
+  saveToUsersRecipes: (recipeId: number, userId: number) => AnyAction;
 };
 
 export default function RecipeCard(props: RecipeCardProps): JSX.Element {
@@ -96,7 +97,7 @@ export default function RecipeCard(props: RecipeCardProps): JSX.Element {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             onClick={() => {
-              isBtnVisible ? setBtnVisible(false) : setBtnVisible(true);
+              setBtnVisible((prevState) => !prevState);
             }}
           >
             <circle cx="2" cy="2" r="2" fill="#dadada" />

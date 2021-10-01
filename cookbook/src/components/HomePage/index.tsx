@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { AnyAction } from 'redux';
 import {
   MAIN_TITLE,
   POPULAR_SECTION_PRE_TITLE,
@@ -15,7 +16,7 @@ import {
   TRENDING_SECTION_TITLE,
 } from '../../constants/resources/homePage';
 import ROUTES from '../../constants/routes';
-import { ActionCreatorFunction, Cookbook, Recipe } from '../../interfaces';
+import { Cookbook, Recipe } from '../../interfaces';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 import Footer from '../Footer';
 import CardPopular from './CardPopular';
@@ -26,13 +27,15 @@ import './index.scss';
 
 type HomePageProps = {
   recipes: Recipe[];
-  getAllRecipes: ActionCreatorFunction;
+  getAllRecipes: () => AnyAction;
   cookbooks: Cookbook[];
-  getAllCookbooks: ActionCreatorFunction;
+  getAllCookbooks: () => AnyAction;
 };
 
 export default function HomePage(props: HomePageProps): JSX.Element {
-  const { recipes, getAllRecipes, cookbooks, getAllCookbooks } = props;
+  const {
+    recipes, getAllRecipes, cookbooks, getAllCookbooks,
+  } = props;
 
   useEffect(() => {
     getAllRecipes();

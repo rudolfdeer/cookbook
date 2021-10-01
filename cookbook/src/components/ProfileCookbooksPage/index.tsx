@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { ActionCreatorFunction, Cookbook, User } from '../../interfaces';
+import { AnyAction } from 'redux';
+import { Cookbook, User } from '../../interfaces';
 import ROUTES from '../../constants/routes';
 
 import Footer from '../Footer';
@@ -11,17 +12,27 @@ import PopUpCreateCookbook from './PopUpCreate';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 import PopUpModifyCookbook from './PopUpModify';
 import api from '../../helpers/api';
+import { CookbookValues } from '../../redux/actions/cookbooks';
 
 type ProfileCookbooksPageProps = {
   cookbooks: Cookbook[];
-  getUsersCreatedCookbooks: Function;
+  getUsersCreatedCookbooks: (userId: number) => void;
   user: User;
-  createCookbook: ActionCreatorFunction;
-  modifyCookbook: ActionCreatorFunction;
+  createCookbook: (
+    data: CookbookValues,
+    userId: number,
+    imageSrc: string
+  ) => AnyAction;
+  modifyCookbook: (
+    data: CookbookValues,
+    cookbookId: number,
+    imageSrc: string,
+    userId: number
+  ) => AnyAction;
 };
 
 export default function ProfileCookbooksPage(
-  props: ProfileCookbooksPageProps
+  props: ProfileCookbooksPageProps,
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.NOT_FOUND} />;
@@ -34,7 +45,9 @@ export default function ProfileCookbooksPage(
     createCookbook,
     modifyCookbook,
   } = props;
-  const { name, bio, avatar, id } = user;
+  const {
+    name, bio, avatar, id,
+  } = user;
   const [isCreatePopUpVisible, setCreatePopUpVisible] = useState(false);
   const [isModifyPopUpVisible, setModifyPopUpVisible] = useState(false);
   const photoSrc = avatar || '../../assets/images/photo-mask.png';

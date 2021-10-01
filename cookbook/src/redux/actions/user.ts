@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux';
 import ACTION_TYPES from '../../constants/actionTypes';
 
-type LoginInfo = {
+export type LoginInfo = {
   email: string;
   password: string;
 };

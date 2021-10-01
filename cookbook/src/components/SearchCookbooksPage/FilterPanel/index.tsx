@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from 'react';
+import { AnyAction } from 'redux';
 import './index.scss';
 
 type FilterPanelCookbooksProps = {
-  sortCookbooks: Function;
-  filterCookbooks: Function;
+  sortCookbooks: (order: string) => AnyAction;
+  filterCookbooks: (tags: string[]) => AnyAction;
   loggedInUserId: number;
-  hideUsersCookbooks: Function;
 };
 
 export default function FilterPanelCookbooks(
-  props: FilterPanelCookbooksProps
+  props: FilterPanelCookbooksProps,
 ): JSX.Element {
-  const { sortCookbooks, filterCookbooks, loggedInUserId, hideUsersCookbooks } =
-    props;
+  const { sortCookbooks, filterCookbooks, loggedInUserId } = props;
   const [sortOrder, setSortOrder] = useState('');
   const [filters, setFilters] = useState([]);
 
   useEffect(() => {
-    filterCookbooks(filters, loggedInUserId);
+    filterCookbooks(filters);
   }, [filters]);
 
   useEffect(() => {

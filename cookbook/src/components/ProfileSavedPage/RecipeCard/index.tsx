@@ -21,7 +21,7 @@ type ProfileSavedRecipeCardProps = {
 };
 
 export default function ProfileSavedRecipeCard(
-  props: ProfileSavedRecipeCardProps
+  props: ProfileSavedRecipeCardProps,
 ): JSX.Element {
   const {
     id,

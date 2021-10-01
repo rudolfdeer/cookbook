@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AnyAction } from 'redux';
 import api from '../../../../helpers/api';
 import { Comment } from '../../../../interfaces';
 
@@ -8,13 +9,19 @@ type CommentsSectionProps = {
   comments: Comment[];
   loggedInUserId: number;
   cookbookId: number;
-  createComment: Function;
+  createComment: (
+    cookbookId: number,
+    userId: number,
+    commentText: string
+  ) => AnyAction;
 };
 
 export default function CommentsSection(
-  props: CommentsSectionProps
+  props: CommentsSectionProps,
 ): JSX.Element {
-  const { comments, loggedInUserId, cookbookId, createComment } = props;
+  const {
+    comments, loggedInUserId, cookbookId, createComment,
+  } = props;
   const [newComment, setNewComment] = useState('');
 
   function getDate(dateString: string) {
@@ -54,7 +61,7 @@ export default function CommentsSection(
               className="comment__photo"
               style={{
                 background: `url(${api.getUserPhoto(
-                  el.userId
+                  el.userId,
                 )}) center no-repeat`,
               }}
             ></div>

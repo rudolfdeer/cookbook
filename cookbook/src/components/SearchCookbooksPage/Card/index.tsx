@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import api from '../../../helpers/api';
 import CommentsIcon from '../../svg/Comments';
 import DotsIcon from '../../svg/Dots';
@@ -16,8 +16,8 @@ type CookbookCardProps = {
   likes: number;
   image: string;
   comments: number;
-  selectCard: Function;
-  openDetailedInfo: Function;
+  selectCard: Dispatch<SetStateAction<number>>;
+  openDetailedInfo: Dispatch<SetStateAction<boolean>>;
 };
 
 export default function CookbookCard(props: CookbookCardProps): JSX.Element {

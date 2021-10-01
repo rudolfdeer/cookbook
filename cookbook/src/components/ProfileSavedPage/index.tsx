@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import { AnyAction } from 'redux';
 import { Cookbook, Recipe, User } from '../../interfaces';
 
 import ROUTES from '../../constants/routes';
@@ -15,14 +16,14 @@ import PopUpCookbookSaved from './PopUpCookbook';
 
 type ProfileSavedPageProps = {
   cookbooks: Cookbook[];
-  getUsersSavedCookbooks: Function;
+  getUsersSavedCookbooks: (userId: number) => AnyAction;
   recipes: Recipe[];
-  getUsersSavedRecipes: Function;
+  getUsersSavedRecipes: (userId: number) => AnyAction;
   user: User;
 };
 
 export default function ProfileSavedPage(
-  props: ProfileSavedPageProps
+  props: ProfileSavedPageProps,
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.NOT_FOUND} />;
@@ -36,7 +37,9 @@ export default function ProfileSavedPage(
     getUsersSavedRecipes,
   } = props;
 
-  const { name, bio, avatar, id } = user;
+  const {
+    name, bio, avatar, id,
+  } = user;
   const photoSrc = avatar || '../../assets/images/photo-mask.png';
   const [isRecipePopUpVisible, setRecipePopUpVisible] = useState(false);
   const [selectedRecipeId, setSelectedRecipeId] = useState(0);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { AnyAction } from 'redux';
 import api from '../../../../helpers/api';
 import CommentsIcon from '../../../svg/Comments';
 import LikesIcon from '../../../svg/Likes';
@@ -15,11 +16,11 @@ type PopUpRecipeCardProps = {
   comments: number;
   id: number;
   loggedInUserId: number;
-  saveToUsersRecipes: Function;
+  saveToUsersRecipes: (recipeId: number, userId: number) => AnyAction;
 };
 
 export default function PopUpRecipeCard(
-  props: PopUpRecipeCardProps
+  props: PopUpRecipeCardProps,
 ): JSX.Element {
   const {
     views,

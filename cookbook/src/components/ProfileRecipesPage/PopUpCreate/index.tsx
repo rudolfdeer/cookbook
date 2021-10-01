@@ -1,12 +1,18 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { Form, Field } from 'react-final-form';
+import { AnyAction } from 'redux';
+import { RecipeValues } from '../../../redux/actions/recipes';
 
 import './index.scss';
 
 type PopUpCreateRecipeProps = {
   loggedInUserId: number;
   setCreatePopUpVisible: Dispatch<SetStateAction<boolean>>;
-  createRecipe: Function;
+  createRecipe: (
+    data: RecipeValues,
+    userId: number,
+    imageSrc: string
+  ) => AnyAction;
 };
 
 type FormValues = {
@@ -27,7 +33,7 @@ const formData = {
 const required = (value: string | string[]) => (value ? undefined : 'Required');
 
 export default function PopUpCreateRecipe(
-  props: PopUpCreateRecipeProps
+  props: PopUpCreateRecipeProps,
 ): JSX.Element {
   const { setCreatePopUpVisible, createRecipe, loggedInUserId } = props;
 

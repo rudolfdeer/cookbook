@@ -13,7 +13,7 @@ type PopUpRecipeSavedProps = {
 };
 
 export default function PopUpRecipeSaved(
-  props: PopUpRecipeSavedProps
+  props: PopUpRecipeSavedProps,
 ): JSX.Element {
   const { setRecipePopUpVisible, recipe } = props;
   const {

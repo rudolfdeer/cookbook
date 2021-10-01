@@ -1,17 +1,24 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
+import { AnyAction } from 'redux';
 import { Recipe } from '../../../interfaces';
+import { RecipeValues } from '../../../redux/actions/recipes';
 
 import './index.scss';
 
 type PopUpModifyRecipeProps = {
   setModifyPopUpVisible: Dispatch<SetStateAction<boolean>>;
   selectedRecipe: Recipe;
-  modifyRecipe: Function;
+  modifyRecipe: (
+    data: RecipeValues,
+    recipeId: number,
+    imageSrc: string,
+    userId: number
+  ) => AnyAction;
   loggedInUserId: number;
 };
 
 export default function PopUpModifyRecipe(
-  props: PopUpModifyRecipeProps
+  props: PopUpModifyRecipeProps,
 ): JSX.Element {
   const {
     setModifyPopUpVisible,
@@ -23,11 +30,9 @@ export default function PopUpModifyRecipe(
     id,
     title,
     image,
-    userId,
     description,
     directions,
     ingredients,
-    cookingTime,
   } = selectedRecipe;
 
   const [imageSrc, setImageSrc] = useState(image);
@@ -208,10 +213,10 @@ export default function PopUpModifyRecipe(
                 className="pop-up--modify__btns__btn--light"
                 onClick={() => {
                   const data = {
-                    newTitle,
-                    newDescription,
-                    newDirections,
-                    newIngredients,
+                    title: newTitle,
+                    description: newDescription,
+                    directions: newDirections.join(', '),
+                    ingredients: newIngredients.join(', '),
                   };
                   setModifyPopUpVisible(false);
                   modifyRecipe(data, id, imageSrc, loggedInUserId);

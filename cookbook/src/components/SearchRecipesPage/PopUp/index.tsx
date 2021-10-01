@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react';
+import { AnyAction } from 'redux';
 import api from '../../../helpers/api';
-import { ActionCreatorFunction, Recipe } from '../../../interfaces';
+import { Recipe } from '../../../interfaces';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
 import CommentsSection from '../PopUp/CommentsSection';
@@ -11,12 +12,16 @@ type PopUpRecipeDetailedProps = {
   setVisible: Dispatch<SetStateAction<boolean>>;
   recipe: Recipe;
   loggedInUserId: number;
-  saveToUsersRecipes: Function;
-  createComment: ActionCreatorFunction;
+  saveToUsersRecipes: (recipeId: number, userId: number) => AnyAction;
+  createComment: (
+    recipeId: number,
+    userId: number,
+    commentText: string
+  ) => AnyAction;
 };
 
 export default function PopUpRecipeDetailed(
-  props: PopUpRecipeDetailedProps
+  props: PopUpRecipeDetailedProps,
 ): JSX.Element {
   const {
     setVisible,

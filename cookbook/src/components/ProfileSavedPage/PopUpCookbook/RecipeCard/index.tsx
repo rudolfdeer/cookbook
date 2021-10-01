@@ -18,18 +18,10 @@ type PopUpRecipeCardProps = {
 };
 
 export default function PopUpRecipeCard(
-  props: PopUpRecipeCardProps
+  props: PopUpRecipeCardProps,
 ): JSX.Element {
   const {
-    views,
-    image,
-    description,
-    title,
-    authorId,
-    likes,
-    comments,
-    id,
-    loggedInUserId,
+    views, image, description, title, authorId, likes, comments,
   } = props;
 
   return (

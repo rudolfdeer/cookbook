@@ -38,7 +38,7 @@ export const createComment = (
   },
 });
 
-type RecipeValues = {
+export type RecipeValues = {
   title: string;
   description: string;
   ingredients: string;

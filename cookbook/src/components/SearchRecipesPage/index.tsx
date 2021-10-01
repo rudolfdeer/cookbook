@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ActionCreatorFunction, Recipe } from '../../interfaces';
+import { AnyAction } from 'redux';
 import Footer from '../Footer';
 import RecipeCard from './Card';
 import FilterPanelRecipes from './FilterPanel';
@@ -9,15 +9,20 @@ import PopUpRecipeDetailed from './PopUp';
 import './index.scss';
 import api from '../../helpers/api';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
+import { Recipe } from '../../interfaces';
 
 type RecipesPageProps = {
   recipes: Recipe[];
-  getAllRecipes: Function;
-  sortRecipes: ActionCreatorFunction;
-  filterRecipes: ActionCreatorFunction;
+  getAllRecipes: () => void;
+  sortRecipes: (order: string) => AnyAction;
+  filterRecipes: (cookingTime: number) => AnyAction;
   loggedInUserId: number;
-  saveToUsersRecipes: ActionCreatorFunction;
-  createComment: ActionCreatorFunction;
+  saveToUsersRecipes: (recipeId: number, userId: number) => AnyAction;
+  createComment: (
+    recipeId: number,
+    userId: number,
+    commentText: string
+  ) => AnyAction;
 };
 
 export default function RecipesPage(props: RecipesPageProps): JSX.Element {

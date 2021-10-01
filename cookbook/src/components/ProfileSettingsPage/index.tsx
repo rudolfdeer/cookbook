@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-
+import { AnyAction } from 'redux';
 import { User } from '../../interfaces';
 import ROUTES from '../../constants/routes';
 import Footer from '../Footer';
@@ -10,17 +10,17 @@ import HeaderConnect from '../../redux/containers/HeaderConnect';
 
 type ProfileSettingsPageProps = {
   user: User;
-  changeUserBio: Function;
-  changeUserName: Function;
-  changeUserEmail: Function;
-  changeUserPassword: Function;
-  updateUserPhoto: Function;
-  logOut: Function;
-  deleteUser: Function;
+  changeUserBio: (userId: number, newBio: string) => AnyAction;
+  changeUserName: (userId: number, newName: string) => AnyAction;
+  changeUserEmail: (userId: number, newEmail: string) => AnyAction;
+  changeUserPassword: (userId: number, newPassword: string) => AnyAction;
+  updateUserPhoto: (userId: number, newAvatar: string) => AnyAction;
+  logOut: (userId: number) => AnyAction;
+  deleteUser: (userId: number) => AnyAction;
 };
 
 export default function ProfileSettingsPage(
-  props: ProfileSettingsPageProps
+  props: ProfileSettingsPageProps,
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.HOME} />;
@@ -35,7 +35,9 @@ export default function ProfileSettingsPage(
     logOut,
     deleteUser,
   } = props;
-  const { id, name, email, password, bio, avatar } = user;
+  const {
+    id, name, email, password, bio, avatar,
+  } = user;
   const [isBioDisabled, setBioDisabled] = useState(true);
   const [isNameDisabled, setNameDisabled] = useState(true);
   const [isEmailDisabled, setEmailDisabled] = useState(true);
@@ -45,7 +47,7 @@ export default function ProfileSettingsPage(
   const [newEmail, setNewEmail] = useState(email);
   const [newPassword, setNewPassword] = useState(password);
   const [photoSrc, setPhotoSrc] = useState(
-    avatar || './assets/images/photo-mask.png'
+    avatar || './assets/images/photo-mask.png',
   );
 
   const onPhotoChange = (e: React.ChangeEvent) => {

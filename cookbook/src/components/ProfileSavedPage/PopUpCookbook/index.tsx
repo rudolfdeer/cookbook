@@ -14,17 +14,18 @@ type PopUpCookbookDetailedProps = {
 };
 
 export default function PopUpCookbookSaved(
-  props: PopUpCookbookDetailedProps
+  props: PopUpCookbookDetailedProps,
 ): JSX.Element {
   const { setCookbookPopUpVisible, cookbook, loggedInUserId } = props;
-  const { id, image, description, title, userId, likes, comments, recipesIds } =
-    cookbook;
+  const {
+    image, description, title, userId, likes, comments, recipesIds,
+  } = cookbook;
 
   function closePopUp(e: React.MouseEvent) {
     const target = e.target as HTMLElement;
     if (
-      target.classList.contains('overlay') ||
-      target.classList.contains('overlay__btn')
+      target.classList.contains('overlay')
+      || target.classList.contains('overlay__btn')
     ) {
       setCookbookPopUpVisible(false);
     }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import api from '../../../helpers/api';
 import CommentsIcon from '../../svg/Comments';
 import DotsIcon from '../../svg/Dots';
@@ -16,12 +16,12 @@ type ProfileCookbookCardProps = {
   likes: number;
   image: string;
   comments: number;
-  setSelectedCookbookId: Function;
-  setModifyPopUpVisible: Function;
+  setSelectedCookbookId: Dispatch<SetStateAction<number>>;
+  setModifyPopUpVisible: Dispatch<SetStateAction<boolean>>;
 };
 
 export default function ProfileCookbookCard(
-  props: ProfileCookbookCardProps
+  props: ProfileCookbookCardProps,
 ): JSX.Element {
   const {
     id,

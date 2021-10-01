@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import api from '../../../../helpers/api';
 import CommentsIcon from '../../../svg/Comments';
 import LikesIcon from '../../../svg/Likes';
@@ -15,12 +15,12 @@ type PopUpRecipeCardProps = {
   comments: number;
   id: number;
   loggedInUserId: number;
-  setNewRecipesIds: Function;
+  setNewRecipesIds: Dispatch<SetStateAction<number[]>>;
   recipesIds: number[];
 };
 
 export default function PopUpRecipeCard(
-  props: PopUpRecipeCardProps
+  props: PopUpRecipeCardProps,
 ): JSX.Element {
   const {
     views,

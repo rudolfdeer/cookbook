@@ -21,6 +21,7 @@ type CookbooksPageProps = {
   saveToUsersRecipes: ActionCreatorFunction;
   loggedInUserId: number;
   createComment: ActionCreatorFunction;
+  hideUsersCookbooks: ActionCreatorFunction;
 };
 
 export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
@@ -34,6 +35,7 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
     saveToUsersCookbooks,
     saveToUsersRecipes,
     createComment,
+    hideUsersCookbooks,
   } = props;
 
   const [isVisible, setVisible] = useState(false);
@@ -56,6 +58,7 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
               <FilterPanelCookbooks
                 sortCookbooks={sortCookbooks}
                 filterCookbooks={filterCookbooks}
+                hideUsersCookbooks={hideUsersCookbooks}
                 loggedInUserId={loggedInUserId}
               />
             </div>

@@ -1,32 +1,22 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import api from '../../../helpers/api';
-import { ActionCreatorFunction, Recipe } from '../../../interfaces';
+import { Recipe } from '../../../interfaces';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
-import CommentsSection from '../PopUp/CommentsSection';
 
 import './index.scss';
 
-type PopUpRecipeDetailedProps = {
-  setVisible: Dispatch<SetStateAction<boolean>>;
+type PopUpRecipeSavedProps = {
+  setRecipePopUpVisible: Dispatch<SetStateAction<boolean>>;
   recipe: Recipe;
   loggedInUserId: number;
-  saveToUsersRecipes: Function;
-  createComment: ActionCreatorFunction;
 };
 
-export default function PopUpRecipeDetailed(
-  props: PopUpRecipeDetailedProps
+export default function PopUpRecipeSaved(
+  props: PopUpRecipeSavedProps
 ): JSX.Element {
+  const { setRecipePopUpVisible, recipe } = props;
   const {
-    setVisible,
-    recipe,
-    saveToUsersRecipes,
-    loggedInUserId,
-    createComment,
-  } = props;
-  const {
-    id,
     image,
     description,
     title,
@@ -40,12 +30,8 @@ export default function PopUpRecipeDetailed(
   const closePopUp = (e: React.MouseEvent) => {
     const target = e.target as HTMLElement;
     if (target.classList.contains('overlay')) {
-      setVisible(false);
+      setRecipePopUpVisible(false);
     }
-  };
-
-  const saveRecipe = () => {
-    saveToUsersRecipes(id, loggedInUserId);
   };
 
   return (
@@ -59,17 +45,6 @@ export default function PopUpRecipeDetailed(
             <div className="pop-up--recipe__sections">
               <div className="pop-up--recipe__section--top">
                 <div className="pop-up--recipe__title">{title}</div>
-                {loggedInUserId ? (
-                  <button
-                    className="pop-up--recipe__btn"
-                    onClick={() => {
-                      saveRecipe();
-                      setVisible(false);
-                    }}
-                  >
-                    +
-                  </button>
-                ) : null}
               </div>
               <div className="pop-up--recipe__author">
                 {api.getUserName(userId)}
@@ -118,15 +93,6 @@ export default function PopUpRecipeDetailed(
                 </div>
               </div>
             </div>
-          </div>
-          <div className="pop-up--recipe__section--comments">
-            <div className="pop-up--recipe__section--comments__title">{`Comments (${comments.length})`}</div>
-            <CommentsSection
-              comments={comments}
-              loggedInUserId={loggedInUserId}
-              recipeId={id}
-              createComment={createComment}
-            />
           </div>
         </div>
       </div>

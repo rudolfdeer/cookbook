@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import api from '../../../helpers/api';
 import CommentsIcon from '../../svg/Comments';
 import DotsIcon from '../../svg/Dots';
@@ -16,12 +16,25 @@ type ProfileSavedRecipeCardProps = {
   likes: number;
   image: string;
   comments: number;
+  setRecipePopUpVisible: Dispatch<SetStateAction<boolean>>;
+  setSelectedRecipeId: Dispatch<SetStateAction<number>>;
 };
 
 export default function ProfileSavedRecipeCard(
   props: ProfileSavedRecipeCardProps
 ): JSX.Element {
-  const { views, image, description, title, authorId, likes, comments } = props;
+  const {
+    id,
+    views,
+    image,
+    description,
+    title,
+    authorId,
+    likes,
+    comments,
+    setRecipePopUpVisible,
+    setSelectedRecipeId,
+  } = props;
 
   return (
     <div className="card">
@@ -42,7 +55,15 @@ export default function ProfileSavedRecipeCard(
       </div>
 
       <div className="card__info-container middle">
-        <div className="card__title">{title}</div>
+        <div
+          className="card__title"
+          onClick={() => {
+            setSelectedRecipeId(id);
+            setRecipePopUpVisible(true);
+          }}
+        >
+          {title}
+        </div>
         <div className="card__author">{api.getUserName(authorId)}</div>
       </div>
 

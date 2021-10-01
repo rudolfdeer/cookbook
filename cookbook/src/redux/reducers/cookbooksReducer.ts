@@ -144,6 +144,15 @@ export default function cookbooksReducer(
       return [...usersCookbooks];
     }
 
+    case ACTION_TYPES.COOKBOOKS_HIDE_USERS_CREATED: {
+      const { userId } = action.payload;
+      const cookbooks = api.getCookbooksList();
+
+      const filteredCokkbooks = cookbooks.filter((el) => el.userId !== userId);
+
+      return [...filteredCokkbooks];
+    }
+
     default:
       return state;
   }

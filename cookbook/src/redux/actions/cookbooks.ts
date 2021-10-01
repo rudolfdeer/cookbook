@@ -15,6 +15,11 @@ export const sortCookbooks = (order: string): AnyAction => ({
   payload: order,
 });
 
+export const hideUsersCookbooks = (userId: string): AnyAction => ({
+  type: ACTION_TYPES.COOKBOOKS_HIDE_USERS_CREATED,
+  payload: userId,
+});
+
 export const getUsersCreatedCookbooks = (userId: number): AnyAction => ({
   type: ACTION_TYPES.COOKBOOKS_GET_USERS_CREATED,
   payload: userId,

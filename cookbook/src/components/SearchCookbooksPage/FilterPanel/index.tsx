@@ -5,12 +5,14 @@ type FilterPanelCookbooksProps = {
   sortCookbooks: Function;
   filterCookbooks: Function;
   loggedInUserId: number;
+  hideUsersCookbooks: Function;
 };
 
 export default function FilterPanelCookbooks(
-  props: FilterPanelCookbooksProps,
+  props: FilterPanelCookbooksProps
 ): JSX.Element {
-  const { sortCookbooks, filterCookbooks, loggedInUserId } = props;
+  const { sortCookbooks, filterCookbooks, loggedInUserId, hideUsersCookbooks } =
+    props;
   const [sortOrder, setSortOrder] = useState('');
   const [filters, setFilters] = useState([]);
 

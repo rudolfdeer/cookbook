@@ -71,7 +71,7 @@ export default function PopUpCreateCookbook(
             render={({ handleSubmit }) => (
               <form action="" onSubmit={handleSubmit}>
                 <div className="pop-up--create__section">
-                  <label
+                  {/* <label
                     htmlFor="title"
                     className="pop-up--create__section__title"
                   >
@@ -84,7 +84,29 @@ export default function PopUpCreateCookbook(
                     placeholder="Title"
                     component="input"
                     validate={required}
-                  />
+                  /> */}
+                  <Field
+                    name="title"
+                    validate={required}
+                  >
+                    {({ input, meta }) => (
+                      <>
+                      <label
+                        htmlFor="title"
+                        className="pop-up--create__section__title"
+                      >
+                        Cookbook Title<span>*</span>
+                      </label>
+                      <input {...input} type="text" className="pop-up--create__section__input--error" placeholder="Title"/>
+                      {meta.error && meta.touched ? (
+                        <span className="pop-up--create__section__input__error">{meta.error}</span>
+                      ) : (
+                        <span className="pop-up--create__section__input__error"></span>
+                      )}
+                    </>
+                    )}
+
+                  </Field>
                 </div>
 
                 <div className="pop-up--create__section--image">

@@ -57,20 +57,43 @@ export default function PopUpCreateRecipe(
             render={({ handleSubmit, submitting, pristine }) => (
               <form action="" onSubmit={handleSubmit}>
                 <div className="pop-up--create__section">
-                  <label
+                  {/* <label
                     htmlFor="title"
                     className="pop-up--create__section__title"
                   >
                     Recipe Title<span>*</span>
-                  </label>
-                  <Field
+                  </label> */}
+                  {/* <Field
                     type="text"
                     className="pop-up--create__section__input"
                     name="title"
                     placeholder="Title"
                     component="input"
                     validate={required}
-                  />
+
+                  /> */}
+                  <Field
+                    name="title"
+                    validate={required}
+                  >
+                    {({ input, meta }) => (
+                      <>
+                      <label
+                        htmlFor="title"
+                        className="pop-up--create__section__title"
+                      >
+                        Recipe Title<span>*</span>
+                      </label>
+                      <input {...input} type="text" className="pop-up--create__section__input--error" placeholder="Title"/>
+                      {meta.error && meta.touched ? (
+                        <span className="pop-up--create__section__input__error">{meta.error}</span>
+                      ) : (
+                        <span className="pop-up--create__section__input__error"></span>
+                      )}
+                    </>
+                    )}
+
+                  </Field>
                 </div>
 
                 <div className="pop-up--create__section--image">

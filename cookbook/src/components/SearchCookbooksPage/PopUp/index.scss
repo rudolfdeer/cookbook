@@ -56,11 +56,14 @@
       }
 
       &__author {
-        font-weight: 600;
-        font-size: 18px;
-        line-height: 22px;
-        color: $primary-yellow;
         margin-bottom: 40px;
+
+        a {
+          font-weight: 600;
+          font-size: 18px;
+          line-height: 22px;
+          color: $primary-yellow;
+        }
       }
 
       &__image {

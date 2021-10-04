@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
+import { Link } from 'react-router-dom';
 import { AnyAction } from 'redux';
 import api from '../../../helpers/api';
 import { Cookbook } from '../../../interfaces';
@@ -68,7 +69,9 @@ export default function PopUpCookbookDetailed(
           </div>
 
           <div className="pop-up--cookbook__author">
-            {api.getUserName(userId)}
+            <Link to={`/profile/user/${userId}`}>
+              {api.getUserName(userId)}
+            </Link>
           </div>
 
           <div className="pop-up--cookbook__section--description">

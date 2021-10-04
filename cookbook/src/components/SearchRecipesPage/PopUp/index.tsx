@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
+import { Link } from 'react-router-dom';
 import { AnyAction } from 'redux';
 import api from '../../../helpers/api';
 import { Recipe } from '../../../interfaces';
@@ -21,7 +22,7 @@ type PopUpRecipeDetailedProps = {
 };
 
 export default function PopUpRecipeDetailed(
-  props: PopUpRecipeDetailedProps,
+  props: PopUpRecipeDetailedProps
 ): JSX.Element {
   const {
     setVisible,
@@ -77,7 +78,9 @@ export default function PopUpRecipeDetailed(
                 ) : null}
               </div>
               <div className="pop-up--recipe__author">
-                {api.getUserName(userId)}
+                <Link to={`/profile/user/${userId}`}>
+                  {api.getUserName(userId)}
+                </Link>
               </div>
               <div className="pop-up--recipe__section--description">
                 <div className="pop-up--recipe__section--description__wrapper">

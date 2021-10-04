@@ -9,6 +9,7 @@ const ROUTES = {
   PROFILE_COOKBOOKS: '/profile/cookbooks/',
   PROFILE_RECIPES: '/profile/recipes/',
   PROFILE_SAVED: '/profile/saved/',
+  PROFILE_USER: '/profile/user/:userId',
 };
 
 export default ROUTES;

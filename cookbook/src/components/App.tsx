@@ -11,6 +11,7 @@ import ProfileSettingsPageConnect from '../redux/containers/ProfileSettingsPageC
 import ProfileSavedPageConnect from '../redux/containers/ProfileSavedPageConnect';
 import NotFoundPage from './NotFoundPage';
 import SignUpPageConnect from '../redux/containers/SignUpPageConnect';
+import ProfileUsersPageConnect from '../redux/containers/ProfileUsersPageConnect';
 
 function App(): JSX.Element {
   return (
@@ -57,6 +58,11 @@ function App(): JSX.Element {
             exact
             path={ROUTES.PROFILE_SAVED}
             component={ProfileSavedPageConnect}
+          ></Route>
+          <Route
+            exact
+            path={ROUTES.PROFILE_USER}
+            component={ProfileUsersPageConnect}
           ></Route>
           <Route exact path={ROUTES.NOT_FOUND} component={NotFoundPage}></Route>
         </Switch>

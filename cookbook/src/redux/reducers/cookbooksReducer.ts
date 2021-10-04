@@ -121,7 +121,7 @@ export default function cookbooksReducer(
         userId,
         description: data.description,
         recipesIds: recipesIdsNumbers,
-        tags: [],
+        tags: data.tags,
         views: 0,
         likes: 0,
         comments: [],

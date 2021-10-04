@@ -109,7 +109,7 @@ export default function recipesReducer(
         description: data.description,
         directions: directionsArr,
         ingredients: ingredientArr,
-        cookingTime: 60,
+        cookingTime: +data.cookingTime,
         views: 0,
         likes: 0,
         comments: [],

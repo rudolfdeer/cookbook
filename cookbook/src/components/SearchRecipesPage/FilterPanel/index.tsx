@@ -8,7 +8,7 @@ type FilterPanelRecipeProps = {
 };
 
 export default function FilterPanelRecipes(
-  props: FilterPanelRecipeProps,
+  props: FilterPanelRecipeProps
 ): JSX.Element {
   const { sortRecipes, filterRecipes } = props;
   const [sortOrder, setSortOrder] = useState('');
@@ -79,7 +79,7 @@ export default function FilterPanelRecipes(
           />
           <div className="range__values">
             <div>1 min</div>
-            <div>1 hour</div>
+            <div>{'>'}1 hour</div>
           </div>
         </div>
       </div>

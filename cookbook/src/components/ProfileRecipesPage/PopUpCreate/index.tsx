@@ -21,6 +21,7 @@ type FormValues = {
   description: string;
   ingredients: string;
   directions: string;
+  cookingTime: string;
 };
 
 const formData = {
@@ -28,12 +29,13 @@ const formData = {
   description: [''],
   ingredients: [''],
   directions: [''],
+  cookingTime: '',
 };
 
 const required = (value: string | string[]) => (value ? undefined : 'Required');
 
 export default function PopUpCreateRecipe(
-  props: PopUpCreateRecipeProps,
+  props: PopUpCreateRecipeProps
 ): JSX.Element {
   const { setCreatePopUpVisible, createRecipe, loggedInUserId } = props;
 
@@ -143,6 +145,24 @@ export default function PopUpCreateRecipe(
                     name="directions"
                     placeholder="Directions"
                     component="input"
+                  />
+                </div>
+
+                <div className="pop-up--create__section">
+                  <label
+                    htmlFor="cookingTime"
+                    className="pop-up--create__section__title"
+                  >
+                    Cooking time
+                  </label>
+                  <Field
+                    type="number"
+                    className="pop-up--create__section__input"
+                    name="cookingTime"
+                    placeholder="Cooking time, minutes"
+                    component="input"
+                    min="1"
+                    max="60"
                   />
                 </div>
 

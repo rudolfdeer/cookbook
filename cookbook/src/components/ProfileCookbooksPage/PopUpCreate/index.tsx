@@ -21,23 +21,38 @@ type FormValues = {
   image?: string;
   description: string;
   recipesIds: number[];
+  Vegetarian?: boolean;
+  'Without eggs'?: boolean;
+  'Without milk'?: boolean;
+  tags: string[];
 };
 
 const formData = {
   title: '',
   description: [''],
   recipesIds: [0],
+  tags: [] as string[],
 };
 
 const required = (value: string | string[]) => (value ? undefined : 'Required');
 
 export default function PopUpCreateCookbook(
-  props: PopUpCreateCookbookProps,
+  props: PopUpCreateCookbookProps
 ): JSX.Element {
   const { loggedInUserId, setCreatePopUpVisible, createCookbook } = props;
   const [photoSrc, setPhotoSrc] = useState('');
 
   const onSubmit = (values: FormValues) => {
+    if (values.Vegetarian) {
+      values.tags.push('Vegetarian');
+    }
+    if (values['Without eggs']) {
+      values.tags.push('Without eggs');
+    }
+    if (values['Without milk']) {
+      values.tags.push('Without milk');
+    }
+
     createCookbook(values, loggedInUserId, photoSrc);
     setCreatePopUpVisible(false);
   };
@@ -133,6 +148,54 @@ export default function PopUpCreateCookbook(
                       </option>
                     ))}
                   </Field>
+                </div>
+
+                <div className="pop-up--create__section">
+                  <div className="pop-up--create__section__title">Tags</div>
+                  <div className="pop-up--create__section__container--checkboxes">
+                    <div className="pop-up--create__section__container--checkbox">
+                      <label
+                        htmlFor="Vegetarian"
+                        className="pop-up--create__section__label"
+                      >
+                        Vegetarian
+                      </label>
+                      <Field
+                        className="pop-up--create__section__input--checkbox"
+                        name="Vegetarian"
+                        component="input"
+                        type="checkbox"
+                      ></Field>
+                    </div>
+                    <div className="pop-up--create__section__container--checkbox">
+                      <label
+                        htmlFor="Without eggs"
+                        className="pop-up--create__section__label"
+                      >
+                        Without eggs
+                      </label>
+                      <Field
+                        className="pop-up--create__section__input--checkbox"
+                        name="Without eggs"
+                        component="input"
+                        type="checkbox"
+                      ></Field>
+                    </div>
+                    <div className="pop-up--create__section__container--checkbox">
+                      <label
+                        htmlFor="Without milk"
+                        className="pop-up--create__section__label"
+                      >
+                        Without milk
+                      </label>
+                      <Field
+                        className="pop-up--create__section__input--checkbox"
+                        name="Without milk"
+                        component="input"
+                        type="checkbox"
+                      ></Field>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="pop-up--create__section"></div>

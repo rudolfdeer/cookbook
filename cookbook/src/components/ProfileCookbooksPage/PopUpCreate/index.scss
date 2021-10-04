@@ -97,5 +97,24 @@
       display: flex;
       margin-bottom: 24px;
     }
+
+    &__container {
+      &--checkboxes {
+        width: 100%;
+        display: flex;
+      }
+      &--checkbox {
+        margin-right: 24px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    &__label {
+      width: 90px;
+      margin-right: 8px;
+    }
   }
 }

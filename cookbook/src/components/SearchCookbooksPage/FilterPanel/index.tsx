@@ -4,19 +4,19 @@ import './index.scss';
 
 type FilterPanelCookbooksProps = {
   sortCookbooks: (order: string) => AnyAction;
-  filterCookbooks: (tags: string[]) => AnyAction;
+  filterCookbooks: (tags: string[], userId: number) => AnyAction;
   loggedInUserId: number;
 };
 
 export default function FilterPanelCookbooks(
-  props: FilterPanelCookbooksProps,
+  props: FilterPanelCookbooksProps
 ): JSX.Element {
   const { sortCookbooks, filterCookbooks, loggedInUserId } = props;
   const [sortOrder, setSortOrder] = useState('');
   const [filters, setFilters] = useState([]);
 
   useEffect(() => {
-    filterCookbooks(filters);
+    filterCookbooks(filters, loggedInUserId);
   }, [filters]);
 
   useEffect(() => {
@@ -31,6 +31,7 @@ export default function FilterPanelCookbooks(
   function filter(e: React.MouseEvent) {
     const target = e.target as HTMLInputElement;
     const { value } = target;
+
     if (filters.indexOf(value) > -1) {
       const newTagsArr = filters.filter((el) => el !== value);
       setFilters(newTagsArr);

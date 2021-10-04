@@ -16,7 +16,7 @@ type CookbooksPageProps = {
   recipes: Recipe[];
   getAllRecipes: () => AnyAction;
   sortCookbooks: (order: string) => AnyAction;
-  filterCookbooks: (tags: string[]) => AnyAction;
+  filterCookbooks: (tags: string[], userId: number) => AnyAction;
   saveToUsersCookbooks: (cookbookId: number, userId: number) => AnyAction;
   saveToUsersRecipes: (recipeId: number, userId: number) => AnyAction;
   loggedInUserId: number;

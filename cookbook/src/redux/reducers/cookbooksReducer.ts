@@ -18,20 +18,28 @@ export default function cookbooksReducer(
     }
 
     case ACTION_TYPES.COOKBOOKS_FILTER: {
-      const tags = action.payload;
+      const { tags, userId } = action.payload;
       const currentData = api.getCookbooksList();
       const appliedTags = tags.sort();
-      let resData;
+
+      const hideUsersIndex = appliedTags.indexOf('hide');
+
+      if (hideUsersIndex > -1) {
+        appliedTags.splice(hideUsersIndex, 1);
+      }
+
+      let filtered;
+
       if (appliedTags.length === 0) {
-        resData = api.getCookbooksList();
+        filtered = api.getCookbooksList();
       }
       if (appliedTags.length === 1) {
-        resData = currentData.filter(
+        filtered = currentData.filter(
           (cookbook) => cookbook.tags.indexOf(appliedTags[0]) > -1
         );
       }
       if (appliedTags.length > 1) {
-        resData = currentData.filter((cookbook) => {
+        filtered = currentData.filter((cookbook) => {
           const cookbookTags = cookbook.tags.sort();
           return cookbookTags.every(
             (value, index) => value === appliedTags[index]
@@ -39,7 +47,16 @@ export default function cookbooksReducer(
         });
       }
 
-      return [...resData];
+      let result;
+
+      if (hideUsersIndex > -1) {
+        result = filtered.filter((el) => el.userId !== userId);
+        appliedTags.push('hide');
+      } else {
+        result = filtered;
+      }
+
+      return [...result];
     }
 
     case ACTION_TYPES.COOKBOOKS_SORT: {

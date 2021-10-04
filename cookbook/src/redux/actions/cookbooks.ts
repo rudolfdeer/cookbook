@@ -5,9 +5,12 @@ export const getAllCookbooks = (): AnyAction => ({
   type: ACTION_TYPES.COOKBOOKS_GET_ALL,
 });
 
-export const filterCookbooks = (tags: string[]): AnyAction => ({
+export const filterCookbooks = (tags: string[], userId: number): AnyAction => ({
   type: ACTION_TYPES.COOKBOOKS_FILTER,
-  payload: tags,
+  payload: {
+    tags,
+    userId,
+  },
 });
 
 export const sortCookbooks = (order: string): AnyAction => ({

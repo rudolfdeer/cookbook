@@ -36,7 +36,7 @@ export const getUsersSavedCookbooks = (userId: number): AnyAction => ({
 export const createComment = (
   cookbookId: number,
   userId: number,
-  commentText: string
+  commentText: string,
 ): AnyAction => ({
   type: ACTION_TYPES.COOKBOOKS_CREATE_COMMENT,
   payload: {
@@ -55,7 +55,7 @@ export type CookbookValues = {
 export const createCookbook = (
   data: CookbookValues,
   userId: number,
-  imageSrc: string
+  imageSrc: string,
 ): AnyAction => ({
   type: ACTION_TYPES.COOKBOOKS_CREATE,
   payload: {
@@ -69,7 +69,7 @@ export const modifyCookbook = (
   data: CookbookValues,
   cookbookId: number,
   imageSrc: string,
-  userId: number
+  userId: number,
 ): AnyAction => ({
   type: ACTION_TYPES.COOKBOOKS_MODIFY,
   payload: {
@@ -82,7 +82,7 @@ export const modifyCookbook = (
 
 export const deleteCookbook = (
   cookbookId: number,
-  userId: number
+  userId: number,
 ): AnyAction => ({
   type: ACTION_TYPES.COOKBOOKS_DELETE,
   payload: {

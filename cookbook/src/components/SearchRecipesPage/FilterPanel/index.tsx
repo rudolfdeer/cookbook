@@ -8,7 +8,7 @@ type FilterPanelRecipeProps = {
 };
 
 export default function FilterPanelRecipes(
-  props: FilterPanelRecipeProps
+  props: FilterPanelRecipeProps,
 ): JSX.Element {
   const { sortRecipes, filterRecipes } = props;
   const [sortOrder, setSortOrder] = useState('');

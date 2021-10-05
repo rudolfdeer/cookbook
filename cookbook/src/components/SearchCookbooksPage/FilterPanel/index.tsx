@@ -9,7 +9,7 @@ type FilterPanelCookbooksProps = {
 };
 
 export default function FilterPanelCookbooks(
-  props: FilterPanelCookbooksProps
+  props: FilterPanelCookbooksProps,
 ): JSX.Element {
   const { sortCookbooks, filterCookbooks, loggedInUserId } = props;
   const [sortOrder, setSortOrder] = useState('');

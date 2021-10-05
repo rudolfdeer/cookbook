@@ -37,7 +37,7 @@ const formData = {
 const required = (value: string | string[]) => (value ? undefined : 'Required');
 
 export default function PopUpCreateCookbook(
-  props: PopUpCreateCookbookProps
+  props: PopUpCreateCookbookProps,
 ): JSX.Element {
   const { loggedInUserId, setCreatePopUpVisible, createCookbook } = props;
   const [photoSrc, setPhotoSrc] = useState('');

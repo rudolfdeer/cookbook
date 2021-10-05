@@ -7,7 +7,7 @@ import ViewsIcon from '../../svg/Views';
 
 import './index.scss';
 
-type ProfileCookbookCardProps = {
+type CardCookbookProps = {
   id: number;
   title: string;
   authorId: number;
@@ -16,12 +16,11 @@ type ProfileCookbookCardProps = {
   likes: number;
   image: string;
   comments: number;
-  loggedInUserId: number;
+  setSelectedCookbookId: Dispatch<SetStateAction<number>>;
+  setPopUpCookbookVisible: Dispatch<SetStateAction<boolean>>;
 };
 
-export default function ProfileCookbookCard(
-  props: ProfileCookbookCardProps
-): JSX.Element {
+export default function CardCookbook(props: CardCookbookProps): JSX.Element {
   const {
     id,
     views,
@@ -31,7 +30,8 @@ export default function ProfileCookbookCard(
     authorId,
     likes,
     comments,
-    loggedInUserId,
+    setSelectedCookbookId,
+    setPopUpCookbookVisible,
   } = props;
 
   return (
@@ -53,7 +53,15 @@ export default function ProfileCookbookCard(
       </div>
 
       <div className="card__info-container middle">
-        <div className="card__title">{title}</div>
+        <div
+          className="card__title"
+          onClick={() => {
+            setSelectedCookbookId(id);
+            setPopUpCookbookVisible(true);
+          }}
+        >
+          {title}
+        </div>
         <div className="card__author">{api.getUserName(authorId)}</div>
       </div>
 

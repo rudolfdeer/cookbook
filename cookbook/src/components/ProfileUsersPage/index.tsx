@@ -1,15 +1,18 @@
-import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams, Redirect } from 'react-router-dom';
+
 import { Cookbook } from '../../interfaces';
 
 import Footer from '../Footer';
-import ProfileCookbookCard from './Card';
+import CardCookbook from './Card';
 
 import './index.scss';
 
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 
 import api from '../../helpers/api';
+import PopUpCookbook from './PopUp';
+import ROUTES from '../../constants/routes';
 
 type ProfileUsersPageProps = {
   cookbooks: Cookbook[];
@@ -22,6 +25,13 @@ export default function ProfileUsersPage(
 ): JSX.Element {
   const { userId } = useParams<{ userId: string }>();
   const { cookbooks, loggedInUserId, getUsersCreatedCookbooks } = props;
+
+  if (+userId === loggedInUserId) {
+    return <Redirect to={ROUTES.PROFILE_COOKBOOKS} />;
+  }
+
+  const [isPopUpCookbookVisible, setPopUpCookbookVisible] = useState(false);
+  const [selectedCookbookId, setSelectedCookbookId] = useState(0);
 
   useEffect(() => getUsersCreatedCookbooks(+userId), []);
 
@@ -54,7 +64,7 @@ export default function ProfileUsersPage(
           </nav>
           <section className="profile-cookbooks-page__cards cookbooks">
             {cookbooks?.map((el) => (
-              <ProfileCookbookCard
+              <CardCookbook
                 id={el.id}
                 title={el.title}
                 authorId={el.userId}
@@ -64,10 +74,17 @@ export default function ProfileUsersPage(
                 image={el.image}
                 description={el.description}
                 key={el.id}
-                loggedInUserId={loggedInUserId}
+                setSelectedCookbookId={setSelectedCookbookId}
+                setPopUpCookbookVisible={setPopUpCookbookVisible}
               />
             ))}
           </section>
+          {isPopUpCookbookVisible ? (
+            <PopUpCookbook
+              setPopUpCookbookVisible={setPopUpCookbookVisible}
+              cookbook={api.getCookbook(selectedCookbookId)}
+            />
+          ) : null}
         </div>
       </main>
       <Footer />

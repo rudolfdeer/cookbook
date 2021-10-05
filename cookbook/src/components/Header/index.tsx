@@ -22,10 +22,10 @@ export default function Header(props: HeaderProps): JSX.Element {
       <nav className="header__nav">
         <ul className="header__nav__list">
           <li className="header__nav__list__item">
-            <Link to="/recipes">{RECIPES}</Link>
+            <Link to={ROUTES.COOKBOOKS}>{COOKBOOKS}</Link>
           </li>
-          <li className="list__item">
-            <Link to="/cookbooks">{COOKBOOKS}</Link>
+          <li className="header__nav__list__item">
+            <Link to={ROUTES.RECIPES}>{RECIPES}</Link>
           </li>
         </ul>
       </nav>

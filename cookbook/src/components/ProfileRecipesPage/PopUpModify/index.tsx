@@ -18,7 +18,7 @@ type PopUpModifyRecipeProps = {
 };
 
 export default function PopUpModifyRecipe(
-  props: PopUpModifyRecipeProps,
+  props: PopUpModifyRecipeProps
 ): JSX.Element {
   const {
     setModifyPopUpVisible,
@@ -26,14 +26,8 @@ export default function PopUpModifyRecipe(
     modifyRecipe,
     loggedInUserId,
   } = props;
-  const {
-    id,
-    title,
-    image,
-    description,
-    directions,
-    ingredients,
-  } = selectedRecipe;
+  const { id, title, image, description, directions, ingredients } =
+    selectedRecipe;
 
   const [imageSrc, setImageSrc] = useState(image);
   const [isTitleDisabled, setTitleDisabled] = useState(true);
@@ -168,7 +162,7 @@ export default function PopUpModifyRecipe(
                 </div>
                 <textarea
                   className="pop-up--modify__input--textarea"
-                  value={newDirections.join(', ')}
+                  value={newDirections}
                   disabled={isDirectionsDisabled}
                   onChange={(e) => setNewDirections(e.target.value.split(','))}
                 />
@@ -202,7 +196,7 @@ export default function PopUpModifyRecipe(
                 </div>
                 <textarea
                   className="pop-up--modify__input--textarea"
-                  value={newIngredients.join(', ')}
+                  value={newIngredients}
                   disabled={isIngredientsDisabled}
                   onChange={(e) => setNewIngredients(e.target.value.split(','))}
                 />
@@ -215,8 +209,8 @@ export default function PopUpModifyRecipe(
                   const data = {
                     title: newTitle,
                     description: newDescription,
-                    directions: newDirections.join(', '),
-                    ingredients: newIngredients.join(', '),
+                    directions: newDirections.join(','),
+                    ingredients: newIngredients.join(','),
                   };
                   setModifyPopUpVisible(false);
                   modifyRecipe(data, id, imageSrc, loggedInUserId);

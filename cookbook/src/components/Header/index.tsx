@@ -5,6 +5,7 @@ import { CREATE_COOKBOOK_BTN, SIGN_IN } from '../../constants/resources/header';
 import ROUTES from '../../constants/routes';
 
 import './index.scss';
+import SearchBar from './SearchBar';
 
 type HeaderProps = {
   loggedInUserName: string;
@@ -28,10 +29,7 @@ export default function Header(props: HeaderProps): JSX.Element {
           </li>
         </ul>
       </nav>
-      <div className="header__search">
-        <div className="header__search__icon" />
-        <input type="text" className="header__search__input" />
-      </div>
+      <SearchBar />
       {loggedInUserName ? (
         <button className="header__btn">
           <Link to={ROUTES.PROFILE_COOKBOOKS}>{CREATE_COOKBOOK_BTN}</Link>

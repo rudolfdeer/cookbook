@@ -33,7 +33,7 @@ export default function ProfileUsersPage(
   const [isPopUpCookbookVisible, setPopUpCookbookVisible] = useState(false);
   const [selectedCookbookId, setSelectedCookbookId] = useState(0);
 
-  useEffect(() => getUsersCreatedCookbooks(+userId), []);
+  useEffect(() => getUsersCreatedCookbooks(+userId), [userId]);
 
   const user = api.getUser(+userId);
 

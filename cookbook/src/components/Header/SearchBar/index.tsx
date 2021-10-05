@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import api from '../../../helpers/api';
 
 import './index.scss';
@@ -39,7 +38,7 @@ export default function SearchBar(): JSX.Element {
       />
       {searchInput.length > 0 ? (
         <div className="header__search__result">
-          <ResultList list={getResultList()} />
+          <ResultList list={getResultList()} setSearchInput={setSearchInput} />
         </div>
       ) : null}
     </div>

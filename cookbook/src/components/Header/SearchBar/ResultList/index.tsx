@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { Link } from 'react-router-dom';
+import ROUTES from '../../../../constants/routes';
 
 type ResultListProps = {
   list: { name: string; id: number }[];
@@ -17,7 +18,7 @@ export default function ResultList(props: ResultListProps): JSX.Element {
           className="header__search__result__list__item"
           onClick={() => setSearchInput('')}
         >
-          <Link to={`/profile/user/${el.id}`}>{el.name}</Link>
+          <Link to={`${ROUTES.PROFILE_USER}/${el.id}`}>{el.name}</Link>
         </li>
       ))}
     </ul>

@@ -61,7 +61,7 @@ function App(): JSX.Element {
           ></Route>
           <Route
             exact
-            path={ROUTES.PROFILE_USER}
+            path={`${ROUTES.PROFILE_USER}/:userId`}
             component={ProfileUsersPageConnect}
           ></Route>
           <Route exact path={ROUTES.NOT_FOUND} component={NotFoundPage}></Route>

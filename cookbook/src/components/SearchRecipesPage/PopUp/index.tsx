@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { Link } from 'react-router-dom';
 import { AnyAction } from 'redux';
+import ROUTES from '../../../constants/routes';
 import api from '../../../helpers/api';
 import { Recipe } from '../../../interfaces';
 import CommentsIcon from '../../svg/Comments';
@@ -22,7 +23,7 @@ type PopUpRecipeDetailedProps = {
 };
 
 export default function PopUpRecipeDetailed(
-  props: PopUpRecipeDetailedProps,
+  props: PopUpRecipeDetailedProps
 ): JSX.Element {
   const {
     setVisible,
@@ -78,7 +79,7 @@ export default function PopUpRecipeDetailed(
                 ) : null}
               </div>
               <div className="pop-up--recipe__author">
-                <Link to={`/profile/user/${userId}`}>
+                <Link to={`${ROUTES.PROFILE_USER}/${userId}`}>
                   {api.getUserName(userId)}
                 </Link>
               </div>

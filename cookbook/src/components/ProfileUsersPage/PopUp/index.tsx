@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { Link } from 'react-router-dom';
+import ROUTES from '../../../constants/routes';
 import api from '../../../helpers/api';
 import { Cookbook } from '../../../interfaces';
 import CommentsIcon from '../../svg/Comments';
@@ -15,15 +16,14 @@ type PopUpCookbookProps = {
 
 export default function PopUpCookbook(props: PopUpCookbookProps): JSX.Element {
   const { setPopUpCookbookVisible, cookbook } = props;
-  const {
-    image, description, title, userId, likes, comments, recipesIds,
-  } = cookbook;
+  const { image, description, title, userId, likes, comments, recipesIds } =
+    cookbook;
 
   function closePopUp(e: React.MouseEvent) {
     const target = e.target as HTMLElement;
     if (
-      target.classList.contains('overlay')
-      || target.classList.contains('overlay__btn')
+      target.classList.contains('overlay') ||
+      target.classList.contains('overlay__btn')
     ) {
       setPopUpCookbookVisible(false);
     }
@@ -40,7 +40,7 @@ export default function PopUpCookbook(props: PopUpCookbookProps): JSX.Element {
           </div>
 
           <div className="pop-up--cookbook__author">
-            <Link to={`/profile/user/${userId}`}>
+            <Link to={`${ROUTES.PROFILE_USER}/${userId}`}>
               {api.getUserName(userId)}
             </Link>
           </div>

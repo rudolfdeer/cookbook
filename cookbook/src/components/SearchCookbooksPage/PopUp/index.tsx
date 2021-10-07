@@ -22,6 +22,7 @@ type PopUpCookbookDetailedProps = {
     userId: number,
     commentText: string
   ) => AnyAction;
+  likeCookbook: (userId: number, cookbookId: number) => AnyAction;
 };
 
 export default function PopUpCookbookDetailed(
@@ -34,6 +35,7 @@ export default function PopUpCookbookDetailed(
     saveToUsersRecipes,
     saveToUsersCookbooks,
     createComment,
+    likeCookbook,
   } = props;
   const {
     id,
@@ -104,6 +106,8 @@ export default function PopUpCookbookDetailed(
               <LikesIcon
                 loggedInUserId={loggedInUserId}
                 usersLiked={usersLiked}
+                likeCookbook={likeCookbook}
+                cookbookId={id}
               />
               {usersLiked.length} likes
             </div>

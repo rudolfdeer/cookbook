@@ -25,6 +25,7 @@ type CookbooksPageProps = {
     userId: number,
     commentText: string
   ) => AnyAction;
+  likeCookbook: (userId: number, cookbookId: number) => AnyAction;
 };
 
 export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
@@ -38,6 +39,7 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
     saveToUsersCookbooks,
     saveToUsersRecipes,
     createComment,
+    likeCookbook,
   } = props;
 
   const [isVisible, setVisible] = useState(false);
@@ -101,6 +103,7 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
               saveToUsersCookbooks={saveToUsersCookbooks}
               saveToUsersRecipes={saveToUsersRecipes}
               createComment={createComment}
+              likeCookbook={likeCookbook}
             />
           ) : null}
         </div>

@@ -22,7 +22,7 @@ type PopUpModifyCookbookProps = {
 };
 
 export default function PopUpModifyCookbook(
-  props: PopUpModifyCookbookProps,
+  props: PopUpModifyCookbookProps
 ): JSX.Element {
   const {
     setModifyPopUpVisible,
@@ -30,9 +30,8 @@ export default function PopUpModifyCookbook(
     loggedInUserId,
     modifyCookbook,
   } = props;
-  const {
-    id, image, description, title, userId, likes, comments, recipesIds,
-  } = selectedCookbook;
+  const { id, image, description, title, userId, likes, comments, recipesIds } =
+    selectedCookbook;
 
   const [imageSrc, setImageSrc] = useState(image);
   const [isTitleDisabled, setTitleDisabled] = useState(true);
@@ -44,8 +43,8 @@ export default function PopUpModifyCookbook(
   function closePopUp(e: React.MouseEvent) {
     const target = e.target as HTMLElement;
     if (
-      target.classList.contains('overlay')
-      || target.classList.contains('overlay__btn')
+      target.classList.contains('overlay') ||
+      target.classList.contains('overlay__btn')
     ) {
       setModifyPopUpVisible(false);
     }
@@ -169,17 +168,6 @@ export default function PopUpModifyCookbook(
               )}
             </div>
           </div>
-
-          <div className="pop-up--modify__section--statistics">
-            <div className="card__statistics-item likes">
-              <LikesIcon />
-              {likes} likes
-            </div>
-            <div className="card__statistics-item comments">
-              <CommentsIcon />
-              {comments.length} comments
-            </div>
-          </div>
           <div className="pop-up--modify__section--recipes">
             <div className="pop-up--modify__section__title">Recipes</div>
             <div className="pop-up--modify__section--recipes__cards">
@@ -197,6 +185,7 @@ export default function PopUpModifyCookbook(
                   loggedInUserId={loggedInUserId}
                   setNewRecipesIds={setNewRecipesIds}
                   recipesIds={newRecipesIds}
+                  usersLiked={el.usersLiked}
                 />
               ))}
             </div>

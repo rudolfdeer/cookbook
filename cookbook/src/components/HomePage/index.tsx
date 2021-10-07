@@ -33,9 +33,7 @@ type HomePageProps = {
 };
 
 export default function HomePage(props: HomePageProps): JSX.Element {
-  const {
-    recipes, getAllRecipes, cookbooks, getAllCookbooks,
-  } = props;
+  const { recipes, getAllRecipes, cookbooks, getAllCookbooks } = props;
 
   useEffect(() => {
     getAllRecipes();
@@ -103,6 +101,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
                     comments={el.comments.length}
                     image={el.image}
                     key={el.id}
+                    usersLiked={el.usersLiked}
                   />
                 ))
                 .slice(0, 4)}

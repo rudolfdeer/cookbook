@@ -12,6 +12,7 @@ type ProfileRecipeCardProps = {
   description: string;
   views: number;
   likes: number;
+  usersLiked: number[];
   image: string;
   comments: number;
   setModifyPopUpVisible: Dispatch<SetStateAction<boolean>>;
@@ -21,7 +22,7 @@ type ProfileRecipeCardProps = {
 };
 
 export default function ProfileRecipeCard(
-  props: ProfileRecipeCardProps,
+  props: ProfileRecipeCardProps
 ): JSX.Element {
   const {
     id,
@@ -36,6 +37,7 @@ export default function ProfileRecipeCard(
     setSelectedRecipeId,
     loggedInUserId,
     deleteRecipe,
+    usersLiked,
   } = props;
 
   const [isBtnDeleteVisible, setBtnDeleteVisible] = useState(false);
@@ -84,7 +86,7 @@ export default function ProfileRecipeCard(
             </div>
             <div className="card__statistics-item likes">
               <LikesIcon />
-              {likes} likes
+              {usersLiked.length} likes
             </div>
             <div className="card__statistics-item comments">
               <svg

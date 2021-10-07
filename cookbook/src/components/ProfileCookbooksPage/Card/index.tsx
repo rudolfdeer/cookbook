@@ -14,6 +14,7 @@ type ProfileCookbookCardProps = {
   description: string;
   views: number;
   likes: number;
+  usersLiked: number[];
   image: string;
   comments: number;
   setSelectedCookbookId: Dispatch<SetStateAction<number>>;
@@ -23,7 +24,7 @@ type ProfileCookbookCardProps = {
 };
 
 export default function ProfileCookbookCard(
-  props: ProfileCookbookCardProps,
+  props: ProfileCookbookCardProps
 ): JSX.Element {
   const {
     id,
@@ -33,6 +34,7 @@ export default function ProfileCookbookCard(
     title,
     authorId,
     likes,
+    usersLiked,
     comments,
     setSelectedCookbookId,
     setModifyPopUpVisible,
@@ -109,7 +111,7 @@ export default function ProfileCookbookCard(
       <div className="card__info-container bottom">
         <div className="card__statistics-item likes">
           <LikesIcon />
-          {likes} likes
+          {usersLiked.length} likes
         </div>
         <div className="card__statistics-item">
           <CommentsIcon />

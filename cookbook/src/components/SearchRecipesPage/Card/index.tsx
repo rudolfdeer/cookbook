@@ -13,6 +13,7 @@ type RecipeCardProps = {
   description: string;
   views: number;
   likes: number;
+  usersLiked: number[];
   image: string;
   comments: number;
   selectCard: Dispatch<SetStateAction<number>>;
@@ -30,6 +31,7 @@ export default function RecipeCard(props: RecipeCardProps): JSX.Element {
     title,
     authorId,
     likes,
+    usersLiked,
     comments,
     setVisible,
     selectCard,
@@ -82,7 +84,7 @@ export default function RecipeCard(props: RecipeCardProps): JSX.Element {
             </div>
             <div className="card__statistics-item likes">
               <LikesIcon />
-              {likes} likes
+              {usersLiked.length} likes
             </div>
             <div className="card__statistics-item comments">
               <CommentsIcon />

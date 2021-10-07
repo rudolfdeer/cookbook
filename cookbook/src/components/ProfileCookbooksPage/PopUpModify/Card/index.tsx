@@ -11,6 +11,7 @@ type PopUpRecipeCardProps = {
   description: string;
   views: number;
   likes: number;
+  usersLiked: number[];
   image: string;
   comments: number;
   id: number;
@@ -20,7 +21,7 @@ type PopUpRecipeCardProps = {
 };
 
 export default function PopUpRecipeCard(
-  props: PopUpRecipeCardProps,
+  props: PopUpRecipeCardProps
 ): JSX.Element {
   const {
     views,
@@ -29,6 +30,7 @@ export default function PopUpRecipeCard(
     title,
     authorId,
     likes,
+    usersLiked,
     comments,
     id,
     setNewRecipesIds,
@@ -62,7 +64,7 @@ export default function PopUpRecipeCard(
             </div>
             <div className="card__statistics-item likes">
               <LikesIcon />
-              {likes} likes
+              {usersLiked.length} likes
             </div>
             <div className="card__statistics-item comments">
               <CommentsIcon />

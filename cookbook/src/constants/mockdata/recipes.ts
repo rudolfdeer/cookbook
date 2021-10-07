@@ -13,6 +13,7 @@ const recipes: Recipe[] = [
     cookingTime: 60,
     views: 252,
     likes: 57,
+    usersLiked: [1, 3, 5],
     comments: [
       {
         userId: 2,
@@ -40,6 +41,7 @@ const recipes: Recipe[] = [
     cookingTime: 35,
     views: 123,
     likes: 17,
+    usersLiked: [1, 5],
     comments: [
       {
         userId: 2,
@@ -67,6 +69,7 @@ const recipes: Recipe[] = [
     cookingTime: 25,
     views: 200,
     likes: 51,
+    usersLiked: [3, 4],
     comments: [
       {
         userId: 2,
@@ -94,6 +97,7 @@ const recipes: Recipe[] = [
     cookingTime: 15,
     views: 212,
     likes: 25,
+    usersLiked: [5, 4],
     comments: [
       {
         userId: 1,
@@ -133,6 +137,7 @@ const recipes: Recipe[] = [
     cookingTime: 10,
     views: 117,
     likes: 15,
+    usersLiked: [2, 3, 4],
     comments: [
       {
         userId: 2,

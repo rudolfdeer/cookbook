@@ -16,8 +16,10 @@ type CookbookCardProps = {
   likes: number;
   image: string;
   comments: number;
+  usersLiked: number[];
   selectCard: Dispatch<SetStateAction<number>>;
   openDetailedInfo: Dispatch<SetStateAction<boolean>>;
+  loggedInUserId: number;
 };
 
 export default function CookbookCard(props: CookbookCardProps): JSX.Element {
@@ -29,9 +31,11 @@ export default function CookbookCard(props: CookbookCardProps): JSX.Element {
     title,
     authorId,
     likes,
+    usersLiked,
     comments,
     openDetailedInfo,
     selectCard,
+    loggedInUserId,
   } = props;
 
   return (
@@ -71,8 +75,8 @@ export default function CookbookCard(props: CookbookCardProps): JSX.Element {
 
       <div className="card__info-container bottom">
         <div className="card__statistics-item likes">
-          <LikesIcon />
-          {likes} likes
+          <LikesIcon loggedInUserId={loggedInUserId} usersLiked={usersLiked} />
+          {usersLiked.length} likes
         </div>
         <div className="card__statistics-item">
           <CommentsIcon />

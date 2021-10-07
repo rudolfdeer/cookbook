@@ -9,6 +9,7 @@ export interface Recipe {
   cookingTime: number;
   views: number;
   likes: number;
+  usersLiked?: number[];
   comments: Comment[];
 }
 
@@ -40,6 +41,7 @@ export interface Cookbook {
   image: string;
   recipesIds: Recipe['id'][];
   tags: string[];
+  usersLiked?: number[];
 }
 
 export interface State {

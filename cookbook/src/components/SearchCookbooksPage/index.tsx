@@ -81,12 +81,14 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
                   authorId={el.userId}
                   views={el.views}
                   likes={el.likes}
+                  usersLiked={el.usersLiked}
                   comments={el.comments.length}
                   image={el.image}
                   description={el.description}
                   key={el.id}
                   selectCard={setChosenCardId}
                   openDetailedInfo={setVisible}
+                  loggedInUserId={loggedInUserId}
                 />
               ))}
             </div>

@@ -35,8 +35,17 @@ export default function PopUpCookbookDetailed(
     saveToUsersCookbooks,
     createComment,
   } = props;
-  const { id, image, description, title, userId, likes, comments, recipesIds } =
-    cookbook;
+  const {
+    id,
+    image,
+    description,
+    title,
+    userId,
+    likes,
+    usersLiked,
+    comments,
+    recipesIds,
+  } = cookbook;
 
   function closePopUp(e: React.MouseEvent) {
     const target = e.target as HTMLElement;
@@ -92,8 +101,11 @@ export default function PopUpCookbookDetailed(
 
           <div className="pop-up--cookbook__section--statistics">
             <div className="card__statistics-item likes">
-              <LikesIcon />
-              {likes} likes
+              <LikesIcon
+                loggedInUserId={loggedInUserId}
+                usersLiked={usersLiked}
+              />
+              {usersLiked.length} likes
             </div>
             <div className="card__statistics-item comments">
               <CommentsIcon />
@@ -110,6 +122,7 @@ export default function PopUpCookbookDetailed(
                   views={el.views}
                   description={el.description}
                   likes={el.likes}
+                  usersLiked={usersLiked}
                   image={el.image}
                   comments={el.comments.length}
                   key={el.id}

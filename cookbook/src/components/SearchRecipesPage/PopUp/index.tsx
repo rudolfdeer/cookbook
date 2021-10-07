@@ -39,6 +39,7 @@ export default function PopUpRecipeDetailed(
     title,
     userId,
     likes,
+    usersLiked,
     comments,
     directions,
     ingredients,
@@ -119,7 +120,7 @@ export default function PopUpRecipeDetailed(
               <div className="pop-up--recipe__section--statistics">
                 <div className="card__statistics-item likes">
                   <LikesIcon />
-                  {likes} likes
+                  {usersLiked.length} likes
                 </div>
                 <div className="card__statistics-item comments">
                   <CommentsIcon />

@@ -14,12 +14,11 @@ type RecipeCardRatedProps = {
   likes: number;
   image: string;
   comments: number;
+  usersLiked: number[];
 };
 
 export default function CardRated(props: RecipeCardRatedProps): JSX.Element {
-  const {
-    views, image, title, authorId, likes, comments,
-  } = props;
+  const { views, image, title, authorId, likes, comments, usersLiked } = props;
 
   return (
     <div className="card">
@@ -44,7 +43,7 @@ export default function CardRated(props: RecipeCardRatedProps): JSX.Element {
       <div className="card__info-container bottom">
         <div className="card__statistics-item likes">
           <LikesIcon />
-          {likes} likes
+          {usersLiked.length} likes
         </div>
         <div className="card__statistics-item">
           <CommentsIcon />

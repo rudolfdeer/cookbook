@@ -16,12 +16,13 @@ type PopUpRecipeCardProps = {
   comments: number;
   id: number;
   loggedInUserId: number;
+  usersLiked: number[];
   saveToUsersRecipes: (recipeId: number, userId: number) => AnyAction;
   setVisible: Dispatch<SetStateAction<boolean>>;
 };
 
 export default function PopUpRecipeCard(
-  props: PopUpRecipeCardProps,
+  props: PopUpRecipeCardProps
 ): JSX.Element {
   const {
     views,
@@ -30,6 +31,7 @@ export default function PopUpRecipeCard(
     title,
     userId,
     likes,
+    usersLiked,
     comments,
     id,
     loggedInUserId,
@@ -58,8 +60,11 @@ export default function PopUpRecipeCard(
               {views} views
             </div>
             <div className="card__statistics-item likes">
-              <LikesIcon />
-              {likes} likes
+              <LikesIcon
+                loggedInUserId={loggedInUserId}
+                usersLiked={usersLiked}
+              />
+              {usersLiked.length} likes
             </div>
             <div className="card__statistics-item comments">
               <CommentsIcon />

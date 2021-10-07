@@ -80,6 +80,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
                   key={el.id}
                   loggedInUserId={loggedInUserId}
                   saveToUsersRecipes={saveToUsersRecipes}
+                  usersLiked={el.usersLiked}
                 />
               ))}
             </div>

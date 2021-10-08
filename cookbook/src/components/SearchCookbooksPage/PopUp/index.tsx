@@ -5,7 +5,7 @@ import ROUTES from '../../../constants/routes';
 import api from '../../../helpers/api';
 import { Cookbook } from '../../../interfaces';
 import CommentsIcon from '../../svg/Comments';
-import LikesIcon from '../../svg/LikesIcon';
+import LikesIcon from '../../svg/LikesIconCookbook';
 import CommentsSection from './CommentsSection';
 
 import './index.scss';

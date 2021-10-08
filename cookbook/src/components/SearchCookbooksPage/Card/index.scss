@@ -10,6 +10,15 @@
     .card__info-container {
       &.bottom {
         justify-content: flex-start;
+
+        .card__statistics-item.likes {
+          .statistics-item__icon {
+            &:hover {
+              cursor: pointer;
+              transform: scale(1.1);
+            }
+          }
+        }
       }
 
       &.description {

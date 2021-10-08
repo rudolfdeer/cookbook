@@ -1,10 +1,9 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { AnyAction } from 'redux';
 import api from '../../../helpers/api';
-import LikesIconConnect from '../../../redux/containers/LikesIconConnect';
 import CommentsIcon from '../../svg/Comments';
 import DotsIcon from '../../svg/Dots';
-import LikesIcon from '../../svg/LikesIcon';
+import LikesIcon from '../../svg/LikesIconCookbook';
 import ViewsIcon from '../../svg/Views';
 
 import './index.scss';

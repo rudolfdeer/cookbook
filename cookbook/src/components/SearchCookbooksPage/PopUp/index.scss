@@ -115,6 +115,15 @@
           display: flex;
           flex-wrap: nowrap;
           margin-bottom: 72px;
+
+          .card__statistics-item.likes {
+            .statistics-item__icon {
+              &:hover {
+                cursor: pointer;
+                transform: scale(1.2);
+              }
+            }
+          }
         }
 
         &--recipes {

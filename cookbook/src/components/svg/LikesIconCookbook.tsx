@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { AnyAction } from 'redux';
 import api from '../../helpers/api';
-import { Cookbook, User } from '../../interfaces';
 
 type LikesIconProps = {
   loggedInUserId: number;
@@ -30,7 +29,8 @@ export default function LikesIcon(props: LikesIconProps): JSX.Element {
   const like = () => {
     if (!loggedInUserId) return;
     likeCookbook(loggedInUserId, cookbookId);
-    color === grey ? setColor(yellow) : setColor(grey);
+    const newColor = color === grey ? yellow : grey;
+    setColor(newColor);
   };
 
   return (

@@ -139,19 +139,19 @@
       }
     }
 
-    .card__info-container {
-      .statistics-item__icon {
-        path {
-          fill: $primary-yellow;
-        }
-      }
+    // .card__info-container {
+    //   .statistics-item__icon {
+    //     path {
+    //       fill: $primary-yellow;
+    //     }
+    //   }
 
-      .statistics-item__icon.dots {
-        &:hover {
-          cursor: pointer;
-        }
-      }
-    }
+    //   .statistics-item__icon.dots {
+    //     &:hover {
+    //       cursor: pointer;
+    //     }
+    //   }
+    // }
   }
 }
 

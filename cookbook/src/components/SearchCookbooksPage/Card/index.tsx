@@ -1,8 +1,10 @@
 import React, { Dispatch, SetStateAction } from 'react';
+import { AnyAction } from 'redux';
 import api from '../../../helpers/api';
+import LikesIconConnect from '../../../redux/containers/LikesIconConnect';
 import CommentsIcon from '../../svg/Comments';
 import DotsIcon from '../../svg/Dots';
-import LikesIcon from '../../svg/Likes';
+import LikesIcon from '../../svg/LikesIcon';
 import ViewsIcon from '../../svg/Views';
 
 import './index.scss';
@@ -20,6 +22,7 @@ type CookbookCardProps = {
   selectCard: Dispatch<SetStateAction<number>>;
   openDetailedInfo: Dispatch<SetStateAction<boolean>>;
   loggedInUserId: number;
+  likeCookbook: (userId: number, cookbookId: number) => AnyAction;
 };
 
 export default function CookbookCard(props: CookbookCardProps): JSX.Element {
@@ -36,6 +39,7 @@ export default function CookbookCard(props: CookbookCardProps): JSX.Element {
     openDetailedInfo,
     selectCard,
     loggedInUserId,
+    likeCookbook,
   } = props;
 
   return (
@@ -75,7 +79,11 @@ export default function CookbookCard(props: CookbookCardProps): JSX.Element {
 
       <div className="card__info-container bottom">
         <div className="card__statistics-item likes">
-          <LikesIcon loggedInUserId={loggedInUserId} usersLiked={usersLiked} />
+          <LikesIcon
+            cookbookId={id}
+            likeCookbook={likeCookbook}
+            loggedInUserId={loggedInUserId}
+          />
           {usersLiked.length} likes
         </div>
         <div className="card__statistics-item">

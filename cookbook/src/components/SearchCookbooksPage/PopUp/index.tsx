@@ -5,7 +5,7 @@ import ROUTES from '../../../constants/routes';
 import api from '../../../helpers/api';
 import { Cookbook } from '../../../interfaces';
 import CommentsIcon from '../../svg/Comments';
-import LikesIcon from '../../svg/Likes';
+import LikesIcon from '../../svg/LikesIcon';
 import CommentsSection from './CommentsSection';
 
 import './index.scss';
@@ -105,7 +105,6 @@ export default function PopUpCookbookDetailed(
             <div className="card__statistics-item likes">
               <LikesIcon
                 loggedInUserId={loggedInUserId}
-                usersLiked={usersLiked}
                 likeCookbook={likeCookbook}
                 cookbookId={id}
               />

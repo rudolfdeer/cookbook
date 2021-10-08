@@ -90,6 +90,7 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
                   key={el.id}
                   selectCard={setChosenCardId}
                   openDetailedInfo={setVisible}
+                  likeCookbook={likeCookbook}
                   loggedInUserId={loggedInUserId}
                 />
               ))}

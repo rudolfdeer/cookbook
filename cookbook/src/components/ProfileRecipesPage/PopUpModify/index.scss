@@ -43,16 +43,13 @@
       &--editable {
         @include title-40;
         display: block;
-        width: 50%;
+        width: 100%;
         border: none;
+        resize: none;
         background: $grey-light;
         padding: 5px;
         color: $main;
         margin-bottom: 0;
-
-        &:disabled {
-          background: none;
-        }
       }
     }
 
@@ -94,12 +91,11 @@
       &--recipe {
         height: 150px;
         display: flex;
-          flex-wrap: nowrap;
-          
-          width: 100%;
-          margin-bottom: 32px;
+        flex-wrap: nowrap;
+
+        width: 100%;
+        margin-bottom: 32px;
       }
-      
     }
   }
 

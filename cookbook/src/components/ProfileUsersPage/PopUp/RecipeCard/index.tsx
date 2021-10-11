@@ -17,11 +17,9 @@ type PopUpRecipeCardProps = {
 };
 
 export default function PopUpRecipeCard(
-  props: PopUpRecipeCardProps,
+  props: PopUpRecipeCardProps
 ): JSX.Element {
-  const {
-    views, image, description, title, userId, likes, comments,
-  } = props;
+  const { views, image, description, title, userId, likes, comments } = props;
 
   return (
     <div className="card">
@@ -30,15 +28,15 @@ export default function PopUpRecipeCard(
         style={{ background: `url(${image}) center no-repeat` }}
       ></div>
       <div className="card__content">
-        <div className="card__info-container top">
+        <div className="card__info-container">
           <div className="card__title">{title}</div>
           <div className="card__author">{api.getUserName(userId)}</div>
         </div>
-        <div className="card__info-container description">
+        <div className="card__info-container--description">
           <p className="card__description">{description}</p>
         </div>
-        <div className="card__info-container bottom">
-          <div className="statistics">
+        <div className="card__info-container--bottom">
+          <div className="card__statistics">
             <div className="card__statistics-item views">
               <ViewsIcon />
               {views} views

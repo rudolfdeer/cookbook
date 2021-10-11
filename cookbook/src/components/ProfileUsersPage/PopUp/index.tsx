@@ -34,33 +34,33 @@ export default function PopUpCookbook(props: PopUpCookbookProps): JSX.Element {
   return (
     <div className="overlay" onClick={(e) => closePopUp(e)}>
       <div className="overlay__content">
-        <div className="pop-up--cookbook">
-          <div className="pop-up--cookbook__section--top">
-            <div className="pop-up--cookbook__title">{title}</div>
+        <div className="pop-up--users-cookbook">
+          <div className="pop-up--users-cookbook__section--top">
+            <div className="pop-up--users-cookbook__title">{title}</div>
           </div>
 
-          <div className="pop-up--cookbook__author">
+          <div className="pop-up--users-cookbook__author">
             <Link to={`${ROUTES.PROFILE_USER}/${userId}`}>
               {api.getUserName(userId)}
             </Link>
           </div>
 
-          <div className="pop-up--cookbook__section--description">
+          <div className="pop-up--users-cookbook__section--description">
             <div
-              className="pop-up--cookbook__image"
+              className="pop-up--users-cookbook__image"
               style={{
                 background: `url(${image}) center no-repeat`,
               }}
             ></div>
-            <div className="pop-up--cookbook__section--description__text">
-              <div className="pop-up--cookbook__section__title">
+            <div className="pop-up--users-cookbook__section--description__text">
+              <div className="pop-up--users-cookbook__section__title">
                 Description
               </div>
               <p>{description}</p>
             </div>
           </div>
 
-          <div className="pop-up--cookbook__section--statistics">
+          <div className="pop-up--users-cookbook__section--statistics">
             <div className="card__statistics-item likes">
               <LikesIcon />
               {likes} likes
@@ -70,9 +70,11 @@ export default function PopUpCookbook(props: PopUpCookbookProps): JSX.Element {
               {comments.length} comments
             </div>
           </div>
-          <div className="pop-up--cookbook__section--recipes">
-            <div className="pop-up--cookbook__section__title">Recipes</div>
-            <div className="pop-up--cookbook__section--recipes__cards">
+          <div className="pop-up--users-cookbook__section--recipes">
+            <div className="pop-up--users-cookbook__section__title">
+              Recipes
+            </div>
+            <div className="pop-up--users-cookbook__section--recipes__cards">
               {recipes?.map((el) => (
                 <PopUpRecipeCard
                   title={el.title}

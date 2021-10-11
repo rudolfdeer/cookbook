@@ -9,7 +9,7 @@ type FilterPanelCookbooksProps = {
 };
 
 export default function FilterPanelCookbooks(
-  props: FilterPanelCookbooksProps,
+  props: FilterPanelCookbooksProps
 ): JSX.Element {
   const { sortCookbooks, filterCookbooks, loggedInUserId } = props;
   const [sortOrder, setSortOrder] = useState('');
@@ -49,21 +49,21 @@ export default function FilterPanelCookbooks(
   }
 
   return (
-    <div className="filter-panel cookbooks">
-      <div className="filter-panel__container top">
+    <div className="filter-panel">
+      <div className="filter-panel__container">
         <div className="filter-panel__title">Filter</div>
         <button className="filter-panel__btn" onClick={() => clearAllFilters()}>
           clear all
         </button>
       </div>
 
-      <div className="filter-panel__section sort">
-        <label className="section__title" htmlFor="sort">
+      <div className="filter-panel__section">
+        <label className="filter-panel__section__title" htmlFor="sort">
           Sort by
         </label>
         <select
           defaultValue={sortOrder}
-          className="select"
+          className="filter-panel__select"
           name="sort"
           id="sort"
           onChange={(e) => sort(e)}
@@ -76,51 +76,66 @@ export default function FilterPanelCookbooks(
         </select>
       </div>
 
-      <div className="filter-panel__section type">
-        <div className="section__title">Cookbook type</div>
-        <div className="section__checkboxes">
-          <div className="checkbox">
+      <div className="filter-panel__section">
+        <div className="filter-panel__section__title">Cookbook type</div>
+        <div className="filter-panel__section__checkboxes">
+          <div className="filter-panel__section__checkboxes__checkbox">
             <input
               type="checkbox"
-              className="checkbox__input"
+              className="filter-panel__section__checkboxes__checkbox__input"
               id="vegetarian"
               name="vegetarian"
               value="Vegetarian"
               onClick={(e) => filter(e)}
             />
-            <label htmlFor="vegetarian">Vegetarian</label>
+            <label
+              htmlFor="vegetarian"
+              className="filter-panel__section__checkboxes__checkbox__label"
+            >
+              Vegetarian
+            </label>
           </div>
-          <div className="checkbox">
+          <div className="filter-panel__section__checkboxes__checkbox">
             <input
               type="checkbox"
-              className="checkbox__input"
+              className="filter-panel__section__checkboxes__checkbox__input"
               id="nomilk"
               name="nomilk"
               value="Without milk"
               onClick={(e) => filter(e)}
             />
-            <label htmlFor="nomilk">Without milk</label>
+            <label
+              htmlFor="nomilk"
+              className="filter-panel__section__checkboxes__checkbox__label"
+            >
+              Without milk
+            </label>
           </div>
-          <div className="checkbox">
+          <div className="filter-panel__section__checkboxes__checkbox">
             <input
               type="checkbox"
-              className="checkbox__input"
+              className="filter-panel__section__checkboxes__checkbox__input"
               id="noeggs"
               name="noeggs"
               value="Without eggs"
               onClick={(e) => filter(e)}
             />
-            <label htmlFor="noeggs">Without eggs</label>
+            <label
+              htmlFor="noeggs"
+              className="filter-panel__section__checkboxes__checkbox__label"
+            >
+              Without eggs
+            </label>
           </div>
         </div>
       </div>
 
-      <div className="filter-panel__section hide">
-        <div className="checkbox">
+      <div className="filter-panel__section">
+        <div className="filter-panel__section__checkboxes__checkbox">
           {loggedInUserId ? (
             <input
               type="checkbox"
-              className="checkbox__input"
+              className="filter-panel__section__checkboxes__checkbox__input"
               id="hide"
               name="hide"
               value="hide"
@@ -129,14 +144,19 @@ export default function FilterPanelCookbooks(
           ) : (
             <input
               type="checkbox"
-              className="checkbox__input"
+              className="filter-panel__section__checkboxes__checkbox__input"
               id="hide"
               name="hide"
               value="hide"
               disabled
             />
           )}
-          <label htmlFor="hide">Hide my CookBooks</label>
+          <label
+            htmlFor="hide"
+            className="filter-panel__section__checkboxes__checkbox__label"
+          >
+            Hide my CookBooks
+          </label>
         </div>
       </div>
     </div>

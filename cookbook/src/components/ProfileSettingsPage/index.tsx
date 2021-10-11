@@ -20,7 +20,7 @@ type ProfileSettingsPageProps = {
 };
 
 export default function ProfileSettingsPage(
-  props: ProfileSettingsPageProps,
+  props: ProfileSettingsPageProps
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.HOME} />;
@@ -35,9 +35,7 @@ export default function ProfileSettingsPage(
     logOut,
     deleteUser,
   } = props;
-  const {
-    id, name, email, password, bio, avatar,
-  } = user;
+  const { id, name, email, password, bio, avatar } = user;
   const [isBioDisabled, setBioDisabled] = useState(true);
   const [isNameDisabled, setNameDisabled] = useState(true);
   const [isEmailDisabled, setEmailDisabled] = useState(true);
@@ -47,7 +45,7 @@ export default function ProfileSettingsPage(
   const [newEmail, setNewEmail] = useState(email);
   const [newPassword, setNewPassword] = useState(password);
   const [photoSrc, setPhotoSrc] = useState(
-    avatar || './assets/images/photo-mask.png',
+    avatar || './assets/images/photo-mask.png'
   );
 
   const onPhotoChange = (e: React.ChangeEvent) => {
@@ -67,31 +65,36 @@ export default function ProfileSettingsPage(
       <div className="wrapper">
         <HeaderConnect />
       </div>
-      <main className="profile-settings-page">
+      <main className="profile-page--settings">
         <div className="wrapper">
-          <section className="user">
-            <div className="user__photo_settings">
-              <label htmlFor="avatar" className="photo__label">
+          <section className="profile-page--settings__content">
+            <div className="profile-page--settings__photo--editable">
+              <label
+                htmlFor="avatar"
+                className="profile-page--settings__photo__label"
+              >
                 <input
                   type="file"
-                  className="photo__input"
+                  className="profile-page--settings__photo__input"
                   onChange={(e) => onPhotoChange(e)}
                 />
                 <img
                   src={photoSrc}
                   alt="User photo default"
-                  className="photo__image_opacity"
+                  className="profile-page--settings__photo__image--opacity"
                 />
               </label>
             </div>
 
-            <div className="user__container editable">
-              <div className="user__name">{newName}</div>
-              <form action="" className="user__form">
+            <div className="profile-page--settings__user editable">
+              <div className="profile-page--settings__user__name">
+                {newName}
+              </div>
+              <form action="" className="profile-page--settings__user__form">
                 <textarea
                   name="bio"
                   value={newBio}
-                  className="user__bio_editable"
+                  className="profile-page--settings__user__bio--editable"
                   disabled={isBioDisabled}
                   onChange={(e) => {
                     const target = e.target as HTMLTextAreaElement;
@@ -100,7 +103,7 @@ export default function ProfileSettingsPage(
                 />
                 {isBioDisabled ? (
                   <button
-                    className="form__input_submit"
+                    className="profile-page--settings__user__form__input--submit"
                     onClick={(e) => {
                       e.preventDefault();
                       setBioDisabled(false);
@@ -111,7 +114,7 @@ export default function ProfileSettingsPage(
                 ) : (
                   <input
                     type="submit"
-                    className="form__input_submit"
+                    className="profile-page--settings__user__form__input--submit"
                     value="Save"
                     onClick={(e) => {
                       e.preventDefault();
@@ -123,7 +126,7 @@ export default function ProfileSettingsPage(
               </form>
             </div>
           </section>
-          <nav className="profile-page__nav">
+          <nav className="profile-page--settings__nav">
             <ul className="nav__list">
               <li className="list__item">
                 <Link to={ROUTES.PROFILE_SAVED}>Saved</Link>
@@ -137,17 +140,22 @@ export default function ProfileSettingsPage(
               <li className="list__item--selected">My Settings</li>
             </ul>
           </nav>
-          <section className="personal-info">
-            <div className="personal-info__title">Personal Information</div>
-            <form action="" className="personal-info__form">
-              <label htmlFor="name" className="form__label">
+          <section className="profile-page--settings__info">
+            <div className="profile-page--settings__info__title">
+              Personal Information
+            </div>
+            <form action="" className="profile-page--settings__info__form">
+              <label
+                htmlFor="name"
+                className="profile-page--settings__info__form__label"
+              >
                 Name
               </label>
               <input
                 type="text"
                 name="name"
                 value={newName}
-                className="form__input"
+                className="profile-page--settings__info__form__input"
                 disabled={isNameDisabled}
                 onChange={(e) => {
                   const target = e.target as HTMLInputElement;
@@ -158,7 +166,7 @@ export default function ProfileSettingsPage(
               {isNameDisabled ? (
                 <input
                   type="submit"
-                  className="form__input_submit"
+                  className="profile-page--settings__user__form__input--submit"
                   value="Edit"
                   onClick={(e) => {
                     e.preventDefault();
@@ -168,7 +176,7 @@ export default function ProfileSettingsPage(
               ) : (
                 <input
                   type="submit"
-                  className="form__input_submit"
+                  className="profile-page--settings__user__form__input--submit"
                   value="Save"
                   onClick={(e) => {
                     e.preventDefault();
@@ -178,8 +186,11 @@ export default function ProfileSettingsPage(
                 />
               )}
             </form>
-            <form action="" className="personal-info__form">
-              <label htmlFor="email" className="form__label">
+            <form action="" className="profile-page--settings__info__form">
+              <label
+                htmlFor="email"
+                className="profile-page--settings__info__form__label"
+              >
                 Email
               </label>
 
@@ -187,7 +198,7 @@ export default function ProfileSettingsPage(
                 type="text"
                 name="email"
                 value={newEmail}
-                className="form__input"
+                className="profile-page--settings__info__form__input"
                 disabled={isEmailDisabled}
                 onChange={(e) => {
                   const target = e.target as HTMLInputElement;
@@ -197,7 +208,7 @@ export default function ProfileSettingsPage(
               {isEmailDisabled ? (
                 <input
                   type="submit"
-                  className="form__input_submit"
+                  className="profile-page--settings__user__form__input--submit"
                   value="Edit"
                   onClick={(e) => {
                     e.preventDefault();
@@ -207,7 +218,7 @@ export default function ProfileSettingsPage(
               ) : (
                 <input
                   type="submit"
-                  className="form__input_submit"
+                  className="profile-page--settings__user__form__input--submit"
                   value="Save"
                   onClick={(e) => {
                     e.preventDefault();
@@ -217,15 +228,18 @@ export default function ProfileSettingsPage(
                 />
               )}
             </form>
-            <form action="" className="personal-info__form">
-              <label htmlFor="password" className="form__label">
+            <form action="" className="profile-page--settings__info__form">
+              <label
+                htmlFor="password"
+                className="profile-page--settings__info__form__label"
+              >
                 Password
               </label>
               <input
                 type="password"
                 name="password"
                 value={newPassword}
-                className="form__input"
+                className="profile-page--settings__info__form__input"
                 disabled={isPasswordDisabled}
                 onChange={(e) => {
                   const target = e.target as HTMLInputElement;
@@ -235,7 +249,7 @@ export default function ProfileSettingsPage(
               {isPasswordDisabled ? (
                 <input
                   type="submit"
-                  className="form__input_submit"
+                  className="profile-page--settings__user__form__input--submit"
                   value="Change my password"
                   onClick={(e) => {
                     e.preventDefault();
@@ -245,7 +259,7 @@ export default function ProfileSettingsPage(
               ) : (
                 <input
                   type="submit"
-                  className="form__input_submit"
+                  className="profile-page--settings__user__form__input--submit"
                   value="Save new password"
                   onClick={(e) => {
                     e.preventDefault();
@@ -255,9 +269,9 @@ export default function ProfileSettingsPage(
                 />
               )}
             </form>
-            <div className="section__btns">
+            <div className="profile-page--settings__btns">
               <button
-                className="btn__logout"
+                className="profile-page--settings__btns__btn--logout"
                 onClick={() => {
                   logOut(id);
                 }}
@@ -265,7 +279,7 @@ export default function ProfileSettingsPage(
                 Log out
               </button>
               <button
-                className="btn__delete"
+                className="profile-page--settings__btns__btn--delete"
                 onClick={() => {
                   deleteUser(id);
                 }}

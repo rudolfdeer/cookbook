@@ -53,11 +53,11 @@ export default function PopUpRecipeCard(
           <div className="card__title">{title}</div>
           <div className="card__author">{api.getUserName(authorId)}</div>
         </div>
-        <div className="card__info-container description">
+        <div className="card__info-container--description">
           <p className="card__description">{description}</p>
         </div>
-        <div className="card__info-container bottom">
-          <div className="statistics">
+        <div className="card__info-container--bottom">
+          <div className="card__statistics">
             <div className="card__statistics-item views">
               <ViewsIcon />
               {views} views

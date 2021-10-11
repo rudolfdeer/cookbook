@@ -21,7 +21,7 @@ type ProfileUsersPageProps = {
 };
 
 export default function ProfileUsersPage(
-  props: ProfileUsersPageProps,
+  props: ProfileUsersPageProps
 ): JSX.Element {
   const { userId } = useParams<{ userId: string }>();
   const { cookbooks, loggedInUserId, getUsersCreatedCookbooks } = props;
@@ -42,27 +42,27 @@ export default function ProfileUsersPage(
       <div className="wrapper">
         <HeaderConnect />
       </div>
-      <main className="profile-cookbooks-page">
+      <main className="profile-page--user">
         <div className="wrapper">
-          <section className="user">
-            <div className="user__photo">
+          <section className="profile-page--user__user">
+            <div className="profile-page--user__user__photo">
               <img
                 src={user.avatar}
                 alt="User photo"
-                className="photo__image"
+                className="profile-page--user__user__photo__image"
               />
             </div>
-            <div className="user__container">
-              <div className="user__name">{user.name}</div>
-              <div className="user__bio">{user.bio}</div>
+            <div className="profile-page--user__user__container">
+              <div className="profile-page--user__user__name">{user.name}</div>
+              <div className="profile-page--user__user__bio">{user.bio}</div>
             </div>
           </section>
-          <nav className="profile-page__nav">
-            <ul className="nav__list">
+          <nav className="profile-page--user__nav">
+            <ul className="profile-page--user__nav__list">
               <li className="list__item--selected">Created Cookbooks</li>
             </ul>
           </nav>
-          <section className="profile-cookbooks-page__cards cookbooks">
+          <section className="profile-page--user__cards">
             {cookbooks?.map((el) => (
               <CardCookbook
                 id={el.id}

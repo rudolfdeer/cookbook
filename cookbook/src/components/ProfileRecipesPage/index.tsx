@@ -60,23 +60,23 @@ export default function ProfileRecipesPage(
       <div className="wrapper">
         <HeaderConnect />
       </div>
-      <main className="profile-recipes-page">
+      <main className="profile-page--recipes">
         <div className="wrapper">
-          <section className="user">
-            <div className="user__photo">
+          <section className="profile-page--recipes__content">
+            <div className="profile-page--recipes__photo">
               <img
                 src={photoSrc}
                 alt="User photo default"
-                className="photo__image"
+                className="profile-page--recipes__photo__image"
               />
             </div>
-            <div className="user__container">
-              <div className="user__name">{name}</div>
-              <div className="user__bio">{bio}</div>
+            <div className="profile-page--recipes__user">
+              <div className="profile-page--recipes__user__name">{name}</div>
+              <div className="profile-page--recipes__user__bio">{bio}</div>
             </div>
           </section>
-          <nav className="profile-page__nav">
-            <ul className="nav__list">
+          <nav className="profile-page--recipes__nav">
+            <ul className="profile-page--recipes__nav__list">
               <li className="list__item">
                 <Link to={ROUTES.PROFILE_SAVED}>Saved</Link>
               </li>
@@ -89,7 +89,7 @@ export default function ProfileRecipesPage(
               </li>
             </ul>
             <button
-              className="nav__btn"
+              className="profile-page--recipes__nav__btn"
               onClick={() => setCreatePopUpVisible(true)}
             >
               Create New Recipe
@@ -102,7 +102,6 @@ export default function ProfileRecipesPage(
                 title={el.title}
                 authorId={el.userId}
                 views={el.views}
-                likes={el.likes}
                 comments={el.comments.length}
                 image={el.image}
                 description={el.description}

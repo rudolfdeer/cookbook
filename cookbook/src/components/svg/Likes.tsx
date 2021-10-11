@@ -38,7 +38,7 @@ export default function LikesIcon(props: LikesIconProps): JSX.Element {
 
   return (
     <svg
-      className="statistics-item__icon"
+      className="card__statistics-item__icon"
       width="17"
       height="15"
       viewBox="0 0 17 15"

@@ -11,7 +11,6 @@ type PopUpRecipeCardProps = {
   userId: number;
   description: string;
   views: number;
-  likes: number;
   image: string;
   comments: number;
   id: number;
@@ -30,7 +29,6 @@ export default function PopUpRecipeCard(
     description,
     title,
     userId,
-    likes,
     usersLiked,
     comments,
     id,
@@ -50,23 +48,23 @@ export default function PopUpRecipeCard(
           <div className="card__title">{title}</div>
           <div className="card__author">{api.getUserName(userId)}</div>
         </div>
-        <div className="card__info-container description">
+        <div className="card__info-container--description">
           <p className="card__description">{description}</p>
         </div>
-        <div className="card__info-container bottom">
-          <div className="statistics">
-            <div className="card__statistics-item views">
+        <div className="card__info-container--bottom">
+          <div className="card__statistics">
+            <div className="card__statistics-item">
               <ViewsIcon />
               {views} views
             </div>
-            <div className="card__statistics-item likes">
+            <div className="card__statistics-item">
               <LikesIcon
                 loggedInUserId={loggedInUserId}
                 usersLiked={usersLiked}
               />
               {usersLiked.length} likes
             </div>
-            <div className="card__statistics-item comments">
+            <div className="card__statistics-item">
               <CommentsIcon />
               {comments} comments
             </div>

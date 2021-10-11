@@ -13,7 +13,6 @@ type ProfileCookbookCardProps = {
   authorId: number;
   description: string;
   views: number;
-  likes: number;
   usersLiked: number[];
   image: string;
   comments: number;
@@ -33,7 +32,6 @@ export default function ProfileCookbookCard(
     description,
     title,
     authorId,
-    likes,
     usersLiked,
     comments,
     setSelectedCookbookId,
@@ -45,9 +43,9 @@ export default function ProfileCookbookCard(
   const [isBtnDeleteVisible, setBtnDeleteVisible] = useState(false);
 
   const btnDelete = (
-    <div className="statistics-item__menu">
+    <div className="card__statistics-item__menu">
       <button
-        className="menu__btn_delete"
+        className="card__statistics-item__menu__btn"
         onClick={() => {
           setBtnDeleteVisible(false);
           deleteCookbook(id, loggedInUserId);
@@ -60,13 +58,13 @@ export default function ProfileCookbookCard(
 
   return (
     <div className="card">
-      <div className="card__info-container top">
+      <div className="card__info-container">
         <div className="card__statistics-item">
           <ViewsIcon />
           {views} views
         </div>
         <svg
-          className="statistics-item__icon dots"
+          className="card__statistics-item__icon--dots"
           width="20"
           height="4"
           viewBox="0 0 20 4"
@@ -91,7 +89,7 @@ export default function ProfileCookbookCard(
         ></div>
       </div>
 
-      <div className="card__info-container middle">
+      <div className="card__info-container">
         <div
           className="card__title"
           onClick={() => {
@@ -104,11 +102,11 @@ export default function ProfileCookbookCard(
         <div className="card__author">{api.getUserName(authorId)}</div>
       </div>
 
-      <div className="card__info-container description">
+      <div className="card__info-container--description">
         <p className="card__description">{description}</p>
       </div>
 
-      <div className="card__info-container bottom">
+      <div className="card__info-container--bottom">
         <div className="card__statistics-item likes">
           <LikesIcon />
           {usersLiked.length} likes

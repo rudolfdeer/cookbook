@@ -3,7 +3,7 @@ import React from 'react';
 export default function CommentsIcon(): JSX.Element {
   return (
     <svg
-      className="statistics-item__icon"
+      className="card__statistics-item__icon"
       width="15"
       height="15"
       viewBox="0 0 15 15"

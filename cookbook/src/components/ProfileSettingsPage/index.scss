@@ -1,177 +1,201 @@
 @import '../../styles/index.scss';
 
-.profile-settings-page {
-  @include profile-page;
+.profile-page {
+  &--settings {
+    padding: 104px 0;
+    background-color: $grey-light;
 
-  .user__photo_settings {
-    margin-right: 40px;
-    width: 160px;
-    height: 160px;
-    overflow: hidden;
-  }
-
-  .photo__label {
-    position: relative;
-    display: flex;
-    margin-right: 40px;
-    width: 100%;
-    height: 100%;
-    border-radius: 102px;
-    background-color: #181818;
-    background: url('../../assets/images/photo-mask.png') center no-repeat;
-    z-index: 221;
-
-    .photo__image_opacity {
-      display: block;
-      margin: auto;
+    &__content {
+      margin-bottom: 18px;
+      display: flex;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-      border-radius: 102px;
-      opacity: 0.5;
     }
 
-    .photo__input {
-      opacity: 0;
-      appearance: none;
-      display: block;
-      height: 100%;
-      width: 100%;
-      position: absolute;
-      z-index: 222;
-      border-radius: 102px;
-
-      &:hover {
-        cursor: pointer;
-      }
-    }
-  }
-
-  .user__form {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    height: 100%;
-  }
-
-  .user__container.editable {
-    width: 100%;
-    max-width: 580px;
-  }
-
-  .form__input_submit {
-    @include text-18;
-    height: 22px;
-
-    background: none;
-    border: none;
-    color: $primary-yellow;
-
-    &:hover {
-      cursor: pointer;
-      text-decoration: underline;
-    }
-  }
-
-  .user__bio_editable {
-    @include text-18;
-
-    width: 100%;
-    margin-right: 40px;
-    border: none;
-    resize: none;
-    display: flex;
-    min-height: 180px;
-    padding: 0;
-
-    &:disabled {
-      background: none;
-    }
-  }
-
-  input {
-    border: none;
-
-    &:disabled {
-      background: none;
-    }
-  }
-
-  .personal-info {
-    padding: 72px 56px;
-    background-color: $white;
-
-    .personal-info__title {
-      @include title-40;
-
-      margin-bottom: 32px;
-    }
-
-    .personal-info__form {
-      margin-bottom: 24px;
-
-      &:last-child {
-        margin-bottom: 0;
+    &__photo {
+      &--editable {
+        margin-right: 40px;
+        width: 160px;
+        height: 160px;
+        overflow: hidden;
       }
 
-      .form__label {
-        @include text-18;
-
-        display: inline-block;
-        margin-right: 72px;
-        width: 80px;
+      &__label {
+        position: relative;
+        display: flex;
+        margin-right: 40px;
+        width: 100%;
+        height: 100%;
+        border-radius: 102px;
+        background-color: #181818;
+        background: url('../../assets/images/photo-mask.png') center no-repeat;
+        z-index: 221;
       }
 
-      .form__input {
-        @include text-18;
-        margin-right: 16px;
+      &__input {
+        opacity: 0;
+        appearance: none;
+        display: block;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        z-index: 222;
+        border-radius: 102px;
 
-        border: none;
-        background: $grey-light;
+        &:hover {
+          cursor: pointer;
+        }
+      }
 
-        &:disabled {
-          background: none;
+      &__image {
+        &--opacity {
+          display: block;
+          margin: auto;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          z-index: -1;
+          border-radius: 102px;
+          opacity: 0.5;
         }
       }
     }
-  }
-  .form__input_submit {
-    @include text-18;
 
-    background: none;
-    border: none;
-    color: $primary-yellow;
+    &__user {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 580px;
 
-    &:hover {
-      cursor: pointer;
-      text-decoration: underline;
+      &__name {
+        @include title-40;
+      }
+
+      &__bio {
+        &--editable {
+          @include text-18;
+          min-height: 180px;
+          @include text-18;
+
+          width: 100%;
+          margin-right: 40px;
+          border: none;
+          resize: none;
+          display: flex;
+          min-height: 180px;
+          padding: 0;
+
+          &:disabled {
+            background: none;
+          }
+        }
+      }
+
+      &__form {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+
+        &__input {
+          border: none;
+
+          &:disabled {
+            background: none;
+          }
+
+          &--submit {
+            @include text-18;
+            height: 22px;
+
+            background: none;
+            border: none;
+            color: $primary-yellow;
+
+            &:hover {
+              cursor: pointer;
+              text-decoration: underline;
+            }
+          }
+        }
+      }
     }
-  }
 
-  .section__btns {
-    display: flex;
-    width: 100%;
+    &__nav {
+      margin-bottom: 40px;
+      height: 62px;
+      display: flex;
+      align-items: flex-end;
 
-    .btn__logout {
-      @include button-dark;
-
-      margin-right: 40px;
-
-      height: 32px;
-      width: 120px;
+      .nav__list {
+        @include page-nav-list;
+      }
     }
 
-    .btn__delete {
-      @include text-18;
-      height: 32px;
-      border: none;
-      background: none;
-      color: red;
+    &__info {
+      padding: 72px 56px;
+      background-color: $white;
 
-      &:hover {
-        cursor: pointer;
-        text-decoration: underline;
+      &__title {
+        @include title-40;
+
+        margin-bottom: 32px;
+      }
+
+      &__form {
+        margin-bottom: 24px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        &__label {
+          @include text-18;
+
+          display: inline-block;
+          margin-right: 72px;
+          width: 80px;
+        }
+
+        &__input {
+          @include text-18;
+          margin-right: 16px;
+
+          border: none;
+          background: $grey-light;
+
+          &:disabled {
+            background: none;
+          }
+        }
+      }
+    }
+
+    &__btns {
+      display: flex;
+      width: 100%;
+
+      &__btn {
+        &--logout {
+          @include button-dark;
+
+          margin-right: 40px;
+
+          height: 32px;
+          width: 120px;
+        }
+
+        &--delete {
+          @include text-18;
+          height: 32px;
+          border: none;
+          background: none;
+          color: red;
+
+          &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+          }
+        }
       }
     }
   }

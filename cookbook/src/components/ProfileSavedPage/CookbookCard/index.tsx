@@ -21,7 +21,7 @@ type ProfileSavedCookbookCardProps = {
 };
 
 export default function ProfileSavedCookbookCard(
-  props: ProfileSavedCookbookCardProps,
+  props: ProfileSavedCookbookCardProps
 ): JSX.Element {
   const {
     id,
@@ -54,7 +54,7 @@ export default function ProfileSavedCookbookCard(
         ></div>
       </div>
 
-      <div className="card__info-container middle">
+      <div className="card__info-container">
         <div
           className="card__title"
           onClick={() => {
@@ -67,12 +67,12 @@ export default function ProfileSavedCookbookCard(
         <div className="card__author">{api.getUserName(authorId)}</div>
       </div>
 
-      <div className="card__info-container description">
+      <div className="card__info-container--description">
         <p className="card__description">{description}</p>
       </div>
 
-      <div className="card__info-container bottom">
-        <div className="card__statistics-item likes">
+      <div className="card__info-container--bottom">
+        <div className="card__statistics-item">
           <LikesIcon />
           {likes} likes
         </div>

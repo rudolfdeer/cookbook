@@ -18,7 +18,7 @@ type PopUpModifyRecipeProps = {
 };
 
 export default function PopUpModifyRecipe(
-  props: PopUpModifyRecipeProps,
+  props: PopUpModifyRecipeProps
 ): JSX.Element {
   const {
     setModifyPopUpVisible,
@@ -26,9 +26,8 @@ export default function PopUpModifyRecipe(
     modifyRecipe,
     loggedInUserId,
   } = props;
-  const {
-    id, title, image, description, directions, ingredients,
-  } = selectedRecipe;
+  const { id, title, image, description, directions, ingredients } =
+    selectedRecipe;
 
   const [imageSrc, setImageSrc] = useState(image);
   const [isTitleDisabled, setTitleDisabled] = useState(true);
@@ -72,11 +71,9 @@ export default function PopUpModifyRecipe(
           </div>
           <div className="pop-up--modify__sections">
             <div className="pop-up--modify__section--top">
-              <input
-                type="text"
+              <textarea
                 className="pop-up--modify__section__title--editable"
                 name="title"
-                placeholder={newTitle}
                 value={newTitle}
                 onChange={(e) => setNewTitle(e.target.value)}
                 disabled={isTitleDisabled}

@@ -43,7 +43,6 @@ export default function PopUpCookbookDetailed(
     description,
     title,
     userId,
-    likes,
     usersLiked,
     comments,
     recipesIds,
@@ -124,7 +123,6 @@ export default function PopUpCookbookDetailed(
                   userId={el.userId}
                   views={el.views}
                   description={el.description}
-                  likes={el.likes}
                   usersLiked={usersLiked}
                   image={el.image}
                   comments={el.comments.length}

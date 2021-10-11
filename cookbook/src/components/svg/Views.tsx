@@ -3,7 +3,7 @@ import React from 'react';
 export default function ViewsIcon(): JSX.Element {
   return (
     <svg
-      className="statistics-item__icon"
+      className="card__statistics-item__icon"
       width="16"
       height="11"
       viewBox="0 0 16 11"

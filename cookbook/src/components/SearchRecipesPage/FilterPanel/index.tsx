@@ -8,7 +8,7 @@ type FilterPanelRecipeProps = {
 };
 
 export default function FilterPanelRecipes(
-  props: FilterPanelRecipeProps,
+  props: FilterPanelRecipeProps
 ): JSX.Element {
   const { sortRecipes, filterRecipes } = props;
   const [sortOrder, setSortOrder] = useState('');
@@ -38,21 +38,21 @@ export default function FilterPanelRecipes(
   }
 
   return (
-    <div className="filter-panel recipes">
-      <div className="filter-panel__container top">
+    <div className="filter-panel">
+      <div className="filter-panel__container">
         <div className="filter-panel__title">Filter</div>
         <button className="filter-panel__btn" onClick={() => clearAllFilters()}>
           clear all
         </button>
       </div>
       <div className="filter-panel__section sort">
-        <label className="section__title" htmlFor="sort">
+        <label className="filter-panel__section__title" htmlFor="sort">
           Sort by
         </label>
         <select
           name="sort"
           id="sort"
-          className="select"
+          className="filter-panel__select"
           defaultValue={sortOrder}
           onChange={(e) => sort(e)}
         >
@@ -64,11 +64,11 @@ export default function FilterPanelRecipes(
         </select>
       </div>
       <div className="filter-panel__section type">
-        <div className="section__title">Cooking time</div>
-        <div className="section__range">
+        <div className="filter-panel__section__title">Cooking time</div>
+        <div className="filter-panel__range">
           <input
             type="range"
-            className="range__input"
+            className="filter-panel__range__input"
             id="time"
             name="time"
             min="0"
@@ -77,7 +77,7 @@ export default function FilterPanelRecipes(
             value={maxCookingTime}
             onChange={(e) => filter(e)}
           />
-          <div className="range__values">
+          <div className="filter-panel__range__values">
             <div>1 min</div>
             <div>{'>'}1 hour</div>
           </div>

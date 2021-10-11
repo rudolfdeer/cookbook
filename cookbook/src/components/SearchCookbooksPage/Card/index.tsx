@@ -14,7 +14,6 @@ type CookbookCardProps = {
   authorId: number;
   description: string;
   views: number;
-  likes: number;
   image: string;
   comments: number;
   usersLiked: number[];
@@ -32,7 +31,6 @@ export default function CookbookCard(props: CookbookCardProps): JSX.Element {
     description,
     title,
     authorId,
-    likes,
     usersLiked,
     comments,
     openDetailedInfo,
@@ -59,7 +57,7 @@ export default function CookbookCard(props: CookbookCardProps): JSX.Element {
         ></div>
       </div>
 
-      <div className="card__info-container middle">
+      <div className="card__info-container">
         <div
           className="card__title"
           onClick={() => {
@@ -72,11 +70,11 @@ export default function CookbookCard(props: CookbookCardProps): JSX.Element {
         <div className="card__author">{api.getUserName(authorId)}</div>
       </div>
 
-      <div className="card__info-container description">
+      <div className="card__info-container--description">
         <p className="card__description">{description}</p>
       </div>
 
-      <div className="card__info-container bottom">
+      <div className="card__info-container--bottom">
         <div className="card__statistics-item likes">
           <LikesIcon
             cookbookId={id}

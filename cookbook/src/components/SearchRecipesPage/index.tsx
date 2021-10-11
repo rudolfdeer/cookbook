@@ -71,7 +71,6 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
                   title={el.title}
                   authorId={el.userId}
                   views={el.views}
-                  likes={el.likes}
                   comments={el.comments.length}
                   image={el.image}
                   description={el.description}

@@ -3,7 +3,7 @@ import React from 'react';
 export default function DotsIcon(): JSX.Element {
   return (
     <svg
-      className="statistics-item__icon dots"
+      className="card__statistics-item__icon--dots"
       width="20"
       height="4"
       viewBox="0 0 20 4"

@@ -21,7 +21,7 @@ type ProfileSavedRecipeCardProps = {
 };
 
 export default function ProfileSavedRecipeCard(
-  props: ProfileSavedRecipeCardProps,
+  props: ProfileSavedRecipeCardProps
 ): JSX.Element {
   const {
     id,
@@ -38,7 +38,7 @@ export default function ProfileSavedRecipeCard(
 
   return (
     <div className="card">
-      <div className="card__info-container top">
+      <div className="card__info-container">
         <div className="card__statistics-item">
           <ViewsIcon />
           {views} views
@@ -54,7 +54,7 @@ export default function ProfileSavedRecipeCard(
         ></div>
       </div>
 
-      <div className="card__info-container middle">
+      <div className="card__info-container">
         <div
           className="card__title"
           onClick={() => {
@@ -67,12 +67,12 @@ export default function ProfileSavedRecipeCard(
         <div className="card__author">{api.getUserName(authorId)}</div>
       </div>
 
-      <div className="card__info-container description">
+      <div className="card__info-container--description">
         <p className="card__description">{description}</p>
       </div>
 
-      <div className="card__info-container bottom">
-        <div className="card__statistics-item likes">
+      <div className="card__info-container--bottom">
+        <div className="card__statistics-item">
           <LikesIcon />
           {likes} likes
         </div>

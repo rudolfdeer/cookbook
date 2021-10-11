@@ -13,15 +13,13 @@ type RecipeCardTrendingProps = {
 };
 
 export default function CardTrending(
-  props: RecipeCardTrendingProps,
+  props: RecipeCardTrendingProps
 ): JSX.Element {
-  const {
-    views, image, title, authorId,
-  } = props;
+  const { views, image, title, authorId } = props;
 
   return (
     <div className="card">
-      <div className="card__info-container top">
+      <div className="card__info-container">
         <div className="card__statistics-item">
           <ViewsIcon />
           {views} views
@@ -34,7 +32,7 @@ export default function CardTrending(
         style={{ background: `url(${image}) center no-repeat` }}
       ></div>
 
-      <div className="card__info-container bottom">
+      <div className="card__info-container--bottom">
         <div className="card__title">{title}</div>
         <div className="card__author">{api.getUserName(authorId)}</div>
       </div>

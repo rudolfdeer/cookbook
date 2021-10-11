@@ -60,23 +60,23 @@ export default function ProfileCookbooksPage(
       <div className="wrapper">
         <HeaderConnect />
       </div>
-      <main className="profile-cookbooks-page">
+      <main className="profile-page--cookbooks">
         <div className="wrapper">
-          <section className="user">
-            <div className="user__photo">
+          <section className="profile-page--cookbooks__user">
+            <div className="profile-page--cookbooks__user__photo">
               <img
                 src={photoSrc}
                 alt="User photo default"
-                className="photo__image"
+                className="profile-page--cookbooks__user__image"
               />
             </div>
-            <div className="user__container">
-              <div className="user__name">{name}</div>
-              <div className="user__bio">{bio}</div>
+            <div className="profile-page--cookbooks__user__container">
+              <div className="profile-page--cookbooks__user__name">{name}</div>
+              <div className="profile-page--cookbooks__user__bio">{bio}</div>
             </div>
           </section>
-          <nav className="profile-page__nav">
-            <ul className="nav__list">
+          <nav className="profile-page--cookbooks__nav">
+            <ul className="profile-page--cookbooks__nav__list">
               <li className="list__item">
                 <Link to={ROUTES.PROFILE_SAVED}>Saved</Link>
               </li>
@@ -89,20 +89,19 @@ export default function ProfileCookbooksPage(
               </li>
             </ul>
             <button
-              className="nav__btn"
+              className="profile-page--cookbooks__nav__btn"
               onClick={() => setCreatePopUpVisible(true)}
             >
               Create New Cookbook
             </button>
           </nav>
-          <section className="profile-cookbooks-page__cards cookbooks">
+          <section className="profile-page--cookbooks__cards">
             {cookbooks?.map((el) => (
               <ProfileCookbookCard
                 id={el.id}
                 title={el.title}
                 authorId={el.userId}
                 views={el.views}
-                likes={el.likes}
                 usersLiked={el.usersLiked}
                 comments={el.comments.length}
                 image={el.image}

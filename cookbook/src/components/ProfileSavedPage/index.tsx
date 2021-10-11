@@ -23,7 +23,7 @@ type ProfileSavedPageProps = {
 };
 
 export default function ProfileSavedPage(
-  props: ProfileSavedPageProps,
+  props: ProfileSavedPageProps
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.NOT_FOUND} />;
@@ -37,9 +37,7 @@ export default function ProfileSavedPage(
     getUsersSavedRecipes,
   } = props;
 
-  const {
-    name, bio, avatar, id,
-  } = user;
+  const { name, bio, avatar, id } = user;
   const photoSrc = avatar || '../../assets/images/photo-mask.png';
   const [isRecipePopUpVisible, setRecipePopUpVisible] = useState(false);
   const [selectedRecipeId, setSelectedRecipeId] = useState(0);
@@ -56,23 +54,23 @@ export default function ProfileSavedPage(
       <div className="wrapper">
         <HeaderConnect />
       </div>
-      <main className="profile-cookbooks-page">
+      <main className="profile-page--saved">
         <div className="wrapper">
-          <section className="user">
-            <div className="user__photo">
+          <section className="profile-page--saved__user">
+            <div className="profile-page--saved__user__photo">
               <img
                 src={photoSrc}
                 alt="User photo default"
-                className="photo__image"
+                className="profile-page--saved__photo__image"
               />
             </div>
-            <div className="user__container">
-              <div className="user__name">{name}</div>
-              <div className="user__bio">{bio}</div>
+            <div className="profile-page--saved__user__container">
+              <div className="profile-page--saved__user__name">{name}</div>
+              <div className="profile-page--saved__user__bio">{bio}</div>
             </div>
           </section>
-          <nav className="profile-page__nav">
-            <ul className="nav__list">
+          <nav className="profile-page--saved__nav">
+            <ul className="profile-page--saved__nav__list">
               <li className="list__item--selected">Saved</li>
               <li className="list__item">
                 <Link to={ROUTES.PROFILE_COOKBOOKS}>My Cookbooks</Link>
@@ -85,9 +83,9 @@ export default function ProfileSavedPage(
               </li>
             </ul>
           </nav>
-          <section className="profile-saved-page__cards">
-            <div className="saved-section__title">{`Cookbooks (${cookbooks.length})`}</div>
-            <div className="saved-section__cards">
+          <section className="profile-page--saved__container--cards">
+            <div className="profile-page--saved__container__title">{`Cookbooks (${cookbooks.length})`}</div>
+            <div className="profile-page--saved__cards--cookbooks">
               {cookbooks.map((el) => (
                 <ProfileSavedCookbookCard
                   id={el.id}
@@ -105,9 +103,9 @@ export default function ProfileSavedPage(
               ))}
             </div>
           </section>
-          <section className="profile-saved-page__cards">
-            <div className="saved-section__title">{`Recipes (${recipes.length})`}</div>
-            <div className="saved-section__cards">
+          <section className="profile-page--saved__container--cards">
+            <div className="profile-page--saved__container__title">{`Recipes (${recipes.length})`}</div>
+            <div className="profile-page--saved__cards--recipes">
               {recipes.map((el) => (
                 <ProfileSavedRecipeCard
                   id={el.id}

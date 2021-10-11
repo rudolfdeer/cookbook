@@ -11,7 +11,6 @@ type ProfileRecipeCardProps = {
   authorId: number;
   description: string;
   views: number;
-  likes: number;
   usersLiked: number[];
   image: string;
   comments: number;
@@ -31,7 +30,7 @@ export default function ProfileRecipeCard(
     description,
     title,
     authorId,
-    likes,
+
     comments,
     setModifyPopUpVisible,
     setSelectedRecipeId,
@@ -43,9 +42,9 @@ export default function ProfileRecipeCard(
   const [isBtnDeleteVisible, setBtnDeleteVisible] = useState(false);
 
   const btnDelete = (
-    <div className="statistics-item__menu">
+    <div className="card__statistics-item__menu">
       <button
-        className="menu__btn_delete"
+        className="card__statistics-item__menu__btn--delete"
         onClick={() => {
           setBtnDeleteVisible(false);
           deleteRecipe(id, loggedInUserId);
@@ -75,22 +74,22 @@ export default function ProfileRecipeCard(
           </div>
           <div className="card__author">{api.getUserName(authorId)}</div>
         </div>
-        <div className="card__info-container description">
+        <div className="card__info-container--description">
           <p className="card__description">{description}</p>
         </div>
-        <div className="card__info-container bottom">
-          <div className="statistics">
-            <div className="card__statistics-item views">
+        <div className="card__info-container--bottom">
+          <div className="card__statistics">
+            <div className="card__statistics-item">
               <ViewsIcon />
               {views} views
             </div>
-            <div className="card__statistics-item likes">
+            <div className="card__statistics-item">
               <LikesIcon />
               {usersLiked.length} likes
             </div>
-            <div className="card__statistics-item comments">
+            <div className="card__statistics-item">
               <svg
-                className="statistics-item__icon"
+                className="card__statistics-item__icon"
                 width="15"
                 height="15"
                 viewBox="0 0 15 15"
@@ -106,7 +105,7 @@ export default function ProfileRecipeCard(
             </div>
           </div>
           <svg
-            className="statistics-item__icon dots"
+            className="card__statistics-item__icon--dots"
             width="20"
             height="4"
             viewBox="0 0 20 4"

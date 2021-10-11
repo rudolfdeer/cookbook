@@ -41,7 +41,6 @@ export default function CardCookbook(props: CardCookbookProps): JSX.Element {
           <ViewsIcon />
           {views} views
         </div>
-        <DotsIcon />
       </div>
       <div className="card__info-container">
         <div
@@ -52,7 +51,7 @@ export default function CardCookbook(props: CardCookbookProps): JSX.Element {
         ></div>
       </div>
 
-      <div className="card__info-container middle">
+      <div className="card__info-container">
         <div
           className="card__title"
           onClick={() => {
@@ -65,12 +64,12 @@ export default function CardCookbook(props: CardCookbookProps): JSX.Element {
         <div className="card__author">{api.getUserName(authorId)}</div>
       </div>
 
-      <div className="card__info-container description">
+      <div className="card__info-container--description">
         <p className="card__description">{description}</p>
       </div>
 
-      <div className="card__info-container bottom">
-        <div className="card__statistics-item likes">
+      <div className="card__info-container--bottom">
+        <div className="card__statistics-item">
           <LikesIcon />
           {likes} likes
         </div>

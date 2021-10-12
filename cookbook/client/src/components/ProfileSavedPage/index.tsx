@@ -57,7 +57,7 @@ export default function ProfileSavedPage(
       <main className="profile-page--saved">
         <div className="wrapper">
           <section className="profile-page--saved__user">
-            <div className="profile-page--saved__user__photo">
+            <div className="profile-page--saved__photo">
               <img
                 src={photoSrc}
                 alt="User photo default"

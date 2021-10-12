@@ -63,11 +63,11 @@ export default function ProfileCookbooksPage(
       <main className="profile-page--cookbooks">
         <div className="wrapper">
           <section className="profile-page--cookbooks__user">
-            <div className="profile-page--cookbooks__user__photo">
+            <div className="profile-page--cookbooks__photo">
               <img
                 src={photoSrc}
                 alt="User photo default"
-                className="profile-page--cookbooks__user__image"
+                className="profile-page--cookbooks__photo__image"
               />
             </div>
             <div className="profile-page--cookbooks__user__container">

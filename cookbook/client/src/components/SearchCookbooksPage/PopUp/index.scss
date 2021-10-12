@@ -110,17 +110,43 @@
         }
 
         &--statistics {
-          @include statistics-data;
-
           display: flex;
           flex-wrap: nowrap;
           margin-bottom: 72px;
 
-          .card__statistics-item.likes {
-            .statistics-item__icon {
-              &:hover {
-                cursor: pointer;
-                transform: scale(1.2);
+          .card {
+            &__statistics-item {
+              margin-right: 24px;
+              line-height: 19px;
+
+              display: flex;
+              flex-wrap: nowrap;
+              align-items: center;
+
+              &:last-child {
+                margin-right: 0;
+              }
+
+              &__icon {
+                margin-right: 8px;
+                width: 15px;
+                height: 15px;
+              }
+
+              &--likes {
+                margin-right: 24px;
+                line-height: 19px;
+
+                display: flex;
+                flex-wrap: nowrap;
+                align-items: center;
+
+                .card__statistics-item__icon {
+                  &:hover {
+                    cursor: pointer;
+                    transform: scale(1.2);
+                  }
+                }
               }
             }
           }

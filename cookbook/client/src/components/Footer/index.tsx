@@ -23,10 +23,10 @@ export default function Footer(): JSX.Element {
           <nav className="footer__nav">
             <ul className="footer__nav__list">
               <li className="footer__nav__list__item">
-                <Link to={ROUTES.RECIPES}>{RECIPES}</Link>
+                <Link to={ROUTES.COOKBOOKS}>{COOKBOOKS}</Link>
               </li>
               <li className="footer__nav__list__item">
-                <Link to={ROUTES.COOKBOOKS}>{COOKBOOKS}</Link>
+                <Link to={ROUTES.RECIPES}>{RECIPES}</Link>
               </li>
               <li className="footer__nav__list__item">
                 <Link to="/">{ABOUT_US}</Link>

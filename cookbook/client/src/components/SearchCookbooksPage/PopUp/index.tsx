@@ -7,7 +7,6 @@ import { Cookbook } from '../../../interfaces';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/LikesIconCookbook';
 import CommentsSection from './CommentsSection';
-
 import './index.scss';
 import PopUpRecipeCard from './RecipeCard';
 
@@ -101,7 +100,7 @@ export default function PopUpCookbookDetailed(
           </div>
 
           <div className="pop-up--cookbook__section--statistics">
-            <div className="card__statistics-item likes">
+            <div className="card__statistics-item--likes">
               <LikesIcon
                 loggedInUserId={loggedInUserId}
                 likeCookbook={likeCookbook}

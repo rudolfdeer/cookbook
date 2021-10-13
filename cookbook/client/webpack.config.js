@@ -13,7 +13,7 @@ module.exports = {
     open: true,
     compress: true,
     hot: true,
-    port: 3000,
+    port: 8080,
   },
   entry: {
     main: path.resolve(__dirname, './src/index.tsx'),
@@ -57,9 +57,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new CopyPlugin({
-      patterns: [
-        { from: './src/assets/images/', to: './assets/images/' },
-      ],
+      patterns: [{ from: './src/assets/images/', to: './assets/images/' }],
     }),
     new MiniCssExtractPlugin({ filename: '[name].css' }),
   ],

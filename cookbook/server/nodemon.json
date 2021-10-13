@@ -1,7 +1,7 @@
 {
-  "verbose": false,
   "ignore": ["node_modules"],
   "watch": ["src"],
-  "exec": "npx ts-node ./src/index.ts",
-  "ext": "ts, js"
+  "exec": "ts-node ./index.ts",
+  "ext": "ts, js",
+  "restartable": "rs"
 }

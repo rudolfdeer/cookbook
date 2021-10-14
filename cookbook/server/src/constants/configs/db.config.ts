@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize';
 
 export const db = new Sequelize('cookbook', 'postgres', '123', {
-  port: 3001,
+  //port: 3001,
   host: 'localhost',
   dialect: 'postgres',
 

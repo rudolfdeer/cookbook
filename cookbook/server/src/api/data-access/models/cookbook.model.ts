@@ -26,7 +26,7 @@ Comment.init(
   }
 );
 
-export const Cookbooks = db.define('cookbooks', {
+const cookbookModel = db.define('cookbooks', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -67,3 +67,7 @@ export const Cookbooks = db.define('cookbooks', {
     type: Sequelize.ARRAY(Sequelize.INTEGER),
   },
 });
+
+module.exports = {
+  cookbookModel
+}

@@ -1,6 +1,6 @@
 import express from 'express';
-const bodyParser = require('body-parser');
-const cors = require('cors');
+import bodyParser from 'body-parser';
+import cors from'cors';
 import { serverConfig } from '../constants/configs/server.configs';
 import { db } from '../constants/configs/db.config';
 

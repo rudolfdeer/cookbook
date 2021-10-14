@@ -1,6 +1,7 @@
 import { Sequelize } from 'sequelize';
 
-const db = new Sequelize('cookbook', 'postgres', '123', {
+export const db = new Sequelize('cookbook', 'postgres', '123', {
+  port: 3001,
   host: 'localhost',
   dialect: 'postgres',
 
@@ -11,5 +12,3 @@ const db = new Sequelize('cookbook', 'postgres', '123', {
     idle: 10000,
   },
 });
-
-module.exports = db;

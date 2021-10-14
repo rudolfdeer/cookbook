@@ -2,7 +2,7 @@ import express from 'express';
 const bodyParser = require('body-parser');
 const cors = require('cors');
 import { serverConfig } from '../constants/configs/server.configs';
-const db = require('../constants/configs/db.config');
+import { db } from '../constants/configs/db.config';
 
 export class App {
   client: express.Application;
@@ -15,14 +15,13 @@ export class App {
     this.client.use(cors({ credentials: true }));
   }
 
-  connectDb() {
-    db.authenticate()
-      .then(() => {
-        console.log('connected to db');
-      })
-      .catch((err: Promise<void>) => {
-        console.log(`error till connecting to db: ${err}`);
-      });
+  async connectDb() {
+    try {
+      await db.authenticate();
+      console.log('connected to db');
+    } catch (err) {
+      console.error(`error till connecting to db: ${err}`);
+    }
   }
 
   connectMiddlewares() {
@@ -31,7 +30,7 @@ export class App {
 
   listen() {
     this.client.listen(serverConfig.port, () =>
-      console.log(`sever started at:  ${serverConfig.port}`)
+      console.log(`sever started at: http://localhost:${serverConfig.port}`)
     );
   }
 }

@@ -1,6 +1,7 @@
-const { App } = require('./api/app');
+export {}
 
-export class Server {
+const { App } = require('./api/app');
+class Server {
   app: typeof App;
 
   constructor() {
@@ -10,7 +11,11 @@ export class Server {
   start() {
     this.app.connectCors();
     this.app.connectDb();
-    this.app.connectMiddlewares();
+    this.app.connectRoutes();
     this.app.listen();
   }
+}
+
+module.exports = {
+  Server
 }

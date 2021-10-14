@@ -1,4 +1,4 @@
-import { Sequelize } from 'sequelize';
+const  { Sequelize } = require ('sequelize');
 
 export const db = new Sequelize('cookbook', 'postgres', '123', {
   //port: 3001,

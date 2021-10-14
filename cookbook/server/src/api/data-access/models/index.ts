@@ -1,3 +1,5 @@
+export {}
+
 const { cookbookModel } = require('./cookbook.model');
 
 module.exports = {

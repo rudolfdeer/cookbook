@@ -1,3 +1,5 @@
+export {}
+
 const { cookbookRepository } = require('../data-access/repositories');
 
 const getAll = async() => {

@@ -1,30 +1,30 @@
-import { Model } from 'sequelize/types';
+import { Model } from 'sequelize';
 const Sequelize = require('sequelize');
-const db = require('../../../constants/configs/db.config');
-const sequelize = new Sequelize();
+import {db} from '../../../constants/configs/db.config';
 
-class Comment extends Model {}
 
-Comment.init(
-  {
-    userId: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-    },
-    comment: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    date: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-  },
-  {
-    sequelize,
-    modelName: 'Comment',
-  }
-);
+// class Comment extends Model {}
+
+// Comment.init(
+//   {
+//     userId: {
+//       type: Sequelize.INTEGER,
+//       allowNull: false,
+//     },
+//     comment: {
+//       type: Sequelize.STRING,
+//       allowNull: false,
+//     },
+//     date: {
+//       type: Sequelize.STRING,
+//       allowNull: false,
+//     },
+//   },
+//   {
+//     db,
+//     modelName: 'Comment',
+//   }
+// );
 
 const cookbookModel = db.define('cookbooks', {
   id: {
@@ -51,7 +51,7 @@ const cookbookModel = db.define('cookbooks', {
     type: Sequelize.INTEGER,
   },
   comments: {
-    type: Sequelize.ARRAY(Comment),
+    type: Sequelize.ARRAY(Sequelize.STRING),
   },
   image: {
     type: Sequelize.STRING,

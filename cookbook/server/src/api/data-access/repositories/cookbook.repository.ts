@@ -1,3 +1,5 @@
+export {}
+
 const { cookbookModel } = require('../models');
 
 const getAll = async () => {

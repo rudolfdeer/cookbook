@@ -1,3 +1,5 @@
+export {}
+
 const { cookbookService } = require('./cookbook.service');
 
 module.exports = {

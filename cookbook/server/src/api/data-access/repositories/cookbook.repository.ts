@@ -1,15 +1,15 @@
-export {}
+export {};
 
-const { cookbookModel } = require('../models');
+const { Cookbook } = require('../models');
 
-const getAll = async () => {
-  return cookbookModel.getAll()
-}
+const findAll = () => {
+  return Cookbook.findAll();
+};
 
 const cookbookRepository = {
-  getAll,
-}
+  findAll,
+};
 
 module.exports = {
-  cookbookRepository
-}
+  cookbookRepository,
+};

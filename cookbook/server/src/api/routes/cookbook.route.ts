@@ -1,12 +1,12 @@
-export {}
+export {};
 
 const express = require('express');
 const { cookbookController } = require('../controllers');
 
-export const cookbookRouter = express.Router();
+const cookbookRouter = express.Router();
 
-cookbookRouter.get("/", cookbookController.getAll);
+cookbookRouter.get('/', cookbookController.findAll);
 
-// module.exports = {
-//   cookbookRouter
-// };
+module.exports = {
+  cookbookRouter,
+};

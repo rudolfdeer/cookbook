@@ -1,11 +1,11 @@
-export {}
+export {};
 
 const express = require('express');
 const mainRoute = express.Router();
-import {cookbookRouter} from '../routes/cookbook.route';
+const { cookbookRouter } = require('../routes/cookbook.route');
 
-mainRoute.use('/cookbooks', cookbookRouter);
+mainRoute.use('/api/cookbooks', cookbookRouter);
 
 module.exports = {
-	router: mainRoute,
+  router: mainRoute,
 };

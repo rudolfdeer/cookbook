@@ -1,7 +1,7 @@
-export {}
+export {};
 
-const { cookbookRepository }  = require('./cookbook.repository');
+const { cookbookRepository } = require('./cookbook.repository');
 
 module.exports = {
-  cookbookRepository
-}
+  cookbookRepository,
+};

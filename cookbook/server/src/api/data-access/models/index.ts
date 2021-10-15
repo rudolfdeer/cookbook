@@ -1,7 +1,7 @@
-export {}
+export {};
 
-const { cookbookModel } = require('./cookbook.model');
+const { Cookbook } = require('./cookbook.model');
 
 module.exports = {
-  cookbookModel
-}
+  Cookbook,
+};

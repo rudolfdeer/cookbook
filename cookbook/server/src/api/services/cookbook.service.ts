@@ -1,16 +1,16 @@
-export {}
+export {};
 
 const { cookbookRepository } = require('../data-access/repositories');
 
-const getAll = async() => {
-  const cookbooks = await cookbookRepository.getAll();
+const findAll = async () => {
+  const cookbooks = await cookbookRepository.findAll();
   return cookbooks;
-}
+};
 
 const cookbookService = {
-	getAll
-}
+  findAll,
+};
 
 module.exports = {
-  cookbookService
-}
+  cookbookService,
+};

@@ -1,7 +1,6 @@
 import { Model } from 'sequelize';
 const Sequelize = require('sequelize');
-import {db} from '../../../constants/configs/db.config';
-
+import { db } from '../../../constants/configs/db.config';
 
 // class Comment extends Model {}
 
@@ -26,7 +25,7 @@ import {db} from '../../../constants/configs/db.config';
 //   }
 // );
 
-const cookbookModel = db.define('cookbooks', {
+const Cookbook = db.define('cookbooks', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -69,5 +68,5 @@ const cookbookModel = db.define('cookbooks', {
 });
 
 module.exports = {
-  cookbookModel
-}
+  Cookbook,
+};

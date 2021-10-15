@@ -1,4 +1,4 @@
-export {}
+export {};
 
 const { App } = require('./api/app');
 class Server {
@@ -11,11 +11,12 @@ class Server {
   start() {
     this.app.connectCors();
     this.app.connectDb();
+    this.app.connectMiddlewares();
     this.app.connectRoutes();
     this.app.listen();
   }
 }
 
 module.exports = {
-  Server
-}
+  Server,
+};

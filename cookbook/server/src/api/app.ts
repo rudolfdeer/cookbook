@@ -1,9 +1,9 @@
 import express from 'express';
-import bodyParser from 'body-parser';
-import cors from'cors';
+import { json } from 'body-parser';
+import cors from 'cors';
 import { serverConfig } from '../constants/configs/server.configs';
 import { db } from '../constants/configs/db.config';
-const { router } = require("./routes");
+const { router } = require('./routes');
 
 export class App {
   client: express.Application;
@@ -25,10 +25,13 @@ export class App {
     }
   }
 
-  connectRoutes() {
-		this.client.use(router);
-	}
+  connectMiddlewares() {
+    this.client.use(json());
+  }
 
+  connectRoutes() {
+    this.client.use(router);
+  }
 
   listen() {
     this.client.listen(serverConfig.port, () =>

@@ -2,7 +2,7 @@ import express from 'express';
 import { json } from 'body-parser';
 import cors from 'cors';
 import { serverConfig } from '../constants/configs/server.configs';
-import { db } from '../constants/configs/db.config';
+import { db } from './data-access';
 const { router } = require('./routes');
 
 export class App {
@@ -33,9 +33,14 @@ export class App {
     this.client.use(router);
   }
 
-  listen() {
-    this.client.listen(serverConfig.port, () =>
-      console.log(`sever started at: http://localhost:${serverConfig.port}`)
-    );
+  async listen() {
+    try {
+      await db.sync();
+      this.client.listen(serverConfig.port, () =>
+        console.log(`server started at: http://localhost:${serverConfig.port}`)
+      );
+    } catch (err) {
+      console.log(`sever error: ${err}`);
+    }
   }
 }

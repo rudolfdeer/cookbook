@@ -3,14 +3,14 @@ import express from 'express';
 
 const findAll = async (req: express.Request, res: express.Response) => {
   const cookbooks = await cookbookService.findAll();
-  res.send(cookbooks);
+  res.status(200).send(cookbooks);
 };
 
 const create = async (req: express.Request, res: express.Response) => {
   const cookbook = req.body;
   try {
     await cookbookService.create(cookbook);
-    res.status(200).send('created');
+    res.status(200).send('cookbook created');
   } catch (err) {
     res.send(`error till creating cookbook: ${err}`);
   }
@@ -20,9 +20,30 @@ const deleteById = async (req: express.Request, res: express.Response) => {
   const id = req.params.id;
   try {
     await cookbookService.deleteById(id);
-    res.status(200).send('deleted');
+    res.status(200).send('cookbook deleted');
   } catch (err) {
     res.send(`error till deleting cookbook: ${err}`);
+  }
+};
+
+const findById = async (req: express.Request, res: express.Response) => {
+  const id = req.params.id;
+  try {
+    const cookbook = await cookbookService.findById(id);
+    res.status(200).send(cookbook);
+  } catch (err) {
+    res.send(`error till finding cookbook: ${err}`);
+  }
+};
+
+const update = async (req: express.Request, res: express.Response) => {
+  const cookbook = req.body;
+  const id = req.params.id;
+  try {
+    await cookbookService.update(cookbook, id);
+    res.status(200).send('cookbook updated');
+  } catch (err) {
+    res.send(`error till updating cookbook: ${err}`);
   }
 };
 
@@ -30,6 +51,8 @@ const cookbookController = {
   findAll,
   create,
   deleteById,
+  findById,
+  update,
 };
 
 module.exports = {

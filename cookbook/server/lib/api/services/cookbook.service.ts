@@ -17,10 +17,21 @@ const deleteById = async (id: number) => {
   await cookbookRepository.deleteById(id);
 };
 
+const findById = async (id: number) => {
+  const cookbook = await cookbookRepository.findById(id);
+  return cookbook;
+};
+
+const update = async (cookbook: CookbookValues, id: number) => {
+  await cookbookRepository.update(cookbook, id);
+};
+
 const cookbookService = {
   findAll,
   create,
   deleteById,
+  findById,
+  update,
 };
 
 module.exports = {

@@ -21,7 +21,7 @@ export class App {
       await db.authenticate();
       console.log('connected to db');
     } catch (err) {
-      console.error(`error till connecting to db: ${err}`);
+      console.error(`db connection error: ${err}`);
     }
   }
 
@@ -40,7 +40,7 @@ export class App {
         console.log(`server started at: http://localhost:${serverConfig.port}`)
       );
     } catch (err) {
-      console.log(`sever error: ${err}`);
+      console.log(`server error: ${err}`);
     }
   }
 }

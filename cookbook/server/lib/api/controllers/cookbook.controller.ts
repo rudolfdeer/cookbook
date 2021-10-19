@@ -2,8 +2,12 @@ const { cookbookService } = require('../services');
 import express from 'express';
 
 const findAll = async (req: express.Request, res: express.Response) => {
-  const cookbooks = await cookbookService.findAll();
-  res.status(200).send(cookbooks);
+  try {
+    const cookbooks = await cookbookService.findAll();
+    res.status(200).send(cookbooks);
+  } catch (err) {
+    res.status(500).send(`error while finding all cookbooks: ${err}`);
+  }
 };
 
 const create = async (req: express.Request, res: express.Response) => {
@@ -12,7 +16,7 @@ const create = async (req: express.Request, res: express.Response) => {
     await cookbookService.create(cookbook);
     res.status(200).send('cookbook created');
   } catch (err) {
-    res.send(`error till creating cookbook: ${err}`);
+    res.status(500).send(`error while creating cookbook: ${err}`);
   }
 };
 
@@ -22,7 +26,7 @@ const deleteById = async (req: express.Request, res: express.Response) => {
     await cookbookService.deleteById(id);
     res.status(200).send('cookbook deleted');
   } catch (err) {
-    res.send(`error till deleting cookbook: ${err}`);
+    res.send(`error while deleting cookbook: ${err}`);
   }
 };
 
@@ -32,7 +36,7 @@ const findById = async (req: express.Request, res: express.Response) => {
     const cookbook = await cookbookService.findById(id);
     res.status(200).send(cookbook);
   } catch (err) {
-    res.send(`error till finding cookbook: ${err}`);
+    res.send(`error while finding cookbook: ${err}`);
   }
 };
 
@@ -43,7 +47,7 @@ const update = async (req: express.Request, res: express.Response) => {
     await cookbookService.update(cookbook, id);
     res.status(200).send('cookbook updated');
   } catch (err) {
-    res.send(`error till updating cookbook: ${err}`);
+    res.send(`error while updating cookbook: ${err}`);
   }
 };
 

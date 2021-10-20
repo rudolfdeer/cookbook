@@ -26,7 +26,7 @@ const deleteById = async (req: express.Request, res: express.Response) => {
     await cookbookService.deleteById(id);
     res.status(200).send('cookbook deleted');
   } catch (err) {
-    res.send(`error while deleting cookbook: ${err}`);
+    res.status(500).send(`error while deleting cookbook: ${err}`);
   }
 };
 
@@ -36,7 +36,7 @@ const findById = async (req: express.Request, res: express.Response) => {
     const cookbook = await cookbookService.findById(id);
     res.status(200).send(cookbook);
   } catch (err) {
-    res.send(`error while finding cookbook: ${err}`);
+    res.status(500).send(`error while finding cookbook: ${err}`);
   }
 };
 
@@ -47,7 +47,7 @@ const update = async (req: express.Request, res: express.Response) => {
     await cookbookService.update(cookbook, id);
     res.status(200).send('cookbook updated');
   } catch (err) {
-    res.send(`error while updating cookbook: ${err}`);
+    res.status(500).send(`error while updating cookbook: ${err}`);
   }
 };
 

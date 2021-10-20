@@ -3,6 +3,9 @@ import cookbooks from '../constants/mockdata/cookbooks';
 import users from '../constants/mockdata/users';
 import { Cookbook, Recipe, User } from '../interfaces';
 
+const base = 'http://127.0.0.1:3000/api';
+const cookbooksUrl = `${base}/cookbooks/`;
+
 type LoginInfo = {
   email: string;
   password: string;
@@ -19,7 +22,7 @@ class FetchQuery {
 
   logIn(loginInfo: LoginInfo): User {
     return users.find(
-      (el) => el.email === loginInfo.email && el.password === loginInfo.password,
+      (el) => el.email === loginInfo.email && el.password === loginInfo.password
     );
   }
 
@@ -34,6 +37,13 @@ class FetchQuery {
   updateUsers(newUser: User) {
     users.push(newUser);
   }
+
+  // async getCookbooksList(): Promise<Cookbook[]> {
+  //   const response = await fetch(cookbooksUrl);
+  //   const result = await response.json();
+  //   console.log(result);
+  //   return result;
+  // }
 }
 
 export default new FetchQuery();

@@ -25,32 +25,38 @@ import { db } from '../index';
 //   }
 // );
 
-const Cookbook = db.define('Сookbook', {
-  id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
+const Cookbook = db.define(
+  'Сookbook',
+  {
+    id: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    title: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    userId: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
+    description: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    image: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    tags: {
+      type: Sequelize.ARRAY(Sequelize.STRING),
+    },
   },
-  title: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  userId: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-  },
-  description: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  image: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  tags: {
-    type: Sequelize.ARRAY(Sequelize.STRING),
-  },
-});
+  {
+    freezeTableName: true,
+  }
+);
 
 module.exports = {
   Cookbook,

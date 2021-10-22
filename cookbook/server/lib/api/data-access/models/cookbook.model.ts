@@ -25,7 +25,7 @@ import { db } from '../index';
 //   }
 // );
 
-const Cookbook = db.define('cookbook', {
+const Cookbook = db.define('Сookbook', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -43,27 +43,12 @@ const Cookbook = db.define('cookbook', {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  likes: {
-    type: Sequelize.INTEGER,
-  },
-  views: {
-    type: Sequelize.INTEGER,
-  },
-  comments: {
-    type: Sequelize.ARRAY(Sequelize.STRING),
-  },
   image: {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  recipesIds: {
-    type: Sequelize.ARRAY(Sequelize.INTEGER),
-  },
   tags: {
     type: Sequelize.ARRAY(Sequelize.STRING),
-  },
-  usersLiked: {
-    type: Sequelize.ARRAY(Sequelize.INTEGER),
   },
 });
 

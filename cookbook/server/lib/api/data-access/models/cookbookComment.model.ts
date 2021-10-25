@@ -23,6 +23,7 @@ const CookbookComment = db.define(
   {
     freezeTableName: true,
     underscored: true,
+    timestamps: false,
   }
 );
 

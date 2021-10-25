@@ -1,6 +1,12 @@
 export {};
 
-const { Cookbook, User, Recipe } = require('../models');
+const {
+  Cookbook,
+  User,
+  Recipe,
+  CookbookComment,
+  RecipeComment,
+} = require('../models');
 
 export type CookbookValues = {
   id: number;
@@ -13,7 +19,9 @@ export type CookbookValues = {
 };
 
 const findAll = () => {
-  return Cookbook.findAll({ include: [User] });
+  return Cookbook.findAll({
+    include: [User],
+  });
 };
 
 const create = (cookbook: CookbookValues) => {

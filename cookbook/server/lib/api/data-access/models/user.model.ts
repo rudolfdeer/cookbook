@@ -31,6 +31,8 @@ const User = db.define(
   {
     freezeTableName: true,
     underscored: true,
+    modelName: 'user',
+    timestamps: false,
   }
 );
 

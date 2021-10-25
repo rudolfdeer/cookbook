@@ -34,19 +34,39 @@ const Cookbook = db.define(
   {
     freezeTableName: true,
     underscored: true,
+    timestamps: false,
+    modelName: 'cookbook',
   }
 );
 
 Cookbook.belongsTo(User);
 
-User.belongsToMany(Cookbook, { through: 'Cookbook_Saved' });
-Cookbook.belongsToMany(User, { through: 'Cookbook_Saved' });
+const Cookbook_Saved = db.define(
+  'Cookbook_Saved',
+  {},
+  { freezeTableName: true, timestamps: false, underscored: true }
+);
 
-User.belongsToMany(Cookbook, { through: 'Cookbook_Like' });
-Cookbook.belongsToMany(User, { through: 'Cookbook_Like' });
+User.belongsToMany(Cookbook, { through: Cookbook_Saved });
+Cookbook.belongsToMany(User, { through: Cookbook_Saved });
 
-Recipe.belongsToMany(Cookbook, { through: 'Recipe_Cookbook' });
-Cookbook.belongsToMany(Recipe, { through: 'Recipe_Cookbook' });
+const Cookbook_Like = db.define(
+  'Cookbook_Like',
+  {},
+  { freezeTableName: true, timestamps: false, underscored: true }
+);
+
+User.belongsToMany(Cookbook, { through: Cookbook_Like });
+Cookbook.belongsToMany(User, { through: Cookbook_Like });
+
+const Recipe_Cookbook = db.define(
+  'Recipe_Cookbook',
+  {},
+  { freezeTableName: true, timestamps: false, underscored: true }
+);
+
+Recipe.belongsToMany(Cookbook, { through: Recipe_Cookbook });
+Cookbook.belongsToMany(Recipe, { through: Recipe_Cookbook });
 
 module.exports = {
   Cookbook,

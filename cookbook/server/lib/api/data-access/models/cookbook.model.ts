@@ -27,7 +27,7 @@ const Cookbook = db.define(
     tags: {
       type: Sequelize.ARRAY(Sequelize.STRING),
     },
-    viewsCount: {
+    views: {
       type: Sequelize.INTEGER,
     },
   },
@@ -37,7 +37,7 @@ const Cookbook = db.define(
   }
 );
 
-Cookbook.belongsTo(User, { as: 'user', constraints: false });
+Cookbook.belongsTo(User);
 
 User.belongsToMany(Cookbook, { through: 'Cookbook_Saved' });
 Cookbook.belongsToMany(User, { through: 'Cookbook_Saved' });

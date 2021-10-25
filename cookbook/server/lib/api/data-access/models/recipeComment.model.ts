@@ -22,11 +22,12 @@ const RecipeComment = db.define(
   },
   {
     freezeTableName: true,
+    underscored: true,
   }
 );
 
-RecipeComment.belongsTo(User, { as: 'user' });
-RecipeComment.belongsTo(Recipe, { as: 'recipe' });
+RecipeComment.belongsTo(User);
+RecipeComment.belongsTo(Recipe);
 
 module.exports = {
   RecipeComment,

@@ -35,7 +35,7 @@ const Recipe = db.define(
       type: Sequelize.INTEGER,
       allowNull: false,
     },
-    viewsCount: {
+    views: {
       type: Sequelize.INTEGER,
     },
   },
@@ -45,7 +45,7 @@ const Recipe = db.define(
   }
 );
 
-Recipe.belongsTo(User, { as: 'user', constraints: false });
+Recipe.belongsTo(User);
 
 User.belongsToMany(Recipe, { through: 'Recipe_Saved' });
 Recipe.belongsToMany(User, { through: 'Recipe_Saved' });

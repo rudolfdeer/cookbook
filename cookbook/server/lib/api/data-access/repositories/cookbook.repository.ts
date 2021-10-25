@@ -5,15 +5,15 @@ const { Cookbook, User, Recipe } = require('../models');
 export type CookbookValues = {
   id: number;
   title: string;
-  userId: number;
+  user_id: number;
   description: string;
   image: string;
   tags: string[];
-  viewsCount: number;
+  views: number;
 };
 
 const findAll = () => {
-  return Cookbook.findAll({ include: [{ model: User, as: 'user' }] });
+  return Cookbook.findAll({ include: [User] });
 };
 
 const create = (cookbook: CookbookValues) => {
@@ -33,11 +33,11 @@ const update = (cookbook: CookbookValues, id: number) => {
   const updatedCookbook = {
     id: cookbook.id,
     title: cookbook.title,
-    userId: cookbook.userId,
+    user_id: cookbook.user_id,
     description: cookbook.description,
     image: cookbook.image,
     tags: cookbook.tags,
-    viewsCount: cookbook.viewsCount,
+    views: cookbook.views,
   };
   return Cookbook.update(updatedCookbook, { where: { id: id } });
 };

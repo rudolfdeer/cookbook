@@ -7,13 +7,9 @@ export type CookbookValues = {
   title: string;
   userId: number;
   description: string;
-  likes: number;
-  views: number;
-  comments: string[]; //change to Comment[]
   image: string;
-  recipesIds: number[];
   tags: string[];
-  usersLiked?: number[];
+  viewsCount: number;
 };
 
 const findAll = () => {
@@ -39,13 +35,9 @@ const update = (cookbook: CookbookValues, id: number) => {
     title: cookbook.title,
     userId: cookbook.userId,
     description: cookbook.description,
-    likes: cookbook.likes,
-    views: cookbook.views,
-    comments: cookbook.comments,
     image: cookbook.image,
-    recipesIds: cookbook.recipesIds,
     tags: cookbook.tags,
-    usersLiked: cookbook.usersLiked,
+    viewsCount: cookbook.viewsCount,
   };
   return Cookbook.update(updatedCookbook, { where: { id: id } });
 };

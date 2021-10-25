@@ -1,10 +1,10 @@
-import { Model } from 'sequelize';
 const Sequelize = require('sequelize');
 import { db } from '../index';
+
 const { User } = require('./user.model');
 
-const Cookbook = db.define(
-  'Сookbook',
+const Recipe = db.define(
+  'Recipe',
   {
     id: {
       type: Sequelize.INTEGER,
@@ -23,8 +23,17 @@ const Cookbook = db.define(
       type: Sequelize.STRING,
       allowNull: false,
     },
-    tags: {
+    directions: {
       type: Sequelize.ARRAY(Sequelize.STRING),
+      allowNull: false,
+    },
+    ingredients: {
+      type: Sequelize.ARRAY(Sequelize.STRING),
+      allowNull: false,
+    },
+    cookingTime: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
     },
     viewsCount: {
       type: Sequelize.INTEGER,
@@ -35,8 +44,8 @@ const Cookbook = db.define(
   }
 );
 
-Cookbook.belongsTo(User, { as: 'user' });
+Recipe.belongsTo(User, { as: 'user' });
 
 module.exports = {
-  Cookbook,
+  Recipe,
 };

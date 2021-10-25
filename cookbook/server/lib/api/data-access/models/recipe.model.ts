@@ -41,10 +41,17 @@ const Recipe = db.define(
   },
   {
     freezeTableName: true,
+    underscored: true,
   }
 );
 
-Recipe.belongsTo(User, { as: 'user' });
+Recipe.belongsTo(User, { as: 'user', constraints: false });
+
+User.belongsToMany(Recipe, { through: 'Recipe_Saved' });
+Recipe.belongsToMany(User, { through: 'Recipe_Saved' });
+
+User.belongsToMany(Recipe, { through: 'Recipe_Like' });
+Recipe.belongsToMany(User, { through: 'Recipe_Like' });
 
 module.exports = {
   Recipe,

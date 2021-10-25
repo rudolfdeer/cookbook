@@ -30,6 +30,7 @@ const User = db.define(
   },
   {
     freezeTableName: true,
+    underscored: true,
   }
 );
 

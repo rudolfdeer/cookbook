@@ -52,11 +52,8 @@ const findById = (id: number) => {
   });
 };
 
-const create = (cookbook: CookbookValues) => {
-  // const newCookbook = new Cookbook(cookbook);
-  // return newCookbook.save();
-
-  return Cookbook.create(
+const create = async (cookbook: CookbookValues) => {
+  const cookbookInstance = await Cookbook.create(
     {
       id: cookbook.id,
       title: cookbook.title,
@@ -70,6 +67,11 @@ const create = (cookbook: CookbookValues) => {
       include: User,
     }
   );
+
+  const recipesIds = cookbook.recipesIds;
+  cookbookInstance.setRecipes(recipesIds);
+
+  return cookbookInstance;
 };
 
 const deleteById = (id: number) => {

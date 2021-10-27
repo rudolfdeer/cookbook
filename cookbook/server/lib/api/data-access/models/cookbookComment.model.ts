@@ -28,7 +28,10 @@ const CookbookComment = db.define(
 );
 
 CookbookComment.belongsTo(User);
-Cookbook.hasMany(CookbookComment);
+Cookbook.hasMany(CookbookComment, {
+  onDelete: 'CASCADE',
+  hooks: true,
+});
 
 module.exports = {
   CookbookComment,

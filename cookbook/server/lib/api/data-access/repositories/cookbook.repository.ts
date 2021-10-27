@@ -74,12 +74,13 @@ const create = async (cookbook: CookbookValues) => {
   return cookbookInstance;
 };
 
-const deleteById = (id: number) => {
-  return Cookbook.destroy({
+const deleteById = async (id: number) => {
+  const cookbook = await Cookbook.findOne({
     where: {
       id: id,
     },
   });
+  return cookbook.destroy();
 };
 
 const update = (cookbook: CookbookValues, id: number) => {

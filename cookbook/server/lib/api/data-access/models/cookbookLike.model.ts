@@ -10,7 +10,9 @@ const CookbookLike = db.define(
 
 Cookbook.hasMany(CookbookLike, {
   onDelete: 'CASCADE',
+  hooks: true,
 });
+
 CookbookLike.belongsTo(User);
 
 User.belongsToMany(Cookbook, { through: CookbookLike });

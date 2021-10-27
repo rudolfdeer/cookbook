@@ -8,7 +8,9 @@ const CookbookLike = db.define(
   { freezeTableName: true, timestamps: false, underscored: true }
 );
 
-Cookbook.hasMany(CookbookLike);
+Cookbook.hasMany(CookbookLike, {
+  onDelete: 'CASCADE',
+});
 CookbookLike.belongsTo(User);
 
 User.belongsToMany(Cookbook, { through: CookbookLike });

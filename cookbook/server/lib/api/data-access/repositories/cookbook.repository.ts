@@ -84,8 +84,7 @@ const create = async (cookbook: NewCookbookValues) => {
     }
   );
 
-  const recipesIds = cookbook.recipesIds;
-  cookbookInstance.setRecipes(recipesIds);
+  cookbookInstance.setRecipes(cookbook.recipesIds);
 
   return cookbookInstance;
 };
@@ -105,6 +104,11 @@ const update = async (values: UpdatedCookbookValues, id: number) => {
       id: id,
     },
   });
+
+  values.comments.forEach(async (el) => {
+    await createComment(el, id);
+  });
+
   const updatedCookbook = {
     title: values.title,
     description: values.description,
@@ -114,21 +118,19 @@ const update = async (values: UpdatedCookbookValues, id: number) => {
 
   cookbook.setRecipes(values.recipesIds);
   cookbook.setUsers(values.likeUserIds);
-  const comments = values.comments.map(async (el) => {
-    const comment = await createComment(el);
-    return comment;
-  });
-  cookbook.setCookbookComments(comments);
 
-  return cookbook.update(updatedCookbook);
+  return cookbook.update(updatedCookbook, {
+    include: CookbookComment,
+  });
 };
 
-const createComment = async (comment: Comment) => {
+const createComment = async (comment: Comment, cookbookId: number) => {
   const commentInstance = await CookbookComment.create(
     {
       text: comment.text,
       date: comment.date,
       UserId: comment.userId,
+      CookbookId: cookbookId,
     },
     {
       include: User,

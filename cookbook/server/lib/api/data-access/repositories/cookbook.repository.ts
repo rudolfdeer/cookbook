@@ -9,7 +9,7 @@ const {
   CookbookComment,
 } = require('../models');
 
-export type CookbookValues = {
+export type NewCookbookValues = {
   id: number;
   title: string;
   userId: number;
@@ -18,6 +18,22 @@ export type CookbookValues = {
   tags: string[];
   views: number;
   recipesIds: number[];
+};
+
+export type Comment = {
+  userId: number;
+  text: string;
+  date: string;
+};
+
+export type UpdatedCookbookValues = {
+  title: string;
+  description: string;
+  image: string;
+  views: number;
+  recipesIds?: number[];
+  likeUserIds?: number[];
+  comments: Comment[];
 };
 
 const findAll = () => {
@@ -52,7 +68,7 @@ const findById = (id: number) => {
   });
 };
 
-const create = async (cookbook: CookbookValues) => {
+const create = async (cookbook: NewCookbookValues) => {
   const cookbookInstance = await Cookbook.create(
     {
       id: cookbook.id,
@@ -83,17 +99,43 @@ const deleteById = async (id: number) => {
   return cookbook.destroy();
 };
 
-const update = (cookbook: CookbookValues, id: number) => {
+const update = async (values: UpdatedCookbookValues, id: number) => {
+  const cookbook = await Cookbook.findOne({
+    where: {
+      id: id,
+    },
+  });
   const updatedCookbook = {
-    id: cookbook.id,
-    // title: cookbook.title,
-    // user_id: cookbook.user_id,
-    // description: cookbook.description,
-    // image: cookbook.image,
-    // tags: cookbook.tags,
-    // views: cookbook.views,
+    title: values.title,
+    description: values.description,
+    image: values.image,
+    views: values.views,
   };
-  return Cookbook.update(updatedCookbook, { where: { id: id } });
+
+  cookbook.setRecipes(values.recipesIds);
+  cookbook.setUsers(values.likeUserIds);
+  const comments = values.comments.map(async (el) => {
+    const comment = await createComment(el);
+    return comment;
+  });
+  cookbook.setCookbookComments(comments);
+
+  return cookbook.update(updatedCookbook);
+};
+
+const createComment = async (comment: Comment) => {
+  const commentInstance = await CookbookComment.create(
+    {
+      text: comment.text,
+      date: comment.date,
+      UserId: comment.userId,
+    },
+    {
+      include: User,
+    }
+  );
+
+  return commentInstance;
 };
 
 const cookbookRepository = {

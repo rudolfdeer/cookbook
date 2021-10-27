@@ -1,4 +1,7 @@
-import { CookbookValues } from '../data-access/repositories/cookbook.repository';
+import {
+  NewCookbookValues,
+  UpdatedCookbookValues,
+} from '../data-access/repositories/cookbook.repository';
 
 export {};
 
@@ -9,7 +12,7 @@ const findAll = async () => {
   return cookbooks;
 };
 
-const create = async (cookbook: CookbookValues) => {
+const create = async (cookbook: NewCookbookValues) => {
   await cookbookRepository.create(cookbook);
 };
 
@@ -22,7 +25,7 @@ const findById = async (id: number) => {
   return cookbook;
 };
 
-const update = async (cookbook: CookbookValues, id: number) => {
+const update = async (cookbook: UpdatedCookbookValues, id: number) => {
   await cookbookRepository.update(cookbook, id);
 };
 

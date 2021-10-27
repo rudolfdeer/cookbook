@@ -28,7 +28,7 @@ const CookbookComment = db.define(
 );
 
 CookbookComment.belongsTo(User);
-CookbookComment.belongsTo(Cookbook);
+Cookbook.hasMany(CookbookComment);
 
 module.exports = {
   CookbookComment,

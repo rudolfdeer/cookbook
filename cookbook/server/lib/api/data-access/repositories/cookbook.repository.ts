@@ -2,10 +2,11 @@ export {};
 
 const {
   Cookbook,
+  CookbookLike,
   User,
   Recipe,
+  RecipeCookbook,
   CookbookComment,
-  RecipeComment,
 } = require('../models');
 
 export type CookbookValues = {
@@ -20,7 +21,7 @@ export type CookbookValues = {
 
 const findAll = () => {
   return Cookbook.findAll({
-    include: [User],
+    include: User,
   });
 };
 
@@ -34,7 +35,42 @@ const deleteById = (id: number) => {
 };
 
 const findById = (id: number) => {
-  return Cookbook.findByPk(id);
+  return Cookbook.findOne({
+    where: {
+      id: id,
+    },
+    include: [
+      {
+        model: User,
+        as: 'User',
+      },
+      {
+        model: RecipeCookbook,
+        include: {
+          model: Recipe,
+          as: 'Recipe',
+          include: {
+            model: User,
+            as: 'User',
+          },
+        },
+      },
+      {
+        model: CookbookComment,
+        include: {
+          model: User,
+          as: 'User',
+        },
+      },
+      {
+        model: CookbookLike,
+        include: {
+          model: User,
+          as: 'User',
+        },
+      },
+    ],
+  });
 };
 
 const update = (cookbook: CookbookValues, id: number) => {

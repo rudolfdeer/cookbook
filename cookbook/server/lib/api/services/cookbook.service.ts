@@ -1,4 +1,5 @@
 import {
+  Comment,
   NewCookbookValues,
   UpdatedCookbookValues,
 } from '../data-access/repositories/cookbook.repository';
@@ -29,12 +30,17 @@ const update = async (cookbook: UpdatedCookbookValues, id: number) => {
   await cookbookRepository.update(cookbook, id);
 };
 
+const createComment = async (comment: Comment, id: number) => {
+  await cookbookRepository.createComment(comment, id);
+};
+
 const cookbookService = {
   findAll,
   create,
   deleteById,
   findById,
   update,
+  createComment,
 };
 
 module.exports = {

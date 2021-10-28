@@ -51,12 +51,24 @@ const update = async (req: express.Request, res: express.Response) => {
   }
 };
 
+const createComment = async (req: express.Request, res: express.Response) => {
+  const comment = req.body;
+  const id = req.params.id;
+  try {
+    await cookbookService.createComment(comment, id);
+    res.status(200).send('comment created');
+  } catch (err) {
+    res.status(500).send(`error while commenting cookbook: ${err}`);
+  }
+};
+
 const cookbookController = {
   findAll,
   create,
   deleteById,
   findById,
   update,
+  createComment,
 };
 
 module.exports = {

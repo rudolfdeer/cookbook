@@ -8,7 +8,16 @@ const CookbookSaved = db.define(
   { freezeTableName: true, timestamps: false, underscored: true }
 );
 
-User.hasMany(CookbookSaved);
+User.hasMany(CookbookSaved, {
+  onDelete: 'CASCADE',
+  hooks: true,
+});
+
+Cookbook.hasMany(CookbookSaved, {
+  onDelete: 'CASCADE',
+  hooks: true,
+});
+
 CookbookSaved.belongsTo(Cookbook);
 
 User.belongsToMany(Cookbook, { through: CookbookSaved });

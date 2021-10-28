@@ -6,11 +6,6 @@ const { Cookbook } = require('./cookbook.model');
 const CookbookComment = db.define(
   'Сookbook_Comment',
   {
-    id: {
-      type: Sequelize.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-    },
     text: {
       type: Sequelize.STRING,
       allowNull: false,
@@ -28,6 +23,8 @@ const CookbookComment = db.define(
 );
 
 CookbookComment.belongsTo(User);
+CookbookComment.belongsTo(Cookbook);
+
 Cookbook.hasMany(CookbookComment, {
   onDelete: 'CASCADE',
   hooks: true,

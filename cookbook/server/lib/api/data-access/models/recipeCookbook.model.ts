@@ -9,7 +9,10 @@ const RecipeCookbook = db.define(
 );
 
 RecipeCookbook.belongsTo(Recipe);
-Cookbook.hasMany(RecipeCookbook);
+Cookbook.hasMany(RecipeCookbook, {
+  onDelete: 'CASCADE',
+  hooks: true,
+});
 
 Recipe.belongsToMany(Cookbook, { through: RecipeCookbook });
 Cookbook.belongsToMany(Recipe, { through: RecipeCookbook });

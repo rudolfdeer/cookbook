@@ -16,7 +16,6 @@ export type NewCookbookValues = {
   description: string;
   image: string;
   tags: string[];
-  views: number;
   recipesIds: number[];
 };
 
@@ -33,7 +32,6 @@ export type UpdatedCookbookValues = {
   views: number;
   recipesIds?: number[];
   likeUserIds?: number[];
-  comments: Comment[];
 };
 
 const findAll = () => {
@@ -77,7 +75,6 @@ const create = async (cookbook: NewCookbookValues) => {
       description: cookbook.description,
       image: cookbook.image,
       tags: cookbook.tags,
-      views: cookbook.views,
     },
     {
       include: User,
@@ -105,10 +102,6 @@ const update = async (values: UpdatedCookbookValues, id: number) => {
     },
   });
 
-  values.comments.forEach(async (el) => {
-    await createComment(el, id);
-  });
-
   const updatedCookbook = {
     title: values.title,
     description: values.description,
@@ -129,13 +122,12 @@ const createComment = async (comment: Comment, cookbookId: number) => {
     {
       text: comment.text,
       date: comment.date,
-      UserId: comment.userId,
-      CookbookId: cookbookId,
     },
     {
       include: User,
     }
   );
+  commentInstance.setUser(comment.userId);
 
   return commentInstance;
 };
@@ -146,6 +138,7 @@ const cookbookRepository = {
   deleteById,
   findById,
   update,
+  createComment,
 };
 
 module.exports = {

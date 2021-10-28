@@ -117,17 +117,20 @@ const update = async (values: UpdatedCookbookValues, id: number) => {
   });
 };
 
-const createComment = async (comment: Comment, cookbookId: number) => {
+const createComment = async (comment: Comment, id: number) => {
+  console.log('id', id);
   const commentInstance = await CookbookComment.create(
     {
       text: comment.text,
       date: comment.date,
+      //CookbookId: id,
     },
     {
-      include: User,
+      include: [User, Cookbook],
     }
   );
   commentInstance.setUser(comment.userId);
+  commentInstance.setCookbook(id);
 
   return commentInstance;
 };

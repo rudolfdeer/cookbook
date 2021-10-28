@@ -28,6 +28,7 @@ const Cookbook = db.define(
     },
     views: {
       type: Sequelize.INTEGER,
+      defaultValue: 0,
     },
   },
   {

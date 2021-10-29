@@ -6,12 +6,6 @@ const { Cookbook } = require('./cookbook.model');
 const CookbookComment = db.define(
   'Сookbook_Comment',
   {
-    // id: {
-    //   type: Sequelize.INTEGER,
-    //   primaryKey: true,
-    //   autoIncrement: true,
-    // },
-
     text: {
       type: Sequelize.STRING,
       allowNull: false,

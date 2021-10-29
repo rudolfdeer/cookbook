@@ -1,10 +1,9 @@
 const Sequelize = require('sequelize');
 import { db } from '../index';
 const { User } = require('./user.model');
-const { Recipe } = require('./recipe.model');
 
 const Cookbook = db.define(
-  'Сookbook',
+  'Cookbook',
   {
     id: {
       type: Sequelize.INTEGER,

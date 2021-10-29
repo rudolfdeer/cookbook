@@ -6,12 +6,6 @@ const { Recipe } = require('./recipe.model');
 const RecipeComment = db.define(
   'Recipe_Comment',
   {
-    // id: {
-    //   type: Sequelize.INTEGER,
-    //   primaryKey: true,
-    //   autoIncrement: true,
-    // },
-
     text: {
       type: Sequelize.STRING,
       allowNull: false,

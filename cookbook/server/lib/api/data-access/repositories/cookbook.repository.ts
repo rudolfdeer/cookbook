@@ -122,7 +122,6 @@ const createComment = async (comment: Comment, id: number) => {
     {
       text: comment.text,
       date: comment.date,
-      //CookbookId: id,
     },
     {
       include: [User, Cookbook],

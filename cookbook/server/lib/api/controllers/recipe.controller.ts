@@ -56,7 +56,7 @@ const createComment = async (req: express.Request, res: express.Response) => {
   const id = req.params.id;
   try {
     await recipeService.createComment(comment, id);
-    res.status(200).send('recipe created');
+    res.status(200).send('comment created');
   } catch (err) {
     res.status(500).send(`error while commenting recipe: ${err}`);
   }

@@ -118,7 +118,6 @@ const update = async (values: UpdatedCookbookValues, id: number) => {
 };
 
 const createComment = async (comment: Comment, id: number) => {
-  console.log('id', id);
   const commentInstance = await CookbookComment.create(
     {
       text: comment.text,

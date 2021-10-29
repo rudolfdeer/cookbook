@@ -37,6 +37,7 @@ const Recipe = db.define(
     },
     views: {
       type: Sequelize.INTEGER,
+      defaultValue: 0,
     },
   },
   {
@@ -47,24 +48,6 @@ const Recipe = db.define(
 );
 
 Recipe.belongsTo(User);
-
-const Recipe_Saved = db.define(
-  'Recipe_Saved',
-  {},
-  { freezeTableName: true, timestamps: false, underscored: true }
-);
-
-const Recipe_Like = db.define(
-  'Recipe_Like',
-  {},
-  { freezeTableName: true, timestamps: false, underscored: true }
-);
-
-User.belongsToMany(Recipe, { through: Recipe_Saved });
-Recipe.belongsToMany(User, { through: Recipe_Saved });
-
-User.belongsToMany(Recipe, { through: Recipe_Like });
-Recipe.belongsToMany(User, { through: Recipe_Like });
 
 module.exports = {
   Recipe,

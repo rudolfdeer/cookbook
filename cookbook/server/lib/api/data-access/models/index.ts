@@ -8,6 +8,8 @@ const { Recipe } = require('./recipe.model');
 const { RecipeCookbook } = require('./recipeCookbook.model');
 const { CookbookComment } = require('./cookbookComment.model');
 const { RecipeComment } = require('./recipeComment.model');
+const { RecipeLike } = require('./recipeLike.model');
+const { RecipeSaved } = require('./recipeSaved.model');
 
 module.exports = {
   Cookbook,
@@ -18,4 +20,6 @@ module.exports = {
   RecipeCookbook,
   CookbookComment,
   RecipeComment,
+  RecipeLike,
+  RecipeSaved,
 };

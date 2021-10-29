@@ -6,11 +6,12 @@ const { Recipe } = require('./recipe.model');
 const RecipeComment = db.define(
   'Recipe_Comment',
   {
-    id: {
-      type: Sequelize.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-    },
+    // id: {
+    //   type: Sequelize.INTEGER,
+    //   primaryKey: true,
+    //   autoIncrement: true,
+    // },
+
     text: {
       type: Sequelize.STRING,
       allowNull: false,
@@ -29,6 +30,11 @@ const RecipeComment = db.define(
 
 RecipeComment.belongsTo(User);
 RecipeComment.belongsTo(Recipe);
+
+Recipe.hasMany(RecipeComment, {
+  onDelete: 'CASCADE',
+  hooks: true,
+});
 
 module.exports = {
   RecipeComment,

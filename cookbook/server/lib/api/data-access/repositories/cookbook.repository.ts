@@ -6,6 +6,7 @@ const {
   User,
   Recipe,
   RecipeCookbook,
+  RecipeLike,
   CookbookComment,
 } = require('../models');
 
@@ -51,7 +52,7 @@ const findById = (id: number) => {
         model: RecipeCookbook,
         include: {
           model: Recipe,
-          include: User,
+          include: [User, RecipeLike],
         },
       },
       {

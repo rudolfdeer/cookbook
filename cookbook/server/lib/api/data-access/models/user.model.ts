@@ -1,6 +1,8 @@
 const Sequelize = require('sequelize');
 import { db } from '../index';
 
+//const { Recipe } = require('./recipe.model');
+
 const User = db.define(
   'User',
   {
@@ -34,7 +36,6 @@ const User = db.define(
     freezeTableName: true,
     underscored: true,
     timestamps: false,
-    modelName: 'user',
   }
 );
 

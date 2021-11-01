@@ -18,7 +18,6 @@ RecipeLike.belongsTo(User, {
   hooks: true,
 });
 
-//User.belongsToMany(Recipe, { through: RecipeLike });
 Recipe.belongsToMany(User, { through: RecipeLike });
 
 module.exports = {

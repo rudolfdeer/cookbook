@@ -47,10 +47,7 @@ const Recipe = db.define(
   }
 );
 
-Recipe.belongsTo(User, {
-  onDelete: 'CASCADE',
-  hooks: true,
-});
+Recipe.belongsTo(User);
 
 module.exports = {
   Recipe,

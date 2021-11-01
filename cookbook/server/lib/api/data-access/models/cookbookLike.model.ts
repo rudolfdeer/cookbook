@@ -13,9 +13,12 @@ Cookbook.hasMany(CookbookLike, {
   hooks: true,
 });
 
-CookbookLike.belongsTo(User);
+CookbookLike.belongsTo(User, {
+  onDelete: 'CASCADE',
+  hooks: true,
+});
 
-User.belongsToMany(Cookbook, { through: CookbookLike });
+//User.belongsToMany(Cookbook, { through: CookbookLike });
 Cookbook.belongsToMany(User, { through: CookbookLike });
 
 module.exports = {

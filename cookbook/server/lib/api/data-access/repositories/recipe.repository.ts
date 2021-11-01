@@ -48,7 +48,6 @@ const findById = (id: number) => {
       },
       {
         model: RecipeLike,
-        include: User,
       },
     ],
   });
@@ -117,7 +116,7 @@ const createComment = async (comment: Comment, id: number) => {
       include: [User, Recipe],
     }
   );
-  console.log(comment, id);
+
   commentInstance.setUser(comment.userId);
   commentInstance.setRecipe(id);
 

@@ -60,7 +60,6 @@ const findById = (id: number) => {
       },
       {
         model: CookbookLike,
-        include: User,
       },
     ],
   });

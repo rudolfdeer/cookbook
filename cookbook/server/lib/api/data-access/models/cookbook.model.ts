@@ -37,7 +37,10 @@ const Cookbook = db.define(
   }
 );
 
-Cookbook.belongsTo(User);
+Cookbook.belongsTo(User, {
+  onDelete: 'CASCADE',
+  hooks: true,
+});
 
 module.exports = {
   Cookbook,

@@ -8,7 +8,11 @@ const RecipeCookbook = db.define(
   { freezeTableName: true, timestamps: false, underscored: true }
 );
 
-RecipeCookbook.belongsTo(Recipe);
+RecipeCookbook.belongsTo(Recipe, {
+  onDelete: 'CASCADE',
+  hooks: true,
+});
+
 Cookbook.hasMany(RecipeCookbook, {
   onDelete: 'CASCADE',
   hooks: true,

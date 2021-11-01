@@ -13,15 +13,13 @@ User.hasMany(RecipeSaved, {
   hooks: true,
 });
 
-Recipe.hasMany(RecipeSaved, {
+RecipeSaved.belongsTo(Recipe, {
   onDelete: 'CASCADE',
   hooks: true,
 });
 
-RecipeSaved.belongsTo(Recipe);
-
 User.belongsToMany(Recipe, { through: RecipeSaved });
-Recipe.belongsToMany(User, { through: RecipeSaved });
+//Recipe.belongsToMany(User, { through: RecipeSaved });
 
 module.exports = {
   RecipeSaved,

@@ -13,10 +13,12 @@ Recipe.hasMany(RecipeLike, {
   hooks: true,
 });
 
-RecipeLike.belongsTo(User, {
+User.hasMany(RecipeLike, {
   onDelete: 'CASCADE',
   hooks: true,
 });
+
+RecipeLike.belongsTo(User);
 
 Recipe.belongsToMany(User, { through: RecipeLike });
 

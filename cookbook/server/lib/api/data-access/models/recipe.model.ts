@@ -47,7 +47,15 @@ const Recipe = db.define(
   }
 );
 
-Recipe.belongsTo(User);
+Recipe.belongsTo(User, {
+  onDelete: 'CASCADE',
+  hooks: true,
+});
+
+User.hasMany(Recipe, {
+  onDelete: 'CASCADE',
+  hooks: true,
+});
 
 module.exports = {
   Recipe,

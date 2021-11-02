@@ -37,7 +37,15 @@ const Cookbook = db.define(
   }
 );
 
-Cookbook.belongsTo(User);
+Cookbook.belongsTo(User, {
+  onDelete: 'CASCADE',
+  hooks: true,
+});
+
+User.hasMany(Cookbook, {
+  onDelete: 'CASCADE',
+  hooks: true,
+});
 
 module.exports = {
   Cookbook,

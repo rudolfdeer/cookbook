@@ -22,17 +22,19 @@ const RecipeComment = db.define(
   }
 );
 
-RecipeComment.belongsTo(User, {
+RecipeComment.belongsTo(User);
+
+RecipeComment.belongsTo(Recipe);
+
+Recipe.hasMany(RecipeComment, {
   onDelete: 'CASCADE',
   hooks: true,
 });
 
-RecipeComment.belongsTo(Recipe, {
+User.hasMany(RecipeComment, {
   onDelete: 'CASCADE',
   hooks: true,
 });
-
-Recipe.hasMany(RecipeComment);
 
 module.exports = {
   RecipeComment,

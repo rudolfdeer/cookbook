@@ -28,38 +28,36 @@ export type UpdatedUserValues = {
   savedCookbooksIds: number[];
 };
 
-const findById = (id: number) => {
-  return User.findOne({
-    where: {
-      id: id,
+const findById = (id: number) => User.findOne({
+  where: {
+    id,
+  },
+  include: [
+    {
+      model: RecipeSaved,
+      include: {
+        model: Recipe,
+        include: [User, RecipeLike],
+      },
     },
-    include: [
-      {
-        model: RecipeSaved,
-        include: {
-          model: Recipe,
-          include: [User, RecipeLike],
-        },
-      },
-      {
-        model: CookbookSaved,
-        include: {
-          model: Cookbook,
-          include: [
-            {
-              model: RecipeCookbook,
-              include: {
-                model: Recipe,
-                include: [User, RecipeLike],
-              },
+    {
+      model: CookbookSaved,
+      include: {
+        model: Cookbook,
+        include: [
+          {
+            model: RecipeCookbook,
+            include: {
+              model: Recipe,
+              include: [User, RecipeLike],
             },
-            CookbookLike,
-          ],
-        },
+          },
+          CookbookLike,
+        ],
       },
-    ],
-  });
-};
+    },
+  ],
+});
 
 const create = async (user: NewUserValues) => {
   const userInstance = await User.create({
@@ -74,7 +72,7 @@ const create = async (user: NewUserValues) => {
 const deleteById = async (id: number) => {
   const userInstance = await User.findOne({
     where: {
-      id: id,
+      id,
     },
   });
   return userInstance.destroy();
@@ -83,7 +81,7 @@ const deleteById = async (id: number) => {
 const update = async (user: UpdatedUserValues, id: number) => {
   const userInstance = await User.findOne({
     where: {
-      id: id,
+      id,
     },
   });
 

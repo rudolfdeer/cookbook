@@ -1,5 +1,6 @@
-const Sequelize = require('sequelize');
 import { db } from '../index';
+
+const Sequelize = require('sequelize');
 const { User } = require('./user.model');
 const { Recipe } = require('./recipe.model');
 
@@ -19,7 +20,7 @@ const RecipeComment = db.define(
     freezeTableName: true,
     underscored: true,
     timestamps: false,
-  }
+  },
 );
 
 RecipeComment.belongsTo(User);

@@ -1,5 +1,6 @@
-const { cookbookService } = require('../services');
 import express from 'express';
+
+const { cookbookService } = require('../services');
 
 const findAll = async (req: express.Request, res: express.Response) => {
   try {
@@ -21,7 +22,7 @@ const create = async (req: express.Request, res: express.Response) => {
 };
 
 const deleteById = async (req: express.Request, res: express.Response) => {
-  const id = req.params.id;
+  const { id } = req.params;
   try {
     await cookbookService.deleteById(id);
     res.status(200).send('cookbook deleted');
@@ -31,7 +32,7 @@ const deleteById = async (req: express.Request, res: express.Response) => {
 };
 
 const findById = async (req: express.Request, res: express.Response) => {
-  const id = req.params.id;
+  const { id } = req.params;
   try {
     const cookbook = await cookbookService.findById(id);
     res.status(200).send(cookbook);
@@ -42,7 +43,7 @@ const findById = async (req: express.Request, res: express.Response) => {
 
 const update = async (req: express.Request, res: express.Response) => {
   const cookbook = req.body;
-  const id = req.params.id;
+  const { id } = req.params;
   try {
     await cookbookService.update(cookbook, id);
     res.status(200).send('cookbook updated');
@@ -53,7 +54,7 @@ const update = async (req: express.Request, res: express.Response) => {
 
 const createComment = async (req: express.Request, res: express.Response) => {
   const comment = req.body;
-  const id = req.params.id;
+  const { id } = req.params;
   try {
     await cookbookService.createComment(comment, id);
     res.status(200).send('comment created');

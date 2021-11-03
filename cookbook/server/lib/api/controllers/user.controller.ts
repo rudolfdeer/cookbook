@@ -1,5 +1,6 @@
-const { userService } = require('../services');
 import express from 'express';
+
+const { userService } = require('../services');
 
 const create = async (req: express.Request, res: express.Response) => {
   const user = req.body;
@@ -12,7 +13,7 @@ const create = async (req: express.Request, res: express.Response) => {
 };
 
 const deleteById = async (req: express.Request, res: express.Response) => {
-  const id = req.params.id;
+  const { id } = req.params;
   try {
     await userService.deleteById(id);
     res.status(200).send('user deleted');
@@ -22,7 +23,7 @@ const deleteById = async (req: express.Request, res: express.Response) => {
 };
 
 const findById = async (req: express.Request, res: express.Response) => {
-  const id = req.params.id;
+  const { id } = req.params;
   try {
     const user = await userService.findById(id);
     res.status(200).send(user);
@@ -33,7 +34,7 @@ const findById = async (req: express.Request, res: express.Response) => {
 
 const update = async (req: express.Request, res: express.Response) => {
   const user = req.body;
-  const id = req.params.id;
+  const { id } = req.params;
   try {
     await userService.update(user, id);
     res.status(200).send('user updated');

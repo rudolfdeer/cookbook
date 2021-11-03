@@ -1,11 +1,12 @@
 import { db } from '../index';
+
 const { User } = require('./user.model');
 const { Recipe } = require('./recipe.model');
 
 const RecipeSaved = db.define(
   'Recipe_Saved',
   {},
-  { freezeTableName: true, timestamps: false, underscored: true }
+  { freezeTableName: true, timestamps: false, underscored: true },
 );
 
 User.hasMany(RecipeSaved, {

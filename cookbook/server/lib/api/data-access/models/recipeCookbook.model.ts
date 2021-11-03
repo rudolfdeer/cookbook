@@ -1,4 +1,5 @@
 import { db } from '../index';
+
 const { Recipe } = require('./recipe.model');
 const { Cookbook } = require('./cookbook.model');
 
@@ -8,7 +9,10 @@ const RecipeCookbook = db.define(
   { freezeTableName: true, timestamps: false, underscored: true }
 );
 
-RecipeCookbook.belongsTo(Recipe);
+RecipeCookbook.belongsTo(Recipe, {
+  onDelete: 'CASCADE',
+  hooks: true,
+});
 
 Cookbook.hasMany(RecipeCookbook, {
   onDelete: 'CASCADE',

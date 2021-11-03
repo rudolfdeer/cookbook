@@ -2,7 +2,9 @@ import { Cookbook, Recipe, User } from '../interfaces';
 import FetchQuery from './fetchTool';
 
 const base = 'http://127.0.0.1:3000/api';
-const cookbooksUrl = `${base}/cookbooks/`;
+const cookbooksUrl = `${base}/cookbooks`;
+const recipesUrl = `${base}/recipes`;
+const userUrl = `${base}/users`;
 
 type LoginInfo = {
   email: string;

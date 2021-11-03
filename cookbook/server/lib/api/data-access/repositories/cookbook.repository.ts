@@ -35,36 +35,32 @@ export type UpdatedCookbookValues = {
   likeUserIds?: number[];
 };
 
-const findAll = () => {
-  return Cookbook.findAll({
-    include: User,
-  });
-};
+const findAll = () => Cookbook.findAll({
+  include: User,
+});
 
-const findById = (id: number) => {
-  return Cookbook.findOne({
-    where: {
-      id: id,
+const findById = (id: number) => Cookbook.findOne({
+  where: {
+    id,
+  },
+  include: [
+    User,
+    {
+      model: RecipeCookbook,
+      include: {
+        model: Recipe,
+        include: [User, RecipeLike],
+      },
     },
-    include: [
-      User,
-      {
-        model: RecipeCookbook,
-        include: {
-          model: Recipe,
-          include: [User, RecipeLike],
-        },
-      },
-      {
-        model: CookbookComment,
-        include: User,
-      },
-      {
-        model: CookbookLike,
-      },
-    ],
-  });
-};
+    {
+      model: CookbookComment,
+      include: User,
+    },
+    {
+      model: CookbookLike,
+    },
+  ],
+});
 
 const create = async (cookbook: NewCookbookValues) => {
   const cookbookInstance = await Cookbook.create(
@@ -78,7 +74,7 @@ const create = async (cookbook: NewCookbookValues) => {
     },
     {
       include: User,
-    }
+    },
   );
 
   cookbookInstance.setRecipes(cookbook.recipesIds);
@@ -89,7 +85,7 @@ const create = async (cookbook: NewCookbookValues) => {
 const deleteById = async (id: number) => {
   const cookbook = await Cookbook.findOne({
     where: {
-      id: id,
+      id,
     },
   });
   return cookbook.destroy();
@@ -98,7 +94,7 @@ const deleteById = async (id: number) => {
 const update = async (values: UpdatedCookbookValues, id: number) => {
   const cookbook = await Cookbook.findOne({
     where: {
-      id: id,
+      id,
     },
   });
 
@@ -125,7 +121,7 @@ const createComment = async (comment: Comment, id: number) => {
     },
     {
       include: [User, Cookbook],
-    }
+    },
   );
   commentInstance.setUser(comment.userId);
   commentInstance.setCookbook(id);

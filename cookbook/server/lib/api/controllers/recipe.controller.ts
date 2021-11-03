@@ -1,5 +1,6 @@
-const { recipeService } = require('../services');
 import express from 'express';
+
+const { recipeService } = require('../services');
 
 const findAll = async (req: express.Request, res: express.Response) => {
   try {
@@ -21,7 +22,7 @@ const create = async (req: express.Request, res: express.Response) => {
 };
 
 const deleteById = async (req: express.Request, res: express.Response) => {
-  const id = req.params.id;
+  const { id } = req.params;
   try {
     await recipeService.deleteById(id);
     res.status(200).send('recipe deleted');
@@ -31,7 +32,7 @@ const deleteById = async (req: express.Request, res: express.Response) => {
 };
 
 const findById = async (req: express.Request, res: express.Response) => {
-  const id = req.params.id;
+  const { id } = req.params;
   try {
     const recipe = await recipeService.findById(id);
     res.status(200).send(recipe);
@@ -42,7 +43,7 @@ const findById = async (req: express.Request, res: express.Response) => {
 
 const update = async (req: express.Request, res: express.Response) => {
   const recipe = req.body;
-  const id = req.params.id;
+  const { id } = req.params;
   try {
     await recipeService.update(recipe, id);
     res.status(200).send('recipe updated');
@@ -53,7 +54,7 @@ const update = async (req: express.Request, res: express.Response) => {
 
 const createComment = async (req: express.Request, res: express.Response) => {
   const comment = req.body;
-  const id = req.params.id;
+  const { id } = req.params;
   try {
     await recipeService.createComment(comment, id);
     res.status(200).send('comment created');

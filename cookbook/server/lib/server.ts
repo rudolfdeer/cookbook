@@ -1,6 +1,7 @@
 export {};
 
 const { App } = require('./api/app');
+
 class Server {
   app: typeof App;
 

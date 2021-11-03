@@ -1,6 +1,8 @@
 export {};
 
-const { RecipeLike, User, Recipe, RecipeComment } = require('../models');
+const {
+  RecipeLike, User, Recipe, RecipeComment,
+} = require('../models');
 
 export type NewRecipeValues = {
   id: number;
@@ -29,29 +31,25 @@ export type UpdatedRecipeValues = {
   likeUserIds: number[];
 };
 
-const findAll = () => {
-  return Recipe.findAll({
-    include: User,
-  });
-};
+const findAll = () => Recipe.findAll({
+  include: User,
+});
 
-const findById = (id: number) => {
-  return Recipe.findOne({
-    where: {
-      id: id,
+const findById = (id: number) => Recipe.findOne({
+  where: {
+    id,
+  },
+  include: [
+    User,
+    {
+      model: RecipeComment,
+      include: User,
     },
-    include: [
-      User,
-      {
-        model: RecipeComment,
-        include: User,
-      },
-      {
-        model: RecipeLike,
-      },
-    ],
-  });
-};
+    {
+      model: RecipeLike,
+    },
+  ],
+});
 
 const create = async (recipe: NewRecipeValues) => {
   const recipeInstance = await Recipe.create(
@@ -66,7 +64,7 @@ const create = async (recipe: NewRecipeValues) => {
     },
     {
       include: User,
-    }
+    },
   );
 
   recipeInstance.setUser(recipe.userId);
@@ -77,7 +75,7 @@ const create = async (recipe: NewRecipeValues) => {
 const deleteById = async (id: number) => {
   const recipe = await Recipe.findOne({
     where: {
-      id: id,
+      id,
     },
   });
   return recipe.destroy();
@@ -86,7 +84,7 @@ const deleteById = async (id: number) => {
 const update = async (values: UpdatedRecipeValues, id: number) => {
   const recipe = await Recipe.findOne({
     where: {
-      id: id,
+      id,
     },
   });
 
@@ -114,7 +112,7 @@ const createComment = async (comment: Comment, id: number) => {
     },
     {
       include: [User, Recipe],
-    }
+    },
   );
 
   commentInstance.setUser(comment.userId);

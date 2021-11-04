@@ -2,12 +2,14 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    jest: true,
   },
   extends: [
     'airbnb-typescript/base',
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
+    'plugin:jest/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -26,7 +28,7 @@ module.exports = {
       },
     },
   },
-  plugins: ['@typescript-eslint', 'react'],
+  plugins: ['@typescript-eslint', 'react', 'jest'],
   rules: {
     'linebreak-style': 0,
     'react/jsx-filename-extension': [

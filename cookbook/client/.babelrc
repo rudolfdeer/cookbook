@@ -1,8 +1,8 @@
 {
   "plugins": ["@babel/plugin-transform-react-jsx"],
-  "test": {
-    "presets": [
-      "@babel/preset-typescript"
-    ]
-  }
+  "presets": [
+    "@babel/preset-typescript",
+    ["@babel/preset-env", { "targets": { "node": "current" } }],
+    "@babel/preset-react"
+  ]
 }

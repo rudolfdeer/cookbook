@@ -1,12 +1,14 @@
 const config = {
   verbose: true,
   setupFilesAfterEnv: ['./src/setupTests.js'],
-  collectCoverageFrom: ['**/*.{ts,tsx}'],
-  coveragePathIgnorePatterns: ['<rootDir>/dist/', '<rootDir>/node_modules/'],
   transform: {
-    '^.+\\.(js|jsx|tsx)$': 'babel-jest',
+    '^.+\\.(js|jsx|tsx|ts)$': 'babel-jest',
+    '.+\\.(css|styl|less|sass|scss)$': 'jest-transform-css',
   },
-  moduleFileExtensions: ['js', 'jsx', 'json', 'tsx'],
+  moduleFileExtensions: ['js', 'jsx', 'json', 'tsx', 'ts'],
+  moduleNameMapper: {
+    '\\.(css|less|scss|sass)$': '<rootDir>/__mocks__/styleMock.js',
+  },
 };
 
 module.exports = config;

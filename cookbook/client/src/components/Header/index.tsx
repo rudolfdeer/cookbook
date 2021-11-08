@@ -3,12 +3,11 @@ import { Link } from 'react-router-dom';
 import { COOKBOOKS, RECIPES } from '../../constants/resources/common';
 import { CREATE_COOKBOOK_BTN, SIGN_IN } from '../../constants/resources/header';
 import ROUTES from '../../constants/routes';
-
 import './index.scss';
 import SearchBar from './SearchBar';
 
 type HeaderProps = {
-  loggedInUserName: string;
+  loggedInUserName?: string;
 };
 
 export default function Header(props: HeaderProps): JSX.Element {

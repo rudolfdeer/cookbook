@@ -11,6 +11,8 @@ const mapStateToProps = (state: State) => {
   };
 };
 
-const HeaderConnect = connect(mapStateToProps, null)(Header);
+const HeaderConnect = mapStateToProps
+  ? connect(mapStateToProps, null)(Header)
+  : connect(null, null)(Header);
 
 export default HeaderConnect;

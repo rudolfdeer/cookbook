@@ -23,7 +23,7 @@ type PopUpRecipeDetailedProps = {
 };
 
 export default function PopUpRecipeDetailed(
-  props: PopUpRecipeDetailedProps
+  props: PopUpRecipeDetailedProps,
 ): JSX.Element {
   const {
     setVisible,

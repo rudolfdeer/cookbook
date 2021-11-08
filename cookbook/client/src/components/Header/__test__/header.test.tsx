@@ -13,7 +13,7 @@ describe('header component', () => {
     expect(component.exists('header')).toBe(true);
   });
 
-  it('renders user name in link', () => {
+  it('renders user name when props passed', () => {
     const link = component.find('.header__login');
     expect(link.text()).toBe(props.loggedInUserName);
   });

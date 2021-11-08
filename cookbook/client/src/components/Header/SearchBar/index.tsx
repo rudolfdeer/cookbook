@@ -20,9 +20,7 @@ export default function SearchBar(): JSX.Element {
   };
 
   const getResultList = () => {
-    const result = usersList.filter((el) =>
-      el.name.toLowerCase().includes(searchInput.toLowerCase())
-    );
+    const result = usersList.filter((el) => el.name.toLowerCase().includes(searchInput.toLowerCase()));
     return result;
   };
 

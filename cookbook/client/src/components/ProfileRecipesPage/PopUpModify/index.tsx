@@ -18,7 +18,7 @@ type PopUpModifyRecipeProps = {
 };
 
 export default function PopUpModifyRecipe(
-  props: PopUpModifyRecipeProps
+  props: PopUpModifyRecipeProps,
 ): JSX.Element {
   const {
     setModifyPopUpVisible,
@@ -26,8 +26,9 @@ export default function PopUpModifyRecipe(
     modifyRecipe,
     loggedInUserId,
   } = props;
-  const { id, title, image, description, directions, ingredients } =
-    selectedRecipe;
+  const {
+    id, title, image, description, directions, ingredients,
+  } = selectedRecipe;
 
   const [imageSrc, setImageSrc] = useState(image);
   const [isTitleDisabled, setTitleDisabled] = useState(true);

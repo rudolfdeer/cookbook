@@ -21,7 +21,7 @@ type ProfileUsersPageProps = {
 };
 
 export default function ProfileUsersPage(
-  props: ProfileUsersPageProps
+  props: ProfileUsersPageProps,
 ): JSX.Element {
   const { userId } = useParams<{ userId: string }>();
   const { cookbooks, loggedInUserId, getUsersCreatedCookbooks } = props;

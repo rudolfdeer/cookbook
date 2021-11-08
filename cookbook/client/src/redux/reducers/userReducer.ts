@@ -9,7 +9,7 @@ type UserReducer = typeof initialState;
 
 export default function userReducer(
   state = initialState,
-  action: AnyAction
+  action: AnyAction,
 ): UserReducer {
   switch (action.type) {
     case ACTION_TYPES.USER_UPDATE:
@@ -133,7 +133,7 @@ export default function userReducer(
       const newUser = {
         id: newId,
         name: 'User User',
-        avatar: 'images/user1.png',
+        avatar: '',
         email,
         password,
         bio: 'Your bio here',

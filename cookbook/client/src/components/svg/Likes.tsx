@@ -14,7 +14,9 @@ export default function LikesIcon(props: LikesIconProps): JSX.Element {
 
   let defaultColor;
 
-  const { loggedInUserId, usersLiked, likeCookbook, cookbookId } = props;
+  const {
+    loggedInUserId, usersLiked, likeCookbook, cookbookId,
+  } = props;
 
   if (!loggedInUserId || !usersLiked) {
     defaultColor = grey;

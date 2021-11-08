@@ -22,7 +22,7 @@ type PopUpModifyCookbookProps = {
 };
 
 export default function PopUpModifyCookbook(
-  props: PopUpModifyCookbookProps
+  props: PopUpModifyCookbookProps,
 ): JSX.Element {
   const {
     setModifyPopUpVisible,
@@ -30,8 +30,9 @@ export default function PopUpModifyCookbook(
     loggedInUserId,
     modifyCookbook,
   } = props;
-  const { id, image, description, title, userId, likes, comments, recipesIds } =
-    selectedCookbook;
+  const {
+    id, image, description, title, userId, likes, comments, recipesIds,
+  } = selectedCookbook;
 
   const [imageSrc, setImageSrc] = useState(image);
   const [isTitleDisabled, setTitleDisabled] = useState(true);
@@ -43,8 +44,8 @@ export default function PopUpModifyCookbook(
   function closePopUp(e: React.MouseEvent) {
     const target = e.target as HTMLElement;
     if (
-      target.classList.contains('overlay') ||
-      target.classList.contains('overlay__btn')
+      target.classList.contains('overlay')
+      || target.classList.contains('overlay__btn')
     ) {
       setModifyPopUpVisible(false);
     }

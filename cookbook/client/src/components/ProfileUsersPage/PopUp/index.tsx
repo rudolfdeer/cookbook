@@ -16,14 +16,15 @@ type PopUpCookbookProps = {
 
 export default function PopUpCookbook(props: PopUpCookbookProps): JSX.Element {
   const { setPopUpCookbookVisible, cookbook } = props;
-  const { image, description, title, userId, likes, comments, recipesIds } =
-    cookbook;
+  const {
+    image, description, title, userId, likes, comments, recipesIds,
+  } = cookbook;
 
   function closePopUp(e: React.MouseEvent) {
     const target = e.target as HTMLElement;
     if (
-      target.classList.contains('overlay') ||
-      target.classList.contains('overlay__btn')
+      target.classList.contains('overlay')
+      || target.classList.contains('overlay__btn')
     ) {
       setPopUpCookbookVisible(false);
     }

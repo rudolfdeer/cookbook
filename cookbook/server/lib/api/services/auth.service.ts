@@ -5,12 +5,12 @@ const { AuthError } = require('../../helpers/errors');
 const { authUtils } = require('../../helpers/utils/auth.util');
 const { MESSAGES } = require('../../constants/messages');
 
-type NewUserValues = {
+type UserValues = {
   email: string;
   password: string;
 };
 
-const signUp = async (data: NewUserValues) => {
+const signUp = async (data: UserValues) => {
   const { email, password } = data;
   const user = await authRepository.getByEmail(email);
 
@@ -39,8 +39,31 @@ const signUp = async (data: NewUserValues) => {
   }
 };
 
+const signIn = async (data: UserValues) => {
+  const { email, password } = data;
+  const user = await authRepository.getByEmail(email);
+
+  if (!user) {
+    throw new AuthError({ message: MESSAGES.AUTH.ERROR.EMAIL_NOT_EXIST });
+  }
+
+  const isPasswordMatched = authUtils.comparePasswords(password, user.password);
+
+  if (!isPasswordMatched) {
+    throw new AuthError({ message: MESSAGES.AUTH.ERROR.WRONG_PASSWORD });
+  }
+
+  const token = authUtils.generateAuthToken({ email: user.email, id: user.id });
+
+  return {
+    user,
+    token,
+  };
+};
+
 const authService = {
   signUp,
+  signIn,
 };
 
 module.exports = {

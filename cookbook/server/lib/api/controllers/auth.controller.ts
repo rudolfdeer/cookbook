@@ -13,7 +13,8 @@ const signUp = async (req: express.Request, res: express.Response) => {
     res.cookie('jwt', token, { httpOnly: false });
     res.status(200).send(createdUser);
   } catch (err) {
-    res.status(500).send(`sign up error: ${err}`);
+    console.log(err);
+    res.status(500).send(`${err}`);
   }
 };
 
@@ -28,7 +29,7 @@ const signIn = async (req: express.Request, res: express.Response) => {
     res.cookie('jwt', token, { httpOnly: true });
     res.status(200).send(user);
   } catch (err) {
-    res.status(500).send(`sign in error: ${err}`);
+    res.status(500).send(`${err}`);
   }
 };
 

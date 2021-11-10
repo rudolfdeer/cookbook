@@ -4,8 +4,8 @@ const OK = 'Ok.';
 
 const ERROR = {
   BASE_ERROR,
-  EMAIL_EXISTS: 'The email is already exists.',
-  EMAIL_NOT_EXIST: 'The email does not exist.',
+  EMAIL_EXISTS: 'This email already exists.',
+  EMAIL_NOT_EXIST: 'This email does not exist.',
   WRONG_PASSWORD: 'Wrong password.',
   UNAUTHORISED: 'Token expired.',
 };

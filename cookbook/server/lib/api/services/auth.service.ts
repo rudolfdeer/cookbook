@@ -1,7 +1,7 @@
 export {};
 
 const { authRepository } = require('../data-access/repositories');
-const { AuthError } = require('../../helpers/errors');
+//const { AuthError } = require('../../helpers/errors');
 const { authUtils } = require('../../helpers/utils/auth.util');
 const { MESSAGES } = require('../../constants/messages');
 
@@ -15,7 +15,7 @@ const signUp = async (data: UserValues) => {
   const user = await authRepository.getByEmail(email);
 
   if (user?.email === email) {
-    throw new AuthError({ message: MESSAGES.AUTH.ERROR.EMAIL_EXISTS });
+    throw new Error(MESSAGES.AUTH.ERROR.EMAIL_EXISTS);
   }
 
   if (!user) {
@@ -44,13 +44,13 @@ const signIn = async (data: UserValues) => {
   const user = await authRepository.getByEmail(email);
 
   if (!user) {
-    throw new AuthError({ message: MESSAGES.AUTH.ERROR.EMAIL_NOT_EXIST });
+    throw new Error(MESSAGES.AUTH.ERROR.EMAIL_NOT_EXIST);
   }
 
   const isPasswordMatched = authUtils.comparePasswords(password, user.password);
 
   if (!isPasswordMatched) {
-    throw new AuthError({ message: MESSAGES.AUTH.ERROR.WRONG_PASSWORD });
+    throw new Error(MESSAGES.AUTH.ERROR.WRONG_PASSWORD);
   }
 
   const token = authUtils.generateAuthToken({ email: user.email, id: user.id });

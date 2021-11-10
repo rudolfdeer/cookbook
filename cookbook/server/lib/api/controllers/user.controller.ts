@@ -2,16 +2,6 @@ import express from 'express';
 
 const { userService } = require('../services');
 
-const create = async (req: express.Request, res: express.Response) => {
-  const user = req.body;
-  try {
-    await userService.create(user);
-    res.status(200).send('user created');
-  } catch (err) {
-    res.status(500).send(`error while creating user: ${err}`);
-  }
-};
-
 const deleteById = async (req: express.Request, res: express.Response) => {
   const { id } = req.params;
   try {
@@ -44,7 +34,6 @@ const update = async (req: express.Request, res: express.Response) => {
 };
 
 const userController = {
-  create,
   deleteById,
   findById,
   update,

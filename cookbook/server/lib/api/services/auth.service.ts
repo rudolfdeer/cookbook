@@ -1,12 +1,17 @@
-import { NewUserValues } from '../data-access/repositories/user.repository';
+export {};
 
 const { authRepository } = require('../data-access/repositories');
 const { AuthError } = require('../../helpers/errors');
 const { authUtils } = require('../../helpers/utils/auth.util');
 const { MESSAGES } = require('../../constants/messages');
 
-const signUp = async (userValues: NewUserValues) => {
-  const { id, email, password } = userValues;
+type NewUserValues = {
+  email: string;
+  password: string;
+};
+
+const signUp = async (data: NewUserValues) => {
+  const { email, password } = data;
   const user = await authRepository.getByEmail(email);
 
   if (user?.email === email) {
@@ -16,25 +21,28 @@ const signUp = async (userValues: NewUserValues) => {
   if (!user) {
     const encryptedPassword = authUtils.encryptPassword(password);
 
-    let newUser = await authRepository.create({
-      id,
+    let createdUser = await authRepository.createUser({
       email,
       password: encryptedPassword,
     });
-    newUser = newUser.toJSON();
+    createdUser = createdUser.toJSON();
 
     const token = authUtils.generateAuthToken({
-      email: newUser.email,
-      id: newUser.id,
+      email: createdUser.email,
+      id: createdUser.id,
     });
 
     return {
-      newUser,
+      createdUser,
       token,
     };
   }
 };
 
-module.exports = {
+const authService = {
   signUp,
+};
+
+module.exports = {
+  authService,
 };

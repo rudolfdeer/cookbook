@@ -1,7 +1,10 @@
-import { TokenPayload } from '../auth.util/generateAuthToken.util';
-
 const jwt = require('jsonwebtoken');
 const { TOKEN } = require('../../../constants/auth');
+
+type TokenPayload = {
+  email?: string;
+  id?: number;
+};
 
 const generateToken = (payload: TokenPayload) => {
   const accessToken = jwt.sign(payload, TOKEN.SECRET, {

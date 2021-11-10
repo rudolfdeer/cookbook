@@ -5,7 +5,6 @@ const { userController } = require('../controllers');
 
 const userRouter = express.Router();
 
-userRouter.post('/', userController.create);
 userRouter.delete('/:id', userController.deleteById);
 userRouter.get('/:id', userController.findById);
 userRouter.put('/:id', userController.update);

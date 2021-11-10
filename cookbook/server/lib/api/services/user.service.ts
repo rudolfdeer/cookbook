@@ -1,15 +1,8 @@
-import {
-  NewUserValues,
-  UpdatedUserValues,
-} from '../data-access/repositories/user.repository';
+import { UpdatedUserValues } from '../data-access/repositories/user.repository';
 
 export {};
 
 const { userRepository } = require('../data-access/repositories');
-
-const create = async (user: NewUserValues) => {
-  await userRepository.create(user);
-};
 
 const deleteById = async (id: number) => {
   await userRepository.deleteById(id);
@@ -25,7 +18,6 @@ const update = async (user: UpdatedUserValues, id: number) => {
 };
 
 const userService = {
-  create,
   deleteById,
   findById,
   update,

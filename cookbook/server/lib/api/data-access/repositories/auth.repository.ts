@@ -1,15 +1,13 @@
 const { User } = require('../models');
 
 type NewUserValues = {
-  id: number;
   email: string;
   password: string;
 };
 
-const create = async (user: NewUserValues) => {
-  const { id, email, password } = user;
+const createUser = async (data: NewUserValues) => {
+  const { email, password } = data;
   const userInstance = await User.create({
-    id,
     email,
     password,
   });
@@ -26,7 +24,11 @@ const getByEmail = async (email: string) => {
   return userInstance;
 };
 
-module.exports = {
-  create,
+const authRepository = {
+  createUser,
   getByEmail,
+};
+
+module.exports = {
+  authRepository,
 };

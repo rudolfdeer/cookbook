@@ -11,13 +11,6 @@ const {
   CookbookLike,
 } = require('../models');
 
-export type NewUserValues = {
-  id: number;
-  name: string;
-  email: string;
-  password: string;
-};
-
 export type UpdatedUserValues = {
   name: string;
   photo: string;
@@ -60,16 +53,6 @@ const findById = (id: number) =>
     ],
   });
 
-const create = async (user: NewUserValues) => {
-  const userInstance = await User.create({
-    id: user.id,
-    name: user.name,
-    email: user.email,
-    password: user.password,
-  });
-  return userInstance;
-};
-
 const deleteById = async (id: number) => {
   const userInstance = await User.findOne({
     where: {
@@ -101,7 +84,6 @@ const update = async (user: UpdatedUserValues, id: number) => {
 };
 
 const userRepository = {
-  create,
   deleteById,
   findById,
   update,

@@ -28,36 +28,37 @@ export type UpdatedUserValues = {
   savedCookbooksIds: number[];
 };
 
-const findById = (id: number) => User.findOne({
-  where: {
-    id,
-  },
-  include: [
-    {
-      model: RecipeSaved,
-      include: {
-        model: Recipe,
-        include: [User, RecipeLike],
-      },
+const findById = (id: number) =>
+  User.findOne({
+    where: {
+      id,
     },
-    {
-      model: CookbookSaved,
-      include: {
-        model: Cookbook,
-        include: [
-          {
-            model: RecipeCookbook,
-            include: {
-              model: Recipe,
-              include: [User, RecipeLike],
+    include: [
+      {
+        model: RecipeSaved,
+        include: {
+          model: Recipe,
+          include: [User, RecipeLike],
+        },
+      },
+      {
+        model: CookbookSaved,
+        include: {
+          model: Cookbook,
+          include: [
+            {
+              model: RecipeCookbook,
+              include: {
+                model: Recipe,
+                include: [User, RecipeLike],
+              },
             },
-          },
-          CookbookLike,
-        ],
+            CookbookLike,
+          ],
+        },
       },
-    },
-  ],
-});
+    ],
+  });
 
 const create = async (user: NewUserValues) => {
   const userInstance = await User.create({

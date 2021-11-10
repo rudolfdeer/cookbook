@@ -15,6 +15,7 @@ const User = db.define(
     name: {
       type: Sequelize.STRING,
       allowNull: false,
+      defaultValue: 'Your Name',
     },
     email: {
       type: Sequelize.STRING,
@@ -37,7 +38,7 @@ const User = db.define(
     freezeTableName: true,
     underscored: true,
     timestamps: false,
-  },
+  }
 );
 
 module.exports = {

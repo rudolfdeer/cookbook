@@ -16,7 +16,7 @@ type UpdatedUserValues = {
   photo: string;
   bio: string;
   email: string;
-  password: string;
+  //password: string;
   savedRecipesIds: number[];
   savedCookbooksIds: number[];
 };
@@ -52,6 +52,7 @@ const findById = (id: number) => {
               },
             },
             CookbookLike,
+            User,
           ],
         },
       },
@@ -79,13 +80,12 @@ const update = async (user: UpdatedUserValues, id: number) => {
   const updatedUser = {
     name: user.name,
     email: user.email,
-    password: user.password,
     bio: user.bio,
     photo: user.photo,
   };
 
-  userInstance.setRecipes(user.savedRecipesIds);
-  userInstance.setCookbooks(user.savedCookbooksIds);
+  //userInstance.setRecipes(user.savedRecipesIds);
+  //userInstance.setCookbooks(user.savedCookbooksIds);
 
   return userInstance.update(updatedUser);
 };

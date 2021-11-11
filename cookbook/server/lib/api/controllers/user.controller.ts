@@ -26,8 +26,8 @@ const update = async (req: express.Request, res: express.Response) => {
   const user = req.body;
   const { id } = req.params;
   try {
-    await userService.update(user, id);
-    res.status(200).send('user updated');
+    const response = await userService.update(user, id);
+    res.status(200).send(response);
   } catch (err) {
     res.status(500).send(`error while updating user: ${err}`);
   }

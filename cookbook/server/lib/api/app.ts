@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 //import { json } from 'body-parser';
 import { serverConfig } from '../constants/configs/server.configs';
 import { db } from './data-access';
@@ -28,6 +29,7 @@ export class App {
   }
 
   connectMiddlewares() {
+    this.client.use(cookieParser());
     this.client.use(middlewares.bodyParser());
   }
 

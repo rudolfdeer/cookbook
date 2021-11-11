@@ -18,31 +18,34 @@ type UpdatedUserData = {
   photo: string;
   bio: string;
   email: string;
-  password: string;
+  //password: string;
   savedRecipesIds: number[];
   savedCookbooksIds: number[];
 };
 
 const update = async (data: UpdatedUserData, id: number) => {
-  const user = await userRepository.findByEmail(data.email);
-
-  if (user) {
+  const user = await userRepository.findById(id);
+  const userWithNewEmail = await userRepository.findByEmail(data.email);
+  if (userWithNewEmail && userWithNewEmail.id !== id) {
     throw new Error(MESSAGES.AUTH.ERROR.EMAIL_EXISTS);
   }
 
-  const encryptedPassword = authUtils.encryptPassword(user.password);
+  //const encryptedPassword = authUtils.encryptPassword(user.password);
 
   const updatedUser = {
     name: data.name,
     photo: data.photo,
     bio: data.bio,
     email: data.email,
-    password: encryptedPassword,
     savedRecipesIds: data.savedRecipesIds,
     savedCookbooksIds: data.savedCookbooksIds,
   };
 
   await userRepository.update(updatedUser, id);
+
+  const response = await userRepository.findById(id);
+
+  return response;
 };
 
 const userService = {

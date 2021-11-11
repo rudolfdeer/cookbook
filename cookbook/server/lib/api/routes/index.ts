@@ -10,8 +10,8 @@ const { authRouter } = require('./auth.route');
 
 mainRoute.use('/api/cookbooks', cookbookRouter);
 mainRoute.use('/api/recipes', recipeRouter);
-mainRoute.use('/api/users', userRouter);
-mainRoute.use('/api/auth', authRouter);
+mainRoute.use('/api/user', userRouter);
+mainRoute.use('/api', authRouter);
 
 module.exports = {
   router: mainRoute,

@@ -6,9 +6,9 @@ const { middlewares } = require('../../middlewares');
 
 const userRouter = express.Router();
 
-userRouter.delete('/:id', userController.deleteById);
+userRouter.delete('/', middlewares.verifyAuthToken, userController.deleteById);
 userRouter.get('/:id', userController.findById);
-userRouter.put('/:id', middlewares.verifyAuthToken, userController.update);
+userRouter.put('/', middlewares.verifyAuthToken, userController.update);
 
 module.exports = {
   userRouter,

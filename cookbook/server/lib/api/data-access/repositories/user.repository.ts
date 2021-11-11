@@ -11,7 +11,7 @@ const {
   CookbookLike,
 } = require('../models');
 
-export type UpdatedUserValues = {
+type UpdatedUserValues = {
   name: string;
   photo: string;
   bio: string;
@@ -21,8 +21,13 @@ export type UpdatedUserValues = {
   savedCookbooksIds: number[];
 };
 
-const findById = (id: number) =>
-  User.findOne({
+type NewUserValues = {
+  email: string;
+  password: string;
+};
+
+const findById = (id: number) => {
+  const userInstance = User.findOne({
     where: {
       id,
     },
@@ -52,6 +57,8 @@ const findById = (id: number) =>
       },
     ],
   });
+  return userInstance;
+};
 
 const deleteById = async (id: number) => {
   const userInstance = await User.findOne({
@@ -83,10 +90,31 @@ const update = async (user: UpdatedUserValues, id: number) => {
   return userInstance.update(updatedUser);
 };
 
+const create = async (data: NewUserValues) => {
+  const { email, password } = data;
+  const userInstance = await User.create({
+    email,
+    password,
+  });
+  return userInstance;
+};
+
+const findByEmail = async (email: string) => {
+  const userInstance = await User.findOne({
+    where: {
+      email,
+    },
+  });
+
+  return userInstance;
+};
+
 const userRepository = {
   deleteById,
   findById,
   update,
+  create,
+  findByEmail,
 };
 
 module.exports = {

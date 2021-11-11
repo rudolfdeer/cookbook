@@ -6,12 +6,12 @@ const signUp = async (req: express.Request, res: express.Response) => {
   const { email, password } = req.body;
 
   try {
-    const { token, createdUser } = await authService.signUp({
+    const { token, response } = await authService.signUp({
       email,
       password,
     });
     res.cookie('jwt', token, { httpOnly: false });
-    res.status(200).send(createdUser);
+    res.status(200).send(response);
   } catch (err) {
     console.log(err);
     res.status(500).send(`${err}`);
@@ -22,12 +22,12 @@ const signIn = async (req: express.Request, res: express.Response) => {
   const { email, password } = req.body;
 
   try {
-    const { token, user } = await authService.signIn({
+    const { token, response } = await authService.signIn({
       email,
       password,
     });
     res.cookie('jwt', token, { httpOnly: true });
-    res.status(200).send(user);
+    res.status(200).send(response);
   } catch (err) {
     res.status(500).send(`${err}`);
   }

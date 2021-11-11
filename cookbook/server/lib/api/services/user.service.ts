@@ -1,8 +1,8 @@
-import { UpdatedUserValues } from '../data-access/repositories/user.repository';
-
 export {};
 
 const { userRepository } = require('../data-access/repositories');
+const { authUtils } = require('../../utils/auth.util');
+const { MESSAGES } = require('../../constants/messages');
 
 const deleteById = async (id: number) => {
   await userRepository.deleteById(id);
@@ -13,8 +13,36 @@ const findById = async (id: number) => {
   return user;
 };
 
-const update = async (user: UpdatedUserValues, id: number) => {
-  await userRepository.update(user, id);
+type UpdatedUserData = {
+  name: string;
+  photo: string;
+  bio: string;
+  email: string;
+  password: string;
+  savedRecipesIds: number[];
+  savedCookbooksIds: number[];
+};
+
+const update = async (data: UpdatedUserData, id: number) => {
+  const user = await userRepository.findByEmail(data.email);
+
+  if (user) {
+    throw new Error(MESSAGES.AUTH.ERROR.EMAIL_EXISTS);
+  }
+
+  const encryptedPassword = authUtils.encryptPassword(user.password);
+
+  const updatedUser = {
+    name: data.name,
+    photo: data.photo,
+    bio: data.bio,
+    email: data.email,
+    password: encryptedPassword,
+    savedRecipesIds: data.savedRecipesIds,
+    savedCookbooksIds: data.savedCookbooksIds,
+  };
+
+  await userRepository.update(updatedUser, id);
 };
 
 const userService = {

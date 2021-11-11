@@ -1,12 +1,11 @@
 export {};
 
 const crypto = require('crypto');
-const { CRYPTO } = require('../../../constants/auth');
-const { AuthError } = require('../../errors');
+const { CRYPTO } = require('../../constants/auth');
 
 const encryptPassword = (password: string) => {
   if (!password) {
-    throw new AuthError({ message: 'no data to encrypt.' });
+    throw new Error('No data to encrypt.');
   }
 
   const encryptedPassword = crypto.pbkdf2Sync(

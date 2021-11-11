@@ -1,15 +1,11 @@
 export {};
 
 const crypto = require('crypto');
-
-const { CRYPTO } = require('../../../constants/auth');
-const { AuthError } = require('../../errors');
+const { CRYPTO } = require('../../constants/auth');
 
 const comparePasswords = (password: string, hashedPassword: string) => {
   if (!password) {
-    throw new AuthError({
-      message: 'comparePasswords: no password to compare',
-    });
+    throw new Error('No password to compare.');
   }
 
   const encryptedPassword = crypto

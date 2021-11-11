@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
-const { TOKEN } = require('../../../constants/auth');
+const { TOKEN } = require('../../constants/auth');
 
-type TokenPayload = {
+export type TokenPayload = {
   email?: string;
   id?: number;
 };

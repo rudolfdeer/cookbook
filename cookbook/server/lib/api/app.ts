@@ -1,10 +1,11 @@
 import express from 'express';
-import { json } from 'body-parser';
 import cors from 'cors';
+//import { json } from 'body-parser';
 import { serverConfig } from '../constants/configs/server.configs';
 import { db } from './data-access';
 
 const { router } = require('./routes');
+const { middlewares } = require('../middlewares');
 
 export class App {
   client: express.Application;
@@ -27,7 +28,7 @@ export class App {
   }
 
   connectMiddlewares() {
-    this.client.use(json());
+    this.client.use(middlewares.bodyParser());
   }
 
   connectRoutes() {
@@ -37,7 +38,9 @@ export class App {
   async listen() {
     try {
       await db.sync();
-      this.client.listen(serverConfig.port, () => console.log(`server started at: http://localhost:${serverConfig.port}`));
+      this.client.listen(serverConfig.port, () =>
+        console.log(`server started at: http://localhost:${serverConfig.port}`)
+      );
     } catch (err) {
       console.log(`server error: ${err}`);
     }

@@ -15,8 +15,6 @@ type UpdatedUserValues = {
   name: string;
   photo: string;
   bio: string;
-  //email: string;
-  //password: string;
   savedRecipesIds: number[];
   savedCookbooksIds: number[];
 };
@@ -75,14 +73,10 @@ const update = async (user: UpdatedUserValues, id: number) => {
     where: {
       id,
     },
-    // {
-    //   include: RecipeSaved, CookbookSaved,
-    // },
   });
 
   const updatedUser = {
     name: user.name,
-    //email: user.email,
     bio: user.bio,
     photo: user.photo,
   };

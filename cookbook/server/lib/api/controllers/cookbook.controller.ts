@@ -43,9 +43,10 @@ const findById = async (req: express.Request, res: express.Response) => {
 
 const update = async (req: express.Request, res: express.Response) => {
   const cookbook = req.body;
-  const { id } = req.params;
+  const { id, target } = req.params;
+  console.log(req.params);
   try {
-    await cookbookService.update(cookbook, id);
+    await cookbookService.update(cookbook, target, id);
     res.status(200).send('cookbook updated');
   } catch (err) {
     res.status(500).send(`error while updating cookbook: ${err}`);

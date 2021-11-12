@@ -45,7 +45,7 @@ const Recipe = db.define(
     freezeTableName: true,
     underscored: true,
     timestamps: false,
-  },
+  }
 );
 
 Recipe.belongsTo(User, {
@@ -53,10 +53,10 @@ Recipe.belongsTo(User, {
   hooks: true,
 });
 
-User.hasMany(Recipe, {
-  onDelete: 'CASCADE',
-  hooks: true,
-});
+// User.hasMany(Recipe, {
+//   onDelete: 'CASCADE',
+//   hooks: true,
+// });
 
 module.exports = {
   Recipe,

@@ -26,8 +26,20 @@ const findById = async (id: number) => {
   return cookbook;
 };
 
-const update = async (cookbook: UpdatedCookbookValues, id: number) => {
-  await cookbookRepository.update(cookbook, id);
+const update = async (
+  data: UpdatedCookbookValues,
+  cookbookId: number,
+  userId: number
+) => {
+  const cookbook = await cookbookRepository.findById(cookbookId);
+  if (!cookbook) {
+    throw new Error('Cookbook doesnt exist');
+  }
+
+  if (cookbook.UserId !== userId) {
+    throw new Error('Cookbook was created by other user');
+  }
+  await cookbookRepository.update(data, cookbookId);
 };
 
 const createComment = async (comment: Comment, id: number) => {

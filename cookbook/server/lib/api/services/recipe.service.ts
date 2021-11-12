@@ -12,8 +12,8 @@ const findAll = async () => {
   return recipes;
 };
 
-const create = async (recipe: NewRecipeValues) => {
-  await recipeRepository.create(recipe);
+const create = async (recipe: NewRecipeValues, userId: number) => {
+  await recipeRepository.create(recipe, userId);
 };
 
 const deleteById = async (id: number) => {

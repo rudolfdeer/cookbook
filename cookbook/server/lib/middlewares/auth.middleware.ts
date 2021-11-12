@@ -9,6 +9,10 @@ const verifyAuthToken = async (
   next: express.NextFunction
 ) => {
   const token = req.cookies.jwt;
+  let target;
+  if (req.params.id) {
+    target = req.params.id;
+  }
 
   if (!token) {
     throw new Error('No token provided.');
@@ -16,10 +20,16 @@ const verifyAuthToken = async (
 
   try {
     const userPayload = tokenUtils.verifyToken(token);
-    req.params = {
-      ...userPayload,
-      token,
-    };
+    req.params = target
+      ? {
+          ...userPayload,
+          token,
+          target,
+        }
+      : {
+          ...userPayload,
+          token,
+        };
     next();
   } catch (err) {
     res.status(CODE_STATUSES.UNAUTHORISED).send(`${err}`);

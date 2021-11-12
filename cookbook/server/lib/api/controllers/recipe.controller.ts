@@ -13,8 +13,9 @@ const findAll = async (req: express.Request, res: express.Response) => {
 
 const create = async (req: express.Request, res: express.Response) => {
   const recipe = req.body;
+  const { id } = req.params;
   try {
-    await recipeService.create(recipe);
+    await recipeService.create(recipe, id);
     res.status(200).send('recipe created');
   } catch (err) {
     res.status(500).send(`error while creating recipe: ${err}`);

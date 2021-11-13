@@ -108,12 +108,42 @@ const findByEmail = async (email: string) => {
   return userInstance;
 };
 
+const changeEmail = async (email: string, id: number) => {
+  const userInstance = await User.findOne({
+    where: {
+      id,
+    },
+  });
+
+  userInstance.update({
+    email,
+  });
+
+  return userInstance;
+};
+
+const changePassword = async(password: string, id: number) => {
+  const userInstance = await User.findOne({
+    where: {
+      id,
+    },
+  });
+
+  userInstance.update({
+    password,
+  });
+
+  return userInstance;
+}
+
 const userRepository = {
   deleteById,
   findById,
   update,
   create,
   findByEmail,
+  changeEmail,
+  changePassword,
 };
 
 module.exports = {

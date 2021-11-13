@@ -17,25 +17,15 @@ type UpdatedUserData = {
   name: string;
   photo: string;
   bio: string;
-  //email: string;
-  //password: string;
   savedRecipesIds: number[];
   savedCookbooksIds: number[];
 };
 
 const update = async (data: UpdatedUserData, id: number) => {
-  // const userWithNewEmail = await userRepository.findByEmail(data.email);
-  // if (userWithNewEmail && userWithNewEmail.id !== id) {
-  //   throw new Error(MESSAGES.AUTH.ERROR.EMAIL_EXISTS);
-  // }
-
-  //const encryptedPassword = authUtils.encryptPassword(user.password);
-
   const updatedUser = {
     name: data.name,
     photo: data.photo,
     bio: data.bio,
-    //email: data.email,
     savedRecipesIds: data.savedRecipesIds,
     savedCookbooksIds: data.savedCookbooksIds,
   };
@@ -107,12 +97,47 @@ const signIn = async (data: AuthValues) => {
   };
 };
 
+const changeEmail = async (email: string, id: number) => {
+  const userWithSameEmail = await userRepository.findByEmail(email);
+
+  if (userWithSameEmail) {
+    throw new Error('User with this email already exists.');
+  }
+
+  await userRepository.changeEmail(email, id);
+
+  const response = await userRepository.findById(id);
+
+  const token = authUtils.generateAuthToken({
+    email: response.email,
+    id: response.id,
+  });
+
+  return {
+    response,
+    token,
+  };
+};
+
+const changePassword = async (password: string, id: number) => {
+  if (!password) {
+    throw new Error('No password provided.');
+  }
+  const encryptedPassword = authUtils.encryptPassword(password);
+
+  const response = await userRepository.changePassword(encryptedPassword, id);
+
+  return response;
+};
+
 const userService = {
   deleteById,
   findById,
   update,
   signIn,
   signUp,
+  changeEmail,
+  changePassword,
 };
 
 module.exports = {

@@ -64,12 +64,39 @@ const signIn = async (req: express.Request, res: express.Response) => {
   }
 };
 
+const changeEmail = async (req: express.Request, res: express.Response) => {
+  const { id } = req.params;
+  const { email } = req.body;
+
+  try {
+    const { token, response } = await userService.changeEmail(email, id);
+    res.cookie('jwt', token, { httpOnly: true });
+    res.status(200).send(response);
+  } catch (err) {
+    res.status(500).send(`${err}`);
+  }
+}
+
+const changePassword = async (req: express.Request, res: express.Response) => {
+  const { id } = req.params;
+  const { password } = req.body;
+
+  try {
+    const response = await userService.changePassword(password, id);
+    res.status(200).send(response);
+  } catch (err) {
+    res.status(500).send(`${err}`);
+  }
+};
+
 const userController = {
   deleteById,
   findById,
   update,
   signUp,
   signIn,
+  changeEmail,
+  changePassword,
 };
 
 module.exports = {

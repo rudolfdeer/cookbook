@@ -11,6 +11,8 @@ userRouter.get('/:id', userController.findById);
 userRouter.put('/', middlewares.verifyAuthToken, userController.update);
 userRouter.post('/sign-up', userController.signUp);
 userRouter.post('/sign-in', userController.signIn);
+userRouter.post('/change-email', middlewares.verifyAuthToken, userController.changeEmail);
+userRouter.post('/change-password', middlewares.verifyAuthToken, userController.changePassword);
 
 module.exports = {
   userRouter,

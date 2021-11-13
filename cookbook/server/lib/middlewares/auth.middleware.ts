@@ -22,14 +22,15 @@ const verifyAuthToken = async (
     const userPayload = tokenUtils.verifyToken(token);
     req.params = target
       ? {
-          ...userPayload,
-          token,
-          target,
-        }
+        ...userPayload,
+        token,
+        target,
+      }
       : {
-          ...userPayload,
-          token,
-        };
+        ...userPayload,
+        token,
+      };
+
     next();
   } catch (err) {
     res.status(CODE_STATUSES.UNAUTHORISED).send(`${err}`);

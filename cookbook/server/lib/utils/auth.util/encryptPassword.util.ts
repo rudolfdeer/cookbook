@@ -13,7 +13,7 @@ const encryptPassword = (password: string) => {
     CRYPTO.SALT,
     CRYPTO.ITERATIONS,
     CRYPTO.KEYLEN,
-    CRYPTO.DIGEST
+    CRYPTO.DIGEST,
   );
   return encryptedPassword.toString('hex');
 };

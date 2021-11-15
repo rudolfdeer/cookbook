@@ -14,7 +14,7 @@ const comparePasswords = (password: string, hashedPassword: string) => {
       CRYPTO.SALT,
       CRYPTO.ITERATIONS,
       CRYPTO.KEYLEN,
-      CRYPTO.DIGEST
+      CRYPTO.DIGEST,
     )
     .toString('hex');
   return encryptedPassword === hashedPassword;

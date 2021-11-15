@@ -11,14 +11,14 @@ recipeRouter.post('/', middlewares.verifyAuthToken, recipeController.create);
 recipeRouter.delete(
   '/:id',
   middlewares.verifyAuthToken,
-  recipeController.deleteById
+  recipeController.deleteById,
 );
 recipeRouter.get('/:id', recipeController.findById);
 recipeRouter.put('/:id', middlewares.verifyAuthToken, recipeController.update);
 recipeRouter.post(
   '/:id',
   middlewares.verifyAuthToken,
-  recipeController.createComment
+  recipeController.createComment,
 );
 
 module.exports = {

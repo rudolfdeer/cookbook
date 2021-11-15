@@ -36,7 +36,7 @@ const User = db.define(
     freezeTableName: true,
     underscored: true,
     timestamps: false,
-  }
+  },
 );
 
 module.exports = {

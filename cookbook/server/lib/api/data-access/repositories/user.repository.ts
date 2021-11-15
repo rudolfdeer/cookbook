@@ -24,6 +24,11 @@ export type NewUser = {
   password: string;
 };
 
+export type Comment = {
+  text: string;
+  date: string;
+};
+
 const findById = async (id: number) => {
   const user = await User.findOne({
     where: {
@@ -69,7 +74,9 @@ const deleteById = async (id: number) => {
 };
 
 const update = async (body: UpdatedUser, id: number) => {
-  const { name, bio, photo, savedRecipesIds, savedCookbooksIds } = body;
+  const {
+    name, bio, photo, savedRecipesIds, savedCookbooksIds,
+  } = body;
 
   const user = await User.findOne({
     where: {

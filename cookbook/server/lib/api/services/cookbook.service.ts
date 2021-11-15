@@ -1,8 +1,8 @@
 import {
-  Comment,
   NewCookbook,
   UpdatedCookbook,
 } from '../data-access/repositories/cookbook.repository';
+import { Comment } from '../data-access/repositories/user.repository';
 
 export {};
 
@@ -30,7 +30,7 @@ const findById = async (id: number) => {
 const update = async (
   body: UpdatedCookbook,
   cookbookId: number,
-  userId: number
+  userId: number,
 ) => {
   const cookbook = await cookbookRepository.findById(cookbookId);
 
@@ -44,12 +44,12 @@ const update = async (
 const createComment = async (
   body: Comment,
   cookbookId: number,
-  userId: number
+  userId: number,
 ) => {
   const response = await cookbookRepository.createComment(
     body,
     cookbookId,
-    userId
+    userId,
   );
   return response;
 };

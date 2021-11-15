@@ -2,6 +2,7 @@ import {
   NewRecipe,
   UpdatedRecipe,
 } from '../data-access/repositories/recipe.repository';
+import { Comment } from '../data-access/repositories/user.repository';
 
 export {};
 
@@ -29,7 +30,7 @@ const findById = async (id: number) => {
 const update = async (
   body: UpdatedRecipe,
   recipeId: number,
-  userId: number
+  userId: number,
 ) => {
   const recipe = await recipeRepository.findById(recipeId);
 
@@ -47,7 +48,7 @@ const update = async (
 const createComment = async (
   body: Comment,
   recipeId: number,
-  userId: number
+  userId: number,
 ) => {
   const response = await recipeRepository.createComment(body, recipeId, userId);
   return response;

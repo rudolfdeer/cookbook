@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-//import { json } from 'body-parser';
+// import { json } from 'body-parser';
 import { serverConfig } from '../constants/configs/server.configs';
 import { db } from './data-access';
 
@@ -40,9 +40,7 @@ export class App {
   async listen() {
     try {
       await db.sync();
-      this.client.listen(serverConfig.port, () =>
-        console.log(`server started at: http://localhost:${serverConfig.port}`)
-      );
+      this.client.listen(serverConfig.port, () => console.log(`server started at: http://localhost:${serverConfig.port}`));
     } catch (err) {
       console.log(`server error: ${err}`);
     }

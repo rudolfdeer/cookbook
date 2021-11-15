@@ -6,7 +6,7 @@ const { CODE_STATUSES } = require('../constants/code-statuses');
 const verifyAuthToken = async (
   req: express.Request,
   res: express.Response,
-  next: express.NextFunction
+  next: express.NextFunction,
 ) => {
   const token = req.cookies.jwt;
   let target;

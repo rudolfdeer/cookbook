@@ -10,7 +10,7 @@ const {
   CookbookComment,
 } = require('../models');
 
-export type NewCookbookValues = {
+export type NewCookbook = {
   title: string;
   description: string;
   image: string;
@@ -23,7 +23,7 @@ export type Comment = {
   date: string;
 };
 
-export type UpdatedCookbookValues = {
+export type UpdatedCookbook = {
   title: string;
   description: string;
   image: string;
@@ -32,13 +32,16 @@ export type UpdatedCookbookValues = {
   likeUserIds?: number[];
 };
 
-const findAll = () =>
-  Cookbook.findAll({
+const findAll = async () => {
+  const cookbooks = Cookbook.findAll({
     include: User,
   });
 
-const findById = (id: number) =>
-  Cookbook.findOne({
+  return cookbooks;
+};
+
+const findById = async (id: number) => {
+  const cookbook = await Cookbook.findOne({
     where: {
       id,
     },
@@ -61,22 +64,27 @@ const findById = (id: number) =>
     ],
   });
 
-const create = async (cookbook: NewCookbookValues, userId: number) => {
-  const cookbookInstance = await Cookbook.create(
+  return cookbook;
+};
+
+const create = async (body: NewCookbook, userId: number) => {
+  const { title, description, image, tags, recipesIds } = body;
+
+  const cookbook = await Cookbook.create(
     {
-      title: cookbook.title,
-      description: cookbook.description,
-      image: cookbook.image,
-      tags: cookbook.tags,
+      title,
+      description,
+      image,
+      tags,
     },
     {
       include: User,
     }
   );
-  await cookbookInstance.setUser(userId);
-  await cookbookInstance.setRecipes(cookbook.recipesIds);
+  await cookbook.setUser(userId);
+  await cookbook.setRecipes(recipesIds);
 
-  return cookbookInstance;
+  return cookbook;
 };
 
 const deleteById = async (id: number) => {
@@ -88,7 +96,9 @@ const deleteById = async (id: number) => {
   return cookbook.destroy();
 };
 
-const update = async (values: UpdatedCookbookValues, id: number) => {
+const update = async (body: UpdatedCookbook, id: number) => {
+  const { title, description, image, views, recipesIds, likeUserIds } = body;
+
   const cookbook = await Cookbook.findOne({
     where: {
       id,
@@ -96,14 +106,14 @@ const update = async (values: UpdatedCookbookValues, id: number) => {
   });
 
   const updatedCookbook = {
-    title: values.title,
-    description: values.description,
-    image: values.image,
-    views: values.views,
+    title,
+    description,
+    image,
+    views,
   };
 
-  cookbook.setRecipes(values.recipesIds);
-  cookbook.setUsers(values.likeUserIds);
+  cookbook.setRecipes(recipesIds);
+  cookbook.setUsers(likeUserIds);
 
   return cookbook.update(updatedCookbook, {
     include: CookbookComment,
@@ -111,23 +121,25 @@ const update = async (values: UpdatedCookbookValues, id: number) => {
 };
 
 const createComment = async (
-  comment: Comment,
+  body: Comment,
   cookbookId: number,
   userId: number
 ) => {
-  const commentInstance = await CookbookComment.create(
+  const { text, date } = body;
+
+  const comment = await CookbookComment.create(
     {
-      text: comment.text,
-      date: comment.date,
+      text,
+      date,
     },
     {
       include: [User, Cookbook],
     }
   );
-  await commentInstance.setUser(userId);
-  await commentInstance.setCookbook(cookbookId);
+  await comment.setUser(userId);
+  await comment.setCookbook(cookbookId);
 
-  return commentInstance;
+  return comment;
 };
 
 const cookbookRepository = {

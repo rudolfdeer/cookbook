@@ -1,7 +1,7 @@
 import {
   Comment,
-  NewCookbookValues,
-  UpdatedCookbookValues,
+  NewCookbook,
+  UpdatedCookbook,
 } from '../data-access/repositories/cookbook.repository';
 
 export {};
@@ -13,9 +13,9 @@ const findAll = async () => {
   return cookbooks;
 };
 
-const create = async (cookbook: NewCookbookValues, userId: number) => {
-  const newCookbook = await cookbookRepository.create(cookbook, userId);
-  return newCookbook;
+const create = async (body: NewCookbook, userId: number) => {
+  const cookbook = await cookbookRepository.create(body, userId);
+  return cookbook;
 };
 
 const deleteById = async (id: number) => {
@@ -28,30 +28,30 @@ const findById = async (id: number) => {
 };
 
 const update = async (
-  cookbook: UpdatedCookbookValues,
-  id: number,
-  userId: number
-) => {
-  const cookbookInstanse = await cookbookRepository.findById(id);
-
-  if (cookbookInstanse.UserId !== userId) {
-    throw new Error('Recipe was created by other user');
-  }
-  const response = await cookbookRepository.update(cookbook, id);
-  return response;
-};
-
-const createComment = async (
-  comment: Comment,
+  body: UpdatedCookbook,
   cookbookId: number,
   userId: number
 ) => {
-  const response = await cookbookRepository.createComment(
-    comment,
+  const cookbookInstance = await cookbookRepository.findById(cookbookId);
+
+  if (cookbookInstance.UserId !== userId) {
+    throw new Error('Cookbook was created by other user');
+  }
+  const cookbook = await cookbookRepository.update(body, cookbookId);
+  return cookbook;
+};
+
+const createComment = async (
+  body: Comment,
+  cookbookId: number,
+  userId: number
+) => {
+  const comment = await cookbookRepository.createComment(
+    body,
     cookbookId,
     userId
   );
-  return response;
+  return comment;
 };
 
 const cookbookService = {

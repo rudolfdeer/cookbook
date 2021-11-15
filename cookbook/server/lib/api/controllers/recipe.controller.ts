@@ -4,8 +4,8 @@ const { recipeService } = require('../services');
 
 const findAll = async (req: express.Request, res: express.Response) => {
   try {
-    const recipes = await recipeService.findAll();
-    res.status(200).send(recipes);
+    const response = await recipeService.findAll();
+    res.status(200).send(response);
   } catch (err) {
     res.status(500).send(`error while finding all recipes: ${err}`);
   }
@@ -35,8 +35,8 @@ const deleteById = async (req: express.Request, res: express.Response) => {
 const findById = async (req: express.Request, res: express.Response) => {
   const { id } = req.params;
   try {
-    const recipe = await recipeService.findById(id);
-    res.status(200).send(recipe);
+    const response = await recipeService.findById(id);
+    res.status(200).send(response);
   } catch (err) {
     res.status(500).send(`error while finding recipe: ${err}`);
   }

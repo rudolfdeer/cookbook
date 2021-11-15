@@ -11,7 +11,7 @@ const {
   CookbookLike,
 } = require('../models');
 
-type UpdatedUserValues = {
+export type UpdatedUser = {
   name: string;
   photo: string;
   bio: string;
@@ -19,13 +19,13 @@ type UpdatedUserValues = {
   savedCookbooksIds: number[];
 };
 
-type NewUserValues = {
+export type NewUser = {
   email: string;
   password: string;
 };
 
 const findById = async (id: number) => {
-  const userInstance = await User.findOne({
+  const user = await User.findOne({
     where: {
       id,
     },
@@ -56,84 +56,87 @@ const findById = async (id: number) => {
       },
     ],
   });
-  return userInstance;
+  return user;
 };
 
 const deleteById = async (id: number) => {
-  const userInstance = await User.findOne({
+  const user = await User.findOne({
     where: {
       id,
     },
   });
-  return userInstance.destroy();
+  return user.destroy();
 };
 
-const update = async (user: UpdatedUserValues, id: number) => {
-  const userInstance = await User.findOne({
+const update = async (body: UpdatedUser, id: number) => {
+  const { name, bio, photo, savedRecipesIds, savedCookbooksIds } = body;
+
+  const user = await User.findOne({
     where: {
       id,
     },
   });
 
   const updatedUser = {
-    name: user.name,
-    bio: user.bio,
-    photo: user.photo,
+    name,
+    bio,
+    photo,
   };
 
-  await userInstance.setRecipes(user.savedRecipesIds);
-  await userInstance.setCookbooks(user.savedCookbooksIds);
+  await user.setRecipes(savedRecipesIds);
+  await user.setCookbooks(savedCookbooksIds);
 
-  return userInstance.update(updatedUser, {
+  return user.update(updatedUser, {
     include: [RecipeSaved, CookbookSaved],
   });
 };
 
-const create = async (data: NewUserValues) => {
-  const { email, password } = data;
-  const userInstance = await User.create({
+const create = async (body: NewUser) => {
+  const { email, password } = body;
+
+  const user = await User.create({
     email,
     password,
   });
-  return userInstance;
+  return user;
 };
 
 const findByEmail = async (email: string) => {
-  const userInstance = await User.findOne({
+  const user = await User.findOne({
     where: {
       email,
     },
   });
 
-  return userInstance;
+  return user;
 };
 
 const changeEmail = async (email: string, id: number) => {
-  const userInstance = await User.findOne({
+  const user = await User.findOne({
     where: {
       id,
     },
   });
 
-  await userInstance.update({
+  await user.update({
     email,
   });
 
-  return userInstance;
+  return user;
 };
 
 const changePassword = async (password: string, id: number) => {
-  const userInstance = await User.findOne({
+  const user = await User.findOne({
     where: {
       id,
     },
   });
 
-  await userInstance.update({
+  await user.update({
     password,
   });
 
-  return userInstance;
+  return user;
 };
 
 const userRepository = {

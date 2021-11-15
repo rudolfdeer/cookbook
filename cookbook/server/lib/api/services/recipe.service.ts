@@ -1,6 +1,6 @@
 import {
-  NewRecipeValues,
-  UpdatedRecipeValues,
+  NewRecipe,
+  UpdatedRecipe,
 } from '../data-access/repositories/recipe.repository';
 
 export {};
@@ -12,9 +12,9 @@ const findAll = async () => {
   return recipes;
 };
 
-const create = async (recipe: NewRecipeValues, userId: number) => {
-  const newRecipe = await recipeRepository.create(recipe, userId);
-  return newRecipe;
+const create = async (body: NewRecipe, userId: number) => {
+  const recipe = await recipeRepository.create(body, userId);
+  return recipe;
 };
 
 const deleteById = async (id: number) => {
@@ -27,34 +27,30 @@ const findById = async (id: number) => {
 };
 
 const update = async (
-  recipe: UpdatedRecipeValues,
-  id: number,
+  body: UpdatedRecipe,
+  recipeId: number,
   userId: number
 ) => {
-  const recipeInstanse = await recipeRepository.findById(id);
+  const recipeInstanse = await recipeRepository.findById(recipeId);
 
   if (recipeInstanse.UserId !== userId) {
     throw new Error('Recipe was created by other user');
   }
 
-  await recipeRepository.update(recipe, id);
+  await recipeRepository.update(body, recipeId);
 
-  const response = await recipeRepository.findById(id);
+  const recipe = await recipeRepository.findById(recipeId);
 
-  return response;
+  return recipe;
 };
 
 const createComment = async (
-  comment: Comment,
+  body: Comment,
   recipeId: number,
   userId: number
 ) => {
-  const response = await recipeRepository.createComment(
-    comment,
-    recipeId,
-    userId
-  );
-  return response;
+  const comment = await recipeRepository.createComment(body, recipeId, userId);
+  return comment;
 };
 
 const recipeService = {

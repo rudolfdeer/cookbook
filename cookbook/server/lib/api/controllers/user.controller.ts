@@ -15,8 +15,8 @@ const deleteById = async (req: express.Request, res: express.Response) => {
 const findById = async (req: express.Request, res: express.Response) => {
   const { id } = req.params;
   try {
-    const user = await userService.findById(id);
-    res.status(200).send(user);
+    const response = await userService.findById(id);
+    res.status(200).send(response);
   } catch (err) {
     res.status(500).send(`error while finding user: ${err}`);
   }
@@ -75,7 +75,7 @@ const changeEmail = async (req: express.Request, res: express.Response) => {
   } catch (err) {
     res.status(500).send(`${err}`);
   }
-}
+};
 
 const changePassword = async (req: express.Request, res: express.Response) => {
   const { id } = req.params;

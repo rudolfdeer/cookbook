@@ -1,8 +1,15 @@
+import { UpdatedUser } from '../data-access/repositories/user.repository';
+
 export {};
 
 const { userRepository } = require('../data-access/repositories');
 const { authUtils } = require('../../utils/auth.util');
 const { MESSAGES } = require('../../constants/messages');
+
+type Auth = {
+  email: string;
+  password: string;
+};
 
 const deleteById = async (id: number) => {
   await userRepository.deleteById(id);
@@ -13,37 +20,17 @@ const findById = async (id: number) => {
   return user;
 };
 
-type UpdatedUserData = {
-  name: string;
-  photo: string;
-  bio: string;
-  savedRecipesIds: number[];
-  savedCookbooksIds: number[];
+const update = async (body: UpdatedUser, id: number) => {
+  await userRepository.update(body, id);
+
+  const user = await userRepository.findById(id);
+
+  return user;
 };
 
-const update = async (data: UpdatedUserData, id: number) => {
-  const updatedUser = {
-    name: data.name,
-    photo: data.photo,
-    bio: data.bio,
-    savedRecipesIds: data.savedRecipesIds,
-    savedCookbooksIds: data.savedCookbooksIds,
-  };
+const signUp = async (body: Auth) => {
+  const { email, password } = body;
 
-  await userRepository.update(updatedUser, id);
-
-  const response = await userRepository.findById(id);
-
-  return response;
-};
-
-type AuthValues = {
-  email: string;
-  password: string;
-};
-
-const signUp = async (data: AuthValues) => {
-  const { email, password } = data;
   const user = await userRepository.findByEmail(email);
 
   if (user?.email === email) {
@@ -73,8 +60,8 @@ const signUp = async (data: AuthValues) => {
   }
 };
 
-const signIn = async (data: AuthValues) => {
-  const { email, password } = data;
+const signIn = async (body: Auth) => {
+  const { email, password } = body;
   const user = await userRepository.findByEmail(email);
 
   if (!user) {

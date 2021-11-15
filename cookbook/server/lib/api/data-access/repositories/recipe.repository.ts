@@ -2,7 +2,7 @@ export {};
 
 const { RecipeLike, User, Recipe, RecipeComment } = require('../models');
 
-export type NewRecipeValues = {
+export type NewRecipe = {
   title: string;
   description: string;
   image: string;
@@ -16,7 +16,7 @@ export type Comment = {
   date: string;
 };
 
-export type UpdatedRecipeValues = {
+export type UpdatedRecipe = {
   title: string;
   description: string;
   image: string;
@@ -54,10 +54,11 @@ const findById = async (id: number) => {
   return recipe;
 };
 
-const create = async (recipe: NewRecipeValues, id: number) => {
+const create = async (body: NewRecipe, id: number) => {
   const { title, description, image, directions, ingredients, cookingTime } =
-    recipe;
-  const recipeInstance = await Recipe.create(
+    body;
+
+  const recipe = await Recipe.create(
     {
       title,
       description,
@@ -71,9 +72,9 @@ const create = async (recipe: NewRecipeValues, id: number) => {
     }
   );
 
-  await recipeInstance.setUser(id);
+  await recipe.setUser(id);
 
-  return recipeInstance;
+  return recipe;
 };
 
 const deleteById = async (id: number) => {
@@ -85,7 +86,17 @@ const deleteById = async (id: number) => {
   return recipe.destroy();
 };
 
-const update = async (values: UpdatedRecipeValues, id: number) => {
+const update = async (body: UpdatedRecipe, id: number) => {
+  const {
+    title,
+    description,
+    image,
+    directions,
+    ingredients,
+    views,
+    likeUserIds,
+  } = body;
+
   const recipe = await Recipe.findOne({
     where: {
       id,
@@ -93,15 +104,15 @@ const update = async (values: UpdatedRecipeValues, id: number) => {
   });
 
   const updatedRecipe = {
-    title: values.title,
-    description: values.description,
-    image: values.image,
-    views: values.views,
-    directions: values.directions,
-    ingredients: values.ingredients,
+    title,
+    description,
+    image,
+    views,
+    directions,
+    ingredients,
   };
 
-  await recipe.setUsers(values.likeUserIds);
+  await recipe.setUsers(likeUserIds);
 
   return recipe.update(updatedRecipe, {
     include: RecipeComment,
@@ -109,24 +120,26 @@ const update = async (values: UpdatedRecipeValues, id: number) => {
 };
 
 const createComment = async (
-  comment: Comment,
+  body: Comment,
   recipeId: number,
   userId: number
 ) => {
-  const commentInstance = await RecipeComment.create(
+  const { text, date } = body;
+
+  const comment = await RecipeComment.create(
     {
-      text: comment.text,
-      date: comment.date,
+      text,
+      date,
     },
     {
       include: [User, Recipe],
     }
   );
 
-  await commentInstance.setUser(userId);
-  await commentInstance.setRecipe(recipeId);
+  await comment.setUser(userId);
+  await comment.setRecipe(recipeId);
 
-  return commentInstance;
+  return comment;
 };
 
 const recipeRepository = {

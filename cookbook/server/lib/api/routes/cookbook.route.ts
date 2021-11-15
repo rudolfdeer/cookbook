@@ -12,7 +12,11 @@ cookbookRouter.post(
   middlewares.verifyAuthToken,
   cookbookController.create
 );
-cookbookRouter.delete('/:id', cookbookController.deleteById);
+cookbookRouter.delete(
+  '/:id',
+  middlewares.verifyAuthToken,
+  cookbookController.deleteById
+);
 cookbookRouter.get('/:id', cookbookController.findById);
 cookbookRouter.put(
   '/:id',

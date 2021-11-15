@@ -23,9 +23,9 @@ const create = async (req: express.Request, res: express.Response) => {
 };
 
 const deleteById = async (req: express.Request, res: express.Response) => {
-  const { id } = req.params;
+  const { target } = req.params;
   try {
-    await recipeService.deleteById(id);
+    await recipeService.deleteById(target);
     res.status(200).send('recipe deleted');
   } catch (err) {
     res.status(500).send(`error while deleting recipe: ${err}`);

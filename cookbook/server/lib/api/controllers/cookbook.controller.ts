@@ -23,9 +23,9 @@ const create = async (req: express.Request, res: express.Response) => {
 };
 
 const deleteById = async (req: express.Request, res: express.Response) => {
-  const { id } = req.params;
+  const { target } = req.params;
   try {
-    await cookbookService.deleteById(id);
+    await cookbookService.deleteById(target);
     res.status(200).send('cookbook deleted');
   } catch (err) {
     res.status(500).send(`error while deleting cookbook: ${err}`);

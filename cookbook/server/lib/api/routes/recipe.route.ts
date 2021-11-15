@@ -8,7 +8,11 @@ const recipeRouter = express.Router();
 
 recipeRouter.get('/', recipeController.findAll);
 recipeRouter.post('/', middlewares.verifyAuthToken, recipeController.create);
-recipeRouter.delete('/:id', recipeController.deleteById);
+recipeRouter.delete(
+  '/:id',
+  middlewares.verifyAuthToken,
+  recipeController.deleteById
+);
 recipeRouter.get('/:id', recipeController.findById);
 recipeRouter.put('/:id', recipeController.update);
 recipeRouter.post(

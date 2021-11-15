@@ -11,9 +11,7 @@ const {
 } = require('../models');
 
 export type NewCookbookValues = {
-  id: number;
   title: string;
-  userId: number;
   description: string;
   image: string;
   tags: string[];
@@ -63,12 +61,10 @@ const findById = (id: number) =>
     ],
   });
 
-const create = async (cookbook: NewCookbookValues) => {
+const create = async (cookbook: NewCookbookValues, userId: number) => {
   const cookbookInstance = await Cookbook.create(
     {
-      id: cookbook.id,
       title: cookbook.title,
-      UserId: cookbook.userId,
       description: cookbook.description,
       image: cookbook.image,
       tags: cookbook.tags,
@@ -77,8 +73,8 @@ const create = async (cookbook: NewCookbookValues) => {
       include: User,
     }
   );
-
-  cookbookInstance.setRecipes(cookbook.recipesIds);
+  await cookbookInstance.setUser(userId);
+  await cookbookInstance.setRecipes(cookbook.recipesIds);
 
   return cookbookInstance;
 };

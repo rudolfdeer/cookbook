@@ -13,8 +13,9 @@ const findAll = async () => {
   return cookbooks;
 };
 
-const create = async (cookbook: NewCookbookValues) => {
-  await cookbookRepository.create(cookbook);
+const create = async (cookbook: NewCookbookValues, userId: number) => {
+  const newCookbook = await cookbookRepository.create(cookbook, userId);
+  return newCookbook;
 };
 
 const deleteById = async (id: number) => {

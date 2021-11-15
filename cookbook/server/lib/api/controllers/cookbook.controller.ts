@@ -13,9 +13,10 @@ const findAll = async (req: express.Request, res: express.Response) => {
 
 const create = async (req: express.Request, res: express.Response) => {
   const cookbook = req.body;
+  const { id } = req.params;
   try {
-    await cookbookService.create(cookbook);
-    res.status(200).send('cookbook created');
+    const response = await cookbookService.create(cookbook, id);
+    res.status(200).send(response);
   } catch (err) {
     res.status(500).send(`error while creating cookbook: ${err}`);
   }

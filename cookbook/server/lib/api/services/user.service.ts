@@ -16,16 +16,16 @@ const deleteById = async (id: number) => {
 };
 
 const findById = async (id: number) => {
-  const user = await userRepository.findById(id);
-  return user;
+  const response = await userRepository.findById(id);
+  return response;
 };
 
 const update = async (body: UpdatedUser, id: number) => {
   await userRepository.update(body, id);
 
-  const user = await userRepository.findById(id);
+  const response = await userRepository.findById(id);
 
-  return user;
+  return response;
 };
 
 const signUp = async (body: Auth) => {

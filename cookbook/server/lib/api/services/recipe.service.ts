@@ -26,7 +26,17 @@ const findById = async (id: number) => {
   return recipe;
 };
 
-const update = async (recipe: UpdatedRecipeValues, id: number) => {
+const update = async (
+  recipe: UpdatedRecipeValues,
+  id: number,
+  userId: number
+) => {
+  const recipeInstanse = await recipeRepository.findById(id);
+
+  if (recipeInstanse.UserId !== userId) {
+    throw new Error('Recipe was created by other user');
+  }
+
   await recipeRepository.update(recipe, id);
 
   const response = await recipeRepository.findById(id);

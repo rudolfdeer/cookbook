@@ -44,9 +44,9 @@ const findById = async (req: express.Request, res: express.Response) => {
 
 const update = async (req: express.Request, res: express.Response) => {
   const recipe = req.body;
-  const { id } = req.params;
+  const { id, target } = req.params;
   try {
-    const response = await recipeService.update(recipe, id);
+    const response = await recipeService.update(recipe, target, id);
     res.status(200).send(response);
   } catch (err) {
     res.status(500).send(`error while updating recipe: ${err}`);

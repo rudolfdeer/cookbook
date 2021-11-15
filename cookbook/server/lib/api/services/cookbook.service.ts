@@ -28,19 +28,17 @@ const findById = async (id: number) => {
 };
 
 const update = async (
-  data: UpdatedCookbookValues,
-  cookbookId: number,
+  cookbook: UpdatedCookbookValues,
+  id: number,
   userId: number
 ) => {
-  const cookbook = await cookbookRepository.findById(cookbookId);
-  if (!cookbook) {
-    throw new Error('Cookbook doesnt exist');
-  }
+  const cookbookInstanse = await cookbookRepository.findById(id);
 
-  if (cookbook.UserId !== userId) {
-    throw new Error('Cookbook was created by other user');
+  if (cookbookInstanse.UserId !== userId) {
+    throw new Error('Recipe was created by other user');
   }
-  await cookbookRepository.update(data, cookbookId);
+  const response = await cookbookRepository.update(cookbook, id);
+  return response;
 };
 
 const createComment = async (

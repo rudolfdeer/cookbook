@@ -14,7 +14,7 @@ recipeRouter.delete(
   recipeController.deleteById
 );
 recipeRouter.get('/:id', recipeController.findById);
-recipeRouter.put('/:id', recipeController.update);
+recipeRouter.put('/:id', middlewares.verifyAuthToken, recipeController.update);
 recipeRouter.post(
   '/:id',
   middlewares.verifyAuthToken,

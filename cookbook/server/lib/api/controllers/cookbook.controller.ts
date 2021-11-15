@@ -55,10 +55,10 @@ const update = async (req: express.Request, res: express.Response) => {
 
 const createComment = async (req: express.Request, res: express.Response) => {
   const comment = req.body;
-  const { id } = req.params;
+  const { id, target } = req.params;
   try {
-    await cookbookService.createComment(comment, id);
-    res.status(200).send('comment created');
+    const response = await cookbookService.createComment(comment, target, id);
+    res.status(200).send(response);
   } catch (err) {
     res.status(500).send(`error while commenting cookbook: ${err}`);
   }

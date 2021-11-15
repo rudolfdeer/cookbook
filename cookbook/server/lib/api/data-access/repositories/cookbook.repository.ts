@@ -21,7 +21,6 @@ export type NewCookbookValues = {
 };
 
 export type Comment = {
-  userId: number;
   text: string;
   date: string;
 };
@@ -35,32 +34,34 @@ export type UpdatedCookbookValues = {
   likeUserIds?: number[];
 };
 
-const findAll = () => Cookbook.findAll({
-  include: User,
-});
+const findAll = () =>
+  Cookbook.findAll({
+    include: User,
+  });
 
-const findById = (id: number) => Cookbook.findOne({
-  where: {
-    id,
-  },
-  include: [
-    User,
-    {
-      model: RecipeCookbook,
-      include: {
-        model: Recipe,
-        include: [User, RecipeLike],
+const findById = (id: number) =>
+  Cookbook.findOne({
+    where: {
+      id,
+    },
+    include: [
+      User,
+      {
+        model: RecipeCookbook,
+        include: {
+          model: Recipe,
+          include: [User, RecipeLike],
+        },
       },
-    },
-    {
-      model: CookbookComment,
-      include: User,
-    },
-    {
-      model: CookbookLike,
-    },
-  ],
-});
+      {
+        model: CookbookComment,
+        include: User,
+      },
+      {
+        model: CookbookLike,
+      },
+    ],
+  });
 
 const create = async (cookbook: NewCookbookValues) => {
   const cookbookInstance = await Cookbook.create(
@@ -74,7 +75,7 @@ const create = async (cookbook: NewCookbookValues) => {
     },
     {
       include: User,
-    },
+    }
   );
 
   cookbookInstance.setRecipes(cookbook.recipesIds);
@@ -113,7 +114,11 @@ const update = async (values: UpdatedCookbookValues, id: number) => {
   });
 };
 
-const createComment = async (comment: Comment, id: number) => {
+const createComment = async (
+  comment: Comment,
+  cookbookId: number,
+  userId: number
+) => {
   const commentInstance = await CookbookComment.create(
     {
       text: comment.text,
@@ -121,10 +126,10 @@ const createComment = async (comment: Comment, id: number) => {
     },
     {
       include: [User, Cookbook],
-    },
+    }
   );
-  commentInstance.setUser(comment.userId);
-  commentInstance.setCookbook(id);
+  await commentInstance.setUser(userId);
+  await commentInstance.setCookbook(cookbookId);
 
   return commentInstance;
 };

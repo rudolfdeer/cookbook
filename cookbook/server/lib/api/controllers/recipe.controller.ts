@@ -15,8 +15,8 @@ const create = async (req: express.Request, res: express.Response) => {
   const recipe = req.body;
   const { id } = req.params;
   try {
-    await recipeService.create(recipe, id);
-    res.status(200).send('recipe created');
+    const response = await recipeService.create(recipe, id);
+    res.status(200).send(response);
   } catch (err) {
     res.status(500).send(`error while creating recipe: ${err}`);
   }
@@ -46,8 +46,8 @@ const update = async (req: express.Request, res: express.Response) => {
   const recipe = req.body;
   const { id } = req.params;
   try {
-    await recipeService.update(recipe, id);
-    res.status(200).send('recipe updated');
+    const response = await recipeService.update(recipe, id);
+    res.status(200).send(response);
   } catch (err) {
     res.status(500).send(`error while updating recipe: ${err}`);
   }
@@ -55,10 +55,10 @@ const update = async (req: express.Request, res: express.Response) => {
 
 const createComment = async (req: express.Request, res: express.Response) => {
   const comment = req.body;
-  const { id } = req.params;
+  const { id, target } = req.params;
   try {
-    await recipeService.createComment(comment, id);
-    res.status(200).send('comment created');
+    const response = await recipeService.createComment(comment, target, id);
+    res.status(200).send(response);
   } catch (err) {
     res.status(500).send(`error while commenting recipe: ${err}`);
   }

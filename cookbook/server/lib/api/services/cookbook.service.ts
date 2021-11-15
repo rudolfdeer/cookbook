@@ -42,8 +42,17 @@ const update = async (
   await cookbookRepository.update(data, cookbookId);
 };
 
-const createComment = async (comment: Comment, id: number) => {
-  await cookbookRepository.createComment(comment, id);
+const createComment = async (
+  comment: Comment,
+  cookbookId: number,
+  userId: number
+) => {
+  const response = await cookbookRepository.createComment(
+    comment,
+    cookbookId,
+    userId
+  );
+  return response;
 };
 
 const cookbookService = {

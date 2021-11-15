@@ -12,7 +12,6 @@ export type NewRecipeValues = {
 };
 
 export type Comment = {
-  userId: number;
   text: string;
   date: string;
 };
@@ -27,13 +26,16 @@ export type UpdatedRecipeValues = {
   likeUserIds: number[];
 };
 
-const findAll = () =>
-  Recipe.findAll({
+const findAll = async () => {
+  const recipes = await Recipe.findAll({
     include: User,
   });
 
-const findById = (id: number) =>
-  Recipe.findOne({
+  return recipes;
+};
+
+const findById = async (id: number) => {
+  const recipe = await Recipe.findOne({
     where: {
       id,
     },
@@ -48,6 +50,9 @@ const findById = (id: number) =>
       },
     ],
   });
+
+  return recipe;
+};
 
 const create = async (recipe: NewRecipeValues, id: number) => {
   const { title, description, image, directions, ingredients, cookingTime } =
@@ -66,7 +71,7 @@ const create = async (recipe: NewRecipeValues, id: number) => {
     }
   );
 
-  recipeInstance.setUser(id);
+  await recipeInstance.setUser(id);
 
   return recipeInstance;
 };
@@ -96,14 +101,18 @@ const update = async (values: UpdatedRecipeValues, id: number) => {
     ingredients: values.ingredients,
   };
 
-  recipe.setUsers(values.likeUserIds);
+  await recipe.setUsers(values.likeUserIds);
 
   return recipe.update(updatedRecipe, {
     include: RecipeComment,
   });
 };
 
-const createComment = async (comment: Comment, id: number) => {
+const createComment = async (
+  comment: Comment,
+  recipeId: number,
+  userId: number
+) => {
   const commentInstance = await RecipeComment.create(
     {
       text: comment.text,
@@ -114,8 +123,8 @@ const createComment = async (comment: Comment, id: number) => {
     }
   );
 
-  commentInstance.setUser(comment.userId);
-  commentInstance.setRecipe(id);
+  await commentInstance.setUser(userId);
+  await commentInstance.setRecipe(recipeId);
 
   return commentInstance;
 };

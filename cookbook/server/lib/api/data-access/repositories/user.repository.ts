@@ -24,8 +24,8 @@ type NewUserValues = {
   password: string;
 };
 
-const findById = (id: number) => {
-  const userInstance = User.findOne({
+const findById = async (id: number) => {
+  const userInstance = await User.findOne({
     where: {
       id,
     },
@@ -81,8 +81,8 @@ const update = async (user: UpdatedUserValues, id: number) => {
     photo: user.photo,
   };
 
-  userInstance.setRecipes(user.savedRecipesIds);
-  userInstance.setCookbooks(user.savedCookbooksIds);
+  await userInstance.setRecipes(user.savedRecipesIds);
+  await userInstance.setCookbooks(user.savedCookbooksIds);
 
   return userInstance.update(updatedUser, {
     include: [RecipeSaved, CookbookSaved],
@@ -115,26 +115,26 @@ const changeEmail = async (email: string, id: number) => {
     },
   });
 
-  userInstance.update({
+  await userInstance.update({
     email,
   });
 
   return userInstance;
 };
 
-const changePassword = async(password: string, id: number) => {
+const changePassword = async (password: string, id: number) => {
   const userInstance = await User.findOne({
     where: {
       id,
     },
   });
 
-  userInstance.update({
+  await userInstance.update({
     password,
   });
 
   return userInstance;
-}
+};
 
 const userRepository = {
   deleteById,

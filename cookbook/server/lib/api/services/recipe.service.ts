@@ -13,7 +13,8 @@ const findAll = async () => {
 };
 
 const create = async (recipe: NewRecipeValues, userId: number) => {
-  await recipeRepository.create(recipe, userId);
+  const newRecipe = await recipeRepository.create(recipe, userId);
+  return newRecipe;
 };
 
 const deleteById = async (id: number) => {
@@ -27,10 +28,23 @@ const findById = async (id: number) => {
 
 const update = async (recipe: UpdatedRecipeValues, id: number) => {
   await recipeRepository.update(recipe, id);
+
+  const response = await recipeRepository.findById(id);
+
+  return response;
 };
 
-const createComment = async (comment: Comment, id: number) => {
-  await recipeRepository.createComment(comment, id);
+const createComment = async (
+  comment: Comment,
+  recipeId: number,
+  userId: number
+) => {
+  const response = await recipeRepository.createComment(
+    comment,
+    recipeId,
+    userId
+  );
+  return response;
 };
 
 const recipeService = {

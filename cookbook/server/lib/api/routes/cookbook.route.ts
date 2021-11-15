@@ -15,7 +15,11 @@ cookbookRouter.put(
   middlewares.verifyAuthToken,
   cookbookController.update
 );
-cookbookRouter.post('/:id', cookbookController.createComment);
+cookbookRouter.post(
+  '/:id',
+  middlewares.verifyAuthToken,
+  cookbookController.createComment
+);
 
 module.exports = {
   cookbookRouter,

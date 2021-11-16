@@ -18,8 +18,14 @@ const create = async (body: NewRecipe, userId: number) => {
   return response;
 };
 
-const deleteById = async (id: number) => {
-  await recipeRepository.deleteById(id);
+const deleteById = async (recipeId: number, userId: number) => {
+  const recipe = await recipeRepository.findById(recipeId);
+
+  if (recipe.UserId !== userId) {
+    throw new Error('Cannot delete. Recipe was created by other user');
+  }
+
+  await recipeRepository.deleteById(recipeId);
 };
 
 const findById = async (id: number) => {
@@ -27,19 +33,8 @@ const findById = async (id: number) => {
   return response;
 };
 
-const update = async (
-  body: UpdatedRecipe,
-  recipeId: number,
-  userId: number,
-) => {
-  const recipe = await recipeRepository.findById(recipeId);
-
-  if (recipe.UserId !== userId) {
-    throw new Error('Recipe was created by other user');
-  }
-
+const update = async (body: UpdatedRecipe, recipeId: number) => {
   await recipeRepository.update(body, recipeId);
-
   const response = await recipeRepository.findById(recipeId);
 
   return response;
@@ -48,7 +43,7 @@ const update = async (
 const createComment = async (
   body: Comment,
   recipeId: number,
-  userId: number,
+  userId: number
 ) => {
   const response = await recipeRepository.createComment(body, recipeId, userId);
   return response;

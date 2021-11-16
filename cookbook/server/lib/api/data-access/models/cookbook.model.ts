@@ -35,18 +35,10 @@ const Cookbook = db.define(
     freezeTableName: true,
     underscored: true,
     timestamps: false,
-  },
+  }
 );
 
-Cookbook.belongsTo(User, {
-  onDelete: 'CASCADE',
-  hooks: true,
-});
-
-// User.hasMany(Cookbook, {
-//   onDelete: 'CASCADE',
-//   hooks: true,
-// });
+Cookbook.belongsTo(User);
 
 module.exports = {
   Cookbook,

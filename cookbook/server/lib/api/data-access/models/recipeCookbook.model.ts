@@ -6,7 +6,7 @@ const { Cookbook } = require('./cookbook.model');
 const RecipeCookbook = db.define(
   'Recipe_Cookbook',
   {},
-  { freezeTableName: true, timestamps: false, underscored: true },
+  { freezeTableName: true, timestamps: false, underscored: true }
 );
 
 RecipeCookbook.belongsTo(Recipe, {
@@ -19,10 +19,7 @@ Cookbook.hasMany(RecipeCookbook, {
   hooks: true,
 });
 
-Recipe.hasMany(RecipeCookbook, {
-  onDelete: 'CASCADE',
-  hooks: true,
-});
+Recipe.hasMany(RecipeCookbook);
 
 Recipe.belongsToMany(Cookbook, {
   through: RecipeCookbook,

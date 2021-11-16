@@ -18,8 +18,14 @@ const create = async (body: NewCookbook, userId: number) => {
   return response;
 };
 
-const deleteById = async (id: number) => {
-  await cookbookRepository.deleteById(id);
+const deleteById = async (userId: number, cookbookId: number) => {
+  const cookbook = await cookbookRepository.findById(cookbookId);
+
+  if (cookbook.UserId !== userId) {
+    throw new Error('Cannot delete. Cookbook was created by other user');
+  }
+
+  await cookbookRepository.deleteById(cookbookId);
 };
 
 const findById = async (id: number) => {
@@ -27,16 +33,7 @@ const findById = async (id: number) => {
   return response;
 };
 
-const update = async (
-  body: UpdatedCookbook,
-  cookbookId: number,
-  userId: number,
-) => {
-  const cookbook = await cookbookRepository.findById(cookbookId);
-
-  if (cookbook.UserId !== userId) {
-    throw new Error('Cookbook was created by other user');
-  }
+const update = async (body: UpdatedCookbook, cookbookId: number) => {
   const response = await cookbookRepository.update(body, cookbookId);
   return response;
 };
@@ -44,12 +41,12 @@ const update = async (
 const createComment = async (
   body: Comment,
   cookbookId: number,
-  userId: number,
+  userId: number
 ) => {
   const response = await cookbookRepository.createComment(
     body,
     cookbookId,
-    userId,
+    userId
   );
   return response;
 };

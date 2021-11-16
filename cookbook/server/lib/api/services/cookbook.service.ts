@@ -14,7 +14,8 @@ const findAll = async () => {
 };
 
 const create = async (body: NewCookbook, userId: number) => {
-  const response = await cookbookRepository.create(body, userId);
+  const id = await cookbookRepository.create(body, userId);
+  const response = await cookbookRepository.findById(id);
   return response;
 };
 

@@ -14,8 +14,8 @@ const findAll = async () => {
 };
 
 const create = async (body: NewRecipe, userId: number) => {
-  console.log(body, userId);
-  const response = await recipeRepository.create(body, userId);
+  const id = await recipeRepository.create(body, userId);
+  const response = await recipeRepository.findById(id);
   return response;
 };
 

@@ -70,8 +70,9 @@ const create = async (body: NewRecipe, id: number) => {
   );
 
   await recipe.setUser(id);
+  const recipeId = recipe.id;
 
-  return recipe;
+  return recipeId;
 };
 
 const deleteById = async (id: number) => {

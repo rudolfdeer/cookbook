@@ -2,9 +2,7 @@ import { Comment } from './user.repository';
 
 export {};
 
-const {
-  RecipeLike, User, Recipe, RecipeComment,
-} = require('../models');
+const { RecipeLike, User, Recipe, RecipeComment } = require('../models');
 
 export type NewRecipe = {
   title: string;
@@ -54,9 +52,8 @@ const findById = async (id: number) => {
 };
 
 const create = async (body: NewRecipe, id: number) => {
-  const {
-    title, description, image, directions, ingredients, cookingTime,
-  } = body;
+  const { title, description, image, directions, ingredients, cookingTime } =
+    body;
 
   const recipe = await Recipe.create(
     {
@@ -69,7 +66,7 @@ const create = async (body: NewRecipe, id: number) => {
     },
     {
       include: User,
-    },
+    }
   );
 
   await recipe.setUser(id);
@@ -122,7 +119,7 @@ const update = async (body: UpdatedRecipe, id: number) => {
 const createComment = async (
   body: Comment,
   recipeId: number,
-  userId: number,
+  userId: number
 ) => {
   const { text, date } = body;
 
@@ -133,7 +130,7 @@ const createComment = async (
     },
     {
       include: [User, Recipe],
-    },
+    }
   );
 
   await comment.setUser(userId);

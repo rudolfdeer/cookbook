@@ -34,7 +34,8 @@ const findById = async (id: number) => {
 };
 
 const update = async (body: UpdatedCookbook, cookbookId: number) => {
-  const response = await cookbookRepository.update(body, cookbookId);
+  await cookbookRepository.update(body, cookbookId);
+  const response = cookbookRepository.findById(cookbookId);
   return response;
 };
 

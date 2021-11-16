@@ -6,7 +6,7 @@ const { Cookbook } = require('./cookbook.model');
 const RecipeCookbook = db.define(
   'Recipe_Cookbook',
   {},
-  { freezeTableName: true, timestamps: false, underscored: true }
+  { freezeTableName: true, timestamps: false, underscored: true },
 );
 
 RecipeCookbook.belongsTo(Recipe, {

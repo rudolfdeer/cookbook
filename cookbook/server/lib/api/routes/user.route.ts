@@ -15,12 +15,12 @@ userRouter.post('/sign-in', userController.signIn);
 userRouter.post(
   '/change-email',
   middlewares.verifyAuthToken,
-  userController.changeEmail
+  userController.changeEmail,
 );
 userRouter.post(
   '/change-password',
   middlewares.verifyAuthToken,
-  userController.changePassword
+  userController.changePassword,
 );
 
 module.exports = {

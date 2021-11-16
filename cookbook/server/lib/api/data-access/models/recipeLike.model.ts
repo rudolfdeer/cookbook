@@ -6,7 +6,7 @@ const { Recipe } = require('./recipe.model');
 const RecipeLike = db.define(
   'Recipe_Like',
   {},
-  { freezeTableName: true, timestamps: false, underscored: true }
+  { freezeTableName: true, timestamps: false, underscored: true },
 );
 
 Recipe.hasMany(RecipeLike, {

@@ -10,23 +10,23 @@ cookbookRouter.get('/', cookbookController.findAll);
 cookbookRouter.post(
   '/',
   middlewares.verifyAuthToken,
-  cookbookController.create
+  cookbookController.create,
 );
 cookbookRouter.delete(
   '/:id',
   middlewares.verifyAuthToken,
-  cookbookController.deleteById
+  cookbookController.deleteById,
 );
 cookbookRouter.get('/:id', cookbookController.findById);
 cookbookRouter.put(
   '/:id',
   middlewares.verifyAuthToken,
-  cookbookController.update
+  cookbookController.update,
 );
 cookbookRouter.post(
   '/:id',
   middlewares.verifyAuthToken,
-  cookbookController.createComment
+  cookbookController.createComment,
 );
 
 module.exports = {

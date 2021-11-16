@@ -44,7 +44,7 @@ const update = async (body: UpdatedRecipe, recipeId: number) => {
 const createComment = async (
   body: Comment,
   recipeId: number,
-  userId: number
+  userId: number,
 ) => {
   const response = await recipeRepository.createComment(body, recipeId, userId);
   return response;

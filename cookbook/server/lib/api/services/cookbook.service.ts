@@ -43,12 +43,12 @@ const update = async (body: UpdatedCookbook, cookbookId: number) => {
 const createComment = async (
   body: Comment,
   cookbookId: number,
-  userId: number
+  userId: number,
 ) => {
   const response = await cookbookRepository.createComment(
     body,
     cookbookId,
-    userId
+    userId,
   );
   return response;
 };

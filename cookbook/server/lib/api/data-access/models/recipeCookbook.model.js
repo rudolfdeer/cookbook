@@ -29,12 +29,13 @@ module.exports = (sequelize, DataTypes) => {
   }
   RecipeCookbook.init(
     {
-      recipeId: DataTypes.INTEGER,
-      cookbookId: DataTypes.INTEGER,
+      RecipeId: DataTypes.INTEGER,
+      CookbookId: DataTypes.INTEGER,
     },
     {
       sequelize,
       modelName: 'Recipe_Cookbook',
+      freezeTableName: true,
     }
   );
   return RecipeCookbook;

@@ -1,35 +1,36 @@
 'use strict';
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class CookbookComment extends Model {
+  class RecipeComment extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      CookbookComment.belongsTo(models.User);
-      CookbookComment.belongsTo(models.Cookbook);
+      RecipeComment.belongsTo(models.User);
+      RecipeComment.belongsTo(models.Recipe);
 
-      models.Cookbook.hasMany(CookbookComment, {
+      models.Recipe.hasMany(RecipeComment, {
         onDelete: 'CASCADE',
         hooks: true,
       });
 
-      models.User.hasMany(CookbookComment);
+      models.User.hasMany(RecipeComment);
     }
   }
-  CookbookComment.init(
+  RecipeComment.init(
     {
+      UserId: DataTypes.INTEGER,
+      RecipeId: DataTypes.INTEGER,
       text: DataTypes.STRING,
       date: DataTypes.STRING,
-      userId: DataTypes.INTEGER,
-      cookbookId: DataTypes.INTEGER,
     },
     {
       sequelize,
-      modelName: 'Cookbook_Comment',
+      modelName: 'Recipe_Comment',
+      freezeTableName: true,
     }
   );
-  return CookbookComment;
+  return RecipeComment;
 };

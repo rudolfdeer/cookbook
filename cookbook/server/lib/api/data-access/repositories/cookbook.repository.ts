@@ -1,6 +1,17 @@
 import { Comment } from './user.repository';
+const db = require('../models');
 
 export {};
+
+const {
+  //Cookbook,
+  // CookbookLike,
+  // User,
+  // Recipe,
+  // RecipeCookbook,
+  // RecipeLike,
+  // CookbookComment,
+} = require('../models');
 
 const {
   Cookbook,
@@ -10,7 +21,7 @@ const {
   RecipeCookbook,
   RecipeLike,
   CookbookComment,
-} = require('../models');
+} = db;
 
 export type NewCookbook = {
   title: string;
@@ -65,9 +76,7 @@ const findById = async (id: number) => {
 };
 
 const create = async (body: NewCookbook, userId: number) => {
-  const {
-    title, description, image, tags, recipesIds,
-  } = body;
+  const { title, description, image, tags, recipesIds } = body;
 
   const cookbook = await Cookbook.create(
     {
@@ -78,7 +87,7 @@ const create = async (body: NewCookbook, userId: number) => {
     },
     {
       include: User,
-    },
+    }
   );
   await cookbook.setUser(userId);
   await cookbook.setRecipes(recipesIds);
@@ -98,9 +107,7 @@ const deleteById = async (id: number) => {
 };
 
 const update = async (body: UpdatedCookbook, id: number) => {
-  const {
-    title, description, image, views, recipesIds, likeUserIds,
-  } = body;
+  const { title, description, image, views, recipesIds, likeUserIds } = body;
 
   const cookbook = await Cookbook.findOne({
     where: {
@@ -126,7 +133,7 @@ const update = async (body: UpdatedCookbook, id: number) => {
 const createComment = async (
   body: Comment,
   cookbookId: number,
-  userId: number,
+  userId: number
 ) => {
   const { text, date } = body;
 
@@ -137,7 +144,7 @@ const createComment = async (
     },
     {
       include: [User, Cookbook],
-    },
+    }
   );
   await comment.setUser(userId);
   await comment.setCookbook(cookbookId);

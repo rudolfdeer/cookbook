@@ -22,12 +22,13 @@ module.exports = (sequelize, DataTypes) => {
   }
   CookbookSaved.init(
     {
-      userId: DataTypes.INTEGER,
-      cookbookId: DataTypes.INTEGER,
+      UserId: DataTypes.INTEGER,
+      CookbookId: DataTypes.INTEGER,
     },
     {
       sequelize,
       modelName: 'Cookbook_Saved',
+      freezeTableName: true,
     }
   );
   return CookbookSaved;

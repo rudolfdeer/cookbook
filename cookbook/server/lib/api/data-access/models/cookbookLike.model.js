@@ -14,18 +14,19 @@ module.exports = (sequelize, DataTypes) => {
       });
 
       models.User.hasMany(CookbookLike);
-      CookbookLike.belongsTo(models.User);
+      CookbookLike.belongsTo(models.User, { as: 'user', foreignKey: 'userId' });
       models.Cookbook.belongsToMany(models.User, { through: CookbookLike });
     }
   }
   CookbookLike.init(
     {
-      userId: DataTypes.INTEGER,
-      cookbookId: DataTypes.INTEGER,
+      UserId: DataTypes.INTEGER,
+      CookbookId: DataTypes.INTEGER,
     },
     {
       sequelize,
       modelName: 'Cookbook_Like',
+      freezeTableName: true,
     }
   );
   return CookbookLike;

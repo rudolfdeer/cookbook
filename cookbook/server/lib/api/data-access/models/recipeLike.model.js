@@ -20,12 +20,13 @@ module.exports = (sequelize, DataTypes) => {
   }
   RecipeLike.init(
     {
-      userId: DataTypes.INTEGER,
-      recipeId: DataTypes.INTEGER,
+      UserId: DataTypes.INTEGER,
+      RecipeId: DataTypes.INTEGER,
     },
     {
       sequelize,
       modelName: 'Recipe_Like',
+      freezeTableName: true,
     }
   );
   return RecipeLike;

@@ -12,21 +12,24 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: 'CASCADE',
         hooks: true,
       });
-
       models.User.hasMany(CookbookLike);
-      CookbookLike.belongsTo(models.User, { as: 'user', foreignKey: 'userId' });
+      CookbookLike.belongsTo(models.User);
+      CookbookLike.belongsTo(models.Cookbook);
       models.Cookbook.belongsToMany(models.User, { through: CookbookLike });
     }
   }
   CookbookLike.init(
     {
-      UserId: DataTypes.INTEGER,
-      CookbookId: DataTypes.INTEGER,
+      user_id: DataTypes.INTEGER,
+      cookbook_id: DataTypes.INTEGER,
     },
     {
       sequelize,
-      modelName: 'Cookbook_Like',
+      modelName: 'CookbookLike',
       freezeTableName: true,
+      tableName: 'Cookbook_Like',
+      underscored: true,
+      timestamps: false,
     }
   );
   return CookbookLike;

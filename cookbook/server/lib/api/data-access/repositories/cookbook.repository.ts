@@ -42,7 +42,13 @@ export type UpdatedCookbook = {
 
 const findAll = async () => {
   const cookbooks = Cookbook.findAll({
-    include: User,
+    include: [
+      User,
+      {
+        model: CookbookLike,
+        attributes: { exclude: ['CookbookId', 'UserId'] },
+      },
+    ],
   });
 
   return cookbooks;

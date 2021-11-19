@@ -10,21 +10,13 @@ module.exports = {
           primaryKey: true,
           type: Sequelize.INTEGER,
         },
-        userId: {
+        user_id: {
           type: Sequelize.INTEGER,
           allowNull: false,
-          references: {
-            model: 'User',
-            key: 'id',
-          },
         },
-        cookbookId: {
+        cookbook_id: {
           type: Sequelize.INTEGER,
           allowNull: false,
-          references: {
-            model: 'Cookbook',
-            key: 'id',
-          },
         },
       },
       {

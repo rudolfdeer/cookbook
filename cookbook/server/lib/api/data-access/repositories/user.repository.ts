@@ -44,18 +44,39 @@ const findById = async (id: number) => {
       },
       {
         model: CookbookSaved,
+        attributes: {
+          exclude: ['UserId', 'CookbookId', 'user_id'],
+        },
         include: {
           model: Cookbook,
+          attributes: {
+            exclude: ['user_id'],
+          },
           include: [
+            User,
             {
               model: RecipeCookbook,
+              attributes: {
+                exclude: ['cookbook_id', 'CookbookId', 'RecipeId'],
+              },
               include: {
                 model: Recipe,
-                include: [User, RecipeLike],
+                attributes: { exclude: ['UserId', 'user_id'] },
+                include: [
+                  User,
+                  {
+                    model: RecipeLike,
+                    attributes: {
+                      exclude: ['UserId', 'RecipeId'],
+                    },
+                  },
+                ],
               },
             },
-            CookbookLike,
-            User,
+            {
+              model: CookbookLike,
+              attributes: { exclude: ['UserId', 'CookbookId'] },
+            },
           ],
         },
       },
@@ -74,9 +95,7 @@ const deleteById = async (id: number) => {
 };
 
 const update = async (body: UpdatedUser, id: number) => {
-  const {
-    name, bio, photo, savedRecipesIds, savedCookbooksIds,
-  } = body;
+  const { name, bio, photo, savedRecipesIds, savedCookbooksIds } = body;
 
   const user = await User.findOne({
     where: {

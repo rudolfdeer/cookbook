@@ -2,9 +2,7 @@ import { Comment } from './user.repository';
 
 export {};
 
-const {
-  RecipeLike, User, Recipe, RecipeComment,
-} = require('../models');
+const { RecipeLike, User, Recipe, RecipeComment } = require('../models');
 
 export type NewRecipe = {
   title: string;
@@ -27,7 +25,14 @@ export type UpdatedRecipe = {
 
 const findAll = async () => {
   const recipes = await Recipe.findAll({
-    include: User,
+    include: [
+      User,
+      {
+        model: RecipeLike,
+        attributes: { exclude: ['RecipeId', 'UserId'] },
+      },
+    ],
+    attributes: { exclude: ['user_id', 'UserId'] },
   });
 
   return recipes;
@@ -38,14 +43,17 @@ const findById = async (id: number) => {
     where: {
       id,
     },
+    attributes: { exclude: ['user_id', 'UserId'] },
     include: [
       User,
       {
         model: RecipeComment,
+        attributes: { exclude: ['UserId', 'RecipeId', 'recipe_id', 'user_id'] },
         include: User,
       },
       {
         model: RecipeLike,
+        attributes: { exclude: ['UserId', 'RecipeId'] },
       },
     ],
   });
@@ -54,9 +62,8 @@ const findById = async (id: number) => {
 };
 
 const create = async (body: NewRecipe, id: number) => {
-  const {
-    title, description, image, directions, ingredients, cookingTime,
-  } = body;
+  const { title, description, image, directions, ingredients, cookingTime } =
+    body;
 
   const recipe = await Recipe.create(
     {
@@ -69,7 +76,7 @@ const create = async (body: NewRecipe, id: number) => {
     },
     {
       include: User,
-    },
+    }
   );
 
   await recipe.setUser(id);
@@ -123,7 +130,7 @@ const update = async (body: UpdatedRecipe, id: number) => {
 const createComment = async (
   body: Comment,
   recipeId: number,
-  userId: number,
+  userId: number
 ) => {
   const { text, date } = body;
 
@@ -134,7 +141,7 @@ const createComment = async (
     },
     {
       include: [User, Recipe],
-    },
+    }
   );
 
   await comment.setUser(userId);

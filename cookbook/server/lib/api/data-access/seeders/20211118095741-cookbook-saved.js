@@ -6,24 +6,24 @@ module.exports = {
       'Cookbook_Saved',
       [
         {
-          userId: 1,
-          cookbookId: 2,
+          user_id: 1,
+          cookbook_id: 2,
         },
         {
-          userId: 2,
-          cookbookId: 2,
+          user_id: 2,
+          cookbook_id: 2,
         },
         {
-          userId: 3,
-          cookbookId: 1,
+          user_id: 3,
+          cookbook_id: 1,
         },
         {
-          userId: 4,
-          cookbookId: 1,
+          user_id: 4,
+          cookbook_id: 1,
         },
         {
-          userId: 1,
-          cookbookId: 3,
+          user_id: 1,
+          cookbook_id: 3,
         },
       ],
       {}

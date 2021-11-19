@@ -21,14 +21,17 @@ module.exports = (sequelize, DataTypes) => {
   }
   RecipeComment.init(
     {
-      UserId: DataTypes.INTEGER,
-      RecipeId: DataTypes.INTEGER,
+      user_id: DataTypes.INTEGER,
+      recipe_id: DataTypes.INTEGER,
       text: DataTypes.STRING,
       date: DataTypes.STRING,
     },
     {
       sequelize,
-      modelName: 'Recipe_Comment',
+      modelName: 'RecipeComment',
+      tableName: 'Recipe_Comment',
+      underscored: true,
+      timestamps: false,
       freezeTableName: true,
     }
   );

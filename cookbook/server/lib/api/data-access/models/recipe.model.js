@@ -16,16 +16,18 @@ module.exports = (sequelize, DataTypes) => {
       title: DataTypes.STRING,
       description: DataTypes.STRING,
       image: DataTypes.STRING,
-      cookingTime: DataTypes.INTEGER,
+      time: DataTypes.INTEGER,
       views: DataTypes.INTEGER,
       directions: DataTypes.ARRAY(DataTypes.STRING),
       ingredients: DataTypes.ARRAY(DataTypes.STRING),
-      UserId: DataTypes.INTEGER,
+      user_id: DataTypes.INTEGER,
     },
     {
       sequelize,
       modelName: 'Recipe',
       freezeTableName: true,
+      underscored: true,
+      timestamps: false,
     }
   );
   return Recipe;

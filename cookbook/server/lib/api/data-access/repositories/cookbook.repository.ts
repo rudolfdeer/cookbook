@@ -49,6 +49,7 @@ const findAll = async () => {
         attributes: { exclude: ['CookbookId', 'UserId'] },
       },
     ],
+    attributes: { exclude: ['user_id'] },
   });
 
   return cookbooks;
@@ -59,21 +60,32 @@ const findById = async (id: number) => {
     where: {
       id,
     },
+    attributes: { exclude: ['user_id'] },
     include: [
       User,
       {
         model: RecipeCookbook,
+        attributes: { exclude: ['CookbookId', 'RecipeId', 'cookbook_id'] },
         include: {
           model: Recipe,
-          include: [User, RecipeLike],
+          attributes: { exclude: ['UserId'] },
+          include: [
+            User,
+            {
+              model: RecipeLike,
+              attributes: { exclude: ['UserId', 'RecipeId'] },
+            },
+          ],
         },
       },
       {
         model: CookbookComment,
+        attributes: { exclude: ['UserId', 'CookbookId', 'cookbook_id'] },
         include: User,
       },
       {
         model: CookbookLike,
+        attributes: { exclude: ['UserId', 'CookbookId'] },
       },
     ],
   });

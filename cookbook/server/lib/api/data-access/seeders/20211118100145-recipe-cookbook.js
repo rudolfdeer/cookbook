@@ -6,40 +6,40 @@ module.exports = {
       'Recipe_Cookbook',
       [
         {
-          recipeId: 1,
-          cookbookId: 2,
+          recipe_id: 1,
+          cookbook_id: 2,
         },
         {
-          recipeId: 1,
-          cookbookId: 1,
+          recipe_id: 1,
+          cookbook_id: 1,
         },
         {
-          recipeId: 1,
-          cookbookId: 3,
+          recipe_id: 1,
+          cookbook_id: 3,
         },
         {
-          recipeId: 2,
-          cookbookId: 2,
+          recipe_id: 2,
+          cookbook_id: 2,
         },
         {
-          recipeId: 2,
-          cookbookId: 3,
+          recipe_id: 2,
+          cookbook_id: 3,
         },
         {
-          recipeId: 2,
-          cookbookId: 1,
+          recipe_id: 2,
+          cookbook_id: 1,
         },
         {
-          recipeId: 3,
-          cookbookId: 2,
+          recipe_id: 3,
+          cookbook_id: 2,
         },
         {
-          recipeId: 3,
-          cookbookId: 1,
+          recipe_id: 3,
+          cookbook_id: 1,
         },
         {
-          recipeId: 3,
-          cookbookId: 3,
+          recipe_id: 3,
+          cookbook_id: 3,
         },
       ],
       {}

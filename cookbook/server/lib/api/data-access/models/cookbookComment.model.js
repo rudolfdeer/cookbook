@@ -23,13 +23,16 @@ module.exports = (sequelize, DataTypes) => {
     {
       text: DataTypes.STRING,
       date: DataTypes.STRING,
-      UserId: DataTypes.INTEGER,
-      CookbookId: DataTypes.INTEGER,
+      user_id: DataTypes.INTEGER,
+      cookbook_id: DataTypes.INTEGER,
     },
     {
       sequelize,
-      modelName: 'Cookbook_Comment',
+      modelName: 'CookbookComment',
+      tableName: 'Cookbook_Comment',
       freezeTableName: true,
+      underscored: true,
+      timestamps: false,
     }
   );
   return CookbookComment;

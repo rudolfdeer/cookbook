@@ -6,28 +6,28 @@ module.exports = {
       'Recipe_Like',
       [
         {
-          userId: 1,
-          recipeId: 2,
+          user_id: 1,
+          recipe_id: 2,
         },
         {
-          userId: 2,
-          recipeId: 2,
+          user_id: 2,
+          recipe_id: 2,
         },
         {
-          userId: 3,
-          recipeId: 2,
+          user_id: 3,
+          recipe_id: 2,
         },
         {
-          userId: 4,
-          recipeId: 1,
+          user_id: 4,
+          recipe_id: 1,
         },
         {
-          userId: 4,
-          recipeId: 2,
+          user_id: 4,
+          recipe_id: 2,
         },
         {
-          userId: 1,
-          recipeId: 3,
+          user_id: 1,
+          recipe_id: 3,
         },
       ],
       {}

@@ -38,10 +38,6 @@ const Cookbook = db.define(
   }
 );
 
-User.hasMany(Cookbook, {
-  onDelete: 'CASCADE',
-  hooks: true,
-});
 Cookbook.belongsTo(User);
 
 module.exports = {

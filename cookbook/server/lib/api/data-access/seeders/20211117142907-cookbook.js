@@ -6,7 +6,7 @@ module.exports = {
       'Cookbook',
       [
         {
-          id: 1,
+          //id: 1,
           image: 'images/cookbook-itsallaboutpancakes.jpg',
           title: 'All about pancakes',
           user_id: 1,
@@ -15,7 +15,7 @@ module.exports = {
           tags: ['Without eggs', 'Without milk'],
         },
         {
-          id: 2,
+          //id: 2,
           image: 'images/cookbook-icecreamdream.jpg',
           title: 'Icecream dream',
           user_id: 1,
@@ -24,7 +24,7 @@ module.exports = {
           tags: ['Vegetarian', 'Without milk'],
         },
         {
-          id: 3,
+          //id: 3,
           image: 'images/cookbook-fastbreakfast.jpeg',
           title: 'Fast breakfast',
           user_id: 2,
@@ -33,7 +33,7 @@ module.exports = {
           tags: ['Without eggs', 'Without milk', 'Vegetarian'],
         },
         {
-          id: 4,
+         // id: 4,
           image: 'images/cookbook-salad.jpeg',
           title: 'Salads',
           user_id: 3,
@@ -42,7 +42,7 @@ module.exports = {
           tags: ['Without milk'],
         },
         {
-          id: 5,
+          //id: 5,
           image: 'images/canapes.jpg',
           title: 'The best cookbook',
           user_id: 4,

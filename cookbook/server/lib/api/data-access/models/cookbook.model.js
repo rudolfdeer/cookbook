@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       image: DataTypes.STRING,
       views: DataTypes.INTEGER,
       tags: DataTypes.ARRAY(DataTypes.STRING),
-      user_id: DataTypes.INTEGER,
+      UserId: DataTypes.INTEGER,
     },
     {
       sequelize,

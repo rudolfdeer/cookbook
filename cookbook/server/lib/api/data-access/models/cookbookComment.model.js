@@ -23,8 +23,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       text: DataTypes.STRING,
       date: DataTypes.STRING,
-      user_id: DataTypes.INTEGER,
-      cookbook_id: DataTypes.INTEGER,
+      UserId: DataTypes.INTEGER,
+      CookbookId: DataTypes.INTEGER,
     },
     {
       sequelize,

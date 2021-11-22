@@ -23,14 +23,12 @@ module.exports = (sequelize, DataTypes) => {
       models.Recipe.belongsToMany(models.Cookbook, {
         through: RecipeCookbook,
       });
-
-      models.Cookbook.belongsToMany(models.Recipe, { through: RecipeCookbook });
     }
   }
   RecipeCookbook.init(
     {
-      recipe_id: DataTypes.INTEGER,
-      cookbook_id: DataTypes.INTEGER,
+      RecipeId: DataTypes.INTEGER,
+      CookbookId: DataTypes.INTEGER,
     },
     {
       sequelize,

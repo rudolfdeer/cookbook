@@ -4,16 +4,6 @@ const db = require('../models');
 export {};
 
 const {
-  //Cookbook,
-  // CookbookLike,
-  // User,
-  // Recipe,
-  // RecipeCookbook,
-  // RecipeLike,
-  // CookbookComment,
-} = require('../models');
-
-const {
   Cookbook,
   CookbookLike,
   User,
@@ -46,7 +36,6 @@ const findAll = async () => {
       User,
       {
         model: CookbookLike,
-        attributes: { exclude: ['CookbookId', 'UserId'] },
       },
     ],
     attributes: { exclude: ['user_id'] },
@@ -65,15 +54,13 @@ const findById = async (id: number) => {
       User,
       {
         model: RecipeCookbook,
-        attributes: { exclude: ['CookbookId', 'RecipeId', 'cookbook_id'] },
+        attributes: { exclude: ['CookbookId', 'cookbook_id'] },
         include: {
           model: Recipe,
-          attributes: { exclude: ['UserId'] },
           include: [
             User,
             {
               model: RecipeLike,
-              attributes: { exclude: ['UserId', 'RecipeId'] },
             },
           ],
         },
@@ -85,7 +72,6 @@ const findById = async (id: number) => {
       },
       {
         model: CookbookLike,
-        attributes: { exclude: ['UserId', 'CookbookId'] },
       },
     ],
   });

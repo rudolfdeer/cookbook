@@ -20,8 +20,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   RecipeLike.init(
     {
-      user_id: DataTypes.INTEGER,
-      recipe_id: DataTypes.INTEGER,
+      UserId: DataTypes.INTEGER,
+      RecipeId: DataTypes.INTEGER,
     },
     {
       sequelize,

@@ -21,8 +21,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   RecipeComment.init(
     {
-      user_id: DataTypes.INTEGER,
-      recipe_id: DataTypes.INTEGER,
+      UserId: DataTypes.INTEGER,
+      RecipeId: DataTypes.INTEGER,
       text: DataTypes.STRING,
       date: DataTypes.STRING,
     },

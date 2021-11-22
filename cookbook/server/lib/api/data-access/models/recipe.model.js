@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       views: DataTypes.INTEGER,
       directions: DataTypes.ARRAY(DataTypes.STRING),
       ingredients: DataTypes.ARRAY(DataTypes.STRING),
-      user_id: DataTypes.INTEGER,
+      UserId: DataTypes.INTEGER,
     },
     {
       sequelize,

@@ -6,7 +6,6 @@ module.exports = {
       'User',
       [
         {
-          //id: 1,
           name: 'Jonh Doe',
           photo: 'images/user1.png',
           email: 'johndoe@test.com',
@@ -15,7 +14,6 @@ module.exports = {
           bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
         },
         {
-          //id: 2,
           name: 'John Galt',
           photo: 'images/user1.png',
           email: 'johngalt@test.com',
@@ -24,7 +22,6 @@ module.exports = {
           bio: 'I don’t know about you but I love pizza. Especially when that pizza comes with Papa John’s very own garlic pizza sticks. ',
         },
         {
-          //id: 3,
           name: 'Patricia Holman',
           photo: 'images/user1.png',
           email: 'pholman@test.com',
@@ -33,7 +30,6 @@ module.exports = {
           bio: 'Dont like pizza',
         },
         {
-          //id: 4,
           name: 'Winston Smith',
           photo: 'images/user1.png',
           email: 'smith@test.com',

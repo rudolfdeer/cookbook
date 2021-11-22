@@ -6,7 +6,6 @@ module.exports = {
       'Recipe',
       [
         {
-          //id: 1,
           title: 'Fresh meat',
           image: 'images/freshmeat.jpg',
           user_id: 1,
@@ -17,7 +16,6 @@ module.exports = {
           views: 252,
         },
         {
-          //id: 2,
           title: 'Pancakes new',
           image: 'images/pancakesnew.jpg',
           user_id: 1,
@@ -29,7 +27,6 @@ module.exports = {
           views: 123,
         },
         {
-          //id: 3,
           title: 'Pancakes',
           image: 'images/pancakes.jpg',
           user_id: 2,
@@ -41,7 +38,6 @@ module.exports = {
           views: 200,
         },
         {
-          //id: 4,
           title: 'Fresh meat with potato and cheeze ',
           image: 'images/freshmeatwithpotatoandcheeze.jpg',
           user_id: 1,
@@ -52,7 +48,6 @@ module.exports = {
           views: 212,
         },
         {
-          //id: 5,
           title: 'Fresh fruits',
           image: 'images/freshfruits.jpg',
           user_id: 4,

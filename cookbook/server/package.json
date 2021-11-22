@@ -8,11 +8,12 @@
     "start": "node dist/index.js",
     "watch": "nodemon",
     "lint": "eslint lib",
-    "create": "sequelize-cli db:create",
-    "migrate": "sequelize-cli db:migrate",
     "migrate-undo": "sequelize-cli db:migrate:undo",
     "migrate-undo-all": "sequelize-cli db:migrate:undo:all",
-    "seeds": "sequelize-cli db:seed:all"
+    "create": "sequelize-cli db:create",
+    "migrate": "sequelize-cli db:migrate",
+    "seeds": "sequelize-cli db:seed:all",
+    "db-init": "sequelize-cli db:create && sequelize-cli db:migrate && sequelize-cli db:seed:all && nodemon"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.3.0",

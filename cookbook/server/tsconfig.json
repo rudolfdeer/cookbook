@@ -13,6 +13,6 @@
     "skipLibCheck": true /* Skip type checking of declaration files. */,
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
   },
-  "include": ["lib/**/*.ts", "lib/api/data-access/models/cookbook.model..js"],
+  "include": ["lib/**/*.ts"],
   "exclude": ["node_modules"]
 }

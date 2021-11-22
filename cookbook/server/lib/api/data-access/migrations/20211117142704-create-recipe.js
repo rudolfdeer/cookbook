@@ -19,6 +19,7 @@ module.exports = {
       },
       time: {
         type: Sequelize.INTEGER,
+        defaultValue: 0,
       },
       views: {
         type: Sequelize.INTEGER,
@@ -39,6 +40,7 @@ module.exports = {
           model: 'User',
           key: 'id',
         },
+        onDelete: 'CASCADE',
       },
     });
   },

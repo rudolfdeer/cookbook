@@ -6,10 +6,13 @@ const { Recipe } = require('./recipe.model');
 const RecipeSaved = db.define(
   'Recipe_Saved',
   {},
-  { freezeTableName: true, timestamps: false, underscored: true },
+  { freezeTableName: true, timestamps: false, underscored: true }
 );
 
-User.hasMany(RecipeSaved);
+User.hasMany(RecipeSaved, {
+  onDelete: 'CASCADE',
+  hooks: true,
+});
 RecipeSaved.belongsTo(Recipe);
 RecipeSaved.belongsTo(User);
 

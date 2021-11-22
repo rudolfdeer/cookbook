@@ -32,7 +32,7 @@ const Recipe = db.define(
       type: Sequelize.ARRAY(Sequelize.STRING),
       allowNull: false,
     },
-    cookingTime: {
+    time: {
       type: Sequelize.INTEGER,
       allowNull: false,
     },
@@ -45,8 +45,13 @@ const Recipe = db.define(
     freezeTableName: true,
     underscored: true,
     timestamps: false,
-  },
+  }
 );
+
+User.hasMany(Recipe, {
+  onDelete: 'CASCADE',
+  hooks: true,
+});
 
 Recipe.belongsTo(User);
 

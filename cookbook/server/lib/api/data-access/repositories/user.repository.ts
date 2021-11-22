@@ -44,38 +44,24 @@ const findById = async (id: number) => {
       },
       {
         model: CookbookSaved,
-        attributes: {
-          exclude: ['UserId', 'CookbookId', 'user_id'],
-        },
         include: {
           model: Cookbook,
-          attributes: {
-            exclude: ['user_id'],
-          },
           include: [
             User,
             {
               model: RecipeCookbook,
-              attributes: {
-                exclude: ['cookbook_id', 'CookbookId', 'RecipeId'],
-              },
               include: {
                 model: Recipe,
-                attributes: { exclude: ['UserId', 'user_id'] },
                 include: [
                   User,
                   {
                     model: RecipeLike,
-                    attributes: {
-                      exclude: ['UserId', 'RecipeId'],
-                    },
                   },
                 ],
               },
             },
             {
               model: CookbookLike,
-              attributes: { exclude: ['UserId', 'CookbookId'] },
             },
           ],
         },

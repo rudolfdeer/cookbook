@@ -13,10 +13,20 @@ module.exports = {
         user_id: {
           type: Sequelize.INTEGER,
           allowNull: false,
+          references: {
+            model: 'User',
+            key: 'id',
+          },
+          onDelete: 'CASCADE',
         },
         cookbook_id: {
           type: Sequelize.INTEGER,
           allowNull: false,
+          references: {
+            model: 'Cookbook',
+            key: 'id',
+          },
+          onDelete: 'CASCADE',
         },
       },
       {

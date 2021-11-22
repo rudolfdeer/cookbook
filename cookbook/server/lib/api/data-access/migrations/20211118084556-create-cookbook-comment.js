@@ -21,6 +21,7 @@ module.exports = {
           model: 'User',
           key: 'id',
         },
+        onDelete: 'CASCADE',
       },
       cookbook_id: {
         type: Sequelize.INTEGER,
@@ -29,6 +30,7 @@ module.exports = {
           model: 'Cookbook',
           key: 'id',
         },
+        onDelete: 'CASCADE',
       },
     });
   },

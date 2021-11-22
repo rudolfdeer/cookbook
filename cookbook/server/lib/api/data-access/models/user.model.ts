@@ -1,6 +1,8 @@
 import { db } from '../index';
 
 const Sequelize = require('sequelize');
+//const { Cookbook } = require('./cookbook.model');
+//const { Recipe } = require('./recipe.model');
 
 const User = db.define(
   'User',
@@ -36,7 +38,7 @@ const User = db.define(
     freezeTableName: true,
     underscored: true,
     timestamps: false,
-  },
+  }
 );
 
 module.exports = {

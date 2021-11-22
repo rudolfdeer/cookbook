@@ -20,7 +20,7 @@ const RecipeComment = db.define(
     freezeTableName: true,
     underscored: true,
     timestamps: false,
-  },
+  }
 );
 
 RecipeComment.belongsTo(User);
@@ -31,7 +31,10 @@ Recipe.hasMany(RecipeComment, {
   hooks: true,
 });
 
-User.hasMany(RecipeComment);
+User.hasMany(RecipeComment, {
+  onDelete: 'CASCADE',
+  hooks: true,
+});
 
 module.exports = {
   RecipeComment,

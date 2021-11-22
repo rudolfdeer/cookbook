@@ -6,10 +6,13 @@ const { Cookbook } = require('./cookbook.model');
 const CookbookSaved = db.define(
   'Cookbook_Saved',
   {},
-  { freezeTableName: true, timestamps: false, underscored: true },
+  { freezeTableName: true, timestamps: false, underscored: true }
 );
 
-User.hasMany(CookbookSaved);
+User.hasMany(CookbookSaved, {
+  onDelete: 'CASCADE',
+  hooks: true,
+});
 CookbookSaved.belongsTo(Cookbook);
 CookbookSaved.belongsTo(User);
 

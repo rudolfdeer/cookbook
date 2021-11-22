@@ -35,7 +35,7 @@ const Cookbook = db.define(
     freezeTableName: true,
     underscored: true,
     timestamps: false,
-  }
+  },
 );
 
 Cookbook.belongsTo(User);

@@ -45,7 +45,7 @@ const Recipe = db.define(
     freezeTableName: true,
     underscored: true,
     timestamps: false,
-  }
+  },
 );
 
 Recipe.belongsTo(User);

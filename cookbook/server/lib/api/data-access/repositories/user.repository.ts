@@ -81,7 +81,9 @@ const deleteById = async (id: number) => {
 };
 
 const update = async (body: UpdatedUser, id: number) => {
-  const { name, bio, photo, savedRecipesIds, savedCookbooksIds } = body;
+  const {
+    name, bio, photo, savedRecipesIds, savedCookbooksIds,
+  } = body;
 
   const user = await User.findOne({
     where: {

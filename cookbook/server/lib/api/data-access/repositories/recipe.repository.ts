@@ -73,7 +73,6 @@ const create = async (body: NewRecipe, id: number) => {
     }
   );
 
-  //await recipe.setUser(id);
   const recipeId = recipe.id;
 
   return recipeId;
@@ -139,9 +138,6 @@ const createComment = async (
       include: [User, Recipe],
     }
   );
-
-  //await comment.setUser(userId);
-  //await comment.setRecipe(recipeId);
 
   return comment;
 };

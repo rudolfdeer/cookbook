@@ -1,8 +1,6 @@
 import { db } from '../index';
 
 const Sequelize = require('sequelize');
-//const { Cookbook } = require('./cookbook.model');
-//const { Recipe } = require('./recipe.model');
 
 const User = db.define(
   'User',

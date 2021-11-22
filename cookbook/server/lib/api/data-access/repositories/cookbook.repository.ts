@@ -90,7 +90,6 @@ const create = async (body: NewCookbook, userId: number) => {
       include: User,
     }
   );
-  //await cookbook.setUser(userId);
   await cookbook.setRecipes(recipesIds);
 
   const cookbookId = cookbook.id;

@@ -28,7 +28,7 @@ const deleteById = async (req: express.Request, res: express.Response) => {
     await recipeService.deleteById(target, id);
     res.status(200).send('recipe deleted');
   } catch (err) {
-    res.status(500).send(`error while deleting recipe: ${err}`);
+    res.status(401).send(`${err}`);
   }
 };
 
@@ -49,7 +49,7 @@ const update = async (req: express.Request, res: express.Response) => {
     const response = await recipeService.update(recipe, target);
     res.status(200).send(response);
   } catch (err) {
-    res.status(500).send(`error while updating recipe: ${err}`);
+    res.status(401).send(`${err}`);
   }
 };
 

@@ -9,7 +9,7 @@ const deleteById = async (req: express.Request, res: express.Response) => {
     res.clearCookie('jwt');
     res.status(200).send('user deleted');
   } catch (err) {
-    res.status(401).send(`${err}`);
+    res.status(500).send(`${err}`);
   }
 };
 
@@ -30,7 +30,7 @@ const update = async (req: express.Request, res: express.Response) => {
     const response = await userService.update(user, id);
     res.status(200).send(response);
   } catch (err) {
-    res.status(401).send(`${err}`);
+    res.status(500).send(`${err}`);
   }
 };
 
@@ -61,7 +61,7 @@ const signIn = async (req: express.Request, res: express.Response) => {
     res.cookie('jwt', token, { httpOnly: true });
     res.status(200).send(response);
   } catch (err) {
-    res.status(401).send(`${err}`);
+    res.status(500).send(`${err}`);
   }
 };
 
@@ -74,7 +74,7 @@ const changeEmail = async (req: express.Request, res: express.Response) => {
     res.cookie('jwt', token, { httpOnly: true });
     res.status(200).send(response);
   } catch (err) {
-    res.status(401).send(`${err}`);
+    res.status(500).send(`${err}`);
   }
 };
 
@@ -86,7 +86,7 @@ const changePassword = async (req: express.Request, res: express.Response) => {
     const response = await userService.changePassword(password, id);
     res.status(200).send(response);
   } catch (err) {
-    res.status(401).send(`${err}`);
+    res.status(500).send(`${err}`);
   }
 };
 

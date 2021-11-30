@@ -28,7 +28,7 @@ const deleteById = async (req: express.Request, res: express.Response) => {
     await cookbookService.deleteById(id, target);
     res.status(200).send('cookbook deleted');
   } catch (err) {
-    res.status(401).send(`${err}`);
+    res.status(500).send(`${err}`);
   }
 };
 
@@ -49,7 +49,7 @@ const update = async (req: express.Request, res: express.Response) => {
     const response = await cookbookService.update(cookbook, target);
     res.status(200).send(response);
   } catch (err) {
-    res.status(401).send(`${err}`);
+    res.status(500).send(`${err}`);
   }
 };
 

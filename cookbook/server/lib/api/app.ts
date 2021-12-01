@@ -39,7 +39,9 @@ export class App {
   async listen() {
     try {
       await db.sync();
-      this.client.listen(serverConfig.port, () => console.log(`server started at: http://localhost:${serverConfig.port}`));
+      this.client.listen(serverConfig.port, () =>
+        console.log(`server started at: http://localhost:${serverConfig.port}`)
+      );
     } catch (err) {
       console.log(`server error: ${err}`);
     }

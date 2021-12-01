@@ -1,7 +1,7 @@
 export {};
 
-const { CODE_STATUSES } = require('../constants/code-statuses');
-const { MESSAGES } = require('../constants/messages');
+const { CODE_STATUSES } = require('../../constants/code-statuses');
+const { MESSAGES } = require('../../constants/messages');
 
 class ExternalError {
   message: string;

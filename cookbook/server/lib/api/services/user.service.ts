@@ -5,6 +5,8 @@ export {};
 const { userRepository } = require('../data-access/repositories');
 const { authUtils } = require('../../utils/auth.util');
 const { MESSAGES } = require('../../constants/messages');
+const { CODE_STATUSES } = require('../../constants/code-statuses');
+const { AuthError } = require('../../helpers/errors');
 
 type Auth = {
   email: string;
@@ -34,7 +36,7 @@ const signUp = async (body: Auth) => {
   const user = await userRepository.findByEmail(email);
 
   if (user?.email === email) {
-    throw new Error(MESSAGES.AUTH.ERROR.EMAIL_EXISTS);
+    throw new AuthError({ message: MESSAGES.AUTH.ERROR.EMAIL_EXISTS });
   }
 
   if (!user) {
@@ -65,13 +67,13 @@ const signIn = async (body: Auth) => {
   const user = await userRepository.findByEmail(email);
 
   if (!user) {
-    throw new Error(MESSAGES.AUTH.ERROR.EMAIL_NOT_EXIST);
+    throw new AuthError({ message: MESSAGES.AUTH.ERROR.EMAIL_NOT_EXIST });
   }
 
   const isPasswordMatched = authUtils.comparePasswords(password, user.password);
 
   if (!isPasswordMatched) {
-    throw new Error(MESSAGES.AUTH.ERROR.WRONG_PASSWORD);
+    throw new AuthError({ message: MESSAGES.AUTH.ERROR.WRONG_PASSWORD });
   }
 
   const response = await userRepository.findById(user.id);
@@ -88,7 +90,7 @@ const changeEmail = async (email: string, id: number) => {
   const userWithSameEmail = await userRepository.findByEmail(email);
 
   if (userWithSameEmail) {
-    throw new Error('User with this email already exists.');
+    throw new AuthError({ status: CODE_STATUSES.FORBIDDEN, message: MESSAGES.AUTH.ERROR.EMAIL_EXIST });
   }
 
   await userRepository.changeEmail(email, id);
@@ -108,7 +110,7 @@ const changeEmail = async (email: string, id: number) => {
 
 const changePassword = async (password: string, id: number) => {
   if (!password) {
-    throw new Error('No password provided.');
+    throw new AuthError({ status: CODE_STATUSES.FORBIDDEN, message: 'No password provided' });
   }
   const encryptedPassword = authUtils.encryptPassword(password);
 

@@ -1,4 +1,5 @@
 import express from 'express';
+import { IError } from '../../helpers/errors';
 
 const { userService } = require('../services');
 
@@ -45,8 +46,8 @@ const signUp = async (req: express.Request, res: express.Response) => {
     res.cookie('jwt', token, { httpOnly: false });
     res.status(200).send(response);
   } catch (err) {
-    console.log(err);
-    res.status(500).send(`${err}`);
+    const error = err as IError;
+    res.status(error.status).send(error.message);
   }
 };
 
@@ -61,7 +62,8 @@ const signIn = async (req: express.Request, res: express.Response) => {
     res.cookie('jwt', token, { httpOnly: true });
     res.status(200).send(response);
   } catch (err) {
-    res.status(500).send(`${err}`);
+    const error = err as IError;
+    res.status(error.status).send(error.message);
   }
 };
 
@@ -74,7 +76,8 @@ const changeEmail = async (req: express.Request, res: express.Response) => {
     res.cookie('jwt', token, { httpOnly: true });
     res.status(200).send(response);
   } catch (err) {
-    res.status(500).send(`${err}`);
+    const error = err as IError;
+    res.status(error.status).send(error.message);
   }
 };
 
@@ -86,7 +89,8 @@ const changePassword = async (req: express.Request, res: express.Response) => {
     const response = await userService.changePassword(password, id);
     res.status(200).send(response);
   } catch (err) {
-    res.status(500).send(`${err}`);
+    const error = err as IError;
+    res.status(error.status).send(error.message);
   }
 };
 

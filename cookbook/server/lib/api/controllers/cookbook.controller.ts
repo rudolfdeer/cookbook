@@ -1,4 +1,5 @@
 import express from 'express';
+import { IError } from '../../helpers/errors';
 
 const { cookbookService } = require('../services');
 
@@ -28,7 +29,8 @@ const deleteById = async (req: express.Request, res: express.Response) => {
     await cookbookService.deleteById(id, target);
     res.status(200).send('cookbook deleted');
   } catch (err) {
-    res.status(500).send(`${err}`);
+    const error = err as IError;
+    res.status(error.status).send(error.message);
   }
 };
 
@@ -44,12 +46,13 @@ const findById = async (req: express.Request, res: express.Response) => {
 
 const update = async (req: express.Request, res: express.Response) => {
   const cookbook = req.body;
-  const { target } = req.params;
+  const { target, id } = req.params;
   try {
-    const response = await cookbookService.update(cookbook, target);
+    const response = await cookbookService.update(cookbook, target, id);
     res.status(200).send(response);
   } catch (err) {
-    res.status(500).send(`${err}`);
+    const error = err as IError;
+    res.status(error.status).send(error.message);
   }
 };
 

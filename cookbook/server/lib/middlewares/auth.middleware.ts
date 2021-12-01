@@ -2,6 +2,8 @@ import express from 'express';
 
 const { tokenUtils } = require('../utils/token.util');
 const { CODE_STATUSES } = require('../constants/code-statuses');
+const { MESSAGES } = require('../constants/messages');
+const { AuthError } = require('../helpers/errors');
 
 const verifyAuthToken = async (
   req: express.Request,
@@ -15,7 +17,7 @@ const verifyAuthToken = async (
   }
 
   if (!token) {
-    throw new Error('No token provided.');
+    throw new AuthError({ message: 'No token provided.' });
   }
 
   try {
@@ -33,7 +35,7 @@ const verifyAuthToken = async (
 
     next();
   } catch (err) {
-    res.status(CODE_STATUSES.UNAUTHORISED).send(`${err}`);
+    res.status(CODE_STATUSES.UNAUTHORISED).send(MESSAGES.AUTH.ERROR.UNAUTHORISED);
   }
 };
 

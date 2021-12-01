@@ -1,3 +1,5 @@
+export {};
+
 class InternalError {
   message: string;
 

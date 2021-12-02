@@ -21,7 +21,8 @@ const findById = async (req: express.Request, res: express.Response) => {
     const response = await userService.findById(id);
     res.status(CODE_STATUSES.OK).send(response);
   } catch (err) {
-    res.status(CODE_STATUSES.SERVER_ERROR).send(`${err}`);
+    const error = err as IError;
+    res.status(error.status).send(error.message);
   }
 };
 

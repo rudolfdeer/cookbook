@@ -1,5 +1,7 @@
 import { Comment } from './user.repository';
 
+const db = require('../models');
+
 export {};
 
 const {
@@ -10,7 +12,7 @@ const {
   RecipeCookbook,
   RecipeLike,
   CookbookComment,
-} = require('../models');
+} = db;
 
 export type NewCookbook = {
   title: string;
@@ -31,7 +33,12 @@ export type UpdatedCookbook = {
 
 const findAll = async () => {
   const cookbooks = Cookbook.findAll({
-    include: User,
+    include: [
+      User,
+      {
+        model: CookbookLike,
+      },
+    ],
   });
 
   return cookbooks;
@@ -48,7 +55,12 @@ const findById = async (id: number) => {
         model: RecipeCookbook,
         include: {
           model: Recipe,
-          include: [User, RecipeLike],
+          include: [
+            User,
+            {
+              model: RecipeLike,
+            },
+          ],
         },
       },
       {
@@ -75,12 +87,12 @@ const create = async (body: NewCookbook, userId: number) => {
       description,
       image,
       tags,
+      UserId: userId,
     },
     {
       include: User,
     },
   );
-  await cookbook.setUser(userId);
   await cookbook.setRecipes(recipesIds);
 
   const cookbookId = cookbook.id;

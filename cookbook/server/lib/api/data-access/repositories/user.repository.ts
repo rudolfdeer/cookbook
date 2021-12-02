@@ -47,15 +47,22 @@ const findById = async (id: number) => {
         include: {
           model: Cookbook,
           include: [
+            User,
             {
               model: RecipeCookbook,
               include: {
                 model: Recipe,
-                include: [User, RecipeLike],
+                include: [
+                  User,
+                  {
+                    model: RecipeLike,
+                  },
+                ],
               },
             },
-            CookbookLike,
-            User,
+            {
+              model: CookbookLike,
+            },
           ],
         },
       },

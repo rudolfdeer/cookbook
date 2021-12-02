@@ -31,7 +31,10 @@ Recipe.hasMany(RecipeComment, {
   hooks: true,
 });
 
-User.hasMany(RecipeComment);
+User.hasMany(RecipeComment, {
+  onDelete: 'CASCADE',
+  hooks: true,
+});
 
 module.exports = {
   RecipeComment,

@@ -9,7 +9,10 @@ const RecipeSaved = db.define(
   { freezeTableName: true, timestamps: false, underscored: true },
 );
 
-User.hasMany(RecipeSaved);
+User.hasMany(RecipeSaved, {
+  onDelete: 'CASCADE',
+  hooks: true,
+});
 RecipeSaved.belongsTo(Recipe);
 RecipeSaved.belongsTo(User);
 

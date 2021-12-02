@@ -7,6 +7,9 @@ import { Comment } from '../data-access/repositories/user.repository';
 export {};
 
 const { cookbookRepository } = require('../data-access/repositories');
+const { MESSAGES } = require('../../constants/messages');
+const { CODE_STATUSES } = require('../../constants/code-statuses');
+const { AuthError } = require('../../helpers/errors');
 
 const findAll = async () => {
   const response = await cookbookRepository.findAll();
@@ -23,7 +26,10 @@ const deleteById = async (userId: number, cookbookId: number) => {
   const cookbook = await cookbookRepository.findById(cookbookId);
 
   if (cookbook.UserId !== userId) {
-    throw new Error('Cannot delete. Cookbook was created by other user');
+    throw new AuthError({
+      status: CODE_STATUSES.FORBIDDEN,
+      message: MESSAGES.AUTH.ERROR.OTHER_USER,
+    });
   }
 
   await cookbookRepository.deleteById(cookbookId);
@@ -34,7 +40,20 @@ const findById = async (id: number) => {
   return response;
 };
 
-const update = async (body: UpdatedCookbook, cookbookId: number) => {
+const update = async (
+  body: UpdatedCookbook,
+  cookbookId: number,
+  userId: number
+) => {
+  const cookbook = await cookbookRepository.findById(cookbookId);
+
+  if (cookbook.UserId !== userId) {
+    throw new AuthError({
+      status: CODE_STATUSES.FORBIDDEN,
+      message: MESSAGES.AUTH.ERROR.OTHER_USER,
+    });
+  }
+
   await cookbookRepository.update(body, cookbookId);
   const response = cookbookRepository.findById(cookbookId);
   return response;
@@ -43,12 +62,12 @@ const update = async (body: UpdatedCookbook, cookbookId: number) => {
 const createComment = async (
   body: Comment,
   cookbookId: number,
-  userId: number,
+  userId: number
 ) => {
   const response = await cookbookRepository.createComment(
     body,
     cookbookId,
-    userId,
+    userId
   );
   return response;
 };

@@ -1,14 +1,17 @@
 import express from 'express';
+import { IError } from '../../helpers/errors';
 
 const { userService } = require('../services');
+const { CODE_STATUSES } = require('../../constants/code-statuses');
 
 const deleteById = async (req: express.Request, res: express.Response) => {
   const { id } = req.params;
   try {
     await userService.deleteById(id);
-    res.status(200).send('user deleted');
+    res.clearCookie('jwt');
+    res.status(CODE_STATUSES.OK).send('user deleted');
   } catch (err) {
-    res.status(500).send(`error while deleting user: ${err}`);
+    res.status(CODE_STATUSES.SERVER_ERROR).send(`${err}`);
   }
 };
 
@@ -16,9 +19,10 @@ const findById = async (req: express.Request, res: express.Response) => {
   const { id } = req.params;
   try {
     const response = await userService.findById(id);
-    res.status(200).send(response);
+    res.status(CODE_STATUSES.OK).send(response);
   } catch (err) {
-    res.status(500).send(`error while finding user: ${err}`);
+    const error = err as IError;
+    res.status(error.status).send(error.message);
   }
 };
 
@@ -27,9 +31,9 @@ const update = async (req: express.Request, res: express.Response) => {
   const { id } = req.params;
   try {
     const response = await userService.update(user, id);
-    res.status(200).send(response);
+    res.status(CODE_STATUSES.OK).send(response);
   } catch (err) {
-    res.status(500).send(`error while updating user: ${err}`);
+    res.status(CODE_STATUSES.SERVER_ERROR).send(`${err}`);
   }
 };
 
@@ -42,10 +46,10 @@ const signUp = async (req: express.Request, res: express.Response) => {
       password,
     });
     res.cookie('jwt', token, { httpOnly: false });
-    res.status(200).send(response);
+    res.status(CODE_STATUSES.OK).send(response);
   } catch (err) {
-    console.log(err);
-    res.status(500).send(`${err}`);
+    const error = err as IError;
+    res.status(error.status).send(error.message);
   }
 };
 
@@ -58,9 +62,10 @@ const signIn = async (req: express.Request, res: express.Response) => {
       password,
     });
     res.cookie('jwt', token, { httpOnly: true });
-    res.status(200).send(response);
+    res.status(CODE_STATUSES.OK).send(response);
   } catch (err) {
-    res.status(500).send(`${err}`);
+    const error = err as IError;
+    res.status(error.status).send(error.message);
   }
 };
 
@@ -71,9 +76,10 @@ const changeEmail = async (req: express.Request, res: express.Response) => {
   try {
     const { token, response } = await userService.changeEmail(email, id);
     res.cookie('jwt', token, { httpOnly: true });
-    res.status(200).send(response);
+    res.status(CODE_STATUSES.OK).send(response);
   } catch (err) {
-    res.status(500).send(`${err}`);
+    const error = err as IError;
+    res.status(error.status).send(error.message);
   }
 };
 
@@ -83,9 +89,10 @@ const changePassword = async (req: express.Request, res: express.Response) => {
 
   try {
     const response = await userService.changePassword(password, id);
-    res.status(200).send(response);
+    res.status(CODE_STATUSES.OK).send(response);
   } catch (err) {
-    res.status(500).send(`${err}`);
+    const error = err as IError;
+    res.status(error.status).send(error.message);
   }
 };
 

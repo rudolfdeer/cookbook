@@ -32,7 +32,7 @@ const Recipe = db.define(
       type: Sequelize.ARRAY(Sequelize.STRING),
       allowNull: false,
     },
-    cookingTime: {
+    time: {
       type: Sequelize.INTEGER,
       allowNull: false,
     },

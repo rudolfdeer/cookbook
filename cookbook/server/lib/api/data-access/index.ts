@@ -1,13 +1,10 @@
-const { Sequelize } = require('sequelize');
+import { Sequelize } from 'sequelize';
 
-export const db = new Sequelize('cookbook', 'postgres', '123', {
-  host: 'localhost',
-  dialect: 'postgres',
+const env = process.env.NODE_ENV || 'development';
+const config = require(`${__dirname}/config/config.json`)[env];
 
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000,
-  },
-});
+const db = config.url
+  ? new Sequelize(config.url, config)
+  : new Sequelize(config.database, config.username, config.password, config);
+
+export { Sequelize, db };

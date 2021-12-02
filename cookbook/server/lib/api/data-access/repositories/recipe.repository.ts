@@ -12,7 +12,7 @@ export type NewRecipe = {
   image: string;
   directions: string[];
   ingredients: string[];
-  cookingTime: number;
+  time: number;
 };
 
 export type UpdatedRecipe = {
@@ -27,7 +27,12 @@ export type UpdatedRecipe = {
 
 const findAll = async () => {
   const recipes = await Recipe.findAll({
-    include: User,
+    include: [
+      User,
+      {
+        model: RecipeLike,
+      },
+    ],
   });
 
   return recipes;
@@ -55,9 +60,8 @@ const findById = async (id: number) => {
 
 const create = async (body: NewRecipe, id: number) => {
   const {
-    title, description, image, directions, ingredients, cookingTime,
+    title, description, image, directions, ingredients, time,
   } = body;
-
   const recipe = await Recipe.create(
     {
       title,
@@ -65,14 +69,14 @@ const create = async (body: NewRecipe, id: number) => {
       image,
       directions,
       ingredients,
-      cookingTime,
+      time,
+      UserId: id,
     },
     {
       include: User,
     },
   );
 
-  await recipe.setUser(id);
   const recipeId = recipe.id;
 
   return recipeId;
@@ -131,14 +135,13 @@ const createComment = async (
     {
       text,
       date,
+      UserId: userId,
+      RecipeId: recipeId,
     },
     {
       include: [User, Recipe],
     },
   );
-
-  await comment.setUser(userId);
-  await comment.setRecipe(recipeId);
 
   return comment;
 };

@@ -5,7 +5,7 @@ const { User } = require('./user.model');
 const { Cookbook } = require('./cookbook.model');
 
 const CookbookComment = db.define(
-  'Сookbook_Comment',
+  'Cookbook_Comment',
   {
     text: {
       type: Sequelize.STRING,
@@ -31,7 +31,10 @@ Cookbook.hasMany(CookbookComment, {
   hooks: true,
 });
 
-User.hasMany(CookbookComment);
+User.hasMany(CookbookComment, {
+  onDelete: 'CASCADE',
+  hooks: true,
+});
 
 module.exports = {
   CookbookComment,

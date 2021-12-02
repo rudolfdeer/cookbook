@@ -7,6 +7,9 @@ import { Comment } from '../data-access/repositories/user.repository';
 export {};
 
 const { recipeRepository } = require('../data-access/repositories');
+const { MESSAGES } = require('../../constants/messages');
+const { CODE_STATUSES } = require('../../constants/code-statuses');
+const { AuthError } = require('../../helpers/errors');
 
 const findAll = async () => {
   const response = await recipeRepository.findAll();
@@ -23,7 +26,10 @@ const deleteById = async (recipeId: number, userId: number) => {
   const recipe = await recipeRepository.findById(recipeId);
 
   if (recipe.UserId !== userId) {
-    throw new Error('Cannot delete. Recipe was created by other user');
+    throw new AuthError({
+      status: CODE_STATUSES.FORBIDDEN,
+      message: MESSAGES.AUTH.ERROR.OTHER_USER,
+    });
   }
 
   await recipeRepository.deleteById(recipeId);
@@ -34,7 +40,20 @@ const findById = async (id: number) => {
   return response;
 };
 
-const update = async (body: UpdatedRecipe, recipeId: number) => {
+const update = async (
+  body: UpdatedRecipe,
+  recipeId: number,
+  userId: number
+) => {
+  const recipe = await recipeRepository.findById(recipeId);
+
+  if (recipe.UserId !== userId) {
+    throw new AuthError({
+      status: CODE_STATUSES.FORBIDDEN,
+      message: MESSAGES.AUTH.ERROR.OTHER_USER,
+    });
+  }
+
   await recipeRepository.update(body, recipeId);
   const response = await recipeRepository.findById(recipeId);
 
@@ -44,7 +63,7 @@ const update = async (body: UpdatedRecipe, recipeId: number) => {
 const createComment = async (
   body: Comment,
   recipeId: number,
-  userId: number,
+  userId: number
 ) => {
   const response = await recipeRepository.createComment(body, recipeId, userId);
   return response;

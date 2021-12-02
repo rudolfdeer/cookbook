@@ -59,4 +59,20 @@
       margin-right: 18px;
     }
   }
+
+  &__lang {
+    &__btn {
+      background: none;
+      color: $white;
+      border: none;
+
+      &:first-child {
+        border-right: 1px solid $white-dirty;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
 }

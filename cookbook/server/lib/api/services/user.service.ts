@@ -90,7 +90,10 @@ const changeEmail = async (email: string, id: number) => {
   const userWithSameEmail = await userRepository.findByEmail(email);
 
   if (userWithSameEmail) {
-    throw new AuthError({ status: CODE_STATUSES.FORBIDDEN, message: MESSAGES.AUTH.ERROR.EMAIL_EXIST });
+    throw new AuthError({
+      status: CODE_STATUSES.FORBIDDEN,
+      message: MESSAGES.AUTH.ERROR.EMAIL_EXISTS,
+    });
   }
 
   await userRepository.changeEmail(email, id);
@@ -110,7 +113,10 @@ const changeEmail = async (email: string, id: number) => {
 
 const changePassword = async (password: string, id: number) => {
   if (!password) {
-    throw new AuthError({ status: CODE_STATUSES.FORBIDDEN, message: 'No password provided' });
+    throw new AuthError({
+      status: CODE_STATUSES.FORBIDDEN,
+      message: 'No password provided.',
+    });
   }
   const encryptedPassword = authUtils.encryptPassword(password);
 

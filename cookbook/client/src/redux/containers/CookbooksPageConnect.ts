@@ -37,7 +37,7 @@ const mapDispatchToProps = {
 
 const CookbooksPageConnect = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(CookbooksPage);
 
 export default CookbooksPageConnect;

@@ -1,0 +1,92 @@
+{
+  "common": {
+    "RECIPES": "Recettes",
+    "COOKBOOKS": "Livres de recettes",
+    "VIEWS": "vus",
+    "LIKES": "j'aime",
+    "COMMENTS": "Commentaires",
+    "DESCRIPTION": "Description",
+    "DIRECTIONS": "Directions",
+    "INGREDIENTS": "Ingrédients",
+    "EMAIL": "Email",
+    "PASSWORD": "Mot de passe",
+    "SIGN_IN": "Se connecter"
+  },
+
+  "footer": {
+    "MY_EMAIL": "tomalichko@gmail.com",
+    "ITECHART_SITE": "https://www.itechart.by/",
+    "ITECHART": ":iTechArt",
+    "PROJECT": "Study Project v2.2021",
+    "ABOUT_US": "À propos"
+  },
+
+  "header": {
+    "CREATE_COOKBOOK_BTN": "Créer votre livre de recettes"
+  },
+
+  "homePage": {
+    "MAIN_TITLE": "Trouvez des recettes et composez vos livres de recettes préférées",
+    "RATED_SECTION_PRE_TITLE": "Votre choix",
+    "POPULAR_SECTION_PRE_TITLE": "Notre choix",
+    "TRENDING_SECTION_PRE_TITLE": "Top 10",
+    "RATED_SECTION_TITLE": "Les 20 recettes les plus ratées",
+    "TRENDING_SECTION_TITLE": "Recettes en tendance",
+    "POPULAR_SECTION_TITLE": "Livres de recettes les plus populaires",
+    "SHOW_MORE_BTN": "Afficher plus",
+    "SHOW_ALL_BTN": "Afficher toutes les recettes",
+    "SEARCH_BTN": "Rechercher",
+    "SEARCH_INPUT_PLACEHOLDER": "Trouver les meilleures recettes...",
+    "SEARCH_NAV_LIST": [
+      "Végétariennes",
+      "Mexicaines",
+      "Grecques",
+      "Pizza italienne",
+      "Philippines",
+      "Sushis japonais"
+    ]
+  },
+
+  "profilePage": {
+    "MY_SETTINGS": "Paramètres",
+    "MY_RECIPES": "Mes recettes",
+    "MY_COOKBOOKS": "Mes livres de recettes",
+    "SAVED": "Sauvegardé",
+    "EDIT_BTN": "Modifier",
+    "SAVE_BTN": "Sauvegarder",
+    "CANCEL_BTN": "Annuler",
+    "CONFIRM_BTN": "Confirmer",
+    "PERSONAL_INFORMATION": "À propos",
+    "NAME": "Nom",
+    "CHANGE_PASSWORD_BTN": "Changer le mot de passe",
+    "LOG_OUT_BTN": "Se déconnecter",
+    "DELETE_ACCOUNT_BTN": "Supprimer mon profil",
+    "CREATE_NEW_RECIPE": "Créer une recette",
+    "CREATE_NEW_COOKBOOK": "Créer un livre de recettes",
+    "DELETE_FROM_COOKBOOK_BTN": "Supprimer de ce livre",
+    "ADD_RECIPES": "Ajouter des recettes"
+  },
+
+  "searchPage": {
+    "FILTER": "Filtrer",
+    "CLEAR_ALL_BTN": "effacer tous",
+    "SORT_BY": "Trier par",
+    "COOKING_TIME": "Temps de préparation",
+    "COOKBOOK_TYPE": "Catégorie",
+    "COMMENT_INPUT_PLACEHOLDER": "Exprimez-vous ici..."
+  },
+
+  "signInPage": {
+    "WELCOME": "Bienvenue de nouveau",
+    "NEW_HERE": "Première fois ?",
+    "CREATE_ACCOUNT": "Créer nouveau compte",
+    "FORGOT_PASSWORD": "Mot de passe oublié ?"
+  },
+
+  "signUpPage": {
+    "JOIN": "Rejoignez-nous",
+    "ALREADY_HAVE_ACOOUNT": "Vous avez déjà un compte ?",
+    "CONFIRM_PASSWORD": "Confirmez le mot de passe",
+    "SIGN UP": "S'inscrire"
+  }
+}

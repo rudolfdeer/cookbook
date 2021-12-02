@@ -1,0 +1,92 @@
+{
+  "common": {
+    "RECIPES": "Recipes",
+    "COOKBOOKS": "Cookbooks",
+    "VIEWS": "views",
+    "LIKES": "likes",
+    "COMMENTS": "Comments",
+    "DESCRIPTION": "Description",
+    "DIRECTIONS": "Directions",
+    "INGREDIENTS": "Ingredients",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "SIGN_IN": "Sign in"
+  },
+
+  "footer": {
+    "MY_EMAIL": "tomalichko@gmail.com",
+    "ITECHART_SITE": "https://www.itechart.by/",
+    "ITECHART": ":iTechArt",
+    "PROJECT": "Study Project v2.2021",
+    "ABOUT_US": "About us"
+  },
+
+  "header": {
+    "CREATE_COOKBOOK_BTN": "Create CookBook"
+  },
+
+  "homePage": {
+    "MAIN_TITLE": "Find Recipes and Сreate Your Favourite Сookbooks",
+    "RATED_SECTION_PRE_TITLE": "Users choice",
+    "POPULAR_SECTION_PRE_TITLE": "Our choice",
+    "TRENDING_SECTION_PRE_TITLE": "Top 10",
+    "RATED_SECTION_TITLE": "20 Highest-Rated Recipes",
+    "TRENDING_SECTION_TITLE": "Trending Recipes",
+    "POPULAR_SECTION_TITLE": "Most Popular CookBooks",
+    "SHOW_MORE_BTN": "Show more",
+    "SHOW_ALL_BTN": "Show all recipes",
+    "SEARCH_BTN": "Search",
+    "SEARCH_INPUT_PLACEHOLDER": "Find Best Recipes...",
+    "SEARCH_NAV_LIST": [
+      "Vegetarian",
+      "Mexican",
+      "Greece Kithcen",
+      "Italy Pizza",
+      "Philippines",
+      "Japan Sushi"
+    ]
+  },
+
+  "profilePage": {
+    "MY_SETTINGS": "My Settings",
+    "MY_RECIPES": "My Recipes",
+    "MY_COOKBOOKS": "My cookbooks",
+    "SAVED": "Saved",
+    "EDIT_BTN": "Edit",
+    "SAVE_BTN": "Save",
+    "CANCEL_BTN": "Cancel",
+    "CONFIRM_BTN": "Confirm",
+    "PERSONAL_INFORMATION": "Personal Information",
+    "NAME": "Name",
+    "CHANGE_PASSWORD_BTN": "Change my password",
+    "LOG_OUT_BTN": "Log out",
+    "DELETE_ACCOUNT_BTN": "Delete my account",
+    "CREATE_NEW_RECIPE": "Create New Recipe",
+    "CREATE_NEW_COOKBOOK": "Create New Cookbook",
+    "DELETE_FROM_COOKBOOK_BTN": "Delete from this cookbook",
+    "ADD_RECIPES": "Add Recipes"
+  },
+
+  "searchPage": {
+    "FILTER": "Filter",
+    "CLEAR_ALL_BTN": "clear all",
+    "SORT_BY": "Sort by",
+    "COOKING_TIME": "Cooking time",
+    "COOKBOOK_TYPE": "Cookbook type",
+    "COMMENT_INPUT_PLACEHOLDER": "Express yourself..."
+  },
+
+  "signInPage": {
+    "WELCOME": "Welcome back",
+    "NEW_HERE": "New here?",
+    "CREATE_ACCOUNT": "Create an account",
+    "FORGOT_PASSWORD": "Forgot password?"
+  },
+
+  "signUpPage": {
+    "JOIN": "Join our community",
+    "ALREADY_HAVE_ACOOUNT": "Already have an account?",
+    "CONFIRM_PASSWORD": "Confirm password",
+    "SIGN UP": "Sign up"
+  }
+}

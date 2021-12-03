@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { AnyAction } from 'redux';
+import { useTranslation } from 'react-i18next';
 import api from '../../../../helpers/api';
 import CommentsIcon from '../../../svg/Comments';
 import LikesIcon from '../../../svg/Likes';
@@ -21,8 +22,9 @@ type PopUpRecipeCardProps = {
 };
 
 export default function PopUpRecipeCard(
-  props: PopUpRecipeCardProps,
+  props: PopUpRecipeCardProps
 ): JSX.Element {
+  const { t } = useTranslation();
   const {
     views,
     image,
@@ -55,18 +57,18 @@ export default function PopUpRecipeCard(
           <div className="card__statistics">
             <div className="card__statistics-item">
               <ViewsIcon />
-              {views} views
+              {views} {t('VIEWS')}
             </div>
             <div className="card__statistics-item">
               <LikesIcon
                 loggedInUserId={loggedInUserId}
                 usersLiked={usersLiked}
               />
-              {usersLiked.length} likes
+              {usersLiked.length} {t('LIKES')}
             </div>
             <div className="card__statistics-item">
               <CommentsIcon />
-              {comments} comments
+              {comments} {t('COMMENTS')}
             </div>
           </div>
           {loggedInUserId && loggedInUserId !== userId ? (
@@ -77,7 +79,7 @@ export default function PopUpRecipeCard(
                 setVisible(false);
               }}
             >
-              Save
+              {t('SAVE_BTN')}
             </button>
           ) : null}
         </div>

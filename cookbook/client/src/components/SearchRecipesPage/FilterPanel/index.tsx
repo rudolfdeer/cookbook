@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AnyAction } from 'redux';
+import { useTranslation } from 'react-i18next';
 import './index.scss';
 
 type FilterPanelRecipeProps = {
@@ -8,8 +9,9 @@ type FilterPanelRecipeProps = {
 };
 
 export default function FilterPanelRecipes(
-  props: FilterPanelRecipeProps,
+  props: FilterPanelRecipeProps
 ): JSX.Element {
+  const { t } = useTranslation();
   const { sortRecipes, filterRecipes } = props;
   const [sortOrder, setSortOrder] = useState('');
   const [maxCookingTime, setMaxCookingTime] = useState(240);
@@ -40,14 +42,14 @@ export default function FilterPanelRecipes(
   return (
     <div className="filter-panel">
       <div className="filter-panel__container">
-        <div className="filter-panel__title">Filter</div>
+        <div className="filter-panel__title">{t('FILTER')}</div>
         <button className="filter-panel__btn" onClick={() => clearAllFilters()}>
-          clear all
+          {t('CLEAR_ALL_BTN')}
         </button>
       </div>
       <div className="filter-panel__section sort">
         <label className="filter-panel__section__title" htmlFor="sort">
-          Sort by
+          {t('SORT_BY')}
         </label>
         <select
           name="sort"
@@ -57,14 +59,14 @@ export default function FilterPanelRecipes(
           onChange={(e) => sort(e)}
         >
           <option value="" disabled hidden>
-            Choose here
+            {t('CHOOSE_HERE')}
           </option>
-          <option value="views">Popularity</option>
-          <option value="likes">Rating</option>
+          <option value="views">{t('POPULARITY')}</option>
+          <option value="likes">{t('RATING')}</option>
         </select>
       </div>
       <div className="filter-panel__section type">
-        <div className="filter-panel__section__title">Cooking time</div>
+        <div className="filter-panel__section__title">{t('COOKING_TIME')}</div>
         <div className="filter-panel__range">
           <input
             type="range"
@@ -78,8 +80,11 @@ export default function FilterPanelRecipes(
             onChange={(e) => filter(e)}
           />
           <div className="filter-panel__range__values">
-            <div>1 min</div>
-            <div>{'>'}1 hour</div>
+            <div>{t('1_MIN')}</div>
+            <div>
+              {'>'}
+              {t('1_HOUR')}
+            </div>
           </div>
         </div>
       </div>

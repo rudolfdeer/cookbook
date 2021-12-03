@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { AnyAction } from 'redux';
+import { useTranslation } from 'react-i18next';
 import api from '../../../helpers/api';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
@@ -23,6 +24,7 @@ type RecipeCardProps = {
 };
 
 export default function RecipeCard(props: RecipeCardProps): JSX.Element {
+  const { t } = useTranslation();
   const {
     id,
     views,
@@ -51,7 +53,7 @@ export default function RecipeCard(props: RecipeCardProps): JSX.Element {
         className="card__statistics-item__menu__btn--clone"
         onClick={() => saveRecipe()}
       >
-        Clone to my recipes
+        {t('CLONE_TO_MY_REC')}
       </button>
     </div>
   );
@@ -86,11 +88,11 @@ export default function RecipeCard(props: RecipeCardProps): JSX.Element {
             </div>
             <div className="card__statistics-item likes">
               <LikesIcon />
-              {usersLiked.length} likes
+              {usersLiked.length} {t('LIKES')}
             </div>
             <div className="card__statistics-item comments">
               <CommentsIcon />
-              {comments} comments
+              {comments} {t('COMMENTS')}
             </div>
           </div>
           <svg

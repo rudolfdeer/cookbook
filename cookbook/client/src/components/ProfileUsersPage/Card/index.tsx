@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react';
+import { useTranslation } from 'react-i18next';
 import api from '../../../helpers/api';
 import CommentsIcon from '../../svg/Comments';
-import DotsIcon from '../../svg/Dots';
 import LikesIcon from '../../svg/Likes';
 import ViewsIcon from '../../svg/Views';
 
@@ -21,6 +21,7 @@ type CardCookbookProps = {
 };
 
 export default function CardCookbook(props: CardCookbookProps): JSX.Element {
+  const { t } = useTranslation();
   const {
     id,
     views,
@@ -71,11 +72,11 @@ export default function CardCookbook(props: CardCookbookProps): JSX.Element {
       <div className="card__info-container--bottom">
         <div className="card__statistics-item">
           <LikesIcon />
-          {likes} likes
+          {likes} {t('LIKES')}
         </div>
         <div className="card__statistics-item">
           <CommentsIcon />
-          {comments} comments
+          {comments} {t('COMMENTS')}
         </div>
       </div>
     </div>

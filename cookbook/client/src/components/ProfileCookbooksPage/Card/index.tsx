@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { AnyAction } from 'redux';
+import { useTranslation } from 'react-i18next';
 import api from '../../../helpers/api';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
@@ -23,8 +24,9 @@ type ProfileCookbookCardProps = {
 };
 
 export default function ProfileCookbookCard(
-  props: ProfileCookbookCardProps,
+  props: ProfileCookbookCardProps
 ): JSX.Element {
+  const { t } = useTranslation();
   const {
     id,
     views,
@@ -51,7 +53,7 @@ export default function ProfileCookbookCard(
           deleteCookbook(id, loggedInUserId);
         }}
       >
-        Delete this cookbook
+        {t('DELETE_COOKBOOK')}
       </button>
     </div>
   );
@@ -61,7 +63,7 @@ export default function ProfileCookbookCard(
       <div className="card__info-container">
         <div className="card__statistics-item">
           <ViewsIcon />
-          {views} views
+          {views} {t('VIEWS')}
         </div>
         <svg
           className="card__statistics-item__icon--dots"
@@ -109,11 +111,11 @@ export default function ProfileCookbookCard(
       <div className="card__info-container--bottom">
         <div className="card__statistics-item likes">
           <LikesIcon />
-          {usersLiked.length} likes
+          {usersLiked.length} {t('LIKES')}
         </div>
         <div className="card__statistics-item">
           <CommentsIcon />
-          {comments} comments
+          {comments} {t('COMMENTS')}
         </div>
       </div>
     </div>

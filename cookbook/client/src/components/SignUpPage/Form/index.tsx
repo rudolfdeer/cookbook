@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction } from 'react';
 import { Form, Field } from 'react-final-form';
 import { Link } from 'react-router-dom';
 import { AnyAction } from 'redux';
+import { useTranslation } from 'react-i18next';
 import ERROR_MESSAGES from '../../../constants/errorMessages';
 import { EMAILREGEX } from '../../../constants/regex';
 import ROUTES from '../../../constants/routes';
@@ -19,6 +20,7 @@ type SignUpFormProps = {
 };
 
 export default function SignUpForm(props: SignUpFormProps): JSX.Element {
+  const { t } = useTranslation();
   const { createUser, setIsRedirected } = props;
   const formData = {};
 
@@ -32,9 +34,10 @@ export default function SignUpForm(props: SignUpFormProps): JSX.Element {
       <Link to="/">
         <div className="form__logo"></div>
       </Link>
-      <h1 className="form__title">Join Our Community</h1>
+      <h1 className="form__title">{t('JOIN')}</h1>
       <h2 className="form__title_small">
-        Already have an account? <Link to={ROUTES.LOG_IN}>Sign in</Link>
+        {t('ALREADY_HAVE_ACOOUNT')}
+        <Link to={ROUTES.LOG_IN}> {t('SIGN_IN')}</Link>
       </h2>
 
       <Form
@@ -78,7 +81,7 @@ export default function SignUpForm(props: SignUpFormProps): JSX.Element {
             <Field name="email">
               {({ input, meta }) => (
                 <>
-                  <label className="form__label">Email</label>
+                  <label className="form__label">{t('EMAIL')}</label>
                   <input {...input} type="text" className="form__input" />
                   {meta.error && meta.touched ? (
                     <span className="form__error">{meta.error}</span>
@@ -92,7 +95,7 @@ export default function SignUpForm(props: SignUpFormProps): JSX.Element {
               {({ input, meta }) => (
                 <>
                   <label className="form__label password">
-                    Password<span>Forgot password?</span>
+                    {t('PASSWORD')}
                   </label>
                   <input {...input} type="password" className="form__input" />
                   {meta.error && meta.touched ? (
@@ -106,7 +109,7 @@ export default function SignUpForm(props: SignUpFormProps): JSX.Element {
             <Field name="confirm">
               {({ input, meta }) => (
                 <>
-                  <label className="form__label">Confirm password</label>
+                  <label className="form__label">{t('CONFIRM_PASSWORD')}</label>
                   <input {...input} type="password" className="form__input" />
                   {meta.error && meta.touched ? (
                     <span className="form__error">{meta.error}</span>
@@ -117,7 +120,7 @@ export default function SignUpForm(props: SignUpFormProps): JSX.Element {
               )}
             </Field>
             <button type="submit" className="form__input submit">
-              Sign Up
+              {t('SIGN_UP')}
             </button>
           </form>
         )}

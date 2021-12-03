@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { AnyAction } from 'redux';
+import { useTranslation } from 'react-i18next';
 import { Cookbook, Recipe, User } from '../../interfaces';
 
 import ROUTES from '../../constants/routes';
@@ -23,11 +24,13 @@ type ProfileSavedPageProps = {
 };
 
 export default function ProfileSavedPage(
-  props: ProfileSavedPageProps,
+  props: ProfileSavedPageProps
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.NOT_FOUND} />;
   }
+
+  const { t } = useTranslation();
 
   const {
     cookbooks,
@@ -37,9 +40,7 @@ export default function ProfileSavedPage(
     getUsersSavedRecipes,
   } = props;
 
-  const {
-    name, bio, avatar, id,
-  } = user;
+  const { name, bio, avatar, id } = user;
   const photoSrc = avatar || '../../assets/images/photo-mask.png';
   const [isRecipePopUpVisible, setRecipePopUpVisible] = useState(false);
   const [selectedRecipeId, setSelectedRecipeId] = useState(0);
@@ -73,15 +74,15 @@ export default function ProfileSavedPage(
           </section>
           <nav className="profile-page--saved__nav">
             <ul className="profile-page--saved__nav__list">
-              <li className="list__item--selected">Saved</li>
+              <li className="list__item--selected">{t('SAVED')}</li>
               <li className="list__item">
-                <Link to={ROUTES.PROFILE_COOKBOOKS}>My Cookbooks</Link>
+                <Link to={ROUTES.PROFILE_COOKBOOKS}>{t('MY_COOKBOOKS')}</Link>
               </li>
               <li className="list__item">
-                <Link to={ROUTES.PROFILE_RECIPES}>My Recipes</Link>
+                <Link to={ROUTES.PROFILE_RECIPES}>{t('MY_RECIPES')}</Link>
               </li>
               <li className="list__item">
-                <Link to={ROUTES.PROFILE_SETTINGS}>My Settings</Link>
+                <Link to={ROUTES.PROFILE_SETTINGS}>{t('MY_SETTINGS')}</Link>
               </li>
             </ul>
           </nav>

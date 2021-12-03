@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import api from '../../../helpers/api';
 import CommentsIcon from '../../svg/Comments';
 import DotsIcon from '../../svg/Dots';
@@ -18,16 +19,15 @@ type RecipeCardRatedProps = {
 };
 
 export default function CardRated(props: RecipeCardRatedProps): JSX.Element {
-  const {
-    views, image, title, authorId, likes, comments, usersLiked,
-  } = props;
+  const { t } = useTranslation();
+  const { views, image, title, authorId, likes, comments, usersLiked } = props;
 
   return (
     <div className="card">
       <div className="card__info-container--top">
         <div className="card__statistics-item">
           <ViewsIcon />
-          {views} views
+          {views} {t('VIEWS')}
         </div>
         <DotsIcon />
       </div>
@@ -45,11 +45,11 @@ export default function CardRated(props: RecipeCardRatedProps): JSX.Element {
       <div className="card__info-container--bottom">
         <div className="card__statistics-item">
           <LikesIcon />
-          {usersLiked.length} likes
+          {usersLiked.length} {t('LIKES')}
         </div>
         <div className="card__statistics-item">
           <CommentsIcon />
-          {comments} comments
+          {comments} {t('COMMENTS')}
         </div>
       </div>
     </div>

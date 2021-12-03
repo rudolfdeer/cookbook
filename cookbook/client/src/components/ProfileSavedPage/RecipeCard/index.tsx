@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
+import { useTranslation } from 'react-i18next';
 import api from '../../../helpers/api';
 import CommentsIcon from '../../svg/Comments';
 import DotsIcon from '../../svg/Dots';
@@ -21,8 +22,9 @@ type ProfileSavedRecipeCardProps = {
 };
 
 export default function ProfileSavedRecipeCard(
-  props: ProfileSavedRecipeCardProps,
+  props: ProfileSavedRecipeCardProps
 ): JSX.Element {
+  const { t } = useTranslation();
   const {
     id,
     views,
@@ -41,7 +43,7 @@ export default function ProfileSavedRecipeCard(
       <div className="card__info-container">
         <div className="card__statistics-item">
           <ViewsIcon />
-          {views} views
+          {views} {t('VIEWS')}
         </div>
         <DotsIcon />
       </div>
@@ -74,11 +76,11 @@ export default function ProfileSavedRecipeCard(
       <div className="card__info-container--bottom">
         <div className="card__statistics-item">
           <LikesIcon />
-          {likes} likes
+          {likes} {t('LIKES')}
         </div>
         <div className="card__statistics-item">
           <CommentsIcon />
-          {comments} comments
+          {comments} {t('COMMENTS')}
         </div>
       </div>
     </div>

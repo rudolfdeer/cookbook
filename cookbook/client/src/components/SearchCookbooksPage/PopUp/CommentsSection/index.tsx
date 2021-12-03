@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AnyAction } from 'redux';
+import { useTranslation } from 'react-i18next';
 import api from '../../../../helpers/api';
 import { Comment } from '../../../../interfaces';
 
@@ -17,11 +18,10 @@ type CommentsSectionProps = {
 };
 
 export default function CommentsSection(
-  props: CommentsSectionProps,
+  props: CommentsSectionProps
 ): JSX.Element {
-  const {
-    comments, loggedInUserId, cookbookId, createComment,
-  } = props;
+  const { t } = useTranslation();
+  const { comments, loggedInUserId, cookbookId, createComment } = props;
   const [newComment, setNewComment] = useState('');
 
   function getDate(dateString: string) {
@@ -33,7 +33,7 @@ export default function CommentsSection(
       <input
         type="text"
         className="comment--new__input"
-        placeholder="Express yourself..."
+        placeholder={t('COMMENT_INPUT_PLACEHOLDER')}
         value={newComment}
         onChange={(e) => {
           const target = e.target as HTMLInputElement;
@@ -61,7 +61,7 @@ export default function CommentsSection(
               className="comment__photo"
               style={{
                 background: `url(${api.getUserPhoto(
-                  el.userId,
+                  el.userId
                 )}) center no-repeat`,
               }}
             ></div>

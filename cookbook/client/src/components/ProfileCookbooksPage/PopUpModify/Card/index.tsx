@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
+import { useTranslation } from 'react-i18next';
 import api from '../../../../helpers/api';
 import CommentsIcon from '../../../svg/Comments';
 import LikesIcon from '../../../svg/Likes';
@@ -21,15 +22,15 @@ type PopUpRecipeCardProps = {
 };
 
 export default function PopUpRecipeCard(
-  props: PopUpRecipeCardProps,
+  props: PopUpRecipeCardProps
 ): JSX.Element {
+  const { t } = useTranslation();
   const {
     views,
     image,
     description,
     title,
     authorId,
-    likes,
     usersLiked,
     comments,
     id,
@@ -60,21 +61,21 @@ export default function PopUpRecipeCard(
           <div className="card__statistics">
             <div className="card__statistics-item views">
               <ViewsIcon />
-              {views} views
+              {views} {t('VIEWS')}
             </div>
             <div className="card__statistics-item likes">
               <LikesIcon />
-              {usersLiked.length} likes
+              {usersLiked.length} {t('LIKES')}
             </div>
             <div className="card__statistics-item comments">
               <CommentsIcon />
-              {comments} comments
+              {comments} {t('COMMENTS')}
             </div>
             <button
               className="card__btn--delete"
               onClick={() => deleteRecipeFromCookbook(id)}
             >
-              Delete from this cookbook
+              {t('DELETE_FROM_COOKBOOK_BTN')}
             </button>
           </div>
         </div>

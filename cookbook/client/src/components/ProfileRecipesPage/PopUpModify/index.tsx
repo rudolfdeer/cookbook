@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { AnyAction } from 'redux';
+import { useTranslation } from 'react-i18next';
 import { Recipe } from '../../../interfaces';
 import { RecipeValues } from '../../../redux/actions/recipes';
 
@@ -18,17 +19,17 @@ type PopUpModifyRecipeProps = {
 };
 
 export default function PopUpModifyRecipe(
-  props: PopUpModifyRecipeProps,
+  props: PopUpModifyRecipeProps
 ): JSX.Element {
+  const { t } = useTranslation();
   const {
     setModifyPopUpVisible,
     selectedRecipe,
     modifyRecipe,
     loggedInUserId,
   } = props;
-  const {
-    id, title, image, description, directions, ingredients,
-  } = selectedRecipe;
+  const { id, title, image, description, directions, ingredients } =
+    selectedRecipe;
 
   const [imageSrc, setImageSrc] = useState(image);
   const [isTitleDisabled, setTitleDisabled] = useState(true);
@@ -87,7 +88,7 @@ export default function PopUpModifyRecipe(
                     setTitleDisabled(false);
                   }}
                 >
-                  Edit
+                  {t('EDIT_BTN')}
                 </button>
               ) : (
                 <button
@@ -97,7 +98,7 @@ export default function PopUpModifyRecipe(
                     setTitleDisabled(true);
                   }}
                 >
-                  Save
+                  {t('SAVE_BTN')}
                 </button>
               )}
             </div>
@@ -117,7 +118,7 @@ export default function PopUpModifyRecipe(
                     setDescriptionDisabled(false);
                   }}
                 >
-                  Edit
+                  {t('EDIT_BTN')}
                 </button>
               ) : (
                 <button
@@ -127,7 +128,7 @@ export default function PopUpModifyRecipe(
                     setDescriptionDisabled(true);
                   }}
                 >
-                  Save
+                  {t('SAVE_BTN')}
                 </button>
               )}
             </div>
@@ -135,7 +136,7 @@ export default function PopUpModifyRecipe(
               <div className="pop-up--modify__section__container">
                 <div className="pop-up--modify__section--top">
                   <div className="pop-up--modify__section__title">
-                    Directions
+                    {t('DIRECTIONS')}
                   </div>
                   {isDirectionsDisabled ? (
                     <button
@@ -145,7 +146,7 @@ export default function PopUpModifyRecipe(
                         setDirectionsDisabled(false);
                       }}
                     >
-                      Edit
+                      {t('EDIT_BTN')}
                     </button>
                   ) : (
                     <button
@@ -155,7 +156,7 @@ export default function PopUpModifyRecipe(
                         setDirectionsDisabled(true);
                       }}
                     >
-                      Save
+                      {t('SAVE_BTN')}
                     </button>
                   )}
                 </div>
@@ -169,7 +170,7 @@ export default function PopUpModifyRecipe(
               <div className="pop-up--modify__section__container">
                 <div className="pop-up--modify__section--top">
                   <div className="pop-up--modify__section__title">
-                    Ingredients
+                    {t('INGREDIENTS')}
                   </div>
                   {isIngredientsDisabled ? (
                     <button
@@ -179,7 +180,7 @@ export default function PopUpModifyRecipe(
                         setIngredientsDisabled(false);
                       }}
                     >
-                      Edit
+                      {t('EDIT_BTN')}
                     </button>
                   ) : (
                     <button
@@ -189,7 +190,7 @@ export default function PopUpModifyRecipe(
                         setIngredientsDisabled(true);
                       }}
                     >
-                      Save
+                      {t('SAVE_BTN')}
                     </button>
                   )}
                 </div>
@@ -215,13 +216,13 @@ export default function PopUpModifyRecipe(
                   modifyRecipe(data, id, imageSrc, loggedInUserId);
                 }}
               >
-                Save
+                {t('SAVE_BTN')}
               </button>
               <button
                 className="pop-up--modify__btns__btn"
                 onClick={() => setModifyPopUpVisible(false)}
               >
-                Cancel
+                {t('CANCEL_BTN')}
               </button>
             </div>
           </div>

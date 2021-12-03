@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { AnyAction } from 'redux';
 import { Form, Field } from 'react-final-form';
+import { useTranslation } from 'react-i18next';
 import './index.scss';
 import { EMAILREGEX } from '../../../constants/regex';
 import ERROR_MESSAGES from '../../../constants/errorMessages';
@@ -19,15 +20,21 @@ type LogInFormProps = {
 
 type ValidatorFunction = (value: string) => undefined | string;
 
-const required = (value: string) => (value ? undefined : ERROR_MESSAGES.REQUIRED);
-const validEmail = (value: string) => (!value.match(EMAILREGEX) ? ERROR_MESSAGES.EMAIL : undefined);
+const required = (value: string) =>
+  value ? undefined : ERROR_MESSAGES.REQUIRED;
+const validEmail = (value: string) =>
+  !value.match(EMAILREGEX) ? ERROR_MESSAGES.EMAIL : undefined;
 // eslint-disable-next-line max-len
-const composeValidators = (...validators: ValidatorFunction[]) => (value: string) => validators.reduce(
-  (error, validator) => error || validator(value),
-  undefined,
-);
+const composeValidators =
+  (...validators: ValidatorFunction[]) =>
+  (value: string) =>
+    validators.reduce(
+      (error, validator) => error || validator(value),
+      undefined
+    );
 
 export default function LogInForm(props: LogInFormProps): JSX.Element {
+  const { t } = useTranslation();
   const { logIn } = props;
   const formData = {};
 
@@ -38,9 +45,9 @@ export default function LogInForm(props: LogInFormProps): JSX.Element {
       <Link to="/">
         <div className="form__logo"></div>
       </Link>
-      <h1 className="form__title">Welcome back</h1>
+      <h1 className="form__title">{t('WELCOME')}</h1>
       <h2 className="form__title_small">
-        New here? <Link to={ROUTES.SIGN_UP}>Create an account</Link>
+        {t('NEW_HERE')} <Link to={ROUTES.SIGN_UP}>{t('CREATE_ACCOUNT')}</Link>
       </h2>
 
       <Form
@@ -54,7 +61,7 @@ export default function LogInForm(props: LogInFormProps): JSX.Element {
             >
               {({ input, meta }) => (
                 <>
-                  <label className="form__label">Email</label>
+                  <label className="form__label">{t('EMAIL')}</label>
                   <input {...input} type="text" className="form__input" />
                   {meta.error && meta.touched ? (
                     <span className="form__error email">{meta.error}</span>
@@ -68,7 +75,8 @@ export default function LogInForm(props: LogInFormProps): JSX.Element {
               {({ input, meta }) => (
                 <>
                   <label className="form__label password">
-                    Password<span>Forgot password?</span>
+                    {t('PASSWORD')}
+                    <span>{t('FORGOT_PASSWORD')}</span>
                   </label>
                   <input {...input} type="password" className="form__input" />
                   {meta.error && meta.touched ? (
@@ -80,7 +88,7 @@ export default function LogInForm(props: LogInFormProps): JSX.Element {
               )}
             </Field>
             <button type="submit" className="form__input submit">
-              Sign In
+              {t('SIGN_IN')}
             </button>
           </form>
         )}

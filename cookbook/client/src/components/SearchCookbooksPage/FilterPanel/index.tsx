@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AnyAction } from 'redux';
+import { useTranslation } from 'react-i18next';
 import './index.scss';
 
 type FilterPanelCookbooksProps = {
@@ -9,8 +10,9 @@ type FilterPanelCookbooksProps = {
 };
 
 export default function FilterPanelCookbooks(
-  props: FilterPanelCookbooksProps,
+  props: FilterPanelCookbooksProps
 ): JSX.Element {
+  const { t } = useTranslation();
   const { sortCookbooks, filterCookbooks, loggedInUserId } = props;
   const [sortOrder, setSortOrder] = useState('');
   const [filters, setFilters] = useState([]);
@@ -44,22 +46,24 @@ export default function FilterPanelCookbooks(
   function clearAllFilters() {
     setFilters([]);
     setSortOrder('default');
-    const checkboxes = document.querySelectorAll('.checkbox__input');
+    const checkboxes = document.querySelectorAll(
+      '.filter-panel__section__checkboxes__checkbox__input'
+    );
     checkboxes.forEach((el: HTMLInputElement) => (el.checked = false));
   }
 
   return (
     <div className="filter-panel">
       <div className="filter-panel__container">
-        <div className="filter-panel__title">Filter</div>
+        <div className="filter-panel__title">{t('FILTER')}</div>
         <button className="filter-panel__btn" onClick={() => clearAllFilters()}>
-          clear all
+          {t('CLEAR_ALL_BTN')}
         </button>
       </div>
 
       <div className="filter-panel__section">
         <label className="filter-panel__section__title" htmlFor="sort">
-          Sort by
+          {t('SORT_BY')}
         </label>
         <select
           defaultValue={sortOrder}
@@ -69,15 +73,15 @@ export default function FilterPanelCookbooks(
           onChange={(e) => sort(e)}
         >
           <option value="" disabled hidden>
-            Choose here
+            {t('CHOOSE_HERE')}
           </option>
-          <option value="views">Popularity</option>
-          <option value="likes">Rating</option>
+          <option value="views">{t('POPULARITY')}</option>
+          <option value="likes">{t('RATING')}</option>
         </select>
       </div>
 
       <div className="filter-panel__section">
-        <div className="filter-panel__section__title">Cookbook type</div>
+        <div className="filter-panel__section__title">{t('COOKBOOK_TYPE')}</div>
         <div className="filter-panel__section__checkboxes">
           <div className="filter-panel__section__checkboxes__checkbox">
             <input
@@ -92,7 +96,7 @@ export default function FilterPanelCookbooks(
               htmlFor="vegetarian"
               className="filter-panel__section__checkboxes__checkbox__label"
             >
-              Vegetarian
+              {t('VEGETARIAN')}
             </label>
           </div>
           <div className="filter-panel__section__checkboxes__checkbox">
@@ -108,7 +112,7 @@ export default function FilterPanelCookbooks(
               htmlFor="nomilk"
               className="filter-panel__section__checkboxes__checkbox__label"
             >
-              Without milk
+              {t('WITHOUT_MILK')}
             </label>
           </div>
           <div className="filter-panel__section__checkboxes__checkbox">
@@ -124,7 +128,7 @@ export default function FilterPanelCookbooks(
               htmlFor="noeggs"
               className="filter-panel__section__checkboxes__checkbox__label"
             >
-              Without eggs
+              {t('WITHOUT_EGGS')}
             </label>
           </div>
         </div>
@@ -155,7 +159,7 @@ export default function FilterPanelCookbooks(
             htmlFor="hide"
             className="filter-panel__section__checkboxes__checkbox__label"
           >
-            Hide my CookBooks
+            {t('HIDE_MY_CB')}
           </label>
         </div>
       </div>

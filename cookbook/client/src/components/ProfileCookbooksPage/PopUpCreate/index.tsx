@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { Form, Field } from 'react-final-form';
 import { AnyAction } from 'redux';
+import { useTranslation } from 'react-i18next';
 import api from '../../../helpers/api';
 import { CookbookValues } from '../../../redux/actions/cookbooks';
 
@@ -37,8 +38,9 @@ const formData = {
 const required = (value: string | string[]) => (value ? undefined : 'Required');
 
 export default function PopUpCreateCookbook(
-  props: PopUpCreateCookbookProps,
+  props: PopUpCreateCookbookProps
 ): JSX.Element {
+  const { t } = useTranslation();
   const { loggedInUserId, setCreatePopUpVisible, createCookbook } = props;
   const [photoSrc, setPhotoSrc] = useState('');
 
@@ -63,7 +65,9 @@ export default function PopUpCreateCookbook(
     <div className="overlay">
       <div className="overlay__content">
         <div className="pop-up--create">
-          <div className="pop-up--create__title">Create New Cookbook</div>
+          <div className="pop-up--create__title">
+            {t('CREATE_NEW_COOKBOOK')}
+          </div>
 
           <Form
             onSubmit={onSubmit}
@@ -71,47 +75,37 @@ export default function PopUpCreateCookbook(
             render={({ handleSubmit }) => (
               <form action="" onSubmit={handleSubmit}>
                 <div className="pop-up--create__section">
-                  {/* <label
-                    htmlFor="title"
-                    className="pop-up--create__section__title"
-                  >
-                    Cookbook Title<span>*</span>
-                  </label>
-                  <Field
-                    type="text"
-                    className="pop-up--create__section__input"
-                    name="title"
-                    placeholder="Title"
-                    component="input"
-                    validate={required}
-                  /> */}
-                  <Field
-                    name="title"
-                    validate={required}
-                  >
+                  <Field name="title" validate={required}>
                     {({ input, meta }) => (
                       <>
-                      <label
-                        htmlFor="title"
-                        className="pop-up--create__section__title"
-                      >
-                        Cookbook Title<span>*</span>
-                      </label>
-                      <input {...input} type="text" className="pop-up--create__section__input--error" placeholder="Title"/>
-                      {meta.error && meta.touched ? (
-                        <span className="pop-up--create__section__input__error">{meta.error}</span>
-                      ) : (
-                        <span className="pop-up--create__section__input__error"></span>
-                      )}
-                    </>
+                        <label
+                          htmlFor="title"
+                          className="pop-up--create__section__title"
+                        >
+                          {t('COOKBOOK_TITLE')}
+                          <span>*</span>
+                        </label>
+                        <input
+                          {...input}
+                          type="text"
+                          className="pop-up--create__section__input--error"
+                          placeholder="Title"
+                        />
+                        {meta.error && meta.touched ? (
+                          <span className="pop-up--create__section__input__error">
+                            {meta.error}
+                          </span>
+                        ) : (
+                          <span className="pop-up--create__section__input__error"></span>
+                        )}
+                      </>
                     )}
-
                   </Field>
                 </div>
 
                 <div className="pop-up--create__section--image">
                   <label className="pop-up--create__section__btn">
-                    Upload Cookbook Image
+                    {t('UPLOAD_CB_IMAGE')}
                     <input
                       name="image"
                       type="file"
@@ -140,7 +134,7 @@ export default function PopUpCreateCookbook(
                     htmlFor="description"
                     className="pop-up--create__section__title"
                   >
-                    Description
+                    {t('DESCRIPTION')}
                   </label>
                   <Field
                     type="text"
@@ -156,7 +150,7 @@ export default function PopUpCreateCookbook(
                     htmlFor="recipesIds"
                     className="pop-up--create__section__title"
                   >
-                    Recipes
+                    {t('RECIPES')}
                   </label>
                   <Field
                     className="pop-up--create__section__input--select"
@@ -173,14 +167,16 @@ export default function PopUpCreateCookbook(
                 </div>
 
                 <div className="pop-up--create__section">
-                  <div className="pop-up--create__section__title">Tags</div>
+                  <div className="pop-up--create__section__title">
+                    {t('TAGS')}
+                  </div>
                   <div className="pop-up--create__section__container--checkboxes">
                     <div className="pop-up--create__section__container--checkbox">
                       <label
                         htmlFor="Vegetarian"
                         className="pop-up--create__section__label"
                       >
-                        Vegetarian
+                        {t('VEGETARIAN')}
                       </label>
                       <Field
                         className="pop-up--create__section__input--checkbox"
@@ -194,7 +190,7 @@ export default function PopUpCreateCookbook(
                         htmlFor="Without eggs"
                         className="pop-up--create__section__label"
                       >
-                        Without eggs
+                        {t('WITHOUT_EGGS')}
                       </label>
                       <Field
                         className="pop-up--create__section__input--checkbox"
@@ -208,7 +204,7 @@ export default function PopUpCreateCookbook(
                         htmlFor="Without milk"
                         className="pop-up--create__section__label"
                       >
-                        Without milk
+                        {t('WITHOUT_MILK')}
                       </label>
                       <Field
                         className="pop-up--create__section__input--checkbox"
@@ -227,10 +223,10 @@ export default function PopUpCreateCookbook(
                     className="pop-up--create__btns__btn--light"
                     onClick={() => setCreatePopUpVisible(false)}
                   >
-                    Cancel
+                    {t('CANCEL_BTN')}
                   </button>
                   <button type="submit" className="pop-up--create__btns__btn">
-                    Confirm
+                    {t('CONFIRM_BTN')}
                   </button>
                 </div>
               </form>

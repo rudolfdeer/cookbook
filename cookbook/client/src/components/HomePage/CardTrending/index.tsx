@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import api from '../../../helpers/api';
 import DotsIcon from '../../svg/Dots';
 import ViewsIcon from '../../svg/Views';
@@ -13,18 +14,17 @@ type RecipeCardTrendingProps = {
 };
 
 export default function CardTrending(
-  props: RecipeCardTrendingProps,
+  props: RecipeCardTrendingProps
 ): JSX.Element {
-  const {
-    views, image, title, authorId,
-  } = props;
+  const { t } = useTranslation();
+  const { views, image, title, authorId } = props;
 
   return (
     <div className="card">
       <div className="card__info-container">
         <div className="card__statistics-item">
           <ViewsIcon />
-          {views} views
+          {views} {t('VIEWS')}
         </div>
         <DotsIcon />
       </div>

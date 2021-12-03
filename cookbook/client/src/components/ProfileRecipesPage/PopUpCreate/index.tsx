@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { Form, Field } from 'react-final-form';
 import { AnyAction } from 'redux';
+import { useTranslation } from 'react-i18next';
 import { RecipeValues } from '../../../redux/actions/recipes';
 
 import './index.scss';
@@ -35,8 +36,9 @@ const formData = {
 const required = (value: string | string[]) => (value ? undefined : 'Required');
 
 export default function PopUpCreateRecipe(
-  props: PopUpCreateRecipeProps,
+  props: PopUpCreateRecipeProps
 ): JSX.Element {
+  const { t } = useTranslation();
   const { setCreatePopUpVisible, createRecipe, loggedInUserId } = props;
 
   const [photoSrc, setPhotoSrc] = useState('');
@@ -50,55 +52,44 @@ export default function PopUpCreateRecipe(
     <div className="overlay">
       <div className="overlay__content">
         <div className="pop-up--create">
-          <div className="pop-up--create__title">Create New Recipe</div>
+          <div className="pop-up--create__title">{t('CREATE_NEW_RECIPE')}</div>
           <Form
             onSubmit={onSubmit}
             initialValues={{ ...formData }}
             render={({ handleSubmit, submitting, pristine }) => (
               <form action="" onSubmit={handleSubmit}>
                 <div className="pop-up--create__section">
-                  {/* <label
-                    htmlFor="title"
-                    className="pop-up--create__section__title"
-                  >
-                    Recipe Title<span>*</span>
-                  </label> */}
-                  {/* <Field
-                    type="text"
-                    className="pop-up--create__section__input"
-                    name="title"
-                    placeholder="Title"
-                    component="input"
-                    validate={required}
-
-                  /> */}
-                  <Field
-                    name="title"
-                    validate={required}
-                  >
+                  <Field name="title" validate={required}>
                     {({ input, meta }) => (
                       <>
-                      <label
-                        htmlFor="title"
-                        className="pop-up--create__section__title"
-                      >
-                        Recipe Title<span>*</span>
-                      </label>
-                      <input {...input} type="text" className="pop-up--create__section__input--error" placeholder="Title"/>
-                      {meta.error && meta.touched ? (
-                        <span className="pop-up--create__section__input__error">{meta.error}</span>
-                      ) : (
-                        <span className="pop-up--create__section__input__error"></span>
-                      )}
-                    </>
+                        <label
+                          htmlFor="title"
+                          className="pop-up--create__section__title"
+                        >
+                          {t('RECIPE_TITLE')}
+                          <span>*</span>
+                        </label>
+                        <input
+                          {...input}
+                          type="text"
+                          className="pop-up--create__section__input--error"
+                          placeholder="Title"
+                        />
+                        {meta.error && meta.touched ? (
+                          <span className="pop-up--create__section__input__error">
+                            {meta.error}
+                          </span>
+                        ) : (
+                          <span className="pop-up--create__section__input__error"></span>
+                        )}
+                      </>
                     )}
-
                   </Field>
                 </div>
 
                 <div className="pop-up--create__section--image">
                   <label className="pop-up--create__section__btn">
-                    Upload Recipe Image
+                    {t('UPLOAD_REC_IMAGE')}
                     <input
                       name="image"
                       type="file"
@@ -127,7 +118,7 @@ export default function PopUpCreateRecipe(
                     htmlFor="description"
                     className="pop-up--create__section__title"
                   >
-                    Description
+                    {t('DESCRIPTION')}
                   </label>
                   <Field
                     type="text"
@@ -143,7 +134,7 @@ export default function PopUpCreateRecipe(
                     htmlFor="ingredients"
                     className="pop-up--create__section__title"
                   >
-                    Ingredients
+                    {t('INGREDIENTS')}
                   </label>
                   <Field
                     type="text"
@@ -160,7 +151,7 @@ export default function PopUpCreateRecipe(
                     htmlFor="directions"
                     className="pop-up--create__section__title"
                   >
-                    Directions
+                    {t('DIRECTIONS')}
                   </label>
                   <Field
                     type="text"
@@ -176,13 +167,13 @@ export default function PopUpCreateRecipe(
                     htmlFor="cookingTime"
                     className="pop-up--create__section__title"
                   >
-                    Cooking time
+                    {t('COOKING_TIME')}
                   </label>
                   <Field
                     type="number"
                     className="pop-up--create__section__input"
                     name="cookingTime"
-                    placeholder="Cooking time, minutes"
+                    placeholder={t('COOKING_TIME_MIN')}
                     component="input"
                     min="1"
                     max="60"
@@ -194,14 +185,14 @@ export default function PopUpCreateRecipe(
                     className="pop-up--create__btns__btn--light"
                     onClick={() => setCreatePopUpVisible(false)}
                   >
-                    Cancel
+                    {t('CANCEL_BTN')}
                   </button>
                   <button
                     type="submit"
                     className="pop-up--create__btns__btn"
                     disabled={submitting || pristine}
                   >
-                    Confirm
+                    {t('CONFIRM_BTN')}
                   </button>
                 </div>
               </form>

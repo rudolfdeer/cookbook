@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AnyAction } from 'redux';
+import { useTranslation } from 'react-i18next';
 import { Cookbook, Recipe } from '../../interfaces';
 import Footer from '../Footer';
 import CookbookCard from './Card';
@@ -29,6 +30,7 @@ type CookbooksPageProps = {
 };
 
 export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
+  const { t } = useTranslation();
   const {
     cookbooks,
     getAllCookbooks,
@@ -69,9 +71,9 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
           <div className="search-page__content">
             <nav className="search-page__nav">
               <ul className="search-page__nav__list">
-                <li className="list__item--selected">Cookbooks</li>
+                <li className="list__item--selected">{t('COOKBOOKS')}</li>
                 <li className="list__item">
-                  <Link to="/recipes">Recipes</Link>
+                  <Link to="/recipes">{t('RECIPES')}</Link>
                 </li>
               </ul>
             </nav>

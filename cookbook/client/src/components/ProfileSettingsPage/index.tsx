@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { AnyAction } from 'redux';
+import { useTranslation } from 'react-i18next';
 import { User } from '../../interfaces';
 import ROUTES from '../../constants/routes';
 import Footer from '../Footer';
@@ -20,11 +21,14 @@ type ProfileSettingsPageProps = {
 };
 
 export default function ProfileSettingsPage(
-  props: ProfileSettingsPageProps,
+  props: ProfileSettingsPageProps
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.HOME} />;
   }
+
+  const { t } = useTranslation();
+
   const {
     user,
     changeUserBio,
@@ -35,9 +39,7 @@ export default function ProfileSettingsPage(
     logOut,
     deleteUser,
   } = props;
-  const {
-    id, name, email, password, bio, avatar,
-  } = user;
+  const { id, name, email, password, bio, avatar } = user;
   const [isBioDisabled, setBioDisabled] = useState(true);
   const [isNameDisabled, setNameDisabled] = useState(true);
   const [isEmailDisabled, setEmailDisabled] = useState(true);
@@ -47,7 +49,7 @@ export default function ProfileSettingsPage(
   const [newEmail, setNewEmail] = useState(email);
   const [newPassword, setNewPassword] = useState(password);
   const [photoSrc, setPhotoSrc] = useState(
-    avatar || './assets/images/photo-mask.png',
+    avatar || './assets/images/photo-mask.png'
   );
 
   const onPhotoChange = (e: React.ChangeEvent) => {
@@ -111,13 +113,13 @@ export default function ProfileSettingsPage(
                       setBioDisabled(false);
                     }}
                   >
-                    Edit
+                    {t('EDIT_BTN')}
                   </button>
                 ) : (
                   <input
                     type="submit"
                     className="profile-page--settings__user__form__input--submit"
-                    value="Save"
+                    value={t('SAVE_BTN') as string}
                     onClick={(e) => {
                       e.preventDefault();
                       setBioDisabled(true);
@@ -131,27 +133,27 @@ export default function ProfileSettingsPage(
           <nav className="profile-page--settings__nav">
             <ul className="nav__list">
               <li className="list__item">
-                <Link to={ROUTES.PROFILE_SAVED}>Saved</Link>
+                <Link to={ROUTES.PROFILE_SAVED}>{t('SAVED')}</Link>
               </li>
               <li className="list__item">
-                <Link to={ROUTES.PROFILE_COOKBOOKS}>My Cookbooks</Link>
+                <Link to={ROUTES.PROFILE_COOKBOOKS}>{t('MY_COOKBOOKS')}</Link>
               </li>
               <li className="list__item">
-                <Link to={ROUTES.PROFILE_RECIPES}>My Recipes</Link>
+                <Link to={ROUTES.PROFILE_RECIPES}>{t('MY_RECIPES')}</Link>
               </li>
-              <li className="list__item--selected">My Settings</li>
+              <li className="list__item--selected">{t('MY_SETTINGS')}</li>
             </ul>
           </nav>
           <section className="profile-page--settings__info">
             <div className="profile-page--settings__info__title">
-              Personal Information
+              {t('PERSONAL_INFORMATION')}
             </div>
             <form action="" className="profile-page--settings__info__form">
               <label
                 htmlFor="name"
                 className="profile-page--settings__info__form__label"
               >
-                Name
+                {t('NAME')}
               </label>
               <input
                 type="text"
@@ -169,7 +171,7 @@ export default function ProfileSettingsPage(
                 <input
                   type="submit"
                   className="profile-page--settings__user__form__input--submit"
-                  value="Edit"
+                  value={t('EDIT_BTN') as string}
                   onClick={(e) => {
                     e.preventDefault();
                     setNameDisabled(false);
@@ -179,7 +181,7 @@ export default function ProfileSettingsPage(
                 <input
                   type="submit"
                   className="profile-page--settings__user__form__input--submit"
-                  value="Save"
+                  value={t('SAVE_BTN') as string}
                   onClick={(e) => {
                     e.preventDefault();
                     setNameDisabled(true);
@@ -193,7 +195,7 @@ export default function ProfileSettingsPage(
                 htmlFor="email"
                 className="profile-page--settings__info__form__label"
               >
-                Email
+                {t('EMAIL')}
               </label>
 
               <input
@@ -211,7 +213,7 @@ export default function ProfileSettingsPage(
                 <input
                   type="submit"
                   className="profile-page--settings__user__form__input--submit"
-                  value="Edit"
+                  value={t('EDIT_BTN') as string}
                   onClick={(e) => {
                     e.preventDefault();
                     setEmailDisabled(false);
@@ -221,7 +223,7 @@ export default function ProfileSettingsPage(
                 <input
                   type="submit"
                   className="profile-page--settings__user__form__input--submit"
-                  value="Save"
+                  value={t('SAVE_BTN') as string}
                   onClick={(e) => {
                     e.preventDefault();
                     setEmailDisabled(true);
@@ -235,7 +237,7 @@ export default function ProfileSettingsPage(
                 htmlFor="password"
                 className="profile-page--settings__info__form__label"
               >
-                Password
+                {t('PASSWORD')}
               </label>
               <input
                 type="password"
@@ -252,7 +254,7 @@ export default function ProfileSettingsPage(
                 <input
                   type="submit"
                   className="profile-page--settings__user__form__input--submit"
-                  value="Change my password"
+                  value={t('CHANGE_PASSWORD_BTN') as string}
                   onClick={(e) => {
                     e.preventDefault();
                     setPasswordDisabled(false);
@@ -262,7 +264,7 @@ export default function ProfileSettingsPage(
                 <input
                   type="submit"
                   className="profile-page--settings__user__form__input--submit"
-                  value="Save new password"
+                  value={t('SAVE_PASSWORD_BTN') as string}
                   onClick={(e) => {
                     e.preventDefault();
                     setPasswordDisabled(true);
@@ -278,7 +280,7 @@ export default function ProfileSettingsPage(
                   logOut(id);
                 }}
               >
-                Log out
+                {t('LOG_OUT_BTN')}
               </button>
               <button
                 className="profile-page--settings__btns__btn--delete"
@@ -286,7 +288,7 @@ export default function ProfileSettingsPage(
                   deleteUser(id);
                 }}
               >
-                Delete my account
+                {t('LOG_OUT_BTN')}
               </button>
             </div>
           </section>

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import api from '../../../helpers/api';
-
 import './index.scss';
 import ResultList from './ResultList';
 
 export default function SearchBar(): JSX.Element {
+  const { t } = useTranslation();
+
   const users = api.getAllUsers();
   const usersList = users.map((el) => ({
     name: el.name,
@@ -20,7 +22,9 @@ export default function SearchBar(): JSX.Element {
   };
 
   const getResultList = () => {
-    const result = usersList.filter((el) => el.name.toLowerCase().includes(searchInput.toLowerCase()));
+    const result = usersList.filter((el) =>
+      el.name.toLowerCase().includes(searchInput.toLowerCase())
+    );
     return result;
   };
 
@@ -32,7 +36,7 @@ export default function SearchBar(): JSX.Element {
         value={searchInput}
         className="header__search__input"
         onChange={(e) => editSearchInput(e)}
-        placeholder="Search users..."
+        placeholder={t('SEARCH_USERS')}
       />
       {searchInput.length > 0 ? (
         <div className="header__search__result">

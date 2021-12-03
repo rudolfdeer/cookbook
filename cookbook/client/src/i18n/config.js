@@ -5,7 +5,7 @@ import translationFR from './locales/fr/translation.json';
 
 i18n.use(initReactI18next).init({
   fallbackLng: 'en',
-  lng: 'en',
+  lng: localStorage.getItem('lang') || 'en',
   resources: {
     en: {
       translations: translationEN,

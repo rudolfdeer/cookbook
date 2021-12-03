@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { AnyAction } from 'redux';
+import { useTranslation } from 'react-i18next';
 import { Cookbook, User } from '../../interfaces';
 import ROUTES from '../../constants/routes';
 
@@ -33,11 +34,12 @@ type ProfileCookbooksPageProps = {
 };
 
 export default function ProfileCookbooksPage(
-  props: ProfileCookbooksPageProps,
+  props: ProfileCookbooksPageProps
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.NOT_FOUND} />;
   }
+  const { t } = useTranslation();
 
   const {
     cookbooks,
@@ -47,9 +49,7 @@ export default function ProfileCookbooksPage(
     modifyCookbook,
     deleteCookbook,
   } = props;
-  const {
-    name, bio, avatar, id,
-  } = user;
+  const { name, bio, avatar, id } = user;
   const [isCreatePopUpVisible, setCreatePopUpVisible] = useState(false);
   const [isModifyPopUpVisible, setModifyPopUpVisible] = useState(false);
   const photoSrc = avatar || '../../assets/images/photo-mask.png';
@@ -80,21 +80,21 @@ export default function ProfileCookbooksPage(
           <nav className="profile-page--cookbooks__nav">
             <ul className="profile-page--cookbooks__nav__list">
               <li className="list__item">
-                <Link to={ROUTES.PROFILE_SAVED}>Saved</Link>
+                <Link to={ROUTES.PROFILE_SAVED}>{t('SAVED')}</Link>
               </li>
-              <li className="list__item--selected">My Cookbooks</li>
+              <li className="list__item--selected">{t('MY_COOKBOOKS')}</li>
               <li className="list__item">
-                <Link to={ROUTES.PROFILE_RECIPES}>My Recipes</Link>
+                <Link to={ROUTES.PROFILE_RECIPES}>{t('MY_RECIPES')}</Link>
               </li>
               <li className="list__item">
-                <Link to={ROUTES.PROFILE_SETTINGS}>My Settings</Link>
+                <Link to={ROUTES.PROFILE_SETTINGS}>{t('MY_SETTINGS')}</Link>
               </li>
             </ul>
             <button
               className="profile-page--cookbooks__nav__btn"
               onClick={() => setCreatePopUpVisible(true)}
             >
-              Create New Cookbook
+              {t('CREATE_NEW_COOKBOOK')}
             </button>
           </nav>
           <section className="profile-page--cookbooks__cards">

@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { AnyAction } from 'redux';
+import { useTranslation } from 'react-i18next';
 import api from '../../../helpers/api';
 import LikesIcon from '../../svg/Likes';
 import ViewsIcon from '../../svg/Views';
@@ -21,8 +22,9 @@ type ProfileRecipeCardProps = {
 };
 
 export default function ProfileRecipeCard(
-  props: ProfileRecipeCardProps,
+  props: ProfileRecipeCardProps
 ): JSX.Element {
+  const { t } = useTranslation();
   const {
     id,
     views,
@@ -50,7 +52,7 @@ export default function ProfileRecipeCard(
           deleteRecipe(id, loggedInUserId);
         }}
       >
-        Delete this recipe
+        {t('DELETE_RECIPE')}
       </button>
     </div>
   );
@@ -81,11 +83,11 @@ export default function ProfileRecipeCard(
           <div className="card__statistics">
             <div className="card__statistics-item">
               <ViewsIcon />
-              {views} views
+              {views} {t('VIEWS')}
             </div>
             <div className="card__statistics-item">
               <LikesIcon />
-              {usersLiked.length} likes
+              {usersLiked.length} {t('LIKES')}
             </div>
             <div className="card__statistics-item">
               <svg
@@ -101,7 +103,7 @@ export default function ProfileRecipeCard(
                   fill="#DADADA"
                 />
               </svg>
-              {comments} comments
+              {comments} {t('COMMENTS')}
             </div>
           </div>
           <svg

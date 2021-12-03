@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { Link } from 'react-router-dom';
 import { AnyAction } from 'redux';
+import { useTranslation } from 'react-i18next';
 import ROUTES from '../../../constants/routes';
 import api from '../../../helpers/api';
 import { Recipe } from '../../../interfaces';
@@ -23,8 +24,9 @@ type PopUpRecipeDetailedProps = {
 };
 
 export default function PopUpRecipeDetailed(
-  props: PopUpRecipeDetailedProps,
+  props: PopUpRecipeDetailedProps
 ): JSX.Element {
+  const { t } = useTranslation();
   const {
     setVisible,
     recipe,
@@ -87,7 +89,7 @@ export default function PopUpRecipeDetailed(
               <div className="pop-up--recipe__section--description">
                 <div className="pop-up--recipe__section--description__wrapper">
                   <div className="pop-up--recipe__section--description__title">
-                    Description
+                    {t('DESCRIPTION')}
                   </div>
                   <p>{description}</p>
                 </div>
@@ -95,7 +97,7 @@ export default function PopUpRecipeDetailed(
               <div className="pop-up--recipe__section--information">
                 <div className="pop-up--recipe__section--information__directions">
                   <div className="pop-up--recipe__section--information__title">
-                    Directions
+                    {t('DIRECTIONS')}
                   </div>
                   <ul className="pop-up--recipe__section--information__list">
                     {directions.map((el: string) => (
@@ -108,7 +110,7 @@ export default function PopUpRecipeDetailed(
                 </div>
                 <div className="pop-up--recipe__section--information__ingredients">
                   <div className="pop-up--recipe__section--information__title">
-                    Ingredients
+                    {t('INGREDIENTS')}
                   </div>
                   <ul className="pop-up--recipe__section--information__list--marked">
                     {ingredients.map((el: string) => (
@@ -120,17 +122,19 @@ export default function PopUpRecipeDetailed(
               <div className="pop-up--recipe__section--statistics">
                 <div className="card__statistics-item likes">
                   <LikesIcon />
-                  {usersLiked.length} likes
+                  {usersLiked.length} {t('LIKES')}
                 </div>
                 <div className="card__statistics-item comments">
                   <CommentsIcon />
-                  {comments.length} comments
+                  {comments.length} {t('COMMENTS')}
                 </div>
               </div>
             </div>
           </div>
           <div className="pop-up--recipe__section--comments">
-            <div className="pop-up--recipe__section--comments__title">{`Comments (${comments.length})`}</div>
+            <div className="pop-up--recipe__section--comments__title">{`${t(
+              'COMMENTS_SECTION'
+            )} (${comments.length})`}</div>
             <CommentsSection
               comments={comments}
               loggedInUserId={loggedInUserId}

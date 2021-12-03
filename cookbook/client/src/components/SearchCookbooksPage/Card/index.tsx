@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { AnyAction } from 'redux';
+import { useTranslation } from 'react-i18next';
 import api from '../../../helpers/api';
 import CommentsIcon from '../../svg/Comments';
 import DotsIcon from '../../svg/Dots';
@@ -24,6 +25,7 @@ type CookbookCardProps = {
 };
 
 export default function CookbookCard(props: CookbookCardProps): JSX.Element {
+  const { t } = useTranslation();
   const {
     id,
     views,
@@ -44,7 +46,7 @@ export default function CookbookCard(props: CookbookCardProps): JSX.Element {
       <div className="card__info-container top">
         <div className="card__statistics-item">
           <ViewsIcon />
-          {views} views
+          {views} {t('VIEWS')}
         </div>
         <DotsIcon />
       </div>
@@ -81,11 +83,11 @@ export default function CookbookCard(props: CookbookCardProps): JSX.Element {
             likeCookbook={likeCookbook}
             loggedInUserId={loggedInUserId}
           />
-          {usersLiked.length} likes
+          {usersLiked.length} {t('LIKES')}
         </div>
         <div className="card__statistics-item">
           <CommentsIcon />
-          {comments} comments
+          {comments} {t('COMMENTS')}
         </div>
       </div>
     </div>

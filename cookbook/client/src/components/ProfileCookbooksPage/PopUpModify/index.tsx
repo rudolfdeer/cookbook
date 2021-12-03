@@ -1,10 +1,9 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { AnyAction } from 'redux';
+import { useTranslation } from 'react-i18next';
 import api from '../../../helpers/api';
 import { Cookbook } from '../../../interfaces';
 import { CookbookValues } from '../../../redux/actions/cookbooks';
-import CommentsIcon from '../../svg/Comments';
-import LikesIcon from '../../svg/Likes';
 import PopUpRecipeCard from './Card';
 
 import './index.scss';
@@ -22,17 +21,17 @@ type PopUpModifyCookbookProps = {
 };
 
 export default function PopUpModifyCookbook(
-  props: PopUpModifyCookbookProps,
+  props: PopUpModifyCookbookProps
 ): JSX.Element {
+  const { t } = useTranslation();
   const {
     setModifyPopUpVisible,
     selectedCookbook,
     loggedInUserId,
     modifyCookbook,
   } = props;
-  const {
-    id, image, description, title, userId, likes, comments, recipesIds,
-  } = selectedCookbook;
+  const { id, image, description, title, userId, recipesIds } =
+    selectedCookbook;
 
   const [imageSrc, setImageSrc] = useState(image);
   const [isTitleDisabled, setTitleDisabled] = useState(true);
@@ -44,8 +43,8 @@ export default function PopUpModifyCookbook(
   function closePopUp(e: React.MouseEvent) {
     const target = e.target as HTMLElement;
     if (
-      target.classList.contains('overlay')
-      || target.classList.contains('overlay__btn')
+      target.classList.contains('overlay') ||
+      target.classList.contains('overlay__btn')
     ) {
       setModifyPopUpVisible(false);
     }
@@ -105,7 +104,7 @@ export default function PopUpModifyCookbook(
                   setTitleDisabled(false);
                 }}
               >
-                Edit
+                {t('EDIT_BTN')}
               </button>
             ) : (
               <button
@@ -115,7 +114,7 @@ export default function PopUpModifyCookbook(
                   setTitleDisabled(true);
                 }}
               >
-                Save
+                {t('SAVE_BTN')}
               </button>
             )}
           </div>
@@ -138,7 +137,9 @@ export default function PopUpModifyCookbook(
               />
             </div>
             <div className="pop-up--modify__section--description__container">
-              <div className="pop-up--modify__section__title">Description</div>
+              <div className="pop-up--modify__section__title">
+                {t('DESCRIPTION')}
+              </div>
               <textarea
                 name="description"
                 className="pop-up--modify__input--textarea"
@@ -154,7 +155,7 @@ export default function PopUpModifyCookbook(
                     setDescriptionDisabled(false);
                   }}
                 >
-                  Edit
+                  {t('EDIT_BTN')}
                 </button>
               ) : (
                 <button
@@ -164,13 +165,13 @@ export default function PopUpModifyCookbook(
                     setDescriptionDisabled(true);
                   }}
                 >
-                  Save
+                  {t('SAVE_BTN')}
                 </button>
               )}
             </div>
           </div>
           <div className="pop-up--modify__section--recipes">
-            <div className="pop-up--modify__section__title">Recipes</div>
+            <div className="pop-up--modify__section__title">{t('RECIPES')}</div>
             <div className="pop-up--modify__section--recipes__cards">
               {recipes?.map((el) => (
                 <PopUpRecipeCard
@@ -192,7 +193,9 @@ export default function PopUpModifyCookbook(
             </div>
           </div>
           <div className="pop-up--modify__section--add">
-            <div className="pop-up--modify__section__title">Add recipes</div>
+            <div className="pop-up--modify__section__title">
+              {t('ADD_RECIPES')}
+            </div>
             <select
               className="pop-up--modify__input--select"
               name="recipes"
@@ -215,13 +218,13 @@ export default function PopUpModifyCookbook(
               className="pop-up--modify__btns__btn--light"
               onClick={() => onSubmit()}
             >
-              Save
+              {t('SAVE_BTN')}
             </button>
             <button
               className="pop-up--modify__btns__btn"
               onClick={() => setModifyPopUpVisible(false)}
             >
-              Cancel
+              {t('CANCEL_BTN')}
             </button>
           </div>
         </div>

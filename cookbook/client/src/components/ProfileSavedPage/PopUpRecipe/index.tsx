@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
+import { useTranslation } from 'react-i18next';
 import api from '../../../helpers/api';
 import { Recipe } from '../../../interfaces';
 import CommentsIcon from '../../svg/Comments';
@@ -13,8 +14,9 @@ type PopUpRecipeSavedProps = {
 };
 
 export default function PopUpRecipeSaved(
-  props: PopUpRecipeSavedProps,
+  props: PopUpRecipeSavedProps
 ): JSX.Element {
+  const { t } = useTranslation();
   const { setRecipePopUpVisible, recipe } = props;
   const {
     image,
@@ -52,7 +54,7 @@ export default function PopUpRecipeSaved(
               <div className="pop-up--recipe__section--description">
                 <div className="pop-up--recipe__section--description__wrapper">
                   <div className="pop-up--recipe__section--description__title">
-                    Description
+                    {t('DESCRIPTION')}
                   </div>
                   <p>{description}</p>
                 </div>
@@ -60,7 +62,7 @@ export default function PopUpRecipeSaved(
               <div className="pop-up--recipe__section--information">
                 <div className="pop-up--recipe__section--information__directions">
                   <div className="pop-up--recipe__section--information__title">
-                    Directions
+                    {t('DIRECTIONS')}
                   </div>
                   <ul className="pop-up--recipe__section--information__list">
                     {directions.map((el: string) => (
@@ -73,7 +75,7 @@ export default function PopUpRecipeSaved(
                 </div>
                 <div className="pop-up--recipe__section--information__ingredients">
                   <div className="pop-up--recipe__section--information__title">
-                    Ingredients
+                    {t('INGREDIENTS')}
                   </div>
                   <ul className="pop-up--recipe__section--information__list--marked">
                     {ingredients.map((el: string) => (
@@ -85,11 +87,11 @@ export default function PopUpRecipeSaved(
               <div className="pop-up--recipe__section--statistics">
                 <div className="card__statistics-item likes">
                   <LikesIcon />
-                  {likes} likes
+                  {likes} {t('LIKES')}
                 </div>
                 <div className="card__statistics-item comments">
                   <CommentsIcon />
-                  {comments.length} comments
+                  {comments.length} {t('COMMENTS')}
                 </div>
               </div>
             </div>

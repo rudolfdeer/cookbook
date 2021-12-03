@@ -1,14 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-// import { COOKBOOKS, RECIPES } from '../../constants/resources/common';
-// import {
-//   ABOUT_US,
-//   EMAIL,
-//   ITECHART,
-//   ITECHART_SITE,
-//   PROJECT,
-// } from '../../constants/resources/footer';
 import ROUTES from '../../constants/routes';
 
 import './index.scss';
@@ -19,6 +11,7 @@ export default function Footer(): JSX.Element {
   const changeLanguage = (e: React.MouseEvent) => {
     const target = e.target as HTMLButtonElement;
     i18n.changeLanguage(target.value);
+    localStorage.setItem('lang', target.value);
   };
 
   return (

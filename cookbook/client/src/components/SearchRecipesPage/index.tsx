@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AnyAction } from 'redux';
+import { useTranslation } from 'react-i18next';
 import Footer from '../Footer';
 import RecipeCard from './Card';
 import FilterPanelRecipes from './FilterPanel';
@@ -26,6 +27,7 @@ type RecipesPageProps = {
 };
 
 export default function RecipesPage(props: RecipesPageProps): JSX.Element {
+  const { t } = useTranslation();
   const {
     recipes,
     getAllRecipes,
@@ -59,9 +61,9 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
             <nav className="search-page__nav">
               <ul className="search-page__nav__list">
                 <li className="list__item">
-                  <Link to="/cookbooks">Cookbooks</Link>
+                  <Link to="/cookbooks">{t('COOKBOOKS')}</Link>
                 </li>
-                <li className="list__item--selected">Recipes</li>
+                <li className="list__item--selected">{t('RECIPES')}</li>
               </ul>
             </nav>
             <div className="search-page__cards--recipes">

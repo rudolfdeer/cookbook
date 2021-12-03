@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { COOKBOOKS, RECIPES } from '../../constants/resources/common';
-import { CREATE_COOKBOOK_BTN, SIGN_IN } from '../../constants/resources/header';
+import { useTranslation } from 'react-i18next';
 import ROUTES from '../../constants/routes';
 import './index.scss';
 import SearchBar from './SearchBar';
@@ -11,6 +10,7 @@ type HeaderProps = {
 };
 
 export default function Header(props: HeaderProps): JSX.Element {
+  const { t } = useTranslation();
   const { loggedInUserName } = props;
 
   return (
@@ -21,21 +21,21 @@ export default function Header(props: HeaderProps): JSX.Element {
       <nav className="header__nav">
         <ul className="header__nav__list">
           <li className="header__nav__list__item">
-            <Link to={ROUTES.COOKBOOKS}>{COOKBOOKS}</Link>
+            <Link to={ROUTES.COOKBOOKS}>{t('COOKBOOKS')}</Link>
           </li>
           <li className="header__nav__list__item">
-            <Link to={ROUTES.RECIPES}>{RECIPES}</Link>
+            <Link to={ROUTES.RECIPES}>{t('RECIPES')}</Link>
           </li>
         </ul>
       </nav>
       <SearchBar />
       {loggedInUserName ? (
         <button className="header__btn">
-          <Link to={ROUTES.PROFILE_COOKBOOKS}>{CREATE_COOKBOOK_BTN}</Link>
+          <Link to={ROUTES.PROFILE_COOKBOOKS}>{t('CREATE_COOKBOOK_BTN')}</Link>
         </button>
       ) : (
         <button className="header__btn">
-          <Link to={ROUTES.LOG_IN}>{CREATE_COOKBOOK_BTN}</Link>
+          <Link to={ROUTES.LOG_IN}>{t('CREATE_COOKBOOK_BTN')}</Link>
         </button>
       )}
       {loggedInUserName ? (
@@ -45,7 +45,7 @@ export default function Header(props: HeaderProps): JSX.Element {
         </div>
       ) : (
         <div className="header__login">
-          <Link to="/login">{SIGN_IN}</Link>
+          <Link to="/login">{t('SIGN_IN')}</Link>
         </div>
       )}
     </header>

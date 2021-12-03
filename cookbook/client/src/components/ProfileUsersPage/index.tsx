@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Redirect } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { Cookbook } from '../../interfaces';
 
@@ -21,8 +22,9 @@ type ProfileUsersPageProps = {
 };
 
 export default function ProfileUsersPage(
-  props: ProfileUsersPageProps,
+  props: ProfileUsersPageProps
 ): JSX.Element {
+  const { t } = useTranslation();
   const { userId } = useParams<{ userId: string }>();
   const { cookbooks, loggedInUserId, getUsersCreatedCookbooks } = props;
 
@@ -59,7 +61,7 @@ export default function ProfileUsersPage(
           </section>
           <nav className="profile-page--user__nav">
             <ul className="profile-page--user__nav__list">
-              <li className="list__item--selected">Created Cookbooks</li>
+              <li className="list__item--selected"> {t('CREATED_CB')}</li>
             </ul>
           </nav>
           <section className="profile-page--user__cards">

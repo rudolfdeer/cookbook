@@ -3,13 +3,14 @@
   "COOKBOOKS": "Cookbooks",
   "VIEWS": "views",
   "LIKES": "likes",
-  "COMMENTS": "Comments",
+  "COMMENTS": "comments",
   "DESCRIPTION": "Description",
   "DIRECTIONS": "Directions",
   "INGREDIENTS": "Ingredients",
   "EMAIL": "Email",
   "PASSWORD": "Password",
   "SIGN_IN": "Sign in",
+  "COMMENTS_SECTION": "Comments",
 
   "MY_EMAIL": "tomalichko@gmail.com",
   "ITECHART_SITE": "https://www.itechart.by/",
@@ -18,6 +19,7 @@
   "ABOUT_US": "About us",
 
   "CREATE_COOKBOOK_BTN": "Create CookBook",
+  "SEARCH_USERS": "Search users",
 
   "MAIN_TITLE": "Find Recipes and Сreate Your Favourite Сookbooks",
   "RATED_SECTION_PRE_TITLE": "Users choice",
@@ -33,7 +35,7 @@
   "SEARCH_NAV_LIST": [
     "Vegetarian",
     "Mexican",
-    "Greece Kithcen",
+    "Greece Kitchen",
     "Italy Pizza",
     "Philippines",
     "Japan Sushi"
@@ -50,12 +52,25 @@
   "PERSONAL_INFORMATION": "Personal Information",
   "NAME": "Name",
   "CHANGE_PASSWORD_BTN": "Change my password",
+  "SAVE_PASSWORD_BTN": "Save new password",
   "LOG_OUT_BTN": "Log out",
   "DELETE_ACCOUNT_BTN": "Delete my account",
   "CREATE_NEW_RECIPE": "Create New Recipe",
   "CREATE_NEW_COOKBOOK": "Create New Cookbook",
   "DELETE_FROM_COOKBOOK_BTN": "Delete from this cookbook",
   "ADD_RECIPES": "Add Recipes",
+  "DELETE_COOKBOOK": "Delete this cookbook",
+  "DELETE_RECIPE": "Delete this recipe",
+  "COOKBOOK_TITLE": "Cookbook Title",
+  "RECIPE_TITLE": "Recipe Title",
+  "UPLOAD_CB_IMAGE": "Upload Cookbook Image",
+  "UPLOAD_REC_IMAGE": "Upload Recipe Image",
+  "TAGS": "Tags",
+  "VEGETARIAN": "Vegetarian",
+  "WITHOUT_EGGS": "Without eggs",
+  "WITHOUT_MILK": "Without milk",
+  "CREATED_CB": "Created cookbooks",
+  "COOKING_TIME_MIN": "Cooking time, min.",
 
   "FILTER": "Filter",
   "CLEAR_ALL_BTN": "clear all",
@@ -63,6 +78,14 @@
   "COOKING_TIME": "Cooking time",
   "COOKBOOK_TYPE": "Cookbook type",
   "COMMENT_INPUT_PLACEHOLDER": "Express yourself...",
+  "CHOOSE_HERE": "Choose here",
+  "POPULARITY": "Popularity",
+  "RATING": "Rating",
+  "HIDE_MY_CB": "Hide my CookBooks",
+  "CLONE_TO_MY_CB": "Clone to my CookBook",
+  "CLONE_TO_MY_REC": "Clone to my Recipes",
+  "1_MIN": "1 min",
+  "1_HOUR": "1 hour",
 
   "WELCOME": "Welcome back",
   "NEW_HERE": "New here?",
@@ -72,5 +95,9 @@
   "JOIN": "Join our community",
   "ALREADY_HAVE_ACOOUNT": "Already have an account?",
   "CONFIRM_PASSWORD": "Confirm password",
-  "SIGN UP": "Sign up"
+  "SIGN_UP": "Sign up",
+
+  "NOT_FOUND": "Page Not Found",
+  "PAGE_NOT_EXIST": "The page you are looking for doesn&apos;t exist or an other error occured. Go to",
+  "HOME_PAGE": "Home Page"
 }

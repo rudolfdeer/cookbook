@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import ROUTES from '../../../constants/routes';
 import api from '../../../helpers/api';
 import { Cookbook } from '../../../interfaces';
@@ -15,16 +16,16 @@ type PopUpCookbookProps = {
 };
 
 export default function PopUpCookbook(props: PopUpCookbookProps): JSX.Element {
+  const { t } = useTranslation();
   const { setPopUpCookbookVisible, cookbook } = props;
-  const {
-    image, description, title, userId, likes, comments, recipesIds,
-  } = cookbook;
+  const { image, description, title, userId, likes, comments, recipesIds } =
+    cookbook;
 
   function closePopUp(e: React.MouseEvent) {
     const target = e.target as HTMLElement;
     if (
-      target.classList.contains('overlay')
-      || target.classList.contains('overlay__btn')
+      target.classList.contains('overlay') ||
+      target.classList.contains('overlay__btn')
     ) {
       setPopUpCookbookVisible(false);
     }
@@ -55,7 +56,7 @@ export default function PopUpCookbook(props: PopUpCookbookProps): JSX.Element {
             ></div>
             <div className="pop-up--users-cookbook__section--description__text">
               <div className="pop-up--users-cookbook__section__title">
-                Description
+                {t('DESCRIPTION')}
               </div>
               <p>{description}</p>
             </div>
@@ -64,16 +65,16 @@ export default function PopUpCookbook(props: PopUpCookbookProps): JSX.Element {
           <div className="pop-up--users-cookbook__section--statistics">
             <div className="card__statistics-item likes">
               <LikesIcon />
-              {likes} likes
+              {likes} {t('LIKES')}
             </div>
             <div className="card__statistics-item comments">
               <CommentsIcon />
-              {comments.length} comments
+              {comments.length} {t('COMMENTS')}
             </div>
           </div>
           <div className="pop-up--users-cookbook__section--recipes">
             <div className="pop-up--users-cookbook__section__title">
-              Recipes
+              {t('RECIPES')}
             </div>
             <div className="pop-up--users-cookbook__section--recipes__cards">
               {recipes?.map((el) => (

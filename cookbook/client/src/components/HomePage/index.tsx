@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
-import { SEARCH_NAV_LIST } from '../../constants/resources/homePage';
 import ROUTES from '../../constants/routes';
 import { Cookbook, Recipe } from '../../interfaces';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
@@ -23,6 +22,8 @@ type HomePageProps = {
 export default function HomePage(props: HomePageProps): JSX.Element {
   const { t } = useTranslation();
   const { recipes, getAllRecipes, cookbooks, getAllCookbooks } = props;
+
+  const navList = t('SEARCH_NAV_LIST', { returnObjects: true }) as string[];
 
   useEffect(() => {
     getAllRecipes();
@@ -60,10 +61,10 @@ export default function HomePage(props: HomePageProps): JSX.Element {
               </div>
               <nav className="page--home__intro__nav">
                 <ul className="page--home__intro__nav__list">
-                  {SEARCH_NAV_LIST.map((el) => (
+                  {navList.map((el) => (
                     <li
                       className="page--home__intro__nav__list__item"
-                      key={SEARCH_NAV_LIST.indexOf(el)}
+                      key={navList.indexOf(el)}
                     >
                       {el}
                     </li>

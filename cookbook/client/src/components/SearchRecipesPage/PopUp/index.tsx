@@ -40,7 +40,6 @@ export default function PopUpRecipeDetailed(
     description,
     title,
     userId,
-    likes,
     usersLiked,
     comments,
     directions,

@@ -8,7 +8,7 @@ import {
   createComment,
   hideUsersCookbooks,
   likeCookbook,
-} from '../actions/cookbooks';
+} from '../thunks/cookbooks';
 import { getAllRecipes } from '../actions/recipes';
 import { saveToUsersCookbooks, saveToUsersRecipes } from '../actions/user';
 

@@ -6,6 +6,30 @@ type LoginInfo = {
   password: string;
 };
 
+export interface RecipeValues {
+  title: string;
+  description: string;
+  ingredients: string;
+  directions: string;
+  time?: number;
+  views?:number;
+  likeUserIds?: number[];
+};
+
+export interface CookbookValues {
+  title: string;
+  description: string;
+  recipesIds: number[];
+  tags?: string[];
+  views?: number;
+  likeUserIds?: number[];
+}
+
+const base = 'http://127.0.0.1:3000/api/';
+const cookbooksUrl = `${base}cookbooks/`;
+const recipesUrl = `${base}recipes/`;
+const userUrl = `${base}user/`;
+
 class Api {
   getRecipesList(): Recipe[] {
     const response = FetchQuery.getRecipesList();
@@ -17,12 +41,6 @@ class Api {
     return response;
   }
 
-  // async getCookbooksList(): Promise<Cookbook[]> {
-  //   const response = await fetch(cookbooksUrl);
-  //   const result = await response.json();
-  //   console.log(result);
-  //   return result;
-  // }
 
   logIn(loginInfo: LoginInfo): User {
     const response = FetchQuery.logIn(loginInfo);
@@ -113,6 +131,188 @@ class Api {
     const cookbooks = this.getCookbooksList();
     const filteredCookbooks = cookbooks.filter((el) => el.userId === userId);
     return filteredCookbooks;
+  }
+
+  async getAllRecipes() {
+    const response = await fetch(`${recipesUrl}`);
+    const result = await response.json();
+    return result;
+  }
+
+  async createRecipe(data: RecipeValues, imageSrc: string) {
+    const directionsArr = data.directions.split(',');
+    const ingredientArr = data.ingredients.split(',');
+
+    const body = {
+      title: data.title,
+      image: imageSrc,
+      description: data.description,
+      directions: directionsArr,
+      ingredients: ingredientArr,
+      time: +data.time,
+    };
+
+    const response = await fetch(`${recipesUrl}`, {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const result = await response.json();
+    return result;
+  }
+
+  async getLoggedInUser() {
+    const response = await fetch(`${userUrl}`);
+    const result = await response.json();
+    return result;
+  }
+
+  async commentRecipe(recipeId: number, text: string) {
+    const body = {
+      text,
+      date: new Date().toString(),
+    };
+    const response = await fetch(`${recipesUrl}:${recipeId}`, {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const result = await response.json();
+    return result;
+  }
+
+  async updateRecipe(recipeId: number, data: RecipeValues, imageSrc: string) {
+    const {
+      title,
+      description,
+      directions,
+      ingredients,
+      views,
+      likeUserIds,
+    } = data;
+
+    const body = {
+      title,
+      description,
+      image: imageSrc,
+      directions: directions.split(','),
+      ingredients: ingredients.split(','),
+      views,
+      likeUserIds,
+    };
+
+    const response = await fetch(`${recipesUrl}:${recipeId}`, {
+      method: 'PUT',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const result = await response.json();
+    return result;
+  }
+
+  async deleteRecipe(id: number) {
+    const response = await fetch(`${recipesUrl}:${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const result = await response.json();
+    return result;
+  }
+
+  async getAllCookbooks() {
+    const response = await fetch(`${cookbooksUrl}`);
+    const result = await response.json();
+    return result;
+  }
+
+  async createCookbook(data: CookbookValues, imageSrc: string) {
+    const body = {
+      title: data.title,
+      image: imageSrc,
+      description: data.description,
+      tags: data.tags,
+      recipeIds: data.recipesIds,
+    };
+
+    const response = await fetch(`${cookbooksUrl}`, {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const result = await response.json();
+    return result;
+  }
+
+  async commentCookbook(cookbookId: number, text: string) {
+    const body = {
+      text,
+      date: new Date().toString(),
+    };
+    const response = await fetch(`${cookbooksUrl}:${cookbookId}`, {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const result = await response.json();
+    return result;
+  }
+
+  async updateCookbook(cookbookId: number, data: CookbookValues, imageSrc: string) {
+    const {
+      title,
+      description,
+      views,
+      likeUserIds,
+      recipesIds,
+    } = data;
+
+    const body = {
+      title,
+      description,
+      image: imageSrc,
+      views,
+      likeUserIds,
+      recipesIds
+    };
+
+    const response = await fetch(`${cookbooksUrl}:${cookbookId}`, {
+      method: 'PUT',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const result = await response.json();
+    return result;
+  }
+
+  async deleteCookbook(id: number) {
+    const response = await fetch(`${cookbooksUrl}:${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const result = await response.json();
+    return result;
   }
 }
 

@@ -1,3 +1,5 @@
+import { Cookbook, User } from './interfaces';
+
 export interface IUser {
   id: number;
   name: string;
@@ -41,7 +43,7 @@ export interface ICookbook {
 export interface IState {
   recipes: IRecipe[];
   cookbooks: ICookbook[];
-  user: IUser | null;
+  user: User | null;
 }
 
 interface IRecipeLike {
@@ -49,7 +51,7 @@ interface IRecipeLike {
   UserId: number;
 }
 
-interface IRecipeComment {
+export interface IRecipeComment {
   id: number;
   text: string;
   date: string;
@@ -61,6 +63,7 @@ interface IRecipeComment {
 interface IRecipeSaved {
   RecipeId: number;
   UserId: number;
+  Recipe?: IRecipe;
 }
 
 interface IRecipeCookbook {
@@ -77,9 +80,10 @@ interface ICookbookLike {
 interface ICookbookSaved {
   CookbookId: number;
   UserId: number;
+  Cookbook?: ICookbook;
 }
 
-interface ICookbookComment {
+export interface ICookbookComment {
   id: number;
   text: string;
   date: string;

@@ -11,12 +11,13 @@ import CardRated from './CardRated';
 import CardTrending from './CardTrending';
 
 import './index.scss';
+import { ICookbook, IRecipe } from '../../interfacesServer';
 
 type HomePageProps = {
-  recipes: Recipe[];
-  getAllRecipes: () => AnyAction;
-  cookbooks: Cookbook[];
-  getAllCookbooks: () => AnyAction;
+  recipes: IRecipe[];
+  getAllRecipes: () => Promise<void>;
+  cookbooks: ICookbook[];
+  getAllCookbooks: () => Promise<void>;
 };
 
 export default function HomePage(props: HomePageProps): JSX.Element {
@@ -85,13 +86,12 @@ export default function HomePage(props: HomePageProps): JSX.Element {
                 ?.map((el) => (
                   <CardRated
                     title={el.title}
-                    authorId={el.userId}
+                    author={el.User}
                     views={el.views}
-                    likes={el.likes}
-                    comments={el.comments.length}
+                    comments={el.Recipe_Comments.length}
                     image={el.image}
                     key={el.id}
-                    usersLiked={el.usersLiked}
+                    likes={el.Recipe_Likes}
                   />
                 ))
                 .slice(0, 4)}
@@ -133,7 +133,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
                   ?.map((el) => (
                     <CardTrending
                       title={el.title}
-                      authorId={el.userId}
+                      author={el.User}
                       views={el.views}
                       image={el.image}
                       key={el.id}

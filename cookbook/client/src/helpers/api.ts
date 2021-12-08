@@ -1,11 +1,6 @@
 import { Cookbook, Recipe, User } from '../interfaces';
 import FetchQuery from './fetchTool';
 
-const base = 'http://127.0.0.1:3000/api';
-const cookbooksUrl = `${base}/cookbooks`;
-const recipesUrl = `${base}/recipes`;
-const userUrl = `${base}/users`;
-
 type LoginInfo = {
   email: string;
   password: string;
@@ -66,14 +61,14 @@ class Api {
 
   getRecipe(recipeId: number): Recipe {
     const response = FetchQuery.getRecipesList().find(
-      (el) => el.id === recipeId,
+      (el) => el.id === recipeId
     );
     return response;
   }
 
   getCookbook(cookbookId: number): Cookbook {
     const response = FetchQuery.getCookbooksList().find(
-      (el) => el.id === cookbookId,
+      (el) => el.id === cookbookId
     );
     return response;
   }

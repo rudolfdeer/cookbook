@@ -11,19 +11,20 @@ import './index.scss';
 import api from '../../helpers/api';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 import { Recipe } from '../../interfaces';
+import { IRecipe } from '../../interfacesServer';
 
 type RecipesPageProps = {
-  recipes: Recipe[];
-  getAllRecipes: () => void;
-  sortRecipes: (order: string) => AnyAction;
-  filterRecipes: (cookingTime: number) => AnyAction;
+  recipes: IRecipe[];
+  getAllRecipes: () => Promise<void>;
+  sortRecipes: (order: string) => Promise<void>;
+  filterRecipes: (cookingTime: number) => Promise<void>;
   loggedInUserId: number;
   saveToUsersRecipes: (recipeId: number, userId: number) => AnyAction;
   createComment: (
     recipeId: number,
     userId: number,
     commentText: string
-  ) => AnyAction;
+  ) => Promise<void>;
 };
 
 export default function RecipesPage(props: RecipesPageProps): JSX.Element {

@@ -17,20 +17,20 @@ import { RecipeValues } from '../../redux/actions/recipes';
 
 type ProfileRecipesPageProps = {
   recipes: Recipe[];
-  getUsersCreatedRecipes: (userId: number) => void;
+  getUsersCreatedRecipes: (userId: number) => Promise<void>;
   user: User;
   createRecipe: (
     data: RecipeValues,
     userId: number,
     imageSrc: string
-  ) => AnyAction;
+  ) => Promise<void>;
   modifyRecipe: (
     data: RecipeValues,
     recipeId: number,
     imageSrc: string,
     userId: number
-  ) => AnyAction;
-  deleteRecipe: (recipeId: number, userId: number) => AnyAction;
+  ) => Promise<void>;
+  deleteRecipe: (recipeId: number, userId: number) => Promise<void>;
 };
 
 export default function ProfileRecipesPage(

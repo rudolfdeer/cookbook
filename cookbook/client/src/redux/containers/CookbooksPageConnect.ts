@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import CookbooksPage from '../../components/SearchCookbooksPage';
-import { State } from '../../interfaces';
 import {
   getAllCookbooks,
   sortCookbooks,
@@ -9,10 +8,11 @@ import {
   hideUsersCookbooks,
   likeCookbook,
 } from '../thunks/cookbooks';
-import { getAllRecipes } from '../actions/recipes';
+import { getAllRecipes } from '../thunks/recipes';
 import { saveToUsersCookbooks, saveToUsersRecipes } from '../actions/user';
+import { IState } from '../../interfacesServer';
 
-const mapStateToProps = (state: State) => {
+const mapStateToProps = (state: IState) => {
   const { user, cookbooks, recipes } = state;
   const loggedInUserId = user ? user.id : null;
 

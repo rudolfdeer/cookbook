@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
-import { Cookbook, Recipe } from '../../interfaces';
 import Footer from '../Footer';
 import CookbookCard from './Card';
 import FilterPanelCookbooks from './FilterPanel';
@@ -10,14 +9,15 @@ import PopUpCookbookDetailed from './PopUp';
 import './index.scss';
 import api from '../../helpers/api';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
+import { ICookbook, IRecipe } from '../../interfacesServer';
 
 type CookbooksPageProps = {
-  cookbooks: Cookbook[];
-  getAllCookbooks: () => AnyAction;
-  recipes: Recipe[];
-  getAllRecipes: () => AnyAction;
-  sortCookbooks: (order: string) => AnyAction;
-  filterCookbooks: (tags: string[], userId: number) => AnyAction;
+  cookbooks: ICookbook[];
+  getAllCookbooks: () => Promise<void>;
+  recipes: IRecipe[];
+  getAllRecipes: () => Promise<void>;
+  sortCookbooks: (order: string) => Promise<void>;
+  filterCookbooks: (tags: string[], userId: number) => Promise<void>;
   saveToUsersCookbooks: (cookbookId: number, userId: number) => AnyAction;
   saveToUsersRecipes: (recipeId: number, userId: number) => AnyAction;
   loggedInUserId: number;
@@ -25,7 +25,7 @@ type CookbooksPageProps = {
     cookbookId: number,
     userId: number,
     commentText: string
-  ) => AnyAction;
+  ) => Promise<void>;
   likeCookbook: (userId: number, cookbookId: number) => AnyAction;
 };
 
@@ -82,10 +82,10 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
                 <CookbookCard
                   id={el.id}
                   title={el.title}
-                  authorId={el.userId}
+                  authorId={el.UserId}
                   views={el.views}
-                  usersLiked={el.usersLiked}
-                  comments={el.comments.length}
+                  likes={el.Cookbook_Likes.length}
+                  comments={el.Cookbook_Comments.length}
                   image={el.image}
                   description={el.description}
                   key={el.id}

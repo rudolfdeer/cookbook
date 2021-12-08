@@ -1,14 +1,15 @@
 import { connect } from 'react-redux';
 import ProfileCookbooksPage from '../../components/ProfileCookbooksPage';
 import { State } from '../../interfaces';
+import { IState } from '../../interfacesServer';
 import {
   getUsersCreatedCookbooks,
   createCookbook,
   modifyCookbook,
   deleteCookbook,
-} from '../actions/cookbooks';
+} from '../thunks/cookbooks';
 
-const mapStateToProps = (state: State) => {
+const mapStateToProps = (state: IState) => {
   const { cookbooks, user } = state;
 
   return {

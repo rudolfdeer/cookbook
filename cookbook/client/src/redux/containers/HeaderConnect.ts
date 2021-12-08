@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import { State } from '../../interfaces';
+import { IState } from '../../interfacesServer';
 
-const mapStateToProps = (state: State) => {
+const mapStateToProps = (state: IState) => {
   const { user } = state;
   const loggedInUserName = user ? user.name : null;
 

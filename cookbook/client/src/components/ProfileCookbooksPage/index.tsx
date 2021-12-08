@@ -17,20 +17,20 @@ import { CookbookValues } from '../../redux/actions/cookbooks';
 
 type ProfileCookbooksPageProps = {
   cookbooks: Cookbook[];
-  getUsersCreatedCookbooks: (userId: number) => void;
+  getUsersCreatedCookbooks: (userId: number) => Promise<void>;
   user: User;
   createCookbook: (
     data: CookbookValues,
     userId: number,
     imageSrc: string
-  ) => AnyAction;
+  ) => Promise<void>;
   modifyCookbook: (
     data: CookbookValues,
     cookbookId: number,
     imageSrc: string,
     userId: number
-  ) => AnyAction;
-  deleteCookbook: (cookbookId: number, userId: number) => AnyAction;
+  ) => Promise<void>;
+  deleteCookbook: (cookbookId: number, userId: number) => Promise<void>;
 };
 
 export default function ProfileCookbooksPage(

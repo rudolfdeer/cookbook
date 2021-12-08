@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import './index.scss';
 
 type FilterPanelCookbooksProps = {
-  sortCookbooks: (order: string) => AnyAction;
-  filterCookbooks: (tags: string[], userId: number) => AnyAction;
+  sortCookbooks: (order: string) => Promise<void>;
+  filterCookbooks: (tags: string[], userId: number) => Promise<void>;
   loggedInUserId: number;
 };
 

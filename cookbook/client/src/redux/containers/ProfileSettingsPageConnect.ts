@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import ProfileSettingsPage from '../../components/ProfileSettingsPage';
 import { State } from '../../interfaces';
+import { IState } from '../../interfacesServer';
 import {
   changeUserBio,
   changeUserName,
@@ -11,7 +12,7 @@ import {
   deleteUser,
 } from '../actions/user';
 
-function mapStateToProps(state: State) {
+function mapStateToProps(state: IState) {
   const { user } = state;
   return {
     user,

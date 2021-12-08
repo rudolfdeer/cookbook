@@ -53,7 +53,7 @@ export const createCookbook = (data: CookbookValues, imageSrc: string, userId: n
   dispatch(cookbookActions.create(cookbooks, userId));
 };
 
-export const updateCookbook = (
+export const modifyCookbook = (
   recipeId: number,
   data: CookbookValues,
   imageSrc: string,

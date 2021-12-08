@@ -14,7 +14,7 @@ type CommentsSectionProps = {
     cookbookId: number,
     userId: number,
     commentText: string
-  ) => AnyAction;
+  ) => () => Promise<void>;
 };
 
 export default function CommentsSection(

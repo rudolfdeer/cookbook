@@ -17,7 +17,7 @@ import ROUTES from '../../constants/routes';
 
 type ProfileUsersPageProps = {
   cookbooks: Cookbook[];
-  getUsersCreatedCookbooks: (userId: number) => void;
+  getUsersCreatedCookbooks: (userId: number) => Promise<void>;
   loggedInUserId: number;
 };
 

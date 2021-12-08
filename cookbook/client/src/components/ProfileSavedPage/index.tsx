@@ -17,9 +17,9 @@ import PopUpCookbookSaved from './PopUpCookbook';
 
 type ProfileSavedPageProps = {
   cookbooks: Cookbook[];
-  getUsersSavedCookbooks: (userId: number) => AnyAction;
+  getUsersSavedCookbooks: (userId: number) => Promise<void>;
   recipes: Recipe[];
-  getUsersSavedRecipes: (userId: number) => AnyAction;
+  getUsersSavedRecipes: (userId: number) => Promise<void>;
   user: User;
 };
 

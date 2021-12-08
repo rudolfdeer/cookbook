@@ -6,10 +6,11 @@ import {
   getAllRecipes,
   sortRecipes,
   createComment,
-} from '../actions/recipes';
+} from '../thunks/recipes';
 import { saveToUsersRecipes } from '../actions/user';
+import { IState } from '../../interfacesServer';
 
-function mapStateToProps(state: State) {
+function mapStateToProps(state: IState) {
   const { user, recipes } = state;
   const loggedInUserId = user ? user.id : null;
 

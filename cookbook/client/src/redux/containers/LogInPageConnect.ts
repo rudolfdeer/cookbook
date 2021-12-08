@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
 import LogInPage from '../../components/LogInPage';
 import { State } from '../../interfaces';
+import { IState } from '../../interfacesServer';
 import { logIn } from '../actions/user';
 
-function mapStateToProps(state: State) {
+function mapStateToProps(state: IState) {
   const { user } = state;
   const isLoggedIn = !!user;
 

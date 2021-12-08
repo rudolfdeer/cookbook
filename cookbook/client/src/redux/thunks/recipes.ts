@@ -54,7 +54,7 @@ export const createRecipe = (data: RecipeValues, imageSrc: string, userId: numbe
   dispatch(recipeActions.create(recipes, userId));
 };
 
-export const updateRecipe = (
+export const modifyRecipe = (
   recipeId: number,
   data: RecipeValues,
   imageSrc: string,

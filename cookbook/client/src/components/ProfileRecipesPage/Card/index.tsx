@@ -1,18 +1,17 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
-import api from '../../../helpers/api';
 import LikesIcon from '../../svg/Likes';
 import ViewsIcon from '../../svg/Views';
 import './index.scss';
+import { IUser } from '../../../interfacesServer';
 
 type ProfileRecipeCardProps = {
   id: number;
   title: string;
-  authorId: number;
+  author: IUser;
   description: string;
   views: number;
-  usersLiked: number[];
+  likes: number;
   image: string;
   comments: number;
   setModifyPopUpVisible: Dispatch<SetStateAction<boolean>>;
@@ -31,14 +30,13 @@ export default function ProfileRecipeCard(
     image,
     description,
     title,
-    authorId,
-
+    author,
     comments,
     setModifyPopUpVisible,
     setSelectedRecipeId,
     loggedInUserId,
     deleteRecipe,
-    usersLiked,
+    likes,
   } = props;
 
   const [isBtnDeleteVisible, setBtnDeleteVisible] = useState(false);
@@ -74,7 +72,7 @@ export default function ProfileRecipeCard(
           >
             {title}
           </div>
-          <div className="card__author">{api.getUserName(authorId)}</div>
+          <div className="card__author">{author.name}</div>
         </div>
         <div className="card__info-container--description">
           <p className="card__description">{description}</p>
@@ -87,7 +85,7 @@ export default function ProfileRecipeCard(
             </div>
             <div className="card__statistics-item">
               <LikesIcon />
-              {usersLiked.length} {t('LIKES')}
+              {likes} {t('LIKES')}
             </div>
             <div className="card__statistics-item">
               <svg

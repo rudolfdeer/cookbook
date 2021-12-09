@@ -2,7 +2,7 @@ import { Dispatch } from 'redux';
 import api from '../../helpers/api';
 import cookbookActions from '../actions/cookbookActions';
 
-interface CookbookValues {
+export interface CookbookValues {
   title: string;
   description: string;
   tags?: string[];
@@ -54,12 +54,12 @@ export const createCookbook = (data: CookbookValues, imageSrc: string, userId: n
 };
 
 export const modifyCookbook = (
-  recipeId: number,
+  cookbookId: number,
   data: CookbookValues,
   imageSrc: string,
   userId: number,
 ) => async (dispatch: Dispatch): Promise<void> => {
-  await api.updateCookbook(recipeId, data, imageSrc);
+  await api.updateCookbook(cookbookId, data, imageSrc);
   const cookbooks = await api.getAllCookbooks();
 
   dispatch(cookbookActions.update(cookbooks, userId));

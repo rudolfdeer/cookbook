@@ -9,8 +9,8 @@ type PopUpModifyRecipeProps = {
   setModifyPopUpVisible: Dispatch<SetStateAction<boolean>>;
   selectedRecipe: Recipe;
   modifyRecipe: (
-    data: RecipeValues,
     recipeId: number,
+    data: RecipeValues,
     imageSrc: string,
     userId: number
   ) => Promise<void>;
@@ -212,7 +212,7 @@ export default function PopUpModifyRecipe(
                     ingredients: newIngredients.join(','),
                   };
                   setModifyPopUpVisible(false);
-                  modifyRecipe(data, id, imageSrc, loggedInUserId);
+                  modifyRecipe(id, data, imageSrc, loggedInUserId);
                 }}
               >
                 {t('SAVE_BTN')}

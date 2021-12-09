@@ -7,7 +7,7 @@ export type LoginInfo = {
 };
 
 export const logIn = (loginInfo: LoginInfo): AnyAction => ({
-  type: ACTION_TYPES.USER_LOG_IN,
+  type: ACTION_TYPES.USER_SIGN_IN,
   payload: loginInfo,
 });
 
@@ -77,7 +77,7 @@ export const changeUserPassword = (
 });
 
 export const createUser = (email: string, password: string): AnyAction => ({
-  type: ACTION_TYPES.USER_CREATE,
+  type: ACTION_TYPES.USER_SIGN_UP,
   payload: {
     email,
     password,

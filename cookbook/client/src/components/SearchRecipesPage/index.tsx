@@ -8,7 +8,6 @@ import FilterPanelRecipes from './FilterPanel';
 import PopUpRecipeDetailed from './PopUp';
 
 import './index.scss';
-import api from '../../helpers/api';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 import { IRecipe } from '../../interfacesServer';
 
@@ -21,8 +20,7 @@ type RecipesPageProps = {
   saveToUsersRecipes: (recipeId: number, userId: number) => AnyAction;
   createComment: (
     recipeId: number,
-    userId: number,
-    commentText: string
+    text: string
   ) => Promise<void>;
 };
 
@@ -89,7 +87,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
           {isVisible ? (
             <PopUpRecipeDetailed
               setVisible={setVisible}
-              recipe={api.getRecipe(selectedCardId)}
+              recipe={recipes.find((el) => el.id === selectedCardId)}
               loggedInUserId={loggedInUserId}
               saveToUsersRecipes={saveToUsersRecipes}
               createComment={createComment}

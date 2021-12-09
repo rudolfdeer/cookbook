@@ -1,20 +1,19 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
 import api from '../../../helpers/api';
-import { Cookbook } from '../../../interfaces';
 import { CookbookValues } from '../../../redux/actions/cookbooks';
 import PopUpRecipeCard from './Card';
 
 import './index.scss';
+import { ICookbook } from '../../../interfacesServer';
 
 type PopUpModifyCookbookProps = {
   setModifyPopUpVisible: Dispatch<SetStateAction<boolean>>;
-  selectedCookbook: Cookbook;
+  selectedCookbook: ICookbook;
   loggedInUserId: number;
   modifyCookbook: (
-    data: CookbookValues,
     cookbookId: number,
+    data: CookbookValues,
     imageSrc: string,
     userId: number
   ) => Promise<void>;
@@ -30,8 +29,10 @@ export default function PopUpModifyCookbook(
     loggedInUserId,
     modifyCookbook,
   } = props;
-  const { id, image, description, title, userId, recipesIds } =
+  const { id, image, description, title, User, Recipe_Cookbooks } =
     selectedCookbook;
+
+  const recipesIds = Recipe_Cookbooks.map((el) => el.RecipeId);
 
   const [imageSrc, setImageSrc] = useState(image);
   const [isTitleDisabled, setTitleDisabled] = useState(true);
@@ -75,11 +76,11 @@ export default function PopUpModifyCookbook(
       description: newDescription,
       recipesIds: newRecipesIds,
     };
-    modifyCookbook(values, id, imageSrc, loggedInUserId);
+    modifyCookbook(id, values, imageSrc, loggedInUserId);
     setModifyPopUpVisible(false);
   };
 
-  const recipes = api.getRecipesInCookbook(newRecipesIds);
+  const recipes = Recipe_Cookbooks.map((el) => el.Recipe);
   const usersRecipes = api.getUsersRecipes(loggedInUserId);
 
   return (
@@ -120,7 +121,7 @@ export default function PopUpModifyCookbook(
           </div>
 
           <div className="pop-up--modify__author">
-            {api.getUserName(userId)}
+            {User.name}
           </div>
 
           <div className="pop-up--modify__section--description">
@@ -176,18 +177,17 @@ export default function PopUpModifyCookbook(
               {recipes?.map((el) => (
                 <PopUpRecipeCard
                   title={el.title}
-                  authorId={el.userId}
+                  author={el.User}
                   views={el.views}
                   description={el.description}
-                  likes={el.likes}
+                  likes={el.Recipe_Likes.length}
                   image={el.image}
-                  comments={el.comments.length}
+                  comments={el.Recipe_Comments.length}
                   key={el.id}
                   id={el.id}
                   loggedInUserId={loggedInUserId}
                   setNewRecipesIds={setNewRecipesIds}
                   recipesIds={newRecipesIds}
-                  usersLiked={el.usersLiked}
                 />
               ))}
             </div>

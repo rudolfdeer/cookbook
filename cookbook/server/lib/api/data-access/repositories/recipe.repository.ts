@@ -32,6 +32,7 @@ const findAll = async () => {
       },
       {
         model: RecipeComment,
+        include: User,
       },
     ],
   });

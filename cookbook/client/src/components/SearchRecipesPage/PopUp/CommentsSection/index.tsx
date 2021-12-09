@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
-import api from '../../../../helpers/api';
-import { Comment } from '../../../../interfaces';
 
 import './index.scss';
+import { IRecipeComment } from '../../../../interfacesServer';
 
 type CommentsSectionProps = {
-  comments: Comment[];
+  comments: IRecipeComment[];
   loggedInUserId: number;
   recipeId: number;
   createComment: (
     recipeId: number,
-    userId: number,
     text: string
   ) => Promise<void>;
 };
@@ -42,7 +39,7 @@ export default function CommentsSection(
       <button
         className="comment--new__btn"
         onClick={() => {
-          createComment(recipeId, loggedInUserId, newComment);
+          createComment(recipeId, newComment);
           setNewComment('');
         }}
       ></button>
@@ -58,19 +55,17 @@ export default function CommentsSection(
             <div
               className="comment__photo"
               style={{
-                background: `url(${api.getUserPhoto(
-                  el.userId
-                )}) center no-repeat`,
+                background: `url(${el.User.photo}) center no-repeat`,
               }}
             ></div>
             <div className="comment__container">
               <div className="comment__container--top">
                 <div className="comment__user">
-                  {api.getUserName(el.userId)}
+                  {el.User.name}
                 </div>
                 <div className="comment__time">{getDate(el.date)}</div>
               </div>
-              <div className="comment__text">{el.comment}</div>
+              <div className="comment__text">{el.text}</div>
             </div>
           </div>
         ))}

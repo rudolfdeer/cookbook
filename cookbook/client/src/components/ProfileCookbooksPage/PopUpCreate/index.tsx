@@ -2,7 +2,7 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 import { Form, Field } from 'react-final-form';
 import { useTranslation } from 'react-i18next';
 import api from '../../../helpers/api';
-import { CookbookValues } from '../../../redux/actions/cookbooks';
+import { CookbookValues } from '../../../redux/thunks/cookbooks';
 
 import './index.scss';
 
@@ -11,8 +11,8 @@ type PopUpCreateCookbookProps = {
   setCreatePopUpVisible: Dispatch<SetStateAction<boolean>>;
   createCookbook: (
     data: CookbookValues,
+    imageSrc: string,
     userId: number,
-    imageSrc: string
   ) => Promise<void>;
 };
 
@@ -54,7 +54,7 @@ export default function PopUpCreateCookbook(
       values.tags.push('Without milk');
     }
 
-    createCookbook(values, loggedInUserId, photoSrc);
+    createCookbook(values, photoSrc, loggedInUserId);
     setCreatePopUpVisible(false);
   };
 

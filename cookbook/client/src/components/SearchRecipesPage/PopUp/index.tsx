@@ -4,7 +4,6 @@ import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
 import ROUTES from '../../../constants/routes';
 import api from '../../../helpers/api';
-import { Recipe } from '../../../interfaces';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
 import CommentsSection from '../PopUp/CommentsSection';
@@ -19,7 +18,6 @@ type PopUpRecipeDetailedProps = {
   saveToUsersRecipes: (recipeId: number, userId: number) => AnyAction;
   createComment: (
     recipeId: number,
-    userId: number,
     text: string
   ) => Promise<void>;
 };
@@ -40,9 +38,9 @@ export default function PopUpRecipeDetailed(
     image,
     description,
     title,
-    userId,
-    usersLiked,
-    comments,
+    User,
+    Recipe_Likes,
+    Recipe_Comments,
     directions,
     ingredients,
   } = recipe;
@@ -69,7 +67,7 @@ export default function PopUpRecipeDetailed(
             <div className="pop-up--recipe__sections">
               <div className="pop-up--recipe__section--top">
                 <div className="pop-up--recipe__title">{title}</div>
-                {loggedInUserId && loggedInUserId !== userId ? (
+                {loggedInUserId && loggedInUserId !== User.id ? (
                   <button
                     className="pop-up--recipe__btn"
                     onClick={() => {
@@ -82,8 +80,8 @@ export default function PopUpRecipeDetailed(
                 ) : null}
               </div>
               <div className="pop-up--recipe__author">
-                <Link to={`${ROUTES.PROFILE_USER}/${userId}`}>
-                  {api.getUserName(userId)}
+                <Link to={`${ROUTES.PROFILE_USER}/${User.id}`}>
+                  {User.name}
                 </Link>
               </div>
               <div className="pop-up--recipe__section--description">
@@ -122,11 +120,11 @@ export default function PopUpRecipeDetailed(
               <div className="pop-up--recipe__section--statistics">
                 <div className="card__statistics-item likes">
                   <LikesIcon />
-                  {usersLiked.length} {t('LIKES')}
+                  {Recipe_Likes.length} {t('LIKES')}
                 </div>
                 <div className="card__statistics-item comments">
                   <CommentsIcon />
-                  {comments.length} {t('COMMENTS')}
+                  {Recipe_Comments.length} {t('COMMENTS')}
                 </div>
               </div>
             </div>
@@ -134,9 +132,9 @@ export default function PopUpRecipeDetailed(
           <div className="pop-up--recipe__section--comments">
             <div className="pop-up--recipe__section--comments__title">{`${t(
               'COMMENTS_SECTION'
-            )} (${comments.length})`}</div>
+            )} (${Recipe_Comments.length})`}</div>
             <CommentsSection
-              comments={comments}
+              comments={Recipe_Comments}
               loggedInUserId={loggedInUserId}
               recipeId={id}
               createComment={createComment}

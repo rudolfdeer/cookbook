@@ -3,7 +3,7 @@ import SignUpPage from '../../components/SignUpPage';
 import { createUser } from '../actions/user';
 
 const mapDispatchToProps = {
-  createUser,
+  //createUser,
 };
 
 const SignUpPageConnect = connect(null, mapDispatchToProps)(SignUpPage);

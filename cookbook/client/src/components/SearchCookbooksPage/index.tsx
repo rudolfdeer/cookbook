@@ -7,7 +7,6 @@ import CookbookCard from './Card';
 import FilterPanelCookbooks from './FilterPanel';
 import PopUpCookbookDetailed from './PopUp';
 import './index.scss';
-import api from '../../helpers/api';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 import { ICookbook, IRecipe } from '../../interfacesServer';
 
@@ -23,10 +22,9 @@ type CookbooksPageProps = {
   loggedInUserId: number;
   createComment: (
     cookbookId: number,
-    userId: number,
-    commentText: string
+    text: string
   ) => Promise<void>;
-  likeCookbook: (userId: number, cookbookId: number) => AnyAction;
+  //likeCookbook: (userId: number, cookbookId: number) => AnyAction;
 };
 
 export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
@@ -41,7 +39,7 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
     saveToUsersCookbooks,
     saveToUsersRecipes,
     createComment,
-    likeCookbook,
+    //likeCookbook,
   } = props;
 
   const [isVisible, setVisible] = useState(false);
@@ -82,7 +80,7 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
                 <CookbookCard
                   id={el.id}
                   title={el.title}
-                  authorId={el.UserId}
+                  author={el.User}
                   views={el.views}
                   likes={el.Cookbook_Likes.length}
                   comments={el.Cookbook_Comments.length}
@@ -91,7 +89,7 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
                   key={el.id}
                   selectCard={setChosenCardId}
                   openDetailedInfo={setVisible}
-                  likeCookbook={likeCookbook}
+                  //likeCookbook={likeCookbook}
                   loggedInUserId={loggedInUserId}
                 />
               ))}
@@ -100,12 +98,12 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
           {isVisible ? (
             <PopUpCookbookDetailed
               setVisible={setVisible}
-              cookbook={api.getCookbook(chosenCardId)}
+              cookbook={cookbooks.find((el) => el.id === chosenCardId)}
               loggedInUserId={loggedInUserId}
               saveToUsersCookbooks={saveToUsersCookbooks}
               saveToUsersRecipes={saveToUsersRecipes}
               createComment={createComment}
-              likeCookbook={likeCookbook}
+              //likeCookbook={likeCookbook}
             />
           ) : null}
         </div>

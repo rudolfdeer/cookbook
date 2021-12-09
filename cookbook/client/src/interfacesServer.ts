@@ -43,7 +43,7 @@ export interface ICookbook {
 export interface IState {
   recipes: IRecipe[];
   cookbooks: ICookbook[];
-  user: User | null;
+  user: IUser | null;
 }
 
 export interface IRecipeLike {

@@ -1,6 +1,5 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { Form, Field } from 'react-final-form';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
 import { RecipeValues } from '../../../redux/thunks/recipes';
 
@@ -11,19 +10,10 @@ type PopUpCreateRecipeProps = {
   setCreatePopUpVisible: Dispatch<SetStateAction<boolean>>;
   createRecipe: (
     data: RecipeValues,
+    imageSrc: string,
     userId: number,
-    imageSrc: string
   ) => Promise<void>;
 };
-
-// type FormValues = {
-//   title: string;
-//   image?: string;
-//   description: string;
-//   ingredients: string;
-//   directions: string;
-//   time: string;
-// };
 
 const formData = {
   title: '',
@@ -44,7 +34,7 @@ export default function PopUpCreateRecipe(
   const [photoSrc, setPhotoSrc] = useState('');
 
   const onSubmit = (values: RecipeValues) => {
-    createRecipe(values, loggedInUserId, photoSrc);
+    createRecipe(values, photoSrc, loggedInUserId);
     setCreatePopUpVisible(false);
   };
 

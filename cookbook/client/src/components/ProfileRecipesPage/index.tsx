@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
-import { Recipe, User } from '../../interfaces';
 
 import Footer from '../Footer';
 import ProfileRecipeCard from './Card';
@@ -13,20 +11,21 @@ import PopUpCreateRecipe from './PopUpCreate';
 import PopUpModifyRecipe from './PopUpModify';
 import api from '../../helpers/api';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
-import { RecipeValues } from '../../redux/actions/recipes';
+import { RecipeValues } from '../../redux/thunks/recipes';
+import { IRecipe, IUser } from '../../interfacesServer';
 
 type ProfileRecipesPageProps = {
-  recipes: Recipe[];
+  recipes: IRecipe[];
   getUsersCreatedRecipes: (userId: number) => Promise<void>;
-  user: User;
+  user: IUser;
   createRecipe: (
     data: RecipeValues,
+    imageSrc: string,
     userId: number,
-    imageSrc: string
   ) => Promise<void>;
   modifyRecipe: (
-    data: RecipeValues,
     recipeId: number,
+    data: RecipeValues,
     imageSrc: string,
     userId: number
   ) => Promise<void>;
@@ -50,13 +49,14 @@ export default function ProfileRecipesPage(
     modifyRecipe,
     deleteRecipe,
   } = props;
-  const { name, bio, avatar, id } = user;
+  const { name, bio, photo, id } = user;
   const [isCreatePopUpVisible, setCreatePopUpVisible] = useState(false);
   const [isModifyPopUpVisible, setModifyPopUpVisible] = useState(false);
   const [selectedRecipeId, setSelectedRecipeId] = useState(0);
 
   useEffect(() => getUsersCreatedRecipes(id), []);
-  const photoSrc = avatar || '../../assets/images/photo-mask.png';
+
+  const photoSrc = photo || '../../assets/images/photo-mask.png';
 
   return (
     <>
@@ -103,9 +103,9 @@ export default function ProfileRecipesPage(
               <ProfileRecipeCard
                 id={el.id}
                 title={el.title}
-                authorId={el.userId}
+                author={el.User}
                 views={el.views}
-                comments={el.comments.length}
+                comments={el.Recipe_Comments.length}
                 image={el.image}
                 description={el.description}
                 key={el.id}
@@ -113,7 +113,7 @@ export default function ProfileRecipesPage(
                 setSelectedRecipeId={setSelectedRecipeId}
                 deleteRecipe={deleteRecipe}
                 loggedInUserId={id}
-                usersLiked={el.usersLiked}
+                likes={el.Recipe_Likes.length}
               />
             ))}
           </section>

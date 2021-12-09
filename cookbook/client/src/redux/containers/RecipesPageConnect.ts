@@ -6,7 +6,7 @@ import {
   sortRecipes,
   createComment,
 } from '../thunks/recipes';
-import { saveToUsersRecipes } from '../actions/user';
+//import { saveToUsersRecipes } from '../actions/user';
 import { IState } from '../../interfacesServer';
 
 function mapStateToProps(state: IState) {
@@ -23,7 +23,7 @@ const mapDispatchToProps = {
   getAllRecipes,
   sortRecipes,
   filterRecipes,
-  saveToUsersRecipes,
+  //saveToUsersRecipes,
   createComment,
 };
 

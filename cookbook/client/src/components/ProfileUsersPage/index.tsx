@@ -83,7 +83,7 @@ export default function ProfileUsersPage(
           {isPopUpCookbookVisible ? (
             <PopUpCookbook
               setPopUpCookbookVisible={setPopUpCookbookVisible}
-              cookbook={api.getCookbook(selectedCookbookId)}
+              cookbook={cookbooks.find((el) => el.id === selectedCookbookId)}
             />
           ) : null}
         </div>

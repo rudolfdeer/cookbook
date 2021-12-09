@@ -11,22 +11,22 @@ import PopUpCreateCookbook from './PopUpCreate';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 import PopUpModifyCookbook from './PopUpModify';
 import api from '../../helpers/api';
-import { CookbookValues } from '../../redux/actions/cookbooks';
-import { ICookbook } from '../../interfacesServer';
+import { CookbookValues } from '../../redux/thunks/cookbooks';
+import { ICookbook, IUser } from '../../interfacesServer';
 import { User } from '../../interfaces';
 
 type ProfileCookbooksPageProps = {
   cookbooks: ICookbook[];
   getUsersCreatedCookbooks: (userId: number) => Promise<void>;
-  user: User;
+  user: IUser;
   createCookbook: (
     data: CookbookValues,
+    imageSrc: string,
     userId: number,
-    imageSrc: string
   ) => Promise<void>;
   modifyCookbook: (
-    data: CookbookValues,
     cookbookId: number,
+    data: CookbookValues,
     imageSrc: string,
     userId: number
   ) => Promise<void>;
@@ -49,10 +49,10 @@ export default function ProfileCookbooksPage(
     modifyCookbook,
     deleteCookbook,
   } = props;
-  const { name, bio, avatar, id } = user;
+  const { name, bio, photo, id } = user;
   const [isCreatePopUpVisible, setCreatePopUpVisible] = useState(false);
   const [isModifyPopUpVisible, setModifyPopUpVisible] = useState(false);
-  const photoSrc = avatar || '../../assets/images/photo-mask.png';
+  const photoSrc = photo || '../../assets/images/photo-mask.png';
   const [selectedCookbookId, setSelectedCookbookId] = useState(0);
 
   useEffect(() => getUsersCreatedCookbooks(id), []);
@@ -126,7 +126,7 @@ export default function ProfileCookbooksPage(
           {isModifyPopUpVisible ? (
             <PopUpModifyCookbook
               loggedInUserId={id}
-              selectedCookbook={api.getCookbook(selectedCookbookId)}
+              selectedCookbook={cookbooks.find((el) => el.id === selectedCookbookId)}
               setModifyPopUpVisible={setModifyPopUpVisible}
               modifyCookbook={modifyCookbook}
             />

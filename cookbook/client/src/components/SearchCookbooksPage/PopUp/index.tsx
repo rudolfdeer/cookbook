@@ -10,19 +10,20 @@ import LikesIcon from '../../svg/LikesIconCookbook';
 import CommentsSection from './CommentsSection';
 import './index.scss';
 import PopUpRecipeCard from './RecipeCard';
+import { ICookbook } from '../../../interfacesServer';
+import cookbooks from '../../../constants/mockdata/cookbooks';
 
 type PopUpCookbookDetailedProps = {
   setVisible: Dispatch<SetStateAction<boolean>>;
-  cookbook: Cookbook;
+  cookbook: ICookbook;
   loggedInUserId: number;
   saveToUsersCookbooks: (cookbookId: number, userId: number) => AnyAction;
   saveToUsersRecipes: (recipeId: number, userId: number) => AnyAction;
   createComment: (
     cookbookId: number,
-    userId: number,
     text: string
   ) => Promise<void>;
-  likeCookbook: (userId: number, cookbookId: number) => AnyAction;
+  //likeCookbook: (userId: number, cookbookId: number) => AnyAction;
 };
 
 export default function PopUpCookbookDetailed(
@@ -36,17 +37,17 @@ export default function PopUpCookbookDetailed(
     saveToUsersRecipes,
     saveToUsersCookbooks,
     createComment,
-    likeCookbook,
+    //likeCookbook,
   } = props;
   const {
     id,
     image,
     description,
     title,
-    userId,
-    usersLiked,
-    comments,
-    recipesIds,
+    User,
+    Cookbook_Likes,
+    Cookbook_Comments,
+    Recipe_Cookbooks,
   } = cookbook;
 
   function closePopUp(e: React.MouseEvent) {
@@ -58,8 +59,8 @@ export default function PopUpCookbookDetailed(
       setVisible(false);
     }
   }
-
-  const recipes = api.getRecipesInCookbook(recipesIds);
+  console.log(cookbook);
+  const recipes = Recipe_Cookbooks.map((el) => el.Recipe);
 
   return (
     <div className="overlay" onClick={(e) => closePopUp(e)}>
@@ -67,7 +68,7 @@ export default function PopUpCookbookDetailed(
         <div className="pop-up--cookbook">
           <div className="pop-up--cookbook__section--top">
             <div className="pop-up--cookbook__title">{title}</div>
-            {loggedInUserId && loggedInUserId !== userId ? (
+            {loggedInUserId && loggedInUserId !== User.id ? (
               <button
                 className="pop-up--cookbook__btn"
                 onClick={() => {
@@ -81,8 +82,8 @@ export default function PopUpCookbookDetailed(
           </div>
 
           <div className="pop-up--cookbook__author">
-            <Link to={`${ROUTES.PROFILE_USER}/${userId}`}>
-              {api.getUserName(userId)}
+            <Link to={`${ROUTES.PROFILE_USER}/${User.id}`}>
+              {User.name}
             </Link>
           </div>
 
@@ -105,14 +106,14 @@ export default function PopUpCookbookDetailed(
             <div className="card__statistics-item--likes">
               <LikesIcon
                 loggedInUserId={loggedInUserId}
-                likeCookbook={likeCookbook}
+                //likeCookbook={likeCookbook}
                 cookbookId={id}
               />
-              {usersLiked.length} {t('LIKES')}
+              {Cookbook_Likes.length} {t('LIKES')}
             </div>
             <div className="card__statistics-item comments">
               <CommentsIcon />
-              {comments.length} {t('COMMENTS')}
+              {Cookbook_Comments.length} {t('COMMENTS')}
             </div>
           </div>
           <div className="pop-up--cookbook__section--recipes">
@@ -123,12 +124,12 @@ export default function PopUpCookbookDetailed(
               {recipes?.map((el) => (
                 <PopUpRecipeCard
                   title={el.title}
-                  userId={el.userId}
+                  user={el.User}
                   views={el.views}
                   description={el.description}
-                  usersLiked={usersLiked}
+                  likes={el.Recipe_Likes.length}
                   image={el.image}
-                  comments={el.comments.length}
+                  comments={el.Recipe_Comments.length}
                   key={el.id}
                   id={el.id}
                   loggedInUserId={loggedInUserId}
@@ -141,9 +142,9 @@ export default function PopUpCookbookDetailed(
           <div className="pop-up--cookbook__section--comments">
             <div className="pop-up--cookbook__section__title">{`${t(
               'COMMENTS_SECTION'
-            )} (${comments.length})`}</div>
+            )} (${Cookbook_Comments.length})`}</div>
             <CommentsSection
-              comments={comments}
+              comments={Cookbook_Comments}
               loggedInUserId={loggedInUserId}
               cookbookId={id}
               createComment={createComment}

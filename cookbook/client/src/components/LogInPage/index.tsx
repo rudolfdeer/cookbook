@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { AnyAction } from 'redux';
 import ROUTES from '../../constants/routes';
 import { LoginInfo } from '../../redux/actions/user';
 import LogInForm from './Form';
@@ -9,11 +8,11 @@ import './index.scss';
 
 type LogInPageProps = {
   isLoggedIn: boolean;
-  logIn: (loginInfo: LoginInfo) => AnyAction;
+  signIn: (loginInfo: LoginInfo) => Promise<void>;
 };
 
 export default function LogInPage(props: LogInPageProps): JSX.Element {
-  const { isLoggedIn, logIn } = props;
+  const { isLoggedIn, signIn } = props;
   const [isRedirected, setIsRedirected] = useState(false);
 
   useEffect(() => {
@@ -28,7 +27,7 @@ export default function LogInPage(props: LogInPageProps): JSX.Element {
   return (
     <main className="login-page">
       <div className="wrapper">
-        <LogInForm logIn={logIn} />
+        <LogInForm signIn={signIn} />
       </div>
     </main>
   );

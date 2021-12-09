@@ -1,10 +1,10 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
 import api from '../../../helpers/api';
+import { IUser } from '../../../interfacesServer';
 import CommentsIcon from '../../svg/Comments';
 import DotsIcon from '../../svg/Dots';
-import LikesIcon from '../../svg/LikesIconCookbook';
+import LikesIcon from '../../svg/Likes';
 import ViewsIcon from '../../svg/Views';
 
 import './index.scss';
@@ -12,7 +12,7 @@ import './index.scss';
 type CookbookCardProps = {
   id: number;
   title: string;
-  authorId: number;
+  author: IUser;
   description: string;
   views: number;
   image: string;
@@ -21,7 +21,7 @@ type CookbookCardProps = {
   selectCard: Dispatch<SetStateAction<number>>;
   openDetailedInfo: Dispatch<SetStateAction<boolean>>;
   loggedInUserId: number;
-  likeCookbook: (userId: number, cookbookId: number) => AnyAction;
+  //likeCookbook: (userId: number, cookbookId: number) => AnyAction;
 };
 
 export default function CookbookCard(props: CookbookCardProps): JSX.Element {
@@ -32,13 +32,13 @@ export default function CookbookCard(props: CookbookCardProps): JSX.Element {
     image,
     description,
     title,
-    authorId,
+    author,
     likes,
     comments,
     openDetailedInfo,
     selectCard,
     loggedInUserId,
-    likeCookbook,
+    //likeCookbook,
   } = props;
 
   return (
@@ -69,7 +69,7 @@ export default function CookbookCard(props: CookbookCardProps): JSX.Element {
         >
           {title}
         </div>
-        <div className="card__author">{api.getUserName(authorId)}</div>
+        <div className="card__author">{author.name}</div>
       </div>
 
       <div className="card__info-container--description">
@@ -78,11 +78,7 @@ export default function CookbookCard(props: CookbookCardProps): JSX.Element {
 
       <div className="card__info-container--bottom">
         <div className="card__statistics-item likes">
-          <LikesIcon
-            cookbookId={id}
-            likeCookbook={likeCookbook}
-            loggedInUserId={loggedInUserId}
-          />
+          <LikesIcon />
           {likes} {t('LIKES')}
         </div>
         <div className="card__statistics-item">

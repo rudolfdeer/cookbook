@@ -1,10 +1,7 @@
 import { Cookbook, Recipe, User } from '../interfaces';
+import { IUser } from '../interfacesServer';
+import { AuthValues } from '../redux/actions/userActions';
 import FetchQuery from './fetchTool';
-
-type LoginInfo = {
-  email: string;
-  password: string;
-};
 
 export interface RecipeValues {
   title: string;
@@ -42,17 +39,23 @@ class Api {
   }
 
 
-  logIn(loginInfo: LoginInfo): User {
-    const response = FetchQuery.logIn(loginInfo);
-    if (!response) {
-      throw new Error('Incorrect email or password');
-    }
-    return response;
-  }
+  // logIn(loginInfo: LoginInfo): User {
+  //   const response = FetchQuery.logIn(loginInfo);
+  //   if (!response) {
+  //     throw new Error('Incorrect email or password');
+  //   }
+  //   return response;
+  // }
 
   getUser(userId: number): User {
     const response = FetchQuery.getUser(userId);
     return response;
+  }
+
+  async getUserById(userId: number) {
+    const response = await fetch(`${userUrl}:${userId}`);
+    const result = await response.json();
+    return result;
   }
 
   getAllUsers(): User[] {
@@ -91,35 +94,35 @@ class Api {
     return response;
   }
 
-  getRecipesInCookbook(recipesIds: number[]): Recipe[] {
-    const recipes = this.getRecipesList();
-    const result = [] as Recipe[];
-    recipesIds.forEach((id) => {
-      const recipe = recipes.find((el) => el.id === id);
-      result.push(recipe);
-    });
-    return result;
-  }
+  // getRecipesInCookbook(recipesIds: number[]): Recipe[] {
+  //   const recipes = this.getRecipesList();
+  //   const result = [] as Recipe[];
+  //   recipesIds.forEach((id) => {
+  //     const recipe = recipes.find((el) => el.id === id);
+  //     result.push(recipe);
+  //   });
+  //   return result;
+  // }
 
-  deleteUsersRecipes(userId: number) {
-    const recipes = this.getRecipesList();
+  // deleteUsersRecipes(userId: number) {
+  //   const recipes = this.getRecipesList();
 
-    let index = recipes.findIndex((el) => el.userId === userId);
-    while (index > -1) {
-      recipes.splice(index, 1);
-      index = recipes.findIndex((el) => el.userId === userId);
-    }
-  }
+  //   let index = recipes.findIndex((el) => el.userId === userId);
+  //   while (index > -1) {
+  //     recipes.splice(index, 1);
+  //     index = recipes.findIndex((el) => el.userId === userId);
+  //   }
+  // }
 
-  deleteUsersCookbooks(userId: number) {
-    const cookbooks = this.getCookbooksList();
+  // deleteUsersCookbooks(userId: number) {
+  //   const cookbooks = this.getCookbooksList();
 
-    let index = cookbooks.findIndex((el) => el.userId === userId);
-    while (index > -1) {
-      cookbooks.splice(index, 1);
-      index = cookbooks.findIndex((el) => el.userId === userId);
-    }
-  }
+  //   let index = cookbooks.findIndex((el) => el.userId === userId);
+  //   while (index > -1) {
+  //     cookbooks.splice(index, 1);
+  //     index = cookbooks.findIndex((el) => el.userId === userId);
+  //   }
+  // }
 
   getUsersRecipes(userId: number) {
     const recipes = this.getRecipesList();
@@ -309,6 +312,42 @@ class Api {
       headers: {
         'Content-Type': 'application/json',
       },
+    });
+
+    const result = await response.json();
+    return result;
+  }
+
+  async signIn(data: AuthValues) {
+    const response = await fetch(`${userUrl}sign-in`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'same-origin',
+    });
+
+    const result = await response.json();
+    return result;
+  }
+
+  async signUp(data: AuthValues) {
+    const response = await fetch(`${userUrl}sign-up`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const result = await response.json();
+    return result;
+  }
+
+  async deleteUser(userId: number) {
+    const response = await fetch(`${userUrl}:${userId}`, {
+      method: 'DELETE',
     });
 
     const result = await response.json();

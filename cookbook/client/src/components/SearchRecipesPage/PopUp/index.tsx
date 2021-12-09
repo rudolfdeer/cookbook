@@ -15,7 +15,7 @@ type PopUpRecipeDetailedProps = {
   setVisible: Dispatch<SetStateAction<boolean>>;
   recipe: IRecipe;
   loggedInUserId: number;
-  saveToUsersRecipes: (recipeId: number, userId: number) => AnyAction;
+  //saveToUsersRecipes: (recipeId: number, userId: number) => AnyAction;
   createComment: (
     recipeId: number,
     text: string
@@ -29,7 +29,7 @@ export default function PopUpRecipeDetailed(
   const {
     setVisible,
     recipe,
-    saveToUsersRecipes,
+    //saveToUsersRecipes,
     loggedInUserId,
     createComment,
   } = props;
@@ -53,7 +53,7 @@ export default function PopUpRecipeDetailed(
   };
 
   const saveRecipe = () => {
-    saveToUsersRecipes(id, loggedInUserId);
+   // saveToUsersRecipes(id, loggedInUserId);
   };
 
   return (

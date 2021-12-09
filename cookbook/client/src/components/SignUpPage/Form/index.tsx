@@ -1,12 +1,12 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { Form, Field } from 'react-final-form';
 import { Link } from 'react-router-dom';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
 import ERROR_MESSAGES from '../../../constants/errorMessages';
 import { EMAILREGEX } from '../../../constants/regex';
 import ROUTES from '../../../constants/routes';
 import './index.scss';
+import { AuthValues } from '../../../redux/actions/userActions';
 
 type FormValues = {
   email: string;
@@ -15,17 +15,20 @@ type FormValues = {
 };
 
 type SignUpFormProps = {
-  createUser: (email: string, password: string) => AnyAction;
+  signUp: (data: AuthValues) => Promise<void>;
   setIsRedirected: Dispatch<SetStateAction<boolean>>;
 };
 
 export default function SignUpForm(props: SignUpFormProps): JSX.Element {
   const { t } = useTranslation();
-  const { createUser, setIsRedirected } = props;
+  const { signUp, setIsRedirected } = props;
   const formData = {};
 
   const onSubmit = (_values: FormValues) => {
-    createUser(_values.email, _values.password);
+    signUp({
+      email: _values.email,
+      password: _values.password,
+    });
     setIsRedirected(true);
   };
 

@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { AnyAction } from 'redux';
 import ROUTES from '../../constants/routes';
+import { AuthValues } from '../../redux/actions/userActions';
 import SignUpForm from './Form';
 
 import './index.scss';
 
 type SignUpPageProps = {
-  createUser: (email: string, password: string) => AnyAction;
+  signUp: (data: AuthValues) => Promise<void>;
 };
 
 export default function SignUpPage(props: SignUpPageProps): JSX.Element {
-  const { createUser } = props;
+  const { signUp } = props;
   const [isRedirected, setIsRedirected] = useState(false);
 
   if (isRedirected) {
@@ -20,7 +20,7 @@ export default function SignUpPage(props: SignUpPageProps): JSX.Element {
   return (
     <main className="sign-up-page">
       <div className="sign-up-page__wrapper">
-        <SignUpForm createUser={createUser} setIsRedirected={setIsRedirected} />
+        <SignUpForm signUp={signUp} setIsRedirected={setIsRedirected} />
       </div>
     </main>
   );

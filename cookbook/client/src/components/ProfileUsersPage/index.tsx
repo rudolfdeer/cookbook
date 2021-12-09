@@ -12,12 +12,12 @@ import HeaderConnect from '../../redux/containers/HeaderConnect';
 import api from '../../helpers/api';
 import PopUpCookbook from './PopUp';
 import ROUTES from '../../constants/routes';
-import { ICookbook } from '../../interfacesServer';
+import { ICookbook, IUser } from '../../interfacesServer';
 
 type ProfileUsersPageProps = {
   cookbooks: ICookbook[];
   getUsersCreatedCookbooks: (userId: number) => Promise<void>;
-  loggedInUserId: number;
+  loggedInUser: IUser;
 };
 
 export default function ProfileUsersPage(
@@ -25,11 +25,11 @@ export default function ProfileUsersPage(
 ): JSX.Element {
   const { t } = useTranslation();
   const { userId } = useParams<{ userId: string }>();
-  const { cookbooks, loggedInUserId, getUsersCreatedCookbooks } = props;
+  const { cookbooks, loggedInUser, getUsersCreatedCookbooks } = props;
 
-  if (+userId === loggedInUserId) {
-    return <Redirect to={ROUTES.PROFILE_COOKBOOKS} />;
-  }
+  // if (+userId === loggedInUser.id) {
+  //   return <Redirect to={ROUTES.PROFILE_COOKBOOKS} />;
+  // }
 
   const [isPopUpCookbookVisible, setPopUpCookbookVisible] = useState(false);
   const [selectedCookbookId, setSelectedCookbookId] = useState(0);

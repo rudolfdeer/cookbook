@@ -13,7 +13,6 @@ import PopUpModifyCookbook from './PopUpModify';
 import api from '../../helpers/api';
 import { CookbookValues } from '../../redux/thunks/cookbooks';
 import { ICookbook, IUser } from '../../interfacesServer';
-import { User } from '../../interfaces';
 
 type ProfileCookbooksPageProps = {
   cookbooks: ICookbook[];

@@ -10,17 +10,18 @@ import LikesIcon from '../../svg/Likes';
 import CommentsSection from '../PopUp/CommentsSection';
 
 import './index.scss';
+import { IRecipe } from '../../../interfacesServer';
 
 type PopUpRecipeDetailedProps = {
   setVisible: Dispatch<SetStateAction<boolean>>;
-  recipe: Recipe;
+  recipe: IRecipe;
   loggedInUserId: number;
   saveToUsersRecipes: (recipeId: number, userId: number) => AnyAction;
   createComment: (
     recipeId: number,
     userId: number,
-    commentText: string
-  ) => AnyAction;
+    text: string
+  ) => Promise<void>;
 };
 
 export default function PopUpRecipeDetailed(

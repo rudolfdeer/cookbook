@@ -46,7 +46,7 @@ export interface IState {
   user: User | null;
 }
 
-interface IRecipeLike {
+export interface IRecipeLike {
   RecipeId: number;
   UserId: number;
 }
@@ -60,24 +60,24 @@ export interface IRecipeComment {
   User?: IUser;
 }
 
-interface IRecipeSaved {
+export interface IRecipeSaved {
   RecipeId: number;
   UserId: number;
   Recipe?: IRecipe;
 }
 
-interface IRecipeCookbook {
+export interface IRecipeCookbook {
   RecipeId: number;
   CookbookId: number;
   Recipe: IRecipe;
 }
 
-interface ICookbookLike {
+export interface ICookbookLike {
   CookbookId: number;
   UserId: number;
 }
 
-interface ICookbookSaved {
+export interface ICookbookSaved {
   CookbookId: number;
   UserId: number;
   Cookbook?: ICookbook;

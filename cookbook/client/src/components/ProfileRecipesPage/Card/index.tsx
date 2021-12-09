@@ -17,7 +17,7 @@ type ProfileRecipeCardProps = {
   comments: number;
   setModifyPopUpVisible: Dispatch<SetStateAction<boolean>>;
   setSelectedRecipeId: Dispatch<SetStateAction<number>>;
-  deleteRecipe: (recipeId: number, userId: number) => AnyAction;
+  deleteRecipe: (recipeId: number, userId: number) => Promise<void>;
   loggedInUserId: number;
 };
 

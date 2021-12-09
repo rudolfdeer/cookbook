@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
-import { Cookbook, User } from '../../interfaces';
 import ROUTES from '../../constants/routes';
 
 import Footer from '../Footer';
@@ -14,9 +12,11 @@ import HeaderConnect from '../../redux/containers/HeaderConnect';
 import PopUpModifyCookbook from './PopUpModify';
 import api from '../../helpers/api';
 import { CookbookValues } from '../../redux/actions/cookbooks';
+import { ICookbook } from '../../interfacesServer';
+import { User } from '../../interfaces';
 
 type ProfileCookbooksPageProps = {
-  cookbooks: Cookbook[];
+  cookbooks: ICookbook[];
   getUsersCreatedCookbooks: (userId: number) => Promise<void>;
   user: User;
   createCookbook: (
@@ -102,10 +102,10 @@ export default function ProfileCookbooksPage(
               <ProfileCookbookCard
                 id={el.id}
                 title={el.title}
-                authorId={el.userId}
+                author={el.User}
                 views={el.views}
-                usersLiked={el.usersLiked}
-                comments={el.comments.length}
+                likes={el.Cookbook_Likes.length}
+                comments={el.Cookbook_Comments.length}
                 image={el.image}
                 description={el.description}
                 key={el.id}

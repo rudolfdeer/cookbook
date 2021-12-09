@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import RecipesPage from '../../components/SearchRecipesPage';
-import { State } from '../../interfaces';
 import {
   filterRecipes,
   getAllRecipes,

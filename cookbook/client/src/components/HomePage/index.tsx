@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
 import ROUTES from '../../constants/routes';
-import { Cookbook, Recipe } from '../../interfaces';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 import Footer from '../Footer';
 import CardPopular from './CardPopular';

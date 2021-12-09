@@ -1,8 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
 import { Recipe } from '../../../interfaces';
-import { RecipeValues } from '../../../redux/actions/recipes';
+import { RecipeValues } from '../../../redux/thunks/recipes';
 
 import './index.scss';
 
@@ -14,7 +13,7 @@ type PopUpModifyRecipeProps = {
     recipeId: number,
     imageSrc: string,
     userId: number
-  ) => AnyAction;
+  ) => Promise<void>;
   loggedInUserId: number;
 };
 

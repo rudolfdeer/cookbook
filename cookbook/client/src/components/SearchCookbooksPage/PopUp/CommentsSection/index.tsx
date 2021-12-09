@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
 import api from '../../../../helpers/api';
 import { Comment } from '../../../../interfaces';
@@ -13,8 +12,8 @@ type CommentsSectionProps = {
   createComment: (
     cookbookId: number,
     userId: number,
-    commentText: string
-  ) => () => Promise<void>;
+    text: string
+  ) => Promise<void>;
 };
 
 export default function CommentsSection(

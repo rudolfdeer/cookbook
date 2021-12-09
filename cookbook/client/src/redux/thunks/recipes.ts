@@ -2,7 +2,7 @@ import { Dispatch } from 'redux';
 import api from '../../helpers/api';
 import recipeActions from '../actions/recipeActions';
 
-interface RecipeValues {
+export interface RecipeValues {
   title: string;
   description: string;
   ingredients: string;

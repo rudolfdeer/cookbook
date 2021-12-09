@@ -17,7 +17,7 @@ type PopUpModifyCookbookProps = {
     cookbookId: number,
     imageSrc: string,
     userId: number
-  ) => AnyAction;
+  ) => Promise<void>;
 };
 
 export default function PopUpModifyCookbook(

@@ -9,10 +9,11 @@ import LikesIcon from '../../svg/Likes';
 
 import './index.scss';
 import PopUpRecipeCard from './RecipeCard';
+import { ICookbook } from '../../../interfacesServer';
 
 type PopUpCookbookProps = {
   setPopUpCookbookVisible: Dispatch<SetStateAction<boolean>>;
-  cookbook: Cookbook;
+  cookbook: ICookbook;
 };
 
 export default function PopUpCookbook(props: PopUpCookbookProps): JSX.Element {

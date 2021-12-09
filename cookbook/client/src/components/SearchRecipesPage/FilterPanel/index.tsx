@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import './index.scss';
 
 type FilterPanelRecipeProps = {
-  sortRecipes: (order: string) => AnyAction;
-  filterRecipes: (cookingTime: number) => AnyAction;
+  sortRecipes: (order: string) => Promise<void>;
+  filterRecipes: (cookingTime: number) => Promise<void>;
 };
 
 export default function FilterPanelRecipes(

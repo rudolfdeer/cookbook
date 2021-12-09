@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux';
-import { IRecipe } from '../../interfacesServer';
+import { IRecipe, IRecipeSaved } from '../../interfacesServer';
 import ACTION_TYPES from '../../constants/actionTypes';
 
 const initialState = [] as IRecipe[];
@@ -24,16 +24,16 @@ export default function recipesReducer(
       switch (order) {
         case 'likes': {
           resData = recipes.sort(
-            (a, b) => b.Recipe_Likes.length - a.Recipe_Likes.length
+            (a: IRecipe, b: IRecipe) => b.Recipe_Likes.length - a.Recipe_Likes.length
           );
           break;
         }
         case 'views': {
-          resData = recipes.sort((a, b) => b.views - a.views);
+          resData = recipes.sort((a: IRecipe, b: IRecipe) => b.views - a.views);
           break;
         }
         case 'default': {
-          resData = recipes.sort((a, b) => a.id - b.id);
+          resData = recipes.sort((a: IRecipe, b: IRecipe) => a.id - b.id);
           break;
         }
         default:
@@ -65,7 +65,7 @@ export default function recipesReducer(
     case ACTION_TYPES.RECIPES_GET_USERS_SAVED: {
       const { user } = action.payload;
       const savedRecipes = user.Recipe_Saveds;
-      const resData = savedRecipes.map((el) => el.Recipe);
+      const resData = savedRecipes.map((el: IRecipeSaved) => el.Recipe);
 
       return [...resData];
     }

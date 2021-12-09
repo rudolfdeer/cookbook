@@ -14,11 +14,12 @@ import HeaderConnect from '../../redux/containers/HeaderConnect';
 import PopUpRecipeSaved from './PopUpRecipe';
 import api from '../../helpers/api';
 import PopUpCookbookSaved from './PopUpCookbook';
+import { ICookbook, IRecipe } from '../../interfacesServer';
 
 type ProfileSavedPageProps = {
-  cookbooks: Cookbook[];
+  cookbooks: ICookbook[];
   getUsersSavedCookbooks: (userId: number) => Promise<void>;
-  recipes: Recipe[];
+  recipes: IRecipe[];
   getUsersSavedRecipes: (userId: number) => Promise<void>;
   user: User;
 };
@@ -93,10 +94,10 @@ export default function ProfileSavedPage(
                 <ProfileSavedCookbookCard
                   id={el.id}
                   title={el.title}
-                  authorId={el.userId}
+                  author={el.User}
                   views={el.views}
-                  likes={el.likes}
-                  comments={el.comments.length}
+                  likes={el.Cookbook_Likes.length}
+                  comments={el.Cookbook_Comments.length}
                   image={el.image}
                   description={el.description}
                   key={el.id}
@@ -113,10 +114,10 @@ export default function ProfileSavedPage(
                 <ProfileSavedRecipeCard
                   id={el.id}
                   title={el.title}
-                  authorId={el.userId}
+                  author={el.User}
                   views={el.views}
-                  likes={el.likes}
-                  comments={el.comments.length}
+                  likes={el.Recipe_Likes.length}
+                  comments={el.Recipe_Comments.length}
                   image={el.image}
                   description={el.description}
                   key={el.id}

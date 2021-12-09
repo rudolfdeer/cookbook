@@ -13,8 +13,8 @@ type CommentsSectionProps = {
   createComment: (
     recipeId: number,
     userId: number,
-    commentText: string
-  ) => AnyAction;
+    text: string
+  ) => Promise<void>;
 };
 
 export default function CommentsSection(

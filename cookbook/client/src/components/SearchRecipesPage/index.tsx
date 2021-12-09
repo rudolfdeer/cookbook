@@ -10,7 +10,6 @@ import PopUpRecipeDetailed from './PopUp';
 import './index.scss';
 import api from '../../helpers/api';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
-import { Recipe } from '../../interfaces';
 import { IRecipe } from '../../interfacesServer';
 
 type RecipesPageProps = {
@@ -72,9 +71,9 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
                 <RecipeCard
                   id={el.id}
                   title={el.title}
-                  authorId={el.userId}
+                  author={el.User}
                   views={el.views}
-                  comments={el.comments.length}
+                  comments={el.Recipe_Comments.length}
                   image={el.image}
                   description={el.description}
                   selectCard={setSelectedCardId}
@@ -82,7 +81,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
                   key={el.id}
                   loggedInUserId={loggedInUserId}
                   saveToUsersRecipes={saveToUsersRecipes}
-                  usersLiked={el.usersLiked}
+                  likes={el.Recipe_Likes.length}
                 />
               ))}
             </div>

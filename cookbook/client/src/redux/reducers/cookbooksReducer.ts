@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 import ACTION_TYPES from '../../constants/actionTypes';
-import { ICookbook } from '../../interfacesServer';
+import { ICookbook, ICookbookSaved } from '../../interfacesServer';
 
 const initialState = [] as ICookbook[];
 
@@ -64,15 +64,15 @@ export default function cookbooksReducer(
 
       switch (order) {
         case 'likes': {
-          resData = cookbooks.sort((a, b) => b.likes - a.likes);
+          resData = cookbooks.sort((a: ICookbook, b: ICookbook) => b.Cookbook_Likes.length - a.Cookbook_Likes.length);
           break;
         }
         case 'views': {
-          resData = cookbooks.sort((a, b) => b.views - a.views);
+          resData = cookbooks.sort((a: ICookbook, b: ICookbook) => b.views - a.views);
           break;
         }
         case 'default': {
-          resData = cookbooks.sort((a, b) => a.id - b.id);
+          resData = cookbooks.sort((a: ICookbook, b: ICookbook) => a.id - b.id);
           break;
         }
 
@@ -95,7 +95,7 @@ export default function cookbooksReducer(
     case ACTION_TYPES.COOKBOOKS_GET_USERS_SAVED: {
       const { user } = action.payload;
       const savedCookbooks = user.Cookbook_Saveds;
-      const resData = savedCookbooks.map((el) => el.Cookbook);
+      const resData = savedCookbooks.map((el: ICookbookSaved) => el.Cookbook);
 
       return [...resData];
     }
@@ -128,7 +128,7 @@ export default function cookbooksReducer(
     case ACTION_TYPES.COOKBOOKS_HIDE_USERS_CREATED: {
       const { cookbooks, userId } = action.payload;
 
-      const filteredCookbooks = cookbooks.filter((el) => el.userId !== userId);
+      const filteredCookbooks = cookbooks.filter((el: ICookbook) => el.UserId !== userId);
 
       return [...filteredCookbooks];
     }

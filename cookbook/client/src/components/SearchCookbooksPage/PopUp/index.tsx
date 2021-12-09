@@ -20,7 +20,7 @@ type PopUpCookbookDetailedProps = {
   createComment: (
     cookbookId: number,
     userId: number,
-    commentText: string
+    text: string
   ) => Promise<void>;
   likeCookbook: (userId: number, cookbookId: number) => AnyAction;
 };

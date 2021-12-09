@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
 import api from '../../../helpers/api';
+import { IUser } from '../../../interfacesServer';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
 import ViewsIcon from '../../svg/Views';
@@ -10,7 +11,7 @@ import './index.scss';
 type CardCookbookProps = {
   id: number;
   title: string;
-  authorId: number;
+  author: IUser;
   description: string;
   views: number;
   likes: number;
@@ -28,7 +29,7 @@ export default function CardCookbook(props: CardCookbookProps): JSX.Element {
     image,
     description,
     title,
-    authorId,
+    author,
     likes,
     comments,
     setSelectedCookbookId,
@@ -62,7 +63,7 @@ export default function CardCookbook(props: CardCookbookProps): JSX.Element {
         >
           {title}
         </div>
-        <div className="card__author">{api.getUserName(authorId)}</div>
+        <div className="card__author">{author.name}</div>
       </div>
 
       <div className="card__info-container--description">

@@ -1,6 +1,5 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { Form, Field } from 'react-final-form';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
 import api from '../../../helpers/api';
 import { CookbookValues } from '../../../redux/actions/cookbooks';
@@ -14,7 +13,7 @@ type PopUpCreateCookbookProps = {
     data: CookbookValues,
     userId: number,
     imageSrc: string
-  ) => AnyAction;
+  ) => Promise<void>;
 };
 
 type FormValues = {

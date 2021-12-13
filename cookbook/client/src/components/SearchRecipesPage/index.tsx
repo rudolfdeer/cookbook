@@ -5,17 +5,16 @@ import Footer from '../Footer';
 import RecipeCard from './Card';
 import FilterPanelRecipes from './FilterPanel';
 import PopUpRecipeDetailed from './PopUp';
-
-import './index.scss';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 import { IRecipe } from '../../interfacesServer';
+import './index.scss';
 
 type RecipesPageProps = {
   recipes: IRecipe[];
-  getAllRecipes: () => Promise<void>;
+  getAllRecipes: () => void;
   sortRecipes: (order: string) => Promise<void>;
   filterRecipes: (cookingTime: number) => Promise<void>;
-  loggedInUserId: number;
+  loggedInUserId: number | null;
   //saveToUsersRecipes: (recipeId: number, userId: number) => AnyAction;
   createComment: (
     recipeId: number,
@@ -94,7 +93,6 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
           ) : null}
         </div>
       </main>
-
       <Footer />
     </>
   );

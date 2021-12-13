@@ -17,7 +17,7 @@ type PopUpRecipeCardProps = {
   id: number;
   loggedInUserId: number;
   likes: number;
-  saveToUsersRecipes: (recipeId: number, userId: number) => AnyAction;
+  saveToUsersRecipes: (recipeId: number, userId: number) => Promise<void>;
   setVisible: Dispatch<SetStateAction<boolean>>;
 };
 

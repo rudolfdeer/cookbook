@@ -10,6 +10,7 @@ const verifyAuthToken = async (
   next: express.NextFunction,
 ) => {
   if (!req.cookies.jwt) {
+    console.log('no token');
     res.status(CODE_STATUSES.UNAUTHORISED).send('No token provided.');
   }
 

@@ -21,8 +21,7 @@ export default function CommentsSection(
   const { comments, loggedInUserId, recipeId, createComment } = props;
   const [newComment, setNewComment] = useState('');
 
-  const getDate = (dateString: string) =>
-    dateString.split(' ').slice(0, 4).join(' ');
+  const getDate = (dateString: string) => dateString.split(' ').slice(0, 4).join(' ');
 
   const newCommentSection = (
     <div className="comment--new">

@@ -16,7 +16,7 @@ import { IRecipe, IUser } from '../../interfacesServer';
 
 type ProfileRecipesPageProps = {
   recipes: IRecipe[];
-  getUsersCreatedRecipes: (userId: number) => Promise<void>;
+  getUsersCreatedRecipes: (userId: number) => void;
   user: IUser;
   createRecipe: (
     data: RecipeValues,

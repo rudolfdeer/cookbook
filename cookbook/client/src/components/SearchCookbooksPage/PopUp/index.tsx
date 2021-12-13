@@ -17,8 +17,8 @@ type PopUpCookbookDetailedProps = {
   setVisible: Dispatch<SetStateAction<boolean>>;
   cookbook: ICookbook;
   loggedInUserId: number;
-  saveToUsersCookbooks: (cookbookId: number, userId: number) => AnyAction;
-  saveToUsersRecipes: (recipeId: number, userId: number) => AnyAction;
+  saveToUsersCookbooks: (cookbookId: number, userId: number) => Promise<void>;
+  saveToUsersRecipes: (recipeId: number, userId: number) => Promise<void>;
   createComment: (
     cookbookId: number,
     text: string
@@ -59,7 +59,6 @@ export default function PopUpCookbookDetailed(
       setVisible(false);
     }
   }
-  console.log(cookbook);
   const recipes = Recipe_Cookbooks.map((el) => el.Recipe);
 
   return (

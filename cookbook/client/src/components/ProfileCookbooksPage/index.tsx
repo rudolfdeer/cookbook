@@ -10,14 +10,13 @@ import './index.scss';
 import PopUpCreateCookbook from './PopUpCreate';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 import PopUpModifyCookbook from './PopUpModify';
-import api from '../../helpers/api';
 import { CookbookValues } from '../../redux/thunks/cookbooks';
 import { ICookbook, IRecipe, IUser } from '../../interfacesServer';
 
 type ProfileCookbooksPageProps = {
   cookbooks: ICookbook[];
   recipes: IRecipe[];
-  getUsersCreatedCookbooks: (userId: number) => Promise<void>;
+  getUsersCreatedCookbooks: (userId: number) => void;
   user: IUser;
   createCookbook: (
     data: CookbookValues,

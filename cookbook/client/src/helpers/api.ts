@@ -22,7 +22,7 @@ export interface CookbookValues {
   likeUserIds?: number[];
 }
 
-const base = 'http://127.0.0.1:3000/api/';
+const base = 'http://localhost:3000/api/';
 const cookbooksUrl = `${base}cookbooks/`;
 const recipesUrl = `${base}recipes/`;
 const userUrl = `${base}user/`;
@@ -52,8 +52,8 @@ class Api {
   //   return response;
   // }
 
-  async getUserById(userId: number) {
-    const response = await fetch(`${userUrl}:${userId}`);
+  async getUserById(userId: number): Promise<IUser> {
+    const response = await fetch(`${userUrl}${userId}`);
     const result = await response.json();
     return result;
   }
@@ -178,7 +178,7 @@ class Api {
       text,
       date: new Date().toString(),
     };
-    const response = await fetch(`${recipesUrl}:${recipeId}`, {
+    const response = await fetch(`${recipesUrl}${recipeId}`, {
       method: 'POST',
       body: JSON.stringify(body),
       headers: {
@@ -209,7 +209,7 @@ class Api {
       likeUserIds,
     };
 
-    const response = await fetch(`${recipesUrl}:${recipeId}`, {
+    const response = await fetch(`${recipesUrl}${recipeId}`, {
       method: 'PUT',
       body: JSON.stringify(body),
       headers: {
@@ -222,11 +222,8 @@ class Api {
   }
 
   async deleteRecipe(id: number) {
-    const response = await fetch(`${recipesUrl}:${id}`, {
+    const response = await fetch(`${recipesUrl}${id}`, {
       method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
     });
 
     const result = await response.json();
@@ -265,7 +262,7 @@ class Api {
       text,
       date: new Date().toString(),
     };
-    const response = await fetch(`${cookbooksUrl}:${cookbookId}`, {
+    const response = await fetch(`${cookbooksUrl}${cookbookId}`, {
       method: 'POST',
       body: JSON.stringify(body),
       headers: {
@@ -294,7 +291,7 @@ class Api {
       recipesIds
     };
 
-    const response = await fetch(`${cookbooksUrl}:${cookbookId}`, {
+    const response = await fetch(`${cookbooksUrl}${cookbookId}`, {
       method: 'PUT',
       body: JSON.stringify(body),
       headers: {
@@ -307,11 +304,8 @@ class Api {
   }
 
   async deleteCookbook(id: number) {
-    const response = await fetch(`${cookbooksUrl}:${id}`, {
+    const response = await fetch(`${cookbooksUrl}${id}`, {
       method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
     });
 
     const result = await response.json();
@@ -325,7 +319,6 @@ class Api {
       headers: {
         'Content-Type': 'application/json',
       },
-      credentials: 'same-origin',
     });
 
     const result = await response.json();
@@ -346,7 +339,7 @@ class Api {
   }
 
   async deleteUser(userId: number) {
-    const response = await fetch(`${userUrl}:${userId}`, {
+    const response = await fetch(`${userUrl}${userId}`, {
       method: 'DELETE',
     });
 

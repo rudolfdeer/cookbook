@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
 import './index.scss';
 

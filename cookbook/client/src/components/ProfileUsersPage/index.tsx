@@ -16,7 +16,7 @@ import { ICookbook, IUser } from '../../interfacesServer';
 
 type ProfileUsersPageProps = {
   cookbooks: ICookbook[];
-  getUsersCreatedCookbooks: (userId: number) => Promise<void>;
+  getUsersCreatedCookbooks: (userId: number) => void;
   loggedInUser: IUser;
 };
 
@@ -26,17 +26,22 @@ export default function ProfileUsersPage(
   const { t } = useTranslation();
   const { userId } = useParams<{ userId: string }>();
   const { cookbooks, loggedInUser, getUsersCreatedCookbooks } = props;
+  const [user, setUser] = useState(null as IUser);
 
-  // if (+userId === loggedInUser.id) {
-  //   return <Redirect to={ROUTES.PROFILE_COOKBOOKS} />;
-  // }
+  if (+userId === loggedInUser.id) {
+    return <Redirect to={ROUTES.PROFILE_COOKBOOKS} />;
+  }
 
   const [isPopUpCookbookVisible, setPopUpCookbookVisible] = useState(false);
   const [selectedCookbookId, setSelectedCookbookId] = useState(0);
-
   useEffect(() => getUsersCreatedCookbooks(+userId), [userId]);
 
-  const user = api.getUser(+userId);
+  useEffect(() => {
+    (async () => {
+      const response = await api.getUserById(+userId);
+      setUser(response);
+    })();
+  }, []);
 
   return (
     <>
@@ -48,14 +53,14 @@ export default function ProfileUsersPage(
           <section className="profile-page--user__user">
             <div className="profile-page--user__user__photo">
               <img
-                src={user.avatar}
+                src={user?.photo}
                 alt="User photo"
                 className="profile-page--user__user__photo__image"
               />
             </div>
             <div className="profile-page--user__user__container">
-              <div className="profile-page--user__user__name">{user.name}</div>
-              <div className="profile-page--user__user__bio">{user.bio}</div>
+              <div className="profile-page--user__user__name">{user?.name}</div>
+              <div className="profile-page--user__user__bio">{user?.bio}</div>
             </div>
           </section>
           <nav className="profile-page--user__nav">

@@ -1,5 +1,6 @@
 import { Dispatch } from 'redux';
 import api from '../../helpers/api';
+import { ICookbook } from '../../interfacesServer';
 import cookbookActions from '../actions/cookbookActions';
 
 export interface CookbookValues {

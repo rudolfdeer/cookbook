@@ -21,7 +21,7 @@ type ProfileRecipeCardProps = {
 };
 
 export default function ProfileRecipeCard(
-  props: ProfileRecipeCardProps
+  props: ProfileRecipeCardProps,
 ): JSX.Element {
   const { t } = useTranslation();
   const {

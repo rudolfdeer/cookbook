@@ -1,7 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { Form, Field } from 'react-final-form';
 import { useTranslation } from 'react-i18next';
-import api from '../../../helpers/api';
 import { IRecipe } from '../../../interfacesServer';
 import { CookbookValues } from '../../../redux/thunks/cookbooks';
 
@@ -39,10 +38,12 @@ const formData = {
 const required = (value: string | string[]) => (value ? undefined : 'Required');
 
 export default function PopUpCreateCookbook(
-  props: PopUpCreateCookbookProps
+  props: PopUpCreateCookbookProps,
 ): JSX.Element {
   const { t } = useTranslation();
-  const { loggedInUserId, setCreatePopUpVisible, createCookbook, recipes } = props;
+  const {
+    loggedInUserId, setCreatePopUpVisible, createCookbook, recipes,
+  } = props;
   const [photoSrc, setPhotoSrc] = useState('');
 
   const onSubmit = (values: FormValues) => {

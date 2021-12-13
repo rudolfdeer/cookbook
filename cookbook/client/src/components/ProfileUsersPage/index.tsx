@@ -21,7 +21,7 @@ type ProfileUsersPageProps = {
 };
 
 export default function ProfileUsersPage(
-  props: ProfileUsersPageProps
+  props: ProfileUsersPageProps,
 ): JSX.Element {
   const { t } = useTranslation();
   const { userId } = useParams<{ userId: string }>();

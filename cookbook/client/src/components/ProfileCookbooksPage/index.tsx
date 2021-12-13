@@ -33,7 +33,7 @@ type ProfileCookbooksPageProps = {
 };
 
 export default function ProfileCookbooksPage(
-  props: ProfileCookbooksPageProps
+  props: ProfileCookbooksPageProps,
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.NOT_FOUND} />;
@@ -49,7 +49,9 @@ export default function ProfileCookbooksPage(
     modifyCookbook,
     deleteCookbook,
   } = props;
-  const { name, bio, photo, id } = user;
+  const {
+    name, bio, photo, id,
+  } = user;
   const [isCreatePopUpVisible, setCreatePopUpVisible] = useState(false);
   const [isModifyPopUpVisible, setModifyPopUpVisible] = useState(false);
   const photoSrc = photo || '../../assets/images/photo-mask.png';

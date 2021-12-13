@@ -47,7 +47,7 @@ class CookbookActions {
       payload: {
         user,
       },
-    }
+    };
   }
 
   createComment(cookbooks: ICookbook[]) {
@@ -56,7 +56,7 @@ class CookbookActions {
       payload: {
         cookbooks,
       },
-    }
+    };
   }
 
   create(cookbooks: ICookbook[], userId: number) {
@@ -66,7 +66,7 @@ class CookbookActions {
         cookbooks,
         userId,
       },
-    }
+    };
   }
 
   update(cookbooks: ICookbook[], userId: number) {
@@ -76,7 +76,7 @@ class CookbookActions {
         cookbooks,
         userId,
       },
-    }
+    };
   }
 
   delete(cookbooks: ICookbook[], userId: number) {
@@ -84,9 +84,9 @@ class CookbookActions {
       type: ACTION_TYPES.COOKBOOKS_DELETE,
       payload: {
         cookbooks,
-        userId
+        userId,
       },
-    }
+    };
   }
 
   hideUsers(cookbooks: ICookbook[], userId: number) {
@@ -94,10 +94,10 @@ class CookbookActions {
       type: ACTION_TYPES.COOKBOOKS_HIDE_USERS_CREATED,
       payload: {
         cookbooks,
-        userId
+        userId,
       },
-    }
+    };
   }
 }
 
-export default new CookbookActions()
+export default new CookbookActions();

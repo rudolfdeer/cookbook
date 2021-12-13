@@ -8,7 +8,7 @@ type RecipesReducer = typeof initialState;
 
 export default function recipesReducer(
   state = initialState,
-  action: AnyAction
+  action: AnyAction,
 ): RecipesReducer {
   switch (action.type) {
     case ACTION_TYPES.RECIPES_GET_ALL: {
@@ -24,7 +24,7 @@ export default function recipesReducer(
       switch (order) {
         case 'likes': {
           resData = recipes.sort(
-            (a: IRecipe, b: IRecipe) => b.Recipe_Likes.length - a.Recipe_Likes.length
+            (a: IRecipe, b: IRecipe) => b.Recipe_Likes.length - a.Recipe_Likes.length,
           );
           break;
         }
@@ -47,7 +47,7 @@ export default function recipesReducer(
       const { recipes, cookingTime } = action.payload;
 
       const resData = recipes.filter(
-        (recipe: IRecipe) => recipe.time <= cookingTime
+        (recipe: IRecipe) => recipe.time <= cookingTime,
       );
 
       return [...resData];
@@ -76,7 +76,7 @@ export default function recipesReducer(
     case ACTION_TYPES.RECIPES_CREATE: {
       const { recipes, userId } = action.payload;
       const usersRecipes = recipes.filter(
-        (recipe: IRecipe) => recipe.UserId === userId
+        (recipe: IRecipe) => recipe.UserId === userId,
       );
 
       return [...usersRecipes];
@@ -86,7 +86,7 @@ export default function recipesReducer(
       const { recipes, userId } = action.payload;
 
       const usersRecipes = recipes.filter(
-        (recipe: IRecipe) => recipe.UserId === userId
+        (recipe: IRecipe) => recipe.UserId === userId,
       );
 
       return [...usersRecipes];
@@ -96,7 +96,7 @@ export default function recipesReducer(
       const { recipes, userId } = action.payload;
 
       const usersRecipes = recipes.filter(
-        (recipe: IRecipe) => recipe.UserId === userId
+        (recipe: IRecipe) => recipe.UserId === userId,
       );
 
       return [...usersRecipes];

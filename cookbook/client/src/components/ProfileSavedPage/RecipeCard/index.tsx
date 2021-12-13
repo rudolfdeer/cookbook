@@ -1,6 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
-import api from '../../../helpers/api';
 import { IUser } from '../../../interfacesServer';
 import CommentsIcon from '../../svg/Comments';
 import DotsIcon from '../../svg/Dots';
@@ -23,7 +22,7 @@ type ProfileSavedRecipeCardProps = {
 };
 
 export default function ProfileSavedRecipeCard(
-  props: ProfileSavedRecipeCardProps
+  props: ProfileSavedRecipeCardProps,
 ): JSX.Element {
   const { t } = useTranslation();
   const {

@@ -20,7 +20,9 @@ type HomePageProps = {
 
 export default function HomePage(props: HomePageProps): JSX.Element {
   const { t } = useTranslation();
-  const { recipes, getAllRecipes, cookbooks, getAllCookbooks } = props;
+  const {
+    recipes, getAllRecipes, cookbooks, getAllCookbooks,
+  } = props;
 
   const navList = t('SEARCH_NAV_LIST', { returnObjects: true }) as string[];
 

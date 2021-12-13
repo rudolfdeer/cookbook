@@ -23,7 +23,7 @@ type ProfileCookbookCardProps = {
 };
 
 export default function ProfileCookbookCard(
-  props: ProfileCookbookCardProps
+  props: ProfileCookbookCardProps,
 ): JSX.Element {
   const { t } = useTranslation();
   const {

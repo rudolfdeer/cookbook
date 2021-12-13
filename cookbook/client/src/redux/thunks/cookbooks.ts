@@ -1,6 +1,5 @@
 import { Dispatch } from 'redux';
 import api from '../../helpers/api';
-import { ICookbook } from '../../interfacesServer';
 import cookbookActions from '../actions/cookbookActions';
 
 export interface CookbookValues {
@@ -10,7 +9,7 @@ export interface CookbookValues {
   recipesIds: number[];
   views?:number;
   likeUserIds?: number[];
-};
+}
 
 export const getAllCookbooks = () => async (dispatch: Dispatch): Promise<void> => {
   const cookbooks = await api.getAllCookbooks();
@@ -64,21 +63,21 @@ export const modifyCookbook = (
   const cookbooks = await api.getAllCookbooks();
 
   dispatch(cookbookActions.update(cookbooks, userId));
-}
+};
 
 export const deleteCookbook = (cookbookId: number, userId: number) => async (dispatch: Dispatch): Promise<void> => {
   await api.deleteCookbook(cookbookId);
   const cookbooks = await api.getAllCookbooks();
 
   dispatch(cookbookActions.delete(cookbooks, userId));
-}
+};
 
 export const hideUsersCookbooks = () => async (dispatch: Dispatch): Promise<void> => {
   const cookbooks = await api.getAllCookbooks();
   const user = await api.getLoggedInUser();
 
   dispatch(cookbookActions.delete(cookbooks, user.id));
-}
+};
 
 //
 export const likeCookbook = () => async (dispatch: Dispatch): Promise<void> => {
@@ -86,4 +85,4 @@ export const likeCookbook = () => async (dispatch: Dispatch): Promise<void> => {
   const user = await api.getLoggedInUser();
 
   dispatch(cookbookActions.delete(cookbooks, user.id));
-}
+};

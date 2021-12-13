@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
-import { Cookbook, Recipe, User } from '../../interfaces';
-
 import ROUTES from '../../constants/routes';
 import Footer from '../Footer';
-
-import './index.scss';
 import ProfileSavedCookbookCard from './CookbookCard';
 import ProfileSavedRecipeCard from './RecipeCard';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 import PopUpRecipeSaved from './PopUpRecipe';
-import api from '../../helpers/api';
 import PopUpCookbookSaved from './PopUpCookbook';
 import { ICookbook, IRecipe, IUser } from '../../interfacesServer';
+
+import './index.scss';
 
 type ProfileSavedPageProps = {
   cookbooks: ICookbook[];
@@ -25,7 +21,7 @@ type ProfileSavedPageProps = {
 };
 
 export default function ProfileSavedPage(
-  props: ProfileSavedPageProps
+  props: ProfileSavedPageProps,
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.NOT_FOUND} />;
@@ -41,7 +37,9 @@ export default function ProfileSavedPage(
     getUsersSavedRecipes,
   } = props;
 
-  const { name, bio, photo, id } = user;
+  const {
+    name, bio, photo, id,
+  } = user;
   const photoSrc = photo || '../../assets/images/photo-mask.png';
   const [isRecipePopUpVisible, setRecipePopUpVisible] = useState(false);
   const [selectedRecipeId, setSelectedRecipeId] = useState(0);

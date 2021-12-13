@@ -28,7 +28,7 @@ export const getUsersSavedRecipes = (userId: number): AnyAction => ({
 export const createComment = (
   recipeId: number,
   userId: number,
-  commentText: string
+  commentText: string,
 ): AnyAction => ({
   type: ACTION_TYPES.RECIPES_CREATE_COMMENT,
   payload: {
@@ -63,7 +63,7 @@ export const modifyRecipe = (
   data: RecipeValues,
   recipeId: number,
   imageSrc: string,
-  userId: number
+  userId: number,
 ): AnyAction => ({
   type: ACTION_TYPES.RECIPES_MODIFY,
   payload: {

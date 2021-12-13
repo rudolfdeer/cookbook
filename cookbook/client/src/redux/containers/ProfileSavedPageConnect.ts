@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import { getUsersSavedRecipes } from '../thunks/recipes';
 import { getUsersSavedCookbooks } from '../thunks/cookbooks';
 import ProfileSavedPage from '../../components/ProfileSavedPage';
-import { State } from '../../interfaces';
 import { IState } from '../../interfacesServer';
 
 function mapStateToProps(state: IState) {

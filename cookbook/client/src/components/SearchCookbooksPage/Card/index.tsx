@@ -1,6 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
-import api from '../../../helpers/api';
 import { IUser } from '../../../interfacesServer';
 import CommentsIcon from '../../svg/Comments';
 import DotsIcon from '../../svg/Dots';
@@ -21,7 +20,7 @@ type CookbookCardProps = {
   selectCard: Dispatch<SetStateAction<number>>;
   openDetailedInfo: Dispatch<SetStateAction<boolean>>;
   loggedInUserId: number;
-  //likeCookbook: (userId: number, cookbookId: number) => AnyAction;
+  // likeCookbook: (userId: number, cookbookId: number) => AnyAction;
 };
 
 export default function CookbookCard(props: CookbookCardProps): JSX.Element {
@@ -37,8 +36,7 @@ export default function CookbookCard(props: CookbookCardProps): JSX.Element {
     comments,
     openDetailedInfo,
     selectCard,
-    loggedInUserId,
-    //likeCookbook,
+    // likeCookbook,
   } = props;
 
   return (

@@ -26,7 +26,7 @@ const formData = {
 const required = (value: string | string[]) => (value ? undefined : 'Required');
 
 export default function PopUpCreateRecipe(
-  props: PopUpCreateRecipeProps
+  props: PopUpCreateRecipeProps,
 ): JSX.Element {
   const { t } = useTranslation();
   const { setCreatePopUpVisible, createRecipe, loggedInUserId } = props;

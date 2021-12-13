@@ -1,5 +1,3 @@
-import { Cookbook, User } from './interfaces';
-
 export interface IUser {
   id: number;
   name: string;

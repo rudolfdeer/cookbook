@@ -1,4 +1,4 @@
-import { Cookbook, Recipe, User } from '../interfaces';
+import { User } from '../interfaces';
 import { ICookbook, IRecipe, IUser } from '../interfacesServer';
 import { AuthValues } from '../redux/actions/userActions';
 import FetchQuery from './fetchTool';
@@ -11,7 +11,7 @@ export interface RecipeValues {
   time?: number;
   views?:number;
   likeUserIds?: number[];
-};
+}
 
 export interface CookbookValues {
   title: string;
@@ -37,7 +37,6 @@ class Api {
   //   const response = FetchQuery.getCookbooksList();
   //   return response;
   // }
-
 
   // logIn(loginInfo: LoginInfo): User {
   //   const response = FetchQuery.logIn(loginInfo);
@@ -288,7 +287,7 @@ class Api {
       image: imageSrc,
       views,
       likeUserIds,
-      recipesIds
+      recipesIds,
     };
 
     const response = await fetch(`${cookbooksUrl}${cookbookId}`, {

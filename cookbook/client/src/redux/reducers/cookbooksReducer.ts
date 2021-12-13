@@ -105,7 +105,7 @@ export default function cookbooksReducer(
     case ACTION_TYPES.COOKBOOKS_CREATE: {
       const { cookbooks, userId } = action.payload;
       const usersCookbooks = cookbooks.filter(
-        (cookbook: ICookbook) => cookbook.UserId === userId
+        (cookbook: ICookbook) => cookbook.UserId === userId,
       );
 
       return [...usersCookbooks];
@@ -116,7 +116,7 @@ export default function cookbooksReducer(
       } = action.payload;
 
       const usersCookbooks = cookbooks.filter(
-        (cookbook: ICookbook) => cookbook.UserId === userId
+        (cookbook: ICookbook) => cookbook.UserId === userId,
       );
 
       return [...usersCookbooks];
@@ -133,7 +133,7 @@ export default function cookbooksReducer(
     case ACTION_TYPES.COOKBOOKS_DELETE: {
       const { cookbooks, userId } = action.payload;
       const usersCookbooks = cookbooks.filter(
-        (cookbook: ICookbook) => cookbook.UserId === userId
+        (cookbook: ICookbook) => cookbook.UserId === userId,
       );
 
       return [...usersCookbooks];

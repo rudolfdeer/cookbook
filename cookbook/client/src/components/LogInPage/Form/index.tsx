@@ -18,18 +18,13 @@ type LogInFormProps = {
 
 type ValidatorFunction = (value: string) => undefined | string;
 
-const required = (value: string) =>
-  value ? undefined : ERROR_MESSAGES.REQUIRED;
-const validEmail = (value: string) =>
-  !value.match(EMAILREGEX) ? ERROR_MESSAGES.EMAIL : undefined;
+const required = (value: string) => (value ? undefined : ERROR_MESSAGES.REQUIRED);
+const validEmail = (value: string) => (!value.match(EMAILREGEX) ? ERROR_MESSAGES.EMAIL : undefined);
 // eslint-disable-next-line max-len
-const composeValidators =
-  (...validators: ValidatorFunction[]) =>
-  (value: string) =>
-    validators.reduce(
-      (error, validator) => error || validator(value),
-      undefined
-    );
+const composeValidators = (...validators: ValidatorFunction[]) => (value: string) => validators.reduce(
+  (error, validator) => error || validator(value),
+  undefined,
+);
 
 export default function LogInForm(props: LogInFormProps): JSX.Element {
   const { t } = useTranslation();

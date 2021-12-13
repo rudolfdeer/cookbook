@@ -1,6 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
-import api from '../../../helpers/api';
 import { IUser } from '../../../interfacesServer';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';

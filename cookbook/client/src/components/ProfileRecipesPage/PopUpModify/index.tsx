@@ -1,6 +1,5 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Recipe } from '../../../interfaces';
 import { IRecipe } from '../../../interfacesServer';
 import { RecipeValues } from '../../../redux/thunks/recipes';
 
@@ -19,7 +18,7 @@ type PopUpModifyRecipeProps = {
 };
 
 export default function PopUpModifyRecipe(
-  props: PopUpModifyRecipeProps
+  props: PopUpModifyRecipeProps,
 ): JSX.Element {
   const { t } = useTranslation();
   const {
@@ -28,8 +27,9 @@ export default function PopUpModifyRecipe(
     modifyRecipe,
     loggedInUserId,
   } = props;
-  const { id, title, image, description, directions, ingredients } =
-    selectedRecipe;
+  const {
+    id, title, image, description, directions, ingredients,
+  } = selectedRecipe;
 
   const [imageSrc, setImageSrc] = useState(image);
   const [isTitleDisabled, setTitleDisabled] = useState(true);

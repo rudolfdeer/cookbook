@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
-import { User } from '../../interfaces';
 import ROUTES from '../../constants/routes';
 import Footer from '../Footer';
 
@@ -12,17 +11,17 @@ import { IUser } from '../../interfacesServer';
 
 type ProfileSettingsPageProps = {
   user: IUser;
-  //changeUserBio: (userId: number, newBio: string) => AnyAction;
-  //changeUserName: (userId: number, newName: string) => AnyAction;
-  //changeUserEmail: (userId: number, newEmail: string) => AnyAction;
-  //changeUserPassword: (userId: number, newPassword: string) => AnyAction;
-  //updateUserPhoto: (userId: number, newAvatar: string) => AnyAction;
+  // changeUserBio: (userId: number, newBio: string) => AnyAction;
+  // changeUserName: (userId: number, newName: string) => AnyAction;
+  // changeUserEmail: (userId: number, newEmail: string) => AnyAction;
+  // changeUserPassword: (userId: number, newPassword: string) => AnyAction;
+  // updateUserPhoto: (userId: number, newAvatar: string) => AnyAction;
   logOut: (userId: number) => AnyAction;
   deleteUser: (userId: number) => AnyAction;
 };
 
 export default function ProfileSettingsPage(
-  props: ProfileSettingsPageProps
+  props: ProfileSettingsPageProps,
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.HOME} />;
@@ -40,7 +39,9 @@ export default function ProfileSettingsPage(
     logOut,
     deleteUser,
   } = props;
-  const { id, name, email, password, bio, photo } = user;
+  const {
+    id, name, email, password, bio, photo,
+  } = user;
   const [isBioDisabled, setBioDisabled] = useState(true);
   const [isNameDisabled, setNameDisabled] = useState(true);
   const [isEmailDisabled, setEmailDisabled] = useState(true);
@@ -50,7 +51,7 @@ export default function ProfileSettingsPage(
   const [newEmail, setNewEmail] = useState(email);
   const [newPassword, setNewPassword] = useState(password);
   const [photoSrc, setPhotoSrc] = useState(
-    photo || './assets/images/photo-mask.png'
+    photo || './assets/images/photo-mask.png',
   );
 
   const onPhotoChange = (e: React.ChangeEvent) => {
@@ -60,7 +61,7 @@ export default function ProfileSettingsPage(
     reader.onload = () => {
       const result = String(reader.result);
       setPhotoSrc(result);
-      //updateUserPhoto(id, result);
+      // updateUserPhoto(id, result);
     };
     reader.readAsDataURL(file);
   };
@@ -124,7 +125,7 @@ export default function ProfileSettingsPage(
                     onClick={(e) => {
                       e.preventDefault();
                       setBioDisabled(true);
-                      //changeUserBio(id, newBio);
+                      // changeUserBio(id, newBio);
                     }}
                   />
                 )}
@@ -186,7 +187,7 @@ export default function ProfileSettingsPage(
                   onClick={(e) => {
                     e.preventDefault();
                     setNameDisabled(true);
-                    //changeUserName(id, newName);
+                    // changeUserName(id, newName);
                   }}
                 />
               )}
@@ -228,7 +229,7 @@ export default function ProfileSettingsPage(
                   onClick={(e) => {
                     e.preventDefault();
                     setEmailDisabled(true);
-                    //changeUserEmail(id, newEmail);
+                    // changeUserEmail(id, newEmail);
                   }}
                 />
               )}
@@ -269,7 +270,7 @@ export default function ProfileSettingsPage(
                   onClick={(e) => {
                     e.preventDefault();
                     setPasswordDisabled(true);
-                    //changeUserPassword(id, newPassword);
+                    // changeUserPassword(id, newPassword);
                   }}
                 />
               )}

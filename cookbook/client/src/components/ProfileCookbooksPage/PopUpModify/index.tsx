@@ -1,6 +1,5 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import api from '../../../helpers/api';
 import { CookbookValues } from '../../../redux/actions/cookbooks';
 import PopUpRecipeCard from './Card';
 
@@ -20,7 +19,7 @@ type PopUpModifyCookbookProps = {
 };
 
 export default function PopUpModifyCookbook(
-  props: PopUpModifyCookbookProps
+  props: PopUpModifyCookbookProps,
 ): JSX.Element {
   const { t } = useTranslation();
   const {
@@ -29,8 +28,9 @@ export default function PopUpModifyCookbook(
     loggedInUserId,
     modifyCookbook,
   } = props;
-  const { id, image, description, title, User, Recipe_Cookbooks } =
-    selectedCookbook;
+  const {
+    id, image, description, title, User, Recipe_Cookbooks,
+  } = selectedCookbook;
 
   const recipesIds = Recipe_Cookbooks.map((el) => el.RecipeId);
 
@@ -44,8 +44,8 @@ export default function PopUpModifyCookbook(
   function closePopUp(e: React.MouseEvent) {
     const target = e.target as HTMLElement;
     if (
-      target.classList.contains('overlay') ||
-      target.classList.contains('overlay__btn')
+      target.classList.contains('overlay')
+      || target.classList.contains('overlay__btn')
     ) {
       setModifyPopUpVisible(false);
     }

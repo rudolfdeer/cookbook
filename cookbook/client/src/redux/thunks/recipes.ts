@@ -10,7 +10,7 @@ export interface RecipeValues {
   time?: number;
   views?:number;
   likeUserIds?: number[];
-};
+}
 
 export const getAllRecipes = () => async (dispatch: Dispatch): Promise<void> => {
   const recipes = await api.getAllRecipes();
@@ -64,11 +64,11 @@ export const modifyRecipe = (
   const recipes = await api.getAllRecipes();
 
   dispatch(recipeActions.update(recipes, userId));
-}
+};
 
 export const deleteRecipe = (recipeId: number, userId: number) => async (dispatch: Dispatch): Promise<void> => {
   await api.deleteRecipe(recipeId);
   const recipes = await api.getAllRecipes();
 
   dispatch(recipeActions.delete(recipes, userId));
-}
+};

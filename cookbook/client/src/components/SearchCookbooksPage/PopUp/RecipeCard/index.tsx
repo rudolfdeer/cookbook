@@ -1,11 +1,11 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
 import CommentsIcon from '../../../svg/Comments';
 import LikesIcon from '../../../svg/Likes';
 import ViewsIcon from '../../../svg/Views';
-import './index.scss';
 import { IUser } from '../../../../interfacesServer';
+
+import './index.scss';
 
 type PopUpRecipeCardProps = {
   title: string;
@@ -22,7 +22,7 @@ type PopUpRecipeCardProps = {
 };
 
 export default function PopUpRecipeCard(
-  props: PopUpRecipeCardProps
+  props: PopUpRecipeCardProps,
 ): JSX.Element {
   const { t } = useTranslation();
   const {

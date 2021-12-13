@@ -46,7 +46,7 @@ class RecipeActions {
       payload: {
         user,
       },
-    }
+    };
   }
 
   createComment(recipes: IRecipe[]) {
@@ -55,7 +55,7 @@ class RecipeActions {
       payload: {
         recipes,
       },
-    }
+    };
   }
 
   create(recipes: IRecipe[], userId: number) {
@@ -65,7 +65,7 @@ class RecipeActions {
         recipes,
         userId,
       },
-    }
+    };
   }
 
   update(recipes: IRecipe[], userId: number) {
@@ -75,7 +75,7 @@ class RecipeActions {
         recipes,
         userId,
       },
-    }
+    };
   }
 
   delete(recipes: IRecipe[], userId: number) {
@@ -83,9 +83,9 @@ class RecipeActions {
       type: ACTION_TYPES.RECIPES_DELETE,
       payload: {
         recipes,
-        userId
+        userId,
       },
-    }
+    };
   }
 }
 

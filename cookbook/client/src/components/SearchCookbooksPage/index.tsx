@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
 import Footer from '../Footer';
 import CookbookCard from './Card';
 import FilterPanelCookbooks from './FilterPanel';
 import PopUpCookbookDetailed from './PopUp';
-import './index.scss';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 import { ICookbook, IRecipe } from '../../interfacesServer';
+
+import './index.scss';
 
 type CookbooksPageProps = {
   cookbooks: ICookbook[];
@@ -24,7 +24,7 @@ type CookbooksPageProps = {
     cookbookId: number,
     text: string
   ) => Promise<void>;
-  //likeCookbook: (userId: number, cookbookId: number) => AnyAction;
+  // likeCookbook: (userId: number, cookbookId: number) => AnyAction;
 };
 
 export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
@@ -39,7 +39,7 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
     saveToUsersCookbooks,
     saveToUsersRecipes,
     createComment,
-    //likeCookbook,
+    // likeCookbook,
   } = props;
 
   const [isVisible, setVisible] = useState(false);
@@ -89,7 +89,7 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
                   key={el.id}
                   selectCard={setChosenCardId}
                   openDetailedInfo={setVisible}
-                  //likeCookbook={likeCookbook}
+                  // likeCookbook={likeCookbook}
                   loggedInUserId={loggedInUserId}
                 />
               ))}
@@ -103,7 +103,7 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
               saveToUsersCookbooks={saveToUsersCookbooks}
               saveToUsersRecipes={saveToUsersRecipes}
               createComment={createComment}
-              //likeCookbook={likeCookbook}
+              // likeCookbook={likeCookbook}
             />
           ) : null}
         </div>

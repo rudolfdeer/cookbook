@@ -1,5 +1,5 @@
 import ACTION_TYPES from '../../constants/actionTypes';
-import { IRecipe, IUser, ICookbook} from '../../interfacesServer';
+import { IUser } from '../../interfacesServer';
 
 export type AuthValues = {
   email: string;

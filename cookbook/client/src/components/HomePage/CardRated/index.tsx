@@ -1,6 +1,5 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import api from '../../../helpers/api';
 import { IUser } from '../../../interfacesServer';
 import CommentsIcon from '../../svg/Comments';
 import DotsIcon from '../../svg/Dots';
@@ -23,7 +22,9 @@ type RecipeCardRatedProps = {
 
 export default function CardRated(props: RecipeCardRatedProps): JSX.Element {
   const { t } = useTranslation();
-  const { views, image, title, author, likes, comments } = props;
+  const {
+    views, image, title, author, likes, comments,
+  } = props;
 
   return (
     <div className="card">

@@ -1,17 +1,14 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { Link } from 'react-router-dom';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
 import ROUTES from '../../../constants/routes';
-import api from '../../../helpers/api';
-import { Cookbook } from '../../../interfaces';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
 import CommentsSection from './CommentsSection';
-import './index.scss';
 import PopUpRecipeCard from './RecipeCard';
 import { ICookbook } from '../../../interfacesServer';
-import cookbooks from '../../../constants/mockdata/cookbooks';
+
+import './index.scss';
 
 type PopUpCookbookDetailedProps = {
   setVisible: Dispatch<SetStateAction<boolean>>;
@@ -23,11 +20,11 @@ type PopUpCookbookDetailedProps = {
     cookbookId: number,
     text: string
   ) => Promise<void>;
-  //likeCookbook: (userId: number, cookbookId: number) => AnyAction;
+  // likeCookbook: (userId: number, cookbookId: number) => AnyAction;
 };
 
 export default function PopUpCookbookDetailed(
-  props: PopUpCookbookDetailedProps
+  props: PopUpCookbookDetailedProps,
 ): JSX.Element {
   const { t } = useTranslation();
   const {
@@ -37,7 +34,7 @@ export default function PopUpCookbookDetailed(
     saveToUsersRecipes,
     saveToUsersCookbooks,
     createComment,
-    //likeCookbook,
+    // likeCookbook,
   } = props;
   const {
     id,
@@ -53,8 +50,8 @@ export default function PopUpCookbookDetailed(
   function closePopUp(e: React.MouseEvent) {
     const target = e.target as HTMLElement;
     if (
-      target.classList.contains('overlay') ||
-      target.classList.contains('overlay__btn')
+      target.classList.contains('overlay')
+      || target.classList.contains('overlay__btn')
     ) {
       setVisible(false);
     }
@@ -105,7 +102,7 @@ export default function PopUpCookbookDetailed(
             <div className="card__statistics-item--likes">
               <LikesIcon
                 loggedInUserId={loggedInUserId}
-                //likeCookbook={likeCookbook}
+                // likeCookbook={likeCookbook}
                 cookbookId={id}
               />
               {Cookbook_Likes.length} {t('LIKES')}
@@ -140,7 +137,7 @@ export default function PopUpCookbookDetailed(
           </div>
           <div className="pop-up--cookbook__section--comments">
             <div className="pop-up--cookbook__section__title">{`${t(
-              'COMMENTS_SECTION'
+              'COMMENTS_SECTION',
             )} (${Cookbook_Comments.length})`}</div>
             <CommentsSection
               comments={Cookbook_Comments}

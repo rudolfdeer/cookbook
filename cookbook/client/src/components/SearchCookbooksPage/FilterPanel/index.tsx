@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
+
 import './index.scss';
 
 type FilterPanelCookbooksProps = {
@@ -10,7 +10,7 @@ type FilterPanelCookbooksProps = {
 };
 
 export default function FilterPanelCookbooks(
-  props: FilterPanelCookbooksProps
+  props: FilterPanelCookbooksProps,
 ): JSX.Element {
   const { t } = useTranslation();
   const { sortCookbooks, filterCookbooks, loggedInUserId } = props;
@@ -47,7 +47,7 @@ export default function FilterPanelCookbooks(
     setFilters([]);
     setSortOrder('default');
     const checkboxes = document.querySelectorAll(
-      '.filter-panel__section__checkboxes__checkbox__input'
+      '.filter-panel__section__checkboxes__checkbox__input',
     );
     checkboxes.forEach((el: HTMLInputElement) => (el.checked = false));
   }

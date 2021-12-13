@@ -15,10 +15,12 @@ type CommentsSectionProps = {
 };
 
 export default function CommentsSection(
-  props: CommentsSectionProps
+  props: CommentsSectionProps,
 ): JSX.Element {
   const { t } = useTranslation();
-  const { comments, loggedInUserId, cookbookId, createComment } = props;
+  const {
+    comments, loggedInUserId, cookbookId, createComment,
+  } = props;
   const [newComment, setNewComment] = useState('');
 
   function getDate(dateString: string) {

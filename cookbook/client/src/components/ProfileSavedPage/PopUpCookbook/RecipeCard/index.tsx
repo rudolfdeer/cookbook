@@ -1,10 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import api from '../../../../helpers/api';
 import { IUser } from '../../../../interfacesServer';
 import CommentsIcon from '../../../svg/Comments';
 import LikesIcon from '../../../svg/Likes';
 import ViewsIcon from '../../../svg/Views';
+
 import './index.scss';
 
 type PopUpRecipeCardProps = {
@@ -20,10 +20,12 @@ type PopUpRecipeCardProps = {
 };
 
 export default function PopUpRecipeCard(
-  props: PopUpRecipeCardProps
+  props: PopUpRecipeCardProps,
 ): JSX.Element {
   const { t } = useTranslation();
-  const { views, image, description, title, author, likes, comments } = props;
+  const {
+    views, image, description, title, author, likes, comments,
+  } = props;
 
   return (
     <div className="card">

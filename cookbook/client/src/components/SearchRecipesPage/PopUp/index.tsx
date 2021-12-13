@@ -13,7 +13,7 @@ type PopUpRecipeDetailedProps = {
   setVisible: Dispatch<SetStateAction<boolean>>;
   recipe: IRecipe;
   loggedInUserId: number;
-  //saveToUsersRecipes: (recipeId: number, userId: number) => AnyAction;
+  // saveToUsersRecipes: (recipeId: number, userId: number) => AnyAction;
   createComment: (
     recipeId: number,
     text: string
@@ -21,13 +21,13 @@ type PopUpRecipeDetailedProps = {
 };
 
 export default function PopUpRecipeDetailed(
-  props: PopUpRecipeDetailedProps
+  props: PopUpRecipeDetailedProps,
 ): JSX.Element {
   const { t } = useTranslation();
   const {
     setVisible,
     recipe,
-    //saveToUsersRecipes,
+    // saveToUsersRecipes,
     loggedInUserId,
     createComment,
   } = props;
@@ -51,7 +51,7 @@ export default function PopUpRecipeDetailed(
   };
 
   const saveRecipe = () => {
-   // saveToUsersRecipes(id, loggedInUserId);
+    // saveToUsersRecipes(id, loggedInUserId);
   };
 
   return (
@@ -129,7 +129,7 @@ export default function PopUpRecipeDetailed(
           </div>
           <div className="pop-up--recipe__section--comments">
             <div className="pop-up--recipe__section--comments__title">{`${t(
-              'COMMENTS_SECTION'
+              'COMMENTS_SECTION',
             )} (${Recipe_Comments.length})`}</div>
             <CommentsSection
               comments={Recipe_Comments}

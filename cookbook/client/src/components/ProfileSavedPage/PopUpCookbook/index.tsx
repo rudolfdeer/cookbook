@@ -1,13 +1,11 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
-import api from '../../../helpers/api';
-import { Cookbook } from '../../../interfaces';
 import { ICookbook } from '../../../interfacesServer';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
+import PopUpRecipeCard from './RecipeCard';
 
 import './index.scss';
-import PopUpRecipeCard from './RecipeCard';
 
 type PopUpCookbookDetailedProps = {
   setCookbookPopUpVisible: Dispatch<SetStateAction<boolean>>;
@@ -16,18 +14,19 @@ type PopUpCookbookDetailedProps = {
 };
 
 export default function PopUpCookbookSaved(
-  props: PopUpCookbookDetailedProps
+  props: PopUpCookbookDetailedProps,
 ): JSX.Element {
   const { t } = useTranslation();
   const { setCookbookPopUpVisible, cookbook, loggedInUserId } = props;
-  const { image, description, title, User, Cookbook_Likes, Cookbook_Comments, Recipe_Cookbooks } =
-    cookbook;
+  const {
+    image, description, title, User, Cookbook_Likes, Cookbook_Comments, Recipe_Cookbooks,
+  } = cookbook;
 
   function closePopUp(e: React.MouseEvent) {
     const target = e.target as HTMLElement;
     if (
-      target.classList.contains('overlay') ||
-      target.classList.contains('overlay__btn')
+      target.classList.contains('overlay')
+      || target.classList.contains('overlay__btn')
     ) {
       setCookbookPopUpVisible(false);
     }

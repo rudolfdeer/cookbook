@@ -1,13 +1,14 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Recipe } from '../../../interfaces';
+import { IRecipe } from '../../../interfacesServer';
 import { RecipeValues } from '../../../redux/thunks/recipes';
 
 import './index.scss';
 
 type PopUpModifyRecipeProps = {
   setModifyPopUpVisible: Dispatch<SetStateAction<boolean>>;
-  selectedRecipe: Recipe;
+  selectedRecipe: IRecipe;
   modifyRecipe: (
     recipeId: number,
     data: RecipeValues,

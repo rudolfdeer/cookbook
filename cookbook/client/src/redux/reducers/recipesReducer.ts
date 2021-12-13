@@ -54,12 +54,9 @@ export default function recipesReducer(
     }
 
     case ACTION_TYPES.RECIPES_GET_USERS_CREATED: {
-      const { recipes, userId } = action.payload;
-      const createdRecipes = recipes.filter(
-        (recipe: IRecipe) => recipe.UserId === userId
-      );
+      const { recipes } = action.payload;
 
-      return [...createdRecipes];
+      return [...recipes];
     }
 
     case ACTION_TYPES.RECIPES_GET_USERS_SAVED: {

@@ -131,7 +131,7 @@ export default function ProfileSavedPage(
             <PopUpRecipeSaved
               loggedInUserId={id}
               setRecipePopUpVisible={setRecipePopUpVisible}
-              recipe={api.getRecipe(selectedRecipeId)}
+              recipe={recipes.find((el) => el.id === selectedRecipeId)}
             />
           ) : null}
           {isCookbookPopUpVisible ? (

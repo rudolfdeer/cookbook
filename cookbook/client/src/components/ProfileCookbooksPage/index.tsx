@@ -12,10 +12,11 @@ import HeaderConnect from '../../redux/containers/HeaderConnect';
 import PopUpModifyCookbook from './PopUpModify';
 import api from '../../helpers/api';
 import { CookbookValues } from '../../redux/thunks/cookbooks';
-import { ICookbook, IUser } from '../../interfacesServer';
+import { ICookbook, IRecipe, IUser } from '../../interfacesServer';
 
 type ProfileCookbooksPageProps = {
   cookbooks: ICookbook[];
+  recipes: IRecipe[];
   getUsersCreatedCookbooks: (userId: number) => Promise<void>;
   user: IUser;
   createCookbook: (
@@ -43,6 +44,7 @@ export default function ProfileCookbooksPage(
   const {
     cookbooks,
     user,
+    recipes,
     getUsersCreatedCookbooks,
     createCookbook,
     modifyCookbook,
@@ -120,6 +122,7 @@ export default function ProfileCookbooksPage(
               loggedInUserId={id}
               setCreatePopUpVisible={setCreatePopUpVisible}
               createCookbook={createCookbook}
+              recipes = {recipes.filter((el) => el.UserId === id)}
             />
           ) : null}
           {isModifyPopUpVisible ? (

@@ -32,12 +32,11 @@ class CookbookActions {
     };
   }
 
-  getUsersCreated(cookbooks: ICookbook[], userId: number) {
+  getCreatedCookbooks(cookbooks: ICookbook[]) {
     return {
       type: ACTION_TYPES.COOKBOOKS_GET_USERS_CREATED,
       payload: {
         cookbooks,
-        userId,
       },
     };
   }

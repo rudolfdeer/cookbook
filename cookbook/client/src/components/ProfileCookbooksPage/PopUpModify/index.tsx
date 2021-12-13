@@ -81,7 +81,7 @@ export default function PopUpModifyCookbook(
   };
 
   const recipes = Recipe_Cookbooks.map((el) => el.Recipe);
-  const usersRecipes = api.getUsersRecipes(loggedInUserId);
+  const usersRecipes = recipes.filter((el) => el.UserId === loggedInUserId);
 
   return (
     <div className="overlay" onClick={(e) => closePopUp(e)}>

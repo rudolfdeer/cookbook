@@ -28,8 +28,8 @@ export const filterRecipes = (cookingTime: number) => async (dispatch: Dispatch)
 };
 
 export const getUsersCreatedRecipes = (userId: number) => async (dispatch: Dispatch): Promise<void> => {
-  const recipes = await api.getAllRecipes();
-  dispatch(recipeActions.getUsersCreated(recipes, userId));
+  const recipes = await api.getUsersCreatedRecipes(userId);
+  dispatch(recipeActions.getCreatedRecipes(recipes));
 };
 
 export const getUsersSavedRecipes = () => async (dispatch: Dispatch): Promise<void> => {

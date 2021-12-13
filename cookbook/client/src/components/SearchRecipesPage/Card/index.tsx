@@ -1,5 +1,4 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
@@ -13,7 +12,6 @@ type RecipeCardProps = {
   author: IUser;
   description: string;
   views: number;
-
   likes: number;
   image: string;
   comments: number;

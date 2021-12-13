@@ -1,7 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
-import api from '../../../helpers/api';
-import { Recipe } from '../../../interfaces';
+import { IRecipe } from '../../../interfacesServer';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
 
@@ -9,7 +8,7 @@ import './index.scss';
 
 type PopUpRecipeSavedProps = {
   setRecipePopUpVisible: Dispatch<SetStateAction<boolean>>;
-  recipe: Recipe;
+  recipe: IRecipe;
   loggedInUserId: number;
 };
 
@@ -22,9 +21,9 @@ export default function PopUpRecipeSaved(
     image,
     description,
     title,
-    userId,
-    likes,
-    comments,
+    User,
+    Recipe_Likes,
+    Recipe_Comments,
     directions,
     ingredients,
   } = recipe;
@@ -49,7 +48,7 @@ export default function PopUpRecipeSaved(
                 <div className="pop-up--recipe__title">{title}</div>
               </div>
               <div className="pop-up--recipe__author">
-                {api.getUserName(userId)}
+                {User.name}
               </div>
               <div className="pop-up--recipe__section--description">
                 <div className="pop-up--recipe__section--description__wrapper">
@@ -87,11 +86,11 @@ export default function PopUpRecipeSaved(
               <div className="pop-up--recipe__section--statistics">
                 <div className="card__statistics-item likes">
                   <LikesIcon />
-                  {likes} {t('LIKES')}
+                  {Recipe_Likes.length} {t('LIKES')}
                 </div>
                 <div className="card__statistics-item comments">
                   <CommentsIcon />
-                  {comments.length} {t('COMMENTS')}
+                  {Recipe_Comments.length} {t('COMMENTS')}
                 </div>
               </div>
             </div>

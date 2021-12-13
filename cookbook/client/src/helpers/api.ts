@@ -1,5 +1,5 @@
 import { Cookbook, Recipe, User } from '../interfaces';
-import { IUser } from '../interfacesServer';
+import { ICookbook, IRecipe, IUser } from '../interfacesServer';
 import { AuthValues } from '../redux/actions/userActions';
 import FetchQuery from './fetchTool';
 
@@ -28,15 +28,15 @@ const recipesUrl = `${base}recipes/`;
 const userUrl = `${base}user/`;
 
 class Api {
-  getRecipesList(): Recipe[] {
-    const response = FetchQuery.getRecipesList();
-    return response;
-  }
+  // getRecipesList(): Recipe[] {
+  //   const response = FetchQuery.getRecipesList();
+  //   return response;
+  // }
 
-  getCookbooksList(): Cookbook[] {
-    const response = FetchQuery.getCookbooksList();
-    return response;
-  }
+  // getCookbooksList(): Cookbook[] {
+  //   const response = FetchQuery.getCookbooksList();
+  //   return response;
+  // }
 
 
   // logIn(loginInfo: LoginInfo): User {
@@ -47,10 +47,10 @@ class Api {
   //   return response;
   // }
 
-  getUser(userId: number): User {
-    const response = FetchQuery.getUser(userId);
-    return response;
-  }
+  // getUser(userId: number): User {
+  //   const response = FetchQuery.getUser(userId);
+  //   return response;
+  // }
 
   async getUserById(userId: number) {
     const response = await fetch(`${userUrl}:${userId}`);
@@ -63,36 +63,36 @@ class Api {
     return response;
   }
 
-  updateUsers(newUser: User) {
-    FetchQuery.updateUsers(newUser);
-  }
+  // updateUsers(newUser: User) {
+  //   FetchQuery.updateUsers(newUser);
+  // }
 
-  getUserName(userId: number): string {
-    const response = FetchQuery.getUser(userId);
-    if (!response) return '';
-    const { name } = response;
-    return name;
-  }
+  // getUserName(userId: number): string {
+  //   const response = FetchQuery.getUser(userId);
+  //   if (!response) return '';
+  //   const { name } = response;
+  //   return name;
+  // }
 
-  getUserPhoto(userId: number): string {
-    const response = FetchQuery.getUser(userId);
-    const { avatar } = response;
-    return avatar;
-  }
+  // getUserPhoto(userId: number): string {
+  //   const response = FetchQuery.getUser(userId);
+  //   const { avatar } = response;
+  //   return avatar;
+  // }
 
-  getRecipe(recipeId: number): Recipe {
-    const response = FetchQuery.getRecipesList().find(
-      (el) => el.id === recipeId
-    );
-    return response;
-  }
+  // getRecipe(recipeId: number): Recipe {
+  //   const response = FetchQuery.getRecipesList().find(
+  //     (el) => el.id === recipeId
+  //   );
+  //   return response;
+  // }
 
-  getCookbook(cookbookId: number): Cookbook {
-    const response = FetchQuery.getCookbooksList().find(
-      (el) => el.id === cookbookId
-    );
-    return response;
-  }
+  // getCookbook(cookbookId: number): Cookbook {
+  //   const response = FetchQuery.getCookbooksList().find(
+  //     (el) => el.id === cookbookId
+  //   );
+  //   return response;
+  // }
 
   // getRecipesInCookbook(recipesIds: number[]): Recipe[] {
   //   const recipes = this.getRecipesList();
@@ -124,15 +124,15 @@ class Api {
   //   }
   // }
 
-  getUsersRecipes(userId: number) {
-    const recipes = this.getRecipesList();
-    const filteredRecipes = recipes.filter((el) => el.userId === userId);
+  async getUsersCreatedRecipes(userId: number) {
+    const recipes = await this.getAllRecipes();
+    const filteredRecipes = recipes.filter((el: IRecipe) => el.UserId === userId);
     return filteredRecipes;
   }
 
-  getUsersCookbooks(userId: number) {
-    const cookbooks = this.getCookbooksList();
-    const filteredCookbooks = cookbooks.filter((el) => el.userId === userId);
+  async getUsersCreatedCookbooks(userId: number) {
+    const cookbooks = await this.getAllCookbooks();
+    const filteredCookbooks = cookbooks.filter((el: ICookbook) => el.UserId === userId);
     return filteredCookbooks;
   }
 

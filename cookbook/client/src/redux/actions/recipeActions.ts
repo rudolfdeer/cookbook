@@ -31,12 +31,11 @@ class RecipeActions {
     };
   }
 
-  getUsersCreated(recipes: IRecipe[], userId: number) {
+  getCreatedRecipes(recipes: IRecipe[]) {
     return {
       type: ACTION_TYPES.RECIPES_GET_USERS_CREATED,
       payload: {
         recipes,
-        userId,
       },
     };
   }

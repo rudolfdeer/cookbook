@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
 import Footer from '../Footer';
 import RecipeCard from './Card';
@@ -65,7 +64,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
               </ul>
             </nav>
             <div className="search-page__cards--recipes">
-              {recipes.map((el) => (
+              {recipes?.map((el) => (
                 <RecipeCard
                   id={el.id}
                   title={el.title}
@@ -87,7 +86,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
           {isVisible ? (
             <PopUpRecipeDetailed
               setVisible={setVisible}
-              recipe={recipes.find((el) => el.id === selectedCardId)}
+              recipe={recipes?.find((el) => el.id === selectedCardId)}
               loggedInUserId={loggedInUserId}
               //saveToUsersRecipes={saveToUsersRecipes}
               createComment={createComment}

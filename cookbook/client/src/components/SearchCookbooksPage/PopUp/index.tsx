@@ -6,7 +6,7 @@ import ROUTES from '../../../constants/routes';
 import api from '../../../helpers/api';
 import { Cookbook } from '../../../interfaces';
 import CommentsIcon from '../../svg/Comments';
-import LikesIcon from '../../svg/LikesIconCookbook';
+import LikesIcon from '../../svg/Likes';
 import CommentsSection from './CommentsSection';
 import './index.scss';
 import PopUpRecipeCard from './RecipeCard';

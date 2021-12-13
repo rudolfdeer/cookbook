@@ -19,4 +19,3 @@ export const deleteUser = (userId: number) => async (dispatch: Dispatch): Promis
 
   dispatch(userActions.delete());
 }
-

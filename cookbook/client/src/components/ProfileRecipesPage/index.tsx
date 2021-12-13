@@ -129,7 +129,7 @@ export default function ProfileRecipesPage(
             <PopUpModifyRecipe
               loggedInUserId={id}
               setModifyPopUpVisible={setModifyPopUpVisible}
-              selectedRecipe={api.getRecipe(selectedRecipeId)}
+              selectedRecipe={recipes.find((el) => el.id === selectedRecipeId)}
               modifyRecipe={modifyRecipe}
             />
           ) : null}

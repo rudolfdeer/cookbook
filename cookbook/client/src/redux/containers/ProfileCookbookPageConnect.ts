@@ -9,11 +9,12 @@ import {
 } from '../thunks/cookbooks';
 
 const mapStateToProps = (state: IState) => {
-  const { cookbooks, user } = state;
+  const { cookbooks, user, recipes } = state;
 
   return {
     cookbooks,
     user,
+    recipes,
   };
 };
 

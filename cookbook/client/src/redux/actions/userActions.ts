@@ -30,7 +30,6 @@ class UserActions {
       type: ACTION_TYPES.USER_DELETE,
     };
   }
-
 }
 
 export default new UserActions();

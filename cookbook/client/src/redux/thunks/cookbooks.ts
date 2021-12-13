@@ -27,8 +27,8 @@ export const filterCookbooks = (tags: string[], userId: number) => async (dispat
 };
 
 export const getUsersCreatedCookbooks = (userId: number) => async (dispatch: Dispatch): Promise<void> => {
-  const cookbooks = await api.getAllCookbooks();
-  dispatch(cookbookActions.getUsersCreated(cookbooks, userId));
+  const cookbooks = await api.getUsersCreatedCookbooks(userId);
+  dispatch(cookbookActions.getCreatedCookbooks(cookbooks));
 };
 
 export const getUsersSavedCookbooks = () => async (dispatch: Dispatch): Promise<void> => {

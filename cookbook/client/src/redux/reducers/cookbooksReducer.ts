@@ -84,12 +84,9 @@ export default function cookbooksReducer(
     }
 
     case ACTION_TYPES.COOKBOOKS_GET_USERS_CREATED: {
-      const { userId, cookbooks } = action.payload;
-      const createdCookbooks = cookbooks.filter(
-        (cookbook: ICookbook) => cookbook.UserId === userId,
-      );
+      const { cookbooks } = action.payload;
 
-      return [...createdCookbooks];
+      return [...cookbooks];
     }
 
     case ACTION_TYPES.COOKBOOKS_GET_USERS_SAVED: {

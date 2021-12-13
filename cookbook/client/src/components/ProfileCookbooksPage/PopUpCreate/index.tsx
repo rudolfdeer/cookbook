@@ -2,12 +2,14 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 import { Form, Field } from 'react-final-form';
 import { useTranslation } from 'react-i18next';
 import api from '../../../helpers/api';
+import { IRecipe } from '../../../interfacesServer';
 import { CookbookValues } from '../../../redux/thunks/cookbooks';
 
 import './index.scss';
 
 type PopUpCreateCookbookProps = {
   loggedInUserId: number;
+  recipes: IRecipe[];
   setCreatePopUpVisible: Dispatch<SetStateAction<boolean>>;
   createCookbook: (
     data: CookbookValues,
@@ -40,7 +42,7 @@ export default function PopUpCreateCookbook(
   props: PopUpCreateCookbookProps
 ): JSX.Element {
   const { t } = useTranslation();
-  const { loggedInUserId, setCreatePopUpVisible, createCookbook } = props;
+  const { loggedInUserId, setCreatePopUpVisible, createCookbook, recipes } = props;
   const [photoSrc, setPhotoSrc] = useState('');
 
   const onSubmit = (values: FormValues) => {
@@ -57,8 +59,6 @@ export default function PopUpCreateCookbook(
     createCookbook(values, photoSrc, loggedInUserId);
     setCreatePopUpVisible(false);
   };
-
-  const usersRecipes = api.getUsersRecipes(loggedInUserId);
 
   return (
     <div className="overlay">
@@ -157,7 +157,7 @@ export default function PopUpCreateCookbook(
                     component="select"
                     multiple
                   >
-                    {usersRecipes?.map((el) => (
+                    {recipes?.map((el) => (
                       <option key={el.id} value={el.id}>
                         {el.title}
                       </option>

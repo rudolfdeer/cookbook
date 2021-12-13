@@ -1,6 +1,5 @@
 import { AnyAction } from 'redux';
 import ACTION_TYPES from '../../constants/actionTypes';
-import api from '../../helpers/api';
 import { IUser } from '../../interfacesServer';
 
 const initialState: null | IUser = null;

@@ -1,17 +1,23 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ROUTES from '../../constants/routes';
 import './index.scss';
 import SearchBar from './SearchBar';
+import { IUser } from '../../interfacesServer';
 
 type HeaderProps = {
-  loggedInUserName?: string;
+  user: IUser;
+  getLoggedInUser: () => Promise<void>;
 };
 
 export default function Header(props: HeaderProps): JSX.Element {
   const { t } = useTranslation();
-  const { loggedInUserName } = props;
+  const { user, getLoggedInUser } = props;
+
+  useEffect(() => {
+    getLoggedInUser();
+  }, []);
 
   return (
     <header className="header">
@@ -29,7 +35,7 @@ export default function Header(props: HeaderProps): JSX.Element {
         </ul>
       </nav>
       <SearchBar />
-      {loggedInUserName ? (
+      {user ? (
         <button className="header__btn">
           <Link to={ROUTES.PROFILE_COOKBOOKS}>{t('CREATE_COOKBOOK_BTN')}</Link>
         </button>
@@ -38,10 +44,10 @@ export default function Header(props: HeaderProps): JSX.Element {
           <Link to={ROUTES.LOG_IN}>{t('CREATE_COOKBOOK_BTN')}</Link>
         </button>
       )}
-      {loggedInUserName ? (
+      {user ? (
         <div className="header__login">
           <div className="header__login__icon"></div>
-          <Link to={ROUTES.PROFILE_SETTINGS}>{loggedInUserName}</Link>
+          <Link to={ROUTES.PROFILE_SETTINGS}>{user.name}</Link>
         </div>
       ) : (
         <div className="header__login">

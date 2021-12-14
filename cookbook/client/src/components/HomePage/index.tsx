@@ -7,21 +7,23 @@ import Footer from '../Footer';
 import CardPopular from './CardPopular';
 import CardRated from './CardRated';
 import CardTrending from './CardTrending';
+import { ICookbook, IRecipe } from '../../interfacesServer';
 
 import './index.scss';
-import { ICookbook, IRecipe } from '../../interfacesServer';
+
 
 type HomePageProps = {
   recipes: IRecipe[];
   getAllRecipes: () => Promise<void>;
   cookbooks: ICookbook[];
   getAllCookbooks: () => Promise<void>;
+  getLoggedInUser: () => Promise<void>;
 };
 
 export default function HomePage(props: HomePageProps): JSX.Element {
   const { t } = useTranslation();
   const {
-    recipes, getAllRecipes, cookbooks, getAllCookbooks,
+    recipes, getAllRecipes, cookbooks, getAllCookbooks, getLoggedInUser,
   } = props;
 
   const navList = t('SEARCH_NAV_LIST', { returnObjects: true }) as string[];
@@ -29,6 +31,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
   useEffect(() => {
     getAllRecipes();
     getAllCookbooks();
+    getLoggedInUser();
   }, []);
 
   return (

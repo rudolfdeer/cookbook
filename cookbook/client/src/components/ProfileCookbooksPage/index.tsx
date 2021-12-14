@@ -30,6 +30,7 @@ type ProfileCookbooksPageProps = {
     userId: number
   ) => Promise<void>;
   deleteCookbook: (cookbookId: number, userId: number) => Promise<void>;
+  getLoggedInUser: () => Promise<void>;
 };
 
 export default function ProfileCookbooksPage(
@@ -48,7 +49,9 @@ export default function ProfileCookbooksPage(
     createCookbook,
     modifyCookbook,
     deleteCookbook,
+    getLoggedInUser,
   } = props;
+  
   const {
     name, bio, photo, id,
   } = user;

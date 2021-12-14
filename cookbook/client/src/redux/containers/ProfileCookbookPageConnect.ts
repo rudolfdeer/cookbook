@@ -7,6 +7,7 @@ import {
   modifyCookbook,
   deleteCookbook,
 } from '../thunks/cookbooks';
+import { getLoggedInUser } from '../thunks/user';
 
 const mapStateToProps = (state: IState) => {
   const { cookbooks, user, recipes } = state;
@@ -19,6 +20,7 @@ const mapStateToProps = (state: IState) => {
 };
 
 const mapDispatchToProps = {
+  getLoggedInUser,
   getUsersCreatedCookbooks,
   createCookbook,
   modifyCookbook,

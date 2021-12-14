@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
 import Footer from '../Footer';
 import ProfileRecipeCard from './Card';
-
-import './index.scss';
 import ROUTES from '../../constants/routes';
 import PopUpCreateRecipe from './PopUpCreate';
 import PopUpModifyRecipe from './PopUpModify';
-import api from '../../helpers/api';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 import { RecipeValues } from '../../redux/thunks/recipes';
 import { IRecipe, IUser } from '../../interfacesServer';
+
+import './index.scss';
 
 type ProfileRecipesPageProps = {
   recipes: IRecipe[];
@@ -30,6 +28,7 @@ type ProfileRecipesPageProps = {
     userId: number
   ) => Promise<void>;
   deleteRecipe: (recipeId: number, userId: number) => Promise<void>;
+  getLoggedInUser: () => Promise<void>;
 };
 
 export default function ProfileRecipesPage(
@@ -48,15 +47,17 @@ export default function ProfileRecipesPage(
     createRecipe,
     modifyRecipe,
     deleteRecipe,
+    getLoggedInUser,
   } = props;
-  const {
-    name, bio, photo, id,
-  } = user;
+
   const [isCreatePopUpVisible, setCreatePopUpVisible] = useState(false);
   const [isModifyPopUpVisible, setModifyPopUpVisible] = useState(false);
   const [selectedRecipeId, setSelectedRecipeId] = useState(0);
+  const { name, bio, photo, id } = user;
 
-  useEffect(() => getUsersCreatedRecipes(id), []);
+  useEffect(() => {
+    getUsersCreatedRecipes(user.id);
+  }, []);
 
   const photoSrc = photo || '../../assets/images/photo-mask.png';
 

@@ -9,13 +9,13 @@ import HeaderConnect from '../../redux/containers/HeaderConnect';
 import { ICookbook, IRecipe } from '../../interfacesServer';
 
 import './index.scss';
-import { UserValues } from '../../helpers/api';
 
 type CookbooksPageProps = {
   cookbooks: ICookbook[];
   getAllCookbooks: () => Promise<void>;
   recipes: IRecipe[];
   getAllRecipes: () => Promise<void>;
+  getLoggedInUser: () => Promise<void>;
   sortCookbooks: (order: string) => Promise<void>;
   filterCookbooks: (tags: string[], userId: number) => Promise<void>;
   saveToUsersCookbooks: (cookbookId: number, userId: number) => Promise<void>;
@@ -40,6 +40,7 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
     saveToUsersCookbooks,
     saveToUsersRecipes,
     createComment,
+    getLoggedInUser,
     // likeCookbook,
   } = props;
 
@@ -49,6 +50,7 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
   useEffect(() => {
     getAllRecipes();
     getAllCookbooks();
+    getLoggedInUser();
   }, []);
 
   return (

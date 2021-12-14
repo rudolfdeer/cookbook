@@ -7,6 +7,7 @@ import {
   modifyRecipe,
   deleteRecipe,
 } from '../thunks/recipes';
+import { getLoggedInUser } from '../thunks/user';
 
 function mapStateToProps(state: IState) {
   const { recipes, user } = state;
@@ -22,6 +23,7 @@ const mapDispatchToProps = {
   createRecipe,
   modifyRecipe,
   deleteRecipe,
+  getLoggedInUser,
 };
 
 const ProfileRecipesPageConnect = connect(

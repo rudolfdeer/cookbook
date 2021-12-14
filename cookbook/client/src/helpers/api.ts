@@ -60,7 +60,9 @@ class Api {
   }
 
   async getAllRecipes() {
-    const response = await fetch(`${recipesUrl}`);
+    const response = await fetch(`${recipesUrl}`, {
+      credentials: 'include',
+    });
     const result = await response.json();
     return result;
   }
@@ -92,7 +94,9 @@ class Api {
   }
 
   async getLoggedInUser() {
-    const response = await fetch(`${userUrl}`);
+    const response = await fetch(`${userUrl}`, {
+      credentials: 'include',
+    });
     const result = await response.json();
     return result;
   }
@@ -158,7 +162,9 @@ class Api {
   }
 
   async getAllCookbooks() {
-    const response = await fetch(`${cookbooksUrl}`);
+    const response = await fetch(`${cookbooksUrl}`, {
+      credentials: 'include',
+    });
     const result = await response.json();
     return result;
   }
@@ -264,6 +270,7 @@ class Api {
       headers: {
         'Content-Type': 'application/json',
       },
+      credentials: 'include',
     });
 
     const result = await response.json();

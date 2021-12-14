@@ -42,12 +42,16 @@ export const changeEmail = (email: string) => async (dispatch: Dispatch): Promis
   dispatch(userActions.update(user));
 };
 
-export const saveToUsersCookbooks = (cookbookId: number) => async (dispatch: Dispatch): Promise<void> => {
-  const user = await api.getLoggedInUser() as IUser;
-  const { Cookbook_Saveds } = user;
-  const savedCookbooksIds = Cookbook_Saveds.map((el) => el.CookbookId);
+// export const saveToUsersCookbooks = (cookbookId: number) => async (dispatch: Dispatch): Promise<void> => {
+//   const user = await api.getLoggedInUser() as IUser;
+//   const { Cookbook_Saveds } = user;
+//   const savedCookbooksIds = Cookbook_Saveds.map((el) => el.CookbookId);
 
-  if (savedCookbooksIds.indexOf(cookbookId))
+//   dispatch(userActions.update(user));
+// };
+
+export const getLoggedInUser = () => async (dispatch: Dispatch): Promise<void> => {
+  const user = await api.getLoggedInUser();
 
   dispatch(userActions.update(user));
 };

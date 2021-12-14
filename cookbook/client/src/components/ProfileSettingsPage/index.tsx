@@ -50,7 +50,6 @@ export default function ProfileSettingsPage(
     photo || './assets/images/photo-mask.png',
   );
 
-
   const onPhotoChange = (e: React.ChangeEvent) => {
     const input = e.target as HTMLInputElement;
     const file = input.files[0];
@@ -65,6 +64,7 @@ export default function ProfileSettingsPage(
       })
     };
     reader.readAsDataURL(file);
+    
   };
 
   return (

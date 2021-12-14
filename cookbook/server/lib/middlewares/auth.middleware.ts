@@ -15,6 +15,7 @@ const verifyAuthToken = async (
   }
 
   const token = req.cookies.jwt;
+  console.log(token);
   let target;
   if (req.params.id) {
     target = req.params.id;

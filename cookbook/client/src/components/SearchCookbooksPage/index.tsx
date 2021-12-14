@@ -9,6 +9,7 @@ import HeaderConnect from '../../redux/containers/HeaderConnect';
 import { ICookbook, IRecipe } from '../../interfacesServer';
 
 import './index.scss';
+import { UserValues } from '../../helpers/api';
 
 type CookbooksPageProps = {
   cookbooks: ICookbook[];

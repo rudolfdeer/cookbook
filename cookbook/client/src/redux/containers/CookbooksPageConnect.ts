@@ -9,6 +9,7 @@ import {
   // likeCookbook,
 } from '../thunks/cookbooks';
 import { getAllRecipes } from '../thunks/recipes';
+import { updateUser } from '../thunks/user';
 // import { saveToUsersCookbooks, saveToUsersRecipes } from '../actions/user';
 import { IState } from '../../interfacesServer';
 
@@ -32,6 +33,7 @@ const mapDispatchToProps = {
   // saveToUsersRecipes,
   createComment,
   hideUsersCookbooks,
+  //updateUser,
   // likeCookbook,
 };
 

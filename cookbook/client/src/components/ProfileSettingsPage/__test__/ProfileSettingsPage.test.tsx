@@ -15,12 +15,10 @@ describe('profile settings page component', () => {
       savedRecipes: [] as IRecipe[],
       savedCookbooks: [] as ICookbook[],
     },
-    // changeUserBio: jest.fn(),
-    // changeUserName: jest.fn(),
-    // changeUserEmail: jest.fn(),
-    // changeUserPassword: jest.fn(),
-    // updateUserPhoto: jest.fn(),
-    logOut: jest.fn(),
+    updateUser: jest.fn(),
+    changeEmail: jest.fn(),
+    changePassword: jest.fn(),
+    //logOut: jest.fn(),
     deleteUser: jest.fn(),
   };
 

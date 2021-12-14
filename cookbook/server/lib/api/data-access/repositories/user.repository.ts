@@ -12,11 +12,11 @@ const {
 } = require('../models');
 
 export type UpdatedUser = {
-  name: string;
-  photo: string;
-  bio: string;
-  savedRecipesIds: number[];
-  savedCookbooksIds: number[];
+  name?: string;
+  photo?: string;
+  bio?: string;
+  savedRecipesIds?: number[];
+  savedCookbooksIds?: number[];
 };
 
 export type NewUser = {
@@ -81,28 +81,42 @@ const deleteById = async (id: number) => {
 };
 
 const update = async (body: UpdatedUser, id: number) => {
-  const {
-    name, bio, photo, savedRecipesIds, savedCookbooksIds,
-  } = body;
-
   const user = await User.findOne({
     where: {
       id,
     },
   });
 
-  const updatedUser = {
-    name,
-    bio,
-    photo,
-  };
+  if (body.name && body.bio && body.photo) {
+    const {
+      name, bio, photo
+    } = body;
 
-  await user.setRecipes(savedRecipesIds);
-  await user.setCookbooks(savedCookbooksIds);
+    const updatedUser = {
+      name,
+      bio,
+      photo,
+    };
 
-  return user.update(updatedUser, {
+    await user.update(updatedUser);
+  }
+
+  if (body.savedCookbooksIds) {
+    await user.setCookbooks(body.savedCookbooksIds);
+  }
+
+  if (body.savedRecipesIds) {
+    await user.setRecipes(body.savedRecipesIds);
+  }
+
+  const result = await User.findOne({
+    where: {
+      id,
+    },
     include: [RecipeSaved, CookbookSaved],
   });
+
+  return result;
 };
 
 const create = async (body: NewUser) => {

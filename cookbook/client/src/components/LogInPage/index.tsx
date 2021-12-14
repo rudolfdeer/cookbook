@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import ROUTES from '../../constants/routes';
-import { LoginInfo } from '../../redux/actions/user';
+import { AuthValues } from '../../redux/actions/userActions';
 import LogInForm from './Form';
 
 import './index.scss';
 
 type LogInPageProps = {
   isLoggedIn: boolean;
-  signIn: (loginInfo: LoginInfo) => Promise<void>;
+  signIn: (loginInfo: AuthValues) => Promise<void>;
 };
 
 export default function LogInPage(props: LogInPageProps): JSX.Element {

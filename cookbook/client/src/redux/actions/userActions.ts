@@ -30,6 +30,21 @@ class UserActions {
       type: ACTION_TYPES.USER_DELETE,
     };
   }
+
+  update(user: IUser) {
+    return {
+      type: ACTION_TYPES.USER_UPDATE,
+      payload: {
+        user,
+      },
+    };
+  }
+
+  logOut() {
+    return {
+      type: ACTION_TYPES.USER_LOG_OUT,
+    };
+  }
 }
 
 export default new UserActions();

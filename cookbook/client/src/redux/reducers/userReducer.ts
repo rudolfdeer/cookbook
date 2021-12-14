@@ -11,11 +11,13 @@ export default function userReducer(
   action: AnyAction,
 ): UserReducer {
   switch (action.type) {
-    // case ACTION_TYPES.USER_UPDATE:
-    //   return {
-    //     ...state,
-    //     ...action.payload,
-    //   };
+    case ACTION_TYPES.USER_UPDATE: {
+      const { user } = action.payload;
+      return {
+        ...state,
+        ...user,
+      };
+    }
 
     case ACTION_TYPES.USER_SIGN_IN: {
       const { user } = action.payload;

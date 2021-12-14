@@ -1,10 +1,10 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { CookbookValues } from '../../../redux/actions/cookbooks';
+import { CookbookValues } from '../../../redux/thunks/cookbooks';
 import PopUpRecipeCard from './Card';
+import { ICookbook } from '../../../interfacesServer';
 
 import './index.scss';
-import { ICookbook } from '../../../interfacesServer';
 
 type PopUpModifyCookbookProps = {
   setModifyPopUpVisible: Dispatch<SetStateAction<boolean>>;

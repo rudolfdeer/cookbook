@@ -22,35 +22,20 @@ export interface CookbookValues {
   likeUserIds?: number[];
 }
 
+export interface UserValues {
+  name?: string;
+  photo?: string;
+  bio?: string;
+  savedRecipesIds?: number[];
+  savedCookbooksIds?: number[];
+}
+
 const base = 'http://localhost:3000/api/';
 const cookbooksUrl = `${base}cookbooks/`;
 const recipesUrl = `${base}recipes/`;
 const userUrl = `${base}user/`;
 
 class Api {
-  // getRecipesList(): Recipe[] {
-  //   const response = FetchQuery.getRecipesList();
-  //   return response;
-  // }
-
-  // getCookbooksList(): Cookbook[] {
-  //   const response = FetchQuery.getCookbooksList();
-  //   return response;
-  // }
-
-  // logIn(loginInfo: LoginInfo): User {
-  //   const response = FetchQuery.logIn(loginInfo);
-  //   if (!response) {
-  //     throw new Error('Incorrect email or password');
-  //   }
-  //   return response;
-  // }
-
-  // getUser(userId: number): User {
-  //   const response = FetchQuery.getUser(userId);
-  //   return response;
-  // }
-
   async getUserById(userId: number): Promise<IUser> {
     const response = await fetch(`${userUrl}${userId}`);
     const result = await response.json();
@@ -61,67 +46,6 @@ class Api {
     const response = FetchQuery.getAllUsers();
     return response;
   }
-
-  // updateUsers(newUser: User) {
-  //   FetchQuery.updateUsers(newUser);
-  // }
-
-  // getUserName(userId: number): string {
-  //   const response = FetchQuery.getUser(userId);
-  //   if (!response) return '';
-  //   const { name } = response;
-  //   return name;
-  // }
-
-  // getUserPhoto(userId: number): string {
-  //   const response = FetchQuery.getUser(userId);
-  //   const { avatar } = response;
-  //   return avatar;
-  // }
-
-  // getRecipe(recipeId: number): Recipe {
-  //   const response = FetchQuery.getRecipesList().find(
-  //     (el) => el.id === recipeId
-  //   );
-  //   return response;
-  // }
-
-  // getCookbook(cookbookId: number): Cookbook {
-  //   const response = FetchQuery.getCookbooksList().find(
-  //     (el) => el.id === cookbookId
-  //   );
-  //   return response;
-  // }
-
-  // getRecipesInCookbook(recipesIds: number[]): Recipe[] {
-  //   const recipes = this.getRecipesList();
-  //   const result = [] as Recipe[];
-  //   recipesIds.forEach((id) => {
-  //     const recipe = recipes.find((el) => el.id === id);
-  //     result.push(recipe);
-  //   });
-  //   return result;
-  // }
-
-  // deleteUsersRecipes(userId: number) {
-  //   const recipes = this.getRecipesList();
-
-  //   let index = recipes.findIndex((el) => el.userId === userId);
-  //   while (index > -1) {
-  //     recipes.splice(index, 1);
-  //     index = recipes.findIndex((el) => el.userId === userId);
-  //   }
-  // }
-
-  // deleteUsersCookbooks(userId: number) {
-  //   const cookbooks = this.getCookbooksList();
-
-  //   let index = cookbooks.findIndex((el) => el.userId === userId);
-  //   while (index > -1) {
-  //     cookbooks.splice(index, 1);
-  //     index = cookbooks.findIndex((el) => el.userId === userId);
-  //   }
-  // }
 
   async getUsersCreatedRecipes(userId: number) {
     const recipes = await this.getAllRecipes();
@@ -160,6 +84,7 @@ class Api {
       headers: {
         'Content-Type': 'application/json',
       },
+      credentials: 'include',
     });
 
     const result = await response.json();
@@ -183,6 +108,7 @@ class Api {
       headers: {
         'Content-Type': 'application/json',
       },
+      credentials: 'include',
     });
     const result = await response.json();
     return result;
@@ -214,6 +140,7 @@ class Api {
       headers: {
         'Content-Type': 'application/json',
       },
+      credentials: 'include',
     });
 
     const result = await response.json();
@@ -223,6 +150,7 @@ class Api {
   async deleteRecipe(id: number) {
     const response = await fetch(`${recipesUrl}${id}`, {
       method: 'DELETE',
+      credentials: 'include',
     });
 
     const result = await response.json();
@@ -250,6 +178,7 @@ class Api {
       headers: {
         'Content-Type': 'application/json',
       },
+      credentials: 'include',
     });
 
     const result = await response.json();
@@ -267,6 +196,7 @@ class Api {
       headers: {
         'Content-Type': 'application/json',
       },
+      credentials: 'include',
     });
     const result = await response.json();
     return result;
@@ -296,6 +226,7 @@ class Api {
       headers: {
         'Content-Type': 'application/json',
       },
+      credentials: 'include',
     });
 
     const result = await response.json();
@@ -305,6 +236,7 @@ class Api {
   async deleteCookbook(id: number) {
     const response = await fetch(`${cookbooksUrl}${id}`, {
       method: 'DELETE',
+      credentials: 'include',
     });
 
     const result = await response.json();
@@ -318,6 +250,7 @@ class Api {
       headers: {
         'Content-Type': 'application/json',
       },
+      credentials: 'include',
     });
 
     const result = await response.json();
@@ -340,6 +273,57 @@ class Api {
   async deleteUser(userId: number) {
     const response = await fetch(`${userUrl}${userId}`, {
       method: 'DELETE',
+      credentials: 'include',
+    });
+
+    const result = await response.json();
+    return result;
+  }
+
+  async updateUser(body: UserValues) {
+    const response = await fetch(`${userUrl}`, {
+      method: 'PUT',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
+
+    const result = await response.json();
+    return result;
+  }
+
+  async changePassword(password: string) {
+    const body = {
+      password,
+    };
+
+    const response = await fetch(`${userUrl}change-password`, {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
+
+    const result = await response.json();
+    return result;
+  }
+
+  async changeEmail(email: string) {
+    const body = {
+      email,
+    };
+
+    const response = await fetch(`${userUrl}change-email`, {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
     });
 
     const result = await response.json();

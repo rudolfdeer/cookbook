@@ -61,6 +61,7 @@ const signIn = async (req: express.Request, res: express.Response) => {
       email,
       password,
     });
+    console.log(token);
     res.cookie('jwt', token, { httpOnly: true });
     res.status(CODE_STATUSES.OK).send(response);
   } catch (err) {

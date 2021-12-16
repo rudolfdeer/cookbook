@@ -15,18 +15,19 @@ type LogInPageProps = {
 
 export default function LogInPage(props: LogInPageProps): JSX.Element {
   const { user, signIn, getLoggedInUser } = props;
-  const [isRedirected, setIsRedirected] = useState(false);
+  //const [isRedirected, setIsRedirected] = useState(false);
 
   useEffect(() => {
-    //getLoggedInUser();
-    if (user) {
-      setIsRedirected(true);
-    }
+    getLoggedInUser();
+    // if (user) {
+    //   setIsRedirected(true);
+    // }
   }, []);
 
-  if (isRedirected) {
+  if (user) {
     return <Redirect to={ROUTES.PROFILE_SETTINGS} />;
   }
+
   return (
     <main className="login-page">
       <div className="wrapper">

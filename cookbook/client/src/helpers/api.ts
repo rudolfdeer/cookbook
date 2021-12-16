@@ -1,7 +1,6 @@
 import { User } from '../interfaces';
 import { ICookbook, IRecipe, IUser } from '../interfacesServer';
 import { AuthValues } from '../redux/actions/userActions';
-import FetchQuery from './fetchTool';
 
 export interface RecipeValues {
   title: string;
@@ -40,11 +39,6 @@ class Api {
     const response = await fetch(`${userUrl}${userId}`);
     const result = await response.json();
     return result;
-  }
-
-  getAllUsers(): User[] {
-    const response = FetchQuery.getAllUsers();
-    return response;
   }
 
   async getUsersCreatedRecipes(userId: number) {
@@ -152,13 +146,10 @@ class Api {
   }
 
   async deleteRecipe(id: number) {
-    const response = await fetch(`${recipesUrl}${id}`, {
+    await fetch(`${recipesUrl}${id}`, {
       method: 'DELETE',
       credentials: 'include',
-    });
-
-    const result = await response.json();
-    return result;
+    })
   }
 
   async getAllCookbooks() {
@@ -175,7 +166,7 @@ class Api {
       image: imageSrc,
       description: data.description,
       tags: data.tags,
-      recipeIds: data.recipesIds,
+      recipesIds: data.recipesIds,
     };
 
     const response = await fetch(`${cookbooksUrl}`, {
@@ -240,13 +231,10 @@ class Api {
   }
 
   async deleteCookbook(id: number) {
-    const response = await fetch(`${cookbooksUrl}${id}`, {
+    await fetch(`${cookbooksUrl}${id}`, {
       method: 'DELETE',
       credentials: 'include',
     });
-
-    const result = await response.json();
-    return result;
   }
 
   async signIn(data: AuthValues) {
@@ -277,14 +265,11 @@ class Api {
     return result;
   }
 
-  async deleteUser(userId: number) {
-    const response = await fetch(`${userUrl}${userId}`, {
+  async deleteUser() {
+    await fetch(`${userUrl}`, {
       method: 'DELETE',
       credentials: 'include',
     });
-
-    const result = await response.json();
-    return result;
   }
 
   async updateUser(body: UserValues) {
@@ -332,6 +317,13 @@ class Api {
       },
       credentials: 'include',
     });
+
+    const result = await response.json();
+    return result;
+  }
+
+  async getAllUsers() {
+    const response = await fetch(`${userUrl}users/all`);
 
     const result = await response.json();
     return result;

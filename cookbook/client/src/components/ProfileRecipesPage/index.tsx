@@ -28,7 +28,6 @@ type ProfileRecipesPageProps = {
     userId: number
   ) => Promise<void>;
   deleteRecipe: (recipeId: number, userId: number) => Promise<void>;
-  getLoggedInUser: () => Promise<void>;
 };
 
 export default function ProfileRecipesPage(
@@ -47,7 +46,6 @@ export default function ProfileRecipesPage(
     createRecipe,
     modifyRecipe,
     deleteRecipe,
-    getLoggedInUser,
   } = props;
 
   const [isCreatePopUpVisible, setCreatePopUpVisible] = useState(false);
@@ -102,13 +100,13 @@ export default function ProfileRecipesPage(
             </button>
           </nav>
           <section className="profile-recipes-page__cards recipes">
-            {recipes.map((el) => (
+            {recipes?.map((el) => (
               <ProfileRecipeCard
                 id={el.id}
                 title={el.title}
                 author={el.User}
                 views={el.views}
-                comments={el.Recipe_Comments.length}
+                comments={el.Recipe_Comments?.length}
                 image={el.image}
                 description={el.description}
                 key={el.id}
@@ -116,7 +114,7 @@ export default function ProfileRecipesPage(
                 setSelectedRecipeId={setSelectedRecipeId}
                 deleteRecipe={deleteRecipe}
                 loggedInUserId={id}
-                likes={el.Recipe_Likes.length}
+                likes={el.Recipe_Likes?.length}
               />
             ))}
           </section>

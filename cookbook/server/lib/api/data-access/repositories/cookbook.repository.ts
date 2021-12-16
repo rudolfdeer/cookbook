@@ -166,7 +166,6 @@ const createComment = async (
   userId: number
 ) => {
   const { text, date } = body;
-
   const comment = await CookbookComment.create(
     {
       text,

@@ -5,11 +5,11 @@ import { getUsersCreatedCookbooks } from '../thunks/cookbooks';
 
 const mapStateToProps = (state: IState) => {
   const { cookbooks, user } = state;
-  const loggedInUser = user;
+  const loggedInUserId = user ? user.id : null;
 
   return {
     cookbooks,
-    loggedInUser,
+    loggedInUserId,
   };
 };
 

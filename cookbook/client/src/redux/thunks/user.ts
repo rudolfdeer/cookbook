@@ -15,8 +15,8 @@ export const signUp = (data: AuthValues) => async (dispatch: Dispatch): Promise<
   dispatch(userActions.signUp(user));
 };
 
-export const deleteUser = (userId: number) => async (dispatch: Dispatch): Promise<void> => {
-  await api.deleteUser(userId);
+export const deleteUser = () => async (dispatch: Dispatch): Promise<void> => {
+  await api.deleteUser();
 
   dispatch(userActions.delete());
 };

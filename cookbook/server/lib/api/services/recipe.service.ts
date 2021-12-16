@@ -46,7 +46,7 @@ const update = async (
   userId: number
 ) => {
   const recipe = await recipeRepository.findById(recipeId);
-
+  console.log(body);
   if (recipe.UserId !== userId) {
     throw new AuthError({
       status: CODE_STATUSES.FORBIDDEN,

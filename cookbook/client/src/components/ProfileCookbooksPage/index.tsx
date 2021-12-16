@@ -2,16 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ROUTES from '../../constants/routes';
-
 import Footer from '../Footer';
 import ProfileCookbookCard from './Card';
-
-import './index.scss';
 import PopUpCreateCookbook from './PopUpCreate';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 import PopUpModifyCookbook from './PopUpModify';
 import { CookbookValues } from '../../redux/thunks/cookbooks';
 import { ICookbook, IRecipe, IUser } from '../../interfacesServer';
+
+import './index.scss';
 
 type ProfileCookbooksPageProps = {
   cookbooks: ICookbook[];
@@ -30,7 +29,6 @@ type ProfileCookbooksPageProps = {
     userId: number
   ) => Promise<void>;
   deleteCookbook: (cookbookId: number, userId: number) => Promise<void>;
-  getLoggedInUser: () => Promise<void>;
 };
 
 export default function ProfileCookbooksPage(
@@ -49,18 +47,14 @@ export default function ProfileCookbooksPage(
     createCookbook,
     modifyCookbook,
     deleteCookbook,
-    getLoggedInUser,
   } = props;
-  
-  const {
-    name, bio, photo, id,
-  } = user;
+
   const [isCreatePopUpVisible, setCreatePopUpVisible] = useState(false);
   const [isModifyPopUpVisible, setModifyPopUpVisible] = useState(false);
-  const photoSrc = photo || '../../assets/images/photo-mask.png';
+  const photoSrc = user?.photo || '../../assets/images/photo-mask.png';
   const [selectedCookbookId, setSelectedCookbookId] = useState(0);
 
-  useEffect(() => getUsersCreatedCookbooks(id), []);
+  useEffect(() => getUsersCreatedCookbooks(user?.id), []);
 
   return (
     <>
@@ -78,8 +72,8 @@ export default function ProfileCookbooksPage(
               />
             </div>
             <div className="profile-page--cookbooks__user__container">
-              <div className="profile-page--cookbooks__user__name">{name}</div>
-              <div className="profile-page--cookbooks__user__bio">{bio}</div>
+              <div className="profile-page--cookbooks__user__name">{user?.name}</div>
+              <div className="profile-page--cookbooks__user__bio">{user?.bio}</div>
             </div>
           </section>
           <nav className="profile-page--cookbooks__nav">
@@ -109,29 +103,29 @@ export default function ProfileCookbooksPage(
                 title={el.title}
                 author={el.User}
                 views={el.views}
-                likes={el.Cookbook_Likes.length}
-                comments={el.Cookbook_Comments.length}
+                likes={el.Cookbook_Likes?.length}
+                comments={el.Cookbook_Comments?.length}
                 image={el.image}
                 description={el.description}
                 key={el.id}
                 setSelectedCookbookId={setSelectedCookbookId}
                 setModifyPopUpVisible={setModifyPopUpVisible}
                 deleteCookbook={deleteCookbook}
-                loggedInUserId={id}
+                loggedInUserId={user?.id}
               />
             ))}
           </section>
           {isCreatePopUpVisible ? (
             <PopUpCreateCookbook
-              loggedInUserId={id}
+              loggedInUserId={user?.id}
               setCreatePopUpVisible={setCreatePopUpVisible}
               createCookbook={createCookbook}
-              recipes = {recipes.filter((el) => el.UserId === id)}
+              recipes = {recipes?.filter((el) => el.UserId === user.id)}
             />
           ) : null}
           {isModifyPopUpVisible ? (
             <PopUpModifyCookbook
-              loggedInUserId={id}
+              loggedInUserId={user?.id}
               selectedCookbook={cookbooks.find((el) => el.id === selectedCookbookId)}
               setModifyPopUpVisible={setModifyPopUpVisible}
               modifyCookbook={modifyCookbook}

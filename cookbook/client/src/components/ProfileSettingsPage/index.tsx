@@ -299,7 +299,7 @@ export default function ProfileSettingsPage(
                   deleteUser();
                 }}
               >
-                {t('LOG_OUT_BTN')}
+                {t('DELETE_ACCOUNT_BTN')}
               </button>
             </div>
           </section>

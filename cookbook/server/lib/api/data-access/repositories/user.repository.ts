@@ -29,6 +29,14 @@ export type Comment = {
   date: string;
 };
 
+const findAll = async () => {
+  const users = User.findAll({
+    attributes: { exclude: ['password', 'bio', 'email', 'photo'] }
+  });
+
+  return users;
+};
+
 const findById = async (id: number) => {
   const user = await User.findOne({
     where: {
@@ -169,6 +177,7 @@ const changePassword = async (password: string, id: number) => {
 
 const userRepository = {
   deleteById,
+  findAll,
   findById,
   update,
   create,

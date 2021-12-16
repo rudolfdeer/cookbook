@@ -86,16 +86,16 @@ export default function ProfileSavedPage(
             </ul>
           </nav>
           <section className="profile-page--saved__container--cards">
-            <div className="profile-page--saved__container__title">{`Cookbooks (${cookbooks.length})`}</div>
+            <div className="profile-page--saved__container__title">{`Cookbooks (${cookbooks?.length})`}</div>
             <div className="profile-page--saved__cards--cookbooks">
-              {cookbooks.map((el) => (
+              {cookbooks?.map((el) => (
                 <ProfileSavedCookbookCard
                   id={el.id}
                   title={el.title}
                   author={el.User}
                   views={el.views}
-                  likes={el.Cookbook_Likes.length}
-                  comments={el.Cookbook_Comments.length}
+                  likes={el.Cookbook_Likes?.length}
+                  comments={el.Cookbook_Comments?.length}
                   image={el.image}
                   description={el.description}
                   key={el.id}
@@ -106,16 +106,16 @@ export default function ProfileSavedPage(
             </div>
           </section>
           <section className="profile-page--saved__container--cards">
-            <div className="profile-page--saved__container__title">{`Recipes (${recipes.length})`}</div>
+            <div className="profile-page--saved__container__title">{`Recipes (${recipes?.length})`}</div>
             <div className="profile-page--saved__cards--recipes">
-              {recipes.map((el) => (
+              {recipes?.map((el) => (
                 <ProfileSavedRecipeCard
                   id={el.id}
                   title={el.title}
                   author={el.User}
                   views={el.views}
-                  likes={el.Recipe_Likes.length}
-                  comments={el.Recipe_Comments.length}
+                  likes={el.Recipe_Likes?.length}
+                  comments={el.Recipe_Comments?.length}
                   image={el.image}
                   description={el.description}
                   key={el.id}

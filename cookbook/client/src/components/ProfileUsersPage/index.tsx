@@ -17,7 +17,7 @@ import { ICookbook, IUser } from '../../interfacesServer';
 type ProfileUsersPageProps = {
   cookbooks: ICookbook[];
   getUsersCreatedCookbooks: (userId: number) => void;
-  loggedInUser: IUser;
+  loggedInUserId: number;
 };
 
 export default function ProfileUsersPage(
@@ -25,15 +25,15 @@ export default function ProfileUsersPage(
 ): JSX.Element {
   const { t } = useTranslation();
   const { userId } = useParams<{ userId: string }>();
-  const { cookbooks, loggedInUser, getUsersCreatedCookbooks } = props;
+  const { cookbooks, loggedInUserId, getUsersCreatedCookbooks } = props;
   const [user, setUser] = useState(null as IUser);
+  const [isPopUpCookbookVisible, setPopUpCookbookVisible] = useState(false);
+  const [selectedCookbookId, setSelectedCookbookId] = useState(0);
 
-  if (+userId === loggedInUser.id) {
+  if (+userId === loggedInUserId) {
     return <Redirect to={ROUTES.PROFILE_COOKBOOKS} />;
   }
 
-  const [isPopUpCookbookVisible, setPopUpCookbookVisible] = useState(false);
-  const [selectedCookbookId, setSelectedCookbookId] = useState(0);
   useEffect(() => getUsersCreatedCookbooks(+userId), [userId]);
 
   useEffect(() => {

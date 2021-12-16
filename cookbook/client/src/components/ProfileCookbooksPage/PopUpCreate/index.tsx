@@ -56,7 +56,8 @@ export default function PopUpCreateCookbook(
     if (values['Without milk']) {
       values.tags.push('Without milk');
     }
-
+    const recipesIds = values.recipesIds.map((el) => Number(el));
+    values.recipesIds = recipesIds;
     createCookbook(values, photoSrc, loggedInUserId);
     setCreatePopUpVisible(false);
   };

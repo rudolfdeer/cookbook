@@ -11,19 +11,17 @@ import { ICookbook, IRecipe } from '../../interfacesServer';
 
 import './index.scss';
 
-
 type HomePageProps = {
   recipes: IRecipe[];
   getAllRecipes: () => Promise<void>;
   cookbooks: ICookbook[];
   getAllCookbooks: () => Promise<void>;
-  getLoggedInUser: () => Promise<void>;
 };
 
 export default function HomePage(props: HomePageProps): JSX.Element {
   const { t } = useTranslation();
   const {
-    recipes, getAllRecipes, cookbooks, getAllCookbooks, getLoggedInUser,
+    recipes, getAllRecipes, cookbooks, getAllCookbooks
   } = props;
 
   const navList = t('SEARCH_NAV_LIST', { returnObjects: true }) as string[];
@@ -31,7 +29,6 @@ export default function HomePage(props: HomePageProps): JSX.Element {
   useEffect(() => {
     getAllRecipes();
     getAllCookbooks();
-    //getLoggedInUser();
   }, []);
 
   return (

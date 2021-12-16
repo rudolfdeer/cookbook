@@ -69,7 +69,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
                   title={el.title}
                   author={el.User}
                   views={el.views}
-                  comments={el.Recipe_Comments.length}
+                  comments={el.Recipe_Comments?.length}
                   image={el.image}
                   description={el.description}
                   selectCard={setSelectedCardId}
@@ -77,7 +77,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
                   key={el.id}
                   loggedInUserId={loggedInUserId}
                   // saveToUsersRecipes={saveToUsersRecipes}
-                  likes={el.Recipe_Likes.length}
+                  likes={el.Recipe_Likes?.length}
                 />
               ))}
             </div>

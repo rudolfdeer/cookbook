@@ -2,18 +2,21 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ROUTES from '../../constants/routes';
-import './index.scss';
 import SearchBar from './SearchBar';
 import { IUser } from '../../interfacesServer';
 
+import './index.scss';
+
 type HeaderProps = {
   user: IUser;
-  getLoggedInUser: () => Promise<void>;
+  getLoggedInUser: () => void;
 };
 
 export default function Header(props: HeaderProps): JSX.Element {
   const { t } = useTranslation();
-  const { user } = props;
+  const { user, getLoggedInUser } = props;
+
+  useEffect(() => getLoggedInUser(), []);
 
   return (
     <header className="header">

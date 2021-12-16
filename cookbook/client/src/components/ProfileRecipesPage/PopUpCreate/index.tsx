@@ -20,7 +20,7 @@ const formData = {
   description: [''],
   ingredients: [''],
   directions: [''],
-  cookingTime: '',
+  time: '',
 };
 
 const required = (value: string | string[]) => (value ? undefined : 'Required');
@@ -154,7 +154,7 @@ export default function PopUpCreateRecipe(
 
                 <div className="pop-up--create__section">
                   <label
-                    htmlFor="cookingTime"
+                    htmlFor="time"
                     className="pop-up--create__section__title"
                   >
                     {t('COOKING_TIME')}
@@ -162,7 +162,7 @@ export default function PopUpCreateRecipe(
                   <Field
                     type="number"
                     className="pop-up--create__section__input"
-                    name="cookingTime"
+                    name="time"
                     placeholder={t('COOKING_TIME_MIN')}
                     component="input"
                     min="1"

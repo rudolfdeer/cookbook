@@ -28,7 +28,7 @@ export default function PopUpModifyRecipe(
     loggedInUserId,
   } = props;
   const {
-    id, title, image, description, directions, ingredients,
+    id, title, image, description, directions, ingredients, views, Recipe_Likes
   } = selectedRecipe;
 
   const [imageSrc, setImageSrc] = useState(image);
@@ -211,6 +211,8 @@ export default function PopUpModifyRecipe(
                     description: newDescription,
                     directions: newDirections.join(','),
                     ingredients: newIngredients.join(','),
+                    views,
+                    likeUserIds: Recipe_Likes.map((el) => el.UserId),
                   };
                   setModifyPopUpVisible(false);
                   modifyRecipe(id, data, imageSrc, loggedInUserId);

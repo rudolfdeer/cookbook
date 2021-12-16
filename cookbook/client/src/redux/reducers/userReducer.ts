@@ -2,8 +2,6 @@ import { AnyAction } from 'redux';
 import ACTION_TYPES from '../../constants/actionTypes';
 import { IUser } from '../../interfacesServer';
 
-
-
 const initialState: null | IUser = null;
 
 type UserReducer = typeof initialState;

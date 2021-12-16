@@ -18,8 +18,8 @@ export default function LogInPage(props: LogInPageProps): JSX.Element {
   const [isRedirected, setIsRedirected] = useState(false);
 
   useEffect(() => {
-    getLoggedInUser();
-    if (!user) {
+    //getLoggedInUser();
+    if (user) {
       setIsRedirected(true);
     }
   }, []);

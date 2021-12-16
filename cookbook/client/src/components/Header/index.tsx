@@ -13,11 +13,7 @@ type HeaderProps = {
 
 export default function Header(props: HeaderProps): JSX.Element {
   const { t } = useTranslation();
-  const { user, getLoggedInUser } = props;
-
-  useEffect(() => {
-    getLoggedInUser();
-  }, []);
+  const { user } = props;
 
   return (
     <header className="header">

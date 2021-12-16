@@ -31,7 +31,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
   useEffect(() => {
     getAllRecipes();
     getAllCookbooks();
-    getLoggedInUser();
+    //getLoggedInUser();
   }, []);
 
   return (

@@ -15,7 +15,7 @@ type RecipesPageProps = {
   sortRecipes: (order: string) => Promise<void>;
   filterRecipes: (cookingTime: number) => Promise<void>;
   loggedInUserId: number | null;
-  // saveToUsersRecipes: (recipeId: number, userId: number) => AnyAction;
+  saveToUsersRecipes: (recipeId: number) => Promise<void>;
   createComment: (
     recipeId: number,
     text: string
@@ -30,7 +30,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
     sortRecipes,
     filterRecipes,
     loggedInUserId,
-    // saveToUsersRecipes,
+    saveToUsersRecipes,
     createComment,
   } = props;
   const [isVisible, setVisible] = useState(false);
@@ -76,7 +76,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
                   setVisible={setVisible}
                   key={el.id}
                   loggedInUserId={loggedInUserId}
-                  // saveToUsersRecipes={saveToUsersRecipes}
+                  saveToUsersRecipes={saveToUsersRecipes}
                   likes={el.Recipe_Likes?.length}
                 />
               ))}
@@ -87,7 +87,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
               setVisible={setVisible}
               recipe={recipes?.find((el) => el.id === selectedCardId)}
               loggedInUserId={loggedInUserId}
-              // saveToUsersRecipes={saveToUsersRecipes}
+              saveToUsersRecipes={saveToUsersRecipes}
               createComment={createComment}
             />
           ) : null}

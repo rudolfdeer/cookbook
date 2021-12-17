@@ -17,7 +17,7 @@ type PopUpRecipeCardProps = {
   id: number;
   loggedInUserId: number;
   likes: number;
-  saveToUsersRecipes: (recipeId: number, userId: number) => Promise<void>;
+  saveToUsersRecipes: (recipeId: number) => Promise<void>;
   setVisible: Dispatch<SetStateAction<boolean>>;
 };
 
@@ -72,7 +72,7 @@ export default function PopUpRecipeCard(
             <button
               className="card__btn"
               onClick={() => {
-                saveToUsersRecipes(id, loggedInUserId);
+                saveToUsersRecipes(id);
                 setVisible(false);
               }}
             >

@@ -18,8 +18,8 @@ type CookbooksPageProps = {
   getLoggedInUser: () => Promise<void>;
   sortCookbooks: (order: string) => Promise<void>;
   filterCookbooks: (tags: string[], userId: number) => Promise<void>;
-  saveToUsersCookbooks: (cookbookId: number, userId: number) => Promise<void>;
-  saveToUsersRecipes: (recipeId: number, userId: number) => Promise<void>;
+  saveToUsersCookbooks: (cookbookId: number) => Promise<void>;
+  saveToUsersRecipes: (recipeId: number) => Promise<void>;
   loggedInUserId: number;
   createComment: (
     cookbookId: number,

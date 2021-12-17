@@ -9,8 +9,7 @@ import {
   // likeCookbook,
 } from '../thunks/cookbooks';
 import { getAllRecipes } from '../thunks/recipes';
-import { getLoggedInUser } from '../thunks/user';
-// import { saveToUsersCookbooks, saveToUsersRecipes } from '../actions/user';
+import { getLoggedInUser, saveToUsersCookbooks, saveToUsersRecipes } from '../thunks/user';
 import { IState } from '../../interfacesServer';
 
 const mapStateToProps = (state: IState) => {
@@ -29,8 +28,8 @@ const mapDispatchToProps = {
   getAllRecipes,
   sortCookbooks,
   filterCookbooks,
-  // saveToUsersCookbooks,
-  // saveToUsersRecipes,
+  saveToUsersCookbooks,
+  saveToUsersRecipes,
   createComment,
   hideUsersCookbooks,
   //updateUser,

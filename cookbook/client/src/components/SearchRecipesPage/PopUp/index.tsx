@@ -5,15 +5,15 @@ import ROUTES from '../../../constants/routes';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
 import CommentsSection from '../PopUp/CommentsSection';
+import { IRecipe } from '../../../interfacesServer';
 
 import './index.scss';
-import { IRecipe } from '../../../interfacesServer';
 
 type PopUpRecipeDetailedProps = {
   setVisible: Dispatch<SetStateAction<boolean>>;
   recipe: IRecipe;
   loggedInUserId: number;
-  // saveToUsersRecipes: (recipeId: number, userId: number) => AnyAction;
+  saveToUsersRecipes: (recipeId: number) => Promise<void>;
   createComment: (
     recipeId: number,
     text: string
@@ -27,7 +27,7 @@ export default function PopUpRecipeDetailed(
   const {
     setVisible,
     recipe,
-    // saveToUsersRecipes,
+    saveToUsersRecipes,
     loggedInUserId,
     createComment,
   } = props;
@@ -50,10 +50,6 @@ export default function PopUpRecipeDetailed(
     }
   };
 
-  const saveRecipe = () => {
-    // saveToUsersRecipes(id, loggedInUserId);
-  };
-
   return (
     <div className="overlay" onClick={(e) => closePopUp(e)}>
       <div className="overlay__content">
@@ -69,7 +65,7 @@ export default function PopUpRecipeDetailed(
                   <button
                     className="pop-up--recipe__btn"
                     onClick={() => {
-                      saveRecipe();
+                      saveToUsersRecipes(id);
                       setVisible(false);
                     }}
                   >

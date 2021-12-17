@@ -14,8 +14,8 @@ type PopUpCookbookDetailedProps = {
   setVisible: Dispatch<SetStateAction<boolean>>;
   cookbook: ICookbook;
   loggedInUserId: number;
-  saveToUsersCookbooks: (cookbookId: number, userId: number) => Promise<void>;
-  saveToUsersRecipes: (recipeId: number, userId: number) => Promise<void>;
+  saveToUsersCookbooks: (cookbookId: number) => Promise<void>;
+  saveToUsersRecipes: (recipeId: number) => Promise<void>;
   createComment: (
     cookbookId: number,
     text: string
@@ -68,7 +68,7 @@ export default function PopUpCookbookDetailed(
               <button
                 className="pop-up--cookbook__btn"
                 onClick={() => {
-                  saveToUsersCookbooks(id, loggedInUserId);
+                  saveToUsersCookbooks(id);
                   setVisible(false);
                 }}
               >

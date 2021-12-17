@@ -18,7 +18,7 @@ type RecipeCardProps = {
   selectCard: Dispatch<SetStateAction<number>>;
   setVisible: Dispatch<SetStateAction<boolean>>;
   loggedInUserId: number;
-  // saveToUsersRecipes: (recipeId: number, userId: number) => AnyAction;
+  saveToUsersRecipes: (recipeId: number) => Promise<void>;
 };
 
 export default function RecipeCard(props: RecipeCardProps): JSX.Element {
@@ -35,13 +35,13 @@ export default function RecipeCard(props: RecipeCardProps): JSX.Element {
     setVisible,
     selectCard,
     loggedInUserId,
-    // saveToUsersRecipes,
+    saveToUsersRecipes,
   } = props;
 
   const [isBtnVisible, setBtnVisible] = useState(false);
 
   const saveRecipe = () => {
-    // saveToUsersRecipes(id, loggedInUserId);
+    saveToUsersRecipes(id);
     setBtnVisible(false);
   };
 

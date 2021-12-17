@@ -1,31 +1,28 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { Form, Field } from 'react-final-form';
 import { Link } from 'react-router-dom';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
 import ERROR_MESSAGES from '../../../constants/errorMessages';
 import { EMAILREGEX } from '../../../constants/regex';
 import ROUTES from '../../../constants/routes';
 import './index.scss';
-
-type FormValues = {
-  email: string;
-  password: string;
-  confirm: string;
-};
+import { IAuthRequestBody, ISignUpForm } from '../../../interfaces';
 
 type SignUpFormProps = {
-  createUser: (email: string, password: string) => AnyAction;
+  signUp: (data: IAuthRequestBody) => Promise<void>;
   setIsRedirected: Dispatch<SetStateAction<boolean>>;
 };
 
 export default function SignUpForm(props: SignUpFormProps): JSX.Element {
   const { t } = useTranslation();
-  const { createUser, setIsRedirected } = props;
+  const { signUp, setIsRedirected } = props;
   const formData = {};
 
-  const onSubmit = (_values: FormValues) => {
-    createUser(_values.email, _values.password);
+  const onSubmit = (_values: ISignUpForm) => {
+    signUp({
+      email: _values.email,
+      password: _values.password,
+    });
     setIsRedirected(true);
   };
 
@@ -43,8 +40,8 @@ export default function SignUpForm(props: SignUpFormProps): JSX.Element {
       <Form
         onSubmit={onSubmit}
         initialValues={formData}
-        validate={(values: FormValues) => {
-          const errors = {} as FormValues;
+        validate={(values: ISignUpForm) => {
+          const errors = {} as ISignUpForm;
 
           if (!values.email) {
             errors.email = ERROR_MESSAGES.REQUIRED;

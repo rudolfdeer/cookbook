@@ -1,14 +1,14 @@
 import { connect } from 'react-redux';
 import ProfileRecipesPage from '../../components/ProfileRecipesPage';
-import { State } from '../../interfaces';
+import { IState } from '../../interfaces';
 import {
   getUsersCreatedRecipes,
   createRecipe,
   modifyRecipe,
   deleteRecipe,
-} from '../actions/recipes';
+} from '../thunks/recipes';
 
-function mapStateToProps(state: State) {
+function mapStateToProps(state: IState) {
   const { recipes, user } = state;
 
   return {

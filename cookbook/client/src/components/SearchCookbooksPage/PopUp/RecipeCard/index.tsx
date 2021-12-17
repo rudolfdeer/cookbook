@@ -1,28 +1,28 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
-import api from '../../../../helpers/api';
 import CommentsIcon from '../../../svg/Comments';
 import LikesIcon from '../../../svg/Likes';
 import ViewsIcon from '../../../svg/Views';
+import { IUser } from '../../../../interfaces';
+
 import './index.scss';
 
 type PopUpRecipeCardProps = {
   title: string;
-  userId: number;
+  user: IUser;
   description: string;
   views: number;
   image: string;
   comments: number;
   id: number;
   loggedInUserId: number;
-  usersLiked: number[];
-  saveToUsersRecipes: (recipeId: number, userId: number) => AnyAction;
+  likes: number;
+  saveToUsersRecipes: (recipeId: number) => Promise<void>;
   setVisible: Dispatch<SetStateAction<boolean>>;
 };
 
 export default function PopUpRecipeCard(
-  props: PopUpRecipeCardProps
+  props: PopUpRecipeCardProps,
 ): JSX.Element {
   const { t } = useTranslation();
   const {
@@ -30,8 +30,8 @@ export default function PopUpRecipeCard(
     image,
     description,
     title,
-    userId,
-    usersLiked,
+    user,
+    likes,
     comments,
     id,
     loggedInUserId,
@@ -48,7 +48,7 @@ export default function PopUpRecipeCard(
       <div className="card__content">
         <div className="card__info-container top">
           <div className="card__title">{title}</div>
-          <div className="card__author">{api.getUserName(userId)}</div>
+          <div className="card__author">{user.name}</div>
         </div>
         <div className="card__info-container--description">
           <p className="card__description">{description}</p>
@@ -60,22 +60,19 @@ export default function PopUpRecipeCard(
               {views} {t('VIEWS')}
             </div>
             <div className="card__statistics-item">
-              <LikesIcon
-                loggedInUserId={loggedInUserId}
-                usersLiked={usersLiked}
-              />
-              {usersLiked.length} {t('LIKES')}
+              <LikesIcon />
+              {likes} {t('LIKES')}
             </div>
             <div className="card__statistics-item">
               <CommentsIcon />
               {comments} {t('COMMENTS')}
             </div>
           </div>
-          {loggedInUserId && loggedInUserId !== userId ? (
+          {loggedInUserId && loggedInUserId !== user.id ? (
             <button
               className="card__btn"
               onClick={() => {
-                saveToUsersRecipes(id, loggedInUserId);
+                saveToUsersRecipes(id);
                 setVisible(false);
               }}
             >

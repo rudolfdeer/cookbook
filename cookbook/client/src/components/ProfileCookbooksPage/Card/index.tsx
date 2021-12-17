@@ -1,30 +1,29 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
-import api from '../../../helpers/api';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
 import ViewsIcon from '../../svg/Views';
 
 import './index.scss';
+import { IUser } from '../../../interfaces';
 
 type ProfileCookbookCardProps = {
   id: number;
   title: string;
-  authorId: number;
+  author: IUser;
   description: string;
   views: number;
-  usersLiked: number[];
+  likes: number;
   image: string;
   comments: number;
   setSelectedCookbookId: Dispatch<SetStateAction<number>>;
   setModifyPopUpVisible: Dispatch<SetStateAction<boolean>>;
   loggedInUserId: number;
-  deleteCookbook: (cookbookId: number, userId: number) => AnyAction;
+  deleteCookbook: (cookbookId: number, userId: number) => Promise<void>;
 };
 
 export default function ProfileCookbookCard(
-  props: ProfileCookbookCardProps
+  props: ProfileCookbookCardProps,
 ): JSX.Element {
   const { t } = useTranslation();
   const {
@@ -33,8 +32,8 @@ export default function ProfileCookbookCard(
     image,
     description,
     title,
-    authorId,
-    usersLiked,
+    author,
+    likes,
     comments,
     setSelectedCookbookId,
     setModifyPopUpVisible,
@@ -101,7 +100,7 @@ export default function ProfileCookbookCard(
         >
           {title}
         </div>
-        <div className="card__author">{api.getUserName(authorId)}</div>
+        <div className="card__author">{author.name}</div>
       </div>
 
       <div className="card__info-container--description">
@@ -111,7 +110,7 @@ export default function ProfileCookbookCard(
       <div className="card__info-container--bottom">
         <div className="card__statistics-item likes">
           <LikesIcon />
-          {usersLiked.length} {t('LIKES')}
+          {likes} {t('LIKES')}
         </div>
         <div className="card__statistics-item">
           <CommentsIcon />

@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
 import './index.scss';
 
 type FilterPanelRecipeProps = {
-  sortRecipes: (order: string) => AnyAction;
-  filterRecipes: (cookingTime: number) => AnyAction;
+  sortRecipes: (order: string) => Promise<void>;
+  filterRecipes: (cookingTime: number) => Promise<void>;
 };
 
 export default function FilterPanelRecipes(
-  props: FilterPanelRecipeProps
+  props: FilterPanelRecipeProps,
 ): JSX.Element {
   const { t } = useTranslation();
   const { sortRecipes, filterRecipes } = props;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import api from '../../../helpers/api';
+import { IUser } from '../../../interfaces';
 import DotsIcon from '../../svg/Dots';
 import ViewsIcon from '../../svg/Views';
 
@@ -8,16 +8,18 @@ import './index.scss';
 
 type RecipeCardTrendingProps = {
   title: string;
-  authorId: number;
+  author: IUser;
   views: number;
   image: string;
 };
 
 export default function CardTrending(
-  props: RecipeCardTrendingProps
+  props: RecipeCardTrendingProps,
 ): JSX.Element {
   const { t } = useTranslation();
-  const { views, image, title, authorId } = props;
+  const {
+    views, image, title, author,
+  } = props;
 
   return (
     <div className="card">
@@ -36,7 +38,7 @@ export default function CardTrending(
 
       <div className="card__info-container--bottom">
         <div className="card__title">{title}</div>
-        <div className="card__author">{api.getUserName(authorId)}</div>
+        <div className="card__author">{author.name}</div>
       </div>
     </div>
   );

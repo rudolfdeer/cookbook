@@ -4,6 +4,16 @@ import { IError } from '../../helpers/errors';
 const { userService } = require('../services');
 const { CODE_STATUSES } = require('../../constants/code-statuses');
 
+const findAll = async (req: express.Request, res: express.Response) => {
+  try {
+    const response = await userService.findAll();
+    res.status(CODE_STATUSES.OK).send(response);
+  } catch (err) {
+    const error = err as IError;
+    res.status(error.status).send(error.message);
+  }
+};
+
 const deleteById = async (req: express.Request, res: express.Response) => {
   const { id } = req.params;
   try {
@@ -61,6 +71,7 @@ const signIn = async (req: express.Request, res: express.Response) => {
       email,
       password,
     });
+    console.log(token);
     res.cookie('jwt', token, { httpOnly: true });
     res.status(CODE_STATUSES.OK).send(response);
   } catch (err) {
@@ -97,6 +108,7 @@ const changePassword = async (req: express.Request, res: express.Response) => {
 };
 
 const userController = {
+  findAll,
   deleteById,
   findById,
   update,

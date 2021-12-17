@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
-import { getUsersSavedRecipes } from '../actions/recipes';
-import { getUsersSavedCookbooks } from '../actions/cookbooks';
+import { getUsersSavedRecipes } from '../thunks/recipes';
+import { getUsersSavedCookbooks } from '../thunks/cookbooks';
 import ProfileSavedPage from '../../components/ProfileSavedPage';
-import { State } from '../../interfaces';
+import { IState } from '../../interfaces';
 
-function mapStateToProps(state: State) {
+function mapStateToProps(state: IState) {
   const { recipes, user, cookbooks } = state;
 
   return {

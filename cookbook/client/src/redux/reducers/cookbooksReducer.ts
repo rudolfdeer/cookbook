@@ -1,9 +1,8 @@
 import { AnyAction } from 'redux';
-import { Cookbook } from '../../interfaces';
 import ACTION_TYPES from '../../constants/actionTypes';
-import api from '../../helpers/api';
+import { ICookbook, ICookbookSaved } from '../../interfaces';
 
-const initialState = [] as Cookbook[];
+const initialState = [] as ICookbook[];
 
 type CookbooksReducer = typeof initialState;
 
@@ -12,14 +11,13 @@ export default function cookbooksReducer(
   action: AnyAction,
 ): CookbooksReducer {
   switch (action.type) {
-    case ACTION_TYPES.RECIPES_GET_ALL: {
-      const response = api.getCookbooksList();
-      return [...response];
+    case ACTION_TYPES.COOKBOOKS_GET_ALL: {
+      const { cookbooks } = action.payload;
+      return [...cookbooks];
     }
 
     case ACTION_TYPES.COOKBOOKS_FILTER: {
-      const { tags, userId } = action.payload;
-      const currentData = api.getCookbooksList();
+      const { tags, userId, cookbooks } = action.payload;
       const appliedTags = tags.sort();
 
       const hideUsersIndex = appliedTags.indexOf('hide');
@@ -31,15 +29,15 @@ export default function cookbooksReducer(
       let filtered;
 
       if (appliedTags.length === 0) {
-        filtered = api.getCookbooksList();
+        filtered = cookbooks;
       }
       if (appliedTags.length === 1) {
-        filtered = currentData.filter(
-          (cookbook) => cookbook.tags.indexOf(appliedTags[0]) > -1,
+        filtered = cookbooks.filter(
+          (cookbook: ICookbook) => cookbook.tags.indexOf(appliedTags[0]) > -1,
         );
       }
       if (appliedTags.length > 1) {
-        filtered = currentData.filter((cookbook) => {
+        filtered = cookbooks.filter((cookbook: ICookbook) => {
           const cookbookTags = cookbook.tags.sort();
           return cookbookTags.every(
             (value, index) => value === appliedTags[index],
@@ -50,7 +48,7 @@ export default function cookbooksReducer(
       let result;
 
       if (hideUsersIndex > -1) {
-        result = filtered.filter((el) => el.userId !== userId);
+        result = filtered.filter((el: ICookbook) => el.UserId !== userId);
         appliedTags.push('hide');
       } else {
         result = filtered;
@@ -60,146 +58,85 @@ export default function cookbooksReducer(
     }
 
     case ACTION_TYPES.COOKBOOKS_SORT: {
-      const order = action.payload;
-      const currentData = api.getCookbooksList();
+      const { order, cookbooks } = action.payload;
 
       let resData;
 
       switch (order) {
         case 'likes': {
-          resData = currentData.sort((a, b) => b.likes - a.likes);
+          resData = cookbooks.sort((a: ICookbook, b: ICookbook) => b.Cookbook_Likes.length - a.Cookbook_Likes.length);
           break;
         }
         case 'views': {
-          resData = currentData.sort((a, b) => b.views - a.views);
+          resData = cookbooks.sort((a: ICookbook, b: ICookbook) => b.views - a.views);
           break;
         }
         case 'default': {
-          resData = currentData.sort((a, b) => a.id - b.id);
+          resData = cookbooks.sort((a: ICookbook, b: ICookbook) => a.id - b.id);
           break;
         }
 
         default:
-          resData = currentData;
+          resData = cookbooks;
       }
 
       return [...resData];
     }
 
     case ACTION_TYPES.COOKBOOKS_GET_USERS_CREATED: {
-      const userId = action.payload;
-      const allCookbooks = api.getCookbooksList();
-      const createdCookbooks = allCookbooks.filter(
-        (cookbook) => cookbook.userId === userId,
-      );
+      const { cookbooks } = action.payload;
 
-      return [...createdCookbooks];
+      return [...cookbooks];
     }
 
     case ACTION_TYPES.COOKBOOKS_GET_USERS_SAVED: {
-      const userId = action.payload;
-      const user = api.getUser(userId);
-      const { savedCookbooks } = user;
+      const { user } = action.payload;
+      const savedCookbooks = user.Cookbook_Saveds;
+      const resData = savedCookbooks.map((el: ICookbookSaved) => el.Cookbook);
 
-      return [...savedCookbooks];
+      return [...resData];
     }
 
     case ACTION_TYPES.COOKBOOKS_CREATE_COMMENT: {
-      const { cookbookId, userId, commentText } = action.payload;
-      const cookbooks = api.getCookbooksList();
-      const newComment = {
-        userId,
-        comment: commentText,
-        date: new Date().toString(),
-      };
-
-      const cookbooksModified = cookbooks.map((el) => {
-        if (el.id === cookbookId) {
-          el.comments.push(newComment);
-        }
-        return el;
-      });
-
-      return [...cookbooksModified];
+      const { cookbooks } = action.payload;
+      return [...cookbooks];
     }
 
     case ACTION_TYPES.COOKBOOKS_CREATE: {
-      const { data, userId, imageSrc } = action.payload;
-      const cookbooks = api.getCookbooksList();
-      const lastCookbookId = cookbooks[cookbooks.length - 1].id;
-      const newCookbookId = lastCookbookId + 1;
+      const { cookbooks, userId } = action.payload;
+      const usersCookbooks = cookbooks.filter(
+        (cookbook: ICookbook) => cookbook.UserId === userId,
+      );
 
-      const recipesIdsNumbers = data.recipesIds.map((el: string) => Number(el));
-
-      const newCookbook: Cookbook = {
-        id: newCookbookId,
-        title: data.title,
-        image: imageSrc,
-        userId,
-        description: data.description,
-        recipesIds: recipesIdsNumbers,
-        tags: data.tags,
-        views: 0,
-        likes: 0,
-        comments: [],
-      };
-      cookbooks.push(newCookbook);
-      const usersCookbooks = api.getUsersCookbooks(userId);
       return [...usersCookbooks];
     }
     case ACTION_TYPES.COOKBOOKS_MODIFY: {
       const {
-        data, cookbookId, imageSrc, userId,
+        cookbooks, userId,
       } = action.payload;
-      const cookbook = api.getCookbook(cookbookId);
 
-      cookbook.title = data.title;
-      cookbook.description = data.description;
-      cookbook.image = imageSrc;
-      cookbook.recipesIds = data.recipesIds;
-
-      const usersCookbooks = api.getUsersCookbooks(userId);
+      const usersCookbooks = cookbooks.filter(
+        (cookbook: ICookbook) => cookbook.UserId === userId,
+      );
 
       return [...usersCookbooks];
     }
 
     case ACTION_TYPES.COOKBOOKS_HIDE_USERS_CREATED: {
-      const { userId } = action.payload;
-      const cookbooks = api.getCookbooksList();
+      const { cookbooks, userId } = action.payload;
 
-      const filteredCookbooks = cookbooks.filter((el) => el.userId !== userId);
+      const filteredCookbooks = cookbooks.filter((el: ICookbook) => el.UserId !== userId);
 
       return [...filteredCookbooks];
     }
 
     case ACTION_TYPES.COOKBOOKS_DELETE: {
-      const { cookbookId, userId } = action.payload;
-      const cookbooks = api.getCookbooksList();
-      const cookbookIndex = cookbooks.findIndex((el) => el.id === cookbookId);
-      cookbooks.splice(cookbookIndex, 1);
-
-      const usersCookbooks = api.getUsersCookbooks(userId);
+      const { cookbooks, userId } = action.payload;
+      const usersCookbooks = cookbooks.filter(
+        (cookbook: ICookbook) => cookbook.UserId === userId,
+      );
 
       return [...usersCookbooks];
-    }
-
-    case ACTION_TYPES.COOKBOOKS_LIKE: {
-      const { userId, cookbookId } = action.payload;
-      const cookbook = api.getCookbook(cookbookId);
-
-      const { usersLiked } = cookbook;
-
-      const index = usersLiked.indexOf(userId);
-
-      if (index > -1) {
-        usersLiked.splice(index, 1);
-      } else {
-        usersLiked.push(userId);
-      }
-
-      const cookbooks = api.getCookbooksList();
-
-      return [...cookbooks];
     }
 
     default:

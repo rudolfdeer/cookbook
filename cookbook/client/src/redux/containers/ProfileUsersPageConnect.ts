@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import ProfileUsersPage from '../../components/ProfileUsersPage';
-import { State } from '../../interfaces';
-import { getUsersCreatedCookbooks } from '../actions/cookbooks';
+import { IState } from '../../interfaces';
+import { getUsersCreatedCookbooks } from '../thunks/cookbooks';
 
-const mapStateToProps = (state: State) => {
+const mapStateToProps = (state: IState) => {
   const { cookbooks, user } = state;
-  const loggedInUserId = user.id;
+  const loggedInUserId = user ? user.id : null;
 
   return {
     cookbooks,

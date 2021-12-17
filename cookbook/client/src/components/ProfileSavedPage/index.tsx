@@ -1,30 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
-import { Cookbook, Recipe, User } from '../../interfaces';
-
 import ROUTES from '../../constants/routes';
 import Footer from '../Footer';
-
-import './index.scss';
 import ProfileSavedCookbookCard from './CookbookCard';
 import ProfileSavedRecipeCard from './RecipeCard';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 import PopUpRecipeSaved from './PopUpRecipe';
-import api from '../../helpers/api';
 import PopUpCookbookSaved from './PopUpCookbook';
+import { ICookbook, IRecipe, IUser } from '../../interfaces';
+
+import './index.scss';
 
 type ProfileSavedPageProps = {
-  cookbooks: Cookbook[];
-  getUsersSavedCookbooks: (userId: number) => AnyAction;
-  recipes: Recipe[];
-  getUsersSavedRecipes: (userId: number) => AnyAction;
-  user: User;
+  cookbooks: ICookbook[];
+  getUsersSavedCookbooks: (userId: number) => Promise<void>;
+  recipes: IRecipe[];
+  getUsersSavedRecipes: (userId: number) => Promise<void>;
+  user: IUser;
 };
 
 export default function ProfileSavedPage(
-  props: ProfileSavedPageProps
+  props: ProfileSavedPageProps,
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.NOT_FOUND} />;
@@ -40,8 +37,10 @@ export default function ProfileSavedPage(
     getUsersSavedRecipes,
   } = props;
 
-  const { name, bio, avatar, id } = user;
-  const photoSrc = avatar || '../../assets/images/photo-mask.png';
+  const {
+    name, bio, photo, id,
+  } = user;
+  const photoSrc = photo || '../../assets/images/photo-mask.png';
   const [isRecipePopUpVisible, setRecipePopUpVisible] = useState(false);
   const [selectedRecipeId, setSelectedRecipeId] = useState(0);
   const [isCookbookPopUpVisible, setCookbookPopUpVisible] = useState(false);
@@ -87,16 +86,16 @@ export default function ProfileSavedPage(
             </ul>
           </nav>
           <section className="profile-page--saved__container--cards">
-            <div className="profile-page--saved__container__title">{`Cookbooks (${cookbooks.length})`}</div>
+            <div className="profile-page--saved__container__title">{`Cookbooks (${cookbooks?.length})`}</div>
             <div className="profile-page--saved__cards--cookbooks">
-              {cookbooks.map((el) => (
+              {cookbooks?.map((el) => (
                 <ProfileSavedCookbookCard
                   id={el.id}
                   title={el.title}
-                  authorId={el.userId}
+                  author={el.User}
                   views={el.views}
-                  likes={el.likes}
-                  comments={el.comments.length}
+                  likes={el.Cookbook_Likes?.length}
+                  comments={el.Cookbook_Comments?.length}
                   image={el.image}
                   description={el.description}
                   key={el.id}
@@ -107,16 +106,16 @@ export default function ProfileSavedPage(
             </div>
           </section>
           <section className="profile-page--saved__container--cards">
-            <div className="profile-page--saved__container__title">{`Recipes (${recipes.length})`}</div>
+            <div className="profile-page--saved__container__title">{`Recipes (${recipes?.length})`}</div>
             <div className="profile-page--saved__cards--recipes">
-              {recipes.map((el) => (
+              {recipes?.map((el) => (
                 <ProfileSavedRecipeCard
                   id={el.id}
                   title={el.title}
-                  authorId={el.userId}
+                  author={el.User}
                   views={el.views}
-                  likes={el.likes}
-                  comments={el.comments.length}
+                  likes={el.Recipe_Likes?.length}
+                  comments={el.Recipe_Comments?.length}
                   image={el.image}
                   description={el.description}
                   key={el.id}
@@ -130,14 +129,14 @@ export default function ProfileSavedPage(
             <PopUpRecipeSaved
               loggedInUserId={id}
               setRecipePopUpVisible={setRecipePopUpVisible}
-              recipe={api.getRecipe(selectedRecipeId)}
+              recipe={recipes.find((el) => el.id === selectedRecipeId)}
             />
           ) : null}
           {isCookbookPopUpVisible ? (
             <PopUpCookbookSaved
               loggedInUserId={id}
               setCookbookPopUpVisible={setCookbookPopUpVisible}
-              cookbook={api.getCookbook(selectedCookbookId)}
+              cookbook={cookbooks.find((el) => el.id === selectedCookbookId)}
             />
           ) : null}
         </div>

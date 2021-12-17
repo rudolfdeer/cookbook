@@ -1,26 +1,24 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
-import api from '../../../helpers/api';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
 import ViewsIcon from '../../svg/Views';
 import './index.scss';
+import { IUser } from '../../../interfaces';
 
 type RecipeCardProps = {
   id: number;
   title: string;
-  authorId: number;
+  author: IUser;
   description: string;
   views: number;
-
-  usersLiked: number[];
+  likes: number;
   image: string;
   comments: number;
   selectCard: Dispatch<SetStateAction<number>>;
   setVisible: Dispatch<SetStateAction<boolean>>;
   loggedInUserId: number;
-  saveToUsersRecipes: (recipeId: number, userId: number) => AnyAction;
+  saveToUsersRecipes: (recipeId: number) => Promise<void>;
 };
 
 export default function RecipeCard(props: RecipeCardProps): JSX.Element {
@@ -31,8 +29,8 @@ export default function RecipeCard(props: RecipeCardProps): JSX.Element {
     image,
     description,
     title,
-    authorId,
-    usersLiked,
+    author,
+    likes,
     comments,
     setVisible,
     selectCard,
@@ -43,7 +41,7 @@ export default function RecipeCard(props: RecipeCardProps): JSX.Element {
   const [isBtnVisible, setBtnVisible] = useState(false);
 
   const saveRecipe = () => {
-    saveToUsersRecipes(id, loggedInUserId);
+    saveToUsersRecipes(id);
     setBtnVisible(false);
   };
 
@@ -75,7 +73,7 @@ export default function RecipeCard(props: RecipeCardProps): JSX.Element {
           >
             {title}
           </div>
-          <div className="card__author">{api.getUserName(authorId)}</div>
+          <div className="card__author">{author.name}</div>
         </div>
         <div className="card__info-container--description">
           <p className="card__description">{description}</p>
@@ -88,7 +86,7 @@ export default function RecipeCard(props: RecipeCardProps): JSX.Element {
             </div>
             <div className="card__statistics-item likes">
               <LikesIcon />
-              {usersLiked.length} {t('LIKES')}
+              {likes} {t('LIKES')}
             </div>
             <div className="card__statistics-item comments">
               <CommentsIcon />

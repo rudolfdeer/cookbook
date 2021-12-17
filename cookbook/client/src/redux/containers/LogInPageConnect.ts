@@ -1,19 +1,20 @@
 import { connect } from 'react-redux';
 import LogInPage from '../../components/LogInPage';
-import { State } from '../../interfaces';
-import { logIn } from '../actions/user';
+// import { State } from '../../interfaces';
+import { IState } from '../../interfaces';
+import { signIn, getLoggedInUser } from '../thunks/user';
 
-function mapStateToProps(state: State) {
+function mapStateToProps(state: IState) {
   const { user } = state;
-  const isLoggedIn = !!user;
 
   return {
-    isLoggedIn,
+    user,
   };
 }
 
 const mapDispatchToProps = {
-  logIn,
+  signIn,
+  getLoggedInUser,
 };
 
 const LogInPageConnect = connect(

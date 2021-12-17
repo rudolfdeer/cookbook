@@ -1,8 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { Form, Field } from 'react-final-form';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
-import { RecipeValues } from '../../../redux/actions/recipes';
+import { IRecipeRequestBody } from '../../../interfaces';
 
 import './index.scss';
 
@@ -10,19 +9,10 @@ type PopUpCreateRecipeProps = {
   loggedInUserId: number;
   setCreatePopUpVisible: Dispatch<SetStateAction<boolean>>;
   createRecipe: (
-    data: RecipeValues,
+    data: IRecipeRequestBody,
+    imageSrc: string,
     userId: number,
-    imageSrc: string
-  ) => AnyAction;
-};
-
-type FormValues = {
-  title: string;
-  image?: string;
-  description: string;
-  ingredients: string;
-  directions: string;
-  cookingTime: string;
+  ) => Promise<void>;
 };
 
 const formData = {
@@ -30,21 +20,21 @@ const formData = {
   description: [''],
   ingredients: [''],
   directions: [''],
-  cookingTime: '',
+  time: '',
 };
 
 const required = (value: string | string[]) => (value ? undefined : 'Required');
 
 export default function PopUpCreateRecipe(
-  props: PopUpCreateRecipeProps
+  props: PopUpCreateRecipeProps,
 ): JSX.Element {
   const { t } = useTranslation();
   const { setCreatePopUpVisible, createRecipe, loggedInUserId } = props;
 
   const [photoSrc, setPhotoSrc] = useState('');
 
-  const onSubmit = (values: FormValues) => {
-    createRecipe(values, loggedInUserId, photoSrc);
+  const onSubmit = (values: IRecipeRequestBody) => {
+    createRecipe(values, photoSrc, loggedInUserId);
     setCreatePopUpVisible(false);
   };
 
@@ -164,7 +154,7 @@ export default function PopUpCreateRecipe(
 
                 <div className="pop-up--create__section">
                   <label
-                    htmlFor="cookingTime"
+                    htmlFor="time"
                     className="pop-up--create__section__title"
                   >
                     {t('COOKING_TIME')}
@@ -172,7 +162,7 @@ export default function PopUpCreateRecipe(
                   <Field
                     type="number"
                     className="pop-up--create__section__input"
-                    name="cookingTime"
+                    name="time"
                     placeholder={t('COOKING_TIME_MIN')}
                     component="input"
                     min="1"

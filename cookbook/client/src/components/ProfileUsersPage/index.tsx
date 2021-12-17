@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Redirect } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import { Cookbook } from '../../interfaces';
-
 import Footer from '../Footer';
 import CardCookbook from './Card';
 
@@ -14,30 +12,36 @@ import HeaderConnect from '../../redux/containers/HeaderConnect';
 import api from '../../helpers/api';
 import PopUpCookbook from './PopUp';
 import ROUTES from '../../constants/routes';
+import { ICookbook, IUser } from '../../interfaces';
 
 type ProfileUsersPageProps = {
-  cookbooks: Cookbook[];
+  cookbooks: ICookbook[];
   getUsersCreatedCookbooks: (userId: number) => void;
   loggedInUserId: number;
 };
 
 export default function ProfileUsersPage(
-  props: ProfileUsersPageProps
+  props: ProfileUsersPageProps,
 ): JSX.Element {
   const { t } = useTranslation();
   const { userId } = useParams<{ userId: string }>();
   const { cookbooks, loggedInUserId, getUsersCreatedCookbooks } = props;
+  const [user, setUser] = useState(null as IUser);
+  const [isPopUpCookbookVisible, setPopUpCookbookVisible] = useState(false);
+  const [selectedCookbookId, setSelectedCookbookId] = useState(0);
 
   if (+userId === loggedInUserId) {
     return <Redirect to={ROUTES.PROFILE_COOKBOOKS} />;
   }
 
-  const [isPopUpCookbookVisible, setPopUpCookbookVisible] = useState(false);
-  const [selectedCookbookId, setSelectedCookbookId] = useState(0);
-
   useEffect(() => getUsersCreatedCookbooks(+userId), [userId]);
 
-  const user = api.getUser(+userId);
+  useEffect(() => {
+    (async () => {
+      const response = await api.getUserById(+userId);
+      setUser(response);
+    })();
+  }, []);
 
   return (
     <>
@@ -49,14 +53,14 @@ export default function ProfileUsersPage(
           <section className="profile-page--user__user">
             <div className="profile-page--user__user__photo">
               <img
-                src={user.avatar}
+                src={user?.photo}
                 alt="User photo"
                 className="profile-page--user__user__photo__image"
               />
             </div>
             <div className="profile-page--user__user__container">
-              <div className="profile-page--user__user__name">{user.name}</div>
-              <div className="profile-page--user__user__bio">{user.bio}</div>
+              <div className="profile-page--user__user__name">{user?.name}</div>
+              <div className="profile-page--user__user__bio">{user?.bio}</div>
             </div>
           </section>
           <nav className="profile-page--user__nav">
@@ -69,10 +73,10 @@ export default function ProfileUsersPage(
               <CardCookbook
                 id={el.id}
                 title={el.title}
-                authorId={el.userId}
+                author={el.User}
                 views={el.views}
-                likes={el.likes}
-                comments={el.comments.length}
+                likes={el.Cookbook_Likes.length}
+                comments={el.Cookbook_Comments.length}
                 image={el.image}
                 description={el.description}
                 key={el.id}
@@ -84,7 +88,7 @@ export default function ProfileUsersPage(
           {isPopUpCookbookVisible ? (
             <PopUpCookbook
               setPopUpCookbookVisible={setPopUpCookbookVisible}
-              cookbook={api.getCookbook(selectedCookbookId)}
+              cookbook={cookbooks.find((el) => el.id === selectedCookbookId)}
             />
           ) : null}
         </div>

@@ -1,44 +1,37 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { AnyAction } from 'redux';
 import { Form, Field } from 'react-final-form';
 import { useTranslation } from 'react-i18next';
 import './index.scss';
 import { EMAILREGEX } from '../../../constants/regex';
 import ERROR_MESSAGES from '../../../constants/errorMessages';
 import ROUTES from '../../../constants/routes';
-import { LoginInfo } from '../../../redux/actions/user';
 
-type FormValues = {
+type AuthValues = {
   email: string;
   password: string;
 };
 
 type LogInFormProps = {
-  logIn: (loginInfo: LoginInfo) => AnyAction;
+  signIn: (loginInfo: AuthValues) => Promise<void>;
 };
 
 type ValidatorFunction = (value: string) => undefined | string;
 
-const required = (value: string) =>
-  value ? undefined : ERROR_MESSAGES.REQUIRED;
-const validEmail = (value: string) =>
-  !value.match(EMAILREGEX) ? ERROR_MESSAGES.EMAIL : undefined;
+const required = (value: string) => (value ? undefined : ERROR_MESSAGES.REQUIRED);
+const validEmail = (value: string) => (!value.match(EMAILREGEX) ? ERROR_MESSAGES.EMAIL : undefined);
 // eslint-disable-next-line max-len
-const composeValidators =
-  (...validators: ValidatorFunction[]) =>
-  (value: string) =>
-    validators.reduce(
-      (error, validator) => error || validator(value),
-      undefined
-    );
+const composeValidators = (...validators: ValidatorFunction[]) => (value: string) => validators.reduce(
+  (error, validator) => error || validator(value),
+  undefined,
+);
 
 export default function LogInForm(props: LogInFormProps): JSX.Element {
   const { t } = useTranslation();
-  const { logIn } = props;
+  const { signIn } = props;
   const formData = {};
 
-  const onSubmit = (values: FormValues) => logIn(values);
+  const onSubmit = (values: AuthValues) => signIn(values);
 
   return (
     <div className="log-in-page__form">

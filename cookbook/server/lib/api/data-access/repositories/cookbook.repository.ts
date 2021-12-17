@@ -11,6 +11,7 @@ const {
   Recipe,
   RecipeCookbook,
   RecipeLike,
+  RecipeComment,
   CookbookComment,
 } = db;
 
@@ -40,6 +41,25 @@ const findAll = async () => {
       },
       {
         model: CookbookComment,
+        include: User,
+      },
+      {
+        model: RecipeCookbook,
+        include: {
+          model: Recipe,
+          include: [
+            User,
+            {
+              model: RecipeLike,
+            },
+            {
+              model: RecipeComment,
+              include: {
+                model: User,
+              }
+            },
+          ],
+        },
       },
     ],
   });
@@ -62,6 +82,12 @@ const findById = async (id: number) => {
             User,
             {
               model: RecipeLike,
+            },
+            {
+              model: RecipeComment,
+              include: {
+                model: User
+              }
             },
           ],
         },
@@ -140,7 +166,6 @@ const createComment = async (
   userId: number
 ) => {
   const { text, date } = body;
-
   const comment = await CookbookComment.create(
     {
       text,

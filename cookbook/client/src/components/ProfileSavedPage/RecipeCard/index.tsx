@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
-import api from '../../../helpers/api';
+import { IUser } from '../../../interfaces';
 import CommentsIcon from '../../svg/Comments';
 import DotsIcon from '../../svg/Dots';
 import LikesIcon from '../../svg/Likes';
@@ -11,7 +11,7 @@ import './index.scss';
 type ProfileSavedRecipeCardProps = {
   id: number;
   title: string;
-  authorId: number;
+  author: IUser;
   description: string;
   views: number;
   likes: number;
@@ -22,7 +22,7 @@ type ProfileSavedRecipeCardProps = {
 };
 
 export default function ProfileSavedRecipeCard(
-  props: ProfileSavedRecipeCardProps
+  props: ProfileSavedRecipeCardProps,
 ): JSX.Element {
   const { t } = useTranslation();
   const {
@@ -31,7 +31,7 @@ export default function ProfileSavedRecipeCard(
     image,
     description,
     title,
-    authorId,
+    author,
     likes,
     comments,
     setRecipePopUpVisible,
@@ -66,7 +66,7 @@ export default function ProfileSavedRecipeCard(
         >
           {title}
         </div>
-        <div className="card__author">{api.getUserName(authorId)}</div>
+        <div className="card__author">{author.name}</div>
       </div>
 
       <div className="card__info-container--description">

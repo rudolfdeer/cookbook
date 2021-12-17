@@ -1,38 +1,38 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
-import api from '../../../helpers/api';
-import { Cookbook } from '../../../interfaces';
+import { ICookbook } from '../../../interfaces';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
+import PopUpRecipeCard from './RecipeCard';
 
 import './index.scss';
-import PopUpRecipeCard from './RecipeCard';
 
 type PopUpCookbookDetailedProps = {
   setCookbookPopUpVisible: Dispatch<SetStateAction<boolean>>;
-  cookbook: Cookbook;
+  cookbook: ICookbook;
   loggedInUserId: number;
 };
 
 export default function PopUpCookbookSaved(
-  props: PopUpCookbookDetailedProps
+  props: PopUpCookbookDetailedProps,
 ): JSX.Element {
   const { t } = useTranslation();
   const { setCookbookPopUpVisible, cookbook, loggedInUserId } = props;
-  const { image, description, title, userId, likes, comments, recipesIds } =
-    cookbook;
+  const {
+    image, description, title, User, Cookbook_Likes, Cookbook_Comments, Recipe_Cookbooks,
+  } = cookbook;
 
   function closePopUp(e: React.MouseEvent) {
     const target = e.target as HTMLElement;
     if (
-      target.classList.contains('overlay') ||
-      target.classList.contains('overlay__btn')
+      target.classList.contains('overlay')
+      || target.classList.contains('overlay__btn')
     ) {
       setCookbookPopUpVisible(false);
     }
   }
 
-  const recipes = api.getRecipesInCookbook(recipesIds);
+  const recipes = Recipe_Cookbooks.map((el) => el.Recipe);
 
   return (
     <div className="overlay" onClick={(e) => closePopUp(e)}>
@@ -43,7 +43,7 @@ export default function PopUpCookbookSaved(
           </div>
 
           <div className="pop-up--cookbook__author">
-            {api.getUserName(userId)}
+            {User.name}
           </div>
 
           <div className="pop-up--cookbook__section--description">
@@ -64,11 +64,11 @@ export default function PopUpCookbookSaved(
           <div className="pop-up--cookbook__section--statistics">
             <div className="card__statistics-item likes">
               <LikesIcon />
-              {likes} {t('LIKES')}
+              {Cookbook_Likes.length} {t('LIKES')}
             </div>
             <div className="card__statistics-item comments">
               <CommentsIcon />
-              {comments.length} {t('COMMENTS')}
+              {Cookbook_Comments.length} {t('COMMENTS')}
             </div>
           </div>
           <div className="pop-up--cookbook__section--recipes">
@@ -79,12 +79,12 @@ export default function PopUpCookbookSaved(
               {recipes?.map((el) => (
                 <PopUpRecipeCard
                   title={el.title}
-                  authorId={el.userId}
+                  author={el.User}
                   views={el.views}
                   description={el.description}
-                  likes={el.likes}
+                  likes={el.Recipe_Likes.length}
                   image={el.image}
-                  comments={el.comments.length}
+                  comments={el.Recipe_Comments.length}
                   key={el.id}
                   id={el.id}
                   loggedInUserId={loggedInUserId}

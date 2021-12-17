@@ -1,18 +1,18 @@
 import { connect } from 'react-redux';
 import CookbooksPage from '../../components/SearchCookbooksPage';
-import { State } from '../../interfaces';
 import {
   getAllCookbooks,
   sortCookbooks,
   filterCookbooks,
   createComment,
   hideUsersCookbooks,
-  likeCookbook,
-} from '../actions/cookbooks';
-import { getAllRecipes } from '../actions/recipes';
-import { saveToUsersCookbooks, saveToUsersRecipes } from '../actions/user';
+  // likeCookbook,
+} from '../thunks/cookbooks';
+import { getAllRecipes } from '../thunks/recipes';
+import { getLoggedInUser, saveToUsersCookbooks, saveToUsersRecipes } from '../thunks/user';
+import { IState } from '../../interfaces';
 
-const mapStateToProps = (state: State) => {
+const mapStateToProps = (state: IState) => {
   const { user, cookbooks, recipes } = state;
   const loggedInUserId = user ? user.id : null;
 
@@ -32,12 +32,14 @@ const mapDispatchToProps = {
   saveToUsersRecipes,
   createComment,
   hideUsersCookbooks,
-  likeCookbook,
+  //updateUser,
+  // likeCookbook,
+  getLoggedInUser,
 };
 
 const CookbooksPageConnect = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(CookbooksPage);
 
 export default CookbooksPageConnect;

@@ -1,20 +1,19 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { Form, Field } from 'react-final-form';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
-import api from '../../../helpers/api';
-import { CookbookValues } from '../../../redux/actions/cookbooks';
+import { ICookbookRequestBody, IRecipe } from '../../../interfaces';
 
 import './index.scss';
 
 type PopUpCreateCookbookProps = {
   loggedInUserId: number;
+  recipes: IRecipe[];
   setCreatePopUpVisible: Dispatch<SetStateAction<boolean>>;
   createCookbook: (
-    data: CookbookValues,
+    data: ICookbookRequestBody,
+    imageSrc: string,
     userId: number,
-    imageSrc: string
-  ) => AnyAction;
+  ) => Promise<void>;
 };
 
 type FormValues = {
@@ -38,10 +37,12 @@ const formData = {
 const required = (value: string | string[]) => (value ? undefined : 'Required');
 
 export default function PopUpCreateCookbook(
-  props: PopUpCreateCookbookProps
+  props: PopUpCreateCookbookProps,
 ): JSX.Element {
   const { t } = useTranslation();
-  const { loggedInUserId, setCreatePopUpVisible, createCookbook } = props;
+  const {
+    loggedInUserId, setCreatePopUpVisible, createCookbook, recipes,
+  } = props;
   const [photoSrc, setPhotoSrc] = useState('');
 
   const onSubmit = (values: FormValues) => {
@@ -54,12 +55,11 @@ export default function PopUpCreateCookbook(
     if (values['Without milk']) {
       values.tags.push('Without milk');
     }
-
-    createCookbook(values, loggedInUserId, photoSrc);
+    const recipesIds = values.recipesIds.map((el) => Number(el));
+    values.recipesIds = recipesIds;
+    createCookbook(values, photoSrc, loggedInUserId);
     setCreatePopUpVisible(false);
   };
-
-  const usersRecipes = api.getUsersRecipes(loggedInUserId);
 
   return (
     <div className="overlay">
@@ -158,7 +158,7 @@ export default function PopUpCreateCookbook(
                     component="select"
                     multiple
                   >
-                    {usersRecipes?.map((el) => (
+                    {recipes?.map((el) => (
                       <option key={el.id} value={el.id}>
                         {el.title}
                       </option>

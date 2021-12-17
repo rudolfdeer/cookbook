@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
-import api from '../../../../helpers/api';
+import { IUser } from '../../../../interfaces';
 import CommentsIcon from '../../../svg/Comments';
 import LikesIcon from '../../../svg/Likes';
 import ViewsIcon from '../../../svg/Views';
@@ -8,11 +8,10 @@ import './index.scss';
 
 type PopUpRecipeCardProps = {
   title: string;
-  authorId: number;
+  author: IUser;
   description: string;
   views: number;
   likes: number;
-  usersLiked: number[];
   image: string;
   comments: number;
   id: number;
@@ -22,7 +21,7 @@ type PopUpRecipeCardProps = {
 };
 
 export default function PopUpRecipeCard(
-  props: PopUpRecipeCardProps
+  props: PopUpRecipeCardProps,
 ): JSX.Element {
   const { t } = useTranslation();
   const {
@@ -30,8 +29,8 @@ export default function PopUpRecipeCard(
     image,
     description,
     title,
-    authorId,
-    usersLiked,
+    author,
+    likes,
     comments,
     id,
     setNewRecipesIds,
@@ -52,7 +51,7 @@ export default function PopUpRecipeCard(
       <div className="card__content">
         <div className="card__info-container top">
           <div className="card__title">{title}</div>
-          <div className="card__author">{api.getUserName(authorId)}</div>
+          <div className="card__author">{author.name}</div>
         </div>
         <div className="card__info-container--description">
           <p className="card__description">{description}</p>
@@ -65,7 +64,7 @@ export default function PopUpRecipeCard(
             </div>
             <div className="card__statistics-item likes">
               <LikesIcon />
-              {usersLiked.length} {t('LIKES')}
+              {likes} {t('LIKES')}
             </div>
             <div className="card__statistics-item comments">
               <CommentsIcon />

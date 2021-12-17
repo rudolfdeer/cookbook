@@ -1,51 +1,134 @@
-export interface Recipe {
-  id: number;
-  title: string;
-  image: string;
-  userId: number;
-  description: string;
-  directions: string[];
-  ingredients: string[];
-  cookingTime: number;
-  views: number;
-  likes: number;
-  usersLiked?: number[];
-  comments: Comment[];
+export interface IState {
+  recipes: IRecipe[];
+  cookbooks: ICookbook[];
+  user: IUser | null;
 }
 
-export interface User {
+export interface IUser {
   id: number;
   name: string;
   email: string;
   password: string;
-  avatar: string;
+  photo: string;
   bio: string;
-  isLoggedIn: boolean;
-  savedRecipes: Recipe[];
-  savedCookbooks: Cookbook[];
+  Recipe_Saveds?: IRecipeSaved[];
+  Cookbook_Saveds?: ICookbookSaved[];
 }
 
-export interface Comment {
-  userId: number;
-  comment: string;
-  date: string;
-}
-export interface Cookbook {
+export interface IRecipe {
   id: number;
   title: string;
-  userId: number;
   description: string;
-  likes: number;
-  views: number;
-  comments: Comment[];
   image: string;
-  recipesIds: Recipe['id'][];
-  tags: string[];
-  usersLiked?: number[];
+  directions: string[];
+  ingredients: string[];
+  time: number;
+  views: number;
+  UserId: number;
+  User: IUser;
+  Recipe_Comments: IRecipeComment[];
+  Recipe_Likes: IRecipeLike[];
 }
 
-export interface State {
-  recipes: Recipe[];
-  cookbooks: Cookbook[];
-  user: User | null;
+export interface ICookbook {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  tags: string[];
+  views: number;
+  UserId: number;
+  User: IUser;
+  Recipe_Cookbooks: IRecipeCookbook[];
+  Cookbook_Comments: ICookbookComment[];
+  Cookbook_Likes: ICookbookLike[];
+}
+
+export interface IRecipeLike {
+  RecipeId: number;
+  UserId: number;
+}
+
+export interface IRecipeComment {
+  id: number;
+  text: string;
+  date: string;
+  RecipeId: number;
+  UserId: number;
+  User?: IUser;
+}
+
+export interface IRecipeSaved {
+  RecipeId: number;
+  UserId: number;
+  Recipe?: IRecipe;
+}
+
+export interface IRecipeCookbook {
+  RecipeId: number;
+  CookbookId: number;
+  Recipe: IRecipe;
+}
+
+export interface ICookbookLike {
+  CookbookId: number;
+  UserId: number;
+}
+
+export interface ICookbookSaved {
+  CookbookId: number;
+  UserId: number;
+  Cookbook?: ICookbook;
+}
+
+export interface ICookbookComment {
+  id: number;
+  text: string;
+  date: string;
+  CookbookId: number;
+  UserId: number;
+  User?: IUser;
+}
+
+export interface IRecipeRequestBody {
+  title: string;
+  description: string;
+  ingredients: string;
+  directions: string;
+  time?: number;
+  views?:number;
+  likeUserIds?: number[];
+}
+
+export interface ICookbookRequestBody {
+  title: string;
+  description: string;
+  recipesIds: number[];
+  tags?: string[];
+  views?: number;
+  likeUserIds?: number[];
+}
+
+export interface IUserRequestBody {
+  name?: string;
+  photo?: string;
+  bio?: string;
+  savedRecipesIds?: number[];
+  savedCookbooksIds?: number[];
+}
+
+export interface IAuthRequestBody {
+  email: string;
+  password: string;
+}
+
+export interface ISearchListItem {
+  id: number;
+  name: string;
+}
+
+export interface ISignUpForm {
+  email: string;
+  password: string;
+  confirm: string;
 }

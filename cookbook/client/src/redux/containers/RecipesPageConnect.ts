@@ -1,15 +1,15 @@
 import { connect } from 'react-redux';
 import RecipesPage from '../../components/SearchRecipesPage';
-import { State } from '../../interfaces';
 import {
   filterRecipes,
   getAllRecipes,
   sortRecipes,
   createComment,
-} from '../actions/recipes';
-import { saveToUsersRecipes } from '../actions/user';
+} from '../thunks/recipes';
+import { saveToUsersRecipes } from '../thunks/user';
+import { IState } from '../../interfaces';
 
-function mapStateToProps(state: State) {
+function mapStateToProps(state: IState) {
   const { user, recipes } = state;
   const loggedInUserId = user ? user.id : null;
 

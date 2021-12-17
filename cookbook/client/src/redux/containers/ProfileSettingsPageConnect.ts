@@ -1,30 +1,32 @@
 import { connect } from 'react-redux';
 import ProfileSettingsPage from '../../components/ProfileSettingsPage';
-import { State } from '../../interfaces';
+import { IState } from '../../interfaces';
 import {
-  changeUserBio,
-  changeUserName,
-  changeUserEmail,
-  changeUserPassword,
-  updateUserPhoto,
-  logOut,
   deleteUser,
-} from '../actions/user';
+  updateUser,
+  changePassword,
+  changeEmail,
+  getLoggedInUser,
+} from '../thunks/user';
 
-function mapStateToProps(state: State) {
+function mapStateToProps(state: IState) {
   const { user } = state;
   return {
     user,
   };
 }
 const mapDispatchToProps = {
-  changeUserBio,
-  changeUserName,
-  changeUserEmail,
-  changeUserPassword,
-  updateUserPhoto,
-  logOut,
+  // changeUserBio,
+  // changeUserName,
+  // changeUserEmail,
+  // changeUserPassword,
+  // updateUserPhoto,
+  //logOut,
   deleteUser,
+  updateUser,
+  changePassword,
+  changeEmail,
+  
 };
 
 const ProfileSettingsPageConnect = connect(

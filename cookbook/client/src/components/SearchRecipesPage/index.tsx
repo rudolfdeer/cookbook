@@ -1,29 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
 import Footer from '../Footer';
 import RecipeCard from './Card';
 import FilterPanelRecipes from './FilterPanel';
 import PopUpRecipeDetailed from './PopUp';
-
-import './index.scss';
-import api from '../../helpers/api';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
-import { Recipe } from '../../interfaces';
+import { IRecipe } from '../../interfaces';
+import './index.scss';
 
 type RecipesPageProps = {
-  recipes: Recipe[];
+  recipes: IRecipe[];
   getAllRecipes: () => void;
-  sortRecipes: (order: string) => AnyAction;
-  filterRecipes: (cookingTime: number) => AnyAction;
-  loggedInUserId: number;
-  saveToUsersRecipes: (recipeId: number, userId: number) => AnyAction;
+  sortRecipes: (order: string) => Promise<void>;
+  filterRecipes: (cookingTime: number) => Promise<void>;
+  loggedInUserId: number | null;
+  saveToUsersRecipes: (recipeId: number) => Promise<void>;
   createComment: (
     recipeId: number,
-    userId: number,
-    commentText: string
-  ) => AnyAction;
+    text: string
+  ) => Promise<void>;
 };
 
 export default function RecipesPage(props: RecipesPageProps): JSX.Element {
@@ -67,13 +63,13 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
               </ul>
             </nav>
             <div className="search-page__cards--recipes">
-              {recipes.map((el) => (
+              {recipes?.map((el) => (
                 <RecipeCard
                   id={el.id}
                   title={el.title}
-                  authorId={el.userId}
+                  author={el.User}
                   views={el.views}
-                  comments={el.comments.length}
+                  comments={el.Recipe_Comments?.length}
                   image={el.image}
                   description={el.description}
                   selectCard={setSelectedCardId}
@@ -81,7 +77,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
                   key={el.id}
                   loggedInUserId={loggedInUserId}
                   saveToUsersRecipes={saveToUsersRecipes}
-                  usersLiked={el.usersLiked}
+                  likes={el.Recipe_Likes?.length}
                 />
               ))}
             </div>
@@ -89,7 +85,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
           {isVisible ? (
             <PopUpRecipeDetailed
               setVisible={setVisible}
-              recipe={api.getRecipe(selectedCardId)}
+              recipe={recipes?.find((el) => el.id === selectedCardId)}
               loggedInUserId={loggedInUserId}
               saveToUsersRecipes={saveToUsersRecipes}
               createComment={createComment}
@@ -97,7 +93,6 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
           ) : null}
         </div>
       </main>
-
       <Footer />
     </>
   );

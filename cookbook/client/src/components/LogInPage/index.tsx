@@ -1,34 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { AnyAction } from 'redux';
 import ROUTES from '../../constants/routes';
-import { LoginInfo } from '../../redux/actions/user';
+import { IAuthRequestBody, IUser } from '../../interfaces';
 import LogInForm from './Form';
 
 import './index.scss';
 
 type LogInPageProps = {
-  isLoggedIn: boolean;
-  logIn: (loginInfo: LoginInfo) => AnyAction;
+  user: IUser;
+  signIn: (loginInfo: IAuthRequestBody) => Promise<void>;
+  getLoggedInUser: () => Promise<void>;
 };
 
 export default function LogInPage(props: LogInPageProps): JSX.Element {
-  const { isLoggedIn, logIn } = props;
-  const [isRedirected, setIsRedirected] = useState(false);
+  const { user, signIn, getLoggedInUser } = props;
+  //const [isRedirected, setIsRedirected] = useState(false);
 
   useEffect(() => {
-    if (isLoggedIn) {
-      setIsRedirected(true);
-    }
-  }, [isLoggedIn]);
+    getLoggedInUser();
+    // if (user) {
+    //   setIsRedirected(true);
+    // }
+  }, []);
 
-  if (isRedirected) {
+  if (user) {
     return <Redirect to={ROUTES.PROFILE_SETTINGS} />;
   }
+
   return (
     <main className="login-page">
       <div className="wrapper">
-        <LogInForm logIn={logIn} />
+        <LogInForm signIn={signIn} />
       </div>
     </main>
   );

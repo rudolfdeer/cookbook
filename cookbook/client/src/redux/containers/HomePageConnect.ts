@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import HomePage from '../../components/HomePage';
-import { State } from '../../interfaces';
-import { getAllCookbooks } from '../actions/cookbooks';
-import { getAllRecipes } from '../actions/recipes';
+import { IState } from '../../interfaces';
+import { getAllCookbooks } from '../thunks/cookbooks';
+import { getAllRecipes } from '../thunks/recipes';
 
-function mapStateToProps(state: State) {
+function mapStateToProps(state: IState) {
   const { recipes, cookbooks } = state;
 
   return {

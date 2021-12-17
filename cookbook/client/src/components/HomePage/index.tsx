@@ -1,27 +1,28 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
 import ROUTES from '../../constants/routes';
-import { Cookbook, Recipe } from '../../interfaces';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 import Footer from '../Footer';
 import CardPopular from './CardPopular';
 import CardRated from './CardRated';
 import CardTrending from './CardTrending';
+import { ICookbook, IRecipe } from '../../interfaces';
 
 import './index.scss';
 
 type HomePageProps = {
-  recipes: Recipe[];
-  getAllRecipes: () => AnyAction;
-  cookbooks: Cookbook[];
-  getAllCookbooks: () => AnyAction;
+  recipes: IRecipe[];
+  getAllRecipes: () => Promise<void>;
+  cookbooks: ICookbook[];
+  getAllCookbooks: () => Promise<void>;
 };
 
 export default function HomePage(props: HomePageProps): JSX.Element {
   const { t } = useTranslation();
-  const { recipes, getAllRecipes, cookbooks, getAllCookbooks } = props;
+  const {
+    recipes, getAllRecipes, cookbooks, getAllCookbooks
+  } = props;
 
   const navList = t('SEARCH_NAV_LIST', { returnObjects: true }) as string[];
 
@@ -85,13 +86,12 @@ export default function HomePage(props: HomePageProps): JSX.Element {
                 ?.map((el) => (
                   <CardRated
                     title={el.title}
-                    authorId={el.userId}
+                    author={el.User}
                     views={el.views}
-                    likes={el.likes}
-                    comments={el.comments.length}
+                    comments={el.Recipe_Comments.length}
                     image={el.image}
                     key={el.id}
-                    usersLiked={el.usersLiked}
+                    likes={el.Recipe_Likes}
                   />
                 ))
                 .slice(0, 4)}
@@ -133,7 +133,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
                   ?.map((el) => (
                     <CardTrending
                       title={el.title}
-                      authorId={el.userId}
+                      author={el.User}
                       views={el.views}
                       image={el.image}
                       key={el.id}

@@ -1,19 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import api from '../../../helpers/api';
+import { ISearchListItem } from '../../../interfaces';
 import './index.scss';
 import ResultList from './ResultList';
 
 export default function SearchBar(): JSX.Element {
   const { t } = useTranslation();
+  const [users, setUsers] = useState(null as ISearchListItem[]);
+  const [searchInput, setSearchInput] = useState('');
 
-  const users = api.getAllUsers();
-  const usersList = users.map((el) => ({
+  const usersList = users?.map((el) => ({
     name: el.name,
     id: el.id,
   }));
 
-  const [searchInput, setSearchInput] = useState('');
+  useEffect(() => {
+    (async () => {
+      const response = await api.getAllUsers();
+      setUsers(response);
+    })();
+  }, []);
 
   const editSearchInput = (e: React.ChangeEvent) => {
     const target = e.target as HTMLInputElement;
@@ -22,9 +29,7 @@ export default function SearchBar(): JSX.Element {
   };
 
   const getResultList = () => {
-    const result = usersList.filter((el) =>
-      el.name.toLowerCase().includes(searchInput.toLowerCase())
-    );
+    const result = usersList.filter((el) => el.name.toLowerCase().includes(searchInput.toLowerCase()));
     return result;
   };
 

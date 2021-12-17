@@ -1,118 +1,303 @@
-import { Cookbook, Recipe, User } from '../interfaces';
-import FetchQuery from './fetchTool';
+import { IAuthRequestBody, ICookbook, ICookbookRequestBody, IRecipe, IRecipeRequestBody, IUser, IUserRequestBody } from '../interfaces';
 
-type LoginInfo = {
-  email: string;
-  password: string;
-};
+const base = 'http://localhost:3000/api/';
+const cookbooksUrl = `${base}cookbooks/`;
+const recipesUrl = `${base}recipes/`;
+const userUrl = `${base}user/`;
 
 class Api {
-  getRecipesList(): Recipe[] {
-    const response = FetchQuery.getRecipesList();
-    return response;
-  }
-
-  getCookbooksList(): Cookbook[] {
-    const response = FetchQuery.getCookbooksList();
-    return response;
-  }
-
-  // async getCookbooksList(): Promise<Cookbook[]> {
-  //   const response = await fetch(cookbooksUrl);
-  //   const result = await response.json();
-  //   console.log(result);
-  //   return result;
-  // }
-
-  logIn(loginInfo: LoginInfo): User {
-    const response = FetchQuery.logIn(loginInfo);
-    if (!response) {
-      throw new Error('Incorrect email or password');
-    }
-    return response;
-  }
-
-  getUser(userId: number): User {
-    const response = FetchQuery.getUser(userId);
-    return response;
-  }
-
-  getAllUsers(): User[] {
-    const response = FetchQuery.getAllUsers();
-    return response;
-  }
-
-  updateUsers(newUser: User) {
-    FetchQuery.updateUsers(newUser);
-  }
-
-  getUserName(userId: number): string {
-    const response = FetchQuery.getUser(userId);
-    if (!response) return '';
-    const { name } = response;
-    return name;
-  }
-
-  getUserPhoto(userId: number): string {
-    const response = FetchQuery.getUser(userId);
-    const { avatar } = response;
-    return avatar;
-  }
-
-  getRecipe(recipeId: number): Recipe {
-    const response = FetchQuery.getRecipesList().find(
-      (el) => el.id === recipeId
-    );
-    return response;
-  }
-
-  getCookbook(cookbookId: number): Cookbook {
-    const response = FetchQuery.getCookbooksList().find(
-      (el) => el.id === cookbookId
-    );
-    return response;
-  }
-
-  getRecipesInCookbook(recipesIds: number[]): Recipe[] {
-    const recipes = this.getRecipesList();
-    const result = [] as Recipe[];
-    recipesIds.forEach((id) => {
-      const recipe = recipes.find((el) => el.id === id);
-      result.push(recipe);
-    });
+  async getUserById(userId: number): Promise<IUser> {
+    const response = await fetch(`${userUrl}${userId}`);
+    const result = await response.json();
     return result;
   }
 
-  deleteUsersRecipes(userId: number) {
-    const recipes = this.getRecipesList();
-
-    let index = recipes.findIndex((el) => el.userId === userId);
-    while (index > -1) {
-      recipes.splice(index, 1);
-      index = recipes.findIndex((el) => el.userId === userId);
-    }
-  }
-
-  deleteUsersCookbooks(userId: number) {
-    const cookbooks = this.getCookbooksList();
-
-    let index = cookbooks.findIndex((el) => el.userId === userId);
-    while (index > -1) {
-      cookbooks.splice(index, 1);
-      index = cookbooks.findIndex((el) => el.userId === userId);
-    }
-  }
-
-  getUsersRecipes(userId: number) {
-    const recipes = this.getRecipesList();
-    const filteredRecipes = recipes.filter((el) => el.userId === userId);
+  async getUsersCreatedRecipes(userId: number) {
+    const recipes = await this.getAllRecipes();
+    const filteredRecipes = recipes.filter((el: IRecipe) => el.UserId === userId);
     return filteredRecipes;
   }
 
-  getUsersCookbooks(userId: number) {
-    const cookbooks = this.getCookbooksList();
-    const filteredCookbooks = cookbooks.filter((el) => el.userId === userId);
+  async getUsersCreatedCookbooks(userId: number) {
+    const cookbooks = await this.getAllCookbooks();
+    const filteredCookbooks = cookbooks.filter((el: ICookbook) => el.UserId === userId);
     return filteredCookbooks;
+  }
+
+  async getAllRecipes() {
+    const response = await fetch(`${recipesUrl}`, {
+      credentials: 'include',
+    });
+    const result = await response.json();
+    return result;
+  }
+
+  async createRecipe(data: IRecipeRequestBody, imageSrc: string) {
+    const directionsArr = data.directions.split(',');
+    const ingredientArr = data.ingredients.split(',');
+
+    const body = {
+      title: data.title,
+      image: imageSrc,
+      description: data.description,
+      directions: directionsArr,
+      ingredients: ingredientArr,
+      time: +data.time,
+    };
+
+    const response = await fetch(`${recipesUrl}`, {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
+
+    const result = await response.json();
+    return result;
+  }
+
+  async getLoggedInUser() {
+    const response = await fetch(`${userUrl}`, {
+      credentials: 'include',
+    });
+    const result = await response.json();
+    return result;
+  }
+
+  async commentRecipe(recipeId: number, text: string) {
+    const body = {
+      text,
+      date: new Date().toString(),
+    };
+    const response = await fetch(`${recipesUrl}${recipeId}`, {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
+    const result = await response.json();
+    return result;
+  }
+
+  async updateRecipe(recipeId: number, data: IRecipeRequestBody, imageSrc: string) {
+    const {
+      title,
+      description,
+      directions,
+      ingredients,
+      views,
+      likeUserIds,
+    } = data;
+
+    const body = {
+      title,
+      description,
+      image: imageSrc,
+      directions: directions.split(','),
+      ingredients: ingredients.split(','),
+      views,
+      likeUserIds,
+    };
+
+    const response = await fetch(`${recipesUrl}${recipeId}`, {
+      method: 'PUT',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
+
+    const result = await response.json();
+    return result;
+  }
+
+  async deleteRecipe(id: number) {
+    await fetch(`${recipesUrl}${id}`, {
+      method: 'DELETE',
+      credentials: 'include',
+    })
+  }
+
+  async getAllCookbooks() {
+    const response = await fetch(`${cookbooksUrl}`, {
+      credentials: 'include',
+    });
+    const result = await response.json();
+    return result;
+  }
+
+  async createCookbook(data: ICookbookRequestBody, imageSrc: string) {
+    const body = {
+      title: data.title,
+      image: imageSrc,
+      description: data.description,
+      tags: data.tags,
+      recipesIds: data.recipesIds,
+    };
+
+    const response = await fetch(`${cookbooksUrl}`, {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
+
+    const result = await response.json();
+    return result;
+  }
+
+  async commentCookbook(cookbookId: number, text: string) {
+    const body = {
+      text,
+      date: new Date().toString(),
+    };
+    const response = await fetch(`${cookbooksUrl}${cookbookId}`, {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
+    const result = await response.json();
+    return result;
+  }
+
+  async updateCookbook(cookbookId: number, data: ICookbookRequestBody, imageSrc: string) {
+    const {
+      title,
+      description,
+      views,
+      likeUserIds,
+      recipesIds,
+    } = data;
+
+    const body = {
+      title,
+      description,
+      image: imageSrc,
+      views,
+      likeUserIds,
+      recipesIds,
+    };
+
+    const response = await fetch(`${cookbooksUrl}${cookbookId}`, {
+      method: 'PUT',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
+
+    const result = await response.json();
+    return result;
+  }
+
+  async deleteCookbook(id: number) {
+    await fetch(`${cookbooksUrl}${id}`, {
+      method: 'DELETE',
+      credentials: 'include',
+    });
+  }
+
+  async signIn(data: IAuthRequestBody) {
+    const response = await fetch(`${userUrl}sign-in`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
+
+    const result = await response.json();
+    return result;
+  }
+
+  async signUp(data: IAuthRequestBody) {
+    const response = await fetch(`${userUrl}sign-up`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
+
+    const result = await response.json();
+    return result;
+  }
+
+  async deleteUser() {
+    await fetch(`${userUrl}`, {
+      method: 'DELETE',
+      credentials: 'include',
+    });
+  }
+
+  async updateUser(body: IUserRequestBody) {
+    const response = await fetch(`${userUrl}`, {
+      method: 'PUT',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
+
+    const result = await response.json();
+    return result;
+  }
+
+  async changePassword(password: string) {
+    const body = {
+      password,
+    };
+
+    const response = await fetch(`${userUrl}change-password`, {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
+
+    const result = await response.json();
+    return result;
+  }
+
+  async changeEmail(email: string) {
+    const body = {
+      email,
+    };
+
+    const response = await fetch(`${userUrl}change-email`, {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
+
+    const result = await response.json();
+    return result;
+  }
+
+  async getAllUsers() {
+    const response = await fetch(`${userUrl}users/all`);
+
+    const result = await response.json();
+    return result;
   }
 }
 

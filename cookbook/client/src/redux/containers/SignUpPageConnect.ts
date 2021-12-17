@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import SignUpPage from '../../components/SignUpPage';
-import { createUser } from '../actions/user';
+import { signUp } from '../thunks/user';
 
 const mapDispatchToProps = {
-  createUser,
+  signUp,
 };
 
 const SignUpPageConnect = connect(null, mapDispatchToProps)(SignUpPage);

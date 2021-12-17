@@ -15,7 +15,7 @@ export class App {
   }
 
   connectCors() {
-    this.client.use(cors({ credentials: true }));
+    this.client.use(cors({ credentials: true, origin: 'http://localhost:8080' }));
   }
 
   async connectDb() {
@@ -39,9 +39,7 @@ export class App {
   async listen() {
     try {
       await db.sync();
-      this.client.listen(serverConfig.port, () =>
-        console.log(`server started at: http://localhost:${serverConfig.port}`)
-      );
+      this.client.listen(serverConfig.port, () => console.log(`server started at: http://localhost:${serverConfig.port}`));
     } catch (err) {
       console.log(`server error: ${err}`);
     }

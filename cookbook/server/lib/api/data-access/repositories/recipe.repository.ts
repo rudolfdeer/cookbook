@@ -17,10 +17,10 @@ export type UpdatedRecipe = {
   title: string;
   description: string;
   image: string;
-  views: number;
+  views?: number;
   directions: string[];
   ingredients: string[];
-  likeUserIds: number[];
+  likeUserIds?: number[];
 };
 
 const findAll = async () => {
@@ -32,6 +32,7 @@ const findAll = async () => {
       },
       {
         model: RecipeComment,
+        include: User,
       },
     ],
   });

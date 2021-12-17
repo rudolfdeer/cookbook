@@ -17,6 +17,11 @@ const deleteById = async (id: number) => {
   await userRepository.deleteById(id);
 };
 
+const findAll = async () => {
+  const response = await userRepository.findAll();
+  return response;
+};
+
 const findById = async (id: number) => {
   const response = await userRepository.findById(id);
   return response;
@@ -79,7 +84,7 @@ const signIn = async (body: Auth) => {
   const response = await userRepository.findById(user.id);
 
   const token = authUtils.generateAuthToken({ email: user.email, id: user.id });
-
+  
   return {
     response,
     token,
@@ -126,6 +131,7 @@ const changePassword = async (password: string, id: number) => {
 };
 
 const userService = {
+  findAll,
   deleteById,
   findById,
   update,

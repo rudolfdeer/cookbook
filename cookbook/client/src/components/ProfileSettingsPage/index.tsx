@@ -1,27 +1,24 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
-import { User } from '../../interfaces';
 import ROUTES from '../../constants/routes';
 import Footer from '../Footer';
 
 import './index.scss';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
+import { IUser, IUserRequestBody } from '../../interfaces';
 
 type ProfileSettingsPageProps = {
-  user: User;
-  changeUserBio: (userId: number, newBio: string) => AnyAction;
-  changeUserName: (userId: number, newName: string) => AnyAction;
-  changeUserEmail: (userId: number, newEmail: string) => AnyAction;
-  changeUserPassword: (userId: number, newPassword: string) => AnyAction;
-  updateUserPhoto: (userId: number, newAvatar: string) => AnyAction;
-  logOut: (userId: number) => AnyAction;
-  deleteUser: (userId: number) => AnyAction;
+  user: IUser;
+  //logOut: (userId: number) => AnyAction;
+  deleteUser: () => Promise<void>;
+  updateUser: (data: IUserRequestBody) => Promise<void>;
+  changePassword: (password: string) => Promise<void>;
+  changeEmail: (email: string) => Promise<void>;
 };
 
 export default function ProfileSettingsPage(
-  props: ProfileSettingsPageProps
+  props: ProfileSettingsPageProps,
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.HOME} />;
@@ -31,15 +28,15 @@ export default function ProfileSettingsPage(
 
   const {
     user,
-    changeUserBio,
-    changeUserName,
-    changeUserEmail,
-    changeUserPassword,
-    updateUserPhoto,
-    logOut,
+    //logOut,
     deleteUser,
+    updateUser,
+    changePassword,
+    changeEmail,
   } = props;
-  const { id, name, email, password, bio, avatar } = user;
+  const {
+    name, email, password, bio, photo
+  } = user;
   const [isBioDisabled, setBioDisabled] = useState(true);
   const [isNameDisabled, setNameDisabled] = useState(true);
   const [isEmailDisabled, setEmailDisabled] = useState(true);
@@ -49,7 +46,7 @@ export default function ProfileSettingsPage(
   const [newEmail, setNewEmail] = useState(email);
   const [newPassword, setNewPassword] = useState(password);
   const [photoSrc, setPhotoSrc] = useState(
-    avatar || './assets/images/photo-mask.png'
+    photo || './assets/images/photo-mask.png',
   );
 
   const onPhotoChange = (e: React.ChangeEvent) => {
@@ -59,9 +56,14 @@ export default function ProfileSettingsPage(
     reader.onload = () => {
       const result = String(reader.result);
       setPhotoSrc(result);
-      updateUserPhoto(id, result);
+      updateUser({
+        name: newName,
+        photo: photoSrc,
+        bio: newBio,
+      })
     };
     reader.readAsDataURL(file);
+    
   };
 
   return (
@@ -123,7 +125,11 @@ export default function ProfileSettingsPage(
                     onClick={(e) => {
                       e.preventDefault();
                       setBioDisabled(true);
-                      changeUserBio(id, newBio);
+                      updateUser({
+                        name: newName,
+                        photo: photoSrc,
+                        bio: newBio,
+                      })
                     }}
                   />
                 )}
@@ -185,7 +191,11 @@ export default function ProfileSettingsPage(
                   onClick={(e) => {
                     e.preventDefault();
                     setNameDisabled(true);
-                    changeUserName(id, newName);
+                    updateUser({
+                      name: newName,
+                      photo: photoSrc,
+                      bio: newBio,
+                    })
                   }}
                 />
               )}
@@ -227,7 +237,7 @@ export default function ProfileSettingsPage(
                   onClick={(e) => {
                     e.preventDefault();
                     setEmailDisabled(true);
-                    changeUserEmail(id, newEmail);
+                    changeEmail(newEmail);
                   }}
                 />
               )}
@@ -268,7 +278,7 @@ export default function ProfileSettingsPage(
                   onClick={(e) => {
                     e.preventDefault();
                     setPasswordDisabled(true);
-                    changeUserPassword(id, newPassword);
+                    changePassword(newPassword);
                   }}
                 />
               )}
@@ -277,7 +287,7 @@ export default function ProfileSettingsPage(
               <button
                 className="profile-page--settings__btns__btn--logout"
                 onClick={() => {
-                  logOut(id);
+                  //logOut(id);
                 }}
               >
                 {t('LOG_OUT_BTN')}
@@ -285,10 +295,10 @@ export default function ProfileSettingsPage(
               <button
                 className="profile-page--settings__btns__btn--delete"
                 onClick={() => {
-                  deleteUser(id);
+                  deleteUser();
                 }}
               >
-                {t('LOG_OUT_BTN')}
+                {t('DELETE_ACCOUNT_BTN')}
               </button>
             </div>
           </section>

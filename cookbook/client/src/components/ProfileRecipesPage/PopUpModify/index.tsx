@@ -1,25 +1,23 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
-import { Recipe } from '../../../interfaces';
-import { RecipeValues } from '../../../redux/actions/recipes';
+import { IRecipe, IRecipeRequestBody } from '../../../interfaces';
 
 import './index.scss';
 
 type PopUpModifyRecipeProps = {
   setModifyPopUpVisible: Dispatch<SetStateAction<boolean>>;
-  selectedRecipe: Recipe;
+  selectedRecipe: IRecipe;
   modifyRecipe: (
-    data: RecipeValues,
     recipeId: number,
+    data: IRecipeRequestBody,
     imageSrc: string,
     userId: number
-  ) => AnyAction;
+  ) => Promise<void>;
   loggedInUserId: number;
 };
 
 export default function PopUpModifyRecipe(
-  props: PopUpModifyRecipeProps
+  props: PopUpModifyRecipeProps,
 ): JSX.Element {
   const { t } = useTranslation();
   const {
@@ -28,8 +26,9 @@ export default function PopUpModifyRecipe(
     modifyRecipe,
     loggedInUserId,
   } = props;
-  const { id, title, image, description, directions, ingredients } =
-    selectedRecipe;
+  const {
+    id, title, image, description, directions, ingredients, views, Recipe_Likes
+  } = selectedRecipe;
 
   const [imageSrc, setImageSrc] = useState(image);
   const [isTitleDisabled, setTitleDisabled] = useState(true);
@@ -211,9 +210,11 @@ export default function PopUpModifyRecipe(
                     description: newDescription,
                     directions: newDirections.join(','),
                     ingredients: newIngredients.join(','),
+                    views,
+                    likeUserIds: Recipe_Likes.map((el) => el.UserId),
                   };
                   setModifyPopUpVisible(false);
-                  modifyRecipe(data, id, imageSrc, loggedInUserId);
+                  modifyRecipe(id, data, imageSrc, loggedInUserId);
                 }}
               >
                 {t('SAVE_BTN')}

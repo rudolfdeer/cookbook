@@ -1,40 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
-import { Recipe, User } from '../../interfaces';
-
 import Footer from '../Footer';
 import ProfileRecipeCard from './Card';
-
-import './index.scss';
 import ROUTES from '../../constants/routes';
 import PopUpCreateRecipe from './PopUpCreate';
 import PopUpModifyRecipe from './PopUpModify';
-import api from '../../helpers/api';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
-import { RecipeValues } from '../../redux/actions/recipes';
+import { IRecipe, IRecipeRequestBody, IUser } from '../../interfaces';
+
+import './index.scss';
 
 type ProfileRecipesPageProps = {
-  recipes: Recipe[];
+  recipes: IRecipe[];
   getUsersCreatedRecipes: (userId: number) => void;
-  user: User;
+  user: IUser;
   createRecipe: (
-    data: RecipeValues,
+    data: IRecipeRequestBody,
+    imageSrc: string,
     userId: number,
-    imageSrc: string
-  ) => AnyAction;
+  ) => Promise<void>;
   modifyRecipe: (
-    data: RecipeValues,
     recipeId: number,
+    data: IRecipeRequestBody,
     imageSrc: string,
     userId: number
-  ) => AnyAction;
-  deleteRecipe: (recipeId: number, userId: number) => AnyAction;
+  ) => Promise<void>;
+  deleteRecipe: (recipeId: number, userId: number) => Promise<void>;
 };
 
 export default function ProfileRecipesPage(
-  props: ProfileRecipesPageProps
+  props: ProfileRecipesPageProps,
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.NOT_FOUND} />;
@@ -50,13 +46,17 @@ export default function ProfileRecipesPage(
     modifyRecipe,
     deleteRecipe,
   } = props;
-  const { name, bio, avatar, id } = user;
+
   const [isCreatePopUpVisible, setCreatePopUpVisible] = useState(false);
   const [isModifyPopUpVisible, setModifyPopUpVisible] = useState(false);
   const [selectedRecipeId, setSelectedRecipeId] = useState(0);
+  const { name, bio, photo, id } = user;
 
-  useEffect(() => getUsersCreatedRecipes(id), []);
-  const photoSrc = avatar || '../../assets/images/photo-mask.png';
+  useEffect(() => {
+    getUsersCreatedRecipes(user.id);
+  }, []);
+
+  const photoSrc = photo || '../../assets/images/photo-mask.png';
 
   return (
     <>
@@ -99,13 +99,13 @@ export default function ProfileRecipesPage(
             </button>
           </nav>
           <section className="profile-recipes-page__cards recipes">
-            {recipes.map((el) => (
+            {recipes?.map((el) => (
               <ProfileRecipeCard
                 id={el.id}
                 title={el.title}
-                authorId={el.userId}
+                author={el.User}
                 views={el.views}
-                comments={el.comments.length}
+                comments={el.Recipe_Comments?.length}
                 image={el.image}
                 description={el.description}
                 key={el.id}
@@ -113,7 +113,7 @@ export default function ProfileRecipesPage(
                 setSelectedRecipeId={setSelectedRecipeId}
                 deleteRecipe={deleteRecipe}
                 loggedInUserId={id}
-                usersLiked={el.usersLiked}
+                likes={el.Recipe_Likes?.length}
               />
             ))}
           </section>
@@ -129,7 +129,7 @@ export default function ProfileRecipesPage(
             <PopUpModifyRecipe
               loggedInUserId={id}
               setModifyPopUpVisible={setModifyPopUpVisible}
-              selectedRecipe={api.getRecipe(selectedRecipeId)}
+              selectedRecipe={recipes.find((el) => el.id === selectedRecipeId)}
               modifyRecipe={modifyRecipe}
             />
           ) : null}

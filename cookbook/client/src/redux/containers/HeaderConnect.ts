@@ -1,18 +1,19 @@
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
-import { State } from '../../interfaces';
+import { IState } from '../../interfaces';
+import { getLoggedInUser } from '../thunks/user';
 
-const mapStateToProps = (state: State) => {
+const mapStateToProps = (state: IState) => {
   const { user } = state;
-  const loggedInUserName = user ? user.name : null;
-
   return {
-    loggedInUserName,
+    user,
   };
 };
 
-const HeaderConnect = mapStateToProps
-  ? connect(mapStateToProps, null)(Header)
-  : connect(null, null)(Header);
+const mapDispatchToProps = {
+  getLoggedInUser,
+};
+
+const HeaderConnect = connect(mapStateToProps, mapDispatchToProps)(Header);
 
 export default HeaderConnect;

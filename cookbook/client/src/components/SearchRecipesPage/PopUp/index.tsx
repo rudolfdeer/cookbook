@@ -1,30 +1,27 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { Link } from 'react-router-dom';
-import { AnyAction } from 'redux';
 import { useTranslation } from 'react-i18next';
 import ROUTES from '../../../constants/routes';
-import api from '../../../helpers/api';
-import { Recipe } from '../../../interfaces';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
 import CommentsSection from '../PopUp/CommentsSection';
+import { IRecipe } from '../../../interfaces';
 
 import './index.scss';
 
 type PopUpRecipeDetailedProps = {
   setVisible: Dispatch<SetStateAction<boolean>>;
-  recipe: Recipe;
+  recipe: IRecipe;
   loggedInUserId: number;
-  saveToUsersRecipes: (recipeId: number, userId: number) => AnyAction;
+  saveToUsersRecipes: (recipeId: number) => Promise<void>;
   createComment: (
     recipeId: number,
-    userId: number,
-    commentText: string
-  ) => AnyAction;
+    text: string
+  ) => Promise<void>;
 };
 
 export default function PopUpRecipeDetailed(
-  props: PopUpRecipeDetailedProps
+  props: PopUpRecipeDetailedProps,
 ): JSX.Element {
   const { t } = useTranslation();
   const {
@@ -39,9 +36,9 @@ export default function PopUpRecipeDetailed(
     image,
     description,
     title,
-    userId,
-    usersLiked,
-    comments,
+    User,
+    Recipe_Likes,
+    Recipe_Comments,
     directions,
     ingredients,
   } = recipe;
@@ -51,10 +48,6 @@ export default function PopUpRecipeDetailed(
     if (target.classList.contains('overlay')) {
       setVisible(false);
     }
-  };
-
-  const saveRecipe = () => {
-    saveToUsersRecipes(id, loggedInUserId);
   };
 
   return (
@@ -68,11 +61,11 @@ export default function PopUpRecipeDetailed(
             <div className="pop-up--recipe__sections">
               <div className="pop-up--recipe__section--top">
                 <div className="pop-up--recipe__title">{title}</div>
-                {loggedInUserId && loggedInUserId !== userId ? (
+                {loggedInUserId && loggedInUserId !== User.id ? (
                   <button
                     className="pop-up--recipe__btn"
                     onClick={() => {
-                      saveRecipe();
+                      saveToUsersRecipes(id);
                       setVisible(false);
                     }}
                   >
@@ -81,8 +74,8 @@ export default function PopUpRecipeDetailed(
                 ) : null}
               </div>
               <div className="pop-up--recipe__author">
-                <Link to={`${ROUTES.PROFILE_USER}/${userId}`}>
-                  {api.getUserName(userId)}
+                <Link to={`${ROUTES.PROFILE_USER}/${User.id}`}>
+                  {User.name}
                 </Link>
               </div>
               <div className="pop-up--recipe__section--description">
@@ -121,21 +114,21 @@ export default function PopUpRecipeDetailed(
               <div className="pop-up--recipe__section--statistics">
                 <div className="card__statistics-item likes">
                   <LikesIcon />
-                  {usersLiked.length} {t('LIKES')}
+                  {Recipe_Likes.length} {t('LIKES')}
                 </div>
                 <div className="card__statistics-item comments">
                   <CommentsIcon />
-                  {comments.length} {t('COMMENTS')}
+                  {Recipe_Comments.length} {t('COMMENTS')}
                 </div>
               </div>
             </div>
           </div>
           <div className="pop-up--recipe__section--comments">
             <div className="pop-up--recipe__section--comments__title">{`${t(
-              'COMMENTS_SECTION'
-            )} (${comments.length})`}</div>
+              'COMMENTS_SECTION',
+            )} (${Recipe_Comments.length})`}</div>
             <CommentsSection
-              comments={comments}
+              comments={Recipe_Comments}
               loggedInUserId={loggedInUserId}
               recipeId={id}
               createComment={createComment}

@@ -8,6 +8,7 @@ const userRouter = express.Router();
 
 userRouter.delete('/', middlewares.verifyAuthToken, userController.deleteById);
 userRouter.get('/:id', userController.findById);
+userRouter.get('/users/all', userController.findAll);
 userRouter.get('/', middlewares.verifyAuthToken, userController.findById);
 userRouter.put('/', middlewares.verifyAuthToken, userController.update);
 userRouter.post('/sign-up', userController.signUp);

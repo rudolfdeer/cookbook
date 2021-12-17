@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Redirect } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
 import Footer from '../Footer';
 import CardCookbook from './Card';
-
-import './index.scss';
-
 import HeaderConnect from '../../redux/containers/HeaderConnect';
-
 import api from '../../helpers/api';
 import PopUpCookbook from './PopUp';
 import ROUTES from '../../constants/routes';
 import { ICookbook, IUser } from '../../interfaces';
+
+import './index.scss';
 
 type ProfileUsersPageProps = {
   cookbooks: ICookbook[];

@@ -16,7 +16,7 @@ module.exports = {
         defaultValue: 'No description',
       },
       image: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1234),
         defaultValue: 'default.jpg',
       },
       views: {

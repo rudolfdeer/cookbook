@@ -7,6 +7,7 @@ import './index.scss';
 
 export default function NotFoundPage(): JSX.Element {
   const { t } = useTranslation();
+
   return (
     <main className="page--not-found">
       <img

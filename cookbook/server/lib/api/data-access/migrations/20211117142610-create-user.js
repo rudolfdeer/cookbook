@@ -28,7 +28,7 @@ module.exports = {
           defaultValue: 'No bio',
         },
         photo: {
-          type: Sequelize.STRING,
+          type: Sequelize.STRING(1234),
           defaultValue: 'images/default.jpg',
         },
       },

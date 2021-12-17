@@ -36,7 +36,6 @@ export default function ProfileCookbooksPage(
   if (!props.user) {
     return <Redirect to={ROUTES.NOT_FOUND} />;
   }
-  const { t } = useTranslation();
 
   const {
     cookbooks,
@@ -48,10 +47,11 @@ export default function ProfileCookbooksPage(
     deleteCookbook,
   } = props;
 
+  const { t } = useTranslation();
   const [isCreatePopUpVisible, setCreatePopUpVisible] = useState(false);
   const [isModifyPopUpVisible, setModifyPopUpVisible] = useState(false);
-  const photoSrc = user?.photo || '../../assets/images/photo-mask.png';
   const [selectedCookbookId, setSelectedCookbookId] = useState(0);
+  const photoSrc = user?.photo || '../../assets/images/photo-mask.png';
 
   useEffect(() => getUsersCreatedCookbooks(user?.id), []);
 

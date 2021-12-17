@@ -7,6 +7,7 @@ import FilterPanelRecipes from './FilterPanel';
 import PopUpRecipeDetailed from './PopUp';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 import { IRecipe } from '../../interfaces';
+
 import './index.scss';
 
 type RecipesPageProps = {
@@ -23,7 +24,6 @@ type RecipesPageProps = {
 };
 
 export default function RecipesPage(props: RecipesPageProps): JSX.Element {
-  const { t } = useTranslation();
   const {
     recipes,
     getAllRecipes,
@@ -33,6 +33,8 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
     saveToUsersRecipes,
     createComment,
   } = props;
+
+  const { t } = useTranslation();
   const [isVisible, setVisible] = useState(false);
   const [selectedCardId, setSelectedCardId] = useState(0);
 

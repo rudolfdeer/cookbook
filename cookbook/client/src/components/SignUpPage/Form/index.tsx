@@ -5,8 +5,9 @@ import { useTranslation } from 'react-i18next';
 import ERROR_MESSAGES from '../../../constants/errorMessages';
 import { EMAILREGEX } from '../../../constants/regex';
 import ROUTES from '../../../constants/routes';
-import './index.scss';
 import { IAuthRequestBody, ISignUpForm } from '../../../interfaces';
+
+import './index.scss';
 
 type SignUpFormProps = {
   signUp: (data: IAuthRequestBody) => Promise<void>;
@@ -14,8 +15,10 @@ type SignUpFormProps = {
 };
 
 export default function SignUpForm(props: SignUpFormProps): JSX.Element {
-  const { t } = useTranslation();
   const { signUp, setIsRedirected } = props;
+
+  const { t } = useTranslation();
+
   const formData = {};
 
   const onSubmit = (_values: ISignUpForm) => {

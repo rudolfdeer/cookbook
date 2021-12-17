@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import './index.scss';
-import { IRecipeComment } from '../../../../interfacesServer';
+import { IRecipeComment } from '../../../../interfaces';
 
 type CommentsSectionProps = {
   comments: IRecipeComment[];

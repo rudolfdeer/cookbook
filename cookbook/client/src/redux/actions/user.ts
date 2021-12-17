@@ -1,10 +1,5 @@
 import ACTION_TYPES from '../../constants/actionTypes';
-import { IUser } from '../../interfacesServer';
-
-export type AuthValues = {
-  email: string;
-  password: string;
-};
+import { IUser } from '../../interfaces';
 
 class UserActions {
   signIn(user: IUser) {

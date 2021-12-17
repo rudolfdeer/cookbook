@@ -1,5 +1,5 @@
 import ACTION_TYPES from '../../constants/actionTypes';
-import { IUser, ICookbook } from '../../interfacesServer';
+import { IUser, ICookbook } from '../../interfaces';
 
 class CookbookActions {
   getAll(cookbooks: ICookbook[]) {

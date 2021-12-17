@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ProfileRecipesPage from '../../components/ProfileRecipesPage';
-import { IState } from '../../interfacesServer';
+import { IState } from '../../interfaces';
 import {
   getUsersCreatedRecipes,
   createRecipe,

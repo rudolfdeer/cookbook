@@ -8,7 +8,7 @@ import ProfileSavedRecipeCard from './RecipeCard';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 import PopUpRecipeSaved from './PopUpRecipe';
 import PopUpCookbookSaved from './PopUpCookbook';
-import { ICookbook, IRecipe, IUser } from '../../interfacesServer';
+import { ICookbook, IRecipe, IUser } from '../../interfaces';
 
 import './index.scss';
 

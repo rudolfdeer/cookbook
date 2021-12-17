@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { Form, Field } from 'react-final-form';
 import { useTranslation } from 'react-i18next';
-import { RecipeValues } from '../../../redux/thunks/recipes';
+import { IRecipeRequestBody } from '../../../interfaces';
 
 import './index.scss';
 
@@ -9,7 +9,7 @@ type PopUpCreateRecipeProps = {
   loggedInUserId: number;
   setCreatePopUpVisible: Dispatch<SetStateAction<boolean>>;
   createRecipe: (
-    data: RecipeValues,
+    data: IRecipeRequestBody,
     imageSrc: string,
     userId: number,
   ) => Promise<void>;
@@ -33,7 +33,7 @@ export default function PopUpCreateRecipe(
 
   const [photoSrc, setPhotoSrc] = useState('');
 
-  const onSubmit = (values: RecipeValues) => {
+  const onSubmit = (values: IRecipeRequestBody) => {
     createRecipe(values, photoSrc, loggedInUserId);
     setCreatePopUpVisible(false);
   };

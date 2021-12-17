@@ -6,7 +6,7 @@ import CookbookCard from './Card';
 import FilterPanelCookbooks from './FilterPanel';
 import PopUpCookbookDetailed from './PopUp';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
-import { ICookbook, IRecipe } from '../../interfacesServer';
+import { ICookbook, IRecipe } from '../../interfaces';
 
 import './index.scss';
 

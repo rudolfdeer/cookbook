@@ -1,8 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { Form, Field } from 'react-final-form';
 import { useTranslation } from 'react-i18next';
-import { IRecipe } from '../../../interfacesServer';
-import { CookbookValues } from '../../../redux/thunks/cookbooks';
+import { ICookbookRequestBody, IRecipe } from '../../../interfaces';
 
 import './index.scss';
 
@@ -11,7 +10,7 @@ type PopUpCreateCookbookProps = {
   recipes: IRecipe[];
   setCreatePopUpVisible: Dispatch<SetStateAction<boolean>>;
   createCookbook: (
-    data: CookbookValues,
+    data: ICookbookRequestBody,
     imageSrc: string,
     userId: number,
   ) => Promise<void>;

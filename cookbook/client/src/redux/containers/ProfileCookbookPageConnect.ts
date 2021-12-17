@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ProfileCookbooksPage from '../../components/ProfileCookbooksPage';
-import { IState } from '../../interfacesServer';
+import { IState } from '../../interfaces';
 import {
   getUsersCreatedCookbooks,
   createCookbook,

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ICookbookComment } from '../../../../interfacesServer';
+import { ICookbookComment } from '../../../../interfaces';
 
 import './index.scss';
 

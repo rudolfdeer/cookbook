@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import LikesIcon from '../../svg/Likes';
 import ViewsIcon from '../../svg/Views';
 import './index.scss';
-import { IUser } from '../../../interfacesServer';
+import { IUser } from '../../../interfaces';
 
 type ProfileRecipeCardProps = {
   id: number;

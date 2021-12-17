@@ -7,7 +7,7 @@ import {
   createComment,
 } from '../thunks/recipes';
 import { saveToUsersRecipes } from '../thunks/user';
-import { IState } from '../../interfacesServer';
+import { IState } from '../../interfaces';
 
 function mapStateToProps(state: IState) {
   const { user, recipes } = state;

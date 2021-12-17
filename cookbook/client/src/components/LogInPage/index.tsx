@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import ROUTES from '../../constants/routes';
-import { IUser } from '../../interfacesServer';
-import { AuthValues } from '../../redux/actions/userActions';
+import { IAuthRequestBody, IUser } from '../../interfaces';
 import LogInForm from './Form';
 
 import './index.scss';
 
 type LogInPageProps = {
   user: IUser;
-  signIn: (loginInfo: AuthValues) => Promise<void>;
+  signIn: (loginInfo: IAuthRequestBody) => Promise<void>;
   getLoggedInUser: () => Promise<void>;
 };
 

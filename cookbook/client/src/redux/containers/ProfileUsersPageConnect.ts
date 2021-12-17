@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ProfileUsersPage from '../../components/ProfileUsersPage';
-import { IState } from '../../interfacesServer';
+import { IState } from '../../interfaces';
 import { getUsersCreatedCookbooks } from '../thunks/cookbooks';
 
 const mapStateToProps = (state: IState) => {

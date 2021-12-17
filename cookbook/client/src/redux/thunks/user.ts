@@ -1,15 +1,15 @@
 import { Dispatch } from 'redux';
-import api, { UserValues } from '../../helpers/api';
-import { IUser } from '../../interfacesServer';
-import userActions, { AuthValues } from '../actions/userActions';
+import api from '../../helpers/api';
+import { IAuthRequestBody, IUser, IUserRequestBody } from '../../interfaces';
+import userActions from '../actions/user';
 
-export const signIn = (data: AuthValues) => async (dispatch: Dispatch): Promise<void> => {
+export const signIn = (data: IAuthRequestBody) => async (dispatch: Dispatch): Promise<void> => {
   const user = await api.signIn(data);
 
   dispatch(userActions.signIn(user));
 };
 
-export const signUp = (data: AuthValues) => async (dispatch: Dispatch): Promise<void> => {
+export const signUp = (data: IAuthRequestBody) => async (dispatch: Dispatch): Promise<void> => {
   const user = await api.signUp(data);
 
   dispatch(userActions.signUp(user));
@@ -21,7 +21,7 @@ export const deleteUser = () => async (dispatch: Dispatch): Promise<void> => {
   dispatch(userActions.delete());
 };
 
-export const updateUser = (data: UserValues) => async (dispatch: Dispatch): Promise<void> => {
+export const updateUser = (data: IUserRequestBody) => async (dispatch: Dispatch): Promise<void> => {
   await api.updateUser(data);
   const user = await api.getLoggedInUser();
 

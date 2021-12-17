@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import HomePage from '../../components/HomePage';
-import { IState } from '../../interfacesServer';
+import { IState } from '../../interfaces';
 import { getAllCookbooks } from '../thunks/cookbooks';
 import { getAllRecipes } from '../thunks/recipes';
 

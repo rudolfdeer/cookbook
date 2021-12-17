@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ROUTES from '../../constants/routes';
 import SearchBar from './SearchBar';
-import { IUser } from '../../interfacesServer';
+import { IUser } from '../../interfaces';
 
 import './index.scss';
 

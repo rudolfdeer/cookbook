@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { IUser } from '../../../interfacesServer';
+import { IUser } from '../../../interfaces';
 import DotsIcon from '../../svg/Dots';
 import ViewsIcon from '../../svg/Views';
 

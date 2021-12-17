@@ -10,7 +10,7 @@ import {
 } from '../thunks/cookbooks';
 import { getAllRecipes } from '../thunks/recipes';
 import { getLoggedInUser, saveToUsersCookbooks, saveToUsersRecipes } from '../thunks/user';
-import { IState } from '../../interfacesServer';
+import { IState } from '../../interfaces';
 
 const mapStateToProps = (state: IState) => {
   const { user, cookbooks, recipes } = state;

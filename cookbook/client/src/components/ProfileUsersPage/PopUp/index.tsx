@@ -7,7 +7,7 @@ import LikesIcon from '../../svg/Likes';
 
 import './index.scss';
 import PopUpRecipeCard from './RecipeCard';
-import { ICookbook } from '../../../interfacesServer';
+import { ICookbook } from '../../../interfaces';
 
 type PopUpCookbookProps = {
   setPopUpCookbookVisible: Dispatch<SetStateAction<boolean>>;

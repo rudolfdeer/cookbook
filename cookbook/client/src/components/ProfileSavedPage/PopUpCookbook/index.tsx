@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ICookbook } from '../../../interfacesServer';
+import { ICookbook } from '../../../interfaces';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
 import PopUpRecipeCard from './RecipeCard';

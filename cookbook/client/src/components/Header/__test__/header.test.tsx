@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Header from '../index';
-import { ICookbook, IRecipe } from '../../../interfacesServer';
+import { ICookbook, IRecipe } from '../../../interfaces';
 
 describe('header component', () => {
   const props = {

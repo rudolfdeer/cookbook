@@ -1,16 +1,7 @@
 import { Dispatch } from 'redux';
 import api from '../../helpers/api';
-import recipeActions from '../actions/recipeActions';
-
-export interface RecipeValues {
-  title: string;
-  description: string;
-  ingredients: string;
-  directions: string;
-  time?: number;
-  views?:number;
-  likeUserIds?: number[];
-}
+import { IRecipeRequestBody } from '../../interfaces';
+import recipeActions from '../actions/recipe';
 
 export const getAllRecipes = () => async (dispatch: Dispatch): Promise<void> => {
   const recipes = await api.getAllRecipes();
@@ -46,7 +37,7 @@ export const createComment = (recipeId: number, text: string) => async (dispatch
   dispatch(recipeActions.createComment(recipes));
 };
 
-export const createRecipe = (data: RecipeValues, imageSrc: string, userId: number) => async (dispatch: Dispatch): Promise<void> => {
+export const createRecipe = (data: IRecipeRequestBody, imageSrc: string, userId: number) => async (dispatch: Dispatch): Promise<void> => {
   await api.createRecipe(data, imageSrc);
 
   const recipes = await api.getAllRecipes();
@@ -56,7 +47,7 @@ export const createRecipe = (data: RecipeValues, imageSrc: string, userId: numbe
 
 export const modifyRecipe = (
   recipeId: number,
-  data: RecipeValues,
+  data: IRecipeRequestBody,
   imageSrc: string,
   userId: number,
 ) => async (dispatch: Dispatch): Promise<void> => {

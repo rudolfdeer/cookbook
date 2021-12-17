@@ -12,7 +12,7 @@ import HeaderConnect from '../../redux/containers/HeaderConnect';
 import api from '../../helpers/api';
 import PopUpCookbook from './PopUp';
 import ROUTES from '../../constants/routes';
-import { ICookbook, IUser } from '../../interfacesServer';
+import { ICookbook, IUser } from '../../interfaces';
 
 type ProfileUsersPageProps = {
   cookbooks: ICookbook[];

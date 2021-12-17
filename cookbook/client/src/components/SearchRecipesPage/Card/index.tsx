@@ -4,7 +4,7 @@ import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
 import ViewsIcon from '../../svg/Views';
 import './index.scss';
-import { IUser } from '../../../interfacesServer';
+import { IUser } from '../../../interfaces';
 
 type RecipeCardProps = {
   id: number;

@@ -6,14 +6,13 @@ import Footer from '../Footer';
 
 import './index.scss';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
-import { IUser } from '../../interfacesServer';
-import { UserValues } from '../../helpers/api';
+import { IUser, IUserRequestBody } from '../../interfaces';
 
 type ProfileSettingsPageProps = {
   user: IUser;
   //logOut: (userId: number) => AnyAction;
   deleteUser: () => Promise<void>;
-  updateUser: (data: UserValues) => Promise<void>;
+  updateUser: (data: IUserRequestBody) => Promise<void>;
   changePassword: (password: string) => Promise<void>;
   changeEmail: (email: string) => Promise<void>;
 };

@@ -5,7 +5,7 @@ import ROUTES from '../../../constants/routes';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
 import CommentsSection from '../PopUp/CommentsSection';
-import { IRecipe } from '../../../interfacesServer';
+import { IRecipe } from '../../../interfaces';
 
 import './index.scss';
 

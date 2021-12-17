@@ -7,8 +7,7 @@ import ROUTES from '../../constants/routes';
 import PopUpCreateRecipe from './PopUpCreate';
 import PopUpModifyRecipe from './PopUpModify';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
-import { RecipeValues } from '../../redux/thunks/recipes';
-import { IRecipe, IUser } from '../../interfacesServer';
+import { IRecipe, IRecipeRequestBody, IUser } from '../../interfaces';
 
 import './index.scss';
 
@@ -17,13 +16,13 @@ type ProfileRecipesPageProps = {
   getUsersCreatedRecipes: (userId: number) => void;
   user: IUser;
   createRecipe: (
-    data: RecipeValues,
+    data: IRecipeRequestBody,
     imageSrc: string,
     userId: number,
   ) => Promise<void>;
   modifyRecipe: (
     recipeId: number,
-    data: RecipeValues,
+    data: IRecipeRequestBody,
     imageSrc: string,
     userId: number
   ) => Promise<void>;

@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 import ACTION_TYPES from '../../constants/actionTypes';
-import { ICookbook, ICookbookSaved } from '../../interfacesServer';
+import { ICookbook, ICookbookSaved } from '../../interfaces';
 
 const initialState = [] as ICookbook[];
 

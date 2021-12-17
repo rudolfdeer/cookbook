@@ -6,16 +6,10 @@ import ERROR_MESSAGES from '../../../constants/errorMessages';
 import { EMAILREGEX } from '../../../constants/regex';
 import ROUTES from '../../../constants/routes';
 import './index.scss';
-import { AuthValues } from '../../../redux/actions/userActions';
-
-type FormValues = {
-  email: string;
-  password: string;
-  confirm: string;
-};
+import { IAuthRequestBody, ISignUpForm } from '../../../interfaces';
 
 type SignUpFormProps = {
-  signUp: (data: AuthValues) => Promise<void>;
+  signUp: (data: IAuthRequestBody) => Promise<void>;
   setIsRedirected: Dispatch<SetStateAction<boolean>>;
 };
 
@@ -24,7 +18,7 @@ export default function SignUpForm(props: SignUpFormProps): JSX.Element {
   const { signUp, setIsRedirected } = props;
   const formData = {};
 
-  const onSubmit = (_values: FormValues) => {
+  const onSubmit = (_values: ISignUpForm) => {
     signUp({
       email: _values.email,
       password: _values.password,
@@ -46,8 +40,8 @@ export default function SignUpForm(props: SignUpFormProps): JSX.Element {
       <Form
         onSubmit={onSubmit}
         initialValues={formData}
-        validate={(values: FormValues) => {
-          const errors = {} as FormValues;
+        validate={(values: ISignUpForm) => {
+          const errors = {} as ISignUpForm;
 
           if (!values.email) {
             errors.email = ERROR_MESSAGES.REQUIRED;

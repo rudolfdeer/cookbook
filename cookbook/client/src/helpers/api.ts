@@ -1,33 +1,4 @@
-import { User } from '../interfaces';
-import { ICookbook, IRecipe, IUser } from '../interfacesServer';
-import { AuthValues } from '../redux/actions/userActions';
-
-export interface RecipeValues {
-  title: string;
-  description: string;
-  ingredients: string;
-  directions: string;
-  time?: number;
-  views?:number;
-  likeUserIds?: number[];
-}
-
-export interface CookbookValues {
-  title: string;
-  description: string;
-  recipesIds: number[];
-  tags?: string[];
-  views?: number;
-  likeUserIds?: number[];
-}
-
-export interface UserValues {
-  name?: string;
-  photo?: string;
-  bio?: string;
-  savedRecipesIds?: number[];
-  savedCookbooksIds?: number[];
-}
+import { IAuthRequestBody, ICookbook, ICookbookRequestBody, IRecipe, IRecipeRequestBody, IUser, IUserRequestBody } from '../interfaces';
 
 const base = 'http://localhost:3000/api/';
 const cookbooksUrl = `${base}cookbooks/`;
@@ -61,7 +32,7 @@ class Api {
     return result;
   }
 
-  async createRecipe(data: RecipeValues, imageSrc: string) {
+  async createRecipe(data: IRecipeRequestBody, imageSrc: string) {
     const directionsArr = data.directions.split(',');
     const ingredientArr = data.ingredients.split(',');
 
@@ -112,7 +83,7 @@ class Api {
     return result;
   }
 
-  async updateRecipe(recipeId: number, data: RecipeValues, imageSrc: string) {
+  async updateRecipe(recipeId: number, data: IRecipeRequestBody, imageSrc: string) {
     const {
       title,
       description,
@@ -160,7 +131,7 @@ class Api {
     return result;
   }
 
-  async createCookbook(data: CookbookValues, imageSrc: string) {
+  async createCookbook(data: ICookbookRequestBody, imageSrc: string) {
     const body = {
       title: data.title,
       image: imageSrc,
@@ -199,7 +170,7 @@ class Api {
     return result;
   }
 
-  async updateCookbook(cookbookId: number, data: CookbookValues, imageSrc: string) {
+  async updateCookbook(cookbookId: number, data: ICookbookRequestBody, imageSrc: string) {
     const {
       title,
       description,
@@ -237,7 +208,7 @@ class Api {
     });
   }
 
-  async signIn(data: AuthValues) {
+  async signIn(data: IAuthRequestBody) {
     const response = await fetch(`${userUrl}sign-in`, {
       method: 'POST',
       body: JSON.stringify(data),
@@ -251,7 +222,7 @@ class Api {
     return result;
   }
 
-  async signUp(data: AuthValues) {
+  async signUp(data: IAuthRequestBody) {
     const response = await fetch(`${userUrl}sign-up`, {
       method: 'POST',
       body: JSON.stringify(data),
@@ -272,7 +243,7 @@ class Api {
     });
   }
 
-  async updateUser(body: UserValues) {
+  async updateUser(body: IUserRequestBody) {
     const response = await fetch(`${userUrl}`, {
       method: 'PUT',
       body: JSON.stringify(body),

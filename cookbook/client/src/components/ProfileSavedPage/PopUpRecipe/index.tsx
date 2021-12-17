@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
-import { IRecipe } from '../../../interfacesServer';
+import { IRecipe } from '../../../interfaces';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
 

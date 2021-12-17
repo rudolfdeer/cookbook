@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ProfileSettingsPage from '../../components/ProfileSettingsPage';
-import { IState } from '../../interfacesServer';
+import { IState } from '../../interfaces';
 import {
   deleteUser,
   updateUser,

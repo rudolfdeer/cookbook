@@ -1,15 +1,7 @@
 import { Dispatch } from 'redux';
 import api from '../../helpers/api';
-import cookbookActions from '../actions/cookbookActions';
-
-export interface CookbookValues {
-  title: string;
-  description: string;
-  tags?: string[];
-  recipesIds: number[];
-  views?:number;
-  likeUserIds?: number[];
-}
+import { ICookbookRequestBody } from '../../interfaces';
+import cookbookActions from '../actions/cookbook';
 
 export const getAllCookbooks = () => async (dispatch: Dispatch): Promise<void> => {
   const cookbooks = await api.getAllCookbooks();
@@ -45,7 +37,7 @@ export const createComment = (cookbookId: number, text: string) => async (dispat
   dispatch(cookbookActions.createComment(cookbooks));
 };
 
-export const createCookbook = (data: CookbookValues, imageSrc: string, userId: number) => async (dispatch: Dispatch): Promise<void> => {
+export const createCookbook = (data: ICookbookRequestBody, imageSrc: string, userId: number) => async (dispatch: Dispatch): Promise<void> => {
   await api.createCookbook(data, imageSrc);
 
   const cookbooks = await api.getAllCookbooks();
@@ -55,7 +47,7 @@ export const createCookbook = (data: CookbookValues, imageSrc: string, userId: n
 
 export const modifyCookbook = (
   cookbookId: number,
-  data: CookbookValues,
+  data: ICookbookRequestBody,
   imageSrc: string,
   userId: number,
 ) => async (dispatch: Dispatch): Promise<void> => {

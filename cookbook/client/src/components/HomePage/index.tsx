@@ -7,7 +7,7 @@ import Footer from '../Footer';
 import CardPopular from './CardPopular';
 import CardRated from './CardRated';
 import CardTrending from './CardTrending';
-import { ICookbook, IRecipe } from '../../interfacesServer';
+import { ICookbook, IRecipe } from '../../interfaces';
 
 import './index.scss';
 

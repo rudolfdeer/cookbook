@@ -6,7 +6,7 @@ import RecipeCard from './Card';
 import FilterPanelRecipes from './FilterPanel';
 import PopUpRecipeDetailed from './PopUp';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
-import { IRecipe } from '../../interfacesServer';
+import { IRecipe } from '../../interfaces';
 import './index.scss';
 
 type RecipesPageProps = {

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import CommentsIcon from '../../../svg/Comments';
 import LikesIcon from '../../../svg/Likes';
 import ViewsIcon from '../../../svg/Views';
-import { IUser } from '../../../../interfacesServer';
+import { IUser } from '../../../../interfaces';
 
 import './index.scss';
 

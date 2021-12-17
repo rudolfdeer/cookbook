@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
-import { IState } from '../../interfacesServer';
+import { IState } from '../../interfaces';
 import { getLoggedInUser } from '../thunks/user';
 
 const mapStateToProps = (state: IState) => {

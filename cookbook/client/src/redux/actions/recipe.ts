@@ -1,5 +1,5 @@
 import ACTION_TYPES from '../../constants/actionTypes';
-import { IRecipe, IUser } from '../../interfacesServer';
+import { IRecipe, IUser } from '../../interfaces';
 
 class RecipeActions {
   getAll(recipes: IRecipe[]) {

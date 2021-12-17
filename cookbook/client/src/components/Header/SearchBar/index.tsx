@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import api from '../../../helpers/api';
+import { ISearchListItem } from '../../../interfaces';
 import './index.scss';
 import ResultList from './ResultList';
-
-interface ISearchListItem {
-  id: number;
-  name: string;
-}
 
 export default function SearchBar(): JSX.Element {
   const { t } = useTranslation();

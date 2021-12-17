@@ -7,8 +7,7 @@ import ProfileCookbookCard from './Card';
 import PopUpCreateCookbook from './PopUpCreate';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 import PopUpModifyCookbook from './PopUpModify';
-import { CookbookValues } from '../../redux/thunks/cookbooks';
-import { ICookbook, IRecipe, IUser } from '../../interfacesServer';
+import { ICookbook, ICookbookRequestBody, IRecipe, IUser } from '../../interfaces';
 
 import './index.scss';
 
@@ -18,13 +17,13 @@ type ProfileCookbooksPageProps = {
   getUsersCreatedCookbooks: (userId: number) => void;
   user: IUser;
   createCookbook: (
-    data: CookbookValues,
+    data: ICookbookRequestBody,
     imageSrc: string,
     userId: number,
   ) => Promise<void>;
   modifyCookbook: (
     cookbookId: number,
-    data: CookbookValues,
+    data: ICookbookRequestBody,
     imageSrc: string,
     userId: number
   ) => Promise<void>;

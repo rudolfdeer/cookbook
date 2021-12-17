@@ -6,7 +6,7 @@ import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
 import CommentsSection from './CommentsSection';
 import PopUpRecipeCard from './RecipeCard';
-import { ICookbook } from '../../../interfacesServer';
+import { ICookbook } from '../../../interfaces';
 
 import './index.scss';
 

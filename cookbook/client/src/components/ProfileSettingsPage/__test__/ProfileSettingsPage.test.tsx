@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import ProfileSettingsPage from '../index';
-import { ICookbook, IRecipe } from '../../../interfacesServer';
+import { ICookbook, IRecipe } from '../../../interfaces';
 
 describe('profile settings page component', () => {
   const props = {

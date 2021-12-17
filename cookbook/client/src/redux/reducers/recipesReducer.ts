@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux';
-import { IRecipe, IRecipeSaved } from '../../interfacesServer';
+import { IRecipe, IRecipeSaved } from '../../interfaces';
 import ACTION_TYPES from '../../constants/actionTypes';
 
 const initialState = [] as IRecipe[];

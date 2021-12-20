@@ -81,7 +81,7 @@ class CookbookActions {
 
   like(cookbooks: ICookbook[]) {
     return {
-      type: ACTION_TYPES.COOKBOOKS_GET_ALL,
+      type: ACTION_TYPES.COOKBOOKS_LIKE,
       payload: {
         cookbooks,
       },

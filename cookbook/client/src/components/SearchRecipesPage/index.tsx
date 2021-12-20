@@ -21,6 +21,7 @@ type RecipesPageProps = {
     recipeId: number,
     text: string
   ) => Promise<void>;
+  likeRecipe: (recipeId: number) => Promise<void>;
 };
 
 export default function RecipesPage(props: RecipesPageProps): JSX.Element {
@@ -32,6 +33,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
     loggedInUserId,
     saveToUsersRecipes,
     createComment,
+    likeRecipe,
   } = props;
 
   const { t } = useTranslation();
@@ -79,7 +81,8 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
                   key={el.id}
                   loggedInUserId={loggedInUserId}
                   saveToUsersRecipes={saveToUsersRecipes}
-                  likes={el.Recipe_Likes?.length}
+                  likes={el.Recipe_Likes}
+                  likeRecipe = {likeRecipe}
                 />
               ))}
             </div>

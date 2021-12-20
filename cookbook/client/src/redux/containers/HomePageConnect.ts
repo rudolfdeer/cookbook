@@ -5,11 +5,12 @@ import { getAllCookbooks } from '../thunks/cookbooks';
 import { getAllRecipes } from '../thunks/recipes';
 
 function mapStateToProps(state: IState) {
-  const { recipes, cookbooks } = state;
+  const { recipes, cookbooks, user } = state;
 
   return {
     recipes,
     cookbooks,
+    user,
   };
 }
 

@@ -79,7 +79,7 @@ export default function CookbookCard(props: CookbookCardProps): JSX.Element {
 
       <div className="card__info-container--bottom">
         <div className="card__statistics-item--likes">
-          <LikesIcon cookbookId = {id} likeCookbook = {likeCookbook} likeUserIds = {likeUserIds} loggedInUserId = {loggedInUserId}/>
+          <LikesIcon id = {id} likeCookbook = {likeCookbook} likeUserIds = {likeUserIds} loggedInUserId = {loggedInUserId}/>
           {likes.length} {t('LIKES')}
         </div>
         <div className="card__statistics-item">

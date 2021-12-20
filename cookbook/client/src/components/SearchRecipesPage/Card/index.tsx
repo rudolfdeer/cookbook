@@ -4,7 +4,7 @@ import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
 import ViewsIcon from '../../svg/Views';
 import './index.scss';
-import { IUser } from '../../../interfaces';
+import { IRecipeLike, IUser } from '../../../interfaces';
 
 type RecipeCardProps = {
   id: number;
@@ -12,13 +12,14 @@ type RecipeCardProps = {
   author: IUser;
   description: string;
   views: number;
-  likes: number;
+  likes: IRecipeLike[];
   image: string;
   comments: number;
   selectCard: Dispatch<SetStateAction<number>>;
   setVisible: Dispatch<SetStateAction<boolean>>;
   loggedInUserId: number;
   saveToUsersRecipes: (recipeId: number) => Promise<void>;
+  likeRecipe: (recipeId: number) => Promise<void>;
 };
 
 export default function RecipeCard(props: RecipeCardProps): JSX.Element {
@@ -36,6 +37,7 @@ export default function RecipeCard(props: RecipeCardProps): JSX.Element {
     selectCard,
     loggedInUserId,
     saveToUsersRecipes,
+    likeRecipe,
   } = props;
 
   const [isBtnVisible, setBtnVisible] = useState(false);
@@ -44,6 +46,8 @@ export default function RecipeCard(props: RecipeCardProps): JSX.Element {
     saveToUsersRecipes(id);
     setBtnVisible(false);
   };
+
+  const likeUserIds = likes.map((el) => el.UserId);
 
   const btnClone = (
     <div className="card__statistics-item__menu">
@@ -84,9 +88,9 @@ export default function RecipeCard(props: RecipeCardProps): JSX.Element {
               <ViewsIcon />
               {views} views
             </div>
-            <div className="card__statistics-item likes">
-              <LikesIcon />
-              {likes} {t('LIKES')}
+            <div className="card__statistics-item--likes">
+              <LikesIcon likeUserIds={likeUserIds} loggedInUserId={loggedInUserId} likeRecipe = {likeRecipe} id={id}/>
+              {likes.length} {t('LIKES')}
             </div>
             <div className="card__statistics-item comments">
               <CommentsIcon />

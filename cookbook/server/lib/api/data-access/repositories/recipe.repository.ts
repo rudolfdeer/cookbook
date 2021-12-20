@@ -124,6 +124,38 @@ const update = async (body: UpdatedRecipe, id: number) => {
   });
 };
 
+const like = async (userId: number, id: number) => {
+  const recipe = await Recipe.findOne({
+    where: {
+      id,
+    },
+    include: {
+      model: RecipeComment,
+      include: User,
+    },
+  });
+
+  await recipe.addUsers(userId);
+
+  return recipe;
+};
+
+const dislike = async (userId: number, id: number) => {
+  const recipe = await Recipe.findOne({
+    where: {
+      id,
+    },
+    include: {
+      model: RecipeComment,
+      include: User,
+    },
+  });
+
+  await recipe.removeUsers(userId);
+
+  return recipe;
+};
+
 const createComment = async (
   body: Comment,
   recipeId: number,
@@ -153,6 +185,8 @@ const recipeRepository = {
   findById,
   update,
   createComment,
+  like,
+  dislike,
 };
 
 module.exports = {

@@ -87,6 +87,22 @@
         }
       }
 
+      &--likes {
+        margin-right: 24px;
+        line-height: 19px;
+
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+
+        .card__statistics-item__icon {
+          &:hover {
+            cursor: pointer;
+            transform: scale(1.1);
+          }
+        }
+      }
+
       &__menu {
         display: block;
         position: absolute;

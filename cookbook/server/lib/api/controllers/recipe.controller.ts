@@ -57,6 +57,17 @@ const update = async (req: express.Request, res: express.Response) => {
   }
 };
 
+const like = async (req: express.Request, res: express.Response) => {
+  const { target, id } = req.params;
+  try {
+    const response = await recipeService.like(id, target);
+    res.status(CODE_STATUSES.OK).send(response);
+  } catch (err) {
+    const error = err as IError;
+    res.status(error.status).send(error.message);
+  }
+};
+
 const createComment = async (req: express.Request, res: express.Response) => {
   const comment = req.body;
   const { id, target } = req.params;
@@ -75,6 +86,7 @@ const recipeController = {
   findById,
   update,
   createComment,
+  like,
 };
 
 module.exports = {

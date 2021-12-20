@@ -9,6 +9,7 @@ import ViewsIcon from '../../svg/Views';
 import './index.scss';
 
 type RecipeCardRatedProps = {
+  id: number;
   title: string;
   author: IUser;
   views: number;
@@ -18,13 +19,16 @@ type RecipeCardRatedProps = {
   }[];
   image: string;
   comments: number;
+  loggedInUserId: number;
 };
 
 export default function CardRated(props: RecipeCardRatedProps): JSX.Element {
   const { t } = useTranslation();
   const {
-    views, image, title, author, likes, comments,
+    id, views, image, title, author, likes, comments, loggedInUserId,
   } = props;
+
+  const likeUserIds = likes.map((el) => el.UserId);
 
   return (
     <div className="card">
@@ -48,7 +52,7 @@ export default function CardRated(props: RecipeCardRatedProps): JSX.Element {
 
       <div className="card__info-container--bottom">
         <div className="card__statistics-item">
-          <LikesIcon />
+          <LikesIcon likeUserIds = {likeUserIds} loggedInUserId={loggedInUserId} id = {id}/>
           {likes.length} {t('LIKES')}
         </div>
         <div className="card__statistics-item">

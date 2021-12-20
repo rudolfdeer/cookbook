@@ -102,7 +102,7 @@ export default function PopUpCookbookDetailed(
               <LikesIcon
                 loggedInUserId={loggedInUserId}
                 likeUserIds = {likeUserIds}
-                cookbookId={id}
+                id={id}
               />
               {Cookbook_Likes.length} {t('LIKES')}
             </div>

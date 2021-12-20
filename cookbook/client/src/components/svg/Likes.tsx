@@ -4,12 +4,13 @@ type LikesIconProps = {
   loggedInUserId?: number;
   likeUserIds?: number[];
   likeCookbook?: (cookbookId: number) => Promise<void>;
-  cookbookId?: number;
+  likeRecipe?: (recipeId: number) => Promise<void>;
+  id?: number;
 };
 
 export default function LikesIcon(props: LikesIconProps): JSX.Element {
   const {
-    loggedInUserId, likeUserIds, likeCookbook, cookbookId, 
+    loggedInUserId, likeUserIds, likeCookbook, id, likeRecipe,
   } = props;
 
   const grey = '#dadada';
@@ -30,8 +31,12 @@ export default function LikesIcon(props: LikesIconProps): JSX.Element {
 
   const like = () => {
     if (!props.loggedInUserId) return;
-
-    likeCookbook(cookbookId);
+    if (likeCookbook) {
+      likeCookbook(id);
+    }
+    if (likeRecipe) {
+      likeRecipe(id)
+    }
     color === yellow ? setColor(grey) : setColor(yellow);
   };
 

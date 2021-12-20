@@ -21,6 +21,12 @@ recipeRouter.post(
   recipeController.createComment,
 );
 
+recipeRouter.post(
+  '/:id/like',
+  middlewares.verifyAuthToken,
+  recipeController.like,
+);
+
 module.exports = {
   recipeRouter,
 };

@@ -16,6 +16,11 @@ export default function recipesReducer(
       return [...recipes];
     }
 
+    case ACTION_TYPES.RECIPES_LIKE: {
+      const { recipes } = action.payload;
+      return [...recipes];
+    }
+
     case ACTION_TYPES.RECIPES_SORT: {
       const { recipes, order } = action.payload;
 

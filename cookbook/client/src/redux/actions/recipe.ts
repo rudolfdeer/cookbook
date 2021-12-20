@@ -78,6 +78,15 @@ class RecipeActions {
     };
   }
 
+  like(recipes: IRecipe[]) {
+    return {
+      type: ACTION_TYPES.RECIPES_LIKE,
+      payload: {
+        recipes,
+      },
+    };
+  }
+
   delete(recipes: IRecipe[], userId: number) {
     return {
       type: ACTION_TYPES.RECIPES_DELETE,

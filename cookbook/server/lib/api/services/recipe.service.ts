@@ -60,6 +60,28 @@ const update = async (
   return response;
 };
 
+interface IUser {
+  id: number;
+}
+
+const like = async (
+  userId: number,
+  recipeId: number,
+) => {
+  const recipe = await recipeRepository.findById(recipeId);
+  const likeUsers = await recipe.getUsers();
+  const likeUserIds = likeUsers.map((el: IUser) => el.id);
+
+  if (likeUserIds.indexOf(userId) === -1) {
+    await recipeRepository.like(userId, recipeId);
+  } else {
+    await recipeRepository.dislike(userId, recipeId);
+  }
+
+  const response = recipeRepository.findById(recipeId);
+  return response;
+};
+
 const createComment = async (
   body: Comment,
   recipeId: number,
@@ -76,6 +98,7 @@ const recipeService = {
   findById,
   update,
   createComment,
+  like,
 };
 
 module.exports = {

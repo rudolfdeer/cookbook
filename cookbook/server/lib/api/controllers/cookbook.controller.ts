@@ -59,7 +59,6 @@ const update = async (req: express.Request, res: express.Response) => {
 
 const like = async (req: express.Request, res: express.Response) => {
   const { target, id } = req.params;
-  console.log('target:', target, 'userId:', id);
   try {
     const response = await cookbookService.like(id, target);
     res.status(CODE_STATUSES.OK).send(response);

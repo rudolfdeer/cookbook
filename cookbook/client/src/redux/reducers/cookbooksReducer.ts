@@ -16,6 +16,11 @@ export default function cookbooksReducer(
       return [...cookbooks];
     }
 
+    case ACTION_TYPES.COOKBOOKS_LIKE: {
+      const { cookbooks } = action.payload;
+      return [...cookbooks];
+    }
+
     case ACTION_TYPES.COOKBOOKS_FILTER: {
       const { tags, userId, cookbooks } = action.payload;
       const appliedTags = tags.sort();

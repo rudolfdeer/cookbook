@@ -7,7 +7,7 @@ import Footer from '../Footer';
 import CardPopular from './CardPopular';
 import CardRated from './CardRated';
 import CardTrending from './CardTrending';
-import { ICookbook, IRecipe } from '../../interfaces';
+import { ICookbook, IRecipe, IUser } from '../../interfaces';
 
 import './index.scss';
 
@@ -16,12 +16,13 @@ type HomePageProps = {
   getAllRecipes: () => Promise<void>;
   cookbooks: ICookbook[];
   getAllCookbooks: () => Promise<void>;
+  user: IUser;
 };
 
 export default function HomePage(props: HomePageProps): JSX.Element {
   const { t } = useTranslation();
   const {
-    recipes, getAllRecipes, cookbooks, getAllCookbooks
+    recipes, getAllRecipes, cookbooks, getAllCookbooks, user,
   } = props;
 
   const navList = t('SEARCH_NAV_LIST', { returnObjects: true }) as string[];
@@ -85,6 +86,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
               {recipes
                 ?.map((el) => (
                   <CardRated
+                    id = {el.id}
                     title={el.title}
                     author={el.User}
                     views={el.views}
@@ -92,6 +94,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
                     image={el.image}
                     key={el.id}
                     likes={el.Recipe_Likes}
+                    loggedInUserId = {user.id}
                   />
                 ))
                 .slice(0, 4)}

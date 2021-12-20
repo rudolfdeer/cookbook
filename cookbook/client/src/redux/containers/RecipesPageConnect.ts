@@ -5,6 +5,7 @@ import {
   getAllRecipes,
   sortRecipes,
   createComment,
+  likeRecipe,
 } from '../thunks/recipes';
 import { saveToUsersRecipes } from '../thunks/user';
 import { IState } from '../../interfaces';
@@ -25,6 +26,7 @@ const mapDispatchToProps = {
   filterRecipes,
   saveToUsersRecipes,
   createComment,
+  likeRecipe,
 };
 
 const RecipesPageConnect = connect(

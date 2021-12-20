@@ -63,3 +63,10 @@ export const deleteRecipe = (recipeId: number, userId: number) => async (dispatc
 
   dispatch(recipeActions.delete(recipes, userId));
 };
+
+export const likeRecipe = (recipeId: number) => async (dispatch: Dispatch): Promise<void> => {
+  await api.likeRecipe(recipeId);
+  const recipes = await api.getAllRecipes();
+
+  dispatch(recipeActions.like(recipes));
+};

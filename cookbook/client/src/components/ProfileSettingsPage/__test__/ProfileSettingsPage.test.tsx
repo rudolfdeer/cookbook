@@ -18,7 +18,7 @@ describe('profile settings page component', () => {
     updateUser: jest.fn(),
     changeEmail: jest.fn(),
     changePassword: jest.fn(),
-    //logOut: jest.fn(),
+    signOut: jest.fn(),
     deleteUser: jest.fn(),
   };
 

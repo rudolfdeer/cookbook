@@ -13,6 +13,7 @@ userRouter.get('/', middlewares.verifyAuthToken, userController.findById);
 userRouter.put('/', middlewares.verifyAuthToken, userController.update);
 userRouter.post('/sign-up', userController.signUp);
 userRouter.post('/sign-in', userController.signIn);
+userRouter.delete('/sign-out', userController.signOut);
 userRouter.post(
   '/change-email',
   middlewares.verifyAuthToken,

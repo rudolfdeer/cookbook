@@ -236,6 +236,13 @@ class Api {
     return result;
   }
 
+  async signOut() {
+    await fetch(`${userUrl}sign-out`, {
+      method: 'DELETE',
+      credentials: 'include',
+    });
+  }
+
   async deleteUser() {
     await fetch(`${userUrl}`, {
       method: 'DELETE',

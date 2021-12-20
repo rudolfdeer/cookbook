@@ -15,6 +15,12 @@ export const signUp = (data: IAuthRequestBody) => async (dispatch: Dispatch): Pr
   dispatch(userActions.signUp(user));
 };
 
+export const signOut = () => async (dispatch: Dispatch): Promise<void> => {
+  await api.signOut();
+
+  dispatch(userActions.signOut());
+};
+
 export const deleteUser = () => async (dispatch: Dispatch): Promise<void> => {
   await api.deleteUser();
 

@@ -15,6 +15,7 @@ type ProfileSettingsPageProps = {
   updateUser: (data: IUserRequestBody) => Promise<void>;
   changePassword: (password: string) => Promise<void>;
   changeEmail: (email: string) => Promise<void>;
+  signOut: () => Promise<void>;
 };
 
 export default function ProfileSettingsPage(
@@ -33,6 +34,7 @@ export default function ProfileSettingsPage(
     updateUser,
     changePassword,
     changeEmail,
+    signOut,
   } = props;
   const {
     name, email, password, bio, photo
@@ -44,7 +46,7 @@ export default function ProfileSettingsPage(
   const [newBio, setNewBio] = useState(bio);
   const [newName, setNewName] = useState(name);
   const [newEmail, setNewEmail] = useState(email);
-  const [newPassword, setNewPassword] = useState(password);
+  const [newPassword, setNewPassword] = useState('');
   const [photoSrc, setPhotoSrc] = useState(
     photo || './assets/images/photo-mask.png',
   );
@@ -287,7 +289,7 @@ export default function ProfileSettingsPage(
               <button
                 className="profile-page--settings__btns__btn--logout"
                 onClick={() => {
-                  //logOut(id);
+                  signOut();
                 }}
               >
                 {t('LOG_OUT_BTN')}

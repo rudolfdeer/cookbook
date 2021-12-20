@@ -71,9 +71,19 @@ const signIn = async (req: express.Request, res: express.Response) => {
       email,
       password,
     });
-    console.log(token);
     res.cookie('jwt', token, { httpOnly: true });
     res.status(CODE_STATUSES.OK).send(response);
+  } catch (err) {
+    const error = err as IError;
+    res.status(error.status).send(error.message);
+  }
+};
+
+const signOut = async (req: express.Request, res: express.Response) => {
+  try {
+    console.log('1');
+    res.clearCookie('jwt');
+    res.status(CODE_STATUSES.OK).send('logged out');
   } catch (err) {
     const error = err as IError;
     res.status(error.status).send(error.message);
@@ -114,6 +124,7 @@ const userController = {
   update,
   signUp,
   signIn,
+  signOut,
   changeEmail,
   changePassword,
 };

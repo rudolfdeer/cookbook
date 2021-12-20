@@ -7,6 +7,7 @@ import {
   changePassword,
   changeEmail,
   getLoggedInUser,
+  signOut,
 } from '../thunks/user';
 
 function mapStateToProps(state: IState) {
@@ -22,6 +23,7 @@ const mapDispatchToProps = {
   // changeUserPassword,
   // updateUserPhoto,
   //logOut,
+  signOut,
   deleteUser,
   updateUser,
   changePassword,

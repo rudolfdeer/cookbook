@@ -20,6 +20,12 @@ class UserActions {
     };
   }
 
+  signOut() {
+    return {
+      type: ACTION_TYPES.USER_SIGN_OUT,
+    };
+  }
+
   delete() {
     return {
       type: ACTION_TYPES.USER_DELETE,
@@ -32,12 +38,6 @@ class UserActions {
       payload: {
         user,
       },
-    };
-  }
-
-  logOut() {
-    return {
-      type: ACTION_TYPES.USER_LOG_OUT,
     };
   }
 }

@@ -59,6 +59,28 @@ const update = async (
   return response;
 };
 
+interface IUser {
+  id: number;
+}
+
+const like = async (
+  userId: number,
+  cookbookId: number,
+) => {
+  const cookbook = await cookbookRepository.findById(cookbookId);
+  const likeUser = await cookbook.getUsers();
+  const likeUserIds = likeUser.map((el: IUser) => el.id);
+
+  if (likeUserIds.indexOf(userId) === -1) {
+    await cookbookRepository.like(userId, cookbookId);
+  } else {
+    await cookbookRepository.dislike(userId, cookbookId);
+  }
+
+  const response = cookbookRepository.findById(cookbookId);
+  return response;
+};
+
 const createComment = async (
   body: Comment,
   cookbookId: number,
@@ -79,6 +101,7 @@ const cookbookService = {
   findById,
   update,
   createComment,
+  like,
 };
 
 module.exports = {

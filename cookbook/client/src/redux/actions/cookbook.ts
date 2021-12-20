@@ -79,6 +79,15 @@ class CookbookActions {
     };
   }
 
+  like(cookbooks: ICookbook[]) {
+    return {
+      type: ACTION_TYPES.COOKBOOKS_GET_ALL,
+      payload: {
+        cookbooks,
+      },
+    };
+  }
+
   delete(cookbooks: ICookbook[], userId: number) {
     return {
       type: ACTION_TYPES.COOKBOOKS_DELETE,

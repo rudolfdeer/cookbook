@@ -57,6 +57,18 @@ const update = async (req: express.Request, res: express.Response) => {
   }
 };
 
+const like = async (req: express.Request, res: express.Response) => {
+  const { target, id } = req.params;
+  console.log('target:', target, 'userId:', id);
+  try {
+    const response = await cookbookService.like(id, target);
+    res.status(CODE_STATUSES.OK).send(response);
+  } catch (err) {
+    const error = err as IError;
+    res.status(error.status).send(error.message);
+  }
+};
+
 const createComment = async (req: express.Request, res: express.Response) => {
   const comment = req.body;
   const { id, target } = req.params;
@@ -76,6 +88,7 @@ const cookbookController = {
   findById,
   update,
   createComment,
+  like,
 };
 
 module.exports = {

@@ -153,11 +153,43 @@ const update = async (body: UpdatedCookbook, id: number) => {
   };
 
   cookbook.setRecipes(recipesIds);
-  cookbook.setUsers(likeUserIds);
+  //cookbook.setUsers(likeUserIds);
 
   return cookbook.update(updatedCookbook, {
     include: CookbookComment,
   });
+};
+
+const like = async (userId: number, id: number) => {
+  const cookbook = await Cookbook.findOne({
+    where: {
+      id,
+    },
+    include: {
+      model: CookbookComment,
+      include: User,
+    },
+  });
+
+  await cookbook.addUsers(userId);
+
+  return cookbook;
+};
+
+const dislike = async (userId: number, id: number) => {
+  const cookbook = await Cookbook.findOne({
+    where: {
+      id,
+    },
+    include: {
+      model: CookbookComment,
+      include: User,
+    },
+  });
+
+  await cookbook.removeUsers(userId);
+
+  return cookbook;
 };
 
 const createComment = async (
@@ -188,6 +220,8 @@ const cookbookRepository = {
   findById,
   update,
   createComment,
+  like,
+  dislike,
 };
 
 module.exports = {

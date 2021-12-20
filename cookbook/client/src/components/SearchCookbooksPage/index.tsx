@@ -25,7 +25,7 @@ type CookbooksPageProps = {
     cookbookId: number,
     text: string
   ) => Promise<void>;
-  // likeCookbook: (userId: number, cookbookId: number) => AnyAction;
+  likeCookbook: (cookbookId: number) => Promise<void>;
 };
 
 export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
@@ -41,7 +41,8 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
     saveToUsersRecipes,
     createComment,
     getLoggedInUser,
-    // likeCookbook,
+    likeCookbook,
+
   } = props;
 
   const [isVisible, setVisible] = useState(false);
@@ -85,14 +86,14 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
                   title={el.title}
                   author={el.User}
                   views={el.views}
-                  likes={el.Cookbook_Likes?.length}
+                  likes={el.Cookbook_Likes}
                   comments={el.Cookbook_Comments?.length}
                   image={el.image}
                   description={el.description}
                   key={el.id}
                   selectCard={setChosenCardId}
                   openDetailedInfo={setVisible}
-                  // likeCookbook={likeCookbook}
+                  likeCookbook={likeCookbook}
                   loggedInUserId={loggedInUserId}
                 />
               ))}
@@ -106,7 +107,6 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
               saveToUsersCookbooks={saveToUsersCookbooks}
               saveToUsersRecipes={saveToUsersRecipes}
               createComment={createComment}
-              // likeCookbook={likeCookbook}
             />
           ) : null}
         </div>

@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
-import { IUser } from '../../../interfaces';
+import { ICookbookLike, IUser } from '../../../interfaces';
 import CommentsIcon from '../../svg/Comments';
 import DotsIcon from '../../svg/Dots';
 import LikesIcon from '../../svg/Likes';
@@ -16,11 +16,11 @@ type CookbookCardProps = {
   views: number;
   image: string;
   comments: number;
-  likes: number;
+  likes: ICookbookLike[];
   selectCard: Dispatch<SetStateAction<number>>;
   openDetailedInfo: Dispatch<SetStateAction<boolean>>;
   loggedInUserId: number;
-  // likeCookbook: (userId: number, cookbookId: number) => AnyAction;
+  likeCookbook: (cookbookId: number) => Promise<void>;
 };
 
 export default function CookbookCard(props: CookbookCardProps): JSX.Element {
@@ -36,8 +36,11 @@ export default function CookbookCard(props: CookbookCardProps): JSX.Element {
     comments,
     openDetailedInfo,
     selectCard,
-    // likeCookbook,
+    likeCookbook,
+    loggedInUserId,
   } = props;
+
+  const likeUserIds = likes.map((el) => el.UserId);
 
   return (
     <div className="card">
@@ -75,9 +78,9 @@ export default function CookbookCard(props: CookbookCardProps): JSX.Element {
       </div>
 
       <div className="card__info-container--bottom">
-        <div className="card__statistics-item likes">
-          <LikesIcon />
-          {likes} {t('LIKES')}
+        <div className="card__statistics-item--likes">
+          <LikesIcon cookbookId = {id} likeCookbook = {likeCookbook} likeUserIds = {likeUserIds} loggedInUserId = {loggedInUserId}/>
+          {likes.length} {t('LIKES')}
         </div>
         <div className="card__statistics-item">
           <CommentsIcon />

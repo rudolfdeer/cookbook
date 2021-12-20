@@ -20,7 +20,6 @@ type PopUpCookbookDetailedProps = {
     cookbookId: number,
     text: string
   ) => Promise<void>;
-  // likeCookbook: (userId: number, cookbookId: number) => AnyAction;
 };
 
 export default function PopUpCookbookDetailed(
@@ -34,7 +33,6 @@ export default function PopUpCookbookDetailed(
     saveToUsersRecipes,
     saveToUsersCookbooks,
     createComment,
-    // likeCookbook,
   } = props;
   const {
     id,
@@ -57,6 +55,7 @@ export default function PopUpCookbookDetailed(
     }
   }
   const recipes = Recipe_Cookbooks.map((el) => el.Recipe);
+  const likeUserIds = Cookbook_Likes.map((el) => el.UserId);
 
   return (
     <div className="overlay" onClick={(e) => closePopUp(e)}>
@@ -102,7 +101,7 @@ export default function PopUpCookbookDetailed(
             <div className="card__statistics-item--likes">
               <LikesIcon
                 loggedInUserId={loggedInUserId}
-                // likeCookbook={likeCookbook}
+                likeUserIds = {likeUserIds}
                 cookbookId={id}
               />
               {Cookbook_Likes.length} {t('LIKES')}

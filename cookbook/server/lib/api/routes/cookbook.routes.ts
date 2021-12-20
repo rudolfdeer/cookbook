@@ -29,6 +29,12 @@ cookbookRouter.post(
   cookbookController.createComment,
 );
 
+cookbookRouter.post(
+  '/:id/like',
+  middlewares.verifyAuthToken,
+  cookbookController.like,
+);
+
 module.exports = {
   cookbookRouter,
 };

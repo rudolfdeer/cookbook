@@ -6,7 +6,7 @@ import {
   filterCookbooks,
   createComment,
   hideUsersCookbooks,
-  // likeCookbook,
+  likeCookbook,
 } from '../thunks/cookbooks';
 import { getAllRecipes } from '../thunks/recipes';
 import { getLoggedInUser, saveToUsersCookbooks, saveToUsersRecipes } from '../thunks/user';
@@ -33,7 +33,7 @@ const mapDispatchToProps = {
   createComment,
   hideUsersCookbooks,
   //updateUser,
-  // likeCookbook,
+  likeCookbook,
   getLoggedInUser,
 };
 

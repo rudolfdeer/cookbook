@@ -71,10 +71,10 @@ export const hideUsersCookbooks = () => async (dispatch: Dispatch): Promise<void
   dispatch(cookbookActions.delete(cookbooks, user.id));
 };
 
-//
-export const likeCookbook = () => async (dispatch: Dispatch): Promise<void> => {
-  const cookbooks = await api.getAllCookbooks();
-  const user = await api.getLoggedInUser();
+export const likeCookbook = (cookbookId: number) => async (dispatch: Dispatch): Promise<void> => {
+  await api.likeCookbook(cookbookId);
 
-  dispatch(cookbookActions.delete(cookbooks, user.id));
+  const cookbooks = await api.getAllCookbooks();
+
+  dispatch(cookbookActions.like(cookbooks));
 };

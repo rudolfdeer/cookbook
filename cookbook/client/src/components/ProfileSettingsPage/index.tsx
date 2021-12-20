@@ -3,14 +3,13 @@ import { Link, Redirect } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ROUTES from '../../constants/routes';
 import Footer from '../Footer';
-
-import './index.scss';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 import { IUser, IUserRequestBody } from '../../interfaces';
 
+import './index.scss';
+
 type ProfileSettingsPageProps = {
   user: IUser;
-  //logOut: (userId: number) => AnyAction;
   deleteUser: () => Promise<void>;
   updateUser: (data: IUserRequestBody) => Promise<void>;
   changePassword: (password: string) => Promise<void>;
@@ -29,7 +28,6 @@ export default function ProfileSettingsPage(
 
   const {
     user,
-    //logOut,
     deleteUser,
     updateUser,
     changePassword,
@@ -37,7 +35,7 @@ export default function ProfileSettingsPage(
     signOut,
   } = props;
   const {
-    name, email, password, bio, photo
+    name, email, bio, photo,
   } = user;
   const [isBioDisabled, setBioDisabled] = useState(true);
   const [isNameDisabled, setNameDisabled] = useState(true);
@@ -65,7 +63,6 @@ export default function ProfileSettingsPage(
       })
     };
     reader.readAsDataURL(file);
-    
   };
 
   return (

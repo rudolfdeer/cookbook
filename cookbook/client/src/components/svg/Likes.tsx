@@ -1,40 +1,37 @@
 import React, { useState } from 'react';
-import { AnyAction } from 'redux';
 
 type LikesIconProps = {
   loggedInUserId?: number;
-  usersLiked?: number[];
-  likeCookbook?: (userId: number, cookbookId: number) => AnyAction;
+  likeUserIds?: number[];
+  likeCookbook?: (cookbookId: number) => Promise<void>;
   cookbookId?: number;
 };
 
 export default function LikesIcon(props: LikesIconProps): JSX.Element {
+  const {
+    loggedInUserId, likeUserIds, likeCookbook, cookbookId, 
+  } = props;
+
   const grey = '#dadada';
   const yellow = '#ffbc01';
 
-  let defaultColor;
-
-  const {
-    loggedInUserId, usersLiked, likeCookbook, cookbookId,
-  } = props;
-
-  if (!loggedInUserId || !usersLiked) {
-    defaultColor = grey;
-  } else {
-    const index = usersLiked.indexOf(loggedInUserId);
-    if (index > -1) {
-      defaultColor = yellow;
-    } else {
-      defaultColor = grey;
+  const getDefaultColor = () => {
+    if (!loggedInUserId || !likeUserIds) {
+      return grey;
     }
-  }
+    const index = likeUserIds.indexOf(loggedInUserId);
+    if (index > -1) {
+      return yellow;
+    }
+    return grey;
+  };
 
-  const [color, setColor] = useState(defaultColor);
+  const [color, setColor] = useState(getDefaultColor());
 
   const like = () => {
     if (!props.loggedInUserId) return;
 
-    likeCookbook(loggedInUserId, cookbookId);
+    likeCookbook(cookbookId);
     color === yellow ? setColor(grey) : setColor(yellow);
   };
 

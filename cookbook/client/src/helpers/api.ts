@@ -170,6 +170,18 @@ class Api {
     return result;
   }
 
+  async likeCookbook(cookbookId: number) {
+    const response = await fetch(`${cookbooksUrl}${cookbookId}/like`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
+    const result = await response.json();
+    return result;
+  }
+
   async updateCookbook(cookbookId: number, data: ICookbookRequestBody, imageSrc: string) {
     const {
       title,

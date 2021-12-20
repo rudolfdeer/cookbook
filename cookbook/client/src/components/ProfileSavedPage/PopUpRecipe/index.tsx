@@ -16,7 +16,7 @@ export default function PopUpRecipeSaved(
   props: PopUpRecipeSavedProps,
 ): JSX.Element {
   const { t } = useTranslation();
-  const { setRecipePopUpVisible, recipe } = props;
+  const { setRecipePopUpVisible, recipe, loggedInUserId } = props;
   console.log(recipe);
   const {
     image,
@@ -35,6 +35,9 @@ export default function PopUpRecipeSaved(
       setRecipePopUpVisible(false);
     }
   };
+
+  const likeUserIds = Recipe_Likes.map((el) => el.UserId);
+  const commentedUsersIds = Recipe_Comments.map((el) => el.UserId);
 
   return (
     <div className="overlay" onClick={(e) => closePopUp(e)}>
@@ -86,11 +89,11 @@ export default function PopUpRecipeSaved(
               </div>
               <div className="pop-up--recipe__section--statistics">
                 <div className="card__statistics-item likes">
-                  <LikesIcon />
+                  <LikesIcon likeUserIds = {likeUserIds} loggedInUserId={loggedInUserId}/>
                   {Recipe_Likes.length} {t('LIKES')}
                 </div>
                 <div className="card__statistics-item comments">
-                  <CommentsIcon />
+                  <CommentsIcon commentedUsersIds={commentedUsersIds} loggedInUserId={loggedInUserId}/>
                   {Recipe_Comments.length} {t('COMMENTS')}
                 </div>
               </div>

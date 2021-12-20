@@ -101,7 +101,7 @@ export default function ProfileSavedPage(
                   key={el.id}
                   setCookbookPopUpVisible={setCookbookPopUpVisible}
                   setSelectedCookbookId={setSelectedCookbookId}
-                  loggedInUserId = {user.id}
+                  loggedInUserId = {id}
                 />
               ))}
             </div>

@@ -17,6 +17,7 @@ export default function PopUpRecipeSaved(
 ): JSX.Element {
   const { t } = useTranslation();
   const { setRecipePopUpVisible, recipe } = props;
+  console.log(recipe);
   const {
     image,
     description,

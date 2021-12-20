@@ -202,6 +202,8 @@ const createComment = async (
     {
       text,
       date,
+      UserId: userId,
+      CookbookId: cookbookId,
     },
     {
       include: [User, Cookbook],

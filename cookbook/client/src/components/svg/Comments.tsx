@@ -1,6 +1,29 @@
 import React from 'react';
 
-export default function CommentsIcon(): JSX.Element {
+type CommentsIconProps = {
+  loggedInUserId?: number;
+  commentedUsersIds?: number[];
+};
+
+export default function CommentsIcon(props: CommentsIconProps): JSX.Element {
+  const {
+    loggedInUserId, commentedUsersIds
+  } = props;
+
+  const grey = '#dadada';
+  const yellow = '#ffbc01';
+
+  const getColor = () => {
+    if (!loggedInUserId || !commentedUsersIds) {
+      return grey;
+    }
+    const index = commentedUsersIds.indexOf(loggedInUserId);
+    if (index > -1) {
+      return yellow;
+    }
+    return grey;
+  };
+
   return (
     <svg
       className="card__statistics-item__icon"
@@ -12,7 +35,7 @@ export default function CommentsIcon(): JSX.Element {
     >
       <path
         d="M0 15V1.66667C0 0.746192 0.746192 0 1.66667 0H13.3333C14.2538 0 15 0.746192 15 1.66667V10C15 10.9205 14.2538 11.6667 13.3333 11.6667H5C4.63928 11.666 4.28818 11.783 4 12L0 15Z"
-        fill="#DADADA"
+        fill={`${getColor()}`}
       />
     </svg>
   );

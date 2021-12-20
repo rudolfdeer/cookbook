@@ -56,6 +56,7 @@ export default function PopUpCookbookDetailed(
   }
   const recipes = Recipe_Cookbooks.map((el) => el.Recipe);
   const likeUserIds = Cookbook_Likes.map((el) => el.UserId);
+  const commentedUsersIds = Cookbook_Comments.map((el) => el.UserId);
 
   return (
     <div className="overlay" onClick={(e) => closePopUp(e)}>
@@ -107,7 +108,7 @@ export default function PopUpCookbookDetailed(
               {Cookbook_Likes.length} {t('LIKES')}
             </div>
             <div className="card__statistics-item comments">
-              <CommentsIcon />
+              <CommentsIcon commentedUsersIds={commentedUsersIds} loggedInUserId={loggedInUserId}/>
               {Cookbook_Comments.length} {t('COMMENTS')}
             </div>
           </div>
@@ -122,9 +123,9 @@ export default function PopUpCookbookDetailed(
                   user={el.User}
                   views={el.views}
                   description={el.description}
-                  likes={el.Recipe_Likes.length}
+                  likes={el.Recipe_Likes}
                   image={el.image}
-                  comments={el.Recipe_Comments.length}
+                  comments={el.Recipe_Comments}
                   key={el.id}
                   id={el.id}
                   loggedInUserId={loggedInUserId}

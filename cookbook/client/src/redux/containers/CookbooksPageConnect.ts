@@ -32,7 +32,6 @@ const mapDispatchToProps = {
   saveToUsersRecipes,
   createComment,
   hideUsersCookbooks,
-  //updateUser,
   likeCookbook,
   getLoggedInUser,
 };

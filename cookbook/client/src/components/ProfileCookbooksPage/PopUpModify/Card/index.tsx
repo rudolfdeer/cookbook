@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
-import { IUser } from '../../../../interfaces';
+import { IRecipeComment, IRecipeLike, IUser } from '../../../../interfaces';
 import CommentsIcon from '../../../svg/Comments';
 import LikesIcon from '../../../svg/Likes';
 import ViewsIcon from '../../../svg/Views';
@@ -11,9 +11,9 @@ type PopUpRecipeCardProps = {
   author: IUser;
   description: string;
   views: number;
-  likes: number;
+  likes: IRecipeLike[];
   image: string;
-  comments: number;
+  comments: IRecipeComment[];
   id: number;
   loggedInUserId: number;
   setNewRecipesIds: Dispatch<SetStateAction<number[]>>;
@@ -35,12 +35,16 @@ export default function PopUpRecipeCard(
     id,
     setNewRecipesIds,
     recipesIds,
+    loggedInUserId,
   } = props;
 
   const deleteRecipeFromCookbook = (recipeId: number) => {
     const newRecipesIds = recipesIds.filter((el) => el !== recipeId);
     setNewRecipesIds(newRecipesIds);
   };
+
+  const likeUserIds = likes.map((el) => el.UserId);
+  const commentedUsersIds = comments.map((el) => el.UserId);
 
   return (
     <div className="card">
@@ -63,12 +67,12 @@ export default function PopUpRecipeCard(
               {views} {t('VIEWS')}
             </div>
             <div className="card__statistics-item likes">
-              <LikesIcon />
-              {likes} {t('LIKES')}
+              <LikesIcon likeUserIds = {likeUserIds} loggedInUserId={loggedInUserId}/>
+              {likes.length} {t('LIKES')}
             </div>
             <div className="card__statistics-item comments">
-              <CommentsIcon />
-              {comments} {t('COMMENTS')}
+              <CommentsIcon commentedUsersIds={commentedUsersIds} loggedInUserId={loggedInUserId}/>
+              {comments.length} {t('COMMENTS')}
             </div>
             <button
               className="card__btn--delete"

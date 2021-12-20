@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { IUser } from '../../../interfaces';
+import { IRecipeComment, IRecipeLike, IUser } from '../../../interfaces';
 import CommentsIcon from '../../svg/Comments';
 import DotsIcon from '../../svg/Dots';
 import LikesIcon from '../../svg/Likes';
@@ -13,12 +13,9 @@ type RecipeCardRatedProps = {
   title: string;
   author: IUser;
   views: number;
-  likes: {
-    RecipeId: number;
-    UserId: number;
-  }[];
+  likes: IRecipeLike[];
   image: string;
-  comments: number;
+  comments: IRecipeComment[];
   loggedInUserId: number;
 };
 
@@ -29,6 +26,7 @@ export default function CardRated(props: RecipeCardRatedProps): JSX.Element {
   } = props;
 
   const likeUserIds = likes.map((el) => el.UserId);
+  const commentedUsersIds = comments.map((el) => el.UserId);
 
   return (
     <div className="card">
@@ -56,8 +54,8 @@ export default function CardRated(props: RecipeCardRatedProps): JSX.Element {
           {likes.length} {t('LIKES')}
         </div>
         <div className="card__statistics-item">
-          <CommentsIcon />
-          {comments} {t('COMMENTS')}
+          <CommentsIcon commentedUsersIds={commentedUsersIds} loggedInUserId={loggedInUserId}/>
+          {comments.length} {t('COMMENTS')}
         </div>
       </div>
     </div>

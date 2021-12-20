@@ -90,7 +90,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
                     title={el.title}
                     author={el.User}
                     views={el.views}
-                    comments={el.Recipe_Comments.length}
+                    comments={el.Recipe_Comments}
                     image={el.image}
                     key={el.id}
                     likes={el.Recipe_Likes}
@@ -140,6 +140,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
                       views={el.views}
                       image={el.image}
                       key={el.id}
+                      
                     />
                   ))
                   .slice(0, 3)}

@@ -73,7 +73,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
                   title={el.title}
                   author={el.User}
                   views={el.views}
-                  comments={el.Recipe_Comments?.length}
+                  comments={el.Recipe_Comments}
                   image={el.image}
                   description={el.description}
                   selectCard={setSelectedCardId}

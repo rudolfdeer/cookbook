@@ -102,7 +102,7 @@ export default function ProfileCookbooksPage(
                 title={el.title}
                 author={el.User}
                 views={el.views}
-                likes={el.Cookbook_Likes?.length}
+                likes={el.Cookbook_Likes}
                 comments={el.Cookbook_Comments?.length}
                 image={el.image}
                 description={el.description}

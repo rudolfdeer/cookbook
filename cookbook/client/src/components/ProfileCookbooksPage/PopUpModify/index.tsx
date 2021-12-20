@@ -179,9 +179,9 @@ export default function PopUpModifyCookbook(
                   author={el.User}
                   views={el.views}
                   description={el.description}
-                  likes={el.Recipe_Likes.length}
+                  likes={el.Recipe_Likes}
                   image={el.image}
-                  comments={el.Recipe_Comments.length}
+                  comments={el.Recipe_Comments}
                   key={el.id}
                   id={el.id}
                   loggedInUserId={loggedInUserId}

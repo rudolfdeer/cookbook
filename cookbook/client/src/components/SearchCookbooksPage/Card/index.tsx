@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ICookbookLike, IUser } from '../../../interfaces';
+import { ICookbookComment, ICookbookLike, IUser } from '../../../interfaces';
 import CommentsIcon from '../../svg/Comments';
 import DotsIcon from '../../svg/Dots';
 import LikesIcon from '../../svg/Likes';
@@ -15,7 +15,7 @@ type CookbookCardProps = {
   description: string;
   views: number;
   image: string;
-  comments: number;
+  comments: ICookbookComment[];
   likes: ICookbookLike[];
   selectCard: Dispatch<SetStateAction<number>>;
   openDetailedInfo: Dispatch<SetStateAction<boolean>>;
@@ -41,6 +41,7 @@ export default function CookbookCard(props: CookbookCardProps): JSX.Element {
   } = props;
 
   const likeUserIds = likes.map((el) => el.UserId);
+  const commentedUsersIds = comments.map((el) => el.UserId);
 
   return (
     <div className="card">
@@ -83,8 +84,8 @@ export default function CookbookCard(props: CookbookCardProps): JSX.Element {
           {likes.length} {t('LIKES')}
         </div>
         <div className="card__statistics-item">
-          <CommentsIcon />
-          {comments} {t('COMMENTS')}
+          <CommentsIcon commentedUsersIds={commentedUsersIds} loggedInUserId={loggedInUserId}/>
+          {comments.length} {t('COMMENTS')}
         </div>
       </div>
     </div>

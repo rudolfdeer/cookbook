@@ -2,8 +2,9 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import LikesIcon from '../../svg/Likes';
 import ViewsIcon from '../../svg/Views';
+import CommentsIcon from '../../svg/Comments';
 import './index.scss';
-import { IUser } from '../../../interfaces';
+import { IRecipeComment, IRecipeLike, IUser } from '../../../interfaces';
 
 type ProfileRecipeCardProps = {
   id: number;
@@ -11,7 +12,7 @@ type ProfileRecipeCardProps = {
   author: IUser;
   description: string;
   views: number;
-  likes: number;
+  likes: IRecipeLike[];
   image: string;
   comments: number;
   setModifyPopUpVisible: Dispatch<SetStateAction<boolean>>;
@@ -55,6 +56,9 @@ export default function ProfileRecipeCard(
     </div>
   );
 
+  const likeUserIds = likes.map((el) => el.UserId);
+  //const commentedUsersIds = comments.map((el) => el.UserId);
+
   return (
     <div className="card">
       <div
@@ -84,23 +88,11 @@ export default function ProfileRecipeCard(
               {views} {t('VIEWS')}
             </div>
             <div className="card__statistics-item">
-              <LikesIcon />
-              {likes} {t('LIKES')}
+              <LikesIcon likeUserIds = {likeUserIds} loggedInUserId={loggedInUserId} id = {id}/>
+              {likes.length} {t('LIKES')}
             </div>
             <div className="card__statistics-item">
-              <svg
-                className="card__statistics-item__icon"
-                width="15"
-                height="15"
-                viewBox="0 0 15 15"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M0 15V1.66667C0 0.746192 0.746192 0 1.66667 0H13.3333C14.2538 0 15 0.746192 15 1.66667V10C15 10.9205 14.2538 11.6667 13.3333 11.6667H5C4.63928 11.666 4.28818 11.783 4 12L0 15Z"
-                  fill="#DADADA"
-                />
-              </svg>
+              <CommentsIcon/>
               {comments} {t('COMMENTS')}
             </div>
           </div>

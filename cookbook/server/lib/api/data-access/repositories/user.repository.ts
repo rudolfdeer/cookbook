@@ -8,6 +8,8 @@ const {
   Cookbook,
   RecipeCookbook,
   RecipeLike,
+  RecipeComment,
+  CookbookComment,
   CookbookLike,
 } = require('../models');
 
@@ -38,6 +40,7 @@ const findAll = async () => {
 };
 
 const findById = async (id: number) => {
+  console.log('userID', id);
   const user = await User.findOne({
     where: {
       id,
@@ -47,7 +50,7 @@ const findById = async (id: number) => {
         model: RecipeSaved,
         include: {
           model: Recipe,
-          include: [User, RecipeLike],
+          include: [User, RecipeLike, RecipeComment],
         },
       },
       {
@@ -55,7 +58,7 @@ const findById = async (id: number) => {
         include: {
           model: Cookbook,
           include: [
-            User,
+            User, CookbookComment, CookbookLike,
             {
               model: RecipeCookbook,
               include: {
@@ -63,13 +66,13 @@ const findById = async (id: number) => {
                 include: [
                   User,
                   {
+                    model: RecipeComment,
+                  },
+                  {
                     model: RecipeLike,
                   },
                 ],
               },
-            },
-            {
-              model: CookbookLike,
             },
           ],
         },

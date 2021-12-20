@@ -33,11 +33,12 @@ export default function LikesIcon(props: LikesIconProps): JSX.Element {
     if (!props.loggedInUserId) return;
     if (likeCookbook) {
       likeCookbook(id);
+      color === yellow ? setColor(grey) : setColor(yellow);
     }
     if (likeRecipe) {
-      likeRecipe(id)
+      likeRecipe(id);
+      color === yellow ? setColor(grey) : setColor(yellow);
     }
-    color === yellow ? setColor(grey) : setColor(yellow);
   };
 
   return (

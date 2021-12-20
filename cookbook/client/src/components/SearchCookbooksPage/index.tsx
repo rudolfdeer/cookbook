@@ -42,7 +42,6 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
     createComment,
     getLoggedInUser,
     likeCookbook,
-
   } = props;
 
   const [isVisible, setVisible] = useState(false);
@@ -87,7 +86,7 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
                   author={el.User}
                   views={el.views}
                   likes={el.Cookbook_Likes}
-                  comments={el.Cookbook_Comments?.length}
+                  comments={el.Cookbook_Comments}
                   image={el.image}
                   description={el.description}
                   key={el.id}

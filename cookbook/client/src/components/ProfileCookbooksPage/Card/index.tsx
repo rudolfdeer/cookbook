@@ -5,7 +5,7 @@ import LikesIcon from '../../svg/Likes';
 import ViewsIcon from '../../svg/Views';
 
 import './index.scss';
-import { IUser } from '../../../interfaces';
+import { ICookbookComment, ICookbookLike, IUser } from '../../../interfaces';
 
 type ProfileCookbookCardProps = {
   id: number;
@@ -13,7 +13,7 @@ type ProfileCookbookCardProps = {
   author: IUser;
   description: string;
   views: number;
-  likes: number;
+  likes: ICookbookLike[];
   image: string;
   comments: number;
   setSelectedCookbookId: Dispatch<SetStateAction<number>>;
@@ -42,6 +42,9 @@ export default function ProfileCookbookCard(
   } = props;
 
   const [isBtnDeleteVisible, setBtnDeleteVisible] = useState(false);
+
+  const likeUserIds = likes.map((el) => el.UserId);
+  //const commentedUsersIds = comments.map((el) => el.UserId);
 
   const btnDelete = (
     <div className="card__statistics-item__menu">
@@ -109,11 +112,11 @@ export default function ProfileCookbookCard(
 
       <div className="card__info-container--bottom">
         <div className="card__statistics-item likes">
-          <LikesIcon />
-          {likes} {t('LIKES')}
+          <LikesIcon likeUserIds = {likeUserIds} loggedInUserId={loggedInUserId}/>
+          {likes.length} {t('LIKES')}
         </div>
         <div className="card__statistics-item">
-          <CommentsIcon />
+          <CommentsIcon/>
           {comments} {t('COMMENTS')}
         </div>
       </div>

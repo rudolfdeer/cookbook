@@ -113,7 +113,7 @@ export default function ProfileRecipesPage(
                 setSelectedRecipeId={setSelectedRecipeId}
                 deleteRecipe={deleteRecipe}
                 loggedInUserId={id}
-                likes={el.Recipe_Likes?.length}
+                likes={el.Recipe_Likes}
               />
             ))}
           </section>

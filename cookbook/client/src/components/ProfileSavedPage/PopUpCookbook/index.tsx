@@ -18,6 +18,7 @@ export default function PopUpCookbookSaved(
 ): JSX.Element {
   const { t } = useTranslation();
   const { setCookbookPopUpVisible, cookbook, loggedInUserId } = props;
+  console.log(cookbook);
   const {
     image, description, title, User, Cookbook_Likes, Cookbook_Comments, Recipe_Cookbooks,
   } = cookbook;
@@ -33,6 +34,8 @@ export default function PopUpCookbookSaved(
   }
 
   const recipes = Recipe_Cookbooks.map((el) => el.Recipe);
+  const likeUserIds = Cookbook_Likes.map((el) => el.UserId);
+  //const commentedUsersIds = Cookbook_Comments.map((el) => el.UserId);
 
   return (
     <div className="overlay" onClick={(e) => closePopUp(e)}>
@@ -63,11 +66,11 @@ export default function PopUpCookbookSaved(
 
           <div className="pop-up--cookbook__section--statistics">
             <div className="card__statistics-item likes">
-              <LikesIcon />
+              <LikesIcon likeUserIds = {likeUserIds} loggedInUserId={loggedInUserId}/>
               {Cookbook_Likes.length} {t('LIKES')}
             </div>
             <div className="card__statistics-item comments">
-              <CommentsIcon />
+              <CommentsIcon/>
               {Cookbook_Comments.length} {t('COMMENTS')}
             </div>
           </div>
@@ -82,9 +85,9 @@ export default function PopUpCookbookSaved(
                   author={el.User}
                   views={el.views}
                   description={el.description}
-                  likes={el.Recipe_Likes.length}
+                  likes={el.Recipe_Likes}
                   image={el.image}
-                  comments={el.Recipe_Comments.length}
+                  comments={el.Recipe_Comments?.length}
                   key={el.id}
                   id={el.id}
                   loggedInUserId={loggedInUserId}

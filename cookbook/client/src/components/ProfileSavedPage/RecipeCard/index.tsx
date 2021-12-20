@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
-import { IUser } from '../../../interfaces';
+import { IRecipeComment, IRecipeLike, IUser } from '../../../interfaces';
 import CommentsIcon from '../../svg/Comments';
 import DotsIcon from '../../svg/Dots';
 import LikesIcon from '../../svg/Likes';
@@ -14,9 +14,10 @@ type ProfileSavedRecipeCardProps = {
   author: IUser;
   description: string;
   views: number;
-  likes: number;
+  likes: IRecipeLike[];
   image: string;
-  comments: number;
+  comments: IRecipeComment[];
+  loggedInUserId: number;
   setRecipePopUpVisible: Dispatch<SetStateAction<boolean>>;
   setSelectedRecipeId: Dispatch<SetStateAction<number>>;
 };
@@ -36,7 +37,11 @@ export default function ProfileSavedRecipeCard(
     comments,
     setRecipePopUpVisible,
     setSelectedRecipeId,
+    loggedInUserId,
   } = props;
+
+  const likeUserIds = likes.map((el) => el.UserId);
+  const commentedUsersIds = comments.map((el) => el.UserId);
 
   return (
     <div className="card">
@@ -75,12 +80,12 @@ export default function ProfileSavedRecipeCard(
 
       <div className="card__info-container--bottom">
         <div className="card__statistics-item">
-          <LikesIcon />
-          {likes} {t('LIKES')}
+          <LikesIcon likeUserIds = {likeUserIds} loggedInUserId={loggedInUserId} id = {id}/>
+          {likes.length} {t('LIKES')}
         </div>
         <div className="card__statistics-item">
-          <CommentsIcon />
-          {comments} {t('COMMENTS')}
+          <CommentsIcon commentedUsersIds={commentedUsersIds} loggedInUserId={loggedInUserId}/>
+          {comments.length} {t('COMMENTS')}
         </div>
       </div>
     </div>

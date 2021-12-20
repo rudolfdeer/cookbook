@@ -15,12 +15,14 @@ class Api {
   async getUsersCreatedRecipes(userId: number) {
     const recipes = await this.getAllRecipes();
     const filteredRecipes = recipes.filter((el: IRecipe) => el.UserId === userId);
+    console.log(filteredRecipes)
     return filteredRecipes;
   }
 
   async getUsersCreatedCookbooks(userId: number) {
     const cookbooks = await this.getAllCookbooks();
     const filteredCookbooks = cookbooks.filter((el: ICookbook) => el.UserId === userId);
+    console.log(filteredCookbooks);
     return filteredCookbooks;
   }
 

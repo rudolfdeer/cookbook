@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { IUser } from '../../../../interfaces';
+import { IRecipeComment, IRecipeLike, IUser } from '../../../../interfaces';
 import CommentsIcon from '../../../svg/Comments';
 import LikesIcon from '../../../svg/Likes';
 import ViewsIcon from '../../../svg/Views';
@@ -12,7 +12,7 @@ type PopUpRecipeCardProps = {
   author: IUser;
   description: string;
   views: number;
-  likes: number;
+  likes: IRecipeLike[];
   image: string;
   comments: number;
   id: number;
@@ -24,8 +24,11 @@ export default function PopUpRecipeCard(
 ): JSX.Element {
   const { t } = useTranslation();
   const {
-    views, image, description, title, author, likes, comments,
+    views, image, description, title, author, likes, comments, loggedInUserId
   } = props;
+
+  const likeUserIds = likes.map((el) => el.UserId);
+  //const commentedUsersIds = comments.map((el) => el.UserId);
 
   return (
     <div className="card">
@@ -48,11 +51,11 @@ export default function PopUpRecipeCard(
               {views} {t('VIEWS')}
             </div>
             <div className="card__statistics-item likes">
-              <LikesIcon />
-              {likes} {t('LIKES')}
+              <LikesIcon likeUserIds = {likeUserIds} loggedInUserId={loggedInUserId}/>
+              {likes.length} {t('LIKES')}
             </div>
             <div className="card__statistics-item comments">
-              <CommentsIcon />
+              <CommentsIcon/>
               {comments} {t('COMMENTS')}
             </div>
           </div>

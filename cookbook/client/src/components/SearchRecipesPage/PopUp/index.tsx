@@ -50,6 +50,9 @@ export default function PopUpRecipeDetailed(
     }
   };
 
+  const likeUserIds = Recipe_Likes.map((el) => el.UserId);
+  const commentedUsersIds = Recipe_Comments.map((el) => el.UserId);
+
   return (
     <div className="overlay" onClick={(e) => closePopUp(e)}>
       <div className="overlay__content">
@@ -113,11 +116,11 @@ export default function PopUpRecipeDetailed(
               </div>
               <div className="pop-up--recipe__section--statistics">
                 <div className="card__statistics-item likes">
-                  <LikesIcon />
+                  <LikesIcon id = {id} loggedInUserId={loggedInUserId} likeUserIds={likeUserIds}/>
                   {Recipe_Likes.length} {t('LIKES')}
                 </div>
                 <div className="card__statistics-item comments">
-                  <CommentsIcon />
+                  <CommentsIcon  commentedUsersIds={commentedUsersIds} loggedInUserId={loggedInUserId}/>
                   {Recipe_Comments.length} {t('COMMENTS')}
                 </div>
               </div>

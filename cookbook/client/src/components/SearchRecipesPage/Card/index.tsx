@@ -3,8 +3,9 @@ import { useTranslation } from 'react-i18next';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
 import ViewsIcon from '../../svg/Views';
+import { IRecipeComment, IRecipeLike, IUser } from '../../../interfaces';
+
 import './index.scss';
-import { IRecipeLike, IUser } from '../../../interfaces';
 
 type RecipeCardProps = {
   id: number;
@@ -14,7 +15,7 @@ type RecipeCardProps = {
   views: number;
   likes: IRecipeLike[];
   image: string;
-  comments: number;
+  comments: IRecipeComment[];
   selectCard: Dispatch<SetStateAction<number>>;
   setVisible: Dispatch<SetStateAction<boolean>>;
   loggedInUserId: number;
@@ -48,6 +49,7 @@ export default function RecipeCard(props: RecipeCardProps): JSX.Element {
   };
 
   const likeUserIds = likes.map((el) => el.UserId);
+  const commentedUsersIds = comments.map((el) => el.UserId);
 
   const btnClone = (
     <div className="card__statistics-item__menu">
@@ -93,8 +95,8 @@ export default function RecipeCard(props: RecipeCardProps): JSX.Element {
               {likes.length} {t('LIKES')}
             </div>
             <div className="card__statistics-item comments">
-              <CommentsIcon />
-              {comments} {t('COMMENTS')}
+              <CommentsIcon commentedUsersIds={commentedUsersIds} loggedInUserId={loggedInUserId}/>
+              {comments.length} {t('COMMENTS')}
             </div>
           </div>
           <svg

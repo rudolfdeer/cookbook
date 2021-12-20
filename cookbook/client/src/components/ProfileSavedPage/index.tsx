@@ -94,13 +94,14 @@ export default function ProfileSavedPage(
                   title={el.title}
                   author={el.User}
                   views={el.views}
-                  likes={el.Cookbook_Likes?.length}
-                  comments={el.Cookbook_Comments?.length}
+                  likes={el.Cookbook_Likes}
+                  comments={el.Cookbook_Comments}
                   image={el.image}
                   description={el.description}
                   key={el.id}
                   setCookbookPopUpVisible={setCookbookPopUpVisible}
                   setSelectedCookbookId={setSelectedCookbookId}
+                  loggedInUserId = {user.id}
                 />
               ))}
             </div>
@@ -114,13 +115,14 @@ export default function ProfileSavedPage(
                   title={el.title}
                   author={el.User}
                   views={el.views}
-                  likes={el.Recipe_Likes?.length}
-                  comments={el.Recipe_Comments?.length}
+                  likes={el.Recipe_Likes}
+                  comments={el.Recipe_Comments}
                   image={el.image}
                   description={el.description}
                   key={el.id}
                   setRecipePopUpVisible={setRecipePopUpVisible}
                   setSelectedRecipeId={setSelectedRecipeId}
+                  loggedInUserId = {user.id}
                 />
               ))}
             </div>
@@ -129,14 +131,14 @@ export default function ProfileSavedPage(
             <PopUpRecipeSaved
               loggedInUserId={id}
               setRecipePopUpVisible={setRecipePopUpVisible}
-              recipe={recipes.find((el) => el.id === selectedRecipeId)}
+              recipe={recipes?.find((el) => el.id === selectedRecipeId)}
             />
           ) : null}
           {isCookbookPopUpVisible ? (
             <PopUpCookbookSaved
               loggedInUserId={id}
               setCookbookPopUpVisible={setCookbookPopUpVisible}
-              cookbook={cookbooks.find((el) => el.id === selectedCookbookId)}
+              cookbook={cookbooks?.find((el) => el.id === selectedCookbookId)}
             />
           ) : null}
         </div>

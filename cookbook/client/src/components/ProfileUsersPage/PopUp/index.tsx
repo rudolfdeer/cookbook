@@ -12,14 +12,18 @@ import { ICookbook } from '../../../interfaces';
 type PopUpCookbookProps = {
   setPopUpCookbookVisible: Dispatch<SetStateAction<boolean>>;
   cookbook: ICookbook;
+  loggedInUserId: number;
 };
 
 export default function PopUpCookbook(props: PopUpCookbookProps): JSX.Element {
   const { t } = useTranslation();
-  const { setPopUpCookbookVisible, cookbook } = props;
+  const { setPopUpCookbookVisible, cookbook, loggedInUserId } = props;
   const {
     image, description, title, User, Cookbook_Likes, Cookbook_Comments, Recipe_Cookbooks,
   } = cookbook;
+
+  const likeUserIds = Cookbook_Likes.map((el) => el.UserId);
+  const commentedUsersIds = Cookbook_Comments.map((el) => el.UserId);
 
   function closePopUp(e: React.MouseEvent) {
     const target = e.target as HTMLElement;
@@ -64,11 +68,11 @@ export default function PopUpCookbook(props: PopUpCookbookProps): JSX.Element {
 
           <div className="pop-up--users-cookbook__section--statistics">
             <div className="card__statistics-item likes">
-              <LikesIcon />
+              <LikesIcon likeUserIds = {likeUserIds} loggedInUserId={loggedInUserId}/>
               {Cookbook_Likes.length} {t('LIKES')}
             </div>
             <div className="card__statistics-item comments">
-              <CommentsIcon />
+              <CommentsIcon commentedUsersIds={commentedUsersIds} loggedInUserId={loggedInUserId}/>
               {Cookbook_Comments.length} {t('COMMENTS')}
             </div>
           </div>

@@ -72,12 +72,13 @@ export default function ProfileUsersPage(
                 title={el.title}
                 author={el.User}
                 views={el.views}
-                likes={el.Cookbook_Likes.length}
-                comments={el.Cookbook_Comments.length}
+                likes={el.Cookbook_Likes}
+                comments={el.Cookbook_Comments}
                 image={el.image}
                 description={el.description}
                 key={el.id}
                 setSelectedCookbookId={setSelectedCookbookId}
+                loggedInUserId={loggedInUserId}
                 setPopUpCookbookVisible={setPopUpCookbookVisible}
               />
             ))}
@@ -86,6 +87,7 @@ export default function ProfileUsersPage(
             <PopUpCookbook
               setPopUpCookbookVisible={setPopUpCookbookVisible}
               cookbook={cookbooks.find((el) => el.id === selectedCookbookId)}
+              loggedInUserId={loggedInUserId}
             />
           ) : null}
         </div>

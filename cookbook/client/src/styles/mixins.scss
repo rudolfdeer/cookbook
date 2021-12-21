@@ -8,6 +8,14 @@
 
   font-size: 20px;
   line-height: 24px;
+
+  @media (max-width: 1199px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 639px) {
+    font-size: 16px;
+  }
 }
 
 @mixin title-16 {
@@ -15,11 +23,27 @@
 
   font-size: 16px;
   line-height: 20px;
+
+  @media (max-width: 1199px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 639px) {
+    font-size: 12px;
+  }
 }
 
 @mixin text-18 {
   font-size: 18px;
   line-height: 22px;
+
+  @media (max-width: 1199px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 639px) {
+    font-size: 14px;
+  }
 }
 
 @mixin title-40 {
@@ -27,6 +51,14 @@
 
   font-size: 40px;
   margin-bottom: 48px;
+
+  @media (max-width: 1199px) {
+    font-size: 36px;
+  }
+
+  @media (max-width: 639px) {
+    font-size: 32px;
+  }
 }
 
 @mixin button {

@@ -94,7 +94,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
                     image={el.image}
                     key={el.id}
                     likes={el.Recipe_Likes}
-                    loggedInUserId = {user.id}
+                    loggedInUserId = {user?.id}
                   />
                 ))
                 .slice(0, 4)}

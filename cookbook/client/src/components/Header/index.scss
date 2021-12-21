@@ -82,3 +82,40 @@
     }
   }
 }
+
+@media (max-width: 1199px) {
+  .header {
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    &__btn {
+      justify-self: end;
+    }
+  }
+}
+
+@media (max-width: 639px) {
+  .header {
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    row-gap: 10px;
+
+    a {
+      justify-self: center;
+    }
+
+    &__search {
+      justify-self: center;
+    }
+
+    &__btn {
+      justify-self: center;
+    }
+
+    &__login {
+      justify-self: center;
+    }
+  }
+}

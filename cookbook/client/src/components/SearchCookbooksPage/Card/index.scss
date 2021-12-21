@@ -2,14 +2,13 @@
 
 .search-page .search-page__cards--cookbooks {
   .card {
-    margin-bottom: 24px;
+    
     padding: 24px;
     display: flex;
     box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.08);
     border-radius: 10px;
     width: 288px;
     min-height: 487px;
-    margin-right: 24px;
     flex-direction: column;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -102,9 +101,7 @@
         text-overflow: ellipsis;
       }
 
-      &:nth-child(3n) {
-        margin-right: 0;
-      }
+      
     }
 
     &:hover {
@@ -118,10 +115,6 @@
           text-decoration: underline;
         }
       }
-    }
-
-    &:nth-child(3n) {
-      margin-right: 0;
     }
   }
 }

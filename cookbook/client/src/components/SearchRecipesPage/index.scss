@@ -42,3 +42,33 @@
     }
   }
 }
+
+
+
+@media (max-width: 639px) {
+  .search-page {
+    padding-top: 24px;
+
+    &__wrapper {
+      flex-direction: column;
+    }
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__aside {
+      display: flex;
+      justify-content: center;
+      margin-right: 0;
+      height: auto;
+      margin-bottom: 24px;
+
+      &__container {
+        height: auto;
+      }
+    }
+  }
+}

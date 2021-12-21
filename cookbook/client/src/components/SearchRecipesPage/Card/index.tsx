@@ -88,15 +88,15 @@ export default function RecipeCard(props: RecipeCardProps): JSX.Element {
           <div className="card__statistics">
             <div className="card__statistics-item views">
               <ViewsIcon />
-              {views} views
+              {views} <span>{t('VIEWS')}</span>
             </div>
             <div className="card__statistics-item--likes">
               <LikesIcon likeUserIds={likeUserIds} loggedInUserId={loggedInUserId} likeRecipe = {likeRecipe} id={id}/>
-              {likes.length} {t('LIKES')}
+              {likes.length} <span>{t('LIKES')}</span>
             </div>
             <div className="card__statistics-item comments">
               <CommentsIcon commentedUsersIds={commentedUsersIds} loggedInUserId={loggedInUserId}/>
-              {comments.length} {t('COMMENTS')}
+              {comments.length} <span>{t('COMMENTS')}</span>
             </div>
           </div>
           <svg

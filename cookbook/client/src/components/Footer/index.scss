@@ -7,6 +7,10 @@
     color: $white;
   }
 
+  .wrapper {
+    padding: 10px;
+  }
+
   &__nav {
     &__list {
       @include nav-list;
@@ -73,6 +77,67 @@
       &:hover {
         cursor: pointer;
       }
+    }
+  }
+}
+
+@media (max-width: 1199px) {
+  .footer {
+    &__container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      row-gap: 10px;
+    }
+
+    &__nav {
+      &__list {
+        justify-content: space-between;
+      
+        &__item {
+          margin-right: 0;;
+        }
+      }
+    }
+
+    &__study {
+      justify-content: space-between;
+
+      &__project {
+        margin-right: 0;
+      }
+    }
+
+    &__lang {
+      &__btn {
+        &:first-child {
+          padding-left: 0;
+        }
+
+        &:last-child {
+          padding-right: 0;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 639px) {
+  .footer {
+    &__container {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    a {
+      justify-self: center;
+    }
+
+    &__email {
+      justify-self: center;
+    }
+
+    &__lang {
+      justify-self: center;
     }
   }
 }

@@ -322,10 +322,12 @@
         }
 
         &__cards {
-          justify-content: center;
+          display: grid;
+          grid-template-columns: repeat(1, 1fr);
 
           .card {
             margin-right: 0px;
+            justify-self: center;
           }
         }
       }
@@ -397,6 +399,10 @@
       &--trending {
         &__wrapper {
           padding-bottom: 10px;
+        }
+
+        &__title {
+          padding: 0 10px;
         }
         
         &__cards {

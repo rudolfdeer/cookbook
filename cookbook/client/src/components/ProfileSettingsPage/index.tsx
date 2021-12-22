@@ -263,7 +263,7 @@ export default function ProfileSettingsPage(
                 <input
                   type="submit"
                   className="profile-page--settings__user__form__input--submit"
-                  value={t('CHANGE_PASSWORD_BTN') as string}
+                  value={t('EDIT_BTN') as string}
                   onClick={(e) => {
                     e.preventDefault();
                     setPasswordDisabled(false);
@@ -273,7 +273,7 @@ export default function ProfileSettingsPage(
                 <input
                   type="submit"
                   className="profile-page--settings__user__form__input--submit"
-                  value={t('SAVE_PASSWORD_BTN') as string}
+                  value={t('SAVE_BTN') as string}
                   onClick={(e) => {
                     e.preventDefault();
                     setPasswordDisabled(true);

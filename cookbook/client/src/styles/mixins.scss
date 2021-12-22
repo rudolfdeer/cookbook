@@ -148,6 +148,8 @@
       margin-right: 0;
     }
   }
+
+  
 }
 
 @mixin page-nav-list {
@@ -183,6 +185,16 @@
 
   .list__item--selected {
     border-bottom: 5px solid $primary-yellow;
+  }
+
+  @media (max-width: 639px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+
+    li {
+      margin-right: 0;
+    }
   }
 }
 

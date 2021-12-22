@@ -98,7 +98,7 @@ export default function ProfileRecipesPage(
               {t('CREATE_NEW_RECIPE')}
             </button>
           </nav>
-          <section className="profile-recipes-page__cards recipes">
+          <section className="profile-page--recipes__cards">
             {recipes?.map((el) => (
               <ProfileRecipeCard
                 id={el.id}

@@ -47,7 +47,7 @@
         &__menu {
           display: block;
           position: absolute;
-          right: -49px;
+          right: 10px;
           bottom: -25px;
           width: 167px;
           height: 51px;
@@ -154,6 +154,51 @@
       &__description {
         max-height: 70px;
         overflow: hidden;
+      }
+    }
+  }
+}
+
+@media (max-width: 1199px) {
+  .profile-page {
+    &--recipes {
+      .card {
+        &__statistics-item {
+          span {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 639px) {
+  .profile-page {
+    &--recipes {
+      .card {
+        &__content {
+          z-index: 3;
+          background-color: $white;
+          padding: 10px 10px 10px 15px;
+          border-radius: 30px 10px 10px 10px;
+        }
+
+        &__image {
+          margin-right: 0;
+        }
+
+        &__statistics {
+          justify-content: space-between;
+        }
+
+        &__statistics-item {
+          span {
+            display: none;
+          }
+        }
+
+        
       }
     }
   }

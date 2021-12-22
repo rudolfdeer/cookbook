@@ -64,3 +64,45 @@
     }
   }
 }
+
+@media (max-width: 1199px) {
+  .profile-page {
+    &--recipes {
+      &__content {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      &__nav {
+        height: auto;
+        flex-direction: column;
+        align-items: center;
+
+        &__list {
+          margin-bottom: 24px;
+
+        }
+      }
+
+      &__photo {
+        &--editable {
+          margin-right: 0;
+          margin-bottom: 24px;
+        }
+      }
+
+      &__user {
+        align-items: center;
+      }
+
+      &__info {
+        &__form {
+          &__label {
+            margin-right: 24px;
+          }
+        }
+      }
+    }
+  }
+}
+

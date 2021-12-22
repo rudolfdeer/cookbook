@@ -85,15 +85,15 @@ export default function ProfileRecipeCard(
           <div className="card__statistics">
             <div className="card__statistics-item">
               <ViewsIcon />
-              {views} {t('VIEWS')}
+              {views} <span>{t('VIEWS')}</span>
             </div>
             <div className="card__statistics-item">
               <LikesIcon likeUserIds = {likeUserIds} loggedInUserId={loggedInUserId} id = {id}/>
-              {likes.length} {t('LIKES')}
+              {likes.length} <span>{t('LIKES')}</span>
             </div>
             <div className="card__statistics-item">
               <CommentsIcon/>
-              {comments} {t('COMMENTS')}
+              {comments} <span>{t('COMMENTS')}</span>
             </div>
           </div>
           <svg

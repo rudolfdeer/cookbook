@@ -69,3 +69,52 @@
     }
   }
 }
+
+@media (max-width: 1199px) {
+  .profile-page {
+    &--cookbooks {
+      &__user {
+        flex-direction: column;
+        align-items: center;
+
+         &__container {
+        align-items: center;
+      }
+      }
+
+      &__nav {
+        height: auto;
+        flex-direction: column;
+        align-items: center;
+
+        &__list {
+          margin-bottom: 24px;
+
+        }
+      }
+
+      &__photo {
+        
+          margin-right: 0;
+          margin-bottom: 24px;
+        
+      }
+
+     &__cards {
+       justify-content: center;
+
+       .card {
+         margin-right: 0;
+       }
+     }
+
+      &__info {
+        &__form {
+          &__label {
+            margin-right: 24px;
+          }
+        }
+      }
+    }
+  }
+}

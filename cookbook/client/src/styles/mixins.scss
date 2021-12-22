@@ -193,7 +193,13 @@
     gap: 10px;
 
     li {
+      justify-self: center;
       margin-right: 0;
+    }
+
+    .list__item--selected {
+      width: 100%;
+        text-align: center;
     }
   }
 }

@@ -23,3 +23,14 @@
   }
 }
 
+@media (max-width: 1199px) {
+  .login-page {
+    padding: 10px;
+
+    .wrapper {
+      &::after {
+        right: 0;
+      }
+    }
+  }
+}

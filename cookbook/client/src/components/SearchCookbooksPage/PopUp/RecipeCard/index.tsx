@@ -60,15 +60,15 @@ export default function PopUpRecipeCard(
           <div className="card__statistics">
             <div className="card__statistics-item">
               <ViewsIcon />
-              {views} {t('VIEWS')}
+              {views} <span>{t('VIEWS')}</span>
             </div>
             <div className="card__statistics-item">
               <LikesIcon likeUserIds={likeUserIds} loggedInUserId={loggedInUserId} id={id}/>
-              {likes.length} {t('LIKES')}
+              {likes.length} <span>{t('LIKES')}</span>
             </div>
             <div className="card__statistics-item">
               <CommentsIcon commentedUsersIds={commentedUsersIds} loggedInUserId={loggedInUserId}/>
-              {comments.length} {t('COMMENTS')}
+              {comments.length} <span>{t('COMMENTS')}</span>
             </div>
           </div>
           {loggedInUserId && loggedInUserId !== user.id ? (
@@ -79,7 +79,7 @@ export default function PopUpRecipeCard(
                 setVisible(false);
               }}
             >
-              {t('SAVE_BTN')}
+              <span>{t('SAVE_BTN')}</span>
             </button>
           ) : null}
         </div>

@@ -110,7 +110,155 @@
     }
 
     &__btn {
-      @include button-light;
+        @include button-light;
+
+        span {
+          
+            font-weight: bold;
+            color: $primary-yellow;
+        }
+    }
+  }
+}
+
+@media (max-width: 1199px) {
+  .pop-up--cookbook__section--recipes__cards {
+    .card {
+      &__content {
+        padding-left: 0;
+        z-index: 3;
+        background-color: $white;
+        padding: 10px;
+        border-radius: 30px 10px 10px 10px;
+      }
+
+      &__image {
+        margin-right: 0;
+      }
+
+      &__statistics {
+        justify-content: space-between;
+      }
+
+      &__statistics-item {
+      margin-right: 18px;
+
+      span {
+        display: none;
+      }
+
+      &--likes {
+        margin-right: 18px;
+
+      span {
+        display: none;
+      }
+      }
+    }
+    }
+  }
+}
+
+@media (max-width: 639px) {
+  .pop-up--cookbook__section--recipes__cards {
+    .card {
+      padding: 0;
+
+      &__content {
+        padding-left: 0;
+        z-index: 3;
+        background-color: $white;
+        padding: 10px;
+        border-radius: 30px 10px 10px 10px;
+      }
+
+      &__image {
+        margin-right: 0;
+      }
+
+      &__statistics {
+        justify-content: space-between;
+        margin-right: 10px;
+      }
+
+      &__statistics-item {
+      margin-right: 18px;
+
+      span {
+        display: none;
+      }
+
+      &--likes {
+        margin-right: 18px;
+
+      span {
+        display: none;
+      }
+      }
+    }
+
+      &__info-container {
+        &--bottom {
+          flex-direction: row;
+        }
+      }
+      &__btn {
+        font-size: 14px;
+        span {
+          display: none;
+        }
+        
+
+       &::after {
+         content: '+';
+       }
+      }
+    }
+  }
+}
+
+@media (max-width: 459px) {
+  .pop-up--cookbook__section--recipes__cards {
+    .card {
+      &__content {
+        padding-left: 0;
+        z-index: 3;
+        background-color: $white;
+        padding: 10px;
+        border-radius: 30px 10px 10px 10px;
+      }
+
+      &__image {
+        display: none;
+      }
+
+      &__statistics {
+        justify-content: space-between;
+      }
+
+      &__statistics-item {
+      margin-right: 18px;
+
+      span {
+        display: none;
+      }
+
+      &--likes {
+        margin-right: 18px;
+
+      span {
+        display: none;
+      }
+      }
+    }
+
+      &__info-container {
+        &--bottom {
+          flex-direction: row;
+        }
+      }
+
+    
     }
   }
 }

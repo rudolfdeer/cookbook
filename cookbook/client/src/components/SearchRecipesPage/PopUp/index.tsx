@@ -55,8 +55,8 @@ export default function PopUpRecipeDetailed(
 
   return (
     <div className="overlay" onClick={(e) => closePopUp(e)}>
-      <div className="overlay__content">
-        <div className="overlay__content__wrapper">
+      <div className="overlay__content--recipe">
+        <div className="overlay__content--recipe__wrapper">
           <div className="pop-up--recipe">
             <div className="pop-up--recipe__image">
               <img src={`${image}`} alt="" className="img" />
@@ -117,11 +117,11 @@ export default function PopUpRecipeDetailed(
               <div className="pop-up--recipe__section--statistics">
                 <div className="card__statistics-item likes">
                   <LikesIcon id = {id} loggedInUserId={loggedInUserId} likeUserIds={likeUserIds}/>
-                  {Recipe_Likes.length} {t('LIKES')}
+                  {Recipe_Likes.length} <span> {t('LIKES')}</span>
                 </div>
                 <div className="card__statistics-item comments">
                   <CommentsIcon  commentedUsersIds={commentedUsersIds} loggedInUserId={loggedInUserId}/>
-                  {Recipe_Comments.length} {t('COMMENTS')}
+                  {Recipe_Comments.length} <span> {t('COMMENTS')}</span>
                 </div>
               </div>
             </div>

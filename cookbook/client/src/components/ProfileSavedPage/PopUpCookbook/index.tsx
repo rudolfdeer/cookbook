@@ -39,7 +39,7 @@ export default function PopUpCookbookSaved(
 
   return (
     <div className="overlay" onClick={(e) => closePopUp(e)}>
-      <div className="overlay__content">
+      <div className="overlay__content--cookbook">
         <div className="pop-up--cookbook">
           <div className="pop-up--cookbook__section--top">
             <div className="pop-up--cookbook__title">{title}</div>
@@ -67,11 +67,11 @@ export default function PopUpCookbookSaved(
           <div className="pop-up--cookbook__section--statistics">
             <div className="card__statistics-item likes">
               <LikesIcon likeUserIds = {likeUserIds} loggedInUserId={loggedInUserId}/>
-              {Cookbook_Likes.length} {t('LIKES')}
+              {Cookbook_Likes.length} <span>&nbsp;{t('LIKES')}</span>
             </div>
             <div className="card__statistics-item comments">
               <CommentsIcon/>
-              {Cookbook_Comments.length} {t('COMMENTS')}
+              {Cookbook_Comments.length} <span>&nbsp;{t('COMMENTS')}</span>
             </div>
           </div>
           <div className="pop-up--cookbook__section--recipes">

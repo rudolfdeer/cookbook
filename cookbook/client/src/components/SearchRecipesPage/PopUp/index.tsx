@@ -117,11 +117,11 @@ export default function PopUpRecipeDetailed(
               <div className="pop-up--recipe__section--statistics">
                 <div className="card__statistics-item likes">
                   <LikesIcon id = {id} loggedInUserId={loggedInUserId} likeUserIds={likeUserIds}/>
-                  {Recipe_Likes.length} <span> {t('LIKES')}</span>
+                  {Recipe_Likes.length} <span>&nbsp;{t('LIKES')}</span>
                 </div>
                 <div className="card__statistics-item comments">
                   <CommentsIcon  commentedUsersIds={commentedUsersIds} loggedInUserId={loggedInUserId}/>
-                  {Recipe_Comments.length} <span> {t('COMMENTS')}</span>
+                  {Recipe_Comments.length} <span>&nbsp;{t('COMMENTS')}</span>
                 </div>
               </div>
             </div>

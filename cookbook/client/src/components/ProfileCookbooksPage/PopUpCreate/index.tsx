@@ -61,8 +61,15 @@ export default function PopUpCreateCookbook(
     setCreatePopUpVisible(false);
   };
 
+  const closePopUp = (e: React.MouseEvent) => {
+    const target = e.target as HTMLElement;
+    if (target.classList.contains('overlay')) {
+      setCreatePopUpVisible(false);
+    }
+  };
+
   return (
-    <div className="overlay">
+    <div className="overlay" onClick={(e) => closePopUp(e)}>
       <div className="overlay__content">
         <div className="pop-up--create">
           <div className="pop-up--create__title">

@@ -48,15 +48,15 @@ export default function PopUpRecipeCard(
           <div className="card__statistics">
             <div className="card__statistics-item views">
               <ViewsIcon />
-              {views} {t('VIEWS')}
+              {views} <span>&nbsp;{t('VIEWS')}</span>
             </div>
             <div className="card__statistics-item likes">
               <LikesIcon likeUserIds = {likeUserIds} loggedInUserId={loggedInUserId}/>
-              {likes.length} {t('LIKES')}
+              {likes.length} <span>&nbsp;{t('LIKES')}</span>
             </div>
             <div className="card__statistics-item comments">
               <CommentsIcon/>
-              {comments} {t('COMMENTS')}
+              {comments} <span>&nbsp;{t('COMMENTS')}</span>
             </div>
           </div>
         </div>

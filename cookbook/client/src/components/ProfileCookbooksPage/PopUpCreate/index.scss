@@ -136,3 +136,60 @@
     }
   }
 }
+
+@media (max-width: 639px) {
+  .profile-page--cookbooks {
+    .overlay {
+    &__content {
+      padding: 40px 30px;
+
+      .pop-up--create {
+        &__title {
+          text-align: center;
+        }
+
+        &__section {
+          &--image {
+            flex-direction: column;
+            align-items: center;
+          }
+
+          &__title {
+            text-align: center;
+          }
+
+          &__btn {
+            margin-bottom: 24px;
+            margin-right: 0;
+            width: auto;
+            text-align: center;
+          }
+
+          &__container {
+            &--checkboxes {
+              flex-direction: column;
+            }
+
+            &--checkbox {
+              margin-right: 0;
+            }
+          }
+        }
+
+        &__btns {
+          flex-direction: column;
+          align-items: center;
+
+          &__btn {
+            &--light {
+              margin-right: 0;
+              margin-bottom: 24px;
+            }
+          }
+        }
+      }
+    }
+  }
+  }
+  
+}

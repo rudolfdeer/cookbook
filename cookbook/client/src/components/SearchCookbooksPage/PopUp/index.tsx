@@ -105,11 +105,11 @@ export default function PopUpCookbookDetailed(
                 likeUserIds = {likeUserIds}
                 id={id}
               />
-              {Cookbook_Likes.length} <span>{t('LIKES')}</span>
+              {Cookbook_Likes.length} <span>&nbsp;{t('LIKES')}</span>
             </div>
             <div className="card__statistics-item comments">
               <CommentsIcon commentedUsersIds={commentedUsersIds} loggedInUserId={loggedInUserId}/>
-              {Cookbook_Comments.length} <span> {t('COMMENTS')}</span>
+              {Cookbook_Comments.length} <span>&nbsp;{t('COMMENTS')}</span>
             </div>
           </div>
           <div className="pop-up--cookbook__section--recipes">

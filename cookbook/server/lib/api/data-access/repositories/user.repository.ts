@@ -1,4 +1,3 @@
-import { Multer } from "multer";
 
 export {};
 
@@ -42,7 +41,6 @@ const findAll = async () => {
 };
 
 const findById = async (id: number) => {
-  console.log('userID', id);
   const user = await User.findOne({
     where: {
       id,
@@ -81,6 +79,7 @@ const findById = async (id: number) => {
       },
     ],
   });
+  const photo = user.image_data.toString('base64');
   return user;
 };
 
@@ -108,9 +107,9 @@ const update = async (body: UpdatedUser, id: number, photo: Express.Multer.File)
     const updatedUser = {
       name,
       bio,
-      imageType: photo?.mimetype,
-      imageName: photo?.originalname,
-      imageData: photo?.buffer,
+      image_type: photo?.mimetype,
+      image_name: photo?.originalname,
+      image_data: photo?.buffer,
     };
 
     await user.update(updatedUser);

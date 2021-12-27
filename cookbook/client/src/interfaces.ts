@@ -9,8 +9,11 @@ export interface IUser {
   name: string;
   email: string;
   password: string;
-  photo: string;
+  photo?: string;
   bio: string;
+  image_type?: string;
+  image_name?: string;
+  image_data?: string;
   Recipe_Saveds?: IRecipeSaved[];
   Cookbook_Saveds?: ICookbookSaved[];
 }

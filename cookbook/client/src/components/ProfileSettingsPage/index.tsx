@@ -35,8 +35,9 @@ export default function ProfileSettingsPage(
     signOut,
   } = props;
   const {
-    name, email, bio, photo,
+    name, email, bio, image_data,
   } = user;
+
   const [isBioDisabled, setBioDisabled] = useState(true);
   const [isNameDisabled, setNameDisabled] = useState(true);
   const [isEmailDisabled, setEmailDisabled] = useState(true);
@@ -46,7 +47,7 @@ export default function ProfileSettingsPage(
   const [newEmail, setNewEmail] = useState(email);
   const [newPassword, setNewPassword] = useState('');
   const [photoSrc, setPhotoSrc] = useState(
-    photo || './assets/images/photo-mask.png',
+    image_data || './assets/images/photo-mask.png',
   );
 
   const onPhotoChange = (e: React.ChangeEvent) => {
@@ -85,7 +86,7 @@ export default function ProfileSettingsPage(
                   onChange={(e) => onPhotoChange(e)}
                 />
                 <img
-                  src={photoSrc}
+                  src={`data:${user?.image_type};base64, ${photoSrc}`}
                   alt="User photo default"
                   className="profile-page--settings__photo__image--opacity"
                 />

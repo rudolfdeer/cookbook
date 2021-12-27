@@ -27,10 +27,13 @@ module.exports = {
           type: Sequelize.STRING,
           defaultValue: 'No bio',
         },
-        photo: {
-          type: Sequelize.STRING(1234),
-          defaultValue: 'images/default.jpg',
-        },
+        // photo: {
+        //   type: Sequelize.STRING(1234),
+        //   defaultValue: 'images/default.jpg',
+        // },
+        image_type: Sequelize.STRING,
+        image_name: Sequelize.STRING,
+        image_data: Sequelize.BLOB('long'),
       },
       {
         freezeTableName: true,

@@ -1,3 +1,5 @@
+import { Multer } from "multer";
+
 export {};
 
 const {
@@ -91,22 +93,24 @@ const deleteById = async (id: number) => {
   return user.destroy();
 };
 
-const update = async (body: UpdatedUser, id: number) => {
+const update = async (body: UpdatedUser, id: number, photo: Express.Multer.File) => {
   const user = await User.findOne({
     where: {
       id,
     },
   });
 
-  if (body.name && body.bio && body.photo) {
+  if (body.name && body.bio) {
     const {
-      name, bio, photo
+      name, bio
     } = body;
 
     const updatedUser = {
       name,
       bio,
-      photo,
+      imageType: photo?.mimetype,
+      imageName: photo?.originalname,
+      imageData: photo?.buffer,
     };
 
     await user.update(updatedUser);
@@ -119,6 +123,31 @@ const update = async (body: UpdatedUser, id: number) => {
   if (body.savedRecipesIds) {
     await user.setRecipes(body.savedRecipesIds);
   }
+
+  const result = await User.findOne({
+    where: {
+      id,
+    },
+    include: [RecipeSaved, CookbookSaved],
+  });
+
+  return result;
+};
+
+const updatePhoto = async (id: number, photo: Express.Multer.File) => {
+  const user = await User.findOne({
+    where: {
+      id,
+    },
+  });
+
+  const updatedUser = {
+    imageType: photo.mimetype,
+    imageName: photo.originalname,
+    imageData: photo.buffer,
+  };
+
+  await user.update(updatedUser);
 
   const result = await User.findOne({
     where: {
@@ -183,6 +212,7 @@ const userRepository = {
   findAll,
   findById,
   update,
+  updatePhoto,
   create,
   findByEmail,
   changeEmail,

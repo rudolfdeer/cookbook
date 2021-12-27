@@ -56,11 +56,11 @@ export default function ProfileSettingsPage(
     reader.onload = () => {
       const result = String(reader.result);
       setPhotoSrc(result);
-      updateUser({
-        name: newName,
-        photo: photoSrc,
-        bio: newBio,
-      })
+      // updateUser({
+      //   name: newName,
+      //   //photo: photoSrc,
+      //   bio: newBio,
+      // })
     };
     reader.readAsDataURL(file);
   };
@@ -74,13 +74,14 @@ export default function ProfileSettingsPage(
         <div className="wrapper">
           <section className="profile-page--settings__content">
             <div className="profile-page--settings__photo--editable">
+              <form method="put" action="/user/update/photo" encType="multipart/form-data">
               <label
                 htmlFor="avatar"
                 className="profile-page--settings__photo__label"
               >
                 <input
                   type="file"
-                  className="profile-page--settings__photo__input"
+                  className="profile-page--settings__photo__input" name="photo"
                   onChange={(e) => onPhotoChange(e)}
                 />
                 <img
@@ -89,6 +90,7 @@ export default function ProfileSettingsPage(
                   className="profile-page--settings__photo__image--opacity"
                 />
               </label>
+              </form>
             </div>
 
             <div className="profile-page--settings__user editable">

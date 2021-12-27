@@ -1,4 +1,5 @@
 import express from 'express';
+
 import { IError } from '../../helpers/errors';
 
 const { userService } = require('../services');
@@ -37,10 +38,22 @@ const findById = async (req: express.Request, res: express.Response) => {
 };
 
 const update = async (req: express.Request, res: express.Response) => {
+  const photo = req.file;
   const user = req.body;
   const { id } = req.params;
   try {
-    const response = await userService.update(user, id);
+    const response = await userService.update(user, id, photo);
+    res.status(CODE_STATUSES.OK).send(response);
+  } catch (err) {
+    res.status(CODE_STATUSES.SERVER_ERROR).send(`${err}`);
+  }
+};
+
+const updatePhoto = async (req: express.Request, res: express.Response) => {
+  const photo = req.file;
+  const { id } = req.params;
+  try {
+    const response = await userService.updatePhoto(id, photo);
     res.status(CODE_STATUSES.OK).send(response);
   } catch (err) {
     res.status(CODE_STATUSES.SERVER_ERROR).send(`${err}`);
@@ -122,6 +135,7 @@ const userController = {
   deleteById,
   findById,
   update,
+  updatePhoto,
   signUp,
   signIn,
   signOut,

@@ -27,8 +27,17 @@ const findById = async (id: number) => {
   return response;
 };
 
-const update = async (body: UpdatedUser, id: number) => {
+const update = async (body: UpdatedUser, id: number, photo: File) => {
+  console.log(photo)
   await userRepository.update(body, id);
+
+  const response = await userRepository.findById(id);
+
+  return response;
+};
+
+const updatePhoto = async (id: number, photo: File) => {
+  await userRepository.updatePhoto(id, photo);
 
   const response = await userRepository.findById(id);
 
@@ -135,6 +144,7 @@ const userService = {
   deleteById,
   findById,
   update,
+  updatePhoto,
   signIn,
   signUp,
   changeEmail,

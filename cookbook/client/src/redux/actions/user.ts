@@ -40,6 +40,15 @@ class UserActions {
       },
     };
   }
+
+  updatePhoto(user: IUser) {
+    return {
+      type: ACTION_TYPES.USER_UPDATE_PHOTO,
+      payload: {
+        user,
+      },
+    };
+  }
 }
 
 export default new UserActions();

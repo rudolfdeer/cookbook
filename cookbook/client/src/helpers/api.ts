@@ -15,14 +15,12 @@ class Api {
   async getUsersCreatedRecipes(userId: number) {
     const recipes = await this.getAllRecipes();
     const filteredRecipes = recipes.filter((el: IRecipe) => el.UserId === userId);
-    console.log(filteredRecipes)
     return filteredRecipes;
   }
 
   async getUsersCreatedCookbooks(userId: number) {
     const cookbooks = await this.getAllCookbooks();
     const filteredCookbooks = cookbooks.filter((el: ICookbook) => el.UserId === userId);
-    console.log(filteredCookbooks);
     return filteredCookbooks;
   }
 
@@ -328,6 +326,17 @@ class Api {
 
   async getAllUsers() {
     const response = await fetch(`${userUrl}users/all`);
+
+    const result = await response.json();
+    return result;
+  }
+
+  async updateUsersPhoto(data: FormData) {
+    const response = await fetch(`${userUrl}update-photo`, {
+      method: 'POST',
+      body: data,
+      credentials: 'include',
+    });
 
     const result = await response.json();
     return result;

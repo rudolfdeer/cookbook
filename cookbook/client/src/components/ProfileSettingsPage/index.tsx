@@ -14,6 +14,7 @@ type ProfileSettingsPageProps = {
   updateUser: (data: IUserRequestBody) => Promise<void>;
   changePassword: (password: string) => Promise<void>;
   changeEmail: (email: string) => Promise<void>;
+  updateUsersPhoto: (data: FormData) => Promise<void>;
   signOut: () => Promise<void>;
 };
 
@@ -33,6 +34,7 @@ export default function ProfileSettingsPage(
     changePassword,
     changeEmail,
     signOut,
+    updateUsersPhoto,
   } = props;
   const {
     name, email, bio, image_data,
@@ -50,19 +52,19 @@ export default function ProfileSettingsPage(
     image_data || './assets/images/photo-mask.png',
   );
 
-  const onPhotoChange = (e: React.ChangeEvent) => {
+  const onPhotoChange = (e: React.FormEvent) => {
     const input = e.target as HTMLInputElement;
     const file = input.files[0];
     const reader = new FileReader();
     reader.onload = () => {
       const result = String(reader.result);
       setPhotoSrc(result);
-      // updateUser({
-      //   name: newName,
-      //   //photo: photoSrc,
-      //   bio: newBio,
-      // })
     };
+
+    const data = new FormData();
+    data.append('photo', file);
+    updateUsersPhoto(data);
+
     reader.readAsDataURL(file);
   };
 
@@ -75,7 +77,6 @@ export default function ProfileSettingsPage(
         <div className="wrapper">
           <section className="profile-page--settings__content">
             <div className="profile-page--settings__photo--editable">
-              <form method="put" action="/user/update/photo" encType="multipart/form-data">
               <label
                 htmlFor="avatar"
                 className="profile-page--settings__photo__label"
@@ -86,12 +87,11 @@ export default function ProfileSettingsPage(
                   onChange={(e) => onPhotoChange(e)}
                 />
                 <img
-                  src={`data:${user?.image_type};base64, ${photoSrc}`}
-                  alt="User photo default"
-                  className="profile-page--settings__photo__image--opacity"
-                />
+                src={photoSrc}
+                alt="User photo default"
+                className="profile-page--settings__photo__image--opacity"
+              />
               </label>
-              </form>
             </div>
 
             <div className="profile-page--settings__user editable">
@@ -129,7 +129,7 @@ export default function ProfileSettingsPage(
                       setBioDisabled(true);
                       updateUser({
                         name: newName,
-                        photo: photoSrc,
+                        //photo: photoSrc,
                         bio: newBio,
                       })
                     }}

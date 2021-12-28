@@ -14,7 +14,7 @@ userRouter.get('/:id', userController.findById);
 userRouter.get('/users/all', userController.findAll);
 userRouter.get('/', middlewares.verifyAuthToken, userController.findById);
 userRouter.put('/', middlewares.verifyAuthToken, upload.single('photo'), userController.update);
-userRouter.put('/update/photo', middlewares.verifyAuthToken, upload.single('photo'), userController.updatePhoto);
+userRouter.post('/update-photo', middlewares.verifyAuthToken, upload.single('photo'), userController.updatePhoto);
 userRouter.post('/sign-up', userController.signUp);
 userRouter.post('/sign-in', userController.signIn);
 userRouter.delete('/sign-out', userController.signOut);

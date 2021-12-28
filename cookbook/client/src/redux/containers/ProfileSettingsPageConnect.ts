@@ -7,6 +7,7 @@ import {
   changePassword,
   changeEmail,
   getLoggedInUser,
+  updateUsersPhoto,
   signOut,
 } from '../thunks/user';
 
@@ -28,7 +29,7 @@ const mapDispatchToProps = {
   updateUser,
   changePassword,
   changeEmail,
-  
+  updateUsersPhoto
 };
 
 const ProfileSettingsPageConnect = connect(

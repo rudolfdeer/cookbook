@@ -79,7 +79,6 @@ const findById = async (id: number) => {
       },
     ],
   });
-  const photo = user.image_data.toString('base64');
   return user;
 };
 
@@ -140,10 +139,12 @@ const updatePhoto = async (id: number, photo: Express.Multer.File) => {
     },
   });
 
+  console.log(photo.buffer)
+
   const updatedUser = {
-    imageType: photo.mimetype,
-    imageName: photo.originalname,
-    imageData: photo.buffer,
+    image_type: photo.mimetype,
+    image_name: photo.originalname,
+    image_data: photo.buffer,
   };
 
   await user.update(updatedUser);

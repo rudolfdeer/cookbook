@@ -28,7 +28,6 @@ const findById = async (id: number) => {
 };
 
 const update = async (body: UpdatedUser, id: number, photo: File) => {
-  console.log(photo)
   await userRepository.update(body, id);
 
   const response = await userRepository.findById(id);

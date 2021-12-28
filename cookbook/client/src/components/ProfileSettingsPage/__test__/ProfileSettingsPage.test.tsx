@@ -20,6 +20,7 @@ describe('profile settings page component', () => {
     changePassword: jest.fn(),
     signOut: jest.fn(),
     deleteUser: jest.fn(),
+    updateUsersPhoto: jest.fn(),
   };
 
   const component = shallow(<ProfileSettingsPage {...props} />);

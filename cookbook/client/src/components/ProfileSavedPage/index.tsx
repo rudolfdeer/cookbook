@@ -40,7 +40,7 @@ export default function ProfileSavedPage(
   const {
     name, bio, photo, id,
   } = user;
-  const photoSrc = photo || '../../assets/images/photo-mask.png';
+  const photoSrc = user.image_data || '../../assets/images/photo-mask.png';
   const [isRecipePopUpVisible, setRecipePopUpVisible] = useState(false);
   const [selectedRecipeId, setSelectedRecipeId] = useState(0);
   const [isCookbookPopUpVisible, setCookbookPopUpVisible] = useState(false);
@@ -61,7 +61,7 @@ export default function ProfileSavedPage(
           <section className="profile-page--saved__user">
             <div className="profile-page--saved__photo">
               <img
-                src={photoSrc}
+                src={`data:${user.image_type};base64, ${photoSrc}`}
                 alt="User photo default"
                 className="profile-page--saved__photo__image"
               />

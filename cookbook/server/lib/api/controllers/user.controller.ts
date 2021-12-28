@@ -1,5 +1,4 @@
 import express from 'express';
-
 import { IError } from '../../helpers/errors';
 
 const { userService } = require('../services');
@@ -52,6 +51,8 @@ const update = async (req: express.Request, res: express.Response) => {
 const updatePhoto = async (req: express.Request, res: express.Response) => {
   const photo = req.file;
   const { id } = req.params;
+
+
   try {
     const response = await userService.updatePhoto(id, photo);
     res.status(CODE_STATUSES.OK).send(response);

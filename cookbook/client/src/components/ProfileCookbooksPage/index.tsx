@@ -51,7 +51,7 @@ export default function ProfileCookbooksPage(
   const [isCreatePopUpVisible, setCreatePopUpVisible] = useState(false);
   const [isModifyPopUpVisible, setModifyPopUpVisible] = useState(false);
   const [selectedCookbookId, setSelectedCookbookId] = useState(0);
-  const photoSrc = user?.photo || '../../assets/images/photo-mask.png';
+  const photoSrc = user?.image_data || '../../assets/images/photo-mask.png';
 
   useEffect(() => getUsersCreatedCookbooks(user?.id), []);
 
@@ -65,7 +65,7 @@ export default function ProfileCookbooksPage(
           <section className="profile-page--cookbooks__user">
             <div className="profile-page--cookbooks__photo">
               <img
-                src={photoSrc}
+                src={`data:${user.image_type};base64, ${photoSrc}`}
                 alt="User photo default"
                 className="profile-page--cookbooks__photo__image"
               />

@@ -79,6 +79,9 @@ const findById = async (id: number) => {
       },
     ],
   });
+
+  const photo = user.image_data.toString('base64');
+  user.image_data = photo;
   return user;
 };
 
@@ -91,7 +94,7 @@ const deleteById = async (id: number) => {
   return user.destroy();
 };
 
-const update = async (body: UpdatedUser, id: number, photo: Express.Multer.File) => {
+const update = async (body: UpdatedUser, id: number) => {
   const user = await User.findOne({
     where: {
       id,
@@ -106,9 +109,6 @@ const update = async (body: UpdatedUser, id: number, photo: Express.Multer.File)
     const updatedUser = {
       name,
       bio,
-      image_type: photo?.mimetype,
-      image_name: photo?.originalname,
-      image_data: photo?.buffer,
     };
 
     await user.update(updatedUser);
@@ -138,8 +138,6 @@ const updatePhoto = async (id: number, photo: Express.Multer.File) => {
       id,
     },
   });
-
-  console.log(photo.buffer)
 
   const updatedUser = {
     image_type: photo.mimetype,

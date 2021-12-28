@@ -87,7 +87,7 @@ export default function ProfileSettingsPage(
                   onChange={(e) => onPhotoChange(e)}
                 />
                 <img
-                src={photoSrc}
+                src={`data:${user.image_type};base64, ${photoSrc}`}
                 alt="User photo default"
                 className="profile-page--settings__photo__image--opacity"
               />

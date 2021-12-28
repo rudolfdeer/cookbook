@@ -56,7 +56,7 @@ export default function ProfileRecipesPage(
     getUsersCreatedRecipes(user.id);
   }, []);
 
-  const photoSrc = photo || '../../assets/images/photo-mask.png';
+  const photoSrc = user.image_data || '../../assets/images/photo-mask.png';
 
   return (
     <>
@@ -68,7 +68,7 @@ export default function ProfileRecipesPage(
           <section className="profile-page--recipes__content">
             <div className="profile-page--recipes__photo">
               <img
-                src={photoSrc}
+                src={`data:${user.image_type};base64, ${photoSrc}`}
                 alt="User photo default"
                 className="profile-page--recipes__photo__image"
               />

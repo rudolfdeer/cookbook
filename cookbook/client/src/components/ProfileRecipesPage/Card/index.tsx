@@ -63,8 +63,12 @@ export default function ProfileRecipeCard(
     <div className="card">
       <div
         className="card__image"
-        style={{ background: `url(${image}) center no-repeat` }}
-      ></div>
+      >
+        <img
+                src={image}
+                alt="Recipe image"
+              />
+      </div>
       <div className="card__content">
         <div className="card__info-container top">
           <div

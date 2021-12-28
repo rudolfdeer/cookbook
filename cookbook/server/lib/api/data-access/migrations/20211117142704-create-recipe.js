@@ -14,9 +14,9 @@ module.exports = {
       description: {
         type: Sequelize.STRING,
       },
-      image: {
-        type: Sequelize.STRING(1234),
-      },
+      image_type: Sequelize.STRING,
+      image_name: Sequelize.STRING,
+      image_data: Sequelize.BLOB('long'),
       time: {
         type: Sequelize.INTEGER,
         defaultValue: 0,

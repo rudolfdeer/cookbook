@@ -36,6 +36,10 @@ const findAll = async () => {
       },
     ],
   });
+  recipes.forEach((el: any) => {
+    const photo = el.image_data.toString('base64');
+    el.image_data = `data:${el.image_type};base64, ${photo}`;
+  })
 
   return recipes;
 };
@@ -124,6 +128,22 @@ const update = async (body: UpdatedRecipe, id: number) => {
   });
 };
 
+const updateImage = async (id: number, image: Express.Multer.File) => {
+  const recipe = await Recipe.findOne({
+    where: {
+      id,
+    },
+  });
+
+  const updatedRecipe = {
+    image_type: image.mimetype,
+    image_name: image.originalname,
+    image_data: image.buffer,
+  };
+
+  return recipe.update(updatedRecipe);
+};
+
 const like = async (userId: number, id: number) => {
   const recipe = await Recipe.findOne({
     where: {
@@ -184,6 +204,7 @@ const recipeRepository = {
   deleteById,
   findById,
   update,
+  updateImage,
   createComment,
   like,
   dislike,

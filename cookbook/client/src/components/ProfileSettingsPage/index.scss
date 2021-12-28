@@ -215,7 +215,8 @@
   .profile-page {
     &--settings {
       &__content {
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
       }
 
       &__photo {
@@ -235,6 +236,10 @@
             margin-right: 24px;
           }
         }
+      }
+
+      &__nav  {
+        justify-content: center;
       }
     }
   }

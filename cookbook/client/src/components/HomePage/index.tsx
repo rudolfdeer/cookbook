@@ -91,7 +91,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
                     author={el.User}
                     views={el.views}
                     comments={el.Recipe_Comments}
-                    image={el.image}
+                    image={el.image_data}
                     key={el.id}
                     likes={el.Recipe_Likes}
                     loggedInUserId = {user?.id}
@@ -138,7 +138,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
                       title={el.title}
                       author={el.User}
                       views={el.views}
-                      image={el.image}
+                      image={el.image_data}
                       key={el.id}
                       
                     />

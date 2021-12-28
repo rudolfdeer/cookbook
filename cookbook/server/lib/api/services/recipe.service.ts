@@ -46,7 +46,7 @@ const update = async (
   userId: number
 ) => {
   const recipe = await recipeRepository.findById(recipeId);
-  console.log(body);
+
   if (recipe.UserId !== userId) {
     throw new AuthError({
       status: CODE_STATUSES.FORBIDDEN,
@@ -55,6 +55,16 @@ const update = async (
   }
 
   await recipeRepository.update(body, recipeId);
+  const response = await recipeRepository.findById(recipeId);
+
+  return response;
+};
+
+const updateImage = async (
+  recipeId: number,
+  image: File,
+) => {
+  await recipeRepository.updateImage(recipeId, image);
   const response = await recipeRepository.findById(recipeId);
 
   return response;
@@ -97,6 +107,7 @@ const recipeService = {
   deleteById,
   findById,
   update,
+  updateImage,
   createComment,
   like,
 };

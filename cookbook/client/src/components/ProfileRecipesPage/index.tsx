@@ -106,7 +106,7 @@ export default function ProfileRecipesPage(
                 author={el.User}
                 views={el.views}
                 comments={el.Recipe_Comments?.length}
-                image={el.image}
+                image={el.image_data}
                 description={el.description}
                 key={el.id}
                 setModifyPopUpVisible={setModifyPopUpVisible}

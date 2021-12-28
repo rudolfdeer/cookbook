@@ -40,8 +40,12 @@ export default function CardRated(props: RecipeCardRatedProps): JSX.Element {
 
       <div
         className="card__image"
-        style={{ background: `url(${image}) center no-repeat` }}
-      ></div>
+      >
+        <img
+                src={image}
+                alt="Recipe image"
+              />
+      </div>
 
       <div className="card__info-container--middle">
         <div className="card__title">{title}</div>

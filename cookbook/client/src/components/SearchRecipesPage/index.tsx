@@ -74,7 +74,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
                   author={el.User}
                   views={el.views}
                   comments={el.Recipe_Comments}
-                  image={el.image}
+                  image={el.image_data}
                   description={el.description}
                   selectCard={setSelectedCardId}
                   setVisible={setVisible}

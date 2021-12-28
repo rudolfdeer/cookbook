@@ -57,6 +57,18 @@ const update = async (req: express.Request, res: express.Response) => {
   }
 };
 
+const updateImage = async (req: express.Request, res: express.Response) => {
+  const image = req.file;
+  const { target } = req.params;
+
+  try {
+    const response = await recipeService.updateImage(target, image);
+    res.status(CODE_STATUSES.OK).send(response);
+  } catch (err) {
+    res.status(CODE_STATUSES.SERVER_ERROR).send(`${err}`);
+  }
+};
+
 const like = async (req: express.Request, res: express.Response) => {
   const { target, id } = req.params;
   try {
@@ -85,6 +97,7 @@ const recipeController = {
   deleteById,
   findById,
   update,
+  updateImage,
   createComment,
   like,
 };

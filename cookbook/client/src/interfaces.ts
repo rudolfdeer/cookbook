@@ -22,7 +22,10 @@ export interface IRecipe {
   id: number;
   title: string;
   description: string;
-  image: string;
+  image?: string;
+  image_type?: string;
+  image_name?: string;
+  image_data?: string;
   directions: string[];
   ingredients: string[];
   time: number;

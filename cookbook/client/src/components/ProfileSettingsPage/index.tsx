@@ -52,20 +52,23 @@ export default function ProfileSettingsPage(
     image_data || './assets/images/photo-mask.png',
   );
 
-  const onPhotoChange = (e: React.FormEvent) => {
+  const onPhotoChange = async (e: React.FormEvent) => {
     const input = e.target as HTMLInputElement;
     const file = input.files[0];
+
+    const data = new FormData();
+    data.append('photo', file);
+    await updateUsersPhoto(data);
+
     const reader = new FileReader();
     reader.onload = () => {
       const result = String(reader.result);
       setPhotoSrc(result);
     };
 
-    const data = new FormData();
-    data.append('photo', file);
-    updateUsersPhoto(data);
-
     reader.readAsDataURL(file);
+
+    
   };
 
   return (
@@ -87,8 +90,8 @@ export default function ProfileSettingsPage(
                   onChange={(e) => onPhotoChange(e)}
                 />
                 <img
-                src={`data:${user.image_type};base64, ${photoSrc}`}
-                alt="User photo default"
+                src={photoSrc}
+                alt="User photo"
                 className="profile-page--settings__photo__image--opacity"
               />
               </label>

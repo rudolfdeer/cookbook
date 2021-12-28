@@ -61,7 +61,7 @@ export default function ProfileSavedPage(
           <section className="profile-page--saved__user">
             <div className="profile-page--saved__photo">
               <img
-                src={`data:${user.image_type};base64, ${photoSrc}`}
+                src={photoSrc}
                 alt="User photo default"
                 className="profile-page--saved__photo__image"
               />

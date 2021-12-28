@@ -81,7 +81,7 @@ const findById = async (id: number) => {
   });
 
   const photo = user.image_data.toString('base64');
-  user.image_data = photo;
+  user.image_data = `data:${user.image_type};base64, ${photo}`;
   return user;
 };
 
@@ -129,6 +129,8 @@ const update = async (body: UpdatedUser, id: number) => {
     include: [RecipeSaved, CookbookSaved],
   });
 
+  const photo = result.image_data.toString('base64');
+  result.image_data = `data:${result.image_type};base64, ${photo}`;
   return result;
 };
 
@@ -153,6 +155,9 @@ const updatePhoto = async (id: number, photo: Express.Multer.File) => {
     },
     include: [RecipeSaved, CookbookSaved],
   });
+
+  const photoStr = result.image_data.toString('base64');
+  result.image_data = `data:${result.image_type};base64, ${photoStr}`;
 
   return result;
 };

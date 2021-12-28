@@ -65,7 +65,7 @@ export default function ProfileCookbooksPage(
           <section className="profile-page--cookbooks__user">
             <div className="profile-page--cookbooks__photo">
               <img
-                src={`data:${user.image_type};base64, ${photoSrc}`}
+                src={photoSrc}
                 alt="User photo default"
                 className="profile-page--cookbooks__photo__image"
               />

@@ -83,10 +83,7 @@ export const getLoggedInUser = () => async (dispatch: Dispatch): Promise<void> =
 };
 
 export const updateUsersPhoto = (data: FormData) => async (dispatch: Dispatch): Promise<void> => {
-  console.log(data);
-  await api.updateUsersPhoto(data);
+  const user = await api.updateUsersPhoto(data);
 
-  const user = await api.getLoggedInUser();
-
-  dispatch(userActions.update(user));
+  dispatch(userActions.updatePhoto(user));
 };

@@ -68,7 +68,7 @@ export default function ProfileRecipesPage(
           <section className="profile-page--recipes__content">
             <div className="profile-page--recipes__photo">
               <img
-                src={`data:${user.image_type};base64, ${photoSrc}`}
+                src={photoSrc}
                 alt="User photo default"
                 className="profile-page--recipes__photo__image"
               />

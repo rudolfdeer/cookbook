@@ -19,6 +19,14 @@ export default function userReducer(
       };
     }
 
+    case ACTION_TYPES.USER_UPDATE_PHOTO: {
+      const { user } = action.payload;
+      return {
+        ...state,
+        ...user,
+      };
+    }
+
     case ACTION_TYPES.USER_SIGN_IN: {
       const { user } = action.payload;
       return {

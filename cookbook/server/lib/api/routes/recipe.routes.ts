@@ -29,7 +29,7 @@ recipeRouter.post(
   recipeController.like,
 );
 recipeRouter.post(
-  '/:id/photo',
+  '/:id/image',
   middlewares.verifyAuthToken,
   upload.single('image'),
   recipeController.uploadImage,

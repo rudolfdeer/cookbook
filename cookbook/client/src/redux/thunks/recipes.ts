@@ -48,10 +48,20 @@ export const createRecipe = (data: IRecipeRequestBody, imageSrc: string, userId:
 export const modifyRecipe = (
   recipeId: number,
   data: IRecipeRequestBody,
-  imageSrc: string,
   userId: number,
 ) => async (dispatch: Dispatch): Promise<void> => {
-  await api.updateRecipe(recipeId, data, imageSrc);
+  await api.updateRecipe(recipeId, data);
+  const recipes = await api.getAllRecipes();
+
+  dispatch(recipeActions.update(recipes, userId));
+};
+
+export const updateRecipesImage = (
+  recipeId: number,
+  data: FormData,
+  userId: number,
+) => async (dispatch: Dispatch): Promise<void> => {
+  await api.updateRecipesImage(recipeId, data);
   const recipes = await api.getAllRecipes();
 
   dispatch(recipeActions.update(recipes, userId));

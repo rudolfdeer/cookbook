@@ -12,7 +12,11 @@ type PopUpModifyCookbookProps = {
   modifyCookbook: (
     cookbookId: number,
     data: ICookbookRequestBody,
-    imageSrc: string,
+    userId: number
+  ) => Promise<void>;
+  updateCookbooksImage: (
+    cookbookId: number,
+    data: FormData,
     userId: number
   ) => Promise<void>;
 };
@@ -26,14 +30,15 @@ export default function PopUpModifyCookbook(
     selectedCookbook,
     loggedInUserId,
     modifyCookbook,
+    updateCookbooksImage,
   } = props;
   const {
-    id, image, description, title, User, Recipe_Cookbooks,
+    id, image_data, description, title, User, Recipe_Cookbooks,
   } = selectedCookbook;
 
   const recipesIds = Recipe_Cookbooks.map((el) => el.RecipeId);
 
-  const [imageSrc, setImageSrc] = useState(image);
+  const [imageSrc, setImageSrc] = useState(image_data);
   const [isTitleDisabled, setTitleDisabled] = useState(true);
   const [newTitle, setNewTitle] = useState(title);
   const [isDescriptionDisabled, setDescriptionDisabled] = useState(true);
@@ -50,9 +55,14 @@ export default function PopUpModifyCookbook(
     }
   }
 
-  const onImageChange = (e: React.ChangeEvent) => {
+  const onImageChange = async (e: React.ChangeEvent) => {
     const target = e.target as HTMLInputElement;
     const file = target.files[0];
+
+    const data = new FormData();
+    data.append('image', file);
+    await updateCookbooksImage(id, data, loggedInUserId);
+
     const reader = new FileReader();
     reader.onload = () => {
       const result = String(reader.result);
@@ -75,7 +85,7 @@ export default function PopUpModifyCookbook(
       description: newDescription,
       recipesIds: newRecipesIds,
     };
-    modifyCookbook(id, values, imageSrc, loggedInUserId);
+    modifyCookbook(id, values, loggedInUserId);
     setModifyPopUpVisible(false);
   };
 
@@ -126,10 +136,10 @@ export default function PopUpModifyCookbook(
           <div className="pop-up--modify__section--description">
             <div
               className="pop-up--modify__image--cookbook"
-              style={{
-                background: `url(${imageSrc}) center no-repeat`,
-              }}
-            >
+            ><img
+            src={image_data}
+            alt="Cookbook image"
+          />
               <input
                 type="file"
                 className="pop-up--modify__input--file"

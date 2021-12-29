@@ -40,7 +40,10 @@ export interface ICookbook {
   id: number;
   title: string;
   description: string;
-  image: string;
+  image?: string;
+  image_type?: string;
+  image_name?: string;
+  image_data?: string;
   tags: string[];
   views: number;
   UserId: number;

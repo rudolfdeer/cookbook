@@ -24,10 +24,14 @@ type ProfileCookbooksPageProps = {
   modifyCookbook: (
     cookbookId: number,
     data: ICookbookRequestBody,
-    imageSrc: string,
     userId: number
   ) => Promise<void>;
   deleteCookbook: (cookbookId: number, userId: number) => Promise<void>;
+  updateCookbooksImage: (
+    cookbookId: number,
+    data: FormData,
+    userId: number
+  ) => Promise<void>;
 };
 
 export default function ProfileCookbooksPage(
@@ -44,6 +48,7 @@ export default function ProfileCookbooksPage(
     getUsersCreatedCookbooks,
     createCookbook,
     modifyCookbook,
+    updateCookbooksImage,
     deleteCookbook,
   } = props;
 
@@ -104,7 +109,7 @@ export default function ProfileCookbooksPage(
                 views={el.views}
                 likes={el.Cookbook_Likes}
                 comments={el.Cookbook_Comments?.length}
-                image={el.image}
+                image={el.image_data}
                 description={el.description}
                 key={el.id}
                 setSelectedCookbookId={setSelectedCookbookId}
@@ -128,6 +133,7 @@ export default function ProfileCookbooksPage(
               selectedCookbook={cookbooks.find((el) => el.id === selectedCookbookId)}
               setModifyPopUpVisible={setModifyPopUpVisible}
               modifyCookbook={modifyCookbook}
+              updateCookbooksImage = {updateCookbooksImage}
             />
           ) : null}
         </div>

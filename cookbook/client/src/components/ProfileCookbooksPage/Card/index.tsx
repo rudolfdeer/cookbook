@@ -86,11 +86,11 @@ export default function ProfileCookbookCard(
       </div>
       <div className="card__info-container">
         <div
-          className="card__image"
-          style={{
-            background: `url(${image}) center no-repeat`,
-          }}
-        ></div>
+          className="card__image">
+          <img
+        src={image}
+        alt="Cookbook image"
+      /></div>
       </div>
 
       <div className="card__info-container">

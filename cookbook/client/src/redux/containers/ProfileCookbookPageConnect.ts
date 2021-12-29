@@ -6,6 +6,7 @@ import {
   createCookbook,
   modifyCookbook,
   deleteCookbook,
+  updateCookbooksImage,
 } from '../thunks/cookbooks';
 
 const mapStateToProps = (state: IState) => {
@@ -22,6 +23,7 @@ const mapDispatchToProps = {
   getUsersCreatedCookbooks,
   createCookbook,
   modifyCookbook,
+  updateCookbooksImage,
   deleteCookbook,
 };
 

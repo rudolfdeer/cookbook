@@ -67,8 +67,6 @@ export default function ProfileSettingsPage(
     };
 
     reader.readAsDataURL(file);
-
-    
   };
 
   return (

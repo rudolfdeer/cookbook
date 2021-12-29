@@ -10,7 +10,11 @@ type PopUpModifyRecipeProps = {
   modifyRecipe: (
     recipeId: number,
     data: IRecipeRequestBody,
-    imageSrc: string,
+    userId: number
+  ) => Promise<void>;
+  updateRecipesImage: (
+    recipeId: number,
+    data: FormData,
     userId: number
   ) => Promise<void>;
   loggedInUserId: number;
@@ -25,6 +29,7 @@ export default function PopUpModifyRecipe(
     selectedRecipe,
     modifyRecipe,
     loggedInUserId,
+    updateRecipesImage,
   } = props;
   const {
     id, title, image, description, directions, ingredients, views, Recipe_Likes
@@ -47,9 +52,14 @@ export default function PopUpModifyRecipe(
     }
   };
 
-  const onImageChange = (e: React.ChangeEvent) => {
+  const onImageChange = async(e: React.ChangeEvent) => {
     const target = e.target as HTMLInputElement;
     const file = target.files[0];
+
+    const data = new FormData();
+    data.append('image', file);
+    await updateRecipesImage(id, data, loggedInUserId);
+
     const reader = new FileReader();
     reader.onload = () => {
       const result = String(reader.result);
@@ -214,7 +224,7 @@ export default function PopUpModifyRecipe(
                     likeUserIds: Recipe_Likes.map((el) => el.UserId),
                   };
                   setModifyPopUpVisible(false);
-                  modifyRecipe(id, data, imageSrc, loggedInUserId);
+                  modifyRecipe(id, data, loggedInUserId);
                 }}
               >
                 {t('SAVE_BTN')}

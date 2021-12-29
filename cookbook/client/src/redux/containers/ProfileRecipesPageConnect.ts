@@ -6,6 +6,7 @@ import {
   createRecipe,
   modifyRecipe,
   deleteRecipe,
+  updateRecipesImage,
 } from '../thunks/recipes';
 
 function mapStateToProps(state: IState) {
@@ -21,6 +22,7 @@ const mapDispatchToProps = {
   getUsersCreatedRecipes,
   createRecipe,
   modifyRecipe,
+  updateRecipesImage,
   deleteRecipe,
 };
 

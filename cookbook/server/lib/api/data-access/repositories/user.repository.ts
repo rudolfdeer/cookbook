@@ -1,4 +1,3 @@
-
 export {};
 
 const {
@@ -34,7 +33,7 @@ export type Comment = {
 
 const findAll = async () => {
   const users = User.findAll({
-    attributes: { exclude: ['password', 'bio', 'email', 'photo'] }
+    attributes: { exclude: ['password', 'bio', 'email', 'image_type', 'image_data', 'image_name'] },
   });
 
   return users;
@@ -50,7 +49,10 @@ const findById = async (id: number) => {
         model: RecipeSaved,
         include: {
           model: Recipe,
-          include: [User, RecipeLike, RecipeComment],
+          include: [{
+            model: User,
+            attributes: { exclude: ['image_data', 'image_type', 'image_name'] },
+          }, RecipeLike, RecipeComment],
         },
       },
       {
@@ -58,13 +60,19 @@ const findById = async (id: number) => {
         include: {
           model: Cookbook,
           include: [
-            User, CookbookComment, CookbookLike,
+            {
+              model: User,
+              attributes: { exclude: ['image_data', 'image_type', 'image_name'] },
+            }, CookbookComment, CookbookLike,
             {
               model: RecipeCookbook,
               include: {
                 model: Recipe,
                 include: [
-                  User,
+                  {
+                    model: User,
+                    attributes: { exclude: ['image_data', 'image_type', 'image_name'] },
+                  },
                   {
                     model: RecipeComment,
                   },
@@ -103,7 +111,7 @@ const update = async (body: UpdatedUser, id: number) => {
 
   if (body.name && body.bio) {
     const {
-      name, bio
+      name, bio,
     } = body;
 
     const updatedUser = {

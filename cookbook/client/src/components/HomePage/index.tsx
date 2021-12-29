@@ -113,7 +113,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
             <div className="page--home__section--popular__cards">
               {cookbooks
                 ?.map((el) => (
-                  <CardPopular title={el.title} image={el.image} key={el.id} />
+                  <CardPopular title={el.title} image={el.image_data} key={el.id} />
                 ))
                 .slice(0, 4)}
             </div>

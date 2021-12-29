@@ -83,7 +83,7 @@ class Api {
     return result;
   }
 
-  async updateRecipe(recipeId: number, data: IRecipeRequestBody, imageSrc: string) {
+  async updateRecipe(recipeId: number, data: IRecipeRequestBody) {
     const {
       title,
       description,
@@ -96,7 +96,6 @@ class Api {
     const body = {
       title,
       description,
-      image: imageSrc,
       directions: directions.split(','),
       ingredients: ingredients.split(','),
       views,
@@ -194,7 +193,7 @@ class Api {
     return result;
   }
 
-  async updateCookbook(cookbookId: number, data: ICookbookRequestBody, imageSrc: string) {
+  async updateCookbook(cookbookId: number, data: ICookbookRequestBody) {
     const {
       title,
       description,
@@ -206,7 +205,6 @@ class Api {
     const body = {
       title,
       description,
-      image: imageSrc,
       views,
       likeUserIds,
       recipesIds,
@@ -333,6 +331,28 @@ class Api {
 
   async updateUsersPhoto(data: FormData) {
     const response = await fetch(`${userUrl}update-photo`, {
+      method: 'POST',
+      body: data,
+      credentials: 'include',
+    });
+
+    const result = await response.json();
+    return result;
+  }
+
+  async updateCookbooksImage(id: number, data: FormData) {
+    const response = await fetch(`${cookbooksUrl}${id}/image`, {
+      method: 'POST',
+      body: data,
+      credentials: 'include',
+    });
+
+    const result = await response.json();
+    return result;
+  }
+
+  async updateRecipesImage(id: number, data: FormData) {
+    const response = await fetch(`${recipesUrl}${id}/image`, {
       method: 'POST',
       body: data,
       credentials: 'include',

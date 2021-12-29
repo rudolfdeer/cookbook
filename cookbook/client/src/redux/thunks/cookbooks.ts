@@ -48,10 +48,20 @@ export const createCookbook = (data: ICookbookRequestBody, imageSrc: string, use
 export const modifyCookbook = (
   cookbookId: number,
   data: ICookbookRequestBody,
-  imageSrc: string,
   userId: number,
 ) => async (dispatch: Dispatch): Promise<void> => {
-  await api.updateCookbook(cookbookId, data, imageSrc);
+  await api.updateCookbook(cookbookId, data);
+  const cookbooks = await api.getAllCookbooks();
+
+  dispatch(cookbookActions.update(cookbooks, userId));
+};
+
+export const updateCookbooksImage = (
+  cookbookId: number,
+  data: FormData,
+  userId: number,
+) => async (dispatch: Dispatch): Promise<void> => {
+  await api.updateCookbooksImage(cookbookId, data);
   const cookbooks = await api.getAllCookbooks();
 
   dispatch(cookbookActions.update(cookbooks, userId));

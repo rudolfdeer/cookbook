@@ -33,7 +33,7 @@ export type UpdatedCookbook = {
 };
 
 const findAll = async () => {
-  const cookbooks = Cookbook.findAll({
+  const cookbooks = await Cookbook.findAll({
     include: [
       User,
       {
@@ -63,6 +63,14 @@ const findAll = async () => {
       },
     ],
   });
+
+  cookbooks.forEach((el: any) => {
+    if (el.image_data) {
+      const photo = el.image_data.toString('base64');
+    el.image_data = `data:${el.image_type};base64, ${photo}`;
+    }
+    
+  })
 
   return cookbooks;
 };

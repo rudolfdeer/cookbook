@@ -23,7 +23,11 @@ type ProfileRecipesPageProps = {
   modifyRecipe: (
     recipeId: number,
     data: IRecipeRequestBody,
-    imageSrc: string,
+    userId: number
+  ) => Promise<void>;
+  updateRecipesImage: (
+    recipeId: number,
+    data: FormData,
     userId: number
   ) => Promise<void>;
   deleteRecipe: (recipeId: number, userId: number) => Promise<void>;
@@ -44,6 +48,7 @@ export default function ProfileRecipesPage(
     getUsersCreatedRecipes,
     createRecipe,
     modifyRecipe,
+    updateRecipesImage,
     deleteRecipe,
   } = props;
 
@@ -131,6 +136,7 @@ export default function ProfileRecipesPage(
               setModifyPopUpVisible={setModifyPopUpVisible}
               selectedRecipe={recipes.find((el) => el.id === selectedRecipeId)}
               modifyRecipe={modifyRecipe}
+              updateRecipesImage = {updateRecipesImage}
             />
           ) : null}
         </div>

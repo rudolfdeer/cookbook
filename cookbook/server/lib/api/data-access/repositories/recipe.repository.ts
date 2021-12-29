@@ -37,8 +37,10 @@ const findAll = async () => {
     ],
   });
   recipes.forEach((el: any) => {
-    const photo = el.image_data.toString('base64');
+    if (el.image_data) {
+      const photo = el.image_data.toString('base64');
     el.image_data = `data:${el.image_type};base64, ${photo}`;
+    }
   })
 
   return recipes;

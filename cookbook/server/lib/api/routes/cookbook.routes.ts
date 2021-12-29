@@ -38,7 +38,7 @@ cookbookRouter.post(
   cookbookController.like,
 );
 cookbookRouter.post(
-  '/:id/photo',
+  '/:id/image',
   middlewares.verifyAuthToken,
   upload.single('image'),
   cookbookController.uploadImage,

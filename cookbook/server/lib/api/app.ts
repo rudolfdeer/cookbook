@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import { serverConfig } from '../constants/configs/server.configs';
 import { db } from './data-access';
 
+const path = require('path');
 const { router } = require('./routes');
 const { middlewares } = require('../middlewares');
 
@@ -30,6 +31,7 @@ export class App {
   connectMiddlewares() {
     this.client.use(express.json({ limit: '50mb' }));
     this.client.use(express.urlencoded({ limit: '50mb', extended: true }));
+    this.client.use('/static', express.static(path.join(__dirname, 'public')));
     this.client.use(cookieParser());
     this.client.use(middlewares.bodyParser());
   }

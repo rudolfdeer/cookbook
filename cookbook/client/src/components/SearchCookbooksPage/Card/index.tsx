@@ -58,7 +58,12 @@ export default function CookbookCard(props: CookbookCardProps): JSX.Element {
           style={{
             background: `url(${image}) center no-repeat`,
           }}
-        ></div>
+        >
+          <img
+                src={image}
+                alt="Cookbook image"
+              />
+        </div>
       </div>
 
       <div className="card__info-container">

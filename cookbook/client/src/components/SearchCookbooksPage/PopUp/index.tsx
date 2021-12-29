@@ -86,10 +86,10 @@ export default function PopUpCookbookDetailed(
           <div className="pop-up--cookbook__section--description">
             <div
               className="pop-up--cookbook__image"
-              style={{
-                background: `url(${image}) center no-repeat`,
-              }}
-            ></div>
+            ><img
+            src={image}
+            alt="Cookbook image"
+          /></div>
             <div className="pop-up--cookbook__section--description__text">
               <div className="pop-up--cookbook__section__title">
                 {t('DESCRIPTION')}
@@ -124,7 +124,7 @@ export default function PopUpCookbookDetailed(
                   views={el.views}
                   description={el.description}
                   likes={el.Recipe_Likes}
-                  image={el.image}
+                  image={el.image_data}
                   comments={el.Recipe_Comments}
                   key={el.id}
                   id={el.id}

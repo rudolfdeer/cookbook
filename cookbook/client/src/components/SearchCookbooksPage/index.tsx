@@ -87,7 +87,7 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
                   views={el.views}
                   likes={el.Cookbook_Likes}
                   comments={el.Cookbook_Comments}
-                  image={el.image}
+                  image={el.image_data}
                   description={el.description}
                   key={el.id}
                   selectCard={setChosenCardId}

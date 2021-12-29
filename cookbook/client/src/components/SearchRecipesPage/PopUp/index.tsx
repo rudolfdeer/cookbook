@@ -33,7 +33,7 @@ export default function PopUpRecipeDetailed(
   } = props;
   const {
     id,
-    image,
+    image_data,
     description,
     title,
     User,
@@ -59,7 +59,7 @@ export default function PopUpRecipeDetailed(
         <div className="overlay__content--recipe__wrapper">
           <div className="pop-up--recipe">
             <div className="pop-up--recipe__image">
-              <img src={`${image}`} alt="" className="img" />
+              <img src={`${image_data}`} alt="" className="img" />
             </div>
             <div className="pop-up--recipe__sections">
               <div className="pop-up--recipe__section--top">

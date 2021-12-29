@@ -160,6 +160,22 @@ const update = async (body: UpdatedCookbook, id: number) => {
   });
 };
 
+const uploadImage = async (id: number, image: Express.Multer.File) => {
+  const cookbook = await Cookbook.findOne({
+    where: {
+      id,
+    },
+  });
+
+  const updatedCookbook = {
+    image_type: image.mimetype,
+    image_name: image.originalname,
+    image_data: image.buffer,
+  };
+
+  return cookbook.update(updatedCookbook);
+};
+
 const like = async (userId: number, id: number) => {
   const cookbook = await Cookbook.findOne({
     where: {
@@ -221,6 +237,7 @@ const cookbookRepository = {
   deleteById,
   findById,
   update,
+  uploadImage,
   createComment,
   like,
   dislike,

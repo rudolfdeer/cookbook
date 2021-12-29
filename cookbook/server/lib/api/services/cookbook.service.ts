@@ -59,6 +59,16 @@ const update = async (
   return response;
 };
 
+const uploadImage = async (
+  cookbookId: number,
+  image: File,
+) => {
+  await cookbookRepository.uploadImage(cookbookId, image);
+  const response = await cookbookRepository.findById(cookbookId);
+
+  return response;
+};
+
 interface IUser {
   id: number;
 }
@@ -100,6 +110,7 @@ const cookbookService = {
   deleteById,
   findById,
   update,
+  uploadImage,
   createComment,
   like,
 };

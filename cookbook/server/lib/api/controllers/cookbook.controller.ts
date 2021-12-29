@@ -57,6 +57,18 @@ const update = async (req: express.Request, res: express.Response) => {
   }
 };
 
+const uploadImage = async (req: express.Request, res: express.Response) => {
+  const image = req.file;
+  const { target } = req.params;
+
+  try {
+    const response = await cookbookService.uploadImage(target, image);
+    res.status(CODE_STATUSES.OK).send(response);
+  } catch (err) {
+    res.status(CODE_STATUSES.SERVER_ERROR).send(`${err}`);
+  }
+};
+
 const like = async (req: express.Request, res: express.Response) => {
   const { target, id } = req.params;
   try {
@@ -86,6 +98,7 @@ const cookbookController = {
   deleteById,
   findById,
   update,
+  uploadImage,
   createComment,
   like,
 };

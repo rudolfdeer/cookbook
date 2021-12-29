@@ -1,6 +1,9 @@
 export {};
 
 const express = require('express');
+const multer = require('multer');
+const storage = multer.memoryStorage();
+const upload = multer({ dest: 'uploads/', storage });
 const { cookbookController } = require('../controllers');
 const { middlewares } = require('../../middlewares');
 
@@ -33,6 +36,12 @@ cookbookRouter.post(
   '/:id/like',
   middlewares.verifyAuthToken,
   cookbookController.like,
+);
+cookbookRouter.post(
+  '/:id/photo',
+  middlewares.verifyAuthToken,
+  upload.single('image'),
+  cookbookController.uploadImage,
 );
 
 module.exports = {

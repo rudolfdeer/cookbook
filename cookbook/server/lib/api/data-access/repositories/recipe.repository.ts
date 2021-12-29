@@ -128,7 +128,7 @@ const update = async (body: UpdatedRecipe, id: number) => {
   });
 };
 
-const updateImage = async (id: number, image: Express.Multer.File) => {
+const uploadImage = async (id: number, image: Express.Multer.File) => {
   const recipe = await Recipe.findOne({
     where: {
       id,
@@ -204,7 +204,7 @@ const recipeRepository = {
   deleteById,
   findById,
   update,
-  updateImage,
+  uploadImage,
   createComment,
   like,
   dislike,

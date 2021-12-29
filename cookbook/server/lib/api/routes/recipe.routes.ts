@@ -32,7 +32,7 @@ recipeRouter.post(
   '/:id/photo',
   middlewares.verifyAuthToken,
   upload.single('image'),
-  recipeController.updateImage,
+  recipeController.uploadImage,
 );
 
 module.exports = {

@@ -15,10 +15,9 @@ module.exports = {
         type: Sequelize.STRING,
         defaultValue: 'No description',
       },
-      image: {
-        type: Sequelize.STRING(1234),
-        defaultValue: 'default.jpg',
-      },
+      image_type: Sequelize.STRING,
+      image_name: Sequelize.STRING,
+      image_data: Sequelize.BLOB('long'),
       views: {
         type: Sequelize.INTEGER,
         defaultValue: 0,

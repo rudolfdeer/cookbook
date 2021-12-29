@@ -60,11 +60,11 @@ const update = async (
   return response;
 };
 
-const updateImage = async (
+const uploadImage = async (
   recipeId: number,
   image: File,
 ) => {
-  await recipeRepository.updateImage(recipeId, image);
+  await recipeRepository.uploadImage(recipeId, image);
   const response = await recipeRepository.findById(recipeId);
 
   return response;
@@ -107,7 +107,7 @@ const recipeService = {
   deleteById,
   findById,
   update,
-  updateImage,
+  uploadImage,
   createComment,
   like,
 };

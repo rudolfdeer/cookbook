@@ -6,6 +6,7 @@ import LikesIcon from '../../svg/Likes';
 import PopUpRecipeCard from './RecipeCard';
 
 import './index.scss';
+import SERVER_URL from '../../../constants/serverUrl';
 
 type PopUpCookbookDetailedProps = {
   setCookbookPopUpVisible: Dispatch<SetStateAction<boolean>>;
@@ -53,7 +54,7 @@ export default function PopUpCookbookSaved(
             <div
               className="pop-up--cookbook__image"
               style={{
-                background: `url(${image}) center no-repeat`,
+                background: `url(${SERVER_URL}/${image}) center no-repeat`,
               }}
             ></div>
             <div className="pop-up--cookbook__section--description__text">

@@ -33,7 +33,7 @@ export type Comment = {
 
 const findAll = async () => {
   const users = User.findAll({
-    attributes: { exclude: ['password', 'bio', 'email', 'image_type', 'image_data', 'image_name'] },
+    attributes: { exclude: ['password', 'bio', 'email'] },
   });
 
   return users;
@@ -51,7 +51,6 @@ const findById = async (id: number) => {
           model: Recipe,
           include: [{
             model: User,
-            attributes: { exclude: ['image_data', 'image_type', 'image_name'] },
           }, RecipeLike, RecipeComment],
         },
       },
@@ -62,7 +61,6 @@ const findById = async (id: number) => {
           include: [
             {
               model: User,
-              attributes: { exclude: ['image_data', 'image_type', 'image_name'] },
             }, CookbookComment, CookbookLike,
             {
               model: RecipeCookbook,
@@ -71,7 +69,6 @@ const findById = async (id: number) => {
                 include: [
                   {
                     model: User,
-                    attributes: { exclude: ['image_data', 'image_type', 'image_name'] },
                   },
                   {
                     model: RecipeComment,
@@ -88,8 +85,6 @@ const findById = async (id: number) => {
     ],
   });
 
-  const photo = user.image_data.toString('base64');
-  user.image_data = `data:${user.image_type};base64, ${photo}`;
   return user;
 };
 
@@ -150,9 +145,7 @@ const updatePhoto = async (id: number, photo: Express.Multer.File) => {
   });
 
   const updatedUser = {
-    image_type: photo.mimetype,
-    image_name: photo.originalname,
-    image_data: photo.buffer,
+    image: `images/${photo.originalname}`,
   };
 
   await user.update(updatedUser);
@@ -163,9 +156,6 @@ const updatePhoto = async (id: number, photo: Express.Multer.File) => {
     },
     include: [RecipeSaved, CookbookSaved],
   });
-
-  const photoStr = result.image_data.toString('base64');
-  result.image_data = `data:${result.image_type};base64, ${photoStr}`;
 
   return result;
 };

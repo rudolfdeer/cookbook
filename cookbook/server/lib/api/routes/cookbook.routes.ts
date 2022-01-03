@@ -2,8 +2,15 @@ export {};
 
 const express = require('express');
 const multer = require('multer');
-const storage = multer.memoryStorage();
-const upload = multer({ dest: 'uploads/', storage });
+const storage = multer.diskStorage({
+  destination(req: Express.Request, file: File, cb: Function) {
+    cb(null, 'public/images');
+  },
+  filename(req: Express.Request, file:Express.Multer.File, cb: Function) {
+    cb(null, file.originalname);
+  },
+});
+const upload = multer({ storage });
 const { cookbookController } = require('../controllers');
 const { middlewares } = require('../../middlewares');
 
@@ -13,6 +20,7 @@ cookbookRouter.get('/', cookbookController.findAll);
 cookbookRouter.post(
   '/',
   middlewares.verifyAuthToken,
+  upload.single('image'),
   cookbookController.create,
 );
 cookbookRouter.delete(

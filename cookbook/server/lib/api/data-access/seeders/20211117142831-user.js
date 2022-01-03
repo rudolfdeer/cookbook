@@ -7,10 +7,7 @@ module.exports = {
       [
         {
           name: 'Jonh Doe',
-          //photo: 'images/user1.png',
-          image_type: 'image/png',
-          image_name: 'user1.png',
-          image_data: '',
+          image: 'images/user1.png',
           email: 'johndoe@test.com',
           password:
             'bc1f5bc429633f461ce402232164d4e240d53ae7594a105122ce7a8426b6b17b6798f7cd67dd4bf3b33846cc0134217535302e50f06c316f06de6a24dae08d0d',
@@ -18,10 +15,7 @@ module.exports = {
         },
         {
           name: 'John Galt',
-          //photo: 'images/user1.png',
-          image_type: 'image/png',
-          image_name: 'user1.png',
-          image_data: '',
+          image: 'images/user1.png',
           email: 'johngalt@test.com',
           password:
             'bc1f5bc429633f461ce402232164d4e240d53ae7594a105122ce7a8426b6b17b6798f7cd67dd4bf3b33846cc0134217535302e50f06c316f06de6a24dae08d0d',
@@ -29,10 +23,7 @@ module.exports = {
         },
         {
           name: 'Patricia Holman',
-          //photo: 'images/user1.png',
-          image_type: 'image/png',
-          image_name: 'user1.png',
-          image_data: '',
+          image: 'images/user1.png',
           email: 'pholman@test.com',
           password:
             'bc1f5bc429633f461ce402232164d4e240d53ae7594a105122ce7a8426b6b17b6798f7cd67dd4bf3b33846cc0134217535302e50f06c316f06de6a24dae08d0d',
@@ -40,10 +31,7 @@ module.exports = {
         },
         {
           name: 'Winston Smith',
-          //photo: 'images/user1.png',
-          image_type: 'image/png',
-          image_name: 'user1.png',
-          image_data: '',
+          image: 'images/user1.png',
           email: 'smith@test.com',
           password:
             'bc1f5bc429633f461ce402232164d4e240d53ae7594a105122ce7a8426b6b17b6798f7cd67dd4bf3b33846cc0134217535302e50f06c316f06de6a24dae08d0d',

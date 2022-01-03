@@ -18,9 +18,8 @@ const {
 export type NewCookbook = {
   title: string;
   description: string;
-  image: string;
   tags: string[];
-  recipesIds: number[];
+  recipesIds?: number[];
 };
 
 export type UpdatedCookbook = {
@@ -64,14 +63,6 @@ const findAll = async () => {
     ],
   });
 
-  cookbooks.forEach((el: any) => {
-    if (el.image_data) {
-      const photo = el.image_data.toString('base64');
-    el.image_data = `data:${el.image_type};base64, ${photo}`;
-    }
-    
-  })
-
   return cookbooks;
 };
 
@@ -113,14 +104,13 @@ const findById = async (id: number) => {
   return cookbook;
 };
 
-const create = async (body: NewCookbook, userId: number) => {
-  const { title, description, image, tags, recipesIds } = body;
+const create = async (body: NewCookbook, userId: number, image: Express.Multer.File) => {
+  const { title, description, tags, recipesIds } = body;
 
   const cookbook = await Cookbook.create(
     {
       title,
       description,
-      image,
       tags,
       UserId: userId,
     },
@@ -145,7 +135,7 @@ const deleteById = async (id: number) => {
 };
 
 const update = async (body: UpdatedCookbook, id: number) => {
-  const { title, description, image, views, recipesIds, likeUserIds } = body;
+  const { title, description, image, views, recipesIds } = body;
 
   const cookbook = await Cookbook.findOne({
     where: {
@@ -161,7 +151,6 @@ const update = async (body: UpdatedCookbook, id: number) => {
   };
 
   cookbook.setRecipes(recipesIds);
-  //cookbook.setUsers(likeUserIds);
 
   return cookbook.update(updatedCookbook, {
     include: CookbookComment,
@@ -176,9 +165,7 @@ const uploadImage = async (id: number, image: Express.Multer.File) => {
   });
 
   const updatedCookbook = {
-    image_type: image.mimetype,
-    image_name: image.originalname,
-    image_data: image.buffer,
+    image: `images/${image.originalname}`,
   };
 
   return cookbook.update(updatedCookbook);

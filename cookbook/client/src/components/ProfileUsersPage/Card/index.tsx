@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
+import SERVER_URL from '../../../constants/serverUrl';
 import { ICookbookComment, ICookbookLike, IUser } from '../../../interfaces';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
@@ -52,7 +53,7 @@ export default function CardCookbook(props: CardCookbookProps): JSX.Element {
         <div
           className="card__image"
           style={{
-            background: `url(${image}) center no-repeat`,
+            background: `url(${SERVER_URL}/${image}) center no-repeat`,
           }}
         ></div>
       </div>

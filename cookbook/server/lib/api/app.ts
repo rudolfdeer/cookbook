@@ -31,7 +31,7 @@ export class App {
   connectMiddlewares() {
     this.client.use(express.json({ limit: '50mb' }));
     this.client.use(express.urlencoded({ limit: '50mb', extended: true }));
-    this.client.use('/static', express.static(path.join(__dirname, 'public')));
+    this.client.use('/', express.static(path.join(__dirname, '../../public')));
     this.client.use(cookieParser());
     this.client.use(middlewares.bodyParser());
   }

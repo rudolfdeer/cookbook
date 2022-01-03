@@ -23,10 +23,10 @@ const User = db.define(
       type: Sequelize.STRING,
       allowNull: false,
     },
-    image_type: Sequelize.STRING,
-    image_name: Sequelize.STRING,
-    image_data: Sequelize.BLOB('long'),
-
+    image: {
+      type: Sequelize.STRING,
+      defaultValue: 'images/photo-mask.png',
+    },
     bio: {
       type: Sequelize.STRING,
       defaultValue: 'No bio',

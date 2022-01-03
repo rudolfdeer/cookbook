@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import SERVER_URL from '../../../constants/serverUrl';
 import { IUser } from '../../../interfaces';
 import DotsIcon from '../../svg/Dots';
 import ViewsIcon from '../../svg/Views';
@@ -35,7 +36,7 @@ export default function CardTrending(
         className="card__image"
       >
         <img
-                src={image}
+                src={`${SERVER_URL}/${image}`}
                 alt="Recipe image"
               />
       </div>

@@ -1,9 +1,10 @@
+import SERVER_URL from '../constants/serverUrl';
 import { IAuthRequestBody, ICookbook, ICookbookRequestBody, IRecipe, IRecipeRequestBody, IUser, IUserRequestBody } from '../interfaces';
 
-const base = 'http://localhost:3000/api/';
-const cookbooksUrl = `${base}cookbooks/`;
-const recipesUrl = `${base}recipes/`;
-const userUrl = `${base}user/`;
+const base = `${SERVER_URL}/api`;
+const cookbooksUrl = `${base}/cookbooks/`;
+const recipesUrl = `${base}/recipes/`;
+const userUrl = `${base}/user/`;
 
 class Api {
   async getUserById(userId: number): Promise<IUser> {
@@ -130,10 +131,9 @@ class Api {
     return result;
   }
 
-  async createCookbook(data: ICookbookRequestBody, imageSrc: string) {
+  async createCookbook(data: ICookbookRequestBody) {
     const body = {
       title: data.title,
-      image: imageSrc,
       description: data.description,
       tags: data.tags,
       recipesIds: data.recipesIds,

@@ -8,6 +8,7 @@ import LikesIcon from '../../svg/Likes';
 import './index.scss';
 import PopUpRecipeCard from './RecipeCard';
 import { ICookbook } from '../../../interfaces';
+import SERVER_URL from '../../../constants/serverUrl';
 
 type PopUpCookbookProps = {
   setPopUpCookbookVisible: Dispatch<SetStateAction<boolean>>;
@@ -55,7 +56,7 @@ export default function PopUpCookbook(props: PopUpCookbookProps): JSX.Element {
             <div
               className="pop-up--users-cookbook__image"
               style={{
-                background: `url(${image}) center no-repeat`,
+                background: `url(${SERVER_URL}/${image}) center no-repeat`,
               }}
             ></div>
             <div className="pop-up--users-cookbook__section--description__text">

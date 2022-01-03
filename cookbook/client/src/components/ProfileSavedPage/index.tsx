@@ -11,6 +11,7 @@ import PopUpCookbookSaved from './PopUpCookbook';
 import { ICookbook, IRecipe, IUser } from '../../interfaces';
 
 import './index.scss';
+import SERVER_URL from '../../constants/serverUrl';
 
 type ProfileSavedPageProps = {
   cookbooks: ICookbook[];
@@ -38,9 +39,9 @@ export default function ProfileSavedPage(
   } = props;
 
   const {
-    name, bio, photo, id,
+    name, bio, id,
   } = user;
-  const photoSrc = user.image_data || '../../assets/images/photo-mask.png';
+  const photoSrc = user ? `${SERVER_URL}/${user.image}` : '../../assets/images/photo-mask.png';
   const [isRecipePopUpVisible, setRecipePopUpVisible] = useState(false);
   const [selectedRecipeId, setSelectedRecipeId] = useState(0);
   const [isCookbookPopUpVisible, setCookbookPopUpVisible] = useState(false);

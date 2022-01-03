@@ -6,6 +6,7 @@ import ViewsIcon from '../../svg/Views';
 
 import './index.scss';
 import { ICookbookComment, ICookbookLike, IUser } from '../../../interfaces';
+import SERVER_URL from '../../../constants/serverUrl';
 
 type ProfileCookbookCardProps = {
   id: number;
@@ -88,7 +89,7 @@ export default function ProfileCookbookCard(
         <div
           className="card__image">
           <img
-        src={image}
+        src={`${SERVER_URL}/${image}`}
         alt="Cookbook image"
       /></div>
       </div>

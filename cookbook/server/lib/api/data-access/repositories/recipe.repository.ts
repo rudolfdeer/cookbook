@@ -139,9 +139,7 @@ const uploadImage = async (id: number, image: Express.Multer.File) => {
   });
 
   const updatedRecipe = {
-    image_type: image.mimetype,
-    image_name: image.originalname,
-    image_data: image.buffer,
+    image: `images/${image.originalname}`,
   };
 
   return recipe.update(updatedRecipe);

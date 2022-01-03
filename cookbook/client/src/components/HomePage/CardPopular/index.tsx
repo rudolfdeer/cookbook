@@ -1,4 +1,5 @@
 import React from 'react';
+import SERVER_URL from '../../../constants/serverUrl';
 import DotsIcon from '../../svg/Dots';
 
 import './index.scss';
@@ -16,7 +17,7 @@ export default function CardPopular(props: CookbookCardProps): JSX.Element {
       className="card"
     >
       <img
-                src={image}
+                src={`${SERVER_URL}/${image}`}
                 alt="Cookbook image"
               />
       <DotsIcon />

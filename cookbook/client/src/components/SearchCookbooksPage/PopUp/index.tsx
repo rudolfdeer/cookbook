@@ -9,6 +9,7 @@ import PopUpRecipeCard from './RecipeCard';
 import { ICookbook } from '../../../interfaces';
 
 import './index.scss';
+import SERVER_URL from '../../../constants/serverUrl';
 
 type PopUpCookbookDetailedProps = {
   setVisible: Dispatch<SetStateAction<boolean>>;
@@ -87,7 +88,7 @@ export default function PopUpCookbookDetailed(
             <div
               className="pop-up--cookbook__image"
             ><img
-            src={image}
+            src={`${SERVER_URL}/${image}`}
             alt="Cookbook image"
           /></div>
             <div className="pop-up--cookbook__section--description__text">
@@ -124,7 +125,7 @@ export default function PopUpCookbookDetailed(
                   views={el.views}
                   description={el.description}
                   likes={el.Recipe_Likes}
-                  image={el.image_data}
+                  image={el.image}
                   comments={el.Recipe_Comments}
                   key={el.id}
                   id={el.id}

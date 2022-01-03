@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
+import SERVER_URL from '../../../constants/serverUrl';
 import { IRecipe } from '../../../interfaces';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
@@ -45,7 +46,7 @@ export default function PopUpRecipeSaved(
         <div className="overlay__content--recipe__wrapper">
           <div className="pop-up--recipe">
             <div className="pop-up--recipe__image">
-              <img src={`${image}`} alt="" className="img" />
+              <img src={`${SERVER_URL}/${image}`} alt="" className="img" />
             </div>
             <div className="pop-up--recipe__sections">
               <div className="pop-up--recipe__section--top">

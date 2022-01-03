@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import './index.scss';
 import { IRecipeComment } from '../../../../interfaces';
+import SERVER_URL from '../../../../constants/serverUrl';
 
 type CommentsSectionProps = {
   comments: IRecipeComment[];
@@ -56,7 +57,7 @@ export default function CommentsSection(
             <div
               className="comment__photo"
               style={{
-                background: `url(${el.User.photo}) center no-repeat`,
+                background: `url(${SERVER_URL}/${el.User.image}) center no-repeat`,
               }}
             ></div>
             <div className="comment__container">

@@ -10,6 +10,7 @@ import PopUpModifyCookbook from './PopUpModify';
 import { ICookbook, ICookbookRequestBody, IRecipe, IUser } from '../../interfaces';
 
 import './index.scss';
+import SERVER_URL from '../../constants/serverUrl';
 
 type ProfileCookbooksPageProps = {
   cookbooks: ICookbook[];
@@ -18,7 +19,6 @@ type ProfileCookbooksPageProps = {
   user: IUser;
   createCookbook: (
     data: ICookbookRequestBody,
-    imageSrc: string,
     userId: number,
   ) => Promise<void>;
   modifyCookbook: (
@@ -56,7 +56,7 @@ export default function ProfileCookbooksPage(
   const [isCreatePopUpVisible, setCreatePopUpVisible] = useState(false);
   const [isModifyPopUpVisible, setModifyPopUpVisible] = useState(false);
   const [selectedCookbookId, setSelectedCookbookId] = useState(0);
-  const photoSrc = user?.image_data || '../../assets/images/photo-mask.png';
+  const photoSrc = user ? `${SERVER_URL}/${user.image}` : '../../assets/images/photo-mask.png';
 
   useEffect(() => getUsersCreatedCookbooks(user?.id), []);
 
@@ -109,7 +109,7 @@ export default function ProfileCookbooksPage(
                 views={el.views}
                 likes={el.Cookbook_Likes}
                 comments={el.Cookbook_Comments?.length}
-                image={el.image_data}
+                image={el.image}
                 description={el.description}
                 key={el.id}
                 setSelectedCookbookId={setSelectedCookbookId}

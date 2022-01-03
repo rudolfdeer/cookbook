@@ -7,9 +7,7 @@ module.exports = {
       [
         {
           title: 'Fresh meat',
-          image_type: 'image/jpeg',
-          image_name: 'freshfruits.jpg',
-          image_data: '',
+          image: 'images/freshfruits.jpg',
           user_id: 1,
           description: 'Lorem ipsum dolor sit amet, consectetur ',
           directions: ['Take', 'Prepare', 'Cook'],
@@ -19,9 +17,7 @@ module.exports = {
         },
         {
           title: 'Pancakes new',
-          image_type: 'image/jpeg',
-          image_name: 'freshfruits.jpg',
-          image_data: '',
+          image: 'images/pancakes.jpg',
           user_id: 1,
           description:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel sit adipiscing dignissim feugiat consectetur. Dolor urna ',
@@ -32,9 +28,7 @@ module.exports = {
         },
         {
           title: 'Pancakes',
-          image_type: 'image/jpeg',
-          image_name: 'freshfruits.jpg',
-          image_data: '',
+          image: 'images/pancakesnew.jpg',
           user_id: 2,
           description:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel sit adipiscing ',
@@ -45,9 +39,7 @@ module.exports = {
         },
         {
           title: 'Fresh meat with potato and cheeze ',
-          image_type: 'image/jpeg',
-          image_name: 'freshfruits.jpg',
-          image_data: '',
+          image: 'images/pancakes.jpg',
           user_id: 1,
           description: 'Lorem ipsum dolor sit amet,',
           directions: ['Take', 'Prepare', 'Cook'],
@@ -57,9 +49,7 @@ module.exports = {
         },
         {
           title: 'Fresh fruits',
-          image_type: 'image/jpeg',
-          image_name: 'freshfruits.jpg',
-          image_data: '',
+          image: 'images/canapes.jpg',
           user_id: 4,
           description:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',

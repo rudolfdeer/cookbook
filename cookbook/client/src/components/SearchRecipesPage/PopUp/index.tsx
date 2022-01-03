@@ -8,6 +8,7 @@ import CommentsSection from '../PopUp/CommentsSection';
 import { IRecipe } from '../../../interfaces';
 
 import './index.scss';
+import SERVER_URL from '../../../constants/serverUrl';
 
 type PopUpRecipeDetailedProps = {
   setVisible: Dispatch<SetStateAction<boolean>>;
@@ -33,7 +34,7 @@ export default function PopUpRecipeDetailed(
   } = props;
   const {
     id,
-    image_data,
+    image,
     description,
     title,
     User,
@@ -59,7 +60,7 @@ export default function PopUpRecipeDetailed(
         <div className="overlay__content--recipe__wrapper">
           <div className="pop-up--recipe">
             <div className="pop-up--recipe__image">
-              <img src={`${image_data}`} alt="" className="img" />
+              <img src={`${SERVER_URL}/${image}`} alt="" className="img" />
             </div>
             <div className="pop-up--recipe__sections">
               <div className="pop-up--recipe__section--top">
@@ -120,7 +121,7 @@ export default function PopUpRecipeDetailed(
                   {Recipe_Likes.length} <span>&nbsp;{t('LIKES')}</span>
                 </div>
                 <div className="card__statistics-item comments">
-                  <CommentsIcon  commentedUsersIds={commentedUsersIds} loggedInUserId={loggedInUserId}/>
+                  <CommentsIcon commentedUsersIds={commentedUsersIds} loggedInUserId={loggedInUserId}/>
                   {Recipe_Comments.length} <span>&nbsp;{t('COMMENTS')}</span>
                 </div>
               </div>

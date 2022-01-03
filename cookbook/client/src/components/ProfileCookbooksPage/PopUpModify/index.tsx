@@ -4,6 +4,7 @@ import PopUpRecipeCard from './Card';
 import { ICookbook, ICookbookRequestBody } from '../../../interfaces';
 
 import './index.scss';
+import SERVER_URL from '../../../constants/serverUrl';
 
 type PopUpModifyCookbookProps = {
   setModifyPopUpVisible: Dispatch<SetStateAction<boolean>>;
@@ -33,12 +34,12 @@ export default function PopUpModifyCookbook(
     updateCookbooksImage,
   } = props;
   const {
-    id, image_data, description, title, User, Recipe_Cookbooks,
+    id, image, description, title, User, Recipe_Cookbooks,
   } = selectedCookbook;
 
   const recipesIds = Recipe_Cookbooks.map((el) => el.RecipeId);
 
-  const [imageSrc, setImageSrc] = useState(image_data);
+  const [imageSrc, setImageSrc] = useState(`${SERVER_URL}/${image}`);
   const [isTitleDisabled, setTitleDisabled] = useState(true);
   const [newTitle, setNewTitle] = useState(title);
   const [isDescriptionDisabled, setDescriptionDisabled] = useState(true);
@@ -137,7 +138,7 @@ export default function PopUpModifyCookbook(
             <div
               className="pop-up--modify__image--cookbook"
             ><img
-            src={image_data}
+            src={imageSrc}
             alt="Cookbook image"
           />
               <input

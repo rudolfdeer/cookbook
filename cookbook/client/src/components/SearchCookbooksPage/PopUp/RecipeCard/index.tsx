@@ -6,6 +6,7 @@ import ViewsIcon from '../../../svg/Views';
 import { IRecipeComment, IRecipeLike, IUser } from '../../../../interfaces';
 
 import './index.scss';
+import SERVER_URL from '../../../../constants/serverUrl';
 
 type PopUpRecipeCardProps = {
   title: string;
@@ -48,7 +49,7 @@ export default function PopUpRecipeCard(
         className="card__image"
       >
         <img
-                src={image}
+                src={`${SERVER_URL}/${image}`}
                 alt="Recipe image"
               />
       </div>

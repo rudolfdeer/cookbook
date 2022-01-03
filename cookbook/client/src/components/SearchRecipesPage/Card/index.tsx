@@ -6,6 +6,7 @@ import ViewsIcon from '../../svg/Views';
 import { IRecipeComment, IRecipeLike, IUser } from '../../../interfaces';
 
 import './index.scss';
+import SERVER_URL from '../../../constants/serverUrl';
 
 type RecipeCardProps = {
   id: number;
@@ -68,7 +69,7 @@ export default function RecipeCard(props: RecipeCardProps): JSX.Element {
         className="card__image"
       >
         <img
-                src={image}
+                src={`${SERVER_URL}/${image}`}
                 alt="Recipe image"
               />
       </div>

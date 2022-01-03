@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import SERVER_URL from '../../../constants/serverUrl';
 import { IRecipeComment, IRecipeLike, IUser } from '../../../interfaces';
 import CommentsIcon from '../../svg/Comments';
 import DotsIcon from '../../svg/Dots';
@@ -42,7 +43,7 @@ export default function CardRated(props: RecipeCardRatedProps): JSX.Element {
         className="card__image"
       >
         <img
-                src={image}
+                src={`${SERVER_URL}/${image}`}
                 alt="Recipe image"
               />
       </div>

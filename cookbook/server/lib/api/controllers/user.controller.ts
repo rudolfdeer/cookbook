@@ -38,6 +38,7 @@ const findById = async (req: express.Request, res: express.Response) => {
 
 const update = async (req: express.Request, res: express.Response) => {
   const photo = req.file;
+  
   const user = req.body;
   const { id } = req.params;
   try {

@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import SERVER_URL from '../../../constants/serverUrl';
 import { IRecipe, IRecipeRequestBody } from '../../../interfaces';
 
 import './index.scss';
@@ -35,7 +36,7 @@ export default function PopUpModifyRecipe(
     id, title, image, description, directions, ingredients, views, Recipe_Likes
   } = selectedRecipe;
 
-  const [imageSrc, setImageSrc] = useState(image);
+  const [imageSrc, setImageSrc] = useState(`${SERVER_URL}/${image}`);
   const [isTitleDisabled, setTitleDisabled] = useState(true);
   const [newTitle, setNewTitle] = useState(title);
   const [isDescriptionDisabled, setDescriptionDisabled] = useState(true);
@@ -78,7 +79,7 @@ export default function PopUpModifyRecipe(
               className="pop-up--modify__input--file"
               onChange={(e) => onImageChange(e)}
             />
-            {<img src={`${imageSrc}`} alt="" className="img" />}
+            {<img src={imageSrc} alt="" className="img" />}
           </div>
           <div className="pop-up--modify__sections">
             <div className="pop-up--modify__section--top">

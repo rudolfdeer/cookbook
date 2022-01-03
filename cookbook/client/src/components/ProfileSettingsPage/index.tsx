@@ -7,6 +7,7 @@ import HeaderConnect from '../../redux/containers/HeaderConnect';
 import { IUser, IUserRequestBody } from '../../interfaces';
 
 import './index.scss';
+import SERVER_URL from '../../constants/serverUrl';
 
 type ProfileSettingsPageProps = {
   user: IUser;
@@ -37,7 +38,7 @@ export default function ProfileSettingsPage(
     updateUsersPhoto,
   } = props;
   const {
-    name, email, bio, image_data,
+    name, email, bio, image,
   } = user;
 
   const [isBioDisabled, setBioDisabled] = useState(true);
@@ -49,7 +50,7 @@ export default function ProfileSettingsPage(
   const [newEmail, setNewEmail] = useState(email);
   const [newPassword, setNewPassword] = useState('');
   const [photoSrc, setPhotoSrc] = useState(
-    image_data || './assets/images/photo-mask.png',
+    `${SERVER_URL}/${image}` || './assets/images/photo-mask.png',
   );
 
   const onPhotoChange = async (e: React.FormEvent) => {
@@ -130,9 +131,9 @@ export default function ProfileSettingsPage(
                       setBioDisabled(true);
                       updateUser({
                         name: newName,
-                        //photo: photoSrc,
+                        // photo: photoSrc,
                         bio: newBio,
-                      })
+                      });
                     }}
                   />
                 )}
@@ -198,7 +199,7 @@ export default function ProfileSettingsPage(
                       name: newName,
                       photo: photoSrc,
                       bio: newBio,
-                    })
+                    });
                   }}
                 />
               )}

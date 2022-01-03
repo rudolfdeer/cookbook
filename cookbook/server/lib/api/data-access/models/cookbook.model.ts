@@ -19,9 +19,11 @@ const Cookbook = db.define(
       type: Sequelize.STRING,
       allowNull: false,
     },
-    image_type: Sequelize.STRING,
-    image_name: Sequelize.STRING,
-    image_data: Sequelize.BLOB('long'),
+    image: {
+      type: Sequelize.STRING,
+      defaultValue: 'images/photo-mask.png',
+    },
+
     tags: {
       type: Sequelize.ARRAY(Sequelize.STRING),
     },

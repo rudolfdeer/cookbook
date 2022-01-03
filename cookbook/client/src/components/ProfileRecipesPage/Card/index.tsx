@@ -5,6 +5,7 @@ import ViewsIcon from '../../svg/Views';
 import CommentsIcon from '../../svg/Comments';
 import './index.scss';
 import { IRecipeComment, IRecipeLike, IUser } from '../../../interfaces';
+import SERVER_URL from '../../../constants/serverUrl';
 
 type ProfileRecipeCardProps = {
   id: number;
@@ -65,7 +66,7 @@ export default function ProfileRecipeCard(
         className="card__image"
       >
         <img
-                src={image}
+                src={`${SERVER_URL}/${image}`}
                 alt="Recipe image"
               />
       </div>

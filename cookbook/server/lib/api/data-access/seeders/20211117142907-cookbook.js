@@ -6,9 +6,7 @@ module.exports = {
       'Cookbook',
       [
         {
-          image_type: 'image/jpeg',
-          image_name: 'cookbook-icecreamdream.jpg',
-          image_data: '',
+          image: 'images/cookbook-icecreamdream.jpg',
           title: 'All about pancakes',
           user_id: 1,
           description: 'lorem ',
@@ -16,9 +14,7 @@ module.exports = {
           tags: ['Without eggs', 'Without milk'],
         },
         {
-          image_type: 'image/jpeg',
-          image_name: 'cookbook-icecreamdream.jpg',
-          image_data: '',
+          image: 'images/cookbook-itsallaboutpancakes.jpg',
           title: 'Icecream dream',
           user_id: 1,
           description: 'lorem ',
@@ -26,9 +22,7 @@ module.exports = {
           tags: ['Vegetarian', 'Without milk'],
         },
         {
-          image_type: 'image/jpeg',
-          image_name: 'cookbook-icecreamdream.jpg',
-          image_data: '',
+          image: 'images/cookbook-icecreamdream.jpg',
           title: 'Fast breakfast',
           user_id: 2,
           description: 'lorem ',
@@ -36,9 +30,7 @@ module.exports = {
           tags: ['Without eggs', 'Without milk', 'Vegetarian'],
         },
         {
-          image_type: 'image/jpeg',
-          image_name: 'cookbook-icecreamdream.jpg',
-          image_data: '',
+          image: 'images/cookbook-icecreamdream.jpg',
           title: 'Salads',
           user_id: 3,
           description: 'lorem ',
@@ -46,9 +38,7 @@ module.exports = {
           tags: ['Without milk'],
         },
         {
-          image_type: 'image/jpeg',
-          image_name: 'cookbook-icecreamdream.jpg',
-          image_data: '',
+          image: 'images/cookbook-icecreamdream.jpg',
           title: 'The best cookbook',
           user_id: 4,
           description: 'lorem ',

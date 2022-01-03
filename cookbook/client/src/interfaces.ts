@@ -9,11 +9,8 @@ export interface IUser {
   name: string;
   email: string;
   password: string;
-  photo?: string;
+  image: string;
   bio: string;
-  image_type?: string;
-  image_name?: string;
-  image_data?: string;
   Recipe_Saveds?: IRecipeSaved[];
   Cookbook_Saveds?: ICookbookSaved[];
 }
@@ -22,10 +19,7 @@ export interface IRecipe {
   id: number;
   title: string;
   description: string;
-  image?: string;
-  image_type?: string;
-  image_name?: string;
-  image_data?: string;
+  image: string;
   directions: string[];
   ingredients: string[];
   time: number;
@@ -40,10 +34,7 @@ export interface ICookbook {
   id: number;
   title: string;
   description: string;
-  image?: string;
-  image_type?: string;
-  image_name?: string;
-  image_data?: string;
+  image: string;
   tags: string[];
   views: number;
   UserId: number;

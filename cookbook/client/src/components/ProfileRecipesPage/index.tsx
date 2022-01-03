@@ -10,6 +10,7 @@ import HeaderConnect from '../../redux/containers/HeaderConnect';
 import { IRecipe, IRecipeRequestBody, IUser } from '../../interfaces';
 
 import './index.scss';
+import SERVER_URL from '../../constants/serverUrl';
 
 type ProfileRecipesPageProps = {
   recipes: IRecipe[];
@@ -55,13 +56,13 @@ export default function ProfileRecipesPage(
   const [isCreatePopUpVisible, setCreatePopUpVisible] = useState(false);
   const [isModifyPopUpVisible, setModifyPopUpVisible] = useState(false);
   const [selectedRecipeId, setSelectedRecipeId] = useState(0);
-  const { name, bio, photo, id } = user;
+  const { name, bio, id } = user;
 
   useEffect(() => {
     getUsersCreatedRecipes(user.id);
   }, []);
 
-  const photoSrc = user.image_data || '../../assets/images/photo-mask.png';
+  const photoSrc = user ? `${SERVER_URL}/${user.image}` : '../../assets/images/photo-mask.png';
 
   return (
     <>
@@ -111,7 +112,7 @@ export default function ProfileRecipesPage(
                 author={el.User}
                 views={el.views}
                 comments={el.Recipe_Comments?.length}
-                image={el.image_data}
+                image={el.image}
                 description={el.description}
                 key={el.id}
                 setModifyPopUpVisible={setModifyPopUpVisible}

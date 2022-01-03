@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import SERVER_URL from '../../../../constants/serverUrl';
 import { ICookbookComment } from '../../../../interfaces';
 
 import './index.scss';
@@ -59,7 +60,7 @@ export default function CommentsSection(
             <div
               className="comment__photo"
               style={{
-                background: `url(${el.User.photo}) center no-repeat`,
+                background: `url(${SERVER_URL}/${el.User.image}) center no-repeat`,
               }}
             ></div>
             <div className="comment__container">

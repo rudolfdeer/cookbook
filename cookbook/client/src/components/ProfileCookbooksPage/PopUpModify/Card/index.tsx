@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
+import SERVER_URL from '../../../../constants/serverUrl';
 import { IRecipeComment, IRecipeLike, IUser } from '../../../../interfaces';
 import CommentsIcon from '../../../svg/Comments';
 import LikesIcon from '../../../svg/Likes';
@@ -50,7 +51,7 @@ export default function PopUpRecipeCard(
     <div className="card">
       <div
         className="card__image"
-        style={{ background: `url(${image}) center no-repeat` }}
+        style={{ background: `url(${SERVER_URL}/${image}) center no-repeat` }}
       ></div>
       <div className="card__content">
         <div className="card__info-container top">

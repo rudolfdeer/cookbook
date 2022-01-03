@@ -10,6 +10,7 @@ import ROUTES from '../../constants/routes';
 import { ICookbook, IUser } from '../../interfaces';
 
 import './index.scss';
+import SERVER_URL from '../../constants/serverUrl';
 
 type ProfileUsersPageProps = {
   cookbooks: ICookbook[];
@@ -26,6 +27,7 @@ export default function ProfileUsersPage(
   const [user, setUser] = useState(null as IUser);
   const [isPopUpCookbookVisible, setPopUpCookbookVisible] = useState(false);
   const [selectedCookbookId, setSelectedCookbookId] = useState(0);
+  const photoSrc = user ? `${SERVER_URL}/${user.image}` : '../../assets/images/photo-mask.png';
 
   if (+userId === loggedInUserId) {
     return <Redirect to={ROUTES.PROFILE_COOKBOOKS} />;
@@ -50,7 +52,7 @@ export default function ProfileUsersPage(
           <section className="profile-page--user__user">
             <div className="profile-page--user__user__photo">
               <img
-                src={user?.photo}
+                src={photoSrc}
                 alt="User photo"
                 className="profile-page--user__user__photo__image"
               />

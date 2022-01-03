@@ -11,7 +11,6 @@ type PopUpCreateCookbookProps = {
   setCreatePopUpVisible: Dispatch<SetStateAction<boolean>>;
   createCookbook: (
     data: ICookbookRequestBody,
-    imageSrc: string,
     userId: number,
   ) => Promise<void>;
 };
@@ -44,6 +43,7 @@ export default function PopUpCreateCookbook(
     loggedInUserId, setCreatePopUpVisible, createCookbook, recipes,
   } = props;
   const [photoSrc, setPhotoSrc] = useState('');
+  const [data, setData] = useState(null as FormData);
 
   const onSubmit = (values: FormValues) => {
     if (values.Vegetarian) {
@@ -55,9 +55,13 @@ export default function PopUpCreateCookbook(
     if (values['Without milk']) {
       values.tags.push('Without milk');
     }
-    const recipesIds = values.recipesIds.map((el) => Number(el));
-    values.recipesIds = recipesIds;
-    createCookbook(values, photoSrc, loggedInUserId);
+    if (values.recipesIds.indexOf(0) === -1) {
+      const recipesIds = values.recipesIds.map((el) => Number(el));
+      values.recipesIds = recipesIds;
+    } else {
+      values.recipesIds = [];
+    }
+    createCookbook(values, loggedInUserId);
     setCreatePopUpVisible(false);
   };
 
@@ -117,9 +121,14 @@ export default function PopUpCreateCookbook(
                       name="image"
                       type="file"
                       className="pop-up--create__section__input--file"
-                      onChange={(e: React.ChangeEvent) => {
+                      onChange={async (e: React.ChangeEvent) => {
                         const target = e.target as HTMLInputElement;
                         const file = target.files[0];
+
+                        const form = new FormData();
+                        form.append('image', file);
+                        await setData(form);
+
                         const reader = new FileReader();
                         reader.onload = () => {
                           const result = String(reader.result);

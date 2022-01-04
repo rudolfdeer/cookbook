@@ -8,9 +8,9 @@ import api from '../../helpers/api';
 import PopUpCookbook from './PopUp';
 import ROUTES from '../../constants/routes';
 import { ICookbook, IUser } from '../../interfaces';
+import SERVER_URL from '../../constants/serverUrl';
 
 import './index.scss';
-import SERVER_URL from '../../constants/serverUrl';
 
 type ProfileUsersPageProps = {
   cookbooks: ICookbook[];
@@ -29,10 +29,6 @@ export default function ProfileUsersPage(
   const [selectedCookbookId, setSelectedCookbookId] = useState(0);
   const photoSrc = user ? `${SERVER_URL}/${user.image}` : '../../assets/images/photo-mask.png';
 
-  if (+userId === loggedInUserId) {
-    return <Redirect to={ROUTES.PROFILE_COOKBOOKS} />;
-  }
-
   useEffect(() => getUsersCreatedCookbooks(+userId), [userId]);
 
   useEffect(() => {
@@ -41,6 +37,10 @@ export default function ProfileUsersPage(
       setUser(response);
     })();
   }, []);
+
+  if (+userId === loggedInUserId) {
+    return <Redirect to={ROUTES.PROFILE_COOKBOOKS} />;
+  }
 
   return (
     <>

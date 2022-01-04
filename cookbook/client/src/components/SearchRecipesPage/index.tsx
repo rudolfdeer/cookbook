@@ -40,8 +40,8 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
   const { t } = useTranslation();
   const [isVisible, setVisible] = useState(false);
   const [selectedCardId, setSelectedCardId] = useState(0);
-  const [offset, setOffset] = useState(6);
-  const [perPage] = useState(6);
+  const [offset, setOffset] = useState(7);
+  const [perPage] = useState(7);
   const [pageCount, setPageCount] = useState(1);
   const [cards, setCards] = useState([]);
 

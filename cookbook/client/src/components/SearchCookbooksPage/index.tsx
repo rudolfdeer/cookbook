@@ -61,7 +61,7 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
   useEffect(() => {
     setPageCount(Math.ceil(cookbooks.length / perPage));
     setCards(cookbooks.slice(offset - perPage, offset));
-  }, [offset]);
+  }, [offset, cookbooks]);
 
   const handlePageClick = (e: any) => {
     const selectedPage = e.selected;

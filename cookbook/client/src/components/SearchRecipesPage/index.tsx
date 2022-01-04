@@ -51,7 +51,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
     setPageCount(Math.ceil(recipes.length / perPage));
 
     setCards(recipes.slice(offset - perPage, offset));
-  }, [offset]);
+  }, [offset, recipes]);
 
   const handlePageClick = (e: any) => {
     const selectedPage = e.selected;

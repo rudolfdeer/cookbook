@@ -2,15 +2,22 @@ export {};
 
 const express = require('express');
 const multer = require('multer');
-const storage = multer.memoryStorage();
-const upload = multer({ dest: 'uploads/', storage });
+const storage = multer.diskStorage({
+  destination(req: Express.Request, file: File, cb: Function) {
+    cb(null, 'public/images');
+  },
+  filename(req: Express.Request, file:Express.Multer.File, cb: Function) {
+    cb(null, file.originalname);
+  },
+});
+const upload = multer({ storage });
 const { recipeController } = require('../controllers');
 const { middlewares } = require('../../middlewares');
 
 const recipeRouter = express.Router();
 
 recipeRouter.get('/', recipeController.findAll);
-recipeRouter.post('/', middlewares.verifyAuthToken, recipeController.create);
+recipeRouter.post('/', middlewares.verifyAuthToken, upload.single('image'), recipeController.create);
 recipeRouter.delete(
   '/:id',
   middlewares.verifyAuthToken,

@@ -37,7 +37,7 @@ export const createComment = (cookbookId: number, text: string) => async (dispat
   dispatch(cookbookActions.createComment(cookbooks));
 };
 
-export const createCookbook = (data: ICookbookRequestBody, userId: number) => async (dispatch: Dispatch): Promise<void> => {
+export const createCookbook = (data: FormData, userId: number) => async (dispatch: Dispatch): Promise<void> => {
   await api.createCookbook(data);
 
   const cookbooks = await api.getAllCookbooks();

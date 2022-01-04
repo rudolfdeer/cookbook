@@ -10,14 +10,14 @@ type PopUpCreateCookbookProps = {
   recipes: IRecipe[];
   setCreatePopUpVisible: Dispatch<SetStateAction<boolean>>;
   createCookbook: (
-    data: ICookbookRequestBody,
+    data: FormData,
     userId: number,
   ) => Promise<void>;
 };
 
 type FormValues = {
   title: string;
-  image?: string;
+  image?: File;
   description: string;
   recipesIds: number[];
   Vegetarian?: boolean;
@@ -31,6 +31,7 @@ const formData = {
   description: [''],
   recipesIds: [0],
   tags: [] as string[],
+  image: null as File,
 };
 
 const required = (value: string | string[]) => (value ? undefined : 'Required');
@@ -43,7 +44,7 @@ export default function PopUpCreateCookbook(
     loggedInUserId, setCreatePopUpVisible, createCookbook, recipes,
   } = props;
   const [photoSrc, setPhotoSrc] = useState('');
-  const [data, setData] = useState(null as FormData);
+  const [photoFile, setPhotoFile] = useState(null);
 
   const onSubmit = (values: FormValues) => {
     if (values.Vegetarian) {
@@ -61,7 +62,15 @@ export default function PopUpCreateCookbook(
     } else {
       values.recipesIds = [];
     }
-    createCookbook(values, loggedInUserId);
+
+    const data = new FormData();
+    data.append('title', values.title);
+    data.append('description', values.description);
+    data.append('recipesIds', values.recipesIds.join(','));
+    data.append('tags', values.tags.join(','));
+    data.append('image', photoFile);
+
+    createCookbook(data, loggedInUserId);
     setCreatePopUpVisible(false);
   };
 
@@ -117,18 +126,17 @@ export default function PopUpCreateCookbook(
                 <div className="pop-up--create__section--image">
                   <label className="pop-up--create__section__btn">
                     {t('UPLOAD_CB_IMAGE')}
-                    <input
+                    <Field name="image">
+                      {({ input }) => (
+                        <input
+                        {...input}
                       name="image"
                       type="file"
                       className="pop-up--create__section__input--file"
                       onChange={async (e: React.ChangeEvent) => {
                         const target = e.target as HTMLInputElement;
                         const file = target.files[0];
-
-                        const form = new FormData();
-                        form.append('image', file);
-                        await setData(form);
-
+                        setPhotoFile(file);
                         const reader = new FileReader();
                         reader.onload = () => {
                           const result = String(reader.result);
@@ -137,6 +145,8 @@ export default function PopUpCreateCookbook(
                         reader.readAsDataURL(file);
                       }}
                     />
+                      )}
+                    </Field>
                   </label>
                   <img
                     src={photoSrc}

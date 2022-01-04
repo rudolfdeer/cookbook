@@ -14,8 +14,17 @@ const findAll = async (req: express.Request, res: express.Response) => {
 };
 
 const create = async (req: express.Request, res: express.Response) => {
-  const recipe = req.body;
   const { id } = req.params;
+
+  const recipe = {
+    title: req.body.title,
+    description: req.body.description,
+    directions: req.body.directions,
+    ingredients: req.body.ingredients,
+    time: req.body.time,
+    image: req.file,
+  };
+
   try {
     const response = await recipeService.create(recipe, id);
     res.status(CODE_STATUSES.OK).send(response);

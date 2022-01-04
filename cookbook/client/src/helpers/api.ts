@@ -33,25 +33,22 @@ class Api {
     return result;
   }
 
-  async createRecipe(data: IRecipeRequestBody, imageSrc: string) {
-    const directionsArr = data.directions.split(',');
-    const ingredientArr = data.ingredients.split(',');
+  async createRecipe(data: FormData) {
+    // const directionsArr = data.directions.split(',');
+    // const ingredientArr = data.ingredients.split(',');
 
-    const body = {
-      title: data.title,
-      image: imageSrc,
-      description: data.description,
-      directions: directionsArr,
-      ingredients: ingredientArr,
-      time: +data.time,
-    };
+    // const body = {
+    //   title: data.title,
+    //   image: imageSrc,
+    //   description: data.description,
+    //   directions: directionsArr,
+    //   ingredients: ingredientArr,
+    //   time: +data.time,
+    // };
 
     const response = await fetch(`${recipesUrl}`, {
       method: 'POST',
-      body: JSON.stringify(body),
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      body: data,
       credentials: 'include',
     });
 
@@ -131,20 +128,18 @@ class Api {
     return result;
   }
 
-  async createCookbook(data: ICookbookRequestBody) {
-    const body = {
-      title: data.title,
-      description: data.description,
-      tags: data.tags,
-      recipesIds: data.recipesIds,
-    };
+  async createCookbook(data: FormData) {
+    // const body = {
+    //   title: data.title,
+    //   description: data.description,
+    //   tags: data.tags,
+    //   recipesIds: data.recipesIds,
+    //   image: data.image,
+    // };
 
     const response = await fetch(`${cookbooksUrl}`, {
       method: 'POST',
-      body: JSON.stringify(body),
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      body: data,
       credentials: 'include',
     });
 

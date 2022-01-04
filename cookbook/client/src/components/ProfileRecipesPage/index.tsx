@@ -17,8 +17,8 @@ type ProfileRecipesPageProps = {
   getUsersCreatedRecipes: (userId: number) => void;
   user: IUser;
   createRecipe: (
-    data: IRecipeRequestBody,
-    imageSrc: string,
+    data: FormData,
+    //imageSrc: string,
     userId: number,
   ) => Promise<void>;
   modifyRecipe: (

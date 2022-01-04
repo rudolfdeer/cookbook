@@ -7,10 +7,10 @@ const { RecipeLike, User, Recipe, RecipeComment } = require('../models');
 export type NewRecipe = {
   title: string;
   description: string;
-  image: string;
-  directions: string[];
-  ingredients: string[];
+  directions: string;
+  ingredients: string;
   time: number;
+  image: Express.Multer.File;
 };
 
 export type UpdatedRecipe = {
@@ -68,21 +68,26 @@ const findById = async (id: number) => {
 };
 
 const create = async (body: NewRecipe, id: number) => {
-  const { title, description, image, directions, ingredients, time } = body;
+  const { title, description, directions, ingredients, time, image } = body;
   const recipe = await Recipe.create(
     {
       title,
       description,
-      image,
-      directions,
-      ingredients,
-      time,
+      directions: directions ? directions.split(',') : [],
+      ingredients: ingredients ? ingredients.split(',') : [],
+      time: Number(time),
       UserId: id,
     },
     {
       include: User,
     }
   );
+
+  if (image) {
+    await recipe.update({
+      image: `images/${image.originalname}`,
+    });
+  }
 
   const recipeId = recipe.id;
 

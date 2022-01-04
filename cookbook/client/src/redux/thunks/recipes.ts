@@ -37,8 +37,8 @@ export const createComment = (recipeId: number, text: string) => async (dispatch
   dispatch(recipeActions.createComment(recipes));
 };
 
-export const createRecipe = (data: IRecipeRequestBody, imageSrc: string, userId: number) => async (dispatch: Dispatch): Promise<void> => {
-  await api.createRecipe(data, imageSrc);
+export const createRecipe = (data: FormData, userId: number) => async (dispatch: Dispatch): Promise<void> => {
+  await api.createRecipe(data);
 
   const recipes = await api.getAllRecipes();
 

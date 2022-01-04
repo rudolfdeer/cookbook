@@ -187,6 +187,16 @@
             margin-bottom: 24px;
           }
 
+          &__input {
+            &--file {
+              width: 440px;
+              max-height: 440px;
+            }
+
+            &--textarea {
+              margin-right: 0;
+            }
+          }
 
           &__sections {
             padding-left: 0;

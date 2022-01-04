@@ -9,8 +9,8 @@ type PopUpCreateRecipeProps = {
   loggedInUserId: number;
   setCreatePopUpVisible: Dispatch<SetStateAction<boolean>>;
   createRecipe: (
-    data: IRecipeRequestBody,
-    imageSrc: string,
+    data: FormData,
+    //imageSrc: string,
     userId: number,
   ) => Promise<void>;
 };
@@ -32,9 +32,19 @@ export default function PopUpCreateRecipe(
   const { setCreatePopUpVisible, createRecipe, loggedInUserId } = props;
 
   const [photoSrc, setPhotoSrc] = useState('');
+  const [photoFile, setPhotoFile] = useState(null);
 
   const onSubmit = (values: IRecipeRequestBody) => {
-    createRecipe(values, photoSrc, loggedInUserId);
+    const data = new FormData();
+    data.append('title', values.title);
+    data.append('description', values.description);
+    data.append('ingredients', values.ingredients);
+    data.append('directions', values.directions);
+    data.append('time', values.time.toString());
+    data.append('image', photoFile);
+    console.log(values)
+
+    createRecipe(data, loggedInUserId);
     setCreatePopUpVisible(false);
   };
 
@@ -87,13 +97,17 @@ export default function PopUpCreateRecipe(
                 <div className="pop-up--create__section--image">
                   <label className="pop-up--create__section__btn">
                     {t('UPLOAD_REC_IMAGE')}
-                    <input
+                    <Field name="image">
+                      {({ input }) => (
+                        <input
+                        {...input}
                       name="image"
                       type="file"
                       className="pop-up--create__section__input--file"
                       onChange={(e: React.ChangeEvent) => {
                         const target = e.target as HTMLInputElement;
                         const file = target.files[0];
+                        setPhotoFile(file);
                         const reader = new FileReader();
                         reader.onload = () => {
                           const result = String(reader.result);
@@ -102,6 +116,8 @@ export default function PopUpCreateRecipe(
                         reader.readAsDataURL(file);
                       }}
                     />
+                      )}
+                    </Field>
                   </label>
                   <img
                     src={photoSrc}

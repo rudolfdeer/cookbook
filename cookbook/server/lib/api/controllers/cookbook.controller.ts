@@ -14,9 +14,15 @@ const findAll = async (req: express.Request, res: express.Response) => {
 };
 
 const create = async (req: express.Request, res: express.Response) => {
-  const cookbook = req.body;
-  //const image = req.file;
   const { id } = req.params;
+  const cookbook = {
+    title: req.body.title,
+    description: req.body.description,
+    tags: req.body.tags,
+    recipesIds: req.body.recipesIds,
+    image: req.file,
+  };
+
   try {
     const response = await cookbookService.create(cookbook, id);
     res.status(CODE_STATUSES.OK).send(response);

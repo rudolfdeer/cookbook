@@ -107,6 +107,7 @@ export interface ICookbookRequestBody {
   tags?: string[];
   views?: number;
   likeUserIds?: number[];
+  image?: File;
 }
 
 export interface IUserRequestBody {

@@ -18,7 +18,7 @@ type ProfileCookbooksPageProps = {
   getUsersCreatedCookbooks: (userId: number) => void;
   user: IUser;
   createCookbook: (
-    data: ICookbookRequestBody,
+    data: FormData,
     userId: number,
   ) => Promise<void>;
   modifyCookbook: (

@@ -18,8 +18,9 @@ const {
 export type NewCookbook = {
   title: string;
   description: string;
-  tags: string[];
-  recipesIds?: number[];
+  tags: string;
+  recipesIds?: string;
+  image?: Express.Multer.File;
 };
 
 export type UpdatedCookbook = {
@@ -104,21 +105,29 @@ const findById = async (id: number) => {
   return cookbook;
 };
 
-const create = async (body: NewCookbook, userId: number, image: Express.Multer.File) => {
-  const { title, description, tags, recipesIds } = body;
+const create = async (body: NewCookbook, userId: number) => {
+  const { title, description, tags, recipesIds, image } = body;
 
   const cookbook = await Cookbook.create(
     {
       title,
       description,
-      tags,
+      tags: tags ? tags.split(',') : [],
       UserId: userId,
     },
     {
       include: User,
     }
   );
-  await cookbook.setRecipes(recipesIds);
+
+  if (image) {
+    await cookbook.update({
+      image: `images/${image.originalname}`,
+    });
+  }
+
+  const ids = recipesIds ? recipesIds.split(',').map((el) => Number(el)) : [];
+  await cookbook.setRecipes(ids);
 
   const cookbookId = cookbook.id;
 

@@ -1,12 +1,13 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import PopUpRecipeCard from './Card';
-import { ICookbook, ICookbookRequestBody } from '../../../interfaces';
+import { ICookbook, ICookbookRequestBody, IRecipe } from '../../../interfaces';
 
 import './index.scss';
 import SERVER_URL from '../../../constants/serverUrl';
 
 type PopUpModifyCookbookProps = {
+  recipes: IRecipe[];
   setModifyPopUpVisible: Dispatch<SetStateAction<boolean>>;
   selectedCookbook: ICookbook;
   loggedInUserId: number;
@@ -32,6 +33,7 @@ export default function PopUpModifyCookbook(
     loggedInUserId,
     modifyCookbook,
     updateCookbooksImage,
+    recipes,
   } = props;
   const {
     id, image, description, title, User, Recipe_Cookbooks,
@@ -90,7 +92,8 @@ export default function PopUpModifyCookbook(
     setModifyPopUpVisible(false);
   };
 
-  const recipes = Recipe_Cookbooks.map((el) => el.Recipe);
+  const recipesInCb = Recipe_Cookbooks.map((el) => el.Recipe);
+  const recipeIdsInCb = Recipe_Cookbooks.map((el) => el.RecipeId);
   const usersRecipes = recipes.filter((el) => el.UserId === loggedInUserId);
 
   return (
@@ -184,7 +187,7 @@ export default function PopUpModifyCookbook(
           <div className="pop-up--modify__section--recipes">
             <div className="pop-up--modify__section__title">{t('RECIPES')}</div>
             <div className="pop-up--modify__section--recipes__cards">
-              {recipes?.map((el) => (
+              {recipesInCb?.map((el) => (
                 <PopUpRecipeCard
                   title={el.title}
                   author={el.User}
@@ -215,11 +218,16 @@ export default function PopUpModifyCookbook(
                 addRecipeToCookbook(Number(select.value));
               }}
             >
-              {usersRecipes?.map((el) => (
-                <option key={el.id} value={el.id}>
+              {usersRecipes?.map((el) => {
+                if (recipeIdsInCb.indexOf(el.id) === -1) {
+                  return (
+                    <option key={el.id} value={el.id}>
                   {el.title}
                 </option>
-              ))}
+                  )
+                }
+                return null;
+              })}
             </select>
           </div>
 

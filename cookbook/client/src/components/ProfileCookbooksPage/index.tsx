@@ -134,6 +134,7 @@ export default function ProfileCookbooksPage(
               setModifyPopUpVisible={setModifyPopUpVisible}
               modifyCookbook={modifyCookbook}
               updateCookbooksImage = {updateCookbooksImage}
+              recipes = {recipes}
             />
           ) : null}
         </div>

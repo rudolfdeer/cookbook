@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import ReactPaginate from 'react-paginate';
 import Footer from '../Footer';
 import CookbookCard from './Card';
 import FilterPanelCookbooks from './FilterPanel';
@@ -46,12 +47,27 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
 
   const [isVisible, setVisible] = useState(false);
   const [chosenCardId, setChosenCardId] = useState(0);
+  const [offset, setOffset] = useState(9);
+  const [perPage] = useState(9);
+  const [pageCount, setPageCount] = useState(1);
+  const [cards, setCards] = useState([]);
 
   useEffect(() => {
     getAllRecipes();
     getAllCookbooks();
     getLoggedInUser();
   }, []);
+
+  useEffect(() => {
+    setPageCount(Math.ceil(cookbooks.length / perPage));
+
+    setCards(cookbooks.slice(offset - perPage, offset));
+  }, [offset]);
+
+  const handlePageClick = (e: any) => {
+    const selectedPage = e.selected;
+    setOffset((selectedPage + 1) * perPage);
+  };
 
   return (
     <>
@@ -79,7 +95,7 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
               </ul>
             </nav>
             <div className="search-page__cards--cookbooks">
-              {cookbooks?.map((el) => (
+              {cards.map((el) => (
                 <CookbookCard
                   id={el.id}
                   title={el.title}
@@ -97,6 +113,19 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
                 />
               ))}
             </div>
+
+            <ReactPaginate
+              previousLabel={'prev'}
+              nextLabel={'next'}
+              breakLabel={'...'}
+              breakClassName={'break-me'}
+              pageCount={pageCount}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={5}
+              onPageChange={handlePageClick}
+              containerClassName={'pagination'}
+              activeClassName={'active'}
+            />
           </div>
           {isVisible ? (
             <PopUpCookbookDetailed
@@ -108,10 +137,12 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
               createComment={createComment}
             />
           ) : null}
+
         </div>
       </main>
-
+      
       <Footer />
     </>
+
   );
 }

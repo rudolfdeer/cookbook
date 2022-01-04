@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import ReactPaginate from 'react-paginate';
 import Footer from '../Footer';
 import RecipeCard from './Card';
 import FilterPanelRecipes from './FilterPanel';
@@ -39,8 +40,23 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
   const { t } = useTranslation();
   const [isVisible, setVisible] = useState(false);
   const [selectedCardId, setSelectedCardId] = useState(0);
+  const [offset, setOffset] = useState(6);
+  const [perPage] = useState(6);
+  const [pageCount, setPageCount] = useState(1);
+  const [cards, setCards] = useState([]);
 
   useEffect(() => getAllRecipes(), []);
+
+  useEffect(() => {
+    setPageCount(Math.ceil(recipes.length / perPage));
+
+    setCards(recipes.slice(offset - perPage, offset));
+  }, [offset]);
+
+  const handlePageClick = (e: any) => {
+    const selectedPage = e.selected;
+    setOffset((selectedPage + 1) * perPage);
+  };
 
   return (
     <>
@@ -67,7 +83,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
               </ul>
             </nav>
             <div className="search-page__cards--recipes">
-              {recipes?.map((el) => (
+              {cards?.map((el) => (
                 <RecipeCard
                   id={el.id}
                   title={el.title}
@@ -86,6 +102,18 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
                 />
               ))}
             </div>
+            <ReactPaginate
+              previousLabel={'prev'}
+              nextLabel={'next'}
+              breakLabel={'...'}
+              breakClassName={'break-me'}
+              pageCount={pageCount}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={5}
+              onPageChange={handlePageClick}
+              containerClassName={'pagination'}
+              activeClassName={'active'}
+            />
           </div>
           {isVisible ? (
             <PopUpRecipeDetailed

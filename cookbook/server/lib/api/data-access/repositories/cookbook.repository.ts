@@ -56,7 +56,7 @@ const findAll = async () => {
               model: RecipeComment,
               include: {
                 model: User,
-              }
+              },
             },
           ],
         },
@@ -86,8 +86,8 @@ const findById = async (id: number) => {
             {
               model: RecipeComment,
               include: {
-                model: User
-              }
+                model: User,
+              },
             },
           ],
         },
@@ -106,7 +106,9 @@ const findById = async (id: number) => {
 };
 
 const create = async (body: NewCookbook, userId: number) => {
-  const { title, description, tags, recipesIds, image } = body;
+  const {
+    title, description, tags, recipesIds, image,
+  } = body;
 
   const cookbook = await Cookbook.create(
     {
@@ -117,7 +119,7 @@ const create = async (body: NewCookbook, userId: number) => {
     },
     {
       include: User,
-    }
+    },
   );
 
   if (image) {
@@ -144,7 +146,9 @@ const deleteById = async (id: number) => {
 };
 
 const update = async (body: UpdatedCookbook, id: number) => {
-  const { title, description, image, views, recipesIds } = body;
+  const {
+    title, description, image, views, recipesIds,
+  } = body;
 
   const cookbook = await Cookbook.findOne({
     where: {
@@ -215,7 +219,7 @@ const dislike = async (userId: number, id: number) => {
 const createComment = async (
   body: Comment,
   cookbookId: number,
-  userId: number
+  userId: number,
 ) => {
   const { text, date } = body;
   const comment = await CookbookComment.create(
@@ -227,7 +231,7 @@ const createComment = async (
     },
     {
       include: [User, Cookbook],
-    }
+    },
   );
   await comment.setUser(userId);
   await comment.setCookbook(cookbookId);

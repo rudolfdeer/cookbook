@@ -92,7 +92,7 @@ const signIn = async (body: Auth) => {
   const response = await userRepository.findById(user.id);
 
   const token = authUtils.generateAuthToken({ email: user.email, id: user.id });
-  
+
   return {
     response,
     token,

@@ -1,5 +1,7 @@
 import SERVER_URL from '../constants/serverUrl';
-import { IAuthRequestBody, ICookbook, ICookbookRequestBody, IRecipe, IRecipeRequestBody, IUser, IUserRequestBody } from '../interfaces';
+import {
+  IAuthRequestBody, ICookbook, ICookbookRequestBody, IRecipe, IRecipeRequestBody, IUser, IUserRequestBody,
+} from '../interfaces';
 
 const base = `${SERVER_URL}/api`;
 const cookbooksUrl = `${base}/cookbooks/`;
@@ -117,7 +119,7 @@ class Api {
     await fetch(`${recipesUrl}${id}`, {
       method: 'DELETE',
       credentials: 'include',
-    })
+    });
   }
 
   async getAllCookbooks() {

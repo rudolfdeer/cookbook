@@ -17,9 +17,9 @@ export default function CardPopular(props: CookbookCardProps): JSX.Element {
       className="card"
     >
       <img
-                src={`${SERVER_URL}/${image}`}
-                alt="Cookbook image"
-              />
+        src={`${SERVER_URL}/${image}`}
+        alt="Cookbook image"
+      />
       <DotsIcon />
       <div className="card__name">{title}</div>
     </div>

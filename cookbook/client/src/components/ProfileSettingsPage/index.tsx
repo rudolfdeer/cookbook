@@ -85,17 +85,17 @@ export default function ProfileSettingsPage(
               >
                 <input
                   type="file"
-                  className="profile-page--settings__photo__input" name="photo"
+                  className="profile-page--settings__photo__input"
+                  name="photo"
                   onChange={(e) => onPhotoChange(e)}
                 />
                 <img
-                src={photoSrc}
-                alt="User photo"
-                className="profile-page--settings__photo__image--opacity"
-              />
+                  src={photoSrc}
+                  alt="User photo"
+                  className="profile-page--settings__photo__image--opacity"
+                />
               </label>
             </div>
-
             <div className="profile-page--settings__user editable">
               <div className="profile-page--settings__user__name">
                 {newName}
@@ -176,7 +176,6 @@ export default function ProfileSettingsPage(
                   setNewName(target.value);
                 }}
               />
-
               {isNameDisabled ? (
                 <input
                   type="submit"
@@ -211,7 +210,6 @@ export default function ProfileSettingsPage(
               >
                 {t('EMAIL')}
               </label>
-
               <input
                 type="text"
                 name="email"

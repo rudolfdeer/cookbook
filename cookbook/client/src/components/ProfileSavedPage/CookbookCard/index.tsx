@@ -74,11 +74,9 @@ export default function ProfileSavedCookbookCard(
         </div>
         <div className="card__author">{author.name}</div>
       </div>
-
       <div className="card__info-container--description">
         <p className="card__description">{description}</p>
       </div>
-
       <div className="card__info-container--bottom">
         <div className="card__statistics-item">
           <LikesIcon likeUserIds = {likeUserIds} loggedInUserId={loggedInUserId} id = {id}/>

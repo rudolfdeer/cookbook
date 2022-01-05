@@ -17,6 +17,7 @@ export default function SignUpPage(props: SignUpPageProps): JSX.Element {
   if (isRedirected) {
     return <Redirect to={ROUTES.PROFILE_SETTINGS} />;
   }
+
   return (
     <main className="sign-up-page">
       <div className="sign-up-page__wrapper">

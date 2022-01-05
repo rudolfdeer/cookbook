@@ -18,10 +18,7 @@ type RecipesPageProps = {
   filterRecipes: (cookingTime: number) => Promise<void>;
   loggedInUserId: number | null;
   saveToUsersRecipes: (recipeId: number) => Promise<void>;
-  createComment: (
-    recipeId: number,
-    text: string
-  ) => Promise<void>;
+  createComment: (recipeId: number, text: string) => Promise<void>;
   likeRecipe: (recipeId: number) => Promise<void>;
 };
 
@@ -49,7 +46,6 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
 
   useEffect(() => {
     setPageCount(Math.ceil(recipes.length / perPage));
-
     setCards(recipes.slice(offset - perPage, offset));
   }, [offset, recipes]);
 
@@ -98,7 +94,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
                   loggedInUserId={loggedInUserId}
                   saveToUsersRecipes={saveToUsersRecipes}
                   likes={el.Recipe_Likes}
-                  likeRecipe = {likeRecipe}
+                  likeRecipe={likeRecipe}
                 />
               ))}
             </div>

@@ -21,10 +21,10 @@ type RecipeCardRatedProps = {
 };
 
 export default function CardRated(props: RecipeCardRatedProps): JSX.Element {
-  const { t } = useTranslation();
   const {
     id, views, image, title, author, likes, comments, loggedInUserId,
   } = props;
+  const { t } = useTranslation();
 
   const likeUserIds = likes.map((el) => el.UserId);
   const commentedUsersIds = comments.map((el) => el.UserId);
@@ -38,21 +38,18 @@ export default function CardRated(props: RecipeCardRatedProps): JSX.Element {
         </div>
         <DotsIcon />
       </div>
-
       <div
         className="card__image"
       >
         <img
-                src={`${SERVER_URL}/${image}`}
-                alt="Recipe image"
-              />
+          src={`${SERVER_URL}/${image}`}
+          alt="Recipe image"
+        />
       </div>
-
       <div className="card__info-container--middle">
         <div className="card__title">{title}</div>
         <div className="card__author">{author.name}</div>
       </div>
-
       <div className="card__info-container--bottom">
         <div className="card__statistics-item">
           <LikesIcon likeUserIds = {likeUserIds} loggedInUserId={loggedInUserId} id = {id}/>

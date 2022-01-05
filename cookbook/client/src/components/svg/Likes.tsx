@@ -38,7 +38,7 @@ export default function LikesIcon(props: LikesIconProps): JSX.Element {
     } else {
       setColor(yellow);
     }
-  }
+  };
 
   const like = useCallback(throttle(() => {
     if (!props.loggedInUserId) return;
@@ -50,19 +50,6 @@ export default function LikesIcon(props: LikesIconProps): JSX.Element {
     }
     changeColor();
   }, 1000), []);
-
-  // const like = () => {
-  //   console.log('click')
-  //   if (!props.loggedInUserId) return;
-  //   if (likeCookbook) {
-  //     likeCookbook(id);
-  //     color === yellow ? setColor(grey) : setColor(yellow);
-  //   }
-  //   if (likeRecipe) {
-  //     likeRecipe(id);
-  //     color === yellow ? setColor(grey) : setColor(yellow);
-  //   }
-  // };
 
   return (
     <svg

@@ -17,10 +17,7 @@ type PopUpCookbookDetailedProps = {
   loggedInUserId: number;
   saveToUsersCookbooks: (cookbookId: number) => Promise<void>;
   saveToUsersRecipes: (recipeId: number) => Promise<void>;
-  createComment: (
-    cookbookId: number,
-    text: string
-  ) => Promise<void>;
+  createComment: (cookbookId: number, text: string) => Promise<void>;
 };
 
 export default function PopUpCookbookDetailed(
@@ -77,20 +74,13 @@ export default function PopUpCookbookDetailed(
               </button>
             ) : null}
           </div>
-
           <div className="pop-up--cookbook__author">
-            <Link to={`${ROUTES.PROFILE_USER}/${User.id}`}>
-              {User.name}
-            </Link>
+            <Link to={`${ROUTES.PROFILE_USER}/${User.id}`}>{User.name}</Link>
           </div>
-
           <div className="pop-up--cookbook__section--description">
-            <div
-              className="pop-up--cookbook__image"
-            ><img
-            src={`${SERVER_URL}/${image}`}
-            alt="Cookbook image"
-          /></div>
+            <div className="pop-up--cookbook__image">
+              <img src={`${SERVER_URL}/${image}`} alt="Cookbook image" />
+            </div>
             <div className="pop-up--cookbook__section--description__text">
               <div className="pop-up--cookbook__section__title">
                 {t('DESCRIPTION')}
@@ -98,18 +88,20 @@ export default function PopUpCookbookDetailed(
               <p>{description}</p>
             </div>
           </div>
-
           <div className="pop-up--cookbook__section--statistics">
             <div className="card__statistics-item--likes">
               <LikesIcon
                 loggedInUserId={loggedInUserId}
-                likeUserIds = {likeUserIds}
+                likeUserIds={likeUserIds}
                 id={id}
               />
               {Cookbook_Likes.length} <span>&nbsp;{t('LIKES')}</span>
             </div>
             <div className="card__statistics-item comments">
-              <CommentsIcon commentedUsersIds={commentedUsersIds} loggedInUserId={loggedInUserId}/>
+              <CommentsIcon
+                commentedUsersIds={commentedUsersIds}
+                loggedInUserId={loggedInUserId}
+              />
               {Cookbook_Comments.length} <span>&nbsp;{t('COMMENTS')}</span>
             </div>
           </div>

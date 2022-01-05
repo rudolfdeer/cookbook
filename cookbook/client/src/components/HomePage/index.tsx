@@ -20,10 +20,10 @@ type HomePageProps = {
 };
 
 export default function HomePage(props: HomePageProps): JSX.Element {
-  const { t } = useTranslation();
   const {
     recipes, getAllRecipes, cookbooks, getAllCookbooks, user,
   } = props;
+  const { t } = useTranslation();
 
   const navList = t('SEARCH_NAV_LIST', { returnObjects: true }) as string[];
 
@@ -140,7 +140,6 @@ export default function HomePage(props: HomePageProps): JSX.Element {
                       views={el.views}
                       image={el.image}
                       key={el.id}
-                      
                     />
                   ))
                   .slice(0, 3)}

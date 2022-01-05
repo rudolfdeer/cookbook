@@ -60,7 +60,6 @@ export default function FilterPanelCookbooks(
           {t('CLEAR_ALL_BTN')}
         </button>
       </div>
-
       <div className="filter-panel__section">
         <label className="filter-panel__section__title" htmlFor="sort">
           {t('SORT_BY')}
@@ -79,7 +78,6 @@ export default function FilterPanelCookbooks(
           <option value="likes">{t('RATING')}</option>
         </select>
       </div>
-
       <div className="filter-panel__section">
         <div className="filter-panel__section__title">{t('COOKBOOK_TYPE')}</div>
         <div className="filter-panel__section__checkboxes">
@@ -133,7 +131,6 @@ export default function FilterPanelCookbooks(
           </div>
         </div>
       </div>
-
       <div className="filter-panel__section">
         <div className="filter-panel__section__checkboxes__checkbox">
           {loggedInUserId ? (

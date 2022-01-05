@@ -2,21 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import debounce from 'lodash/debounce';
 import api from '../../../helpers/api';
-
-import { ISearchListItem } from '../../../interfaces';
-import './index.scss';
 import ResultList from './ResultList';
+
+import './index.scss';
 
 export default function SearchBar(): JSX.Element {
   const { t } = useTranslation();
-  const [users, setUsers] = useState(null as ISearchListItem[]);
-  const [searchInput, setSearchInput] = useState('');
+  const [users, setUsers] = useState([]);
+  const [inputValue, setInputValue] = useState('');
   const [list, setList] = useState([]);
-
-  const usersList = users?.map((el) => ({
-    name: el.name,
-    id: el.id,
-  }));
 
   useEffect(() => {
     (async () => {
@@ -25,15 +19,20 @@ export default function SearchBar(): JSX.Element {
     })();
   }, []);
 
+  const usersList = users?.map((el) => ({
+    name: el.name,
+    id: el.id,
+  }));
+
   const getResultList = () => {
-    const result = usersList.filter((el) => el.name.toLowerCase().includes(searchInput.toLowerCase()));
+    const result = usersList.filter((el) => el.name.toLowerCase().includes(inputValue.toLowerCase()));
     return result;
   };
 
-  const editSearchInput = (e: any): any => {
+  const handleChange = (e: any) => {
     const target = e.target as HTMLInputElement;
     const { value } = target;
-    setSearchInput(value);
+    setInputValue(value);
   };
 
   return (
@@ -41,17 +40,17 @@ export default function SearchBar(): JSX.Element {
       <div className="header__search__icon" />
       <input
         type="text"
-        value={searchInput}
+        value={inputValue}
         className="header__search__input"
         onChange={(e) => {
-          editSearchInput(e);
+          handleChange(e);
           debounce(() => setList(getResultList()), 2000)();
-        } }
+        }}
         placeholder={t('SEARCH_USERS')}
       />
-      {searchInput.length > 0 && list.length > 0 ? (
+      {inputValue.length > 0 && list.length > 0 ? (
         <div className="header__search__result">
-          <ResultList list={list} setSearchInput={setSearchInput} />
+          <ResultList list={list} setSearchInput={setInputValue} />
         </div>
       ) : null}
     </div>

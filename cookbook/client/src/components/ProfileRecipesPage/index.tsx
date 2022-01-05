@@ -18,7 +18,6 @@ type ProfileRecipesPageProps = {
   user: IUser;
   createRecipe: (
     data: FormData,
-    //imageSrc: string,
     userId: number,
   ) => Promise<void>;
   modifyRecipe: (
@@ -41,8 +40,6 @@ export default function ProfileRecipesPage(
     return <Redirect to={ROUTES.NOT_FOUND} />;
   }
 
-  const { t } = useTranslation();
-
   const {
     recipes,
     user,
@@ -53,6 +50,7 @@ export default function ProfileRecipesPage(
     deleteRecipe,
   } = props;
 
+  const { t } = useTranslation();
   const [isCreatePopUpVisible, setCreatePopUpVisible] = useState(false);
   const [isModifyPopUpVisible, setModifyPopUpVisible] = useState(false);
   const [selectedRecipeId, setSelectedRecipeId] = useState(0);
@@ -130,7 +128,6 @@ export default function ProfileRecipesPage(
               createRecipe={createRecipe}
             />
           ) : null}
-
           {isModifyPopUpVisible ? (
             <PopUpModifyRecipe
               loggedInUserId={id}

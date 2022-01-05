@@ -9,9 +9,9 @@ import HeaderConnect from '../../redux/containers/HeaderConnect';
 import PopUpRecipeSaved from './PopUpRecipe';
 import PopUpCookbookSaved from './PopUpCookbook';
 import { ICookbook, IRecipe, IUser } from '../../interfaces';
+import SERVER_URL from '../../constants/serverUrl';
 
 import './index.scss';
-import SERVER_URL from '../../constants/serverUrl';
 
 type ProfileSavedPageProps = {
   cookbooks: ICookbook[];
@@ -28,8 +28,6 @@ export default function ProfileSavedPage(
     return <Redirect to={ROUTES.NOT_FOUND} />;
   }
 
-  const { t } = useTranslation();
-
   const {
     cookbooks,
     recipes,
@@ -37,6 +35,8 @@ export default function ProfileSavedPage(
     getUsersSavedCookbooks,
     getUsersSavedRecipes,
   } = props;
+
+  const { t } = useTranslation();
 
   const {
     name, bio, id,

@@ -3,9 +3,10 @@ import { useTranslation } from 'react-i18next';
 import LikesIcon from '../../svg/Likes';
 import ViewsIcon from '../../svg/Views';
 import CommentsIcon from '../../svg/Comments';
-import './index.scss';
-import { IRecipeComment, IRecipeLike, IUser } from '../../../interfaces';
+import { IRecipeLike, IUser } from '../../../interfaces';
 import SERVER_URL from '../../../constants/serverUrl';
+
+import './index.scss';
 
 type ProfileRecipeCardProps = {
   id: number;
@@ -25,7 +26,6 @@ type ProfileRecipeCardProps = {
 export default function ProfileRecipeCard(
   props: ProfileRecipeCardProps,
 ): JSX.Element {
-  const { t } = useTranslation();
   const {
     id,
     views,
@@ -41,6 +41,7 @@ export default function ProfileRecipeCard(
     likes,
   } = props;
 
+  const { t } = useTranslation();
   const [isBtnDeleteVisible, setBtnDeleteVisible] = useState(false);
 
   const btnDelete = (
@@ -58,17 +59,11 @@ export default function ProfileRecipeCard(
   );
 
   const likeUserIds = likes.map((el) => el.UserId);
-  //const commentedUsersIds = comments.map((el) => el.UserId);
 
   return (
     <div className="card">
-      <div
-        className="card__image"
-      >
-        <img
-                src={`${SERVER_URL}/${image}`}
-                alt="Recipe image"
-              />
+      <div className="card__image">
+        <img src={`${SERVER_URL}/${image}`} alt="Recipe image" />
       </div>
       <div className="card__content">
         <div className="card__info-container top">
@@ -93,11 +88,15 @@ export default function ProfileRecipeCard(
               {views} <span>{t('VIEWS')}</span>
             </div>
             <div className="card__statistics-item">
-              <LikesIcon likeUserIds = {likeUserIds} loggedInUserId={loggedInUserId} id = {id}/>
+              <LikesIcon
+                likeUserIds={likeUserIds}
+                loggedInUserId={loggedInUserId}
+                id={id}
+              />
               {likes.length} <span>{t('LIKES')}</span>
             </div>
             <div className="card__statistics-item">
-              <CommentsIcon/>
+              <CommentsIcon />
               {comments} <span>{t('COMMENTS')}</span>
             </div>
           </div>

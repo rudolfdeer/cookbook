@@ -61,7 +61,6 @@ export default function ProfileSavedRecipeCard(
           }}
         ></div>
       </div>
-
       <div className="card__info-container">
         <div
           className="card__title"
@@ -74,18 +73,23 @@ export default function ProfileSavedRecipeCard(
         </div>
         <div className="card__author">{author.name}</div>
       </div>
-
       <div className="card__info-container--description">
         <p className="card__description">{description}</p>
       </div>
-
       <div className="card__info-container--bottom">
         <div className="card__statistics-item">
-          <LikesIcon likeUserIds = {likeUserIds} loggedInUserId={loggedInUserId} id = {id}/>
+          <LikesIcon
+            likeUserIds={likeUserIds}
+            loggedInUserId={loggedInUserId}
+            id={id}
+          />
           {likes.length} {t('LIKES')}
         </div>
         <div className="card__statistics-item">
-          <CommentsIcon commentedUsersIds={commentedUsersIds} loggedInUserId={loggedInUserId}/>
+          <CommentsIcon
+            commentedUsersIds={commentedUsersIds}
+            loggedInUserId={loggedInUserId}
+          />
           {comments.length} {t('COMMENTS')}
         </div>
       </div>

@@ -2,18 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Field } from 'react-final-form';
 import { useTranslation } from 'react-i18next';
-import './index.scss';
 import { EMAILREGEX } from '../../../constants/regex';
 import ERROR_MESSAGES from '../../../constants/errorMessages';
 import ROUTES from '../../../constants/routes';
+import { IAuthRequestBody } from '../../../interfaces';
 
-type AuthValues = {
-  email: string;
-  password: string;
-};
+import './index.scss';
 
 type LogInFormProps = {
-  signIn: (loginInfo: AuthValues) => Promise<void>;
+  signIn: (loginInfo: IAuthRequestBody) => Promise<void>;
 };
 
 type ValidatorFunction = (value: string) => undefined | string;
@@ -27,11 +24,12 @@ const composeValidators = (...validators: ValidatorFunction[]) => (value: string
 );
 
 export default function LogInForm(props: LogInFormProps): JSX.Element {
-  const { t } = useTranslation();
   const { signIn } = props;
+  const { t } = useTranslation();
+
   const formData = {};
 
-  const onSubmit = (values: AuthValues) => signIn(values);
+  const onSubmit = (values: IAuthRequestBody) => signIn(values);
 
   return (
     <div className="log-in-page__form">
@@ -42,7 +40,6 @@ export default function LogInForm(props: LogInFormProps): JSX.Element {
       <h2 className="form__title_small">
         {t('NEW_HERE')} <Link to={ROUTES.SIGN_UP}>{t('CREATE_ACCOUNT')}</Link>
       </h2>
-
       <Form
         onSubmit={onSubmit}
         initialValues={formData}

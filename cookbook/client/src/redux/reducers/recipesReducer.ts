@@ -98,7 +98,6 @@ export default function recipesReducer(
     }
 
     case ACTION_TYPES.RECIPES_DELETE: {
-      console.log('here');
       const { recipes, userId } = action.payload;
 
       const usersRecipes = recipes.filter(

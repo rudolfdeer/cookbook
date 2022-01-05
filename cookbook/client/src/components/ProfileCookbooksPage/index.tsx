@@ -7,10 +7,12 @@ import ProfileCookbookCard from './Card';
 import PopUpCreateCookbook from './PopUpCreate';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 import PopUpModifyCookbook from './PopUpModify';
-import { ICookbook, ICookbookRequestBody, IRecipe, IUser } from '../../interfaces';
+import {
+  ICookbook, ICookbookRequestBody, IRecipe, IUser,
+} from '../../interfaces';
+import SERVER_URL from '../../constants/serverUrl';
 
 import './index.scss';
-import SERVER_URL from '../../constants/serverUrl';
 
 type ProfileCookbooksPageProps = {
   cookbooks: ICookbook[];

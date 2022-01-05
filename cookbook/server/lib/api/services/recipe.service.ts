@@ -43,7 +43,7 @@ const findById = async (id: number) => {
 const update = async (
   body: UpdatedRecipe,
   recipeId: number,
-  userId: number
+  userId: number,
 ) => {
   const recipe = await recipeRepository.findById(recipeId);
 
@@ -95,7 +95,7 @@ const like = async (
 const createComment = async (
   body: Comment,
   recipeId: number,
-  userId: number
+  userId: number,
 ) => {
   const response = await recipeRepository.createComment(body, recipeId, userId);
   return response;

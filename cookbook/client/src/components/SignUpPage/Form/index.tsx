@@ -16,7 +16,6 @@ type SignUpFormProps = {
 
 export default function SignUpForm(props: SignUpFormProps): JSX.Element {
   const { signUp, setIsRedirected } = props;
-
   const { t } = useTranslation();
 
   const formData = {};

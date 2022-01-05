@@ -10,7 +10,7 @@ type PopUpCreateRecipeProps = {
   setCreatePopUpVisible: Dispatch<SetStateAction<boolean>>;
   createRecipe: (
     data: FormData,
-    //imageSrc: string,
+    // imageSrc: string,
     userId: number,
   ) => Promise<void>;
 };
@@ -28,9 +28,9 @@ const required = (value: string | string[]) => (value ? undefined : 'Required');
 export default function PopUpCreateRecipe(
   props: PopUpCreateRecipeProps,
 ): JSX.Element {
-  const { t } = useTranslation();
   const { setCreatePopUpVisible, createRecipe, loggedInUserId } = props;
 
+  const { t } = useTranslation();
   const [photoSrc, setPhotoSrc] = useState('');
   const [photoFile, setPhotoFile] = useState(null);
 
@@ -42,7 +42,6 @@ export default function PopUpCreateRecipe(
     data.append('directions', values.directions);
     data.append('time', values.time.toString());
     data.append('image', photoFile);
-    console.log(values)
 
     createRecipe(data, loggedInUserId);
     setCreatePopUpVisible(false);
@@ -93,7 +92,6 @@ export default function PopUpCreateRecipe(
                     )}
                   </Field>
                 </div>
-
                 <div className="pop-up--create__section--image">
                   <label className="pop-up--create__section__btn">
                     {t('UPLOAD_REC_IMAGE')}
@@ -125,7 +123,6 @@ export default function PopUpCreateRecipe(
                     className="pop-up--create__section__preview"
                   />
                 </div>
-
                 <div className="pop-up--create__section">
                   <label
                     htmlFor="description"
@@ -141,7 +138,6 @@ export default function PopUpCreateRecipe(
                     component="input"
                   />
                 </div>
-
                 <div className="pop-up--create__section">
                   <label
                     htmlFor="ingredients"

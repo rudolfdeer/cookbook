@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import SERVER_URL from '../../../../constants/serverUrl';
-import { IRecipeComment, IRecipeLike, IUser } from '../../../../interfaces';
+import { IRecipeLike, IUser } from '../../../../interfaces';
 import CommentsIcon from '../../../svg/Comments';
 import LikesIcon from '../../../svg/Likes';
 import ViewsIcon from '../../../svg/Views';
@@ -25,11 +25,10 @@ export default function PopUpRecipeCard(
 ): JSX.Element {
   const { t } = useTranslation();
   const {
-    views, image, description, title, author, likes, comments, loggedInUserId
+    views, image, description, title, author, likes, comments, loggedInUserId,
   } = props;
 
   const likeUserIds = likes.map((el) => el.UserId);
-  //const commentedUsersIds = comments.map((el) => el.UserId);
 
   return (
     <div className="card">

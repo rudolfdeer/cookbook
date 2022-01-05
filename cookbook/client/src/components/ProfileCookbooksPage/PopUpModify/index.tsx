@@ -2,9 +2,9 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import PopUpRecipeCard from './Card';
 import { ICookbook, ICookbookRequestBody, IRecipe } from '../../../interfaces';
+import SERVER_URL from '../../../constants/serverUrl';
 
 import './index.scss';
-import SERVER_URL from '../../../constants/serverUrl';
 
 type PopUpModifyCookbookProps = {
   recipes: IRecipe[];
@@ -26,7 +26,6 @@ type PopUpModifyCookbookProps = {
 export default function PopUpModifyCookbook(
   props: PopUpModifyCookbookProps,
 ): JSX.Element {
-  const { t } = useTranslation();
   const {
     setModifyPopUpVisible,
     selectedCookbook,
@@ -35,10 +34,12 @@ export default function PopUpModifyCookbook(
     updateCookbooksImage,
     recipes,
   } = props;
+
+  const { t } = useTranslation();
+
   const {
     id, image, description, title, User, Recipe_Cookbooks,
   } = selectedCookbook;
-
   const recipesIds = Recipe_Cookbooks.map((el) => el.RecipeId);
 
   const [imageSrc, setImageSrc] = useState(`${SERVER_URL}/${image}`);
@@ -64,6 +65,7 @@ export default function PopUpModifyCookbook(
 
     const data = new FormData();
     data.append('image', file);
+
     await updateCookbooksImage(id, data, loggedInUserId);
 
     const reader = new FileReader();
@@ -136,7 +138,6 @@ export default function PopUpModifyCookbook(
           <div className="pop-up--modify__author">
             {User.name}
           </div>
-
           <div className="pop-up--modify__section--description">
             <div
               className="pop-up--modify__image--cookbook"
@@ -224,13 +225,12 @@ export default function PopUpModifyCookbook(
                     <option key={el.id} value={el.id}>
                   {el.title}
                 </option>
-                  )
+                  );
                 }
                 return null;
               })}
             </select>
           </div>
-
           <div className="pop-up--modify__btns">
             <button
               className="pop-up--modify__btns__btn--light"

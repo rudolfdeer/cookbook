@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import ROUTES from '../../constants/routes';
 import { IAuthRequestBody, IUser } from '../../interfaces';
@@ -14,13 +14,9 @@ type LogInPageProps = {
 
 export default function LogInPage(props: LogInPageProps): JSX.Element {
   const { user, signIn, getLoggedInUser } = props;
-  //const [isRedirected, setIsRedirected] = useState(false);
 
   useEffect(() => {
     getLoggedInUser();
-    // if (user) {
-    //   setIsRedirected(true);
-    // }
   }, []);
 
   if (user) {

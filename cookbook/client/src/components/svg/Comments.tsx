@@ -7,7 +7,7 @@ type CommentsIconProps = {
 
 export default function CommentsIcon(props: CommentsIconProps): JSX.Element {
   const {
-    loggedInUserId, commentedUsersIds
+    loggedInUserId, commentedUsersIds,
   } = props;
 
   const grey = '#dadada';

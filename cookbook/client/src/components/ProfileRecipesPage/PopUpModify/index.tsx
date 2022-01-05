@@ -24,7 +24,6 @@ type PopUpModifyRecipeProps = {
 export default function PopUpModifyRecipe(
   props: PopUpModifyRecipeProps,
 ): JSX.Element {
-  const { t } = useTranslation();
   const {
     setModifyPopUpVisible,
     selectedRecipe,
@@ -32,8 +31,11 @@ export default function PopUpModifyRecipe(
     loggedInUserId,
     updateRecipesImage,
   } = props;
+
+  const { t } = useTranslation();
+
   const {
-    id, title, image, description, directions, ingredients, views, Recipe_Likes
+    id, title, image, description, directions, ingredients, views, Recipe_Likes,
   } = selectedRecipe;
 
   const [imageSrc, setImageSrc] = useState(`${SERVER_URL}/${image}`);
@@ -53,7 +55,7 @@ export default function PopUpModifyRecipe(
     }
   };
 
-  const onImageChange = async(e: React.ChangeEvent) => {
+  const onImageChange = async (e: React.ChangeEvent) => {
     const target = e.target as HTMLInputElement;
     const file = target.files[0];
 

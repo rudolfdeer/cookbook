@@ -5,6 +5,7 @@ import { IRecipeComment, IRecipeLike, IUser } from '../../../../interfaces';
 import CommentsIcon from '../../../svg/Comments';
 import LikesIcon from '../../../svg/Likes';
 import ViewsIcon from '../../../svg/Views';
+
 import './index.scss';
 
 type PopUpRecipeCardProps = {
@@ -24,7 +25,6 @@ type PopUpRecipeCardProps = {
 export default function PopUpRecipeCard(
   props: PopUpRecipeCardProps,
 ): JSX.Element {
-  const { t } = useTranslation();
   const {
     views,
     image,
@@ -39,11 +39,12 @@ export default function PopUpRecipeCard(
     loggedInUserId,
   } = props;
 
+  const { t } = useTranslation();
+
   const deleteRecipeFromCookbook = (recipeId: number) => {
     const newRecipesIds = recipesIds.filter((el) => el !== recipeId);
     setNewRecipesIds(newRecipesIds);
   };
-
   const likeUserIds = likes.map((el) => el.UserId);
   const commentedUsersIds = comments.map((el) => el.UserId);
 

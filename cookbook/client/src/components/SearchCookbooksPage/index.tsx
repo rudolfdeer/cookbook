@@ -22,10 +22,7 @@ type CookbooksPageProps = {
   saveToUsersCookbooks: (cookbookId: number) => Promise<void>;
   saveToUsersRecipes: (recipeId: number) => Promise<void>;
   loggedInUserId: number;
-  createComment: (
-    cookbookId: number,
-    text: string
-  ) => Promise<void>;
+  createComment: (cookbookId: number, text: string) => Promise<void>;
   likeCookbook: (cookbookId: number) => Promise<void>;
 };
 
@@ -112,7 +109,6 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
                 />
               ))}
             </div>
-
             <ReactPaginate
               previousLabel={'prev'}
               nextLabel={'next'}
@@ -136,12 +132,9 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
               createComment={createComment}
             />
           ) : null}
-
         </div>
       </main>
-      
       <Footer />
     </>
-
   );
 }

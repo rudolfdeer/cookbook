@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { Form, Field } from 'react-final-form';
 import { useTranslation } from 'react-i18next';
-import { ICookbookRequestBody, IRecipe } from '../../../interfaces';
+import { IRecipe } from '../../../interfaces';
 
 import './index.scss';
 
@@ -39,14 +39,17 @@ const required = (value: string | string[]) => (value ? undefined : 'Required');
 export default function PopUpCreateCookbook(
   props: PopUpCreateCookbookProps,
 ): JSX.Element {
-  const { t } = useTranslation();
   const {
     loggedInUserId, setCreatePopUpVisible, createCookbook, recipes,
   } = props;
+
+  const { t } = useTranslation();
   const [photoSrc, setPhotoSrc] = useState('');
   const [photoFile, setPhotoFile] = useState(null);
 
   const onSubmit = (values: FormValues) => {
+    const data = new FormData();
+
     if (values.Vegetarian) {
       values.tags.push('Vegetarian');
     }
@@ -58,15 +61,13 @@ export default function PopUpCreateCookbook(
     }
     if (values.recipesIds.indexOf(0) === -1) {
       const recipesIds = values.recipesIds.map((el) => Number(el));
-      values.recipesIds = recipesIds;
+      data.append('recipesIds', recipesIds.join(','));
     } else {
-      values.recipesIds = [];
+      data.append('recipesIds', '');
     }
 
-    const data = new FormData();
     data.append('title', values.title);
     data.append('description', values.description);
-    data.append('recipesIds', values.recipesIds.join(','));
     data.append('tags', values.tags.join(','));
     data.append('image', photoFile);
 
@@ -88,7 +89,6 @@ export default function PopUpCreateCookbook(
           <div className="pop-up--create__title">
             {t('CREATE_NEW_COOKBOOK')}
           </div>
-
           <Form
             onSubmit={onSubmit}
             initialValues={{ ...formData }}
@@ -122,7 +122,6 @@ export default function PopUpCreateCookbook(
                     )}
                   </Field>
                 </div>
-
                 <div className="pop-up--create__section--image">
                   <label className="pop-up--create__section__btn">
                     {t('UPLOAD_CB_IMAGE')}
@@ -154,7 +153,6 @@ export default function PopUpCreateCookbook(
                     className="pop-up--create__section__preview"
                   />
                 </div>
-
                 <div className="pop-up--create__section">
                   <label
                     htmlFor="description"
@@ -170,7 +168,6 @@ export default function PopUpCreateCookbook(
                     component="input"
                   />
                 </div>
-
                 <div className="pop-up--create__section">
                   <label
                     htmlFor="recipesIds"
@@ -191,7 +188,6 @@ export default function PopUpCreateCookbook(
                     ))}
                   </Field>
                 </div>
-
                 <div className="pop-up--create__section">
                   <div className="pop-up--create__section__title">
                     {t('TAGS')}

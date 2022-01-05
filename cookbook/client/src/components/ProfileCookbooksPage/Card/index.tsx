@@ -3,10 +3,10 @@ import { useTranslation } from 'react-i18next';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
 import ViewsIcon from '../../svg/Views';
+import { ICookbookLike, IUser } from '../../../interfaces';
+import SERVER_URL from '../../../constants/serverUrl';
 
 import './index.scss';
-import { ICookbookComment, ICookbookLike, IUser } from '../../../interfaces';
-import SERVER_URL from '../../../constants/serverUrl';
 
 type ProfileCookbookCardProps = {
   id: number;
@@ -26,7 +26,6 @@ type ProfileCookbookCardProps = {
 export default function ProfileCookbookCard(
   props: ProfileCookbookCardProps,
 ): JSX.Element {
-  const { t } = useTranslation();
   const {
     id,
     views,
@@ -42,10 +41,10 @@ export default function ProfileCookbookCard(
     loggedInUserId,
   } = props;
 
+  const { t } = useTranslation();
   const [isBtnDeleteVisible, setBtnDeleteVisible] = useState(false);
 
   const likeUserIds = likes.map((el) => el.UserId);
-  //const commentedUsersIds = comments.map((el) => el.UserId);
 
   const btnDelete = (
     <div className="card__statistics-item__menu">
@@ -106,11 +105,9 @@ export default function ProfileCookbookCard(
         </div>
         <div className="card__author">{author.name}</div>
       </div>
-
       <div className="card__info-container--description">
         <p className="card__description">{description}</p>
       </div>
-
       <div className="card__info-container--bottom">
         <div className="card__statistics-item likes">
           <LikesIcon likeUserIds = {likeUserIds} loggedInUserId={loggedInUserId}/>

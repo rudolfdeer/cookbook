@@ -54,16 +54,10 @@ export default function CookbookCard(props: CookbookCardProps): JSX.Element {
         <DotsIcon />
       </div>
       <div className="card__info-container">
-        <div
-          className="card__image"
-        >
-          <img
-                src={`${SERVER_URL}/${image}`}
-                alt="Cookbook image"
-              />
+        <div className="card__image">
+          <img src={`${SERVER_URL}/${image}`} alt="Cookbook image" />
         </div>
       </div>
-
       <div className="card__info-container">
         <div
           className="card__title"
@@ -76,18 +70,24 @@ export default function CookbookCard(props: CookbookCardProps): JSX.Element {
         </div>
         <div className="card__author">{author.name}</div>
       </div>
-
       <div className="card__info-container--description">
         <p className="card__description">{description}</p>
       </div>
-
       <div className="card__info-container--bottom">
         <div className="card__statistics-item--likes">
-          <LikesIcon id = {id} likeCookbook = {likeCookbook} likeUserIds = {likeUserIds} loggedInUserId = {loggedInUserId}/>
+          <LikesIcon
+            id={id}
+            likeCookbook={likeCookbook}
+            likeUserIds={likeUserIds}
+            loggedInUserId={loggedInUserId}
+          />
           {likes.length} {t('LIKES')}
         </div>
         <div className="card__statistics-item">
-          <CommentsIcon commentedUsersIds={commentedUsersIds} loggedInUserId={loggedInUserId}/>
+          <CommentsIcon
+            commentedUsersIds={commentedUsersIds}
+            loggedInUserId={loggedInUserId}
+          />
           {comments.length} {t('COMMENTS')}
         </div>
       </div>

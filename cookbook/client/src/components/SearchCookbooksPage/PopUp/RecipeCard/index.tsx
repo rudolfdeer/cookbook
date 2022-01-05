@@ -45,13 +45,8 @@ export default function PopUpRecipeCard(
 
   return (
     <div className="card">
-      <div
-        className="card__image"
-      >
-        <img
-                src={`${SERVER_URL}/${image}`}
-                alt="Recipe image"
-              />
+      <div className="card__image">
+        <img src={`${SERVER_URL}/${image}`} alt="Recipe image" />
       </div>
       <div className="card__content">
         <div className="card__info-container top">
@@ -68,11 +63,18 @@ export default function PopUpRecipeCard(
               {views} <span>&nbsp;{t('VIEWS')}</span>
             </div>
             <div className="card__statistics-item">
-              <LikesIcon likeUserIds={likeUserIds} loggedInUserId={loggedInUserId} id={id}/>
+              <LikesIcon
+                likeUserIds={likeUserIds}
+                loggedInUserId={loggedInUserId}
+                id={id}
+              />
               {likes.length} <span>&nbsp;{t('LIKES')}</span>
             </div>
             <div className="card__statistics-item">
-              <CommentsIcon commentedUsersIds={commentedUsersIds} loggedInUserId={loggedInUserId}/>
+              <CommentsIcon
+                commentedUsersIds={commentedUsersIds}
+                loggedInUserId={loggedInUserId}
+              />
               {comments.length} <span>&nbsp;{t('COMMENTS')}</span>
             </div>
           </div>

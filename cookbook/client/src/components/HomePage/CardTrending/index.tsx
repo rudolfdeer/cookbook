@@ -17,10 +17,10 @@ type RecipeCardTrendingProps = {
 export default function CardTrending(
   props: RecipeCardTrendingProps,
 ): JSX.Element {
-  const { t } = useTranslation();
   const {
     views, image, title, author,
   } = props;
+  const { t } = useTranslation();
 
   return (
     <div className="card">
@@ -36,11 +36,10 @@ export default function CardTrending(
         className="card__image"
       >
         <img
-                src={`${SERVER_URL}/${image}`}
-                alt="Recipe image"
-              />
+          src={`${SERVER_URL}/${image}`}
+          alt="Recipe image"
+        />
       </div>
-
       <div className="card__info-container--bottom">
         <div className="card__title">{title}</div>
         <div className="card__author">{author.name}</div>

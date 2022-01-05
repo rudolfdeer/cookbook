@@ -20,11 +20,18 @@ export default function PopUpCookbook(props: PopUpCookbookProps): JSX.Element {
   const { t } = useTranslation();
   const { setPopUpCookbookVisible, cookbook, loggedInUserId } = props;
   const {
-    image, description, title, User, Cookbook_Likes, Cookbook_Comments, Recipe_Cookbooks,
+    image,
+    description,
+    title,
+    User,
+    Cookbook_Likes,
+    Cookbook_Comments,
+    Recipe_Cookbooks,
   } = cookbook;
 
   const likeUserIds = Cookbook_Likes.map((el) => el.UserId);
   const commentedUsersIds = Cookbook_Comments.map((el) => el.UserId);
+  const recipes = Recipe_Cookbooks.map((el) => el.Recipe);
 
   function closePopUp(e: React.MouseEvent) {
     const target = e.target as HTMLElement;
@@ -36,8 +43,6 @@ export default function PopUpCookbook(props: PopUpCookbookProps): JSX.Element {
     }
   }
 
-  const recipes = Recipe_Cookbooks.map((el) => el.Recipe);
-
   return (
     <div className="overlay" onClick={(e) => closePopUp(e)}>
       <div className="overlay__content">
@@ -47,11 +52,8 @@ export default function PopUpCookbook(props: PopUpCookbookProps): JSX.Element {
           </div>
 
           <div className="pop-up--users-cookbook__author">
-            <Link to={`${ROUTES.PROFILE_USER}/${User.id}`}>
-              {User.name}
-            </Link>
+            <Link to={`${ROUTES.PROFILE_USER}/${User.id}`}>{User.name}</Link>
           </div>
-
           <div className="pop-up--users-cookbook__section--description">
             <div
               className="pop-up--users-cookbook__image"
@@ -66,14 +68,19 @@ export default function PopUpCookbook(props: PopUpCookbookProps): JSX.Element {
               <p>{description}</p>
             </div>
           </div>
-
           <div className="pop-up--users-cookbook__section--statistics">
             <div className="card__statistics-item likes">
-              <LikesIcon likeUserIds = {likeUserIds} loggedInUserId={loggedInUserId}/>
+              <LikesIcon
+                likeUserIds={likeUserIds}
+                loggedInUserId={loggedInUserId}
+              />
               {Cookbook_Likes.length} {t('LIKES')}
             </div>
             <div className="card__statistics-item comments">
-              <CommentsIcon commentedUsersIds={commentedUsersIds} loggedInUserId={loggedInUserId}/>
+              <CommentsIcon
+                commentedUsersIds={commentedUsersIds}
+                loggedInUserId={loggedInUserId}
+              />
               {Cookbook_Comments.length} {t('COMMENTS')}
             </div>
           </div>

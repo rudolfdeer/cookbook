@@ -23,13 +23,13 @@ const mapDispatchToProps = {
   // changeUserEmail,
   // changeUserPassword,
   // updateUserPhoto,
-  //logOut,
+  // logOut,
   signOut,
   deleteUser,
   updateUser,
   changePassword,
   changeEmail,
-  updateUsersPhoto
+  updateUsersPhoto,
 };
 
 const ProfileSettingsPageConnect = connect(

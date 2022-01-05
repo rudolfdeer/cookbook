@@ -18,7 +18,7 @@ export default function PopUpRecipeSaved(
 ): JSX.Element {
   const { t } = useTranslation();
   const { setRecipePopUpVisible, recipe, loggedInUserId } = props;
-  console.log(recipe);
+
   const {
     image,
     description,
@@ -52,9 +52,7 @@ export default function PopUpRecipeSaved(
               <div className="pop-up--recipe__section--top">
                 <div className="pop-up--recipe__title">{title}</div>
               </div>
-              <div className="pop-up--recipe__author">
-                {User.name}
-              </div>
+              <div className="pop-up--recipe__author">{User.name}</div>
               <div className="pop-up--recipe__section--description">
                 <div className="pop-up--recipe__section--description__wrapper">
                   <div className="pop-up--recipe__section--description__title">
@@ -90,11 +88,17 @@ export default function PopUpRecipeSaved(
               </div>
               <div className="pop-up--recipe__section--statistics">
                 <div className="card__statistics-item likes">
-                  <LikesIcon likeUserIds = {likeUserIds} loggedInUserId={loggedInUserId}/>
+                  <LikesIcon
+                    likeUserIds={likeUserIds}
+                    loggedInUserId={loggedInUserId}
+                  />
                   {Recipe_Likes.length} <span>&nbsp;{t('LIKES')}</span>
                 </div>
                 <div className="card__statistics-item comments">
-                  <CommentsIcon commentedUsersIds={commentedUsersIds} loggedInUserId={loggedInUserId}/>
+                  <CommentsIcon
+                    commentedUsersIds={commentedUsersIds}
+                    loggedInUserId={loggedInUserId}
+                  />
                   {Recipe_Comments.length} <span>&nbsp;{t('COMMENTS')}</span>
                 </div>
               </div>

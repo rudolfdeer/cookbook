@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import debounce from 'lodash/debounce';
 import api from '../../../helpers/api';
+
 import { ISearchListItem } from '../../../interfaces';
 import './index.scss';
 import ResultList from './ResultList';
@@ -9,6 +11,7 @@ export default function SearchBar(): JSX.Element {
   const { t } = useTranslation();
   const [users, setUsers] = useState(null as ISearchListItem[]);
   const [searchInput, setSearchInput] = useState('');
+  const [list, setList] = useState([]);
 
   const usersList = users?.map((el) => ({
     name: el.name,
@@ -22,15 +25,16 @@ export default function SearchBar(): JSX.Element {
     })();
   }, []);
 
-  const editSearchInput = (e: React.ChangeEvent) => {
-    const target = e.target as HTMLInputElement;
-    const { value } = target;
-    setSearchInput(value);
-  };
-
   const getResultList = () => {
     const result = usersList.filter((el) => el.name.toLowerCase().includes(searchInput.toLowerCase()));
     return result;
+  };
+
+  const editSearchInput = (e: any): any => {
+    const target = e.target as HTMLInputElement;
+    const { value } = target;
+    setSearchInput(value);
+   
   };
 
   return (
@@ -40,12 +44,15 @@ export default function SearchBar(): JSX.Element {
         type="text"
         value={searchInput}
         className="header__search__input"
-        onChange={(e) => editSearchInput(e)}
+        onChange={(e) => {
+          editSearchInput(e);
+          debounce(() => setList(getResultList()), 2000)();
+        } }
         placeholder={t('SEARCH_USERS')}
       />
-      {searchInput.length > 0 ? (
+      {searchInput.length > 0 && list.length > 0 ? (
         <div className="header__search__result">
-          <ResultList list={getResultList()} setSearchInput={setSearchInput} />
+          <ResultList list={list} setSearchInput={setSearchInput} />
         </div>
       ) : null}
     </div>

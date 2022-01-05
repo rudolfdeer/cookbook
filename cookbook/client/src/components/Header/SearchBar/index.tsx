@@ -34,7 +34,6 @@ export default function SearchBar(): JSX.Element {
     const target = e.target as HTMLInputElement;
     const { value } = target;
     setSearchInput(value);
-   
   };
 
   return (

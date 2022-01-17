@@ -1,22 +1,25 @@
 import * as React from 'react';
+import { Suspense, lazy } from 'react';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import ROUTES from '../constants/routes';
-import HomePageConnect from '../redux/containers/HomePageConnect';
-import CookbooksPageConnect from '../redux/containers/CookbooksPageConnect';
-import RecipesPageConnect from '../redux/containers/RecipesPageConnect';
-import ProfileRecipesPageConnect from '../redux/containers/ProfileRecipesPageConnect';
-import ProfileCookbooksPageConnect from '../redux/containers/ProfileCookbookPageConnect';
-import LogInPageConnect from '../redux/containers/LogInPageConnect';
-import ProfileSettingsPageConnect from '../redux/containers/ProfileSettingsPageConnect';
-import ProfileSavedPageConnect from '../redux/containers/ProfileSavedPageConnect';
-import NotFoundPage from './NotFoundPage';
-import SignUpPageConnect from '../redux/containers/SignUpPageConnect';
-import ProfileUsersPageConnect from '../redux/containers/ProfileUsersPageConnect';
+
+const HomePageConnect = lazy(() => import('../redux/containers/HomePageConnect'));
+const CookbooksPageConnect = lazy(() => import('../redux/containers/CookbooksPageConnect'));
+const RecipesPageConnect = lazy(() => import('../redux/containers/RecipesPageConnect'));
+const ProfileRecipesPageConnect = lazy(() => import('../redux/containers/ProfileRecipesPageConnect'));
+const ProfileCookbooksPageConnect = lazy(() => import('../redux/containers/ProfileCookbookPageConnect'));
+const ProfileSettingsPageConnect = lazy(() => import('../redux/containers/ProfileSettingsPageConnect'));
+const LogInPageConnect = lazy(() => import('../redux/containers/LogInPageConnect'));
+const ProfileSavedPageConnect = lazy(() => import('../redux/containers/ProfileSavedPageConnect'));
+const NotFoundPage = lazy(() => import('./NotFoundPage'));
+const SignUpPageConnect = lazy(() => import('../redux/containers/SignUpPageConnect'));
+const ProfileUsersPageConnect = lazy(() => import('../redux/containers/ProfileUsersPageConnect'));
 
 function App(): JSX.Element {
   return (
     <>
       <Router>
+        <Suspense fallback = {<div></div>}>
         <Switch>
           <Route exact path={ROUTES.HOME} component={HomePageConnect}></Route>
           <Route
@@ -66,6 +69,7 @@ function App(): JSX.Element {
           ></Route>
           <Route exact path={ROUTES.NOT_FOUND} component={NotFoundPage}></Route>
         </Switch>
+        </Suspense>
       </Router>
     </>
   );

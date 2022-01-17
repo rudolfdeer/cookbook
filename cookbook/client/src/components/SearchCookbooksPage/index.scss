@@ -7,16 +7,19 @@
   &__wrapper {
     display: flex;
     flex-wrap: nowrap;
+    margin: 0 auto;
+    padding: 0 10px;
+    max-width: 1244px;
   }
 
   &__aside {
     height: 100vh;
     margin-right: 40px;
-  }
 
-  &__container {
+    &__container {
     width: 272px;
     height: 372px;
+  }
   }
 
   &__content {
@@ -27,7 +30,7 @@
     margin-bottom: 34px;
 
     &__list {
-      @include nav-list;
+      @include page-nav-list;
     }
   }
 

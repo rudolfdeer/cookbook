@@ -90,7 +90,6 @@ const like = async (req: express.Request, res: express.Response) => {
 const createComment = async (req: express.Request, res: express.Response) => {
   const comment = req.body;
   const { id, target } = req.params;
-  console.log(req.params);
   try {
     const response = await cookbookService.createComment(comment, target, id);
     res.status(CODE_STATUSES.OK).send(response);

@@ -1,5 +1,6 @@
 import { AnyAction } from 'redux';
 import ACTION_TYPES from '../../constants/actionTypes';
+import SortOrder from '../../constants/sortOrder';
 import { ICookbook, ICookbookSaved } from '../../interfaces';
 
 const initialState = [] as ICookbook[];
@@ -68,15 +69,15 @@ export default function cookbooksReducer(
       let resData;
 
       switch (order) {
-        case 'likes': {
+        case SortOrder.Likes: {
           resData = cookbooks.sort((a: ICookbook, b: ICookbook) => b.Cookbook_Likes.length - a.Cookbook_Likes.length);
           break;
         }
-        case 'views': {
+        case SortOrder.Views: {
           resData = cookbooks.sort((a: ICookbook, b: ICookbook) => b.views - a.views);
           break;
         }
-        case 'default': {
+        case SortOrder.Default: {
           resData = cookbooks.sort((a: ICookbook, b: ICookbook) => a.id - b.id);
           break;
         }

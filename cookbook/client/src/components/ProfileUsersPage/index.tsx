@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import Footer from '../Footer';
 import CardCookbook from './Card';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
-import api from '../../helpers/api';
+import userApi from '../../helpers/api/userApi';
 import PopUpCookbook from './PopUp';
 import ROUTES from '../../constants/routes';
 import { ICookbook, IUser } from '../../interfaces';
@@ -33,7 +33,7 @@ export default function ProfileUsersPage(
 
   useEffect(() => {
     (async () => {
-      const response = await api.getUserById(+userId);
+      const response = await userApi.getUserById(+userId);
       setUser(response);
     })();
   }, []);

@@ -5,9 +5,9 @@ import ROUTES from '../../constants/routes';
 import Footer from '../Footer';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 import { IUser, IUserRequestBody } from '../../interfaces';
+import SERVER_URL from '../../constants/serverUrl';
 
 import './index.scss';
-import SERVER_URL from '../../constants/serverUrl';
 
 type ProfileSettingsPageProps = {
   user: IUser;
@@ -131,7 +131,6 @@ export default function ProfileSettingsPage(
                       setBioDisabled(true);
                       updateUser({
                         name: newName,
-                        // photo: photoSrc,
                         bio: newBio,
                       });
                     }}

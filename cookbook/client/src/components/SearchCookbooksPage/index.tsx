@@ -60,7 +60,9 @@ export default function CookbooksPage(props: CookbooksPageProps): JSX.Element {
     setCards(cookbooks.slice(offset - perPage, offset));
   }, [offset, cookbooks]);
 
-  const handlePageClick = (e: any) => {
+  const handlePageClick = (e: {
+    selected: number;
+  }) => {
     const selectedPage = e.selected;
     setOffset((selectedPage + 1) * perPage);
   };

@@ -1,5 +1,7 @@
 import throttle from 'lodash/throttle';
 import React, { useCallback, useEffect, useState } from 'react';
+import Colors from '../../constants/colors';
+import getDefaultColor from '../../helpers/getIconColor';
 
 type LikesIconProps = {
   loggedInUserId?: number;
@@ -14,29 +16,16 @@ export default function LikesIcon(props: LikesIconProps): JSX.Element {
     loggedInUserId, likeUserIds, likeCookbook, id, likeRecipe,
   } = props;
 
-  const grey = '#dadada';
-  const yellow = '#ffbc01';
+  const defaultColor = getDefaultColor(loggedInUserId, likeUserIds);
+  const [color, setColor] = useState(defaultColor);
 
-  const getDefaultColor = () => {
-    if (!loggedInUserId || !likeUserIds) {
-      return grey;
-    }
-    const index = likeUserIds.indexOf(loggedInUserId);
-    if (index > -1) {
-      return yellow;
-    }
-    return grey;
-  };
-
-  const [color, setColor] = useState(getDefaultColor());
-
-  useEffect(() => setColor(getDefaultColor()));
+  useEffect(() => setColor(getDefaultColor(loggedInUserId, likeUserIds)));
 
   const changeColor = () => {
-    if (color === yellow) {
-      setColor(grey);
+    if (color === Colors.Yellow) {
+      setColor(Colors.Grey);
     } else {
-      setColor(yellow);
+      setColor(Colors.Yellow);
     }
   };
 

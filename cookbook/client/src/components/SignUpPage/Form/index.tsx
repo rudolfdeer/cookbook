@@ -14,6 +14,40 @@ type SignUpFormProps = {
   setIsRedirected: Dispatch<SetStateAction<boolean>>;
 };
 
+const validate = (values: ISignUpForm) => {
+  const errors = {} as ISignUpForm;
+
+  if (!values.email) {
+    errors.email = ERROR_MESSAGES.REQUIRED;
+  }
+
+  if (values.email) {
+    if (!values.email.match(EMAILREGEX)) {
+      errors.email = ERROR_MESSAGES.EMAIL;
+    }
+  }
+
+  if (!values.password) {
+    errors.password = ERROR_MESSAGES.REQUIRED;
+  }
+  if (!values.confirm) {
+    errors.confirm = ERROR_MESSAGES.REQUIRED;
+  } else if (values.confirm !== values.password) {
+    errors.confirm = ERROR_MESSAGES.CONFIRM;
+  }
+
+  if (values.password) {
+    if (values.password.length < 7) {
+      errors.password = ERROR_MESSAGES.SHORT_LENGTH;
+    }
+
+    if (values.password.length > 30) {
+      errors.password = ERROR_MESSAGES.LONG_LENGTH;
+    }
+  }
+  return errors;
+};
+
 export default function SignUpForm(props: SignUpFormProps): JSX.Element {
   const { signUp, setIsRedirected } = props;
   const { t } = useTranslation();
@@ -42,39 +76,7 @@ export default function SignUpForm(props: SignUpFormProps): JSX.Element {
       <Form
         onSubmit={onSubmit}
         initialValues={formData}
-        validate={(values: ISignUpForm) => {
-          const errors = {} as ISignUpForm;
-
-          if (!values.email) {
-            errors.email = ERROR_MESSAGES.REQUIRED;
-          }
-
-          if (values.email) {
-            if (!values.email.match(EMAILREGEX)) {
-              errors.email = ERROR_MESSAGES.EMAIL;
-            }
-          }
-
-          if (!values.password) {
-            errors.password = ERROR_MESSAGES.REQUIRED;
-          }
-          if (!values.confirm) {
-            errors.confirm = ERROR_MESSAGES.REQUIRED;
-          } else if (values.confirm !== values.password) {
-            errors.confirm = ERROR_MESSAGES.CONFIRM;
-          }
-
-          if (values.password) {
-            if (values.password.length < 7) {
-              errors.password = ERROR_MESSAGES.SHORT_LENGTH;
-            }
-
-            if (values.password.length > 30) {
-              errors.password = ERROR_MESSAGES.LONG_LENGTH;
-            }
-          }
-          return errors;
-        }}
+        validate={validate}
         render={({ handleSubmit }) => (
           <form className="form" onSubmit={handleSubmit}>
             <Field name="email">
@@ -82,11 +84,9 @@ export default function SignUpForm(props: SignUpFormProps): JSX.Element {
                 <>
                   <label className="form__label">{t('EMAIL')}</label>
                   <input {...input} type="text" className="form__input" />
-                  {meta.error && meta.touched ? (
-                    <span className="form__error">{meta.error}</span>
-                  ) : (
-                    <span className="form__error"></span>
-                  )}
+                  <span className="form__error">
+                    {meta.error && meta.touched ? meta.error : null}
+                  </span>
                 </>
               )}
             </Field>
@@ -97,11 +97,9 @@ export default function SignUpForm(props: SignUpFormProps): JSX.Element {
                     {t('PASSWORD')}
                   </label>
                   <input {...input} type="password" className="form__input" />
-                  {meta.error && meta.touched ? (
-                    <span className="form__error">{meta.error}</span>
-                  ) : (
-                    <span className="form__error"></span>
-                  )}
+                  <span className="form__error">
+                    {meta.error && meta.touched ? meta.error : null}
+                  </span>
                 </>
               )}
             </Field>
@@ -110,11 +108,9 @@ export default function SignUpForm(props: SignUpFormProps): JSX.Element {
                 <>
                   <label className="form__label">{t('CONFIRM_PASSWORD')}</label>
                   <input {...input} type="password" className="form__input" />
-                  {meta.error && meta.touched ? (
-                    <span className="form__error">{meta.error}</span>
-                  ) : (
-                    <span className="form__error"></span>
-                  )}
+                  <span className="form__error">
+                    {meta.error && meta.touched ? meta.error : null}
+                  </span>
                 </>
               )}
             </Field>

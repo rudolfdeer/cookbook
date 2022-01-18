@@ -18,12 +18,6 @@ function mapStateToProps(state: IState) {
   };
 }
 const mapDispatchToProps = {
-  // changeUserBio,
-  // changeUserName,
-  // changeUserEmail,
-  // changeUserPassword,
-  // updateUserPhoto,
-  // logOut,
   signOut,
   deleteUser,
   updateUser,

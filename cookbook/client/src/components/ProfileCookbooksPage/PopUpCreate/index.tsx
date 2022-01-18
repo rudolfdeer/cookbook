@@ -111,13 +111,9 @@ export default function PopUpCreateCookbook(
                           className="pop-up--create__section__input--error"
                           placeholder="Title"
                         />
-                        {meta.error && meta.touched ? (
                           <span className="pop-up--create__section__input__error">
-                            {meta.error}
+                            {meta.error && meta.touched ? meta.error : null}
                           </span>
-                        ) : (
-                          <span className="pop-up--create__section__input__error"></span>
-                        )}
                       </>
                     )}
                   </Field>

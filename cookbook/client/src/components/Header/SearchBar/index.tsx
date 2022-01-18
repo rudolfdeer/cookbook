@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import debounce from 'lodash/debounce';
-import api from '../../../helpers/api';
+import userApi from '../../../helpers/api/userApi';
 import ResultList from './ResultList';
 
 import './index.scss';
@@ -14,7 +14,7 @@ export default function SearchBar(): JSX.Element {
 
   useEffect(() => {
     (async () => {
-      const response = await api.getAllUsers();
+      const response = await userApi.getAllUsers();
       setUsers(response);
     })();
   }, []);
@@ -29,7 +29,7 @@ export default function SearchBar(): JSX.Element {
     return result;
   };
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent) => {
     const target = e.target as HTMLInputElement;
     const { value } = target;
     setInputValue(value);

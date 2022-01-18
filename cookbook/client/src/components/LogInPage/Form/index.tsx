@@ -13,12 +13,11 @@ type LogInFormProps = {
   signIn: (loginInfo: IAuthRequestBody) => Promise<void>;
 };
 
-type ValidatorFunction = (value: string) => undefined | string;
+type Validator = (value: string) => undefined | string;
 
 const required = (value: string) => (value ? undefined : ERROR_MESSAGES.REQUIRED);
 const validEmail = (value: string) => (!value.match(EMAILREGEX) ? ERROR_MESSAGES.EMAIL : undefined);
-// eslint-disable-next-line max-len
-const composeValidators = (...validators: ValidatorFunction[]) => (value: string) => validators.reduce(
+const composeValidators = (...validators: Validator[]) => (value: string) => validators.reduce(
   (error, validator) => error || validator(value),
   undefined,
 );
@@ -53,11 +52,7 @@ export default function LogInForm(props: LogInFormProps): JSX.Element {
                 <>
                   <label className="form__label">{t('EMAIL')}</label>
                   <input {...input} type="text" className="form__input" />
-                  {meta.error && meta.touched ? (
-                    <span className="form__error email">{meta.error}</span>
-                  ) : (
-                    <span className="form__error email"></span>
-                  )}
+                    <span className="form__error email">{meta.error && meta.touched ? meta.error : null}</span>
                 </>
               )}
             </Field>
@@ -69,11 +64,7 @@ export default function LogInForm(props: LogInFormProps): JSX.Element {
                     <span>{t('FORGOT_PASSWORD')}</span>
                   </label>
                   <input {...input} type="password" className="form__input" />
-                  {meta.error && meta.touched ? (
-                    <span className="form__error email">{meta.error}</span>
-                  ) : (
-                    <span className="form__error email"></span>
-                  )}
+                  <span className="form__error email">{meta.error && meta.touched ? meta.error : null}</span>
                 </>
               )}
             </Field>

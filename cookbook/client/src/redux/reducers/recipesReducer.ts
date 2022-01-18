@@ -1,6 +1,7 @@
 import { AnyAction } from 'redux';
 import { IRecipe, IRecipeSaved } from '../../interfaces';
 import ACTION_TYPES from '../../constants/actionTypes';
+import SortOrder from '../../constants/sortOrder';
 
 const initialState = [] as IRecipe[];
 
@@ -27,17 +28,17 @@ export default function recipesReducer(
       let resData;
 
       switch (order) {
-        case 'likes': {
+        case SortOrder.Likes: {
           resData = recipes.sort(
             (a: IRecipe, b: IRecipe) => b.Recipe_Likes.length - a.Recipe_Likes.length,
           );
           break;
         }
-        case 'views': {
+        case SortOrder.Views: {
           resData = recipes.sort((a: IRecipe, b: IRecipe) => b.views - a.views);
           break;
         }
-        case 'default': {
+        case SortOrder.Default: {
           resData = recipes.sort((a: IRecipe, b: IRecipe) => a.id - b.id);
           break;
         }

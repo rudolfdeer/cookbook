@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-
-import './index.scss';
 import { IRecipeComment } from '../../../../interfaces';
 import SERVER_URL from '../../../../constants/serverUrl';
+
+import './index.scss';
 
 type CommentsSectionProps = {
   comments: IRecipeComment[];

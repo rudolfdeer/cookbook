@@ -49,7 +49,9 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
     setCards(recipes.slice(offset - perPage, offset));
   }, [offset, recipes]);
 
-  const handlePageClick = (e: any) => {
+  const handlePageClick = (e: {
+    selected: number;
+  }) => {
     const selectedPage = e.selected;
     setOffset((selectedPage + 1) * perPage);
   };

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import checkboxValues from '../../../constants/checkboxValues';
+import Checkbox from './Checkboxes';
 
 import './index.scss';
 
@@ -81,54 +83,9 @@ export default function FilterPanelCookbooks(
       <div className="filter-panel__section">
         <div className="filter-panel__section__title">{t('COOKBOOK_TYPE')}</div>
         <div className="filter-panel__section__checkboxes">
-          <div className="filter-panel__section__checkboxes__checkbox">
-            <input
-              type="checkbox"
-              className="filter-panel__section__checkboxes__checkbox__input"
-              id="vegetarian"
-              name="vegetarian"
-              value="Vegetarian"
-              onClick={(e) => filter(e)}
-            />
-            <label
-              htmlFor="vegetarian"
-              className="filter-panel__section__checkboxes__checkbox__label"
-            >
-              {t('VEGETARIAN')}
-            </label>
-          </div>
-          <div className="filter-panel__section__checkboxes__checkbox">
-            <input
-              type="checkbox"
-              className="filter-panel__section__checkboxes__checkbox__input"
-              id="nomilk"
-              name="nomilk"
-              value="Without milk"
-              onClick={(e) => filter(e)}
-            />
-            <label
-              htmlFor="nomilk"
-              className="filter-panel__section__checkboxes__checkbox__label"
-            >
-              {t('WITHOUT_MILK')}
-            </label>
-          </div>
-          <div className="filter-panel__section__checkboxes__checkbox">
-            <input
-              type="checkbox"
-              className="filter-panel__section__checkboxes__checkbox__input"
-              id="noeggs"
-              name="noeggs"
-              value="Without eggs"
-              onClick={(e) => filter(e)}
-            />
-            <label
-              htmlFor="noeggs"
-              className="filter-panel__section__checkboxes__checkbox__label"
-            >
-              {t('WITHOUT_EGGS')}
-            </label>
-          </div>
+          {checkboxValues.map((el) => (
+            <Checkbox filter = {filter} value = {el} key = {checkboxValues.indexOf(el)}/>
+          ))}
         </div>
       </div>
       <div className="filter-panel__section">

@@ -148,8 +148,6 @@
       margin-right: 0;
     }
   }
-
-  
 }
 
 @mixin page-nav-list {
@@ -291,8 +289,6 @@
   }
 }
 
-
-
 @mixin comment {
   margin-bottom: 40px;
   display: flex;
@@ -384,7 +380,6 @@
       &__btn {
         height: 40px;
       }
-      //min-height: 100px;
     }
   }
 }

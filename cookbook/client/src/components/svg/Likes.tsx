@@ -22,11 +22,7 @@ export default function LikesIcon(props: LikesIconProps): JSX.Element {
   useEffect(() => setColor(getDefaultColor(loggedInUserId, likeUserIds)));
 
   const changeColor = () => {
-    if (color === Colors.Yellow) {
-      setColor(Colors.Grey);
-    } else {
-      setColor(Colors.Yellow);
-    }
+    setColor(color === Colors.Yellow ? Colors.Grey : Colors.Yellow);
   };
 
   const like = useCallback(throttle(() => {

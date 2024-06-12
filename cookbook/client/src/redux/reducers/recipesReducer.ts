@@ -1,15 +1,15 @@
 import { AnyAction } from 'redux';
-import { IRecipe, IRecipeSaved } from '../../interfaces';
+import { Recipe, SavedRecipe } from '../../interfaces';
 import ACTION_TYPES from '../../constants/actionTypes';
 import SortOrder from '../../constants/sortOrder';
 
-const initialState = [] as IRecipe[];
+const initialState = [] as Recipe[];
 
 type RecipesReducer = typeof initialState;
 
 export default function recipesReducer(
   state = initialState,
-  action: AnyAction,
+  action: AnyAction
 ): RecipesReducer {
   switch (action.type) {
     case ACTION_TYPES.RECIPES_GET_ALL: {
@@ -30,16 +30,17 @@ export default function recipesReducer(
       switch (order) {
         case SortOrder.Likes: {
           resData = recipes.sort(
-            (a: IRecipe, b: IRecipe) => b.Recipe_Likes.length - a.Recipe_Likes.length,
+            (a: Recipe, b: Recipe) =>
+              b.Recipe_Likes.length - a.Recipe_Likes.length
           );
           break;
         }
         case SortOrder.Views: {
-          resData = recipes.sort((a: IRecipe, b: IRecipe) => b.views - a.views);
+          resData = recipes.sort((a: Recipe, b: Recipe) => b.views - a.views);
           break;
         }
         case SortOrder.Default: {
-          resData = recipes.sort((a: IRecipe, b: IRecipe) => a.id - b.id);
+          resData = recipes.sort((a: Recipe, b: Recipe) => a.id - b.id);
           break;
         }
         default:
@@ -53,7 +54,7 @@ export default function recipesReducer(
       const { recipes, cookingTime } = action.payload;
 
       const resData = recipes.filter(
-        (recipe: IRecipe) => recipe.time <= cookingTime,
+        (recipe: Recipe) => recipe.time <= cookingTime
       );
 
       return [...resData];
@@ -68,7 +69,7 @@ export default function recipesReducer(
     case ACTION_TYPES.RECIPES_GET_USERS_SAVED: {
       const { user } = action.payload;
       const savedRecipes = user.Recipe_Saveds;
-      const resData = savedRecipes.map((el: IRecipeSaved) => el.Recipe);
+      const resData = savedRecipes.map((el: SavedRecipe) => el.Recipe);
 
       return [...resData];
     }
@@ -82,7 +83,7 @@ export default function recipesReducer(
     case ACTION_TYPES.RECIPES_CREATE: {
       const { recipes, userId } = action.payload;
       const usersRecipes = recipes.filter(
-        (recipe: IRecipe) => recipe.UserId === userId,
+        (recipe: Recipe) => recipe.UserId === userId
       );
 
       return [...usersRecipes];
@@ -92,7 +93,7 @@ export default function recipesReducer(
       const { recipes, userId } = action.payload;
 
       const usersRecipes = recipes.filter(
-        (recipe: IRecipe) => recipe.UserId === userId,
+        (recipe: Recipe) => recipe.UserId === userId
       );
 
       return [...usersRecipes];
@@ -102,7 +103,7 @@ export default function recipesReducer(
       const { recipes, userId } = action.payload;
 
       const usersRecipes = recipes.filter(
-        (recipe: IRecipe) => recipe.UserId === userId,
+        (recipe: Recipe) => recipe.UserId === userId
       );
 
       return [...usersRecipes];

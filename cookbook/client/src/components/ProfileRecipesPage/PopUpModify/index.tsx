@@ -1,16 +1,16 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import SERVER_URL from '../../../constants/serverUrl';
-import { IRecipe, IRecipeRequestBody } from '../../../interfaces';
+import { Recipe, RecipeRequestBody } from '../../../interfaces';
 
 import './index.scss';
 
 type PopUpModifyRecipeProps = {
   setModifyPopUpVisible: Dispatch<SetStateAction<boolean>>;
-  selectedRecipe: IRecipe;
+  selectedRecipe: Recipe;
   modifyRecipe: (
     recipeId: number,
-    data: IRecipeRequestBody,
+    data: RecipeRequestBody,
     userId: number
   ) => Promise<void>;
   updateRecipesImage: (
@@ -22,7 +22,7 @@ type PopUpModifyRecipeProps = {
 };
 
 export default function PopUpModifyRecipe(
-  props: PopUpModifyRecipeProps,
+  props: PopUpModifyRecipeProps
 ): JSX.Element {
   const {
     setModifyPopUpVisible,
@@ -35,7 +35,14 @@ export default function PopUpModifyRecipe(
   const { t } = useTranslation();
 
   const {
-    id, title, image, description, directions, ingredients, views, Recipe_Likes,
+    id,
+    title,
+    image,
+    description,
+    directions,
+    ingredients,
+    views,
+    Recipe_Likes,
   } = selectedRecipe;
 
   const [imageSrc, setImageSrc] = useState(`${SERVER_URL}/${image}`);

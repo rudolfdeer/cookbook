@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import SERVER_URL from '../../../constants/serverUrl';
-import { IUser } from '../../../interfaces';
+import { User } from '../../../interfaces';
 import DotsIcon from '../../svg/Dots';
 import ViewsIcon from '../../svg/Views';
 
@@ -10,7 +10,7 @@ import './index.scss';
 type RecipeCardTrendingProps = {
   id: number;
   title: string;
-  author: IUser;
+  author: User;
   views: number;
   image: string;
   setVisible: Dispatch<SetStateAction<boolean>>;
@@ -18,7 +18,7 @@ type RecipeCardTrendingProps = {
 };
 
 export default function CardTrending(
-  props: RecipeCardTrendingProps,
+  props: RecipeCardTrendingProps
 ): JSX.Element {
   const { id, views, image, title, author, setVisible, selectCard } = props;
   const { t } = useTranslation();

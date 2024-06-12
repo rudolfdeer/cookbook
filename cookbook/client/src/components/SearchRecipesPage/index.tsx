@@ -5,13 +5,13 @@ import Footer from '../Footer';
 import RecipeCard from './Card';
 import FilterPanelRecipes from './FilterPanel';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
-import { IRecipe } from '../../interfaces';
+import { Recipe } from '../../interfaces';
 
 import './index.scss';
 import PopUpRecipe from '../PopUpRecipe';
 
 type RecipesPageProps = {
-  recipes: IRecipe[];
+  recipes: Recipe[];
   getAllRecipes: () => void;
   sortRecipes: (order: string) => Promise<void>;
   filterRecipes: (cookingTime: number) => Promise<void>;
@@ -48,9 +48,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
     setCards(recipes.slice(offset - perPage, offset));
   }, [offset, recipes]);
 
-  const handlePageClick = (e: {
-    selected: number;
-  }) => {
+  const handlePageClick = (e: { selected: number }) => {
     const selectedPage = e.selected;
     setOffset((selectedPage + 1) * perPage);
   };

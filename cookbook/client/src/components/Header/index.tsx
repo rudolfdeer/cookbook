@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ROUTES from '../../constants/routes';
 import SearchBar from './SearchBar';
-import { IUser } from '../../interfaces';
+import { User } from '../../interfaces';
 
 import './index.scss';
 
 type HeaderProps = {
-  user: IUser;
+  user: User;
   getLoggedInUser: () => void;
 };
 

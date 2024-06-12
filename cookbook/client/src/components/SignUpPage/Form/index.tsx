@@ -5,17 +5,17 @@ import { useTranslation } from 'react-i18next';
 import ERROR_MESSAGES from '../../../constants/errorMessages';
 import { EMAILREGEX } from '../../../constants/regex';
 import ROUTES from '../../../constants/routes';
-import { IAuthRequestBody, ISignUpForm } from '../../../interfaces';
+import { AuthRequestBody, SignUpForm } from '../../../interfaces';
 
 import './index.scss';
 
 type SignUpFormProps = {
-  signUp: (data: IAuthRequestBody) => Promise<void>;
+  signUp: (data: AuthRequestBody) => Promise<void>;
   setIsRedirected: Dispatch<SetStateAction<boolean>>;
 };
 
-const validate = (values: ISignUpForm) => {
-  const errors = {} as ISignUpForm;
+const validate = (values: SignUpForm) => {
+  const errors = {} as SignUpForm;
 
   if (!values.email) {
     errors.email = ERROR_MESSAGES.REQUIRED;
@@ -54,7 +54,7 @@ export default function SignUpForm(props: SignUpFormProps): JSX.Element {
 
   const formData = {};
 
-  const onSubmit = (_values: ISignUpForm) => {
+  const onSubmit = (_values: SignUpForm) => {
     signUp({
       email: _values.email,
       password: _values.password,

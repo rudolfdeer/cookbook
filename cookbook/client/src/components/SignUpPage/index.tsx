@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import ROUTES from '../../constants/routes';
-import { IAuthRequestBody } from '../../interfaces';
+import { AuthRequestBody } from '../../interfaces';
 import SignUpForm from './Form';
 
 import './index.scss';
 
 type SignUpPageProps = {
-  signUp: (data: IAuthRequestBody) => Promise<void>;
+  signUp: (data: AuthRequestBody) => Promise<void>;
 };
 
 export default function SignUpPage(props: SignUpPageProps): JSX.Element {

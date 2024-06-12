@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
 import SERVER_URL from '../../../constants/serverUrl';
-import { IRecipe } from '../../../interfaces';
+import { Recipe } from '../../../interfaces';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
 
@@ -9,12 +9,12 @@ import './index.scss';
 
 type PopUpRecipeSavedProps = {
   setRecipePopUpVisible: Dispatch<SetStateAction<boolean>>;
-  recipe: IRecipe;
+  recipe: Recipe;
   loggedInUserId: number;
 };
 
 export default function PopUpRecipeSaved(
-  props: PopUpRecipeSavedProps,
+  props: PopUpRecipeSavedProps
 ): JSX.Element {
   const { t } = useTranslation();
   const { setRecipePopUpVisible, recipe, loggedInUserId } = props;

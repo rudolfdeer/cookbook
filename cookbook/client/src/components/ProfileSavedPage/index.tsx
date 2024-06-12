@@ -6,37 +6,32 @@ import Footer from '../Footer';
 import ProfileSavedRecipeCard from './RecipeCard';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 import PopUpRecipeSaved from './PopUpRecipe';
-import { ICookbook, IRecipe, IUser } from '../../interfaces';
+import { Recipe, User } from '../../interfaces';
 import SERVER_URL from '../../constants/serverUrl';
 
 import './index.scss';
 
 type ProfileSavedPageProps = {
-  cookbooks: ICookbook[];
-  recipes: IRecipe[];
+  recipes: Recipe[];
   getUsersSavedRecipes: (userId: number) => Promise<void>;
-  user: IUser;
+  user: User;
 };
 
 export default function ProfileSavedPage(
-  props: ProfileSavedPageProps,
+  props: ProfileSavedPageProps
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.NOT_FOUND} />;
   }
 
-  const {
-    recipes,
-    user,
-    getUsersSavedRecipes,
-  } = props;
+  const { recipes, user, getUsersSavedRecipes } = props;
 
   const { t } = useTranslation();
 
-  const {
-    name, bio, id,
-  } = user;
-  const photoSrc = user ? `${SERVER_URL}/${user.image}` : '../../assets/images/photo-mask.png';
+  const { name, bio, id } = user;
+  const photoSrc = user
+    ? `${SERVER_URL}/${user.image}`
+    : '../../assets/images/photo-mask.png';
   const [isRecipePopUpVisible, setRecipePopUpVisible] = useState(false);
   const [selectedRecipeId, setSelectedRecipeId] = useState(0);
 
@@ -90,7 +85,7 @@ export default function ProfileSavedPage(
                   key={el.id}
                   setRecipePopUpVisible={setRecipePopUpVisible}
                   setSelectedRecipeId={setSelectedRecipeId}
-                  loggedInUserId = {user.id}
+                  loggedInUserId={user.id}
                 />
               ))}
             </div>

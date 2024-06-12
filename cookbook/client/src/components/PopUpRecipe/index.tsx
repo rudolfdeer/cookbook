@@ -5,14 +5,14 @@ import ROUTES from '../../constants/routes';
 import CommentsIcon from '../svg/Comments';
 import LikesIcon from '../svg/Likes';
 import CommentsSection from './CommentsSection';
-import { IRecipe } from '../../interfaces';
+import { Recipe } from '../../interfaces';
 import SERVER_URL from '../../constants/serverUrl';
 
 import './index.scss';
 
 type PopUpRecipeProps = {
   setVisible: Dispatch<SetStateAction<boolean>>;
-  recipe: IRecipe;
+  recipe: Recipe;
   loggedInUserId: number;
   saveToUsersRecipes: (recipeId: number) => Promise<void>;
   createComment: (recipeId: number, text: string) => Promise<void>;

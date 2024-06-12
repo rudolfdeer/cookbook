@@ -1,21 +1,19 @@
-export interface IState {
-  recipes: IRecipe[];
-  cookbooks: ICookbook[];
-  user: IUser | null;
+export interface State {
+  recipes: Recipe[];
+  user: User | null;
 }
 
-export interface IUser {
+export interface User {
   id: number;
   name: string;
   email: string;
   password: string;
   image: string;
   bio: string;
-  Recipe_Saveds?: IRecipeSaved[];
-  Cookbook_Saveds?: ICookbookSaved[];
+  Recipe_Saveds?: SavedRecipe[];
 }
 
-export interface IRecipe {
+export interface Recipe {
   id: number;
   title: string;
   description: string;
@@ -25,92 +23,42 @@ export interface IRecipe {
   time: number;
   views: number;
   UserId: number;
-  User: IUser;
-  Recipe_Comments: IRecipeComment[];
-  Recipe_Likes: IRecipeLike[];
+  User: User;
+  Recipe_Comments: Comment[];
+  Recipe_Likes: Like[];
 }
 
-export interface ICookbook {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  tags: string[];
-  views: number;
-  UserId: number;
-  User: IUser;
-  Recipe_Cookbooks: IRecipeCookbook[];
-  Cookbook_Comments: ICookbookComment[];
-  Cookbook_Likes: ICookbookLike[];
-}
-
-export interface IRecipeLike {
+export interface Like {
   RecipeId: number;
   UserId: number;
 }
 
-export interface IRecipeComment {
+export interface Comment {
   id: number;
   text: string;
   date: string;
   RecipeId: number;
   UserId: number;
-  User?: IUser;
+  User?: User;
 }
 
-export interface IRecipeSaved {
+export interface SavedRecipe {
   RecipeId: number;
   UserId: number;
-  Recipe?: IRecipe;
+  Recipe?: Recipe;
 }
 
-export interface IRecipeCookbook {
-  RecipeId: number;
-  CookbookId: number;
-  Recipe: IRecipe;
-}
-
-export interface ICookbookLike {
-  CookbookId: number;
-  UserId: number;
-}
-
-export interface ICookbookSaved {
-  CookbookId: number;
-  UserId: number;
-  Cookbook?: ICookbook;
-}
-
-export interface ICookbookComment {
-  id: number;
-  text: string;
-  date: string;
-  CookbookId: number;
-  UserId: number;
-  User?: IUser;
-}
-
-export interface IRecipeRequestBody {
+export interface RecipeRequestBody {
   title: string;
   description: string;
   ingredients: string;
   directions: string;
   time?: number;
-  views?:number;
-  likeUserIds?: number[];
-}
-
-export interface ICookbookRequestBody {
-  title: string;
-  description: string;
-  recipesIds: number[];
-  tags?: string[];
   views?: number;
   likeUserIds?: number[];
-  image?: File;
 }
 
-export interface IUserRequestBody {
+export interface UserRequestBody {
   name?: string;
   photo?: string;
   bio?: string;
@@ -118,17 +66,17 @@ export interface IUserRequestBody {
   savedCookbooksIds?: number[];
 }
 
-export interface IAuthRequestBody {
+export interface AuthRequestBody {
   email: string;
   password: string;
 }
 
-export interface ISearchListItem {
+export interface SearchListItem {
   id: number;
   name: string;
 }
 
-export interface ISignUpForm {
+export interface SignUpForm {
   email: string;
   password: string;
   confirm: string;

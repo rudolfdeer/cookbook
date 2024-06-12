@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import { getUsersSavedRecipes } from '../thunks/recipes';
 import ProfileSavedPage from '../../components/ProfileSavedPage';
-import { IState } from '../../interfaces';
+import { State } from '../../interfaces';
 
-function mapStateToProps(state: IState) {
+function mapStateToProps(state: State) {
   const { recipes, user } = state;
 
   return {

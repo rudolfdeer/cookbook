@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
 import SERVER_URL from '../../../constants/serverUrl';
-import { IRecipeComment, IRecipeLike, IUser } from '../../../interfaces';
+import { Comment, Like, User } from '../../../interfaces';
 import CommentsIcon from '../../svg/Comments';
 import DotsIcon from '../../svg/Dots';
 import LikesIcon from '../../svg/Likes';
@@ -12,19 +12,19 @@ import './index.scss';
 type ProfileSavedRecipeCardProps = {
   id: number;
   title: string;
-  author: IUser;
+  author: User;
   description: string;
   views: number;
-  likes: IRecipeLike[];
+  likes: Like[];
   image: string;
-  comments: IRecipeComment[];
+  comments: Comment[];
   loggedInUserId: number;
   setRecipePopUpVisible: Dispatch<SetStateAction<boolean>>;
   setSelectedRecipeId: Dispatch<SetStateAction<number>>;
 };
 
 export default function ProfileSavedRecipeCard(
-  props: ProfileSavedRecipeCardProps,
+  props: ProfileSavedRecipeCardProps
 ): JSX.Element {
   const { t } = useTranslation();
   const {

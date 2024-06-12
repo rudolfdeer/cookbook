@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import ROUTES from '../../constants/routes';
-import { IAuthRequestBody, IUser } from '../../interfaces';
+import { AuthRequestBody, User } from '../../interfaces';
 import LogInForm from './Form';
 
 import './index.scss';
 
 type LogInPageProps = {
-  user: IUser;
-  signIn: (loginInfo: IAuthRequestBody) => Promise<void>;
+  user: User;
+  signIn: (loginInfo: AuthRequestBody) => Promise<void>;
   getLoggedInUser: () => Promise<void>;
 };
 

@@ -1,8 +1,8 @@
 import ACTION_TYPES from '../../constants/actionTypes';
-import { IUser } from '../../interfaces';
+import { User } from '../../interfaces';
 
 class UserActions {
-  signIn(user: IUser) {
+  signIn(user: User) {
     return {
       type: ACTION_TYPES.USER_SIGN_IN,
       payload: {
@@ -11,7 +11,7 @@ class UserActions {
     };
   }
 
-  signUp(user: IUser) {
+  signUp(user: User) {
     return {
       type: ACTION_TYPES.USER_SIGN_UP,
       payload: {
@@ -32,7 +32,7 @@ class UserActions {
     };
   }
 
-  update(user: IUser) {
+  update(user: User) {
     return {
       type: ACTION_TYPES.USER_UPDATE,
       payload: {
@@ -41,7 +41,7 @@ class UserActions {
     };
   }
 
-  updatePhoto(user: IUser) {
+  updatePhoto(user: User) {
     return {
       type: ACTION_TYPES.USER_UPDATE_PHOTO,
       payload: {

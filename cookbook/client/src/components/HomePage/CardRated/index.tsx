@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import SERVER_URL from '../../../constants/serverUrl';
-import { IRecipeComment, IRecipeLike, IUser } from '../../../interfaces';
+import { Comment, Like, User } from '../../../interfaces';
 import CommentsIcon from '../../svg/Comments';
 import DotsIcon from '../../svg/Dots';
 import LikesIcon from '../../svg/Likes';
@@ -12,11 +12,11 @@ import './index.scss';
 type RecipeCardRatedProps = {
   id: number;
   title: string;
-  author: IUser;
+  author: User;
   views: number;
-  likes: IRecipeLike[];
+  likes: Like[];
   image: string;
-  comments: IRecipeComment[];
+  comments: Comment[];
   loggedInUserId: number;
   setVisible: Dispatch<SetStateAction<boolean>>;
   selectCard: Dispatch<SetStateAction<number>>;

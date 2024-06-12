@@ -6,31 +6,24 @@ import HeaderConnect from '../../redux/containers/HeaderConnect';
 import Footer from '../Footer';
 import CardRated from './CardRated';
 import CardTrending from './CardTrending';
-import { ICookbook, IRecipe, IUser } from '../../interfaces';
+import { Recipe, User } from '../../interfaces';
 import PopUpRecipeDetailed from '../PopUpRecipe';
 
 import './index.scss';
 
 type HomePageProps = {
-  recipes: IRecipe[];
+  recipes: Recipe[];
   getAllRecipes: () => Promise<void>;
-  cookbooks: ICookbook[];
   getAllCookbooks: () => Promise<void>;
-  user: IUser;
+  user: User;
   saveToUsersRecipes: (recipeId: number) => Promise<void>;
   createComment: (recipeId: number, text: string) => Promise<void>;
   likeRecipe: (recipeId: number) => Promise<void>;
 };
 
 export default function HomePage(props: HomePageProps): JSX.Element {
-  const {
-    recipes,
-    getAllRecipes,
-    user,
-    saveToUsersRecipes,
-    createComment,
-    likeRecipe,
-  } = props;
+  const { recipes, getAllRecipes, user, saveToUsersRecipes, createComment } =
+    props;
   const { t } = useTranslation();
   const [isVisible, setVisible] = useState(false);
   const [selectedCardId, setSelectedCardId] = useState(0);

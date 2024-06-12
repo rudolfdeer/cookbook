@@ -67,31 +67,6 @@ export default function ProfileUsersPage(
               <li className="list__item--selected"> {t('CREATED_CB')}</li>
             </ul>
           </nav>
-          <section className="profile-page--user__cards">
-            {cookbooks?.map((el) => (
-              <CardCookbook
-                id={el.id}
-                title={el.title}
-                author={el.User}
-                views={el.views}
-                likes={el.Cookbook_Likes}
-                comments={el.Cookbook_Comments}
-                image={el.image}
-                description={el.description}
-                key={el.id}
-                setSelectedCookbookId={setSelectedCookbookId}
-                loggedInUserId={loggedInUserId}
-                setPopUpCookbookVisible={setPopUpCookbookVisible}
-              />
-            ))}
-          </section>
-          {isPopUpCookbookVisible ? (
-            <PopUpCookbook
-              setPopUpCookbookVisible={setPopUpCookbookVisible}
-              cookbook={cookbooks.find((el) => el.id === selectedCookbookId)}
-              loggedInUserId={loggedInUserId}
-            />
-          ) : null}
         </div>
       </main>
       <Footer />

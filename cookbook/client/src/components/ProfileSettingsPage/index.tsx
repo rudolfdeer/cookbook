@@ -145,9 +145,6 @@ export default function ProfileSettingsPage(
                 <Link to={ROUTES.PROFILE_SAVED}>{t('SAVED')}</Link>
               </li>
               <li className="list__item">
-                <Link to={ROUTES.PROFILE_COOKBOOKS}>{t('MY_COOKBOOKS')}</Link>
-              </li>
-              <li className="list__item">
                 <Link to={ROUTES.PROFILE_RECIPES}>{t('MY_RECIPES')}</Link>
               </li>
               <li className="list__item--selected">{t('MY_SETTINGS')}</li>

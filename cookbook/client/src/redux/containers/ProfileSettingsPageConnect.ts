@@ -6,7 +6,6 @@ import {
   updateUser,
   changePassword,
   changeEmail,
-  getLoggedInUser,
   updateUsersPhoto,
   signOut,
 } from '../thunks/user';

@@ -74,9 +74,6 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
           <div className="search-page__content">
             <nav className="search-page__nav">
               <ul className="search-page__nav__list">
-                <li className="list__item">
-                  <Link to="/cookbooks">{t('COOKBOOKS')}</Link>
-                </li>
                 <li className="list__item--selected">{t('RECIPES')}</li>
               </ul>
             </nav>

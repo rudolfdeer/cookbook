@@ -87,9 +87,6 @@ export default function ProfileRecipesPage(
               <li className="list__item">
                 <Link to={ROUTES.PROFILE_SAVED}>{t('SAVED')}</Link>
               </li>
-              <li className="list__item">
-                <Link to={ROUTES.PROFILE_COOKBOOKS}>{t('MY_COOKBOOKS')}</Link>
-              </li>
               <li className="list__item--selected">{t('MY_RECIPES')}</li>
               <li className="list__item">
                 <Link to={ROUTES.PROFILE_SETTINGS}>{t('MY_SETTINGS')}</Link>

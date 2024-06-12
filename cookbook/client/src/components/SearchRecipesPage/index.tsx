@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ReactPaginate from 'react-paginate';
 import Footer from '../Footer';
 import RecipeCard from './Card';
 import FilterPanelRecipes from './FilterPanel';
-import PopUpRecipeDetailed from './PopUp';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 import { IRecipe } from '../../interfaces';
 
 import './index.scss';
+import PopUpRecipe from '../PopUpRecipe';
 
 type RecipesPageProps = {
   recipes: IRecipe[];
@@ -72,11 +71,6 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
             </div>
           </aside>
           <div className="search-page__content">
-            <nav className="search-page__nav">
-              <ul className="search-page__nav__list">
-                <li className="list__item--selected">{t('RECIPES')}</li>
-              </ul>
-            </nav>
             <div className="search-page__cards--recipes">
               {cards?.map((el) => (
                 <RecipeCard
@@ -111,7 +105,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
             />
           </div>
           {isVisible ? (
-            <PopUpRecipeDetailed
+            <PopUpRecipe
               setVisible={setVisible}
               recipe={recipes?.find((el) => el.id === selectedCardId)}
               loggedInUserId={loggedInUserId}

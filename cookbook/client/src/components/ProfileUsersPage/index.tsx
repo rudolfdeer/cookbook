@@ -2,10 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Redirect } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Footer from '../Footer';
-import CardCookbook from './Card';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 import userApi from '../../helpers/api/userApi';
-import PopUpCookbook from './PopUp';
 import ROUTES from '../../constants/routes';
 import { ICookbook, IUser } from '../../interfaces';
 import SERVER_URL from '../../constants/serverUrl';
@@ -38,9 +36,9 @@ export default function ProfileUsersPage(
     })();
   }, []);
 
-  if (+userId === loggedInUserId) {
-    return <Redirect to={ROUTES.PROFILE_COOKBOOKS} />;
-  }
+  // if (+userId === loggedInUserId) {
+  //   return <Redirect to={ROUTES.PROFILE_COOKBOOKS} />;
+  // }
 
   return (
     <>

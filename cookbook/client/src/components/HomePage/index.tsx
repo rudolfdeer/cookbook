@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ROUTES from '../../constants/routes';
@@ -7,6 +7,7 @@ import Footer from '../Footer';
 import CardRated from './CardRated';
 import CardTrending from './CardTrending';
 import { ICookbook, IRecipe, IUser } from '../../interfaces';
+import PopUpRecipeDetailed from '../PopUpRecipe';
 
 import './index.scss';
 
@@ -16,13 +17,23 @@ type HomePageProps = {
   cookbooks: ICookbook[];
   getAllCookbooks: () => Promise<void>;
   user: IUser;
+  saveToUsersRecipes: (recipeId: number) => Promise<void>;
+  createComment: (recipeId: number, text: string) => Promise<void>;
+  likeRecipe: (recipeId: number) => Promise<void>;
 };
 
 export default function HomePage(props: HomePageProps): JSX.Element {
   const {
-    recipes, getAllRecipes, user,
+    recipes,
+    getAllRecipes,
+    user,
+    saveToUsersRecipes,
+    createComment,
+    likeRecipe,
   } = props;
   const { t } = useTranslation();
+  const [isVisible, setVisible] = useState(false);
+  const [selectedCardId, setSelectedCardId] = useState(0);
 
   const navList = t('SEARCH_NAV_LIST', { returnObjects: true }) as string[];
 
@@ -65,6 +76,15 @@ export default function HomePage(props: HomePageProps): JSX.Element {
               </nav>
             </section>
           </div>
+          {isVisible ? (
+            <PopUpRecipeDetailed
+              setVisible={setVisible}
+              recipe={recipes?.find((el) => el.id === selectedCardId)}
+              loggedInUserId={user.id}
+              saveToUsersRecipes={saveToUsersRecipes}
+              createComment={createComment}
+            />
+          ) : null}
           <section className="page--home__section--rated">
             <div className="page--home__section--rated__pre-title">
               {t('RATED_SECTION_PRE_TITLE')}
@@ -76,7 +96,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
               {recipes
                 ?.map((el) => (
                   <CardRated
-                    id = {el.id}
+                    id={el.id}
                     title={el.title}
                     author={el.User}
                     views={el.views}
@@ -84,7 +104,9 @@ export default function HomePage(props: HomePageProps): JSX.Element {
                     image={el.image}
                     key={el.id}
                     likes={el.Recipe_Likes}
-                    loggedInUserId = {user?.id}
+                    loggedInUserId={user?.id}
+                    setVisible={setVisible}
+                    selectCard={setSelectedCardId}
                   />
                 ))
                 .slice(0, 4)}
@@ -107,11 +129,14 @@ export default function HomePage(props: HomePageProps): JSX.Element {
                 {recipes
                   ?.map((el) => (
                     <CardTrending
+                      id={el.id}
                       title={el.title}
                       author={el.User}
                       views={el.views}
                       image={el.image}
                       key={el.id}
+                      setVisible={setVisible}
+                      selectCard={setSelectedCardId}
                     />
                   ))
                   .slice(0, 3)}

@@ -25,7 +25,9 @@ export default function SearchBar(): JSX.Element {
   }));
 
   const getResultList = () => {
-    const result = usersList.filter((el) => el.name.toLowerCase().includes(inputValue.toLowerCase()));
+    const result = usersList.filter((el) =>
+      el.name.toLowerCase().includes(inputValue.toLowerCase())
+    );
     return result;
   };
 

@@ -23,13 +23,6 @@ export default function Header(props: HeaderProps): JSX.Element {
       <Link to="/">
         <div className="header__logo" />
       </Link>
-      <nav className="header__nav">
-        <ul className="header__nav__list">
-          <li className="header__nav__list__item">
-            <Link to={ROUTES.RECIPES}>{t('RECIPES')}</Link>
-          </li>
-        </ul>
-      </nav>
       <SearchBar />
       {user ? (
         <button className="header__btn">

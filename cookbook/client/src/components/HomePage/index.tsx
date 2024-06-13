@@ -73,7 +73,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
             <PopUpRecipeDetailed
               setVisible={setVisible}
               recipe={recipes?.find((el) => el.id === selectedCardId)}
-              loggedInUserId={user.id}
+              loggedInUserId={user ? user.id : null}
               saveToUsersRecipes={saveToUsersRecipes}
               createComment={createComment}
             />

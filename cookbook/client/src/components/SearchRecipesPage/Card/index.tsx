@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
 import ViewsIcon from '../../svg/Views';
-import { IRecipeComment, IRecipeLike, IUser } from '../../../interfaces';
+import { Comment, Like, User } from '../../../interfaces';
 
 import './index.scss';
 import SERVER_URL from '../../../constants/serverUrl';
@@ -11,12 +11,12 @@ import SERVER_URL from '../../../constants/serverUrl';
 type RecipeCardProps = {
   id: number;
   title: string;
-  author: IUser;
+  author: User;
   description: string;
   views: number;
-  likes: IRecipeLike[];
+  likes: Like[];
   image: string;
-  comments: IRecipeComment[];
+  comments: Comment[];
   selectCard: Dispatch<SetStateAction<number>>;
   setVisible: Dispatch<SetStateAction<boolean>>;
   loggedInUserId: number;
@@ -65,13 +65,8 @@ export default function RecipeCard(props: RecipeCardProps): JSX.Element {
 
   return (
     <div className="card">
-      <div
-        className="card__image"
-      >
-        <img
-                src={`${SERVER_URL}/${image}`}
-                alt="Recipe image"
-              />
+      <div className="card__image">
+        <img src={`${SERVER_URL}/${image}`} alt="Recipe image" />
       </div>
       <div className="card__content">
         <div className="card__info-container">
@@ -96,11 +91,19 @@ export default function RecipeCard(props: RecipeCardProps): JSX.Element {
               {views} <span>{t('VIEWS')}</span>
             </div>
             <div className="card__statistics-item--likes">
-              <LikesIcon likeUserIds={likeUserIds} loggedInUserId={loggedInUserId} likeRecipe = {likeRecipe} id={id}/>
+              <LikesIcon
+                likeUserIds={likeUserIds}
+                loggedInUserId={loggedInUserId}
+                likeRecipe={likeRecipe}
+                id={id}
+              />
               {likes.length} <span>{t('LIKES')}</span>
             </div>
             <div className="card__statistics-item comments">
-              <CommentsIcon commentedUsersIds={commentedUsersIds} loggedInUserId={loggedInUserId}/>
+              <CommentsIcon
+                commentedUsersIds={commentedUsersIds}
+                loggedInUserId={loggedInUserId}
+              />
               {comments.length} <span>{t('COMMENTS')}</span>
             </div>
           </div>

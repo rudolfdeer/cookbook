@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ReactPaginate from 'react-paginate';
 import Footer from '../Footer';
 import RecipeCard from './Card';
 import FilterPanelRecipes from './FilterPanel';
-import PopUpRecipeDetailed from './PopUp';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
-import { IRecipe } from '../../interfaces';
+import { Recipe } from '../../interfaces';
 
 import './index.scss';
+import PopUpRecipe from '../PopUpRecipe';
 
 type RecipesPageProps = {
-  recipes: IRecipe[];
+  recipes: Recipe[];
   getAllRecipes: () => void;
   sortRecipes: (order: string) => Promise<void>;
   filterRecipes: (cookingTime: number) => Promise<void>;
@@ -49,9 +48,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
     setCards(recipes.slice(offset - perPage, offset));
   }, [offset, recipes]);
 
-  const handlePageClick = (e: {
-    selected: number;
-  }) => {
+  const handlePageClick = (e: { selected: number }) => {
     const selectedPage = e.selected;
     setOffset((selectedPage + 1) * perPage);
   };
@@ -72,14 +69,6 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
             </div>
           </aside>
           <div className="search-page__content">
-            <nav className="search-page__nav">
-              <ul className="search-page__nav__list">
-                <li className="list__item">
-                  <Link to="/cookbooks">{t('COOKBOOKS')}</Link>
-                </li>
-                <li className="list__item--selected">{t('RECIPES')}</li>
-              </ul>
-            </nav>
             <div className="search-page__cards--recipes">
               {cards?.map((el) => (
                 <RecipeCard
@@ -114,7 +103,7 @@ export default function RecipesPage(props: RecipesPageProps): JSX.Element {
             />
           </div>
           {isVisible ? (
-            <PopUpRecipeDetailed
+            <PopUpRecipe
               setVisible={setVisible}
               recipe={recipes?.find((el) => el.id === selectedCardId)}
               loggedInUserId={loggedInUserId}

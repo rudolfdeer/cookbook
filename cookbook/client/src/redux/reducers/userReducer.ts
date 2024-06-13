@@ -1,8 +1,8 @@
 import { AnyAction } from 'redux';
 import ACTION_TYPES from '../../constants/actionTypes';
-import { IUser } from '../../interfaces';
+import { User } from '../../interfaces';
 
-const initialState: null | IUser = null;
+const initialState: null | User = null;
 
 type UserReducer = typeof initialState;
 

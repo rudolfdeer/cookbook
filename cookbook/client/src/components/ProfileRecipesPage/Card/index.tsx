@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import LikesIcon from '../../svg/Likes';
 import ViewsIcon from '../../svg/Views';
 import CommentsIcon from '../../svg/Comments';
-import { IRecipeLike, IUser } from '../../../interfaces';
+import { Like, User } from '../../../interfaces';
 import SERVER_URL from '../../../constants/serverUrl';
 
 import './index.scss';
@@ -11,10 +11,10 @@ import './index.scss';
 type ProfileRecipeCardProps = {
   id: number;
   title: string;
-  author: IUser;
+  author: User;
   description: string;
   views: number;
-  likes: IRecipeLike[];
+  likes: Like[];
   image: string;
   comments: number;
   setModifyPopUpVisible: Dispatch<SetStateAction<boolean>>;
@@ -24,7 +24,7 @@ type ProfileRecipeCardProps = {
 };
 
 export default function ProfileRecipeCard(
-  props: ProfileRecipeCardProps,
+  props: ProfileRecipeCardProps
 ): JSX.Element {
   const {
     id,

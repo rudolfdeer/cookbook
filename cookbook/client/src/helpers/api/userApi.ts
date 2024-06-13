@@ -1,19 +1,17 @@
 import SERVER_URL from '../../constants/serverUrl';
-import {
-  IAuthRequestBody, IUser, IUserRequestBody,
-} from '../../interfaces';
+import { AuthRequestBody, User, UserRequestBody } from '../../interfaces';
 
 const base = `${SERVER_URL}/api`;
 const userUrl = `${base}/user/`;
 
 class UserApi {
-  async getUserById(userId: number): Promise<IUser> {
+  async getUserById(userId: number): Promise<User> {
     const response = await fetch(`${userUrl}${userId}`);
     const result = await response.json();
     return result;
   }
 
-  async getLoggedInUser(): Promise<IUser> {
+  async getLoggedInUser(): Promise<User> {
     const response = await fetch(`${userUrl}`, {
       credentials: 'include',
     });
@@ -21,7 +19,7 @@ class UserApi {
     return result;
   }
 
-  async signIn(data: IAuthRequestBody) {
+  async signIn(data: AuthRequestBody) {
     const response = await fetch(`${userUrl}sign-in`, {
       method: 'POST',
       body: JSON.stringify(data),
@@ -35,7 +33,7 @@ class UserApi {
     return result;
   }
 
-  async signUp(data: IAuthRequestBody) {
+  async signUp(data: AuthRequestBody) {
     const response = await fetch(`${userUrl}sign-up`, {
       method: 'POST',
       body: JSON.stringify(data),
@@ -63,7 +61,7 @@ class UserApi {
     });
   }
 
-  async updateUser(body: IUserRequestBody) {
+  async updateUser(body: UserRequestBody) {
     const response = await fetch(`${userUrl}`, {
       method: 'PUT',
       body: JSON.stringify(body),

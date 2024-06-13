@@ -8,9 +8,9 @@ import {
   likeRecipe,
 } from '../thunks/recipes';
 import { saveToUsersRecipes } from '../thunks/user';
-import { IState } from '../../interfaces';
+import { State } from '../../interfaces';
 
-function mapStateToProps(state: IState) {
+function mapStateToProps(state: State) {
   const { user, recipes } = state;
   const loggedInUserId = user ? user.id : null;
 

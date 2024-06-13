@@ -1,10 +1,10 @@
 import { Dispatch } from 'redux';
 import userApi from '../../helpers/api/userApi';
-import { IAuthRequestBody, IUserRequestBody } from '../../interfaces';
+import { AuthRequestBody, UserRequestBody } from '../../interfaces';
 import userActions from '../actions/user';
 
 export const signIn =
-  (data: IAuthRequestBody) =>
+  (data: AuthRequestBody) =>
   async (dispatch: Dispatch): Promise<void> => {
     const user = await userApi.signIn(data);
 
@@ -12,7 +12,7 @@ export const signIn =
   };
 
 export const signUp =
-  (data: IAuthRequestBody) =>
+  (data: AuthRequestBody) =>
   async (dispatch: Dispatch): Promise<void> => {
     const user = await userApi.signUp(data);
 
@@ -36,7 +36,7 @@ export const deleteUser =
   };
 
 export const updateUser =
-  (data: IUserRequestBody) =>
+  (data: UserRequestBody) =>
   async (dispatch: Dispatch): Promise<void> => {
     await userApi.updateUser(data);
     const user = await userApi.getLoggedInUser();
@@ -62,21 +62,21 @@ export const changeEmail =
     dispatch(userActions.update(user));
   };
 
-export const saveToUsersCookbooks =
-  (cookbookId: number) =>
-  async (dispatch: Dispatch): Promise<void> => {
-    const user = await userApi.getLoggedInUser();
-    const { Cookbook_Saveds } = user;
-    const savedCookbooksIds = Cookbook_Saveds.map((el) => el.CookbookId);
-    if (savedCookbooksIds.indexOf(cookbookId) > -1) {
-      dispatch(userActions.update(user));
-    } else {
-      savedCookbooksIds.push(cookbookId);
-      await userApi.updateUser({ savedCookbooksIds });
-      const updatedUser = await userApi.getLoggedInUser();
-      dispatch(userActions.update(updatedUser));
-    }
-  };
+// export const saveToUsersCookbooks =
+//   (cookbookId: number) =>
+//   async (dispatch: Dispatch): Promise<void> => {
+//     const user = await userApi.getLoggedInUser();
+//     const { Cookbook_Saveds } = user;
+//     const savedCookbooksIds = Cookbook_Saveds.map((el) => el.CookbookId);
+//     if (savedCookbooksIds.indexOf(cookbookId) > -1) {
+//       dispatch(userActions.update(user));
+//     } else {
+//       savedCookbooksIds.push(cookbookId);
+//       await userApi.updateUser({ savedCookbooksIds });
+//       const updatedUser = await userApi.getLoggedInUser();
+//       dispatch(userActions.update(updatedUser));
+//     }
+//   };
 
 export const saveToUsersRecipes =
   (recipeId: number) =>

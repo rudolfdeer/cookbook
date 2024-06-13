@@ -5,22 +5,27 @@ import { useTranslation } from 'react-i18next';
 import { EMAILREGEX } from '../../../constants/regex';
 import ERROR_MESSAGES from '../../../constants/errorMessages';
 import ROUTES from '../../../constants/routes';
-import { IAuthRequestBody } from '../../../interfaces';
+import { AuthRequestBody } from '../../../interfaces';
 
 import './index.scss';
 
 type LogInFormProps = {
-  signIn: (loginInfo: IAuthRequestBody) => Promise<void>;
+  signIn: (loginInfo: AuthRequestBody) => Promise<void>;
 };
 
 type Validator = (value: string) => undefined | string;
 
-const required = (value: string) => (value ? undefined : ERROR_MESSAGES.REQUIRED);
-const validEmail = (value: string) => (!value.match(EMAILREGEX) ? ERROR_MESSAGES.EMAIL : undefined);
-const composeValidators = (...validators: Validator[]) => (value: string) => validators.reduce(
-  (error, validator) => error || validator(value),
-  undefined,
-);
+const required = (value: string) =>
+  value ? undefined : ERROR_MESSAGES.REQUIRED;
+const validEmail = (value: string) =>
+  !value.match(EMAILREGEX) ? ERROR_MESSAGES.EMAIL : undefined;
+const composeValidators =
+  (...validators: Validator[]) =>
+  (value: string) =>
+    validators.reduce(
+      (error, validator) => error || validator(value),
+      undefined
+    );
 
 export default function LogInForm(props: LogInFormProps): JSX.Element {
   const { signIn } = props;
@@ -28,7 +33,7 @@ export default function LogInForm(props: LogInFormProps): JSX.Element {
 
   const formData = {};
 
-  const onSubmit = (values: IAuthRequestBody) => signIn(values);
+  const onSubmit = (values: AuthRequestBody) => signIn(values);
 
   return (
     <div className="log-in-page__form">
@@ -52,7 +57,9 @@ export default function LogInForm(props: LogInFormProps): JSX.Element {
                 <>
                   <label className="form__label">{t('EMAIL')}</label>
                   <input {...input} type="text" className="form__input" />
-                    <span className="form__error email">{meta.error && meta.touched ? meta.error : null}</span>
+                  <span className="form__error email">
+                    {meta.error && meta.touched ? meta.error : null}
+                  </span>
                 </>
               )}
             </Field>
@@ -64,7 +71,9 @@ export default function LogInForm(props: LogInFormProps): JSX.Element {
                     <span>{t('FORGOT_PASSWORD')}</span>
                   </label>
                   <input {...input} type="password" className="form__input" />
-                  <span className="form__error email">{meta.error && meta.touched ? meta.error : null}</span>
+                  <span className="form__error email">
+                    {meta.error && meta.touched ? meta.error : null}
+                  </span>
                 </>
               )}
             </Field>

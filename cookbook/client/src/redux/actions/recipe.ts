@@ -1,8 +1,8 @@
 import ACTION_TYPES from '../../constants/actionTypes';
-import { IRecipe, IUser } from '../../interfaces';
+import { Recipe, User } from '../../interfaces';
 
 class RecipeActions {
-  getAll(recipes: IRecipe[]) {
+  getAll(recipes: Recipe[]) {
     return {
       type: ACTION_TYPES.RECIPES_GET_ALL,
       payload: {
@@ -11,7 +11,7 @@ class RecipeActions {
     };
   }
 
-  sort(recipes: IRecipe[], order: string) {
+  sort(recipes: Recipe[], order: string) {
     return {
       type: ACTION_TYPES.RECIPES_SORT,
       payload: {
@@ -21,7 +21,7 @@ class RecipeActions {
     };
   }
 
-  filter(recipes: IRecipe[], cookingTime: number) {
+  filter(recipes: Recipe[], cookingTime: number) {
     return {
       type: ACTION_TYPES.RECIPES_FILTER,
       payload: {
@@ -31,7 +31,7 @@ class RecipeActions {
     };
   }
 
-  getCreatedRecipes(recipes: IRecipe[]) {
+  getCreatedRecipes(recipes: Recipe[]) {
     return {
       type: ACTION_TYPES.RECIPES_GET_USERS_CREATED,
       payload: {
@@ -40,7 +40,7 @@ class RecipeActions {
     };
   }
 
-  getUsersSaved(user: IUser) {
+  getUsersSaved(user: User) {
     return {
       type: ACTION_TYPES.RECIPES_GET_USERS_SAVED,
       payload: {
@@ -49,7 +49,7 @@ class RecipeActions {
     };
   }
 
-  createComment(recipes: IRecipe[]) {
+  createComment(recipes: Recipe[]) {
     return {
       type: ACTION_TYPES.RECIPES_CREATE_COMMENT,
       payload: {
@@ -58,7 +58,7 @@ class RecipeActions {
     };
   }
 
-  create(recipes: IRecipe[], userId: number) {
+  create(recipes: Recipe[], userId: number) {
     return {
       type: ACTION_TYPES.RECIPES_CREATE,
       payload: {
@@ -68,7 +68,7 @@ class RecipeActions {
     };
   }
 
-  update(recipes: IRecipe[], userId: number) {
+  update(recipes: Recipe[], userId: number) {
     return {
       type: ACTION_TYPES.RECIPES_MODIFY,
       payload: {
@@ -78,7 +78,7 @@ class RecipeActions {
     };
   }
 
-  like(recipes: IRecipe[]) {
+  like(recipes: Recipe[]) {
     return {
       type: ACTION_TYPES.RECIPES_LIKE,
       payload: {
@@ -87,7 +87,7 @@ class RecipeActions {
     };
   }
 
-  delete(recipes: IRecipe[], userId: number) {
+  delete(recipes: Recipe[], userId: number) {
     return {
       type: ACTION_TYPES.RECIPES_DELETE,
       payload: {

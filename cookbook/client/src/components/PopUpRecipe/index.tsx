@@ -1,29 +1,24 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import ROUTES from '../../../constants/routes';
-import CommentsIcon from '../../svg/Comments';
-import LikesIcon from '../../svg/Likes';
-import CommentsSection from '../PopUp/CommentsSection';
-import { IRecipe } from '../../../interfaces';
+import ROUTES from '../../constants/routes';
+import CommentsIcon from '../svg/Comments';
+import LikesIcon from '../svg/Likes';
+import CommentsSection from './CommentsSection';
+import { Recipe } from '../../interfaces';
+import SERVER_URL from '../../constants/serverUrl';
 
 import './index.scss';
-import SERVER_URL from '../../../constants/serverUrl';
 
-type PopUpRecipeDetailedProps = {
+type PopUpRecipeProps = {
   setVisible: Dispatch<SetStateAction<boolean>>;
-  recipe: IRecipe;
+  recipe: Recipe;
   loggedInUserId: number;
   saveToUsersRecipes: (recipeId: number) => Promise<void>;
-  createComment: (
-    recipeId: number,
-    text: string
-  ) => Promise<void>;
+  createComment: (recipeId: number, text: string) => Promise<void>;
 };
 
-export default function PopUpRecipeDetailed(
-  props: PopUpRecipeDetailedProps,
-): JSX.Element {
+export default function PopUpRecipe(props: PopUpRecipeProps): JSX.Element {
   const { t } = useTranslation();
   const {
     setVisible,
@@ -117,11 +112,18 @@ export default function PopUpRecipeDetailed(
               </div>
               <div className="pop-up--recipe__section--statistics">
                 <div className="card__statistics-item likes">
-                  <LikesIcon id = {id} loggedInUserId={loggedInUserId} likeUserIds={likeUserIds}/>
+                  <LikesIcon
+                    id={id}
+                    loggedInUserId={loggedInUserId}
+                    likeUserIds={likeUserIds}
+                  />
                   {Recipe_Likes.length} <span>&nbsp;{t('LIKES')}</span>
                 </div>
                 <div className="card__statistics-item comments">
-                  <CommentsIcon commentedUsersIds={commentedUsersIds} loggedInUserId={loggedInUserId}/>
+                  <CommentsIcon
+                    commentedUsersIds={commentedUsersIds}
+                    loggedInUserId={loggedInUserId}
+                  />
                   {Recipe_Comments.length} <span>&nbsp;{t('COMMENTS')}</span>
                 </div>
               </div>
@@ -129,7 +131,7 @@ export default function PopUpRecipeDetailed(
           </div>
           <div className="pop-up--recipe__section--comments">
             <div className="pop-up--recipe__section--comments__title">{`${t(
-              'COMMENTS_SECTION',
+              'COMMENTS_SECTION'
             )} (${Recipe_Comments.length})`}</div>
             <CommentsSection
               comments={Recipe_Comments}

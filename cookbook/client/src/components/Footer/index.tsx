@@ -24,9 +24,6 @@ export default function Footer(): JSX.Element {
           <nav className="footer__nav">
             <ul className="footer__nav__list">
               <li className="footer__nav__list__item">
-                <Link to={ROUTES.COOKBOOKS}>{t('COOKBOOKS')}</Link>
-              </li>
-              <li className="footer__nav__list__item">
                 <Link to={ROUTES.RECIPES}>{t('RECIPES')}</Link>
               </li>
               <li className="footer__nav__list__item">
@@ -39,9 +36,6 @@ export default function Footer(): JSX.Element {
           </div>
           <div className="footer__study">
             <div className="footer__study__project">{t('PROJECT')}</div>
-            <div className="footer__study__itechart">
-              <a href={t('ITECHART_SITE')}>{t('ITECHART')}</a>
-            </div>
           </div>
           <div className="footer__lang">
             <button

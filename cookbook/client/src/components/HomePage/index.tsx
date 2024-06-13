@@ -1,35 +1,37 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ROUTES from '../../constants/routes';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 import Footer from '../Footer';
-import CardPopular from './CardPopular';
 import CardRated from './CardRated';
 import CardTrending from './CardTrending';
-import { ICookbook, IRecipe, IUser } from '../../interfaces';
+import { Recipe, User } from '../../interfaces';
+import PopUpRecipeDetailed from '../PopUpRecipe';
 
 import './index.scss';
 
 type HomePageProps = {
-  recipes: IRecipe[];
+  recipes: Recipe[];
   getAllRecipes: () => Promise<void>;
-  cookbooks: ICookbook[];
   getAllCookbooks: () => Promise<void>;
-  user: IUser;
+  user: User;
+  saveToUsersRecipes: (recipeId: number) => Promise<void>;
+  createComment: (recipeId: number, text: string) => Promise<void>;
+  likeRecipe: (recipeId: number) => Promise<void>;
 };
 
 export default function HomePage(props: HomePageProps): JSX.Element {
-  const {
-    recipes, getAllRecipes, cookbooks, getAllCookbooks, user,
-  } = props;
+  const { recipes, getAllRecipes, user, saveToUsersRecipes, createComment } =
+    props;
   const { t } = useTranslation();
+  const [isVisible, setVisible] = useState(false);
+  const [selectedCardId, setSelectedCardId] = useState(0);
 
   const navList = t('SEARCH_NAV_LIST', { returnObjects: true }) as string[];
 
   useEffect(() => {
     getAllRecipes();
-    getAllCookbooks();
   }, []);
 
   return (
@@ -39,14 +41,6 @@ export default function HomePage(props: HomePageProps): JSX.Element {
       </div>
       <main className="page--home">
         <div className="wrapper">
-          <img
-            src="../../../assets/images/pear-bg.png"
-            className="page--home__bg--top"
-          />
-          <img
-            src="../../../assets/images/pear-light-bg.png"
-            className="page--home__bg--bottom"
-          />
           <div className="page--home__intro">
             <section className="page--home__intro__content">
               <h1 className="page--home__intro__title">{t('MAIN_TITLE')}</h1>
@@ -75,6 +69,15 @@ export default function HomePage(props: HomePageProps): JSX.Element {
               </nav>
             </section>
           </div>
+          {isVisible ? (
+            <PopUpRecipeDetailed
+              setVisible={setVisible}
+              recipe={recipes?.find((el) => el.id === selectedCardId)}
+              loggedInUserId={user ? user.id : null}
+              saveToUsersRecipes={saveToUsersRecipes}
+              createComment={createComment}
+            />
+          ) : null}
           <section className="page--home__section--rated">
             <div className="page--home__section--rated__pre-title">
               {t('RATED_SECTION_PRE_TITLE')}
@@ -86,7 +89,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
               {recipes
                 ?.map((el) => (
                   <CardRated
-                    id = {el.id}
+                    id={el.id}
                     title={el.title}
                     author={el.User}
                     views={el.views}
@@ -94,31 +97,15 @@ export default function HomePage(props: HomePageProps): JSX.Element {
                     image={el.image}
                     key={el.id}
                     likes={el.Recipe_Likes}
-                    loggedInUserId = {user?.id}
+                    loggedInUserId={user?.id}
+                    setVisible={setVisible}
+                    selectCard={setSelectedCardId}
                   />
                 ))
                 .slice(0, 4)}
             </div>
             <button className="page--home__section--rated__btn">
               <Link to={ROUTES.RECIPES}>{t('SHOW_MORE_BTN')}</Link>
-            </button>
-          </section>
-          <section className="page--home__section--popular">
-            <div className="page--home__section--popular__pre-title">
-              {t('POPULAR_SECTION_PRE_TITLE')}
-            </div>
-            <h2 className="page--home__section--popular__title">
-              {t('POPULAR_SECTION_TITLE')}
-            </h2>
-            <div className="page--home__section--popular__cards">
-              {cookbooks
-                ?.map((el) => (
-                  <CardPopular title={el.title} image={el.image} key={el.id} />
-                ))
-                .slice(0, 4)}
-            </div>
-            <button className="page--home__section--popular__btn">
-              <Link to={ROUTES.COOKBOOKS}>{t('SHOW_MORE_BTN')}</Link>
             </button>
           </section>
         </div>
@@ -135,11 +122,14 @@ export default function HomePage(props: HomePageProps): JSX.Element {
                 {recipes
                   ?.map((el) => (
                     <CardTrending
+                      id={el.id}
                       title={el.title}
                       author={el.User}
                       views={el.views}
                       image={el.image}
                       key={el.id}
+                      setVisible={setVisible}
+                      selectCard={setSelectedCardId}
                     />
                   ))
                   .slice(0, 3)}

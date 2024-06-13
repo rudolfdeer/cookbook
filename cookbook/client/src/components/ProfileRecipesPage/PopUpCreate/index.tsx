@@ -1,17 +1,14 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { Form, Field } from 'react-final-form';
 import { useTranslation } from 'react-i18next';
-import { IRecipeRequestBody } from '../../../interfaces';
+import { RecipeRequestBody } from '../../../interfaces';
 
 import './index.scss';
 
 type PopUpCreateRecipeProps = {
   loggedInUserId: number;
   setCreatePopUpVisible: Dispatch<SetStateAction<boolean>>;
-  createRecipe: (
-    data: FormData,
-    userId: number,
-  ) => Promise<void>;
+  createRecipe: (data: FormData, userId: number) => Promise<void>;
 };
 
 const formData = {
@@ -25,7 +22,7 @@ const formData = {
 const required = (value: string | string[]) => (value ? undefined : 'Required');
 
 export default function PopUpCreateRecipe(
-  props: PopUpCreateRecipeProps,
+  props: PopUpCreateRecipeProps
 ): JSX.Element {
   const { setCreatePopUpVisible, createRecipe, loggedInUserId } = props;
 
@@ -33,7 +30,7 @@ export default function PopUpCreateRecipe(
   const [photoSrc, setPhotoSrc] = useState('');
   const [photoFile, setPhotoFile] = useState(null);
 
-  const onSubmit = (values: IRecipeRequestBody) => {
+  const onSubmit = (values: RecipeRequestBody) => {
     const data = new FormData();
     data.append('title', values.title);
     data.append('description', values.description);
@@ -80,9 +77,9 @@ export default function PopUpCreateRecipe(
                           className="pop-up--create__section__input--error"
                           placeholder="Title"
                         />
-                          <span className="pop-up--create__section__input__error">
-                            {meta.error && meta.touched ? meta.error : null}
-                          </span>
+                        <span className="pop-up--create__section__input__error">
+                          {meta.error && meta.touched ? meta.error : null}
+                        </span>
                       </>
                     )}
                   </Field>
@@ -93,22 +90,22 @@ export default function PopUpCreateRecipe(
                     <Field name="image">
                       {({ input }) => (
                         <input
-                        {...input}
-                      name="image"
-                      type="file"
-                      className="pop-up--create__section__input--file"
-                      onChange={(e: React.ChangeEvent) => {
-                        const target = e.target as HTMLInputElement;
-                        const file = target.files[0];
-                        setPhotoFile(file);
-                        const reader = new FileReader();
-                        reader.onload = () => {
-                          const result = String(reader.result);
-                          setPhotoSrc(result);
-                        };
-                        reader.readAsDataURL(file);
-                      }}
-                    />
+                          {...input}
+                          name="image"
+                          type="file"
+                          className="pop-up--create__section__input--file"
+                          onChange={(e: React.ChangeEvent) => {
+                            const target = e.target as HTMLInputElement;
+                            const file = target.files[0];
+                            setPhotoFile(file);
+                            const reader = new FileReader();
+                            reader.onload = () => {
+                              const result = String(reader.result);
+                              setPhotoSrc(result);
+                            };
+                            reader.readAsDataURL(file);
+                          }}
+                        />
                       )}
                     </Field>
                   </label>

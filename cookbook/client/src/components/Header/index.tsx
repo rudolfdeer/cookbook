@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ROUTES from '../../constants/routes';
 import SearchBar from './SearchBar';
-import { IUser } from '../../interfaces';
+import { User } from '../../interfaces';
 
 import './index.scss';
 
 type HeaderProps = {
-  user: IUser;
+  user: User;
   getLoggedInUser: () => void;
 };
 
@@ -23,24 +23,14 @@ export default function Header(props: HeaderProps): JSX.Element {
       <Link to="/">
         <div className="header__logo" />
       </Link>
-      <nav className="header__nav">
-        <ul className="header__nav__list">
-          <li className="header__nav__list__item">
-            <Link to={ROUTES.COOKBOOKS}>{t('COOKBOOKS')}</Link>
-          </li>
-          <li className="header__nav__list__item">
-            <Link to={ROUTES.RECIPES}>{t('RECIPES')}</Link>
-          </li>
-        </ul>
-      </nav>
       <SearchBar />
       {user ? (
         <button className="header__btn">
-          <Link to={ROUTES.PROFILE_COOKBOOKS}>{t('CREATE_COOKBOOK_BTN')}</Link>
+          <Link to={ROUTES.PROFILE_RECIPES}>{t('CREATE_RECIPE_BTN')}</Link>
         </button>
       ) : (
         <button className="header__btn">
-          <Link to={ROUTES.LOG_IN}>{t('CREATE_COOKBOOK_BTN')}</Link>
+          <Link to={ROUTES.LOG_IN}>{t('CREATE_RECIPE_BTN')}</Link>
         </button>
       )}
       {user ? (

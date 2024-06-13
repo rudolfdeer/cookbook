@@ -4,15 +4,15 @@ import { useTranslation } from 'react-i18next';
 import ROUTES from '../../constants/routes';
 import Footer from '../Footer';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
-import { IUser, IUserRequestBody } from '../../interfaces';
+import { User, UserRequestBody } from '../../interfaces';
 import SERVER_URL from '../../constants/serverUrl';
 
 import './index.scss';
 
 type ProfileSettingsPageProps = {
-  user: IUser;
+  user: User;
   deleteUser: () => Promise<void>;
-  updateUser: (data: IUserRequestBody) => Promise<void>;
+  updateUser: (data: UserRequestBody) => Promise<void>;
   changePassword: (password: string) => Promise<void>;
   changeEmail: (email: string) => Promise<void>;
   updateUsersPhoto: (data: FormData) => Promise<void>;
@@ -20,7 +20,7 @@ type ProfileSettingsPageProps = {
 };
 
 export default function ProfileSettingsPage(
-  props: ProfileSettingsPageProps,
+  props: ProfileSettingsPageProps
 ): JSX.Element {
   if (!props.user) {
     return <Redirect to={ROUTES.HOME} />;
@@ -37,9 +37,7 @@ export default function ProfileSettingsPage(
     signOut,
     updateUsersPhoto,
   } = props;
-  const {
-    name, email, bio, image,
-  } = user;
+  const { name, email, bio, image } = user;
 
   const [isBioDisabled, setBioDisabled] = useState(true);
   const [isNameDisabled, setNameDisabled] = useState(true);
@@ -50,7 +48,7 @@ export default function ProfileSettingsPage(
   const [newEmail, setNewEmail] = useState(email);
   const [newPassword, setNewPassword] = useState('');
   const [photoSrc, setPhotoSrc] = useState(
-    `${SERVER_URL}/${image}` || './assets/images/photo-mask.png',
+    `${SERVER_URL}/${image}` || './assets/images/photo-mask.png'
   );
 
   const onPhotoChange = async (e: React.FormEvent) => {
@@ -143,9 +141,6 @@ export default function ProfileSettingsPage(
             <ul className="nav__list">
               <li className="list__item">
                 <Link to={ROUTES.PROFILE_SAVED}>{t('SAVED')}</Link>
-              </li>
-              <li className="list__item">
-                <Link to={ROUTES.PROFILE_COOKBOOKS}>{t('MY_COOKBOOKS')}</Link>
               </li>
               <li className="list__item">
                 <Link to={ROUTES.PROFILE_RECIPES}>{t('MY_RECIPES')}</Link>

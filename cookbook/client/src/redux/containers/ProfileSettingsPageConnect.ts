@@ -1,17 +1,16 @@
 import { connect } from 'react-redux';
 import ProfileSettingsPage from '../../components/ProfileSettingsPage';
-import { IState } from '../../interfaces';
+import { State } from '../../interfaces';
 import {
   deleteUser,
   updateUser,
   changePassword,
   changeEmail,
-  getLoggedInUser,
   updateUsersPhoto,
   signOut,
 } from '../thunks/user';
 
-function mapStateToProps(state: IState) {
+function mapStateToProps(state: State) {
   const { user } = state;
   return {
     user,

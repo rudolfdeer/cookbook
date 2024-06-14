@@ -4,9 +4,9 @@ import CommentsIcon from '../../svg/Comments';
 import LikesIcon from '../../svg/Likes';
 import ViewsIcon from '../../svg/Views';
 import { Comment, Like, User } from '../../../interfaces';
+import SERVER_URL from '../../../constants/serverUrl';
 
 import './index.scss';
-import SERVER_URL from '../../../constants/serverUrl';
 
 type RecipeCardProps = {
   id: number;

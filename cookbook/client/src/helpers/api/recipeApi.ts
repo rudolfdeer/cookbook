@@ -50,8 +50,7 @@ class RecipeApi {
   }
 
   async updateRecipe(recipeId: number, data: RecipeRequestBody) {
-    const { title, description, directions, ingredients, views, likeUserIds } =
-      data;
+    const { title, description, directions, ingredients, views, likeUserIds } = data;
 
     const body = {
       title,

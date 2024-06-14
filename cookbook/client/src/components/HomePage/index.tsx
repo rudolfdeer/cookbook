@@ -4,10 +4,10 @@ import { useTranslation } from 'react-i18next';
 import ROUTES from '../../constants/routes';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 import Footer from '../Footer';
-import CardRated from './CardRated';
-import CardTrending from './CardTrending';
+import RecipeRated from './RecipeRated';
+import RecipeTrending from './RecipeTrending';
 import { Recipe, User } from '../../interfaces';
-import PopUpRecipeDetailed from '../PopUpRecipe';
+import PopUpRecipe from '../PopUpRecipe';
 
 import './index.scss';
 
@@ -70,7 +70,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
             </section>
           </div>
           {isVisible ? (
-            <PopUpRecipeDetailed
+            <PopUpRecipe
               setVisible={setVisible}
               recipe={recipes?.find((el) => el.id === selectedCardId)}
               loggedInUserId={user ? user.id : null}
@@ -88,7 +88,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
             <div className="page--home__section--rated__cards">
               {recipes
                 ?.map((el) => (
-                  <CardRated
+                  <RecipeRated
                     id={el.id}
                     title={el.title}
                     author={el.User}
@@ -121,7 +121,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
               <div className="page--home__section--trending__cards">
                 {recipes
                   ?.map((el) => (
-                    <CardTrending
+                    <RecipeTrending
                       id={el.id}
                       title={el.title}
                       author={el.User}

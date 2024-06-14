@@ -7,7 +7,7 @@ import ViewsIcon from '../../svg/Views';
 
 import './index.scss';
 
-type RecipeCardTrendingProps = {
+type RecipeTrendingProps = {
   id: number;
   title: string;
   author: User;
@@ -18,7 +18,7 @@ type RecipeCardTrendingProps = {
 };
 
 export default function CardTrending(
-  props: RecipeCardTrendingProps
+  props: RecipeTrendingProps
 ): JSX.Element {
   const { id, views, image, title, author, setVisible, selectCard } = props;
   const { t } = useTranslation();

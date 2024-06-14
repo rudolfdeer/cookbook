@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import ReactPaginate from 'react-paginate';
 import Footer from '../Footer';
-import RecipeCard from './Card';
+import RecipeCard from './RecipeCard';
 import FilterPanelRecipes from './FilterPanel';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 import { Recipe } from '../../interfaces';
+import PopUpRecipe from '../PopUpRecipe';
 
 import './index.scss';
-import PopUpRecipe from '../PopUpRecipe';
 
 type RecipesPageProps = {
   recipes: Recipe[];

@@ -15,17 +15,23 @@ type LogInFormProps = {
 
 type Validator = (value: string) => undefined | string;
 
-const required = (value: string) =>
-  value ? undefined : ERROR_MESSAGES.REQUIRED;
-const validEmail = (value: string) =>
-  !value.match(EMAILREGEX) ? ERROR_MESSAGES.EMAIL : undefined;
-const composeValidators =
-  (...validators: Validator[]) =>
-  (value: string) =>
-    validators.reduce(
-      (error, validator) => error || validator(value),
-      undefined
-    );
+const required = (value: string) => {
+  if (value) {
+    return null;
+  }
+  return ERROR_MESSAGES.REQUIRED;
+};
+
+const validEmail = (value: string) => {
+  if (value.match(EMAILREGEX)) {
+    return null;
+  }
+  return ERROR_MESSAGES.EMAIL;
+};
+
+const composeValidators = (...validators: Validator[]) => (value: string) => validators.reduce(
+  (error, validator) => error || validator(value), null,
+);
 
 export default function LogInForm(props: LogInFormProps): JSX.Element {
   const { signIn } = props;

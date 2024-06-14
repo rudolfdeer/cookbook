@@ -9,7 +9,7 @@ import ViewsIcon from '../../svg/Views';
 
 import './index.scss';
 
-type RecipeCardRatedProps = {
+type RecipeRatedProps = {
   id: number;
   title: string;
   author: User;
@@ -22,7 +22,7 @@ type RecipeCardRatedProps = {
   selectCard: Dispatch<SetStateAction<number>>;
 };
 
-export default function CardRated(props: RecipeCardRatedProps): JSX.Element {
+export default function CardRated(props: RecipeRatedProps): JSX.Element {
   const {
     id,
     views,

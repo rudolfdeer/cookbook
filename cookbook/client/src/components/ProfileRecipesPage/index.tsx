@@ -8,9 +8,9 @@ import PopUpCreateRecipe from './PopUpCreate';
 import PopUpModifyRecipe from './PopUpModify';
 import HeaderConnect from '../../redux/containers/HeaderConnect';
 import { Recipe, RecipeRequestBody, User } from '../../interfaces';
+import SERVER_URL from '../../constants/serverUrl';
 
 import './index.scss';
-import SERVER_URL from '../../constants/serverUrl';
 
 type ProfileRecipesPageProps = {
   recipes: Recipe[];
